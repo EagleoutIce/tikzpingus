@@ -1,0 +1,55 @@
+\ProvidesPackage{tikzpingus3}[2021/04/30 version v1.0 Penguins in TikZ]
+
+\errorcontextlines 99999
+\RequirePackage{tikz,fontawesome}
+\usetikzlibrary{backgrounds}
+
+\definecolor{pingu@main}{RGB}{7, 24, 50}% RGB(7, 24, 50)
+\definecolor{pingu@white}{RGB}{248,248,248}% RGB(248,248,248)
+\definecolor{pingu@yellow}{RGB}{252, 178, 21}% RGB(252, 178, 21)
+
+\newlength\pingu@w@half \pingu@w@half=\dimexpr1cm-.125cm/2\relax
+\newlength\pingu@side@h@half \pingu@side@h@half=1.65cm
+\newlength\pingu@bend \pingu@bend=.125cm
+\newlength\pingu@lower@off \pingu@lower@off=.25cm
+\newlength\pingu@outer@off \pingu@outer@off=.25cm
+\def\basicfeetbend{17.5}
+\newcommand*\pingu[1][]{\begingroup
+    \fill[pingu@main] (0,\pingu@outer@off) to[bend right=\pingu@bend] ++(0,-\pingu@side@h@half-\pingu@outer@off) arc (180:270:.25cm and .15cm) coordinate (feet-right) arc (270:360:.75cm and .05cm) -- ++(-.125cm,0) arc (180:270:.75cm and .05cm) coordinate (feet-left) arc (270:360:.25cm and .15cm) to[bend right=\pingu@bend] ++(0,\pingu@side@h@half+\pingu@outer@off) -- cycle coordinate[pos=.5,yshift=-\pingu@outer@off] (bottom-top-center);
+
+    \fill[pingu@main] (bottom-top-center)++(0,\pingu@outer@off) ellipse[x radius=\pingu@w@half, y radius=.9\pingu@w@half];
+
+
+    \coordinate (belly-center) at (\pingu@w@half,-1cm);
+
+    \fill[pingu@white] (belly-center)++(-\pingu@w@half+.1cm,\pingu@lower@off) to[bend right=.8\pingu@bend] ++(0,1.05cm-\pingu@side@h@half-\pingu@lower@off) arc (180:270:.2cm and .1cm) arc (270:360:.7cm and .05cm) -- ++(-.125cm,0) arc (180:270:.7cm and .05cm) arc (270:360:.2cm and .1cm) to[bend right=.8\pingu@bend] ++(0,\pingu@side@h@half-1.05cm+\pingu@lower@off) arc (0:180:\pingu@w@half-.1cm and \pingu@w@half);
+
+    \coordinate (heartp-left) at ([xshift=-.3cm,yshift=.25cm]bottom-top-center);
+    \coordinate (heartp-right) at ([xshift=.3cm,yshift=.25cm]bottom-top-center);
+    \fill[pingu@white,rotate around={18:(heartp-left)}] (heartp-left) ellipse [x radius=.525cm,y radius=.55cm];
+    \fill[pingu@white,rotate around={-18:(heartp-right)}] (heartp-right) ellipse [x radius=.525cm,y radius=.55cm];
+
+    \fill ([yshift=0.015cm,xshift=-.065cm]heartp-left) circle [radius=.115cm];
+    \fill ([yshift=0.015cm,xshift=.065cm]heartp-right) circle [radius=.115cm];
+    \fill[pingu@yellow] (bottom-top-center)++(-.2cm,.025cm) arc (180:360:.2cm and .225cm) to[bend right=.25cm] cycle;
+    \node[gray,scale=2] at([yshift=-.125cm]belly-center) {\faStar};
+
+    \begin{pgfonlayer}{background}
+        \coordinate (feet-right-1) at ([xshift=-.1cm]feet-right);
+        \coordinate (feet-right-2) at ([]feet-right);
+        \coordinate (feet-right-3) at ([xshift= .1cm]feet-right);
+        \fill[pingu@yellow,rotate around={-25-\basicfeetbend:(feet-right-1)}] (feet-right-1) ellipse [x radius=.105cm,y radius=.2cm];
+        \fill[pingu@yellow,rotate around={-\basicfeetbend:(feet-right-2)}] (feet-right-2) ellipse [x radius=.105cm,y radius=.2cm];
+        \fill[pingu@yellow,rotate around={25-\basicfeetbend:(feet-right-3)}] (feet-right-3) ellipse [x radius=.105cm,y radius=.2cm];
+
+        \coordinate (feet-left-1) at ([xshift=-.1cm]feet-left);
+        \coordinate (feet-left-2) at ([]feet-left);
+        \coordinate (feet-left-3) at ([xshift= .1cm]feet-left);
+        \fill[pingu@yellow,rotate around={-25+\basicfeetbend:(feet-left-1)}] (feet-left-1) ellipse [x radius=.105cm,y radius=.2cm];
+        \fill[pingu@yellow,rotate around={\basicfeetbend:(feet-left-2)}] (feet-left-2) ellipse [x radius=.105cm,y radius=.2cm];
+        \fill[pingu@yellow,rotate around={25+\basicfeetbend:(feet-left-3)}] (feet-left-3) ellipse [x radius=.105cm,y radius=.2cm];
+    \end{pgfonlayer}
+    \endgroup
+}
+
+\endinput
