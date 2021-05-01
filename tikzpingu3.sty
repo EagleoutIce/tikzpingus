@@ -13,9 +13,9 @@
 \newlength\pingu@bend \pingu@bend=.125cm
 \newlength\pingu@lower@off \pingu@lower@off=.25cm
 \newlength\pingu@outer@off \pingu@outer@off=.25cm
-\def\basicfeetbend{17.5}
+\def\basicfeetbend{45}
 \newcommand*\pingu[1][]{\begingroup
-    \fill[pingu@main] (0,\pingu@outer@off) to[bend right=\pingu@bend] ++(0,-\pingu@side@h@half-\pingu@outer@off) arc (180:270:.25cm and .15cm) coordinate (feet-right) arc (270:360:.75cm and .05cm) -- ++(-.125cm,0) arc (180:270:.75cm and .05cm) coordinate (feet-left) arc (270:360:.25cm and .15cm) to[bend right=\pingu@bend] ++(0,\pingu@side@h@half+\pingu@outer@off) -- cycle coordinate[pos=.5,yshift=-\pingu@outer@off] (bottom-top-center);
+    \fill[pingu@main] (0,\pingu@outer@off) to[bend right=\pingu@bend] ++(0,-\pingu@side@h@half-\pingu@outer@off) arc (180:270:.25cm and .15cm) coordinate (feet-right) arc (270:360:.75cm and .05cm) -- ++(-.125cm,0) arc (180:270:.75cm and .05cm) coordinate (feet-left) arc (270:360:.25cm and .15cm) to[bend right=\pingu@bend] ++(0,\pingu@side@h@half+\pingu@outer@off) coordinate[yshift=-\pingu@outer@off] (wings-left) -- cycle coordinate[yshift=-\pingu@outer@off] (wings-right) coordinate[pos=.5,yshift=-\pingu@outer@off] (bottom-top-center);
 
     \fill[pingu@main] (bottom-top-center)++(0,\pingu@outer@off) ellipse[x radius=\pingu@w@half, y radius=.9\pingu@w@half];
 
@@ -34,7 +34,13 @@
     \fill[pingu@yellow] (bottom-top-center)++(-.2cm,.025cm) arc (180:360:.2cm and .225cm) to[bend right=.25cm] cycle;
     \node[gray,scale=2] at([yshift=-.125cm]belly-center) {\faStar};
 
+
     \begin{pgfonlayer}{background}
+        \coordinate (wings-left-start) at ([yshift=-.45cm]wings-left);
+        \path[fill,pingu@main,rotate around={15:(wings-left-start)}] (wings-left-start) ellipse [x radius=.15cm, y radius=.8cm];
+        \coordinate (wings-right-start) at ([yshift=-.45cm]wings-right);
+        \path[fill,pingu@main,rotate around={-15:(wings-right-start)}] (wings-right-start) ellipse [x radius=.15cm, y radius=.8cm];
+
         \coordinate (feet-right-1) at ([xshift=-.1cm]feet-right);
         \coordinate (feet-right-2) at ([]feet-right);
         \coordinate (feet-right-3) at ([xshift= .1cm]feet-right);
