@@ -4,7 +4,8 @@
 \RequirePackage{tikz,fontawesome}
 \usetikzlibrary{backgrounds,intersections}
 
-\definecolor{pingu@main}{RGB}{7, 24, 50}% RGB(7, 24, 50)
+\definecolor{pingu@main}{RGB}{3, 14, 29}% RGB(3, 14, 29)
+\definecolor{pingu@black}{RGB}{023,019,019} % RGB(023,019,019)
 \definecolor{pingu@white}{RGB}{248,248,248}% RGB(248,248,248)
 \definecolor{pingu@yellow}{RGB}{252, 178, 21}% RGB(252, 178, 21)
 
@@ -35,8 +36,11 @@
     \path[name intersections={of=heartp-r and belly}]
             (intersection-1) coordinate[xshift=-.25cm,yshift=-.0665cm] (arm-right);
 
-    \fill ([yshift=0.025cm,xshift=-.095cm]heartp-right) coordinate(right-x) ellipse [x radius=.09cm, y radius=.1025cm];
-    \fill ([yshift=0.025cm,xshift=.095cm]heartp-left) coordinate(left-x) ellipse [x radius=.09cm, y radius=.1025cm];
+    \fill[pingu@black] ([yshift=0.025cm,xshift=-.1cm]heartp-right) coordinate(right-x) ellipse [x radius=.12cm, y radius=.13cm];
+    \fill[pingu@black] ([yshift=0.025cm,xshift=.1cm]heartp-left) coordinate(left-x) ellipse [x radius=.12cm, y radius=.13cm];
+
+    \fill[black!5!pingu@black] ([yshift=0.025cm,xshift=-.1cm]heartp-right) coordinate(right-x) ellipse [x radius=.12cm/6, y radius=.13cm/6];
+    \fill[black!5!pingu@black] ([yshift=0.025cm,xshift=.1cm]heartp-left) coordinate(left-x) ellipse [x radius=.12cm/6, y radius=.13cm/6];
 
     % \fill[pingu@white] (right-x)++(270:.1cm and .115cm) ellipse [x radius=.14cm, y radius=.175cm];
     % \fill[pingu@white] (left-x)++(270:.1cm and .115cm) ellipse [x radius=.14cm, y radius=.175cm];
