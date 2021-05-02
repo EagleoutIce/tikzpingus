@@ -35,9 +35,13 @@
     \path[name intersections={of=heartp-r and belly}]
             (intersection-1) coordinate[xshift=-.25cm,yshift=-.0665cm] (arm-right);
 
-    \fill ([yshift=0.015cm,xshift=-.065cm]heartp-right) circle [radius=.115cm];
-    \fill ([yshift=0.015cm,xshift=.065cm]heartp-left) circle [radius=.115cm];
-    \fill[pingu@yellow] (bottom-top-center)++(-.2cm,.025cm) arc (180:360:.2cm and .225cm) to[bend right=.25cm] cycle;
+    \fill ([yshift=0.025cm,xshift=-.095cm]heartp-right) coordinate(right-x) ellipse [x radius=.09cm, y radius=.1025cm];
+    \fill ([yshift=0.025cm,xshift=.095cm]heartp-left) coordinate(left-x) ellipse [x radius=.09cm, y radius=.1025cm];
+
+    % \fill[pingu@white] (right-x)++(270:.1cm and .115cm) ellipse [x radius=.14cm, y radius=.175cm];
+    % \fill[pingu@white] (left-x)++(270:.1cm and .115cm) ellipse [x radius=.14cm, y radius=.175cm];
+
+    \fill[pingu@yellow] (bottom-top-center)++(-.2cm,-.005cm) arc (180:360:.2cm and .225cm) to[bend right=.25cm] cycle;
     \node[gray,scale=2] at([yshift=-.125cm]belly-center) {\faStar};
 
 
