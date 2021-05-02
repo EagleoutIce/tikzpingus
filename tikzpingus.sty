@@ -38,6 +38,8 @@
   body head/.code = \colorlet{pingu@color@body@head}{#1},
   body/.style     = {body main={#1}, body head={#1}},
   body/.default   = pingu@main,
+  % size
+  height/.code    = \setlength{\pingu@side@h@half}{#1},%
   defaults/.style={%
     name={pingu}, feet, body%
   }
@@ -65,6 +67,16 @@
 
 \fill[pingu@color@body@head] (bottom-top-center) ellipse[x radius=\pingu@w@half, y radius=.9\pingu@w@half];
 
+\coordinate (\pingu@name-head-top) at ([yshift=.9\pingu@w@half]bottom-top-center);
+
+\begin{pgfonlayer}{background}
+    \fill[pingu@main]  ([yshift=-.1cm]\pingu@name-head-top) -- ++(-.033cm,0) arc (180:90:.17cm and .215cm) arc (90:180:.075cm and .18cm);
+    \fill[pingu@main]  ([yshift=-.1cm]\pingu@name-head-top) -- ++(.025cm,0) arc (180:90:.125cm and .175cm) arc (90:180:.035cm and .125cm);
+    \fill[pingu@main]  ([yshift=-.1cm]\pingu@name-head-top) -- ++(.033cm,0) arc (0:90:.125cm and .175cm) arc (90:0:.035cm and .1cm);
+    \fill[pingu@main]  ([yshift=-.1cm]\pingu@name-head-top) -- ++(.015cm,0) arc (0:90:.125cm and .135cm) arc (90:0:.035cm and .075cm);
+    \fill[pingu@main]  ([yshift=-.1cm]\pingu@name-head-top) -- ++(.044cm,0) arc (180:90:.125cm and .135cm) arc (90:180:.035cm and .075cm);
+\end{pgfonlayer}
+
 
 \coordinate (belly-center) at (\pingu@w@half,-1cm);
 
@@ -80,11 +92,11 @@
 % \path[name intersections={of=heartp-r and belly}]
 %         (intersection-1) coordinate[xshift=-.25cm,yshift=-.0665cm] (arm-right);
 
-\fill[pingu@black] ([yshift=0.025cm,xshift=-.1cm]heartp-right) coordinate(right-x) ellipse [x radius=.22cm, y radius=.26cm];
-\fill[pingu@black] ([yshift=0.025cm,xshift=.1cm]heartp-left) coordinate(left-x) ellipse [x radius=.22cm, y radius=.26cm];
+\fill[pingu@black] ([yshift=0.075cm,xshift=-.1cm]heartp-right) coordinate(right-x) ellipse [x radius=.22cm, y radius=.26cm];
+\fill[pingu@black] ([yshift=0.075cm,xshift=.1cm]heartp-left) coordinate(left-x) ellipse [x radius=.22cm, y radius=.26cm];
 
-\fill[black!5!pingu@black] ([yshift=0.025cm,xshift=-.1cm]heartp-right) coordinate(right-x) ellipse [x radius=.12cm/6, y radius=.13cm/6];
-\fill[black!5!pingu@black] ([yshift=0.025cm,xshift=.1cm]heartp-left) coordinate(left-x) ellipse [x radius=.12cm/6, y radius=.13cm/6];
+\fill[black!5!pingu@black] ([yshift=0.05cm,xshift=-.1cm]heartp-right) coordinate(right-x) ellipse [x radius=.12cm/6, y radius=.13cm/6];
+\fill[black!5!pingu@black] ([yshift=0.05cm,xshift=.1cm]heartp-left) coordinate(left-x) ellipse [x radius=.12cm/6, y radius=.13cm/6];
 
 \def\eyebaseang{37.5}
 \fill[pingu@white] (right-x)++(\eyebaseang:.09cm and .10cm) ellipse [x radius=.08cm, y radius=.1cm];
