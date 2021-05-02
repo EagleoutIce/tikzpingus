@@ -1,6 +1,7 @@
-\ProvidesPackage{tikzpingus}[2021/04/30 version v1.0 Penguins in TikZ]
+\def\filename{tikzpingus}
+\ProvidesPackage{\filename}[2021/04/30 version v1.0 Penguins in TikZ]
 
-\RequirePackage{tikz,fontawesome}
+\RequirePackage{tikz,etoolbox}
 \usetikzlibrary{backgrounds,intersections}
 \def\@pingu@color@ #1#2(#3,#4,#5){\definecolor{pingu@#1}{#2}{#3,#4,#5}}
 \@pingu@color@{main}RGB(3,14,29)
@@ -20,7 +21,21 @@
 \newlength\pingu@foot@inner@w \pingu@foot@inner@w=.55cm
 \newlength\pingu@foot@inner@h \pingu@foot@inner@h=.115cm
 \newlength\pingu@foot@offset@w \pingu@foot@offset@w=-.125cm
+\def\eyebaseang{38}
 
+\def\pingu@csappto#1#2{\expandafter\ifx\csname #1\endcsname\@empty\@namedef{#1}{#2}\else\csappto{#1}{, #2}\fi}
+% #1 name; TODO: refactor
+% TODO: left right
+\def\pingu@create@selection#1{%
+    \@namedef{@pingu@#1@}{}%
+    \long\@namedef{pingu@#1@add}##1##2{\pingu@csappto{@pingu@#1@}{##1}\long\@namedef{@pingu@drawer@#1@##1@}{##2}}
+    \@namedef{pingu@#1@select}##1{\ifcsname @pingu@drawer@#1@##1@\endcsname \@namedef{@pingu@drawer@#1@}{\@nameuse{@pingu@drawer@#1@##1@}}\else\PackageError{\filename}{There is no '##1' drawer for '#1'. Choose one of '\@nameuse{@pingu@#1@}'}{Or ask the package maintainer :D}\fi}%
+    \@nameuse{pingu@#1@add}{none}{}
+}
+
+\pingu@create@selection{lefteye}
+\pingu@create@selection{righteye}
+% TODO: hide
 
 \tikzset{%
   /pingu/.search also={/tikz,/pgf}, /pingu/.cd,
@@ -38,12 +53,16 @@
   body head/.code = \colorlet{pingu@color@body@head}{#1},
   body/.style     = {body main={#1}, body head={#1}},
   body/.default   = pingu@main,
+  left eye/.code      = \pingu@lefteye@select{#1}, left eye/.default={shiny},
+  right eye/.code      = \pingu@righteye@select{#1}, right eye/.default={shiny},
+  eyes/.style= {left eye={#1}, right eye={#1}},
   % size
   height/.code    = \setlength{\pingu@side@h@half}{#1},%
   defaults/.style={%
-    name={pingu}, feet, body%
+    name={pingu}, feet, body, eyes%
   }
 }
+
 
 \newcommand*\pingu[1][]{\begingroup
 \tikzset{/pingu/.cd, defaults, #1}%
@@ -69,6 +88,7 @@
 
 \coordinate (\pingu@name-head-top) at ([yshift=.9\pingu@w@half]bottom-top-center);
 
+\begin{scope}[rounded corners=.033cm]
 \begin{pgfonlayer}{background}
     \fill[pingu@main]  ([yshift=-.1cm]\pingu@name-head-top) -- ++(-.033cm,0) arc (180:90:.17cm and .215cm) arc (90:180:.075cm and .18cm);
     \fill[pingu@main]  ([yshift=-.1cm]\pingu@name-head-top) -- ++(.025cm,0) arc (180:90:.125cm and .175cm) arc (90:180:.035cm and .125cm);
@@ -76,6 +96,7 @@
     \fill[pingu@main]  ([yshift=-.1cm]\pingu@name-head-top) -- ++(.015cm,0) arc (0:90:.125cm and .135cm) arc (90:0:.035cm and .075cm);
     \fill[pingu@main]  ([yshift=-.1cm]\pingu@name-head-top) -- ++(.044cm,0) arc (180:90:.125cm and .135cm) arc (90:180:.035cm and .075cm);
 \end{pgfonlayer}
+\end{scope}
 
 
 \coordinate (belly-center) at (\pingu@w@half,-1cm);
@@ -92,20 +113,11 @@
 % \path[name intersections={of=heartp-r and belly}]
 %         (intersection-1) coordinate[xshift=-.25cm,yshift=-.0665cm] (arm-right);
 
-\fill[pingu@black] ([yshift=0.075cm,xshift=-.1cm]heartp-right) coordinate(right-x) ellipse [x radius=.22cm, y radius=.26cm];
-\fill[pingu@black] ([yshift=0.075cm,xshift=.1cm]heartp-left) coordinate(left-x) ellipse [x radius=.22cm, y radius=.26cm];
+\@pingu@drawer@lefteye@
+\@pingu@drawer@righteye@
 
-\fill[black!5!pingu@black] ([yshift=0.05cm,xshift=-.1cm]heartp-right) coordinate(right-x) ellipse [x radius=.12cm/6, y radius=.13cm/6];
-\fill[black!5!pingu@black] ([yshift=0.05cm,xshift=.1cm]heartp-left) coordinate(left-x) ellipse [x radius=.12cm/6, y radius=.13cm/6];
 
-\def\eyebaseang{37.5}
-\fill[pingu@white] (right-x)++(\eyebaseang:.09cm and .10cm) ellipse [x radius=.08cm, y radius=.1cm];
-\fill[pingu@white] (left-x)++(\eyebaseang:.09cm and .10cm) ellipse [x radius=.08cm, y radius=.1cm];
-
-\fill[pingu@white] (right-x)++(\eyebaseang+180:.11cm and .13cm) ellipse [x radius=.025cm, y radius=.035cm];
-\fill[pingu@white] (left-x)++(\eyebaseang+180:.11cm and .13cm) ellipse [x radius=.025cm, y radius=.035cm];
-
-\fill[pingu@yellow,] (bottom-top-center)++(-.2cm,-.005cm-\pingu@outer@off) arc (180:360:.2cm and .225cm) to[bend right=.25cm] cycle;
+\fill[pingu@yellow] (bottom-top-center)++(-.185cm,-.005cm-\pingu@outer@off) arc (180:360:.185cm and .225cm) to[bend right=.25cm] cycle;
 % \node[gray,scale=2] at([yshift=-.125cm]belly-center) {\faStar};
 
 
@@ -130,6 +142,36 @@
 \endgroup
 }
 
+
+\def\eyeshift{.08cm}
+\pingu@lefteye@add{normal}{%
+    \fill[pingu@black] ([yshift=0.075cm,xshift=\eyeshift]heartp-left) coordinate(left-x) ellipse [x radius=.22cm, y radius=.26cm];
+    \fill[black!5!pingu@black] ([yshift=0.05cm,xshift=\eyeshift]heartp-left) coordinate(left-x) ellipse [x radius=.12cm/6, y radius=.13cm/6];
+}
+\pingu@righteye@add{normal}{%
+    \fill[pingu@black] ([yshift=0.075cm,xshift=-\eyeshift]heartp-right) coordinate(right-x) ellipse [x radius=.22cm, y radius=.26cm];
+    \fill[black!5!pingu@black] ([yshift=0.05cm,xshift=-\eyeshift]heartp-right) coordinate(right-x) ellipse [x radius=.12cm/6, y radius=.13cm/6];
+}
+\pingu@lefteye@add{shiny}{%
+    \fill[pingu@black] ([yshift=0.075cm,xshift=\eyeshift]heartp-left) coordinate(left-x) ellipse [x radius=.22cm, y radius=.26cm];
+    \fill[pingu@white] (left-x)++(\eyebaseang:.09cm and .10cm) ellipse [x radius=.08cm, y radius=.1cm];
+    \fill[pingu@white] (left-x)++(\eyebaseang+180:.12cm and .15cm) ellipse [x radius=.025cm, y radius=.035cm];
+}
+\pingu@righteye@add{shiny}{%
+    \fill[pingu@black] ([yshift=0.075cm,xshift=-\eyeshift]heartp-right) coordinate(right-x) ellipse [x radius=.22cm, y radius=.26cm];
+    \fill[pingu@white] (right-x)++(\eyebaseang:.09cm and .10cm) ellipse [x radius=.08cm, y radius=.1cm];
+    \fill[pingu@white] (right-x)++(\eyebaseang+180:.12cm and .15cm) ellipse [x radius=.025cm, y radius=.035cm];
+}
+
+\pingu@lefteye@add{wink}{%
+    \coordinate (left-x) at ([yshift=-.01cm,xshift=\eyeshift]heartp-left);
+    \fill[pingu@black, rounded corners=.001cm,rotate around={-7:(left-x)}] (left-x)++(172:.18cm and .17cm) arc (172:8:.18cm and .17cm) arc (-8:-172:.01cm and .008cm) arc (8:172:.16cm and .06cm) arc (-8:-172:.01cm and .008cm) -- cycle;
+}
+
+\pingu@righteye@add{wink}{%
+    \coordinate (right-x) at ([yshift=-.01cm,xshift=-\eyeshift]heartp-right);
+    \fill[pingu@black, rounded corners=.001cm,rotate around={7:(right-x)}] (right-x)++(172:.18cm and .17cm) arc (172:8:.18cm and .17cm) arc (-8:-172:.01cm and .008cm) arc (8:172:.16cm and .06cm) arc (-8:-172:.01cm and .008cm) -- cycle;
+}
 
 % Feet
 \def\pingu@draw@feet{%
