@@ -145,32 +145,30 @@
 
 \def\eyeshift{.08cm}
 \pingu@lefteye@add{normal}{%
-    \fill[pingu@black] ([yshift=0.075cm,xshift=\eyeshift]heartp-left) coordinate(left-x) ellipse [x radius=.22cm, y radius=.26cm];
-    \fill[black!5!pingu@black] ([yshift=0.05cm,xshift=\eyeshift]heartp-left) coordinate(left-x) ellipse [x radius=.12cm/6, y radius=.13cm/6];
+    \fill[pingu@black] ([yshift=0.075cm,xshift=\eyeshift]heartp-left) coordinate(left-x) ellipse [x radius=.13cm, y radius=.135cm];
 }
 \pingu@righteye@add{normal}{%
-    \fill[pingu@black] ([yshift=0.075cm,xshift=-\eyeshift]heartp-right) coordinate(right-x) ellipse [x radius=.22cm, y radius=.26cm];
-    \fill[black!5!pingu@black] ([yshift=0.05cm,xshift=-\eyeshift]heartp-right) coordinate(right-x) ellipse [x radius=.12cm/6, y radius=.13cm/6];
+    \fill[pingu@black] ([yshift=0.075cm,xshift=-\eyeshift]heartp-right) coordinate(right-x) ellipse [x radius=.13cm, y radius=.135cm];
 }
 \pingu@lefteye@add{shiny}{%
     \fill[pingu@black] ([yshift=0.075cm,xshift=\eyeshift]heartp-left) coordinate(left-x) ellipse [x radius=.22cm, y radius=.26cm];
     \fill[pingu@white] (left-x)++(\eyebaseang:.09cm and .10cm) ellipse [x radius=.08cm, y radius=.1cm];
-    \fill[pingu@white] (left-x)++(\eyebaseang+180:.12cm and .15cm) ellipse [x radius=.025cm, y radius=.035cm];
+    \fill[pingu@white] (left-x)++(\eyebaseang+180:.12cm and .14cm) ellipse [x radius=.025cm, y radius=.035cm];
 }
 \pingu@righteye@add{shiny}{%
     \fill[pingu@black] ([yshift=0.075cm,xshift=-\eyeshift]heartp-right) coordinate(right-x) ellipse [x radius=.22cm, y radius=.26cm];
     \fill[pingu@white] (right-x)++(\eyebaseang:.09cm and .10cm) ellipse [x radius=.08cm, y radius=.1cm];
-    \fill[pingu@white] (right-x)++(\eyebaseang+180:.12cm and .15cm) ellipse [x radius=.025cm, y radius=.035cm];
+    \fill[pingu@white] (right-x)++(\eyebaseang+180:.12cm and .14cm) ellipse [x radius=.025cm, y radius=.035cm];
 }
 
 \pingu@lefteye@add{wink}{%
-    \coordinate (left-x) at ([yshift=-.01cm,xshift=\eyeshift]heartp-left);
-    \fill[pingu@black, rounded corners=.001cm,rotate around={-7:(left-x)}] (left-x)++(172:.18cm and .17cm) arc (172:8:.18cm and .17cm) arc (-8:-172:.01cm and .008cm) arc (8:172:.16cm and .06cm) arc (-8:-172:.01cm and .008cm) -- cycle;
+    \coordinate (left-x) at ([yshift=-.005cm,xshift=\eyeshift]heartp-left);
+    \fill[pingu@black, rounded corners=.001cm,rotate around={-9:(left-x)}] (left-x)++(172:.16cm and .15cm) arc (172:8:.16cm and .15cm) arc (-8:-172:.01cm and .008cm) arc (8:172:.14cm and .05cm) arc (-8:-172:.01cm and .008cm) -- cycle;
 }
 
 \pingu@righteye@add{wink}{%
-    \coordinate (right-x) at ([yshift=-.01cm,xshift=-\eyeshift]heartp-right);
-    \fill[pingu@black, rounded corners=.001cm,rotate around={7:(right-x)}] (right-x)++(172:.18cm and .17cm) arc (172:8:.18cm and .17cm) arc (-8:-172:.01cm and .008cm) arc (8:172:.16cm and .06cm) arc (-8:-172:.01cm and .008cm) -- cycle;
+    \coordinate (right-x) at ([yshift=-.005cm,xshift=-\eyeshift]heartp-right);
+    \fill[pingu@black, rounded corners=.001cm,rotate around={9:(right-x)}] (right-x)++(172:.16cm and .15cm) arc (172:8:.16cm and .15cm) arc (-8:-172:.01cm and .008cm) arc (8:172:.14cm and .05cm) arc (-8:-172:.01cm and .008cm) -- cycle;
 }
 
 % Feet
