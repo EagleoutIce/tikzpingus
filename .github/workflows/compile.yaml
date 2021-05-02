@@ -1,0 +1,41 @@
+name: generate showcase
+'on':
+  push:
+    branches:
+    - master
+    - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout git repository
+      uses: actions/checkout@v2
+      with:
+        lfs: true
+        submodules: true
+    - name: Setup Python environment for sltx
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+    - name: Setup and run sltx-install (and pu)
+      run: |
+        sudo apt install poppler-utils
+        pip install sltx
+        echo "tx-default" | sltx docker
+    - name: 'Compile the document and generate preview'
+      run: |
+        sltx compile --root --profile "tx-default" "showcase"
+        pdftoppm -png -f 1 -l 1 ./showcase.pdf preview
+    - name: Commit
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add -f "showcase.pdf" "preview-1.png"
+        git commit -m "Newly compiled data"
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        branch: gh-pages
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        force: true
