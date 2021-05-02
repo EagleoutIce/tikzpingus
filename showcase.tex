@@ -3,33 +3,34 @@
 \usepackage{tikzpingus}
 \usepackage[active, tightpage]{preview}
 \makeatletter
+\errorcontextlines 999999
 
 \begin{document}
 \begin{preview}
-\begin{tikzpicture}
-  \pingu
-\begin{scope}
-  \clip (\pingu@w@half,-1.75cm) rectangle ++(-1.5\pingu@w@half,3cm);
-  \colorlet{pingu@main}{pingu@main!95!black}
-  \colorlet{pingu@black}{pingu@black!95!black}
-  \colorlet{pingu@white}{pingu@white!95!black}
-  \colorlet{pingu@yellow}{pingu@yellow!95!black}
-  \pingu
-\end{scope}
-\end{tikzpicture}%
-\begin{tikzpicture}
+% \begin{tikzpicture}
+%   \pingu
+% \begin{scope}
+%   \clip (\pingu@w@half,-1.75cm) rectangle ++(-1.5\pingu@w@half,3cm);
+%   \colorlet{pingu@main}{pingu@main!95!black}
+%   \colorlet{pingu@black}{pingu@black!95!black}
+%   \colorlet{pingu@white}{pingu@white!95!black}
+%   \colorlet{pingu@yellow}{pingu@yellow!95!black}
+%   \pingu
+% \end{scope}
+% \end{tikzpicture}%
+\begin{tikzpicture}[scale=30]
   \pingu[]
 \end{tikzpicture}%
-\begin{tikzpicture}
-    \pingu
-  \begin{scope}
-    \clip (\pingu@w@half,-1.75cm) rectangle ++(1.5\pingu@w@half,3cm);
-    \colorlet{pingu@main}{pingu@main!95!black}
-    \colorlet{pingu@black}{pingu@black!95!black}
-    \colorlet{pingu@white}{pingu@white!95!black}
-    \colorlet{pingu@yellow}{pingu@yellow!95!black}
-    \pingu
-  \end{scope}
-\end{tikzpicture}%
+% \begin{tikzpicture}
+%     \pingu
+%   \begin{scope}
+%     \clip (\pingu@w@half,-1.75cm) rectangle ++(1.5\pingu@w@half,3cm);
+%     \colorlet{pingu@main}{pingu@main!95!black}
+%     \colorlet{pingu@black}{pingu@black!95!black}
+%     \colorlet{pingu@white}{pingu@white!95!black}
+%     \colorlet{pingu@yellow}{pingu@yellow!95!black}
+%     \pingu
+%   \end{scope}
+% \end{tikzpicture}%
 \end{preview}
 \end{document}
