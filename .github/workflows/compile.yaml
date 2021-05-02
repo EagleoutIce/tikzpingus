@@ -26,7 +26,7 @@ jobs:
     - name: 'Compile the document and generate preview'
       run: |
         sltx compile --root --profile "tx-default" "showcase"
-        pdftoppm -png -r 400 -f 1 -l 1 ./showcase.pdf preview
+        pdftoppm -png -r 360 -f 1 -l 1 ./showcase.pdf preview
     - name: Commit
       run: |
         git config --local user.email "action@github.com"
