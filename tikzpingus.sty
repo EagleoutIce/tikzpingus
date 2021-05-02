@@ -25,15 +25,15 @@
 
     \fill[pingu@white,name path=belly] (belly-center)++(-\pingu@w@half+.1cm,\pingu@lower@off) to[bend right=.8\pingu@bend] ++(0,1.05cm-\pingu@side@h@half-\pingu@lower@off) arc (180:270:.4cm and .2cm) arc (270:360:.5cm and .085cm) -- ++(-.125cm,0) arc (180:270:.5cm and .085cm) arc (270:360:.4cm and .2cm) to[bend right=.8\pingu@bend] ++(0,\pingu@side@h@half-1.05cm+\pingu@lower@off) arc (0:180:\pingu@w@half-.1cm and \pingu@w@half-.1cm);
 
-    \coordinate (heartp-right) at ([xshift=-.25cm,yshift=.25cm]bottom-top-center);
-    \coordinate (heartp-left) at ([xshift=.25cm,yshift=.25cm]bottom-top-center);
-    \fill[pingu@white,rotate around={18:(heartp-right)},name path=heartp-r] (heartp-right) ellipse [x radius=.58cm,y radius=.58cm];
-    \fill[pingu@white,rotate around={-18:(heartp-left)},name path=heartp-l] (heartp-left) ellipse [x radius=.58cm,y radius=.58cm];
+    \coordinate (heartp-right) at ([xshift=-.275cm,yshift=.25cm]bottom-top-center);
+    \coordinate (heartp-left) at ([xshift=.275cm,yshift=.25cm]bottom-top-center);
+    \fill[pingu@white,rotate around={18:(heartp-right)},name path=heartp-r] (heartp-right) ellipse [x radius=.575cm,y radius=.575cm];
+    \fill[pingu@white,rotate around={-18:(heartp-left)},name path=heartp-l] (heartp-left) ellipse [x radius=.575cm,y radius=.575cm];
 
     \path[name intersections={of=heartp-l and belly}]
-            (intersection-2) coordinate[xshift=.2cm,yshift=-.0665cm] (arm-left);
+            (intersection-2) coordinate[xshift=.25cm,yshift=-.0665cm] (arm-left);
     \path[name intersections={of=heartp-r and belly}]
-            (intersection-1) coordinate[xshift=-.2cm,yshift=-.0665cm] (arm-right);
+            (intersection-1) coordinate[xshift=-.25cm,yshift=-.0665cm] (arm-right);
 
     \fill ([yshift=0.015cm,xshift=-.065cm]heartp-right) circle [radius=.115cm];
     \fill ([yshift=0.015cm,xshift=.065cm]heartp-left) circle [radius=.115cm];
