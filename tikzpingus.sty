@@ -145,10 +145,10 @@
 
 \def\eyeshift{.08cm}
 \pingu@lefteye@add{normal}{%
-    \fill[pingu@black] ([yshift=0.075cm,xshift=\eyeshift]heartp-left) coordinate(left-x) ellipse [x radius=.13cm, y radius=.135cm];
+    \fill[pingu@black] ([yshift=0.075cm,xshift=\eyeshift]heartp-left) coordinate(left-x) ellipse [x radius=.1225cm, y radius=.1275cm];
 }
 \pingu@righteye@add{normal}{%
-    \fill[pingu@black] ([yshift=0.075cm,xshift=-\eyeshift]heartp-right) coordinate(right-x) ellipse [x radius=.13cm, y radius=.135cm];
+    \fill[pingu@black] ([yshift=0.075cm,xshift=-\eyeshift]heartp-right) coordinate(right-x) ellipse [x radius=.1225cm, y radius=.1275cm];
 }
 \pingu@lefteye@add{shiny}{%
     \fill[pingu@black] ([yshift=0.075cm,xshift=\eyeshift]heartp-left) coordinate(left-x) ellipse [x radius=.22cm, y radius=.26cm];
@@ -162,13 +162,13 @@
 }
 
 \pingu@lefteye@add{wink}{%
-    \coordinate (left-x) at ([yshift=-.005cm,xshift=\eyeshift]heartp-left);
-    \fill[pingu@black, rounded corners=.001cm,rotate around={-9:(left-x)}] (left-x)++(172:.16cm and .15cm) arc (172:8:.16cm and .15cm) arc (-8:-172:.01cm and .008cm) arc (8:172:.14cm and .05cm) arc (-8:-172:.01cm and .008cm) -- cycle;
+    \coordinate (left-x) at ([yshift=.005cm,xshift=\eyeshift]heartp-left);
+    \fill[pingu@black, rounded corners=.001cm,rotate around={-4:(left-x)}] (left-x)++(174:.14cm and .14cm) arc (174:6:.14cm and .14cm) arc (-6:-174:.0125cm and .008cm) arc (6:174:.125cm and .065cm) arc (-6:-175:.0125cm and .008cm) -- cycle;
 }
 
 \pingu@righteye@add{wink}{%
-    \coordinate (right-x) at ([yshift=-.005cm,xshift=-\eyeshift]heartp-right);
-    \fill[pingu@black, rounded corners=.001cm,rotate around={9:(right-x)}] (right-x)++(172:.16cm and .15cm) arc (172:8:.16cm and .15cm) arc (-8:-172:.01cm and .008cm) arc (8:172:.14cm and .05cm) arc (-8:-172:.01cm and .008cm) -- cycle;
+    \coordinate (right-x) at ([yshift=.005cm,xshift=-\eyeshift]heartp-right);
+    \fill[pingu@black, rounded corners=.002cm,rotate around={4:(right-x)}] (right-x)++(174:.14cm and .14cm) arc (174:6:.14cm and .14cm) arc (-6:-174:.01cm and .008cm) arc (6:174:.12cm and .065cm) arc (-6:-174:.01cm and .008cm) -- cycle;
 }
 
 % Feet
