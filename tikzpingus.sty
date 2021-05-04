@@ -3,8 +3,8 @@
 
 \RequirePackage{tikz,etoolbox}
 \usetikzlibrary{intersections}
-\pgfdeclarelayer{background}
-\pgfdeclarelayer{foreground}
+
+\pgfdeclarelayer{background}\pgfdeclarelayer{foreground}
 \pgfsetlayers{background,main,foreground}
 
 
@@ -29,11 +29,14 @@
 \def\eyebaseang{38.5}
 
 \def\pingu@csappto#1#2{\expandafter\ifx\csname #1\endcsname\@empty\@namedef{#1}{#2}\else\csappto{#1}{, #2}\fi}
+
+\def\pingu@create@sel@err#1#2{\PackageError{\filename}{There is no '#2' drawer for '#1'. Choose one of '\@nameuse{@pingu@#1@}'}{Or ask the package maintainer :D}}
+
 % #1 name; TODO: refactor
 \def\pingu@create@selection#1{%
     \@namedef{@pingu@#1@}{}%
     \long\@namedef{pingu@#1@add}##1##2{\pingu@csappto{@pingu@#1@}{##1}\long\@namedef{@pingu@drawer@#1@##1@}{##2}}
-    \@namedef{pingu@#1@select}##1{\ifcsname @pingu@drawer@#1@##1@\endcsname \@namedef{@pingu@drawer@#1@}{\@nameuse{@pingu@drawer@#1@##1@}}\else\PackageError{\filename}{There is no '##1' drawer for '#1'. Choose one of '\@nameuse{@pingu@#1@}'}{Or ask the package maintainer :D}\fi}%
+    \@namedef{pingu@#1@select}##1{\ifcsname @pingu@drawer@#1@##1@\endcsname \@namedef{@pingu@drawer@#1@}{\@nameuse{@pingu@drawer@#1@##1@}}\else\pingu@create@sel@err{#1}{##1}\fi}%
     \@nameuse{pingu@#1@add}{none}{}
 }
 
@@ -41,6 +44,9 @@
 \pingu@create@selection{righteye}
 \pingu@create@selection{leftwing}
 \pingu@create@selection{rightwing}
+
+\def\pingu@color#1#2{\@namedef{pingu@color@#1}{#2}}
+
 % TODO: hide
 % TODO: other selections
 % TODO: update colors to they can change
@@ -51,13 +57,13 @@
   % main style
   @block/.style    = {fill=#1}, @pingu/.style = {},
   % feet
-  left foot/.code  = \colorlet{pingu@color@foot@left}{#1},
-  right foot/.code = \colorlet{pingu@color@foot@right}{#1},
+  left foot/.code  = \pingu@color{foot@left}{#1},
+  right foot/.code = \pingu@color{foot@right}{#1},
   feet/.style      = {left foot={#1},right foot={#1}},
   feet/.default    = pingu@yellow,
   % body
-  body main/.code  = \colorlet{pingu@color@body@main}{#1},
-  body head/.code  = \colorlet{pingu@color@body@head}{#1},
+  body main/.code  = \pingu@color{body@main}{#1},
+  body head/.code  = \pingu@color{body@head}{#1},
   body/.style      = {body main={#1}, body head={#1}},
   body/.default    = pingu@main,
   % eyes
@@ -65,15 +71,15 @@
   right eye/.code  = \pingu@righteye@select{#1},
   eyes/.style      = {left eye={#1}, right eye={#1}}, eyes/.default={normal},
   % wings
-  left wing color/.code = \colorlet{pingu@color@left@wing}{#1},
+  left wing color/.code = \pingu@color{left@wing}{#1},
   left wing/.code  = \pingu@leftwing@select{#1},
-  right wing color/.code = \colorlet{pingu@color@right@wing}{#1},
+  right wing color/.code = \pingu@color{right@wing}{#1},
   right wing/.code = \pingu@rightwing@select{#1},
   wings/.style     = {left wing={#1}, right wing={#1}}, wings/.default={normal},
   wings color/.style = {left wing color={#1}, right wing color={#1}},
-  wings color/.default = pingu@color@body@main,
+  wings color/.default = \pingu@color@body@main,
   % hair color TODO: other colors
-  hairs color/.code  = \colorlet{pingu@color@hairs}{#1}, hairs color/.default={pingu@color@body@main},
+  hairs color/.code  = \pingu@color{hairs}{#1}, hairs color/.default={\pingu@color@body@main},
   % size
   height/.code     = \setlength{\pingu@side@h@half}{#1},%
   defaults/.style  = {%
@@ -100,19 +106,19 @@
     %
     -- (0,\pingu@outer@off) coordinate[yshift=-\pingu@outer@off] (wings-right) coordinate[pos=.5,yshift=-\pingu@outer@off] (bottom-top-center) -- cycle%
 }
-\fill[pingu@color@body@main] \lowerpingu;
+\fill[\pingu@color@body@main] \lowerpingu;
 
-\fill[pingu@color@body@head] (bottom-top-center) ellipse[x radius=\pingu@w@half, y radius=.9\pingu@w@half];
+\fill[\pingu@color@body@head] (bottom-top-center) ellipse[x radius=\pingu@w@half, y radius=.9\pingu@w@half];
 
 \coordinate (\pingu@name-head-top) at ([yshift=.9\pingu@w@half]bottom-top-center);
 
 \begin{scope}[rounded corners=.033cm]
 \begin{pgfonlayer}{background}
-    \fill[pingu@color@hairs]  ([yshift=-.1cm]\pingu@name-head-top) -- ++(-.033cm,0) arc (180:90:.17cm and .215cm) arc (90:180:.075cm and .18cm);
-    \fill[pingu@color@hairs]  ([yshift=-.1cm]\pingu@name-head-top) -- ++(.025cm,0) arc (180:90:.125cm and .175cm) arc (90:180:.035cm and .125cm);
-    \fill[pingu@color@hairs]  ([yshift=-.1cm]\pingu@name-head-top) -- ++(.033cm,0) arc (0:90:.125cm and .175cm) arc (90:0:.035cm and .1cm);
-    \fill[pingu@color@hairs]  ([yshift=-.1cm]\pingu@name-head-top) -- ++(.015cm,0) arc (0:90:.125cm and .135cm) arc (90:0:.035cm and .075cm);
-    \fill[pingu@color@hairs]  ([yshift=-.1cm]\pingu@name-head-top) -- ++(.044cm,0) arc (180:90:.125cm and .135cm) arc (90:180:.035cm and .075cm);
+    \fill[\pingu@color@hairs]  ([yshift=-.1cm]\pingu@name-head-top) -- ++(-.033cm,0) arc (180:90:.17cm and .215cm) arc (90:180:.075cm and .18cm);
+    \fill[\pingu@color@hairs]  ([yshift=-.1cm]\pingu@name-head-top) -- ++(.025cm,0) arc (180:90:.125cm and .175cm) arc (90:180:.035cm and .125cm);
+    \fill[\pingu@color@hairs]  ([yshift=-.1cm]\pingu@name-head-top) -- ++(.033cm,0) arc (0:90:.125cm and .175cm) arc (90:0:.035cm and .1cm);
+    \fill[\pingu@color@hairs]  ([yshift=-.1cm]\pingu@name-head-top) -- ++(.015cm,0) arc (0:90:.125cm and .135cm) arc (90:0:.035cm and .075cm);
+    \fill[\pingu@color@hairs]  ([yshift=-.1cm]\pingu@name-head-top) -- ++(.044cm,0) arc (180:90:.125cm and .135cm) arc (90:180:.035cm and .075cm);
 \end{pgfonlayer}
 \end{scope}
 
@@ -188,31 +194,31 @@
 \pingu@leftwing@add{normal}{%
 \begin{pgfonlayer}{background}
     \coordinate (wings-left-start) at ([yshift=-.7cm]wings-left);
-    \path[fill,pingu@color@left@wing,rotate around={15:(wings-left-start)}] (wings-left-start) ellipse [x radius=.195cm, y radius=.925cm];
+    \path[fill,\pingu@color@left@wing,rotate around={15:(wings-left-start)}] (wings-left-start) ellipse [x radius=.195cm, y radius=.925cm];
 \end{pgfonlayer}
 }
 \pingu@rightwing@add{normal}{%
 \begin{pgfonlayer}{background}
     \coordinate (wings-right-start) at ([yshift=-.7cm]wings-right);
-    \path[fill,pingu@color@right@wing,rotate around={-15:(wings-right-start)}] (wings-right-start) ellipse [x radius=.195cm, y radius=.925cm];
+    \path[fill,\pingu@color@right@wing,rotate around={-15:(wings-right-start)}] (wings-right-start) ellipse [x radius=.195cm, y radius=.925cm];
 \end{pgfonlayer}
 }
 
 \pingu@leftwing@add{wave}{%
     \coordinate (wings-left-start) at ([yshift=-.6cm]wings-left);
-    \path[fill,pingu@color@left@wing,rotate around={-35:(wings-left-start)}] (wings-left-start) ellipse [x radius=.225cm, y radius=.925cm];
+    \path[fill,\pingu@color@left@wing,rotate around={-35:(wings-left-start)}] (wings-left-start) ellipse [x radius=.225cm, y radius=.925cm];
 }
 \pingu@rightwing@add{wave}{%
     \coordinate (wings-right-start) at ([yshift=-.6cm]wings-right);
-    \path[fill,pingu@color@right@wing,rotate around={35:(wings-right-start)}] (wings-right-start) ellipse [x radius=.225cm, y radius=.925cm];
+    \path[fill,\pingu@color@right@wing,rotate around={35:(wings-right-start)}] (wings-right-start) ellipse [x radius=.225cm, y radius=.925cm];
 }
 \pingu@leftwing@add{raise}{%
     \coordinate (wings-left-start) at ([yshift=-.6cm]wings-left);
-    \path[fill,pingu@color@left@wing,rotate around={-17:(wings-left-start)}] (wings-left-start) ellipse [x radius=.195cm, y radius=.925cm];
+    \path[fill,\pingu@color@left@wing,rotate around={-17:(wings-left-start)}] (wings-left-start) ellipse [x radius=.195cm, y radius=.925cm];
 }
 \pingu@rightwing@add{raise}{%
     \coordinate (wings-right-start) at ([yshift=-.6cm]wings-right);
-    \path[fill,pingu@color@right@wing,rotate around={17:(wings-right-start)}] (wings-right-start) ellipse [x radius=.195cm, y radius=.925cm];
+    \path[fill,\pingu@color@right@wing,rotate around={17:(wings-right-start)}] (wings-right-start) ellipse [x radius=.195cm, y radius=.925cm];
 }
 
 \pingu@leftwing@add{grab}{%
@@ -220,14 +226,14 @@
 \begin{scope}
     \clip\lowerpingu;
     \coordinate (wings-left-start) at ([yshift=-.45cm]wings-left);
-    \path[fill,pingu@color@left@wing,rotate around={-42:(wings-left-start)}] (wings-left-start) ellipse [x radius=.225cm, y radius=1.15cm];
+    \path[fill,\pingu@color@left@wing,rotate around={-42:(wings-left-start)}] (wings-left-start) ellipse [x radius=.225cm, y radius=1.15cm];
 \end{scope}\end{pgfonlayer}}
 \pingu@rightwing@add{grab}{%
 \begin{pgfonlayer}{foreground}
 \begin{scope}
     \clip\lowerpingu;
     \coordinate (wings-right-start) at ([yshift=-.45cm]wings-right);
-    \path[fill,pingu@color@right@wing,rotate around={42:(wings-right-start)}] (wings-right-start) ellipse [x radius=.225cm, y radius=1.15cm];
+    \path[fill,\pingu@color@right@wing,rotate around={42:(wings-right-start)}] (wings-right-start) ellipse [x radius=.225cm, y radius=1.15cm];
 \end{scope}\end{pgfonlayer}}
 
 %%% Feet %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
@@ -235,16 +241,16 @@
     \coordinate (\pingu@name-foot-right-1) at ([xshift=-.1cm]\pingu@name-foot-right);
     \coordinate (\pingu@name-foot-right-2) at (\pingu@name-foot-right);
     \coordinate (\pingu@name-foot-right-3) at ([xshift= .1cm]\pingu@name-foot-right);
-    \fill[pingu@color@foot@right,rotate around={-25-\basicfeetbend:(\pingu@name-foot-right-1)}] (\pingu@name-foot-right-1) ellipse [x radius=.105cm,y radius=.2cm];
-    \fill[pingu@color@foot@right,rotate around={-\basicfeetbend:(\pingu@name-foot-right-2)}] (\pingu@name-foot-right-2) ellipse [x radius=.105cm,y radius=.2cm];
-    \fill[pingu@color@foot@right,rotate around={25-\basicfeetbend:(\pingu@name-foot-right-3)}] (\pingu@name-foot-right-3) ellipse [x radius=.105cm,y radius=.2cm];
+    \fill[\pingu@color@foot@right,rotate around={-25-\basicfeetbend:(\pingu@name-foot-right-1)}] (\pingu@name-foot-right-1) ellipse [x radius=.105cm,y radius=.2cm];
+    \fill[\pingu@color@foot@right,rotate around={-\basicfeetbend:(\pingu@name-foot-right-2)}] (\pingu@name-foot-right-2) ellipse [x radius=.105cm,y radius=.2cm];
+    \fill[\pingu@color@foot@right,rotate around={25-\basicfeetbend:(\pingu@name-foot-right-3)}] (\pingu@name-foot-right-3) ellipse [x radius=.105cm,y radius=.2cm];
 
     \coordinate (\pingu@name-foot-left-1) at ([xshift=-.1cm]\pingu@name-foot-left);
     \coordinate (\pingu@name-foot-left-2) at (\pingu@name-foot-left);
     \coordinate (\pingu@name-foot-left-3) at ([xshift= .1cm]\pingu@name-foot-left);
-    \fill[pingu@color@foot@left,rotate around={-25+\basicfeetbend:(\pingu@name-foot-left-1)}] (\pingu@name-foot-left-1) ellipse [x radius=.105cm,y radius=.2cm];
-    \fill[pingu@color@foot@left,rotate around={\basicfeetbend:(\pingu@name-foot-left-2)}] (\pingu@name-foot-left-2) ellipse [x radius=.105cm,y radius=.2cm];
-    \fill[pingu@color@foot@left,rotate around={25+\basicfeetbend:(\pingu@name-foot-left-3)}] (\pingu@name-foot-left-3) ellipse [x radius=.105cm,y radius=.2cm];
+    \fill[\pingu@color@foot@left,rotate around={-25+\basicfeetbend:(\pingu@name-foot-left-1)}] (\pingu@name-foot-left-1) ellipse [x radius=.105cm,y radius=.2cm];
+    \fill[\pingu@color@foot@left,rotate around={\basicfeetbend:(\pingu@name-foot-left-2)}] (\pingu@name-foot-left-2) ellipse [x radius=.105cm,y radius=.2cm];
+    \fill[\pingu@color@foot@left,rotate around={25+\basicfeetbend:(\pingu@name-foot-left-3)}] (\pingu@name-foot-left-3) ellipse [x radius=.105cm,y radius=.2cm];
 }
 
 \endinput
