@@ -76,9 +76,11 @@
   right wing color/.code = \pingu@color{right@wing}{#1},
   right wing/.code = \pingu@rightwing@select{#1},
   wings/.style     = {left wing={#1}, right wing={#1}}, wings/.default={normal},
+  wings grab/.style={wings={grab}, wings color={#1}}, wings wave/.style={wings={wave}, wings color={#1}},
   wings color/.style = {left wing color={#1}, right wing color={#1}},
   wings color/.default = \pingu@color@body@main,
   % hair color TODO: other colors
+  hair/.forward to  = /pingu/hairs color,
   hairs color/.code  = \pingu@color{hairs}{#1}, hairs color/.default={\pingu@color@body@main},
   % size
   height/.code     = \setlength{\pingu@side@h@half}{#1},%
@@ -205,12 +207,16 @@
 }
 
 \pingu@leftwing@add{wave}{%
+\begin{pgfonlayer}{background}
     \coordinate (wings-left-start) at ([yshift=-.6cm]wings-left);
     \path[fill,\pingu@color@left@wing,rotate around={-35:(wings-left-start)}] (wings-left-start) ellipse [x radius=.225cm, y radius=.925cm];
+\end{pgfonlayer}
 }
 \pingu@rightwing@add{wave}{%
+\begin{pgfonlayer}{background}
     \coordinate (wings-right-start) at ([yshift=-.6cm]wings-right);
     \path[fill,\pingu@color@right@wing,rotate around={35:(wings-right-start)}] (wings-right-start) ellipse [x radius=.225cm, y radius=.925cm];
+\end{pgfonlayer}
 }
 \pingu@leftwing@add{raise}{%
     \coordinate (wings-left-start) at ([yshift=-.6cm]wings-left);
