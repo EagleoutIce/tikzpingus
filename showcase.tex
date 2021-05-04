@@ -7,39 +7,17 @@
 
 \begin{document}
 \begin{preview}
-% \begin{tikzpicture}
-%   \pingu
-% \begin{scope}
-%   \clip (\pingu@w@half,-1.75cm) rectangle ++(-1.5\pingu@w@half,3cm);
-%   \colorlet{pingu@main}{pingu@main!95!black}
-%   \colorlet{pingu@black}{pingu@black!95!black}
-%   \colorlet{pingu@white}{pingu@white!95!black}
-%   \colorlet{pingu@yellow}{pingu@yellow!95!black}
-%   \pingu
-% \end{scope}
-% \end{tikzpicture}%
 \begin{tikzpicture}[scale=6]
-  \pingu[eyes wink=brown!70!black,wings wave]
-\end{tikzpicture}\hspace*{6cm}
-\begin{tikzpicture}[scale=6]
-  \pingu[eyes=shiny,wings grab]
-\end{tikzpicture}\hspace*{6cm}
-\begin{tikzpicture}[scale=6]
-  \pingu[eyes=shiny,body=pingu@black,hair=purple]
-\end{tikzpicture}\hspace*{6cm}%
-\begin{tikzpicture}[scale=6]
-  \pingu[height=1.5cm,right eye={wink}, left eye=normal,wings=raise]
+  \pingu[eyes wink=brown!70!black,wings wave,name=left-pengu]
+  \pingu[xshift=3.5cm,eyes=shiny,wings grab]
+  \pingu[xshift=7cm,eyes=shiny,body=pingu@black,hair=purple,name=right-pengu]
+  \pingu[xshift=10.5cm,yshift=.2cm,height=1.5cm,right eye={wink}, left eye=normal,wings=raise]
+
+  \begin{pgfonlayer}{foreground}
+  \draw[gray,very thick] ([xshift=-1.5cm]left-pengu-right-eye) coordinate (l) -- ([xshift=4.75cm]right-pengu-left-eye) coordinate (r);
+  \draw[gray,very thick] (l|-left-pengu-bill) -- (r|-right-pengu-bill);
+  \draw[gray,very thick] (l|-left-pengu-bill-bottom) -- (r|-right-pengu-bill-bottom);
+  \end{pgfonlayer}
 \end{tikzpicture}%
-% \begin{tikzpicture}
-%     \pingu
-%   \begin{scope}
-%     \clip (\pingu@w@half,-1.75cm) rectangle ++(1.5\pingu@w@half,3cm);
-%     \colorlet{pingu@main}{pingu@main!95!black}
-%     \colorlet{pingu@black}{pingu@black!95!black}
-%     \colorlet{pingu@white}{pingu@white!95!black}
-%     \colorlet{pingu@yellow}{pingu@yellow!95!black}
-%     \pingu
-%   \end{scope}
-% \end{tikzpicture}%
 \end{preview}
 \end{document}
