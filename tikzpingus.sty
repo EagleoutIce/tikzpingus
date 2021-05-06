@@ -60,12 +60,12 @@
   % feet
   left foot/.code               = \pingu@color{foot@left}{#1},
   right foot/.code              = \pingu@color{foot@right}{#1},
-  feet/.style                   = {left foot={#1},right foot={#1}},
+  feet/.style                   = {/pingu/left foot={#1}, /pingu/right foot={#1}},
   feet/.default                 = pingu@yellow,
   % body
   body main/.code               = \pingu@color{body@main}{#1},
   body head/.code               = \pingu@color{body@head}{#1},
-  body/.style                   = {body main={#1}, body head={#1}},
+  body/.style                   = {/pingu/body main={#1}, /pingu/body head={#1}},
   body/.default                 = pingu@main,
   % eyes
   left eye/.code                = \pingu@lefteye@select{#1},
@@ -74,29 +74,37 @@
   right eye/.code               = \pingu@righteye@select{#1},
   right eye color/.code         = \pingu@color{eye@right}{#1},
   right second eye color/.code  = \pingu@color{eye@second@right}{#1},
-  eyes/.style                   = {left eye={#1}, right eye={#1}}, eyes/.default={normal},
-  eyes color/.style             = {left eye color={#1}, right eye color={#1}},
+  eyes/.style                   = {/pingu/left eye={#1}, /pingu/right eye={#1}}, /pingu/eyes/.default={normal},
+  eyes color/.style             = {/pingu/left eye color={#1}, /pingu/right eye color={#1}},
   eyes color/.default           = {pingu@black},
-  eyes wink/.style              = {eyes={wink}, eyes color={#1}},
+  eyes wink/.style              = {/pingu/eyes={wink}, /pingu/eyes color={#1}},
   eyes wink/.default            = {pingu@black},
-  shiny eyes color/.style       = {left second eye color={#1}, right second eye color={#1}},
+  shiny eyes color/.style       = {/pingu/left second eye color={#1}, /pingu/right second eye color={#1}},
   shiny eyes color/.default     = {pingu@white},
   % wings
   left wing color/.code         = \pingu@color{left@wing}{#1},
   left wing/.code               = \pingu@leftwing@select{#1},
   right wing color/.code        = \pingu@color{right@wing}{#1},
   right wing/.code              = \pingu@rightwing@select{#1},
-  wings/.style                  = {left wing={#1}, right wing={#1}},
-                                   wings/.default={normal},
-  wings grab/.style             = {wings={grab}, wings color={#1}},
-  wings wave/.style             = {wings={wave}, wings color={#1}},
+  wings/.style                  = {/pingu/left wing={#1}, /pingu/right wing={#1}},
+                                   /pingu/wings/.default={normal},
+  wings grab/.style             = {/pingu/wings={grab}, /pingu/wings color={#1}},
+  wings wave/.style             = {/pingu/wings={wave}, /pingu/wings color={#1}},
   wings grab/.default           = \pingu@color@body@main,
   wings wave/.default           = \pingu@color@body@main,
-  wings color/.style            = {left wing color={#1}, right wing color={#1}},
+  wings color/.style            = {/pingu/left wing color={#1}, /pingu/right wing color={#1}},
   wings color/.default          = \pingu@color@body@main,
   % hair color TODO: other colors
   hair/.forward to              = /pingu/hairs color,
-  hairs color/.code             = \pingu@color{hairs}{#1},
+  hairs/.forward to             = /pingu/hairs color,
+  hair 1 color/.code            = \pingu@color{hair@a}{#1}, hair 1/.forward to = /pingu/hair 1 color,
+  hair 2 color/.code            = \pingu@color{hair@b}{#1}, hair 2/.forward to = /pingu/hair 2 color,
+  hair 3 color/.code            = \pingu@color{hair@c}{#1}, hair 3/.forward to = /pingu/hair 3 color,
+  hair 4 color/.code            = \pingu@color{hair@d}{#1}, hair 4/.forward to = /pingu/hair 4 color,
+  hair 5 color/.code            = \pingu@color{hair@e}{#1}, hair 5/.forward to = /pingu/hair 5 color,
+  hairs color/.style            = {/pingu/hair 1 color={#1}, /pingu/hair 2 color={#1},
+                                   /pingu/hair 3 color={#1}, /pingu/hair 4 color={#1},
+                                   /pingu/hair 5 color={#1}},
   hairs color/.default          = {\pingu@color@body@main},
   % size
   height/.code                  = \setlength{\pingu@side@h@half}{#1},%
@@ -132,11 +140,11 @@
 
 \begin{scope}[rounded corners=.033cm]
 \begin{pgfonlayer}{background}
-    \fill[\pingu@color@hairs]  ([yshift=-.1cm]\pingu@name-head-top) -- ++(-.033cm,0) arc (180:90:.17cm and .215cm) arc (90:180:.075cm and .18cm);
-    \fill[\pingu@color@hairs]  ([yshift=-.1cm]\pingu@name-head-top) -- ++(.025cm,0) arc (180:90:.125cm and .175cm) arc (90:180:.035cm and .125cm);
-    \fill[\pingu@color@hairs]  ([yshift=-.1cm]\pingu@name-head-top) -- ++(.033cm,0) arc (0:90:.125cm and .175cm) arc (90:0:.035cm and .1cm);
-    \fill[\pingu@color@hairs]  ([yshift=-.1cm]\pingu@name-head-top) -- ++(.015cm,0) arc (0:90:.125cm and .135cm) arc (90:0:.035cm and .075cm);
-    \fill[\pingu@color@hairs]  ([yshift=-.1cm]\pingu@name-head-top) -- ++(.044cm,0) arc (180:90:.125cm and .135cm) arc (90:180:.035cm and .075cm);
+    \pingu@block{\pingu@color@hair@a}  ([yshift=-.1cm]\pingu@name-head-top) -- ++(.015cm,0) arc (0:90:.125cm and .135cm) arc (90:0:.035cm and .075cm);
+    \pingu@block{\pingu@color@hair@b}  ([yshift=-.1cm]\pingu@name-head-top) -- ++(.033cm,0) arc (0:90:.125cm and .175cm) arc (90:0:.035cm and .1cm);
+    \pingu@block{\pingu@color@hair@c}  ([yshift=-.1cm]\pingu@name-head-top) -- ++(-.033cm,0) arc (180:90:.17cm and .215cm) arc (90:180:.075cm and .18cm);
+    \pingu@block{\pingu@color@hair@d}  ([yshift=-.1cm]\pingu@name-head-top) -- ++(.025cm,0) arc (180:90:.125cm and .175cm) arc (90:180:.035cm and .125cm);
+    \pingu@block{\pingu@color@hair@e}  ([yshift=-.1cm]\pingu@name-head-top) -- ++(.044cm,0) arc (180:90:.125cm and .135cm) arc (90:180:.035cm and .075cm);
 \end{pgfonlayer}
 \end{scope}
 
@@ -181,9 +189,9 @@
 }
 
 \long\def\pingu@path{\@dblarg\pingu@path@}
-\def\pingu@path@[#1]#2#3;{\ifdefstring{#2}{\@pingu@none}{}{\path[#1,#2] #3;}}
+\def\pingu@path@[#1]#2#3;{\protected@edef\@tmp{#2}\ifx\@tmp\@pingu@none\else\path[#1,#2] #3;\fi}
 \long\def\pingu@block{\@dblarg\pingu@block@}
-\def\pingu@block@[#1]#2#3;{\ifdefstring{#2}{\@pingu@none}{}{\path[#1,/pingu/@block=#2] #3;}}
+\def\pingu@block@[#1]#2#3;{\protected@edef\@tmp{#2}\ifx\@tmp\@pingu@none\else\path[#1,/pingu/@block=#2] #3;\fi}
 % TODO: eye colors
 
 %%% eyes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
