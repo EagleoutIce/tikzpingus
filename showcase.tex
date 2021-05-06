@@ -6,6 +6,12 @@
 
 \errorcontextlines 999999
 
+\def\DrawDots#1{
+  \foreach \x in {belly-center,head,head-top,foot-left,foot-right} {
+    \fill[green] (#1-\x) circle[radius=1.25pt];
+  }
+}
+
 \begin{document}
 \begin{preview}
 \begin{tikzpicture}[scale=6]
@@ -15,7 +21,7 @@
   \pingu[xshift=9.5cm,eyes=shiny,body=pingu@black,hair=purple,hair 3=purple!80!black,name=right-pengu]
   \pingu[xshift=13cm,yshift=.2cm,height=1.5cm,right eye={wink}, left eye=normal,wings=raise,belly=\faSunO,hairstyle=none]
   \begin{pgfonlayer}{foreground}
-    \begin{scope}[every path/.style={draw,gray,very thick}]
+    \begin{scope}[every path/.style={draw,gray,thin}]
   \path ([xshift=-1.5cm]left-pengu-right-eye) coordinate (l) -- ([xshift=4.75cm]right-pengu-left-eye) coordinate (r);
   \path (l|-left-pengu-bill) -- (r|-right-pengu-bill);
   \path (l|-left-pengu-belly-center) -- (r|-right-pengu-belly-center);
@@ -24,8 +30,9 @@
   \path (l|-left-pengu-foot-right) -- (r|-right-pengu-foot-left);
   \path (l|-left-pengu-bill-bottom) -- (r|-right-pengu-bill-bottom);
   \path ([yshift=.5cm]left-pengu-head) -- ([yshift=-.25cm]left-pengu-bottom-center);
-    \end{scope}
+  \end{scope}
+  \DrawDots{left-pengu}
   \end{pgfonlayer}
-\end{tikzpicture}%
+\end{tikzpicture}
 \end{preview}
 \end{document}
