@@ -2,23 +2,30 @@
 
 \usepackage{tikzpingus}
 \usepackage[active, tightpage]{preview}
-\makeatletter
+\usepackage{fontawesome}
+
 \errorcontextlines 999999
 
 \begin{document}
 \begin{preview}
 \begin{tikzpicture}[scale=6]
-  \pingu[eyes wink=brown!70!black,wings wave,name=left-pengu]
-  \pingu[xshift=3.5cm,eyes=shiny,wings grab]
-  \pingu[xshift=6.5cm,eyes=shock,wings=shock,hair 1=green,hair 2=blue,hair 3=orange,hair 4=!hide,hair 5=olive]
+  \pingu[eyes wink=brown!70!black,wings wave,name=left-pengu,belly=\faStar]
+  \pingu[xshift=3.5cm,eyes=shiny,wings grab,belly={\color{gray}\scalebox{2.5}{\faSquare}}]
+  \pingu[xshift=6.5cm,eyes=shock,wings=shock,hair 1=green,hair 2=blue,hair 3=orange,hair 4=!hide,hair 5=olive,belly=\faHeart]
   \pingu[xshift=9.5cm,eyes=shiny,body=pingu@black,hair=purple,hair 3=purple!80!black,name=right-pengu]
-  \pingu[xshift=13cm,yshift=.2cm,height=1.5cm,right eye={wink}, left eye=normal,wings=raise]
+  \pingu[xshift=13cm,yshift=.2cm,height=1.5cm,right eye={wink}, left eye=normal,wings=raise,belly=\faSunO]
 
   \begin{pgfonlayer}{foreground}
-  \draw[gray,very thick] ([xshift=-1.5cm]left-pengu-right-eye) coordinate (l) -- ([xshift=4.75cm]right-pengu-left-eye) coordinate (r);
-  \draw[gray,very thick] (l|-left-pengu-bill) -- (r|-right-pengu-bill);
-  \draw[gray,very thick] (l|-left-pengu-bill-bottom) -- (r|-right-pengu-bill-bottom);
-  \draw[gray,very thick] ([yshift=.5cm]left-pengu-head) -- ([yshift=-.25cm]left-pengu-bottom-center);
+    \begin{scope}[every path/.style={draw,gray,very thick}]
+  \path ([xshift=-1.5cm]left-pengu-right-eye) coordinate (l) -- ([xshift=4.75cm]right-pengu-left-eye) coordinate (r);
+  \path (l|-left-pengu-bill) -- (r|-right-pengu-bill);
+  \path (l|-left-pengu-belly-center) -- (r|-right-pengu-belly-center);
+  \path (l|-left-pengu-head) -- (r|-right-pengu-head);
+  \path (l|-left-pengu-head-top) -- (r|-right-pengu-head-top);
+  \path (l|-left-pengu-foot-right) -- (r|-right-pengu-foot-left);
+  \path (l|-left-pengu-bill-bottom) -- (r|-right-pengu-bill-bottom);
+  \path ([yshift=.5cm]left-pengu-head) -- ([yshift=-.25cm]left-pengu-bottom-center);
+    \end{scope}
   \end{pgfonlayer}
 \end{tikzpicture}%
 \end{preview}

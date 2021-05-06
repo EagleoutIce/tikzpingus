@@ -57,6 +57,7 @@
   scale/.code                   = \def\pingu@scale{#1},
   % main style
   @block/.style                 = {fill=#1}, @pingu/.style = {},
+  @text/.style                  = {transform shape,text=\pingu@color@body@main},
   % feet
   left foot/.code               = \pingu@color{foot@left}{#1},
   right foot/.code              = \pingu@color{foot@right}{#1},
@@ -67,6 +68,10 @@
   body head/.code               = \pingu@color{body@head}{#1},
   body/.style                   = {/pingu/body main={#1}, /pingu/body head={#1}},
   body/.default                 = pingu@main,
+  % belly
+  belly/.forward to             = /pingu/belly text,
+  belly text/.style             = {/pingu/belly raw={\node[/pingu/@text] {#1};}},
+  belly raw/.code               = {\def\pingu@belly@raw{#1}},
   % eyes
   left eye/.code                = \pingu@lefteye@select{#1},
   left eye color/.code          = \pingu@color{eye@left}{#1},
@@ -109,9 +114,10 @@
   % size
   height/.code                  = \setlength{\pingu@side@h@half}{#1},%
   defaults/.style               = {%
-    name={pingu}, feet, body, eyes, eyes color, shiny eyes color, wings, wings color, hairs color%
+    name={pingu}, feet, body, eyes, eyes color, shiny eyes color, wings, wings color, hairs color, belly raw={}%
   }
 }
+% TODO: free defaults
 
 
 \newcommand*\pingu[1][]{\begingroup
@@ -123,7 +129,7 @@
     % feety stuff
     arc (180:270:\pingu@foot@outer@w{} and \pingu@foot@outer@h) coordinate (\pingu@name-foot-right)
     arc (270:360:\pingu@foot@inner@w{} and \pingu@foot@inner@h) -- ++(\pingu@foot@offset@w,0)
-    coordinate[pos=.5] (\pingu@name-bottom-center)
+    coordinate[pos=.5,yshift=-\pingu@foot@inner@h] (\pingu@name-bottom-center)
     arc (180:270:\pingu@foot@inner@w{} and \pingu@foot@inner@h) coordinate (\pingu@name-foot-left)
     arc (270:360:\pingu@foot@outer@w{} and \pingu@foot@outer@h)%
     % right side
@@ -152,9 +158,11 @@
 \@pingu@drawer@leftwing@
 \@pingu@drawer@rightwing@
 
-\coordinate (belly-center) at (\pingu@w@half,-1cm);
+\coordinate (\pingu@name-belly-back) at (\pingu@w@half,-1cm);
+\coordinate (\pingu@name-belly-center) at (\pingu@w@half,-.75\pingu@side@h@half);
 
-\fill[pingu@white,name path=belly] (belly-center)++(-\pingu@w@half+.1cm,\pingu@lower@off) to[bend right=.8\pingu@bend] ++(0,1.05cm-\pingu@side@h@half-\pingu@lower@off) arc (180:270:.4cm and .2cm) arc (270:360:.5cm and .085cm) -- ++(-.125cm,0) arc (180:270:.5cm and .085cm) arc (270:360:.4cm and .2cm) to[bend right=.8\pingu@bend] ++(0,\pingu@side@h@half-1.05cm+\pingu@lower@off) arc (0:180:\pingu@w@half-.1cm and \pingu@w@half-.1cm);
+\def\whitepingu{(\pingu@name-belly-back)++(-\pingu@w@half+.1cm,\pingu@lower@off) to[bend right=.8\pingu@bend] ++(0,1.05cm-\pingu@side@h@half-\pingu@lower@off) arc (180:270:.4cm and .2cm) arc (270:360:.5cm and .085cm) -- ++(-.125cm,0) arc (180:270:.5cm and .085cm) arc (270:360:.4cm and .2cm) to[bend right=.8\pingu@bend] ++(0,\pingu@side@h@half-1.05cm+\pingu@lower@off) arc (0:180:\pingu@w@half-.1cm and \pingu@w@half-.1cm)}
+\fill[pingu@white,name path=\pingu@name-belly] \whitepingu;
 
 \coordinate (heartp-right) at ([xshift=-.275cm,yshift=.25cm-\pingu@outer@off]bottom-top-center);
 \coordinate (heartp-left) at ([xshift=.275cm,yshift=.25cm-\pingu@outer@off]bottom-top-center);
@@ -163,9 +171,9 @@
 
 \path[name intersections={of=heartp-l and heartp-r}]
         (intersection-1) coordinate (\pingu@name-head);
-\path[name intersections={of=heartp-l and belly}]
+\path[name intersections={of=heartp-l and \pingu@name-belly}]
          (intersection-2) coordinate[xshift=.25cm,yshift=-.0665cm] (arm-left);
-\path[name intersections={of=heartp-r and belly}]
+\path[name intersections={of=heartp-r and \pingu@name-belly}]
          (intersection-1) coordinate[xshift=-.25cm,yshift=-.0665cm] (arm-right);
 
 \@pingu@drawer@lefteye@
@@ -175,8 +183,10 @@
 \fill[pingu@yellow] (bottom-top-center)++(0,-.005cm-\pingu@outer@off) coordinate (\pingu@name-bill)++(-.19cm,0) arc (180:360:.19cm and .225cm) coordinate[pos=.5] (\pingu@name-bill-bottom) to[bend right=.25cm] cycle;
 \end{pgfonlayer}
 
-% \node[gray,scale=2] at([yshift=-.125cm]belly-center) {\faStar};
-
+\begin{scope}[shift=(\pingu@name-belly-center)]
+\clip\whitepingu;
+\pingu@belly@raw
+\end{scope}
 % \begin{scope}
 %     \clip\lowerpingu;
 % \path[fill,pingu@main,rotate around={-40:(arm-left)}] (arm-left) ellipse [x radius=.195cm, y radius=.925cm];
