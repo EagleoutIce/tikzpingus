@@ -123,6 +123,7 @@
     % feety stuff
     arc (180:270:\pingu@foot@outer@w{} and \pingu@foot@outer@h) coordinate (\pingu@name-foot-right)
     arc (270:360:\pingu@foot@inner@w{} and \pingu@foot@inner@h) -- ++(\pingu@foot@offset@w,0)
+    coordinate[pos=.5] (\pingu@name-bottom-center)
     arc (180:270:\pingu@foot@inner@w{} and \pingu@foot@inner@h) coordinate (\pingu@name-foot-left)
     arc (270:360:\pingu@foot@outer@w{} and \pingu@foot@outer@h)%
     % right side
@@ -160,6 +161,8 @@
 \fill[pingu@white,name path=heartp-r] (heartp-right)++(0,-.025cm) ellipse [x radius=.525cm,y radius=.65cm];
 \fill[pingu@white,name path=heartp-l] (heartp-left)++(0,-.025cm) ellipse [x radius=.525cm,y radius=.65cm];
 
+\path[name intersections={of=heartp-l and heartp-r}]
+        (intersection-1) coordinate (\pingu@name-head);
 \path[name intersections={of=heartp-l and belly}]
          (intersection-2) coordinate[xshift=.25cm,yshift=-.0665cm] (arm-left);
 \path[name intersections={of=heartp-r and belly}]
