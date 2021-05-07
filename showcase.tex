@@ -7,8 +7,11 @@
 \errorcontextlines 999999
 
 \def\DrawDots#1{
-  \foreach \x in {belly-center,head,head-top,foot-left,foot-right,right-eye,left-eye,bill, wings-left,wings-right} {
+  \foreach \x in {belly-center,head,head-top,foot-left,foot-right,right-eye,left-eye,bill,wings-side-left,wings-side-right,wings-left-start,wings-left-tip,wings-right-start,wings-right-tip} {
     \fill[green] (#1-\x) circle[radius=1.25pt];
+  }
+  \foreach \x in {wings-left,wings-right} {
+    \fill[teal] (#1-\x) circle[radius=1.25pt];
   }
 }
 
@@ -19,7 +22,7 @@
   \pingu[xshift=3.5cm,eyes=shiny,wings grab,belly={\color{gray}\scalebox{2.5}{\faSquare}}]
   \pingu[xshift=7cm,eyes=shock,wings=shock,hair 1=green,hair 2=blue,hair 3=orange,hair 4=!hide,hair 5=olive,belly=\faHeart]
   \pingu[xshift=10.5cm,eyes=shiny,body=pingu@black,hair=purple,hair 3=purple!80!black,name=right-pengu]
-  \pingu[xshift=14cm,yshift=.225cm,height=1.5cm,right eye={wink}, left eye=normal,wings=raise,belly=\faSunO,hairstyle=none]
+  \pingu[xshift=14cm,yshift=.225cm,height=1.5cm,right eye={wink}, left eye=normal,wings=raise,belly=\faSunO,hairstyle=none,name=large-pengu]
   \begin{pgfonlayer}{foreground}
     \begin{scope}[every path/.style={draw,gray,thin}]
   \path ([xshift=-1.5cm]left-pengu-right-eye) coordinate (l) -- ([xshift=4.75cm]right-pengu-left-eye) coordinate (r);
@@ -30,18 +33,23 @@
   \path (l|-left-pengu-foot-right) -- (r|-right-pengu-foot-left);
   \path (l|-left-pengu-bill-bottom) -- (r|-right-pengu-bill-bottom);
   \path ([yshift=.5cm]left-pengu-head) -- ([yshift=-.125cm]left-pengu-bottom-center);
+  \path ([yshift=.3cm]large-pengu-head) -- ([yshift=-.125cm]large-pengu-bottom-center);
   \end{scope}
   \end{pgfonlayer}
 
   \pingu[yshift=-4cm-.175cm,name=pengu-1,height=1.1cm]
   \pingu[yshift=-4cm,xshift=3.5cm,name=pengu-2,height=1.275cm,wings=shock]
   \pingu[yshift=-4cm+.225cm,xshift=7cm,name=pengu-3,height=1.5cm,wings=wave]
-  \pingu[yshift=-4cm,xshift=10.5cm,name=pengu-4,@block/.append style={opacity=.5}]
-  \pingu[yshift=-4cm,xshift=14cm,name=pengu-5,@block/.append style={fill=none,draw=#1!80!black}]
+  \pingu[yshift=-4cm,xshift=10.5cm,name=pengu-4,wings=grab]
+  \pingu[yshift=-4cm,xshift=14cm,name=pengu-5,wings=raise]
+  \pingu[yshift=-8cm,xshift=3.5cm,name=pengu-a,@block/.append style={opacity=.5}]
+  \pingu[yshift=-8cm,xshift=10.5cm,name=pengu-b,@block/.append style={fill=none,draw=#1!80!black}]
   \begin{pgfonlayer}{foreground}
     \DrawDots{pengu-1}
     \DrawDots{pengu-2}
     \DrawDots{pengu-3}
+    \DrawDots{pengu-4}
+    \DrawDots{pengu-5}
   \end{pgfonlayer}
 \end{tikzpicture}
 \end{preview}
