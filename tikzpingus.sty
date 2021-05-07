@@ -1,7 +1,7 @@
 \def\filename{tikzpingus}
 \ProvidesPackage{\filename}[2021/04/30 version v1.0 Penguins in TikZ]
 
-\RequirePackage{tikz,etoolbox}
+\RequirePackage{tikz}
 \usetikzlibrary{intersections}
 
 \pgfdeclarelayer{background}\pgfdeclarelayer{foreground}
@@ -30,7 +30,7 @@
 \def\eyebaseang{38.5}
 \def\eyeshift{.08cm}
 
-\def\pingu@csappto#1#2{\expandafter\ifx\csname #1\endcsname\@empty\@namedef{#1}{#2}\else\csappto{#1}{, #2}\fi}
+\def\pingu@csappto#1#2{\expandafter\ifx\csname #1\endcsname\@empty\@namedef{#1}{#2}\else\expandafter\g@addto@macro\csname #1\endcsname{, #2}\fi}
 
 \def\pingu@create@sel@err#1#2{\PackageError{\filename}{There is no '#2' drawer for '#1'. Choose one of '\@nameuse{@pingu@#1@}'}{Or ask the package maintainer :D}}
 
