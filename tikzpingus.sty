@@ -50,7 +50,7 @@
 }
 
 \def\pingu@create@extra#1{\expandafter\newif\csname if@pingu@x@#1@\endcsname}
-\def\pingu@set@extra#1{\csname @pingu@x@#1@\endcsname}
+\def\pingu@set@extra#1#2{\csname @pingu@x@#1@#2\endcsname}
 
 \pingu@create@selection{lefteye}
 \pingu@create@selection{righteye}
@@ -124,7 +124,7 @@
   % extra strawhat (tikzducks basis)
   straw hat/.forward to         = /pingu/strawhat,
   strawhat/.default             = brown!50!white,
-  strawhat/.code                = \pingu@set@extra{strawhat}\pingu@color{strawhat}{#1},
+  strawhat/.code                = \pingu@set@extra{strawhat}{true}\pingu@color{strawhat}{#1},
   straw hat ribbon/.forward to  = /pingu/strawhat ribbon,
   strawhat ribbon/.default      = gray!85!black, % TODO: colors
   strawhat ribbon/.code         = \pingu@color{strawhat@ribbon}{#1},
@@ -351,14 +351,16 @@
     \if@pingu@x@strawhat@ \pingu@draw@ea@strawhat \fi
 }
 
-\def\pingu@draw@ea@strawhat{
-\pingu@block{\pingu@color@x@strawhat} (0.44,2.0) ellipse[x radius=0.75, y radius=0.1];
-\pingu@block{\pingu@color@x@strawhat} (0.1,2.05) rectangle (0.78,2.5);
-\pingu@block{\pingu@color@x@strawhat} (0.44,2.5) ellipse[x radius=0.34, y radius=0.08];
-\pingu@block{\pingu@color@x@strawhat} (-0.3,2.02) -- (1.18,2.02) -- (0.78,2.2) -- (0.1,2.2) -- cycle;
-\pingu@block{\pingu@color@x@strawhat@ribbon} (0.44,2.2) ellipse[x radius=0.34, y radius=0.08];
-\pingu@block{\pingu@color@x@strawhat@ribbon} (0.1,2.2) rectangle (0.78,2.3);
-\pingu@block{\pingu@color@x@strawhat} (0.44,2.3) ellipse[x radius=0.34, y radius=0.08];
+\def\pingu@draw@ea@strawhat{%
+\begin{scope}[rotate around={-26:(\pingu@name-head)},shift={(\pingu@name-head)},shift={(-.165cm,.125cm)},scale=1.35]
+\pingu@block{\pingu@color@strawhat} (.34,0) ellipse[x radius=.75cm, y radius=.1cm];
+\pingu@block{\pingu@color@strawhat} (0,.05) rectangle (.68,.5);
+\pingu@block{\pingu@color@strawhat} (.34,.5) ellipse[x radius=.34cm, y radius=.08cm];
+\pingu@block{\pingu@color@strawhat} (-.4,.02) -- (1.08,.02) -- (.68,.2) -- (0,.2) -- cycle;
+\pingu@block{\pingu@color@strawhat@ribbon} (.34,.2) ellipse[x radius=.34cm, y radius=.08cm];
+\pingu@block{\pingu@color@strawhat@ribbon} (0,.2) rectangle (.68,.3);
+\pingu@block{\pingu@color@strawhat} (.34,.3) ellipse[x radius=.34cm, y radius=.08cm];
+\end{scope}
 }
 
 
