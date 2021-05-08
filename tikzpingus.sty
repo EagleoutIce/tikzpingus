@@ -49,11 +49,16 @@
     \csname pingu@#1@add\endcsname{none}{}%
 }
 
+\def\pingu@create@extra#1{\expandafter\newif\csname if@pingu@x@#1@\endcsname}
+\def\pingu@set@extra#1{\csname @pingu@x@#1@\endcsname}
+
 \pingu@create@selection{lefteye}
 \pingu@create@selection{righteye}
 \pingu@create@selection{leftwing}
 \pingu@create@selection{rightwing}
 \pingu@create@selection{hairstyle}
+
+\pingu@create@extra{strawhat}
 
 \def\pingu@color#1#2{\expandafter\def\csname pingu@color@#1\endcsname{#2}}
 
@@ -116,6 +121,13 @@
                                    /pingu/hair 5 color={#1}},
   hair style/.forward to        = /pingu/hairstyle,
   hairstyle/.code               = \pingu@hairstyle@select{#1},
+  % extra strawhat (tikzducks basis)
+  straw hat/.forward to         = /pingu/strawhat,
+  strawhat/.default             = brown!50!white,
+  strawhat/.code                = \pingu@set@extra{strawhat}\pingu@color{strawhat}{#1},
+  straw hat ribbon/.forward to  = /pingu/strawhat ribbon,
+  strawhat ribbon/.default      = gray!85!black, % TODO: colors
+  strawhat ribbon/.code         = \pingu@color{strawhat@ribbon}{#1},
   % size
   height/.code                  = \setlength{\pingu@side@h@half}{#1},%
   defaults/.style               = {%
@@ -123,7 +135,10 @@
     eyes={normal}, eyes color={pingu@black}, second eyes color={pingu@white},
     wings={normal}, wings color=\pingu@color@body@main,
     hairstyle={normal}, hairs color=\pingu@color@body@main,
-    belly raw={}, scale=\pingu@default@scale%
+    belly raw={}, scale=\pingu@default@scale,extra defaults%
+  },
+  extra defaults/.style         = {%
+    strawhat ribbon,
   }
 }
 % TODO: free defaults
@@ -171,6 +186,9 @@
 \clip\whitepingu;
 \pingu@belly@raw
 \end{scope}
+
+\pingu@draw@extras@above
+
 \end{scope}
 \endgroup
 }
@@ -327,5 +345,21 @@
     \pingu@block[rotate around={\basicfeetbend:(\pingu@name-foot-left-2)}]{\pingu@color@foot@left} (\pingu@name-foot-left-2) ellipse [x radius=.105cm,y radius=.2cm];
     \pingu@block[rotate around={25+\basicfeetbend:(\pingu@name-foot-left-3)}]{\pingu@color@foot@left} (\pingu@name-foot-left-3) ellipse [x radius=.105cm,y radius=.2cm];
 }
+
+% Extras
+\def\pingu@draw@extras@above{%
+    \if@pingu@x@strawhat@ \pingu@draw@ea@strawhat \fi
+}
+
+\def\pingu@draw@ea@strawhat{
+\pingu@block{\pingu@color@x@strawhat} (0.44,2.0) ellipse[x radius=0.75, y radius=0.1];
+\pingu@block{\pingu@color@x@strawhat} (0.1,2.05) rectangle (0.78,2.5);
+\pingu@block{\pingu@color@x@strawhat} (0.44,2.5) ellipse[x radius=0.34, y radius=0.08];
+\pingu@block{\pingu@color@x@strawhat} (-0.3,2.02) -- (1.18,2.02) -- (0.78,2.2) -- (0.1,2.2) -- cycle;
+\pingu@block{\pingu@color@x@strawhat@ribbon} (0.44,2.2) ellipse[x radius=0.34, y radius=0.08];
+\pingu@block{\pingu@color@x@strawhat@ribbon} (0.1,2.2) rectangle (0.78,2.3);
+\pingu@block{\pingu@color@x@strawhat} (0.44,2.3) ellipse[x radius=0.34, y radius=0.08];
+}
+
 
 \endinput
