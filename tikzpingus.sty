@@ -242,11 +242,11 @@
 }
 \pingu@lefteye@add{wink}{%
     \coordinate (\pingu@name-left-eye) at ([yshift=.075cm,xshift=\eyeshift]heartp-left);
-    \fill[\pingu@color@eye@left, rounded corners=.002cm,rotate around={-4:(\pingu@name-left-eye)}] (\pingu@name-left-eye)++(174:.14cm and .14cm)++(0,-.065cm) arc (174:6:.14cm and .14cm) arc (-6:-174:.01cm and .008cm) arc (6:174:.12cm and .065cm) arc (-6:-174:.01cm and .008cm) -- cycle;
+    \pingu@block[rounded corners=.002cm,rotate around={-4:(\pingu@name-left-eye)}]{\pingu@color@eye@left} (\pingu@name-left-eye)++(174:.14cm and .14cm)++(0,-.065cm) arc (174:6:.14cm and .14cm) arc (-6:-174:.01cm and .008cm) arc (6:174:.12cm and .065cm) arc (-6:-174:.01cm and .008cm) -- cycle;
 }
 \pingu@righteye@add{wink}{%
     \coordinate (\pingu@name-right-eye) at ([yshift=.075cm,xshift=-\eyeshift]heartp-right);
-    \fill[\pingu@color@eye@right, rounded corners=.002cm,rotate around={4:(\pingu@name-right-eye)}] (\pingu@name-right-eye)++(174:.14cm and .14cm)++(0,-.065cm) arc (174:6:.14cm and .14cm) arc (-6:-174:.01cm and .008cm) arc (6:174:.12cm and .065cm) arc (-6:-174:.01cm and .008cm) -- cycle;
+    \pingu@block[rounded corners=.002cm,rotate around={4:(\pingu@name-right-eye)}]{\pingu@color@eye@right} (\pingu@name-right-eye)++(174:.14cm and .14cm)++(0,-.065cm) arc (174:6:.14cm and .14cm) arc (-6:-174:.01cm and .008cm) arc (6:174:.12cm and .065cm) arc (-6:-174:.01cm and .008cm) -- cycle;
 }
 \pingu@lefteye@add{shock}{%
     \pingu@block{\pingu@color@eye@left} ([yshift=.075cm,xshift=\eyeshift]heartp-left) coordinate (\pingu@name-left-eye) ellipse [x radius=.1535cm, y radius=.1575cm];
