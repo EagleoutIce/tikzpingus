@@ -325,11 +325,13 @@
 
 %%% Hairstyle %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pingu@hairstyle@add{normal}{%
+\begin{scope}[rounded corners=.008cm]
 \pingu@block{\pingu@color@hair@a}  ([yshift=-.1cm]\pingu@name-head-top) -- ++(.015cm,0) arc (0:90:.125cm and .135cm) arc (90:0:.035cm and .075cm);
-    \pingu@block{\pingu@color@hair@b}  ([yshift=-.1cm]\pingu@name-head-top) -- ++(.033cm,0) arc (0:90:.125cm and .175cm) arc (90:0:.035cm and .1cm);
-    \pingu@block{\pingu@color@hair@c}  ([yshift=-.1cm]\pingu@name-head-top) -- ++(-.033cm,0) arc (180:90:.17cm and .215cm) arc (90:180:.075cm and .18cm);
-    \pingu@block{\pingu@color@hair@d}  ([yshift=-.1cm]\pingu@name-head-top) -- ++(.025cm,0) arc (180:90:.125cm and .175cm) arc (90:180:.035cm and .125cm);
-    \pingu@block{\pingu@color@hair@e}  ([yshift=-.1cm]\pingu@name-head-top) -- ++(.044cm,0) arc (180:90:.125cm and .135cm) arc (90:180:.035cm and .075cm);
+\pingu@block{\pingu@color@hair@b}  ([yshift=-.1cm]\pingu@name-head-top) -- ++(.033cm,0) arc (0:90:.125cm and .175cm) arc (90:0:.035cm and .1cm);
+\pingu@block{\pingu@color@hair@c}  ([yshift=-.1cm]\pingu@name-head-top) -- ++(-.033cm,0) arc (180:90:.17cm and .215cm) arc (90:180:.075cm and .18cm);
+\pingu@block{\pingu@color@hair@d}  ([yshift=-.1cm]\pingu@name-head-top) -- ++(.025cm,0) arc (180:90:.125cm and .175cm) arc (90:180:.035cm and .125cm);
+\pingu@block{\pingu@color@hair@e}  ([yshift=-.1cm]\pingu@name-head-top) -- ++(.044cm,0) arc (180:90:.125cm and .135cm) arc (90:180:.035cm and .075cm);
+\end{scope}
 }
 
 %%% Feet %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
