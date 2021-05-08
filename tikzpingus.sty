@@ -128,6 +128,8 @@
   straw hat ribbon/.forward to  = /pingu/strawhat ribbon,
   strawhat ribbon/.default      = gray!85!black, % TODO: colors
   strawhat ribbon/.code         = \pingu@color{strawhat@ribbon}{#1},
+  straw hat position/.forward to= /pingu/strawhat position,
+  strawhat position/.code args  = {#1:(#2,#3)#4}{\def\pingu@x@strawhat@angle{#1}\def\pingu@x@strawhat@xshift{#2}\def\pingu@x@strawhat@yshift{#3}\def\pingu@x@strawhat@scale{#4}},
   % size
   height/.code                  = \setlength{\pingu@side@h@half}{#1},%
   defaults/.style               = {%
@@ -135,6 +137,7 @@
     eyes={normal}, eyes color={pingu@black}, second eyes color={pingu@white},
     wings={normal}, wings color=\pingu@color@body@main,
     hairstyle={normal}, hairs color=\pingu@color@body@main,
+    strawhat position={-26:(-.165cm,.125cm){1.35}},
     belly raw={}, scale=\pingu@default@scale,extra defaults%
   },
   extra defaults/.style         = {%
@@ -352,7 +355,7 @@
 }
 
 \def\pingu@draw@ea@strawhat{%
-\begin{scope}[rotate around={-26:(\pingu@name-head)},shift={(\pingu@name-head)},shift={(-.165cm,.125cm)},scale=1.35]
+\begin{scope}[rotate around={\pingu@x@strawhat@angle:(\pingu@name-head)},shift={(\pingu@name-head)},shift={(\pingu@x@strawhat@xshift,\pingu@x@strawhat@yshift)},scale=\pingu@x@strawhat@scale]
 \pingu@block{\pingu@color@strawhat} (.34,0) ellipse[x radius=.75cm, y radius=.1cm];
 \pingu@block{\pingu@color@strawhat} (0,.05) rectangle (.68,.5);
 \pingu@block{\pingu@color@strawhat} (.34,.5) ellipse[x radius=.34cm, y radius=.08cm];
