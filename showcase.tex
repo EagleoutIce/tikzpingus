@@ -44,6 +44,13 @@
   \pingu[yshift=-4cm,xshift=10.5cm,name=pengu-4,wings=grab,left eye=wink,strawhat]
   \pingu[yshift=-4cm,xshift=14cm,name=pengu-5,wings=raise]
 
+  \begin{scope}
+    \makeatletter
+    \clip (7cm+\pingu@w@half,-8cm) rectangle ++(-6cm,8cm);
+    \pingu[yshift=-4cm+.225cm,xshift=7cm,name=pengu-3-metal,height=1.5cm,wings=wave,eyes=shiny,@block/.style={fill=#1!92!gray}]
+  \end{scope}
+
+
   \pingu[yshift=-8cm,name=pengu-a,@block/.append style={opacity=.5}]
   \pingu[yshift=-8cm,xshift=3.5cm,right eye=wink,name=pengu-b,@block/.append style={opacity=.5}]
   \pingu[yshift=-8cm+.225cm,xshift=7cm,eyes=shiny,height=1.5cm,name=pengu-c,@block/.append style={fill opacity=.5,draw=#1!80!black}]
