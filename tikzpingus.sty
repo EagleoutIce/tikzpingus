@@ -7,7 +7,6 @@
 \pgfdeclarelayer{background}\pgfdeclarelayer{foreground}
 \pgfsetlayers{background,main,foreground}
 
-
 \def\@pingu@color@ #1#2(#3,#4,#5){\definecolor{pingu@#1}{#2}{#3,#4,#5}}
 \@pingu@color@{main}RGB(3,14,29)
 \@pingu@color@{black}RGB(23,19,19)
@@ -36,12 +35,14 @@
 
 \def\pingu@csappto#1#2{\expandafter\ifx\csname #1\endcsname\@empty\@namedef{#1}{#2}\else\expandafter\g@addto@macro\csname #1\endcsname{, #2}\fi}
 
-\def\pingu@create@sel@err#1#2{\PackageError{\filename}{There is no '#2' drawer for '#1'. Choose one of '\@nameuse{@pingu@#1@}'}{Or ask the package maintainer :D}}
+\def\pingu@create@sel@err#1#2{%
+    \PackageError{\filename}{There is no '#2' drawer for '#1'. Choose one of '\@nameuse{@pingu@#1@}'}{Or ask the package maintainer :D}%
+}
 
 % #1 name; TODO: refactor
 \def\pingu@create@selection#1{%
     \expandafter\let\csname @pingu@#1@\endcsname\@empty
-    \long\@namedef{pingu@#1@add}##1##2{%
+    \expandafter\long\expandafter\def\csname pingu@#1@add\endcsname##1##2{%
         \pingu@csappto{@pingu@#1@}{##1}%
         \expandafter\long\expandafter\def\csname @pingu@drawer@#1@##1@\endcsname{##2}%
     }
@@ -176,7 +177,7 @@
 
 \newcommand*\pingu[1][]{\begingroup
 \tikzset{/pingu/.cd, defaults, #1}%
-\begin{scope}[/pingu/@pingu]
+\scope[/pingu/@pingu]
 \@pingu@base
 
 \pgfonlayer{background}
@@ -203,18 +204,16 @@
 \@pingu@drawer@lefteye@
 \@pingu@drawer@righteye@
 
-\pgfonlayer{foreground}
 \@pingu@drawer@bill@
-\endpgfonlayer
 
-\begin{scope}[shift=(\pingu@name-belly-center)]
+\scope[shift=(\pingu@name-belly-center)]
 \clip[use path=\pingu@whitepingu];
 \pingu@belly@raw
-\end{scope}
+\endscope
 
 \pingu@draw@extras@above
 
-\end{scope}
+\endscope
 \endgroup
 }
 
@@ -338,11 +337,11 @@
 %%% Hairstyle %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pingu@hairstyle@add{normal}{%
 \begin{scope}[rounded corners=.008cm]
-\pingu@block{\pingu@color@hair@a}  ([yshift=-.1cm]\pingu@name-head-top) -- ++(.015cm,0) arc (0:90:\pingu@one@eight{} and .135cm) arc (90:0:.035cm and .075cm);
-\pingu@block{\pingu@color@hair@b}  ([yshift=-.1cm]\pingu@name-head-top) -- ++(.033cm,0) arc (0:90:\pingu@one@eight{} and .175cm) arc (90:0:.035cm and .1cm);
-\pingu@block{\pingu@color@hair@c}  ([yshift=-.1cm]\pingu@name-head-top) -- ++(-.033cm,0) arc (180:90:.17cm and .215cm) arc (90:180:.075cm and .18cm);
-\pingu@block{\pingu@color@hair@d}  ([yshift=-.1cm]\pingu@name-head-top) -- ++(.025cm,0) arc (180:90:\pingu@one@eight{} and .175cm) arc (90:180:.035cm and \pingu@one@eight);
-\pingu@block{\pingu@color@hair@e}  ([yshift=-.1cm]\pingu@name-head-top) -- ++(.044cm,0) arc (180:90:\pingu@one@eight{} and .135cm) arc (90:180:.035cm and .075cm);
+\pingu@block{\pingu@color@hair@a} ([yshift=-.1cm]\pingu@name-head-top) -- ++(.015cm,0) arc (0:90:\pingu@one@eight{} and .135cm) arc (90:0:.035cm and .075cm);
+\pingu@block{\pingu@color@hair@b} ([yshift=-.1cm]\pingu@name-head-top) -- ++(.033cm,0) arc (0:90:\pingu@one@eight{} and .175cm) arc (90:0:.035cm and .1cm);
+\pingu@block{\pingu@color@hair@c} ([yshift=-.1cm]\pingu@name-head-top) -- ++(-.033cm,0) arc (180:90:.17cm and .215cm) arc (90:180:.075cm and .18cm);
+\pingu@block{\pingu@color@hair@d} ([yshift=-.1cm]\pingu@name-head-top) -- ++(.025cm,0) arc (180:90:\pingu@one@eight{} and .175cm) arc (90:180:.035cm and \pingu@one@eight);
+\pingu@block{\pingu@color@hair@e} ([yshift=-.1cm]\pingu@name-head-top) -- ++(.044cm,0) arc (180:90:\pingu@one@eight{} and .135cm) arc (90:180:.035cm and .075cm);
 \end{scope}
 }
 
@@ -396,4 +395,6 @@
 \pingu@block[even odd rule]{\pingu@color@halo} (\pingu@name-head-top) circle [x radius=\pingu@w@half-.1cm,y radius=.25cm] circle [x radius=\pingu@w@half-.195cm,y radius=.155cm];
 }
 
+\let\pingu@create@selection\relax
+\let\pingu@create@extra\relax
 \endinput
