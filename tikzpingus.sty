@@ -113,13 +113,20 @@
   % hair color TODO: other colors
   hair/.forward to              = /pingu/hairs color,
   hairs/.forward to             = /pingu/hairs color,
-  hair 1 color/.code            = \pingu@color{hair@a}{#1}, hair 1/.forward to = /pingu/hair 1 color,
-  hair 2 color/.code            = \pingu@color{hair@b}{#1}, hair 2/.forward to = /pingu/hair 2 color,
-  hair 3 color/.code            = \pingu@color{hair@c}{#1}, hair 3/.forward to = /pingu/hair 3 color,
-  hair 4 color/.code            = \pingu@color{hair@d}{#1}, hair 4/.forward to = /pingu/hair 4 color,
-  hair 5 color/.code            = \pingu@color{hair@e}{#1}, hair 5/.forward to = /pingu/hair 5 color,
-  hairs color/.style            = {/pingu/hair 1 color={#1}, /pingu/hair 2 color={#1},
-                                   /pingu/hair 3 color={#1}, /pingu/hair 4 color={#1},
+  hair 1/.forward to = /pingu/hair 1 color,
+  hair 1 color/.code            = \pingu@color{hair@a}{#1},
+  hair 2/.forward to = /pingu/hair 2 color,
+  hair 2 color/.code            = \pingu@color{hair@b}{#1},
+  hair 3/.forward to = /pingu/hair 3 color,
+  hair 3 color/.code            = \pingu@color{hair@c}{#1},
+  hair 4/.forward to = /pingu/hair 4 color,
+  hair 4 color/.code            = \pingu@color{hair@d}{#1},
+  hair 5/.forward to = /pingu/hair 5 color,
+  hair 5 color/.code            = \pingu@color{hair@e}{#1},
+  hairs color/.style            = {/pingu/hair 1 color={#1},
+                                   /pingu/hair 2 color={#1},
+                                   /pingu/hair 3 color={#1},
+                                   /pingu/hair 4 color={#1},
                                    /pingu/hair 5 color={#1}},
   hair style/.forward to        = /pingu/hairstyle,
   hairstyle/.code               = \pingu@hairstyle@select{#1},
@@ -221,7 +228,7 @@
     \coordinate (\pingu@name-head-top) at ([yshift=.9\pingu@w@half]bottom-top-center);
 }
 
-%%% eyes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
+%%% eyes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pingu@lefteye@add{normal}{%
     \pingu@block{\pingu@color@eye@left} ([yshift=.075cm,xshift=\eyeshift]heartp-left) coordinate (\pingu@name-left-eye) ellipse [x radius=.1225cm, y radius=.1275cm];
 }
@@ -255,7 +262,7 @@
     \pingu@block{\pingu@color@eye@second@right} ([yshift=.075cm,xshift=-\eyeshift]heartp-right) coordinate(\pingu@name-right-eye) ellipse [x radius=.1325cm, y radius=.1375cm];
 }
 
-%%% Wings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
+%%% Wings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pingu@leftwing@add{normal}{%
 \pgfonlayer{background}
     \coordinate (\pingu@name-wings-left-start) at ([yshift=-.7cm]\pingu@name-wings-side-left);
