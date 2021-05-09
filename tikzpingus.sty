@@ -2,7 +2,7 @@
 \ProvidesPackage{\filename}[2021/04/30 version v1.0 Penguins in TikZ]
 
 \RequirePackage{tikz}
-\usetikzlibrary{intersections}
+\usetikzlibrary{intersections,3d}
 
 \pgfdeclarelayer{background}\pgfdeclarelayer{foreground}
 \pgfsetlayers{background,main,foreground}
@@ -13,6 +13,7 @@
 \@pingu@color@{black}RGB(23,19,19)
 \@pingu@color@{white}RGB(248,248,248)
 \@pingu@color@{yellow}RGB(252,187,21)
+\@pingu@color@{blue}RGB(174,229,243)
 \def\@pingu@none{!hide}
 
 \newlength\pingu@w@half        \pingu@w@half=\dimexpr1cm-.125cm/2\relax
@@ -59,6 +60,7 @@
 \pingu@create@selection{hairstyle}
 
 \pingu@create@extra{strawhat}
+\pingu@create@extra{halo}
 
 \def\pingu@color#1#2{\expandafter\def\csname pingu@color@#1\endcsname{#2}}
 
@@ -130,6 +132,10 @@
   strawhat ribbon/.code         = \pingu@color{strawhat@ribbon}{#1},
   straw hat position/.forward to= /pingu/strawhat position,
   strawhat position/.code args  = {#1:(#2,#3)#4}{\def\pingu@x@strawhat@angle{#1}\def\pingu@x@strawhat@xshift{#2}\def\pingu@x@strawhat@yshift{#3}\def\pingu@x@strawhat@scale{#4}},
+  % extra halo
+  halo/.code                    = \pingu@set@extra{halo}{true}\pingu@color{halo}{#1},
+  halo/.default                 = pingu@blue,
+  % TODO: glow color
   % size
   height/.code                  = \setlength{\pingu@side@h@half}{#1},%
   defaults/.style               = {%
@@ -354,6 +360,7 @@
 % Extras
 \def\pingu@draw@extras@above{%
     \if@pingu@x@strawhat@ \pingu@draw@ea@strawhat \fi
+    \if@pingu@x@halo@ \pingu@draw@ea@halo \fi
 }
 
 \def\pingu@draw@ea@strawhat{%
@@ -368,5 +375,11 @@
 \end{scope}
 }
 
+\def\pingu@draw@ea@halo{%
+\begin{scope}[shift={(\pingu@name-head-top)}, canvas is xy plane at z=0]
+    % TODO: dynamic offsets
+    \pingu@block[even odd rule]{\pingu@color@halo} circle [x radius=\pingu@w@half-.1cm,y radius=.25cm] circle [x radius=\pingu@w@half-.195cm,y radius=.155cm];
+\end{scope}%
+}
 
 \endinput
