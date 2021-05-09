@@ -365,13 +365,13 @@
 
 \def\pingu@draw@ea@strawhat{%
 \begin{scope}[rotate around={\pingu@x@strawhat@angle:(\pingu@name-head)},shift={(\pingu@name-head)},shift={(\pingu@x@strawhat@xshift,\pingu@x@strawhat@yshift)},scale=\pingu@x@strawhat@scale]
-\pingu@block{\pingu@color@strawhat} (.34,0) ellipse[x radius=.75cm, y radius=.1cm];
-\pingu@block{\pingu@color@strawhat} (0,.05) rectangle (.68,.5);
-\pingu@block{\pingu@color@strawhat} (.34,.5) ellipse[x radius=.34cm, y radius=.08cm];
-\pingu@block{\pingu@color@strawhat} (-.3955,.02) -- (1.0755,.02) -- (.68,.2) -- (0,.2) -- cycle;
-\pingu@block{\pingu@color@strawhat@ribbon} (.34,.2) ellipse[x radius=.34cm, y radius=.08cm];
-\pingu@block{\pingu@color@strawhat@ribbon} (0,.2) rectangle (.68,.3);
-\pingu@block{\pingu@color@strawhat} (.34,.3) ellipse[x radius=.34cm, y radius=.08cm];
+\pingu@block{\pingu@color@strawhat} (.34cm,\z@) ellipse[x radius=.75cm, y radius=.1cm];
+\pingu@block{\pingu@color@strawhat} (\z@,.05cm) rectangle (.68cm,.5cm);
+\pingu@block{\pingu@color@strawhat} (.34cm,.5cm) ellipse[x radius=.34cm, y radius=.08cm];
+\pingu@block{\pingu@color@strawhat} (-.3955cm,.02cm) -- (1.0755cm,.02cm) -- (.68cm,.2cm) -- (0,.2cm) -- cycle;
+\pingu@block{\pingu@color@strawhat@ribbon} (.34cm,.2cm) ellipse[x radius=.34cm, y radius=.08cm];
+\pingu@block{\pingu@color@strawhat@ribbon} (\z@,.2cm) rectangle (.68cm,.3cm);
+\pingu@block{\pingu@color@strawhat} (.34cm,.3cm) ellipse[x radius=.34cm, y radius=.08cm];
 \end{scope}
 }
 
