@@ -174,8 +174,7 @@
 \coordinate (\pingu@name-belly-back) at (\pingu@w@half,-1cm);
 \coordinate (\pingu@name-belly-center) at (\pingu@w@half,-.68\pingu@side@h@half);
 
-\def\whitepingu{(\pingu@name-belly-back)++(-\pingu@w@half+.1cm,\pingu@lower@off) to[bend right=.8\pingu@bend] ++(0,1.05cm-\pingu@side@h@half-\pingu@lower@off) arc (180:270:.4cm and .2cm) arc (270:360:.5cm and .085cm) -- ++(-.125cm,0) arc (180:270:.5cm and .085cm) arc (270:360:.4cm and .2cm) to[bend right=.8\pingu@bend] ++(0,\pingu@side@h@half-1.05cm+\pingu@lower@off) arc (0:180:\pingu@w@half-.1cm and \pingu@w@half-.1cm)}
-\pingu@block{pingu@white} \whitepingu;
+\pingu@block[save path=\pingu@whitepingu]{pingu@white} (\pingu@name-belly-back)++(-\pingu@w@half+.1cm,\pingu@lower@off) to[bend right=.8\pingu@bend] ++(0,1.05cm-\pingu@side@h@half-\pingu@lower@off) arc (180:270:.4cm and .2cm) arc (270:360:.5cm and .085cm) -- ++(-.125cm,0) arc (180:270:.5cm and .085cm) arc (270:360:.4cm and .2cm) to[bend right=.8\pingu@bend] ++(0,\pingu@side@h@half-1.05cm+\pingu@lower@off) arc (0:180:\pingu@w@half-.1cm and \pingu@w@half-.1cm);
 
 \coordinate (heartp-right) at ([xshift=-.275cm,yshift=.25cm-\pingu@outer@off]bottom-top-center);
 \coordinate (heartp-left) at ([xshift=.275cm,yshift=.25cm-\pingu@outer@off]bottom-top-center);
@@ -192,7 +191,7 @@
 \endpgfonlayer
 
 \begin{scope}[shift=(\pingu@name-belly-center)]
-\clip\whitepingu;
+\clip[use path=\pingu@whitepingu];
 \pingu@belly@raw
 \end{scope}
 
@@ -203,7 +202,7 @@
 }
 
 \def\@pingu@base{%
-    \pingu@block{\pingu@color@body@main} (0,\pingu@outer@off)
+    \pingu@block[save path=\pingu@lowerpingu]{\pingu@color@body@main} (0,\pingu@outer@off)
         % left side
         to[bend right=\pingu@bend] ++(0,-\pingu@side@h@half-\pingu@outer@off)
         % feety stuff
@@ -217,16 +216,6 @@
         % coordinate
         coordinate (\pingu@name-wings-side-left)
         -- (0,\pingu@outer@off) coordinate (\pingu@name-wings-side-right) coordinate[pos=.5] (bottom-top-center) -- cycle;
-
-    \path[save path=\pingu@lowerpingu] (0,\pingu@outer@off)
-        to[bend right=\pingu@bend] ++(0,-\pingu@side@h@half-\pingu@outer@off)
-        arc (180:270:\pingu@foot@outer@w{} and \pingu@foot@outer@h)
-        arc (270:360:\pingu@foot@inner@w{} and \pingu@foot@inner@h)
-        -- ++(\pingu@foot@offset@w,0)
-        arc (180:270:\pingu@foot@inner@w{} and \pingu@foot@inner@h)
-        arc (270:360:\pingu@foot@outer@w{} and \pingu@foot@outer@h)
-        to[bend right=\pingu@bend] ++(0,\pingu@side@h@half+\pingu@outer@off)
-        -- (0,\pingu@outer@off) -- cycle;
 
     \pingu@block{\pingu@color@body@head} (bottom-top-center) ellipse[x radius=\pingu@w@half, y radius=.9\pingu@w@half];
     \coordinate (\pingu@name-head-top) at ([yshift=.9\pingu@w@half]bottom-top-center);
