@@ -58,6 +58,7 @@
 \pingu@create@selection{leftwing}
 \pingu@create@selection{rightwing}
 \pingu@create@selection{hairstyle}
+\pingu@create@selection{bill}
 
 \pingu@create@extra{strawhat}
 \pingu@create@extra{halo}
@@ -109,7 +110,11 @@
   wings wave/.style             = {/pingu/wings={wave}, /pingu/wings color={#1}},
   wings grab/.default           = \pingu@color@body@main,
   wings wave/.default           = \pingu@color@body@main,
-  wings color/.style            = {/pingu/left wing color={#1}, /pingu/right wing color={#1}},
+  wings color/.style            = {/pingu/left wing color={#1},
+                                   /pingu/right wing color={#1}},
+  % bill
+  bill/.code                    = \pingu@bill@select{#1},
+  bill color/.code              = \pingu@color{bill}{#1},
   % hair color TODO: other colors
   hair/.forward to              = /pingu/hairs color,
   hairs/.forward to             = /pingu/hairs color,
@@ -148,6 +153,7 @@
   defaults/.style               = {%
     name={pingu}, feet={pingu@yellow}, body={pingu@main}, %
     eyes={normal}, eyes color={pingu@black}, second eyes color={pingu@white},
+    bill={normal}, bill color={pingu@yellow},
     wings={normal}, wings color=\pingu@color@body@main,
     hairstyle={normal}, hairs color=\pingu@color@body@main,
     strawhat position={-26.5:(-.165cm,.13cm){1.35}},
@@ -195,7 +201,7 @@
 \@pingu@drawer@righteye@
 
 \pgfonlayer{foreground}
-\pingu@block{pingu@yellow} (bottom-top-center)++(0,-.005cm-\pingu@outer@off) coordinate (\pingu@name-bill)++(-.19cm,0) arc (180:360:.19cm and .225cm) coordinate[pos=.5] (\pingu@name-bill-bottom) to[bend right=.25cm] cycle;
+\@pingu@drawer@bill@
 \endpgfonlayer
 
 \begin{scope}[shift=(\pingu@name-belly-center)]
@@ -354,7 +360,17 @@
     \pingu@block[rotate around={25+\basicfeetbend:(\pingu@name-foot-left-3)}]{\pingu@color@foot@left} (\pingu@name-foot-left-3) ellipse [x radius=.105cm,y radius=.2cm];
 }
 
-% Extras
+%%% Bill %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pingu@bill@add{normal}{%
+\pingu@block{\pingu@color@bill}
+    (bottom-top-center)++(0,-.005cm-\pingu@outer@off)
+    coordinate (\pingu@name-bill)++(-.19cm,0)
+    arc (180:360:.19cm and .225cm)
+    coordinate[pos=.5] (\pingu@name-bill-bottom)
+    to[bend right=.25cm] cycle;
+}
+
+%%% Extras %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \def\pingu@draw@extras@above{%
     \if@pingu@x@strawhat@ \pingu@draw@ea@strawhat \fi
     \if@pingu@x@halo@ \pingu@draw@ea@halo \fi
