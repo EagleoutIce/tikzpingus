@@ -2,7 +2,7 @@
 \ProvidesPackage{\filename}[2021/04/30 version v1.0 Penguins in TikZ]
 
 \RequirePackage{tikz}
-\usetikzlibrary{intersections,3d}
+\usetikzlibrary{intersections}
 
 \pgfdeclarelayer{background}\pgfdeclarelayer{foreground}
 \pgfsetlayers{background,main,foreground}
@@ -376,7 +376,7 @@
 }
 
 \def\pingu@draw@ea@halo{%
-\begin{scope}[shift={(\pingu@name-head-top)}, canvas is xy plane at z=0]
+\begin{scope}[shift={(\pingu@name-head-top)}]
     % TODO: dynamic offsets
     \pingu@block[even odd rule]{\pingu@color@halo} circle [x radius=\pingu@w@half-.1cm,y radius=.25cm] circle [x radius=\pingu@w@half-.195cm,y radius=.155cm];
 \end{scope}%
