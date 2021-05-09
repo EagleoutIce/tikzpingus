@@ -376,10 +376,8 @@
 }
 
 \def\pingu@draw@ea@halo{%
-\begin{scope}[shift={(\pingu@name-head-top)}]
     % TODO: dynamic offsets
-    \pingu@block[even odd rule]{\pingu@color@halo} circle [x radius=\pingu@w@half-.1cm,y radius=.25cm] circle [x radius=\pingu@w@half-.195cm,y radius=.155cm];
-\end{scope}%
+\pingu@block[even odd rule]{\pingu@color@halo} (\pingu@name-head-top) circle [x radius=\pingu@w@half-.1cm,y radius=.25cm] circle [x radius=\pingu@w@half-.195cm,y radius=.155cm];
 }
 
 \endinput
