@@ -13,6 +13,7 @@
 \@pingu@color@{white}RGB(248,248,248)
 \@pingu@color@{yellow}RGB(252,187,21)
 \@pingu@color@{blue}RGB(174,229,243)
+\@pingu@color@{green}RGB(129,204,041)
 \def\@pingu@none{!hide}
 
 \newdimen\pingu@one@eight     \pingu@one@eight=.125cm\relax
@@ -66,6 +67,7 @@
 
 \pingu@create@extra{strawhat}
 \pingu@create@extra{halo}
+\pingu@create@extra{cup}
 
 \def\pingu@color#1#2{\expandafter\def\csname pingu@color@#1\endcsname{#2}}
 
@@ -115,7 +117,7 @@
   wings grab/.default           = \pingu@color@body@main,
   wings wave/.default           = \pingu@color@body@main,
   wings color/.style            = {/pingu/left wing color={#1},
-								   /pingu/right wing color={#1}},
+                                   /pingu/right wing color={#1}},
   % bill
   bill/.code                    = \pingu@bill@select{#1},
   bill color/.code              = \pingu@color{bill}{#1},
@@ -133,10 +135,10 @@
   hair 5/.forward to = /pingu/hair 5 color,
   hair 5 color/.code            = \pingu@color{hair@e}{#1},
   hairs color/.style            = {/pingu/hair 1 color={#1},
-								   /pingu/hair 2 color={#1},
-								   /pingu/hair 3 color={#1},
-								   /pingu/hair 4 color={#1},
-								   /pingu/hair 5 color={#1}},
+                                   /pingu/hair 2 color={#1},
+                                   /pingu/hair 3 color={#1},
+                                   /pingu/hair 4 color={#1},
+                                   /pingu/hair 5 color={#1}},
   hair style/.forward to        = /pingu/hairstyle,
   hairstyle/.code               = \pingu@hairstyle@select{#1},
   % extra strawhat (tikzducks basis)
@@ -144,7 +146,6 @@
   strawhat/.default             = brown!50!white,
   strawhat/.code                = \pingu@set@extra{strawhat}{true}\pingu@color{strawhat}{#1},
   straw hat ribbon/.forward to  = /pingu/strawhat ribbon,
-  strawhat ribbon/.default      = gray!85!black, % TODO: colors
   strawhat ribbon/.code         = \pingu@color{strawhat@ribbon}{#1},
   straw hat position/.forward to= /pingu/strawhat position,
   strawhat position/.code args  = {#1:(#2,#3)#4}{\def\pingu@x@strawhat@angle{#1}\def\pingu@x@strawhat@xshift{#2}\def\pingu@x@strawhat@yshift{#3}\def\pingu@x@strawhat@scale{#4}},
@@ -152,6 +153,10 @@
   halo/.code                    = \pingu@set@extra{halo}{true}\pingu@color{halo}{#1},
   halo/.default                 = pingu@blue,
   % TODO: glow color
+  % extra cup % TODO: as selection
+  cup/.code                    = \pingu@set@extra{cup}{true}\pingu@color{cup}{#1},
+  cup/.default                 = pingu@green,
+  cup straw/.code              = \pingu@color{cup@straw}{#1},
   % size
   height/.code                  = \setlength{\pingu@side@h@half}{#1},%
   defaults/.style               = {%
@@ -160,11 +165,11 @@
 	bill={normal}, bill color={pingu@yellow},
 	wings={normal}, wings color=\pingu@color@body@main,
 	hairstyle={normal}, hairs color=\pingu@color@body@main,
-	strawhat position={-26.5:(-.165cm,.13cm){1.35}},
+	strawhat position={-26.5:(-.185cm,.14cm){1.375}},
 	belly raw={}, scale=\pingu@default@scale,extra defaults%
   },
   extra defaults/.style         = {%
-	strawhat ribbon,
+	strawhat ribbon= gray!85!black,cup straw=\pingu@color@cup,
   }
 }
 % TODO: free defaults
@@ -185,18 +190,23 @@
 	\pingu@draw@feet
 \endpgfonlayer
 
-\@pingu@drawer@leftwing@
-\@pingu@drawer@rightwing@
-
 \coordinate (\pingu@name-belly-back) at (\pingu@w@half,-1cm);
 \coordinate (\pingu@name-belly-center) at (\pingu@w@half,-.68\pingu@side@h@half);
 
 \pingu@block[save path=\pingu@whitepingu]{pingu@white} (\pingu@name-belly-back)++(-\pingu@w@half+.1cm,\pingu@lower@off) to[bend right=.8\pingu@bend] ++(0,1.05cm-\pingu@side@h@half-\pingu@lower@off) arc (180:270:.4cm and .2cm) arc (270:360:.5cm and .085cm) -- ++(-\pingu@one@eight,0) arc (180:270:.5cm and .085cm) arc (270:360:.4cm and .2cm) to[bend right=.8\pingu@bend] ++(0,\pingu@side@h@half-1.05cm+\pingu@lower@off) arc (0:180:\pingu@w@half-.1cm and \pingu@w@half-.1cm);
 
-\coordinate (\pingu@name-heartp-right) at ([xshift=-.275cm,yshift=.25cm-\pingu@outer@off]bottom-top-center);
-\coordinate (\pingu@name-heartp-left) at ([xshift=.275cm,yshift=.25cm-\pingu@outer@off]bottom-top-center);
+\coordinate (\pingu@name-heartp-right) at ([xshift=-.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-bottom-top-center);
+\coordinate (\pingu@name-heartp-left) at ([xshift=.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-bottom-top-center);
 \pingu@block{pingu@white} (\pingu@name-heartp-right)++(0,-.025cm) ellipse [x radius=.525cm,y radius=.65cm];
 \pingu@block{pingu@white} (\pingu@name-heartp-left)++(0,-.025cm) ellipse [x radius=.525cm,y radius=.65cm];
+
+\path (\pingu@name-bottom-top-center)++(0,-.005cm-\pingu@outer@off) coordinate (\pingu@name-bill);
+
+\pingu@draw@extras@below
+
+\@pingu@drawer@leftwing@
+\@pingu@drawer@rightwing@
+
 
 \coordinate (\pingu@name-head) at (\pingu@w@half,.7375cm);
 % TODO: more lengths
@@ -231,10 +241,10 @@
 		to[bend right=\pingu@bend] ++(0,\pingu@side@h@half+\pingu@outer@off)
 		% coordinate
 		coordinate (\pingu@name-wings-side-left)
-		-- (0,\pingu@outer@off) coordinate (\pingu@name-wings-side-right) coordinate[pos=.5] (bottom-top-center) -- cycle;
+		-- (0,\pingu@outer@off) coordinate (\pingu@name-wings-side-right) coordinate[pos=.5] (\pingu@name-bottom-top-center) -- cycle;
 
-	\pingu@block{\pingu@color@body@head} (bottom-top-center) ellipse[x radius=\pingu@w@half, y radius=.9\pingu@w@half];
-	\coordinate (\pingu@name-head-top) at ([yshift=.9\pingu@w@half]bottom-top-center);
+	\pingu@block{\pingu@color@body@head} (\pingu@name-bottom-top-center) ellipse[x radius=\pingu@w@half, y radius=.9\pingu@w@half];
+	\coordinate (\pingu@name-head-top) at ([yshift=.9\pingu@w@half]\pingu@name-bottom-top-center);
 }
 
 %%% eyes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -296,12 +306,16 @@
 \endpgfonlayer
 }
 \pingu@leftwing@add{raise}{%
+\pgfonlayer{background}
 	\coordinate (\pingu@name-wings-left-start) at ([yshift=-.6cm]\pingu@name-wings-side-left);
 	\pingu@block[rotate around={-17:(\pingu@name-wings-left-start)}]{\pingu@color@left@wing} (\pingu@name-wings-left-start) ellipse [x radius=.195cm, y radius=.925cm] +(90:.195cm and .925cm) coordinate (\pingu@name-wings-left-tip) +(90:.145cm and .775cm) coordinate (\pingu@name-wings-left);
+\endpgfonlayer
 }
 \pingu@rightwing@add{raise}{%
+\pgfonlayer{background}
 	\coordinate (\pingu@name-wings-right-start) at ([yshift=-.6cm]\pingu@name-wings-side-right);
 	\pingu@block[rotate around={17:(\pingu@name-wings-right-start)}]{\pingu@color@right@wing} (\pingu@name-wings-right-start) ellipse [x radius=.195cm, y radius=.925cm] +(90:.195cm and .925cm) coordinate (\pingu@name-wings-right-tip) +(90:.145cm and .775cm) coordinate (\pingu@name-wings-right);
+\endpgfonlayer
 }
 
 \pingu@leftwing@add{grab}{%
@@ -364,15 +378,27 @@
 
 %%% Bill %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pingu@bill@add{normal}{%
-\pingu@block{\pingu@color@bill}
-	(bottom-top-center)++(0,-.005cm-\pingu@outer@off)
-	coordinate (\pingu@name-bill)++(-.19cm,0)
+\pingu@block{\pingu@color@bill} (\pingu@name-bill)++(-.19cm,0)
 	arc (180:360:.19cm and .225cm)
 	coordinate[pos=.5] (\pingu@name-bill-bottom)
 	to[bend right=.25cm] cycle;
 }
 
 %%% Extras %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\pingu@draw@extras@below{%
+	\if@pingu@x@cup@ \pingu@draw@eb@cup \fi
+}
+
+
+\def\pingu@draw@eb@cup{%
+	\pingu@block[rounded corners=.025cm]{\pingu@color@cup} (\pingu@name-belly-center)++(-.325cm,.275cm) to[bend right=2] ++(.05cm,-.675cm) to[bend right=8] ++(.55cm,0cm) to[bend right=2] ++(.05cm,.675cm);
+	\path (\pingu@name-belly-center)++(0,.275cm) -- (\pingu@name-bill) coordinate[pos=.5,xshift=-.2cm] (\pingu@name-cup-straw-outer-angle);
+	\path (\pingu@name-belly-center)++(-.115cm,.275cm) coordinate (\pingu@name-straw-outer-start);
+	\pingu@block[rounded corners=.015cm]{\pingu@color@cup@straw} (\pingu@name-straw-outer-start) -- (\pingu@name-cup-straw-outer-angle) -- (\pingu@name-bill) -- ++(.05cm,0) -- ([xshift=.05cm]\pingu@name-cup-straw-outer-angle) -- ([xshift=.05cm]\pingu@name-straw-outer-start) -- cycle;
+	\pingu@block{\pingu@color@cup} (\pingu@name-belly-center)++(0,.275cm) ellipse [x radius=.325cm,y radius=.05cm];
+}
+
+
 \def\pingu@draw@extras@above{%
 	\if@pingu@x@strawhat@ \pingu@draw@ea@strawhat \fi
 	\if@pingu@x@halo@ \pingu@draw@ea@halo \fi
