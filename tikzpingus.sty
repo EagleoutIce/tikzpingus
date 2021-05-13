@@ -12,8 +12,10 @@
 \@pingu@color@{black}RGB(23,19,19)
 \@pingu@color@{white}RGB(248,248,248)
 \@pingu@color@{yellow}RGB(252,187,21)
-\@pingu@color@{blue}RGB(174,229,243)
+\@pingu@color@{lightblue}RGB(174,229,243)
+\@pingu@color@{blue}RGB(48,161,247)
 \@pingu@color@{green}RGB(129,204,041)
+\@pingu@color@{purple}RGB(244,48,93)
 \def\@pingu@none{!hide}
 
 \newdimen\pingu@one@eight     \pingu@one@eight=.125cm\relax
@@ -493,7 +495,7 @@
 \pingu@create@extra{halo}{%
 	% extra halo
 	halo/.code    = \pingu@set@extra{halo}{true}\pingu@color{halo}{#1},
-	halo/.default = pingu@blue,
+	halo/.default = pingu@lightblue,
 }{}
 
 \def\pingu@draw@ea@halo{%
