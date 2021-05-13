@@ -379,22 +379,22 @@
 	tie pattern/.code = \def\pingu@x@tie@pattern{#1},
 	tie dots/.style   = {%
 		tie pattern={%
-			\path[pattern={Dots[angle=40,distance=1.5pt,radius=.35pt]},pattern color=#1]
-			   \pingupathxtie;
+			\pingu@block[postaction={pattern={Dots[angle=40,distance=1.5pt,radius=.35pt]},pattern color=#1}]{\pingu@color@tie} \pingupathxtie;
 			\pingu@block[postaction={pattern={Dots[angle=-30,distance=1.45pt,radius=.35pt@]},pattern color=#1}]{\pingu@color@tie@knot} \pingupathxtieknot;
 		}
 	}
 }{% defaults
 	tie length=.625\pingu@side@h@half,  tie offset=.399cm,%
 	tie knot=\pingu@color@tie!92!black, tie width=.21cm,%
-	tie pattern={}%
+	tie pattern={%
+		\pingu@block{\pingu@color@tie} \pingupathxtie;
+		\pingu@block{\pingu@color@tie@knot} \pingupathxtieknot;
+	}%
 }
 \def\pingupathxtie{[rounded corners=.015cm] (\pingu@name-bow-tie-start)++(-.04cm,-.025cm) -- ++(-\pingu@x@tie@width/2, -\pingu@x@tie@length+.125cm) -- ++(\pingu@x@tie@width/2+.04cm,-.125cm) -- ++(\pingu@x@tie@width/2+.04cm,.125cm) -- +(-\pingu@x@tie@width/2, \pingu@x@tie@length-.125cm) -- cycle}
 \def\pingupathxtieknot{[rounded corners=.025cm] (\pingu@name-bow-tie-start)++(-.095cm-.02*\pingu@x@tie@width,0cm) -- ++(.03cm,-.15cm-.01*\pingu@x@tie@width) -- ++(.13cm+.04*\pingu@x@tie@width,0cm) -- ++(.03cm,.15cm+.01*\pingu@x@tie@width) -- cycle}
 \def\pingu@draw@eb@tie{%
 	\path (\pingu@name-bill)++(0,-\pingu@x@tie@offset) coordinate(\pingu@name-bow-tie-start);
-	\pingu@block{\pingu@color@tie} \pingupathxtie;
-	\pingu@block{\pingu@color@tie@knot} \pingupathxtieknot;
 	\pingu@x@tie@pattern
 }
 
