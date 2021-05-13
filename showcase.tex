@@ -8,7 +8,7 @@
 \errorcontextlines 999999
 
 \def\DrawDots#1{
-  \foreach \x in {belly-center,head,head-top,foot-left,foot-right,right-eye,left-eye,bill,wings-side-left,wings-side-right,wings-left-start,wings-left-tip,wings-right-start,wings-right-tip} {
+  \foreach \x in {belly-center,head,head-top,foot-left,foot-right,right-eye,left-eye,bill,bill-bottom,wings-side-left,wings-side-right,wings-left-start,wings-left-tip,wings-right-start,wings-right-tip} {
     \fill[green] (#1-\x) circle[radius=1.25pt];
   }
   \foreach \x in {wings-left,wings-right} {
@@ -39,22 +39,22 @@
   \end{pgfonlayer}
 
   \pingu[yshift=-4cm-.175cm,name=pengu-1,height=1.1cm]
-  \pingu[yshift=-4cm,xshift=3.5cm,name=pengu-2,height=1.275cm,wings=shock,right eye=wink]
-  \pingu[yshift=-4cm+.225cm,xshift=7cm,name=pengu-3,height=1.5cm,wings=wave,eyes=shiny]
-  \pingu[yshift=-4cm,xshift=10.5cm,name=pengu-4,wings=grab,left eye=wink,strawhat,cup]
+  \pingu[yshift=-4cm,xshift=3.5cm,name=pengu-2,height=1.275cm,wings=shock,right eye=wink,tie]
+  \pingu[yshift=-4cm+.225cm,xshift=7cm,name=pengu-3,height=1.5cm,wings=wave,eyes=shiny,tie]
+  \pingu[yshift=-4cm,xshift=10.5cm,name=pengu-4,wings=grab,left eye=wink,strawhat,cup,tie=teal,tie length=1.2cm,tie width=.4cm,tie offset=.3cm]
   \pingu[yshift=-4cm,xshift=14cm,name=pengu-5,wings=raise,halo]
 
   \begin{scope}
     \makeatletter
     \clip (7cm+\pingu@w@half,-8cm) rectangle ++(-6cm,8cm);
-    \pingu[yshift=-4cm+.225cm,xshift=7cm,name=pengu-3-metal,height=1.5cm,wings=wave,eyes=shiny,@block/.style={fill=#1!92!gray}]
+    \pingu[yshift=-4cm+.225cm,xshift=7cm,name=pengu-3-metal,height=1.5cm,wings=wave,eyes=shiny,@block/.style={fill=#1!92!gray},tie]
   \end{scope}
 
 
   \pingu[yshift=-8cm,name=pengu-a,@block/.append style={opacity=.5}]
-  \pingu[yshift=-8cm,xshift=3.5cm,right eye=wink,name=pengu-b,@block/.append style={opacity=.5}]
-  \pingu[yshift=-8cm+.225cm,xshift=7cm,eyes=shiny,height=1.5cm,name=pengu-c,@block/.append style={fill opacity=.5,draw=#1!80!black}]
-  \pingu[yshift=-8cm,xshift=10.5cm,name=pengu-d,@block/.append style={fill=none,draw=#1!80!black},left eye=wink,straw hat=red,straw hat ribbon=teal,cup]
+  \pingu[yshift=-8cm,xshift=3.5cm,right eye=wink,name=pengu-b,@block/.append style={opacity=.5},tie]
+  \pingu[yshift=-8cm+.225cm,xshift=7cm,eyes=shiny,height=1.5cm,name=pengu-c,@block/.append style={fill opacity=.5,draw=#1!80!black},tie]
+  \pingu[yshift=-8cm,xshift=10.5cm,name=pengu-d,@block/.append style={fill=none,draw=#1!80!black},left eye=wink,straw hat=red,straw hat ribbon=teal,cup,tie=teal,tie length=1.2cm,tie width=.4cm,tie offset=.3cm]
   \pingu[yshift=-8cm,xshift=14cm,name=pengu-e,@block/.append style={fill=none,draw=#1!80!black},wings=raise,halo]
 
   \begin{pgfonlayer}{foreground}
