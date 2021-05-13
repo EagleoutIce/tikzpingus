@@ -55,7 +55,7 @@
 	\csname pingu@#1@add\endcsname{none}{}%
 }
 
-\def\pingu@create@extra#1#2{\expandafter\newif\csname if@pingu@x@#1@\endcsname\tikzset{/pingu/.cd,#2}}
+\def\pingu@create@extra#1#2#3{\expandafter\newif\csname if@pingu@x@#1@\endcsname\tikzset{/pingu/.cd,#2,extra defaults/.append style={#3}}}
 \def\pingu@set@extra#1#2{\csname @pingu@x@#1@#2\endcsname}
 
 \pingu@create@selection{lefteye}
@@ -64,10 +64,6 @@
 \pingu@create@selection{rightwing}
 \pingu@create@selection{hairstyle}
 \pingu@create@selection{bill}
-
-\pingu@create@extra{strawhat}{}
-\pingu@create@extra{halo}{}
-\pingu@create@extra{cup}{}
 
 \def\pingu@color#1#2{\expandafter\def\csname pingu@color@#1\endcsname{#2}}
 
@@ -141,22 +137,7 @@
                                    /pingu/hair 5 color={#1}},
   hair style/.forward to        = /pingu/hairstyle,
   hairstyle/.code               = \pingu@hairstyle@select{#1},
-  % extra strawhat (tikzducks basis)
-  straw hat/.forward to         = /pingu/strawhat,
-  strawhat/.default             = brown!50!white,
-  strawhat/.code                = \pingu@set@extra{strawhat}{true}\pingu@color{strawhat}{#1},
-  straw hat ribbon/.forward to  = /pingu/strawhat ribbon,
-  strawhat ribbon/.code         = \pingu@color{strawhat@ribbon}{#1},
-  straw hat position/.forward to= /pingu/strawhat position,
-  strawhat position/.code args  = {#1:(#2,#3)#4}{\def\pingu@x@strawhat@angle{#1}\def\pingu@x@strawhat@xshift{#2}\def\pingu@x@strawhat@yshift{#3}\def\pingu@x@strawhat@scale{#4}},
-  % extra halo
-  halo/.code                    = \pingu@set@extra{halo}{true}\pingu@color{halo}{#1},
-  halo/.default                 = pingu@blue,
   % TODO: glow color
-  % extra cup % TODO: as selection
-  cup/.code                    = \pingu@set@extra{cup}{true}\pingu@color{cup}{#1},
-  cup/.default                 = pingu@green,
-  cup straw/.code              = \pingu@color{cup@straw}{#1},
   % size
   height/.code                  = \setlength{\pingu@side@h@half}{#1},%
   defaults/.style               = {%
@@ -168,9 +149,7 @@
 	strawhat position={-26.5:(-.185cm,.14cm){1.375}},
 	belly raw={}, scale=\pingu@default@scale,extra defaults%
   },
-  extra defaults/.style         = {%
-	strawhat ribbon= gray!85!black,cup straw=\pingu@color@cup,
-  }
+  extra defaults/.style         = {}
 }
 % TODO: free defaults
 
@@ -390,18 +369,16 @@
 	\if@pingu@x@cup@ \pingu@draw@eb@cup \fi
 }
 
-
 \pingu@create@extra{tie}{%
 	tie/.code        = \pingu@set@extra{tie}{true}\pingu@color{tie}{#1},
 	tie/.default     = pingu@green,
 	tie knot/.code   = \pingu@color{tie@knot}{#1},
 	tie length/.code = \def\pingu@x@tie@length{#1},
 	tie offset/.code = \def\pingu@x@tie@offset{#1},
-	tie width/.code  = \def\pingu@x@tie@width{#1},
-	extra defaults/.append style={
-		tie length=.625\pingu@side@h@half,  tie offset=.399cm,%
-		tie knot=\pingu@color@tie!92!black, tie width=.21cm%
-	}
+	tie width/.code  = \def\pingu@x@tie@width{#1}
+}{% defaults
+	tie length=.625\pingu@side@h@half,  tie offset=.399cm,%
+	tie knot=\pingu@color@tie!92!black, tie width=.21cm%
 }
 \def\pingupathxtie{[rounded corners=.015cm] (\pingu@name-bow-tie-start)++(-.04cm,-.025cm) -- ++(-\pingu@x@tie@width/2, -\pingu@x@tie@length+.125cm) -- ++(\pingu@x@tie@width/2+.04cm,-.125cm) -- ++(\pingu@x@tie@width/2+.04cm,.125cm) -- +(-\pingu@x@tie@width/2, \pingu@x@tie@length-.125cm) -- cycle}
 \def\pingupathxtieknot{[rounded corners=.025cm] (\pingu@name-bow-tie-start)++(-.095cm-.02*\pingu@x@tie@width,0cm) -- ++(.03cm,-.15cm-.01*\pingu@x@tie@width) -- ++(.13cm+.04*\pingu@x@tie@width,0cm) -- ++(.03cm,.15cm+.01*\pingu@x@tie@width) -- cycle}
@@ -411,6 +388,13 @@
 	\pingu@block{\pingu@color@tie@knot} \pingupathxtieknot;
 }
 
+
+\pingu@create@extra{cup}{%
+  % extra cup % TODO: as selection
+  cup/.code       = \pingu@set@extra{cup}{true}\pingu@color{cup}{#1},
+  cup/.default    = pingu@green,
+  cup straw/.code = \pingu@color{cup@straw}{#1}%
+}{cup straw=\pingu@color@cup}
 
 \def\pingu@draw@eb@cup{%
 	\pingu@block[rounded corners=.025cm]{\pingu@color@cup} (\pingu@name-belly-center)++(-.325cm,.275cm) to[bend right=2] ++(.05cm,-.675cm) to[bend right=8] ++(.55cm,0cm) to[bend right=2] ++(.05cm,.675cm);
@@ -426,6 +410,17 @@
 	\if@pingu@x@halo@ \pingu@draw@ea@halo \fi
 }
 
+\pingu@create@extra{strawhat}{%
+  % extra strawhat (tikzducks basis)
+  straw hat/.forward to         = /pingu/strawhat,
+  strawhat/.default             = brown!50!white,
+  strawhat/.code                = \pingu@set@extra{strawhat}{true}\pingu@color{strawhat}{#1},
+  straw hat ribbon/.forward to  = /pingu/strawhat ribbon,
+  strawhat ribbon/.code         = \pingu@color{strawhat@ribbon}{#1},
+  straw hat position/.forward to= /pingu/strawhat position,
+  strawhat position/.code args  = {#1:(#2,#3)#4}{\def\pingu@x@strawhat@angle{#1}\def\pingu@x@strawhat@xshift{#2}\def\pingu@x@strawhat@yshift{#3}\def\pingu@x@strawhat@scale{#4}},
+}{strawhat ribbon= gray!85!black}
+
 \def\pingu@draw@ea@strawhat{%
 \begin{scope}[rotate around={\pingu@x@strawhat@angle:(\pingu@name-head)},shift={(\pingu@name-head)},shift={(\pingu@x@strawhat@xshift,\pingu@x@strawhat@yshift)},scale=\pingu@x@strawhat@scale]
 \pingu@block{\pingu@color@strawhat} (.34cm,\z@) ellipse[x radius=.75cm, y radius=.1cm];
@@ -437,6 +432,13 @@
 \pingu@block{\pingu@color@strawhat} (.34cm,.3cm) ellipse[x radius=.34cm, y radius=.08cm];
 \end{scope}
 }
+
+
+\pingu@create@extra{halo}{%
+	% extra halo
+	halo/.code    = \pingu@set@extra{halo}{true}\pingu@color{halo}{#1},
+	halo/.default = pingu@blue,
+}{}
 
 \def\pingu@draw@ea@halo{%
 	% TODO: dynamic offsets
