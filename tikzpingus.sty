@@ -329,14 +329,13 @@
 
 %%% Hairstyle %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pingu@hairstyle@add{normal}{%
-\begin{scope}[rounded corners=.008cm]
+\scope[rounded corners=.008cm]
 \pingu@block{\pingu@color@hair@a} ([yshift=-.1cm]\pingu@name-head-top) -- ++(.015cm,0) arc (0:90:\pingu@one@eight{} and .135cm) arc (90:0:.035cm and .075cm);
 \pingu@block{\pingu@color@hair@b} ([yshift=-.1cm]\pingu@name-head-top) -- ++(.033cm,0) arc (0:90:\pingu@one@eight{} and .175cm) arc (90:0:.035cm and .1cm);
 \pingu@block{\pingu@color@hair@c} ([yshift=-.1cm]\pingu@name-head-top) -- ++(-.033cm,0) arc (180:90:.17cm and .215cm) arc (90:180:.075cm and .18cm);
 \pingu@block{\pingu@color@hair@d} ([yshift=-.1cm]\pingu@name-head-top) -- ++(.025cm,0) arc (180:90:\pingu@one@eight{} and .175cm) arc (90:180:.035cm and \pingu@one@eight);
 \pingu@block{\pingu@color@hair@e} ([yshift=-.1cm]\pingu@name-head-top) -- ++(.044cm,0) arc (180:90:\pingu@one@eight{} and .135cm) arc (90:180:.035cm and .075cm);
-\end{scope}
-}
+\endscope}
 
 %%% Feet %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \def\pingu@draw@feet{%
@@ -366,9 +365,17 @@
 %%% Extras %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \def\pingu@draw@extras@below{%
 	\if@pingu@x@tie@ \pingu@draw@eb@tie \fi
+	\if@pingu@x@bowtie@ \pingu@draw@eb@bowtie \fi
 	\if@pingu@x@cup@ \pingu@draw@eb@cup \fi
 }
 
+% .########.####.########
+% ....##.....##..##......
+% ....##.....##..##......
+% ....##.....##..######..
+% ....##.....##..##......
+% ....##.....##..##......
+% ....##....####.########
 \pingu@create@extra{tie}{%
 	tie/.code         = \pingu@set@extra{tie}{true}\pingu@color{tie}{#1},
 	tie/.default      = pingu@green,
@@ -391,14 +398,53 @@
 		\pingu@block{\pingu@color@tie@knot} \pingupathxtieknot;
 	}%
 }
-\def\pingupathxtie{[rounded corners=.015cm] (\pingu@name-bow-tie-start)++(-.04cm,-.025cm) -- ++(-\pingu@x@tie@width/2, -\pingu@x@tie@length+.125cm) -- ++(\pingu@x@tie@width/2+.04cm,-.125cm) -- ++(\pingu@x@tie@width/2+.04cm,.125cm) -- +(-\pingu@x@tie@width/2, \pingu@x@tie@length-.125cm) -- cycle}
-\def\pingupathxtieknot{[rounded corners=.025cm] (\pingu@name-bow-tie-start)++(-.095cm-.02*\pingu@x@tie@width,0cm) -- ++(.03cm,-.15cm-.01*\pingu@x@tie@width) -- ++(.13cm+.04*\pingu@x@tie@width,0cm) -- ++(.03cm,.15cm+.01*\pingu@x@tie@width) -- cycle}
+\def\pingupathxtie{[rounded corners=.015cm] (\pingu@name-tie-start)++(-.04cm,-.025cm) -- ++(-\pingu@x@tie@width/2, -\pingu@x@tie@length+.125cm) -- ++(\pingu@x@tie@width/2+.04cm,-.125cm) -- ++(\pingu@x@tie@width/2+.04cm,.125cm) -- +(-\pingu@x@tie@width/2, \pingu@x@tie@length-.125cm) -- cycle}
+\def\pingupathxtieknot{[rounded corners=.025cm] (\pingu@name-tie-start)++(-.095cm-.02*\pingu@x@tie@width,0cm) -- ++(.03cm,-.15cm-.01*\pingu@x@tie@width) -- ++(.13cm+.04*\pingu@x@tie@width,0cm) -- ++(.03cm,.15cm+.01*\pingu@x@tie@width) -- cycle}
 \def\pingu@draw@eb@tie{%
-	\path (\pingu@name-bill)++(0,-\pingu@x@tie@offset) coordinate(\pingu@name-bow-tie-start);
+	\path (\pingu@name-bill)++(0,-\pingu@x@tie@offset) coordinate(\pingu@name-tie-start);
 	\pingu@x@tie@pattern
 }
 
+% .########...#######..##......##....########.####.########
+% .##.....##.##.....##.##..##..##.......##.....##..##......
+% .##.....##.##.....##.##..##..##.......##.....##..##......
+% .########..##.....##.##..##..##.......##.....##..######..
+% .##.....##.##.....##.##..##..##.......##.....##..##......
+% .##.....##.##.....##.##..##..##.......##.....##..##......
+% .########...#######...###..###........##....####.########
+\pingu@create@extra{bowtie}{%
+	bowtie/.forward to         = /pingu/bow tie,
+	bow-tie/.forward to        = /pingu/bow tie,
+	bow tie/.code              = \pingu@set@extra{bowtie}{true}\pingu@color{bowtie}{#1},
+	bow tie b/.code            = \pingu@color{bowtie@b}{#1},
+	bow tie/.default           = pingu@blue,
+	bowtie offset/.forward to  = /pingu/bow tie offset,
+	bow-tie offset/.forward to = /pingu/bow tie offset,
+	bow tie offset/.code       = \def\pingu@x@bowtie@offset{#1},
+	bowtie knot/.forward to    = /pingu/bow tie knot,
+	bow-tie knot/.forward to   = /pingu/bow tie knot,
+	bow tie knot/.code         = \pingu@color{bowtie@knot}{#1},
+}{% defaults
+	bow tie knot=\pingu@color@bowtie!92!black,bow tie offset=.315cm,%
+	bow tie b=\pingu@color@bowtie%
+}
 
+\def\pingupathxbowtieknot{[rounded corners=.025cm] (\pingu@name-bow-tie-start)++(-.0625cm,-.035cm) to[bend right=6] ++(.125cm,0) -- ++(0,-.13cm) to[bend right=6] ++(-.125cm, 0) -- cycle}
+\def\pingu@draw@eb@bowtie{%
+	\path (\pingu@name-bill)++(0,-\pingu@x@bowtie@offset) coordinate(\pingu@name-bow-tie-start);
+	\pingu@block{\pingu@color@bowtie} [rounded corners=.025cm]  (\pingu@name-bow-tie-start)++(-.015cm,-.06cm) to[out=155,in=-5] ++(-.25cm,.065cm) to[bend right=15] ++(0,-.21cm) to[in=-155,out=5] ++(.25cm,.065cm) -- cycle;
+	\pingu@block{\pingu@color@bowtie@b} [rounded corners=.025cm]  (\pingu@name-bow-tie-start)++(.015cm,-.06cm) to[out=25,in=-175] ++(.25cm,.065cm) to[bend left=15] ++(0,-.21cm) to[in=-25,out=175] ++(-.25cm,.065cm) -- cycle;
+	\pingu@block{\pingu@color@bowtie@knot} \pingupathxbowtieknot;
+}
+
+
+% ..######..##.....##.########.
+% .##....##.##.....##.##.....##
+% .##.......##.....##.##.....##
+% .##.......##.....##.########.
+% .##.......##.....##.##.......
+% .##....##.##.....##.##.......
+% ..######...#######..##.......
 \pingu@create@extra{cup}{%
   % extra cup % TODO: as selection
   cup/.code       = \pingu@set@extra{cup}{true}\pingu@color{cup}{#1},
