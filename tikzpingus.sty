@@ -55,7 +55,7 @@
 	\csname pingu@#1@add\endcsname{none}{}%
 }
 
-\def\pingu@create@extra#1{\expandafter\newif\csname if@pingu@x@#1@\endcsname}
+\def\pingu@create@extra#1#2{\expandafter\newif\csname if@pingu@x@#1@\endcsname\tikzset{/pingu/.cd,#2}}
 \def\pingu@set@extra#1#2{\csname @pingu@x@#1@#2\endcsname}
 
 \pingu@create@selection{lefteye}
@@ -65,10 +65,9 @@
 \pingu@create@selection{hairstyle}
 \pingu@create@selection{bill}
 
-\pingu@create@extra{strawhat}
-\pingu@create@extra{halo}
-\pingu@create@extra{cup}
-\pingu@create@extra{tie}
+\pingu@create@extra{strawhat}{}
+\pingu@create@extra{halo}{}
+\pingu@create@extra{cup}{}
 
 \def\pingu@color#1#2{\expandafter\def\csname pingu@color@#1\endcsname{#2}}
 
@@ -158,12 +157,6 @@
   cup/.code                    = \pingu@set@extra{cup}{true}\pingu@color{cup}{#1},
   cup/.default                 = pingu@green,
   cup straw/.code              = \pingu@color{cup@straw}{#1},
-  tie/.code                    = \pingu@set@extra{tie}{true}\pingu@color{tie}{#1},
-  tie/.default                 = pingu@green,
-  tie knot/.code               = \pingu@color{tie@knot}{#1},
-  tie length/.code             = \def\pingu@x@tie@length{#1},
-  tie offset/.code             = \def\pingu@x@tie@offset{#1},
-  tie width/.code              = \def\pingu@x@tie@width{#1},
   % size
   height/.code                  = \setlength{\pingu@side@h@half}{#1},%
   defaults/.style               = {%
@@ -177,9 +170,6 @@
   },
   extra defaults/.style         = {%
 	strawhat ribbon= gray!85!black,cup straw=\pingu@color@cup,
-	tie length=.625\pingu@side@h@half,%
-	tie offset=.399cm,tie knot=\pingu@color@tie!92!black,%
-	tie width=.21cm%
   }
 }
 % TODO: free defaults
@@ -400,12 +390,25 @@
 	\if@pingu@x@cup@ \pingu@draw@eb@cup \fi
 }
 
-\def\pingu@draw@eb@tie{%
-	% TODO: TIE KNOT
-	\path (\pingu@name-bill)++(0,-\pingu@x@tie@offset) coordinate(\pingu@name-bow-tie-start);
-	\pingu@block[rounded corners=.015cm]{\pingu@color@tie} (\pingu@name-bow-tie-start)++(-.04cm,-.025cm) -- ++(-\pingu@x@tie@width/2, -\pingu@x@tie@length+.125cm) -- ++(\pingu@x@tie@width/2+.04cm,-.125cm) -- ++(\pingu@x@tie@width/2+.04cm,.125cm) -- +(-\pingu@x@tie@width/2, \pingu@x@tie@length-.125cm) -- cycle;
 
-	\pingu@block[rounded corners=.025cm]{\pingu@color@tie@knot} (\pingu@name-bow-tie-start)++(-.095cm-0.02*\pingu@x@tie@width,0) -- ++(.03cm,-.15cm-0.01*\pingu@x@tie@width) -- ++(.13cm+0.04*\pingu@x@tie@width,0cm) -- ++(.03cm,.15cm+0.01*\pingu@x@tie@width) -- cycle;
+\pingu@create@extra{tie}{%
+	tie/.code        = \pingu@set@extra{tie}{true}\pingu@color{tie}{#1},
+	tie/.default     = pingu@green,
+	tie knot/.code   = \pingu@color{tie@knot}{#1},
+	tie length/.code = \def\pingu@x@tie@length{#1},
+	tie offset/.code = \def\pingu@x@tie@offset{#1},
+	tie width/.code  = \def\pingu@x@tie@width{#1},
+	extra defaults/.append style={
+		tie length=.625\pingu@side@h@half,  tie offset=.399cm,%
+		tie knot=\pingu@color@tie!92!black, tie width=.21cm%
+	}
+}
+\def\pingupathxtie{[rounded corners=.015cm] (\pingu@name-bow-tie-start)++(-.04cm,-.025cm) -- ++(-\pingu@x@tie@width/2, -\pingu@x@tie@length+.125cm) -- ++(\pingu@x@tie@width/2+.04cm,-.125cm) -- ++(\pingu@x@tie@width/2+.04cm,.125cm) -- +(-\pingu@x@tie@width/2, \pingu@x@tie@length-.125cm) -- cycle}
+\def\pingupathxtieknot{[rounded corners=.025cm] (\pingu@name-bow-tie-start)++(-.095cm-.02*\pingu@x@tie@width,0cm) -- ++(.03cm,-.15cm-.01*\pingu@x@tie@width) -- ++(.13cm+.04*\pingu@x@tie@width,0cm) -- ++(.03cm,.15cm+.01*\pingu@x@tie@width) -- cycle}
+\def\pingu@draw@eb@tie{%
+	\path (\pingu@name-bill)++(0,-\pingu@x@tie@offset) coordinate(\pingu@name-bow-tie-start);
+	\pingu@block{\pingu@color@tie} \pingupathxtie;
+	\pingu@block{\pingu@color@tie@knot} \pingupathxtieknot;
 }
 
 
