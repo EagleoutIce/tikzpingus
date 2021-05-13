@@ -497,6 +497,13 @@
 \pingu@block{\pingu@color@strawhat} (.34cm,.3cm) ellipse[x radius=.34cm, y radius=.08cm];
 \endscope}
 
+% .##.....##....###....########
+% .##.....##...##.##......##...
+% .##.....##..##...##.....##...
+% .#########.##.....##....##...
+% .##.....##.#########....##...
+% .##.....##.##.....##....##...
+% .##.....##.##.....##....##...
 \pingu@create@extra{hat}{%
   hat/.default   = pingu@black!90!black,
   hat/.code      = \pingu@set@extra{hat}{true}\pingu@color{hat}{#1},
@@ -506,16 +513,16 @@
   hat position/.code args  = {#1:(#2,#3)#4}{\def\pingu@x@hat@angle{#1}\def\pingu@x@hat@xshift{#2}\def\pingu@x@hat@yshift{#3}\def\pingu@x@hat@scale{#4}},
 }{hat position={-2:(.035cm,0)1},hat base=\pingu@color@hat,hat coronal=\pingu@color@hat!91!white,hat ribbon=\pingu@color@hat!91!white}
 
-
-\def\pingupathhatupper{[rounded corners=.025cm](-.6cm,-.2cm) to[out=90,in=200] ++(.3cm,.51cm) to[bend left=11.5] ++(.25cm,0) to[bend right=3] ++(.1cm,0) to[bend left=11.5] ++(.25cm,0) to[out=-20,in=90] ++(.3cm,-.51cm) to[bend left=12] cycle}
+\newdimen\pingu@hat@w@half \pingu@hat@w@half=.925cm
+\def\pingupathhatupper{[rounded corners=.025cm](-.65cm,-.25cm) to[out=90,in=200] ++(.35cm,.565cm) to[bend left=11] ++(.25cm,0) to[bend right=2.5] ++(.1cm,0) to[bend left=11] ++(.25cm,0) to[out=-20,in=90] ++(.35cm,-.565cm) to[bend left=12] cycle}
 \def\pingu@draw@ea@hat{%
 \scope[rotate around={\pingu@x@hat@angle:(\pingu@name-head-top)},shift={(\pingu@name-head-top)},shift={(\pingu@x@hat@xshift,\pingu@x@hat@yshift)},scale=\pingu@x@hat@scale]
-\pingu@block[draw=\pingu@color@hat@coronal,thick]{\pingu@color@hat@base} (0,-.2cm)++(180:.885cm and .15cm) arc (180:360:.885cm and .15cm) arc (0:180:.885cm and .115cm) -- cycle;
+\pingu@block[draw=\pingu@color@hat@coronal,thick]{\pingu@color@hat@base} (0,-.25cm)++(180:\pingu@hat@w@half{} and .15cm) arc (180:360:\pingu@hat@w@half{} and .15cm) arc (0:180:\pingu@hat@w@half{} and .115cm) -- cycle;
 \pingu@block{\pingu@color@hat} \pingupathhatupper;
 \scope
 \clip\pingupathhatupper;
-\pingu@block{\pingu@color@hat@ribbon} (0cm,0.02cm) ellipse [x radius=.8cm, y radius=.13cm];
-\pingu@block{\pingu@color@hat} (0cm,.11cm) ellipse [x radius=.8cm, y radius=.13cm];
+\pingu@block{\pingu@color@hat@ribbon} (0cm,0.02cm) ellipse [x radius=.95\pingu@hat@w@half, y radius=.13cm];
+\pingu@block{\pingu@color@hat} (0cm,.134cm) ellipse [x radius=.95\pingu@hat@w@half, y radius=.13cm];
 \endscope
 \endscope
 }
