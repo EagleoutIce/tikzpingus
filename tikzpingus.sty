@@ -409,6 +409,14 @@
 	-- cycle;
 }
 
+
+\@pingu@bill@s{angry}{%
+\pingu@block{\pingu@color@bill} (\pingu@name-bill)++(-.19cm,0)
+	to[out=-90,in=170] ++(1.9mm,-2.25mm) coordinate (\pingu@name-bill-bottom)
+	to[out=10,in=-90] ++(1.9mm,2.25mm)
+	to[bend right=.25cm] cycle;
+}
+
 %%% Extras %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \def\pingu@draw@extras@below{%
 	\if@pingu@x@tie@ \pingu@draw@eb@tie \fi
