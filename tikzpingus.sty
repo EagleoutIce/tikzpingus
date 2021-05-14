@@ -347,6 +347,7 @@
 \endpgfonlayer}
 
 \let\@pingu@wings@s\relax
+
 %%% Hairstyle %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pingu@hairstyle@add{normal}{%
 \scope[rounded corners=.008cm]
@@ -375,11 +376,27 @@
 }
 
 %%% Bill %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\pingu@bill@add{normal}{%
+
+% name core | main
+\long\def\@pingu@bill@s#1#2{%
+	\tikzset{%
+		/pingu/bill #1/.style   = {/pingu/bill={#1}, /pingu/bill color={##1}},%
+		/pingu/bill #1/.default = pingu@yellow% TODO: defaults
+	}%
+	\pingu@bill@add{#1}{#2}%
+}
+\@pingu@bill@s{normal}{%
 \pingu@block{\pingu@color@bill} (\pingu@name-bill)++(-.19cm,0)
 	arc (180:360:.19cm and .225cm)
 	coordinate[pos=.5] (\pingu@name-bill-bottom)
 	to[bend right=.25cm] cycle;
+}
+
+\@pingu@bill@s{flat}{%
+\pingu@block{\pingu@color@bill} (\pingu@name-bill)++(-.19cm,0)
+	arc (180:360:.19cm and .225cm)
+	coordinate[pos=.5] (\pingu@name-bill-bottom)
+	-- cycle;
 }
 
 %%% Extras %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
