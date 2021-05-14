@@ -42,7 +42,7 @@
 	\PackageError{\filename}{There is no '#2' drawer for '#1'. Choose one of '\@nameuse{@pingu@#1@}'}{Or ask the package maintainer :D}%
 }
 
-% #1 name; TODO: refactor
+% #1 name;
 \def\pingu@create@selection#1{%
 	\expandafter\let\csname @pingu@#1@\endcsname\@empty
 	\expandafter\long\expandafter\def\csname pingu@#1@add\endcsname##1##2{%
@@ -113,10 +113,6 @@
   right wing color/.code        = \pingu@color{right@wing}{#1},
   right wing/.code              = \pingu@rightwing@select{#1},
   wings/.style                  = {/pingu/left wing={#1}, /pingu/right wing={#1}},
-  wings grab/.style             = {/pingu/wings={grab}, /pingu/wings color={#1}},
-  wings wave/.style             = {/pingu/wings={wave}, /pingu/wings color={#1}},
-  wings grab/.default           = \pingu@color@body@main,
-  wings wave/.default           = \pingu@color@body@main,
   wings color/.style            = {/pingu/left wing color={#1},
                                    /pingu/right wing color={#1}},
   % bill
@@ -266,6 +262,15 @@
 }
 
 %%% Wings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\@pingu@wings@s#1{%
+	\tikzset{%
+		/pingu/wings #1/.style = {/pingu/wings={#1},
+								  /pingu/wings color={##1}
+								 },
+		/pingu/wings #1/.default = \pingu@color@body@main%
+	}%
+}
+\@pingu@wings@s{normal}
 \pingu@leftwing@add{normal}{%
 \pgfonlayer{background}
 	\coordinate (\pingu@name-wings-left-start) at ([yshift=-.7cm]\pingu@name-wings-side-left);
@@ -277,6 +282,8 @@
 	\pingu@block[rotate around={-15:(\pingu@name-wings-right-start)}]{\pingu@color@right@wing} (\pingu@name-wings-right-start) ellipse [x radius=.195cm, y radius=.9cm] +(-90:.195cm and .9cm) coordinate (\pingu@name-wings-right-tip) +(-90:.145cm and .75cm) coordinate (\pingu@name-wings-right);
 \endpgfonlayer}
 
+
+\@pingu@wings@s{wave}
 \pingu@leftwing@add{wave}{%
 \pgfonlayer{background}
 	\coordinate (\pingu@name-wings-left-start) at ([yshift=-.6cm]\pingu@name-wings-side-left);
@@ -290,6 +297,7 @@
 \endpgfonlayer
 }
 
+\@pingu@wings@s{raise}
 \pingu@leftwing@add{raise}{%
 \pgfonlayer{background}
 	\coordinate (\pingu@name-wings-left-start) at ([yshift=-.6cm]\pingu@name-wings-side-left);
@@ -303,6 +311,7 @@
 \endpgfonlayer
 }
 
+\@pingu@wings@s{grab}
 \pingu@leftwing@add{grab}{%
 \pgfonlayer{foreground}
 \begin{scope}
@@ -318,6 +327,7 @@
 	\pingu@block[rotate around={42:(\pingu@name-wings-right-start)}]{\pingu@color@right@wing} (\pingu@name-wings-right-start) ellipse [x radius=.225cm, y radius=1.05cm] +(-90:.225cm and 1.05cm) coordinate (\pingu@name-wings-right-tip) +(-90:.175cm and .9cm) coordinate (\pingu@name-wings-right);
 \end{scope}\endpgfonlayer}
 
+\@pingu@wings@s{shock}
 \pingu@leftwing@add{shock}{%
 \pgfonlayer{foreground}
 \begin{scope}
@@ -333,6 +343,7 @@
 	\pingu@block[rotate around={-65:(\pingu@name-wings-right-start)}]{\pingu@color@right@wing} (\pingu@name-wings-right-start) ellipse [x radius=.235cm, y radius=.85cm] +(90:.235cm and .85cm) coordinate (\pingu@name-wings-right-tip) +(90:.185cm and .7cm) coordinate (\pingu@name-wings-right);
 \end{scope}\endpgfonlayer}
 
+\@pingu@wings@s{hug}
 \pingu@leftwing@add{hug}{%
 \pgfonlayer{background}
 \coordinate (\pingu@name-wings-left-start) at ([yshift=-.5cm]\pingu@name-wings-side-left);
@@ -346,6 +357,7 @@
 \endpgfonlayer
 }
 
+\let\@pingu@wings@s\relax
 %%% Hairstyle %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pingu@hairstyle@add{normal}{%
 \scope[rounded corners=.008cm]
