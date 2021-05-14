@@ -8,7 +8,7 @@
 \errorcontextlines 999999
 
 \def\DrawDots#1{
-  \foreach \x in {belly-center,head,head-top,foot-left,foot-right,right-eye,left-eye,bill,bill-bottom,wings-side-left,wings-side-right,wings-left-start,wings-left-tip,wings-right-start,wings-right-tip} {
+  \foreach \x in {belly-center,head,head-top,foot-left,foot-right,right-eye,left-eye,bill,bill-bottom,wings-side-left,wings-side-right,wings-left-start,wings-left-tip,wings-right-start,wings-right-tip,head-right,head-left} {
     \fill[green] (#1-\x) circle[radius=1.25pt];
   }
   \foreach \x in {wings-left,wings-right} {
@@ -44,7 +44,7 @@
   \pingu[yshift=-4cm+.225cm,xshift=7cm,name=pengu-3,height=1.5cm,wings=wave,eyes=shiny,tie]
   \pingu[yshift=-4cm,xshift=10.5cm,name=pengu-4,wings=grab,left eye=wink,strawhat,cup,tie=pingu@purple,tie length=1.2cm,tie width=.4cm,tie offset=.325cm,sunglasses]
   \pingu[yshift=-4cm,xshift=14cm,name=pengu-5,wings=raise,halo]
-  \pingu[yshift=-4cm,xshift=17.5cm,name=pengu-6,eyes=shiny,wings hug, sun glasses round=brown!65!black]
+  \pingu[yshift=-4cm,xshift=17.5cm,name=pengu-6,eyes=shiny,wings hug, sun glasses round=brown!65!black,devil]
 
   \begin{scope}
     \makeatletter
@@ -57,7 +57,7 @@
   \pingu[yshift=-8cm+.225cm,xshift=7cm,eyes=shiny,height=1.5cm,name=pengu-c,@pingu@all/.append style={fill opacity=.5,draw=#1!80!black},tie]
   \pingu[yshift=-8cm,xshift=10.5cm,name=pengu-d,@block/.append style={fill=none,draw=#1!80!black},left eye=wink,straw hat=red,straw hat ribbon=pingu@blue,cup,tie=pingu@purple,tie length=1.2cm,tie width=.4cm,tie offset=.325cm,sunglasses]
   \pingu[yshift=-8cm,xshift=14cm,name=pengu-e,@block/.append style={fill=none,draw=#1!80!black},wings=raise,halo]
-  \pingu[yshift=-8cm,xshift=17.5cm,eyes=shiny,@block/.append style={fill=none,draw=#1!80!black},wings=hug, sun glasses round=brown!65!black]
+  \pingu[yshift=-8cm,xshift=17.5cm,eyes=shiny,@block/.append style={fill=none,draw=#1!80!black},wings=hug, sun glasses round=brown!65!black,devil]
 
   \begin{pgfonlayer}{foreground}
     \DrawDots{pengu-1}

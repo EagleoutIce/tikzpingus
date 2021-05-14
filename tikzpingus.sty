@@ -220,8 +220,12 @@
 		coordinate (\pingu@name-wings-side-left)
 		-- (0,\pingu@outer@off) coordinate (\pingu@name-wings-side-right) coordinate[pos=.5] (\pingu@name-bottom-top-center) -- cycle;
 
-	\pingu@block[save path=\pingu@upperpingu]{\pingu@color@body@head} (\pingu@name-bottom-top-center) ellipse[x radius=\pingu@w@half, y radius=.9\pingu@w@half];
-	\coordinate (\pingu@name-head-top) at ([yshift=.9\pingu@w@half]\pingu@name-bottom-top-center);
+	% TODO: store widths and height of head and use for e.g. devil
+	\pingu@block[save path=\pingu@upperpingu]{\pingu@color@body@head} (\pingu@name-bottom-top-center)
+		++(0,.9\pingu@w@half) coordinate (\pingu@name-head-top)
+		arc(90:450:\pingu@w@half{} and .9\pingu@w@half)
+		coordinate[pos=.06] (\pingu@name-head-right)
+		coordinate[pos=.94] (\pingu@name-head-left);
 }
 
 %%% eyes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -526,6 +530,7 @@
 	\if@pingu@x@strawhat@ \pingu@draw@ea@strawhat \fi
 	\if@pingu@x@hat@ \pingu@draw@ea@hat \fi
 	\if@pingu@x@halo@ \pingu@draw@ea@halo \fi
+	\if@pingu@x@devil@ \pingu@draw@ea@devil \fi
 }
 
 % ..######..########.########.....###....##......##....##.....##....###....########
@@ -707,6 +712,21 @@
 	 (\pingu@name-glassesround-left-mid) arc(150:30:\pingu@x@glassesround@r@r) -- ++(5mm,.65mm);
 	\endscope
 }
+
+% devil
+\pingu@create@extra{devil}{%
+	devil/.code = \pingu@set@extra{devil}{true}\pingu@color{devil}{#1},
+	devil/.default = pingu@purple,
+}{}
+
+\def\pingu@draw@ea@devil{%
+	% 90 - 360*.06
+	\pingu@block{\pingu@color@devil} (\pingu@name-head-left) arc (68.4:59:\pingu@w@half{} and .9\pingu@w@half) coordinate (\pingu@name-devil-left-goal) to[out=32,in=-85] ++(1mm,2.75mm) to[bend left=5] (\pingu@name-head-left) -- cycle;
+	\pingu@block{\pingu@color@devil} (\pingu@name-head-left) to [bend right=28] (\pingu@name-devil-left-goal) arc (59:68.4:\pingu@w@half{} and .9\pingu@w@half) -- cycle;
+	\pingu@block{\pingu@color@devil} (\pingu@name-head-right) arc (111.6:121:\pingu@w@half{} and .9\pingu@w@half) coordinate (\pingu@name-devil-right-goal) to[out=148,in=-95] ++(-1mm,2.75mm) to[bend left=5] (\pingu@name-head-right) -- cycle;
+	\pingu@block{\pingu@color@devil} (\pingu@name-head-right) to [bend left=28] (\pingu@name-devil-right-goal) arc (121:111.6:\pingu@w@half{} and .9\pingu@w@half) -- cycle;
+}
+
 
 \let\pingu@create@selection\relax
 \let\pingu@create@extra\relax
