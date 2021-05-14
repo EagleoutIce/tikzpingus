@@ -129,10 +129,8 @@
   hair 4 color/.code            = \pingu@color{hair@d}{#1},
   hair 5/.forward to = /pingu/hair 5 color,
   hair 5 color/.code            = \pingu@color{hair@e}{#1},
-  hairs color/.style            = {/pingu/hair 1 color={#1},
-                                   /pingu/hair 2 color={#1},
-                                   /pingu/hair 3 color={#1},
-                                   /pingu/hair 4 color={#1},
+  hairs color/.style            = {/pingu/hair 1 color={#1}, /pingu/hair 2 color={#1},
+                                   /pingu/hair 3 color={#1}, /pingu/hair 4 color={#1},
                                    /pingu/hair 5 color={#1}},
   hair style/.forward to        = /pingu/hairstyle,
   hairstyle/.code               = \pingu@hairstyle@select{#1},
@@ -147,7 +145,8 @@
 	hairstyle={normal}, hairs color=\pingu@color@body@main,
 	belly raw={}, scale=\pingu@default@scale,extra defaults%
   },
-  extra defaults/.style         = {}
+  % will be set individually
+  extra defaults/.style = {}
 }
 % TODO: free defaults
 
@@ -499,10 +498,12 @@
 	\pingu@block{\pingu@color@cup} (\pingu@name-belly-center)++(0,.275cm) ellipse [x radius=.325cm,y radius=.05cm];
 }
 
-
+% TODO: auto append?
+% probably not; allows for clear drawing order independent of addition/deps
 \def\pingu@draw@extras@above{%
 	\if@pingu@x@eyeframe@ \pingu@draw@ea@eyeframe \fi
 	\if@pingu@x@glasses@ \pingu@draw@ea@glasses \fi
+	\if@pingu@x@glassesround@ \pingu@draw@ea@glassesround \fi
 	\if@pingu@x@strawhat@ \pingu@draw@ea@strawhat \fi
 	\if@pingu@x@hat@ \pingu@draw@ea@hat \fi
 	\if@pingu@x@halo@ \pingu@draw@ea@halo \fi
@@ -607,6 +608,8 @@
 	\pingu@draw{\pingu@color@eyeframe} [rounded corners=.25mm](\pingu@name-right-eye)++(2mm,1.5mm) to[bend right=8] ++(-4.2mm,0) to[out=-100,in=110] ++(.2mm,-2.75mm) to[bend right=32.5] ++(3.65mm,0mm) to[out=45,in=-90] ++(.8mm,2.7mm) -- cycle;
 }
 
+% TODO: use save paths for everything
+
 % ..######...##..........###.....######...######..########..######.
 % .##....##..##.........##.##...##....##.##....##.##.......##....##
 % .##........##........##...##..##.......##.......##.......##......
@@ -614,9 +617,7 @@
 % .##....##..##.......#########.......##.......##.##.............##
 % .##....##..##.......##.....##.##....##.##....##.##.......##....##
 % ..######...########.##.....##..######...######..########..######.
-% sunglasses with fill as macro?
 \pingu@create@extra{glasses}{%
-	% extra halo
 	glasses/.code               = \pingu@set@extra{glasses}{true}\pingu@color{glasses}{#1},
 	glasses/.default            = pingu@black,
 	glasses left fill/.code     = \pingu@color{glasses@fill@l}{#1},
@@ -631,9 +632,7 @@
 	sun glasses/.default        = pingu@black,
 }{glasses line width=1.125\p@,glasses fill=\@pingu@none,glasses opacity=.825}
 
-% TODO: use save paths for everything
 \def\pingu@draw@ea@glasses{% fact: 1.33; modified first shift and ht
-	% TODO: dynamic offsets
 	\pingu@block[opacity=\pingu@x@glasses@op@l]{\pingu@color@glasses@fill@l} (\pingu@name-left-eye)++(-2.66mm,1.75mm) to[bend left=8] ++(5.586mm,0) to[out=-80,in=70] ++(-.266mm,-3.6mm) to[bend left=32.5] ++(-4.8545mm,0mm) to[out=135,in=-90] ++(-1.064mm,3.5mm) -- cycle;
 	\pingu@block[opacity=\pingu@x@glasses@op@r]{\pingu@color@glasses@fill@r} (\pingu@name-right-eye)++(2.66mm,1.75mm) to[bend right=8] ++(-5.586mm,0) to[out=-100,in=110] ++(.266mm,-3.6mm) to[bend right=32.5] ++(4.8545mm,0mm) to[out=45,in=-90] ++(1.064mm,3.5mm) -- cycle;
 	\pingu@draw[line width=\pingu@x@glasses@lw]{\pingu@color@glasses} [rounded corners=.25mm](\pingu@name-left-eye)++(-2.66mm,1.75mm) coordinate (\pingu@name-glasses-left-mid) to[bend left=8] ++(5.586mm,0) coordinate (\pingu@name-glasses-left-outer) to[out=-80,in=70] ++(-.266mm,-3.6mm) to[bend left=32.5] ++(-4.8545mm,0mm) to[out=135,in=-90] coordinate[pos=.9] (\pingu@name-glasses-left-mid-b) ++(-1.064mm,3.5mm) -- cycle;
@@ -648,6 +647,46 @@
 	(\pingu@name-glasses-left-mid) to[bend left=8] ++(5.586mm,0) -- ++(5mm,.5mm);
 	\endscope
 }
+
+% ..######...##..........###.....######...######..########..######.....########...#######..##.....##.##....##.########.
+% .##....##..##.........##.##...##....##.##....##.##.......##....##....##.....##.##.....##.##.....##.###...##.##.....##
+% .##........##........##...##..##.......##.......##.......##..........##.....##.##.....##.##.....##.####..##.##.....##
+% .##...####.##.......##.....##..######...######..######....######.....########..##.....##.##.....##.##.##.##.##.....##
+% .##....##..##.......#########.......##.......##.##.............##....##...##...##.....##.##.....##.##..####.##.....##
+% .##....##..##.......##.....##.##....##.##....##.##.......##....##....##....##..##.....##.##.....##.##...###.##.....##
+% ..######...########.##.....##..######...######..########..######.....##.....##..#######...#######..##....##.########.
+\pingu@create@extra{glassesround}{%
+	glasses round/.code               = \pingu@set@extra{glassesround}{true}\pingu@color{glassesround}{#1},
+	glasses round/.default            = pingu@black,
+	glasses round left fill/.code     = \pingu@color{glassesround@fill@l}{#1},
+	glasses round right fill/.code    = \pingu@color{glassesround@fill@r}{#1},
+	glasses round left opacity/.code  = \def\pingu@x@glassesround@op@l{#1},
+	glasses round right opacity/.code = \def\pingu@x@glassesround@op@r{#1},
+	glasses round fill/.style         = {/pingu/glasses round left fill=#1, /pingu/glasses round right fill=#1},
+	glasses round opacity/.style      = {/pingu/glasses round left opacity=#1, /pingu/glasses round right opacity=#1},
+	glasses round line width/.code    = \def\pingu@x@glassesround@lw{#1},
+	sunglasses round/.forward to      = /pingu/sun glasses round,
+	sun glasses round/.style          = {/pingu/glasses round=#1, /pingu/glasses round fill=#1},
+	sun glasses round/.default        = pingu@black,
+	% todo: width/radius allow for different
+}{glasses round line width=.75\p@,glasses round fill=\@pingu@none,glasses round opacity=.825}
+
+\def\pingu@draw@ea@glassesround{% fact: 1.33; modified first shift and ht
+	\pingu@block[opacity=\pingu@x@glassesround@op@l]{\pingu@color@glassesround@fill@l} (\pingu@name-left-eye) circle [radius=3mm];
+	\pingu@block[opacity=\pingu@x@glassesround@op@r]{\pingu@color@glassesround@fill@r} (\pingu@name-right-eye) circle [radius=3mm];
+	\pingu@draw[line width=\pingu@x@glassesround@lw]{\pingu@color@glassesround} [rounded corners=.25mm](\pingu@name-left-eye) circle [radius=3mm];
+	\pingu@draw[line width=\pingu@x@glassesround@lw]{\pingu@color@glassesround} [rounded corners=.25mm] (\pingu@name-right-eye) circle [radius=3mm];
+	% \pingu@draw[line width=\pingu@x@glassesround@lw]{\pingu@color@glassesround} (\pingu@name-glassesround-right-mid) to[bend right=10] (\pingu@name-glassesround-left-mid);
+	% \pingu@draw[line width=\pingu@x@glassesround@lw]{\pingu@color@glassesround} (\pingu@name-glassesround-right-mid-b) to[bend left=20] (\pingu@name-glassesround-left-mid-b);
+	%\scope
+	%\clip[use path=\pingu@upperpingu];
+	%\pingu@draw[line width=\pingu@x@glassesround@lw]{\pingu@color@glassesround}
+	%(\pingu@name-glassesround-right-mid) to[bend right=8] ++(-5.586mm,0) -- ++(-5mm,.5mm);
+	%\pingu@draw[line width=\pingu@x@glassesround@lw]{\pingu@color@glassesround}
+	%(\pingu@name-glassesround-left-mid) to[bend left=8] ++(5.586mm,0) -- ++(5mm,.5mm);
+	%\endscope
+}
+
 \let\pingu@create@selection\relax
 \let\pingu@create@extra\relax
 \endinput
