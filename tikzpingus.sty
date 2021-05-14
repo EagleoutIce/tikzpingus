@@ -265,6 +265,17 @@
 	\pingu@block{\pingu@color@eye@right} ([yshift=.075cm,xshift=-\pingu@eye@shift]\pingu@name-heartp-right) coordinate(\pingu@name-right-eye) ellipse [x radius=.1535cm, y radius=.1575cm];
 	\pingu@block{\pingu@color@eye@second@right} ([yshift=.075cm,xshift=-\pingu@eye@shift]\pingu@name-heartp-right) coordinate(\pingu@name-right-eye) ellipse [x radius=.1325cm, y radius=.1375cm];
 }
+
+\@pingu@eyes@s{angry}{%
+	\path (\pingu@name-heartp-left)++(\pingu@eye@shift,.75mm) coordinate (\pingu@name-left-eye);
+	\pingu@block{\pingu@color@eye@left} (\pingu@name-left-eye) ellipse [x radius=.1225cm, y radius=.1275cm];
+	\pingu@block{pingu@white} (\pingu@name-left-eye) ++(120:.1225cm and .1275cm) ellipse [x radius=1.5mm,y radius=.5mm];
+}{%
+	\path (\pingu@name-heartp-right)++(-\pingu@eye@shift,.75mm) coordinate (\pingu@name-right-eye);
+	\pingu@block{\pingu@color@eye@right} (\pingu@name-right-eye) ellipse [x radius=.1225cm, y radius=.1275cm];
+	\pingu@block{pingu@white} (\pingu@name-right-eye) ++(60:.1225cm and .1275cm) ellipse [x radius=1.5mm,y radius=.5mm];
+}
+
 \let\@pingu@eyes@s\relax
 
 %%% Wings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
