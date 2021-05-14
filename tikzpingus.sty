@@ -309,31 +309,31 @@
 
 \@pingu@wings@s{grab}{%
 \pgfonlayer{foreground}
-\begin{scope}
+\scope
 	\clip[use path=\pingu@lowerpingu];
 	\coordinate (\pingu@name-wings-left-start) at ([yshift=-.45cm]\pingu@name-wings-side-left);
 	\pingu@block[rotate around={-42:(\pingu@name-wings-left-start)}]{\pingu@color@left@wing} (\pingu@name-wings-left-start) ellipse [x radius=.225cm, y radius=1.05cm] +(-90:.225cm and 1.05cm) coordinate (\pingu@name-wings-left-tip) +(-90:.175cm and .9cm) coordinate (\pingu@name-wings-left);
-\end{scope}\endpgfonlayer}{%
+\endscope\endpgfonlayer}{%
 \pgfonlayer{foreground}
-\begin{scope}
+\scope
 	\clip[use path=\pingu@lowerpingu];
 	\coordinate (\pingu@name-wings-right-start) at ([yshift=-.45cm]\pingu@name-wings-side-right);
 	\pingu@block[rotate around={42:(\pingu@name-wings-right-start)}]{\pingu@color@right@wing} (\pingu@name-wings-right-start) ellipse [x radius=.225cm, y radius=1.05cm] +(-90:.225cm and 1.05cm) coordinate (\pingu@name-wings-right-tip) +(-90:.175cm and .9cm) coordinate (\pingu@name-wings-right);
-\end{scope}\endpgfonlayer}
+\endscope\endpgfonlayer}
 
 \@pingu@wings@s{shock}{%
 \pgfonlayer{foreground}
-\begin{scope}
+\scope
 	\clip[use path=\pingu@lowerpingu];
 	\coordinate (\pingu@name-wings-left-start) at ([yshift=-.8cm]\pingu@name-wings-side-left);
 	\pingu@block[rotate around={65:(\pingu@name-wings-left-start)}]{\pingu@color@left@wing} (\pingu@name-wings-left-start) ellipse [x radius=.235cm, y radius=.85cm] +(90:.235cm and .85cm) coordinate (\pingu@name-wings-left-tip) +(90:.185cm and .7cm) coordinate (\pingu@name-wings-left);
-\end{scope}\endpgfonlayer}{%
+\endscope\endpgfonlayer}{%
 \pgfonlayer{foreground}
-\begin{scope}
+\scope
 	\clip[use path=\pingu@lowerpingu];
 	\coordinate (\pingu@name-wings-right-start) at ([yshift=-.8cm]\pingu@name-wings-side-right);
 	\pingu@block[rotate around={-65:(\pingu@name-wings-right-start)}]{\pingu@color@right@wing} (\pingu@name-wings-right-start) ellipse [x radius=.235cm, y radius=.85cm] +(90:.235cm and .85cm) coordinate (\pingu@name-wings-right-tip) +(90:.185cm and .7cm) coordinate (\pingu@name-wings-right);
-\end{scope}\endpgfonlayer}
+\endscope\endpgfonlayer}
 
 \@pingu@wings@s{hug}{%
 \pgfonlayer{background}
