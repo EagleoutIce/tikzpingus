@@ -104,8 +104,6 @@
   right second eye color/.code  = \pingu@color{eye@second@right}{#1},
   eyes/.style                   = {/pingu/left eye={#1}, /pingu/right eye={#1}},
   eyes color/.style             = {/pingu/left eye color={#1}, /pingu/right eye color={#1}},
-  eyes wink/.style              = {/pingu/eyes={wink}, /pingu/eyes color={#1}},
-  eyes wink/.default            = pingu@black,
   second eyes color/.style      = {/pingu/left second eye color={#1}, /pingu/right second eye color={#1}},
   % wings
   left wing color/.code         = \pingu@color{left@wing}{#1},
@@ -228,50 +226,56 @@
 }
 
 %%% eyes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\pingu@lefteye@add{normal}{%
-	\pingu@block{\pingu@color@eye@left} ([yshift=.075cm,xshift=\pingu@eye@shift]\pingu@name-heartp-left) coordinate (\pingu@name-left-eye) ellipse [x radius=.1225cm, y radius=.1275cm];
+% name core | left | right
+\long\def\@pingu@eyes@s#1#2#3{%
+	\tikzset{%
+		/pingu/eyes #1/.style   = {/pingu/eyes={#1}, /pingu/eyes color={##1}},%
+		/pingu/eyes #1/.default = pingu@black%
+	}%
+	\pingu@lefteye@add{#1}{#2}\pingu@righteye@add{#1}{#3}%
 }
-\pingu@righteye@add{normal}{%
+
+\@pingu@eyes@s{normal}{%
+	\pingu@block{\pingu@color@eye@left} ([yshift=.075cm,xshift=\pingu@eye@shift]\pingu@name-heartp-left) coordinate (\pingu@name-left-eye) ellipse [x radius=.1225cm, y radius=.1275cm];
+}{%
 	\pingu@block{\pingu@color@eye@right} ([yshift=.075cm,xshift=-\pingu@eye@shift]\pingu@name-heartp-right) coordinate(\pingu@name-right-eye) ellipse [x radius=.1225cm, y radius=.1275cm];
 }
-\pingu@lefteye@add{shiny}{%
+
+\@pingu@eyes@s{shiny}{%
 	\pingu@block{\pingu@color@eye@left} ([yshift=.075cm,xshift=\pingu@eye@shift]\pingu@name-heartp-left) coordinate(\pingu@name-left-eye) ellipse [x radius=.22cm, y radius=.26cm];
 	\pingu@block{\pingu@color@eye@second@left} (\pingu@name-left-eye)++(\eyebaseang:.085cm and .10cm) ellipse [x radius=.08cm, y radius=.1cm];
 	\pingu@block{\pingu@color@eye@second@left} (\pingu@name-left-eye)++(\eyebaseang+180:.12cm and .14cm) ellipse [x radius=.025cm, y radius=.035cm];
-}
-\pingu@righteye@add{shiny}{%
+}{%
 	\pingu@block{\pingu@color@eye@right} ([yshift=.075cm,xshift=-\pingu@eye@shift]\pingu@name-heartp-right) coordinate(\pingu@name-right-eye) ellipse [x radius=.22cm, y radius=.26cm];
 	\pingu@block{\pingu@color@eye@second@right} (\pingu@name-right-eye)++(\eyebaseang:.085cm and .10cm) ellipse [x radius=.08cm, y radius=.1cm];
 	\pingu@block{\pingu@color@eye@second@right} (\pingu@name-right-eye)++(\eyebaseang+180:.12cm and .14cm) ellipse [x radius=.025cm, y radius=.035cm];
 }
-\pingu@lefteye@add{wink}{%
+
+\@pingu@eyes@s{wink}{%
 	\coordinate (\pingu@name-left-eye) at ([yshift=.075cm,xshift=\pingu@eye@shift]\pingu@name-heartp-left);
 	\pingu@block[rounded corners=.002cm,rotate around={-4:(\pingu@name-left-eye)}]{\pingu@color@eye@left} (\pingu@name-left-eye)++(174:.14cm and .14cm)++(0,-.065cm) arc (174:6:.14cm and .14cm) arc (-6:-174:.01cm and .008cm) arc (6:174:.12cm and .065cm) arc (-6:-174:.01cm and .008cm) -- cycle;
-}
-\pingu@righteye@add{wink}{%
+}{%
 	\coordinate (\pingu@name-right-eye) at ([yshift=.075cm,xshift=-\pingu@eye@shift]\pingu@name-heartp-right);
 	\pingu@block[rounded corners=.002cm,rotate around={4:(\pingu@name-right-eye)}]{\pingu@color@eye@right} (\pingu@name-right-eye)++(174:.14cm and .14cm)++(0,-.065cm) arc (174:6:.14cm and .14cm) arc (-6:-174:.01cm and .008cm) arc (6:174:.12cm and .065cm) arc (-6:-174:.01cm and .008cm) -- cycle;
 }
-\pingu@lefteye@add{shock}{%
+
+\@pingu@eyes@s{shock}{%
 	\pingu@block{\pingu@color@eye@left} ([yshift=.075cm,xshift=\pingu@eye@shift]\pingu@name-heartp-left) coordinate (\pingu@name-left-eye) ellipse [x radius=.1535cm, y radius=.1575cm];
 	\pingu@block{\pingu@color@eye@second@left} ([yshift=.075cm,xshift=\pingu@eye@shift]\pingu@name-heartp-left) coordinate (\pingu@name-left-eye) ellipse [x radius=.1325cm, y radius=.1375cm];
-}
-\pingu@righteye@add{shock}{%
+}{%
 	\pingu@block{\pingu@color@eye@right} ([yshift=.075cm,xshift=-\pingu@eye@shift]\pingu@name-heartp-right) coordinate(\pingu@name-right-eye) ellipse [x radius=.1535cm, y radius=.1575cm];
 	\pingu@block{\pingu@color@eye@second@right} ([yshift=.075cm,xshift=-\pingu@eye@shift]\pingu@name-heartp-right) coordinate(\pingu@name-right-eye) ellipse [x radius=.1325cm, y radius=.1375cm];
 }
+\let\@pingu@eyes@s\relax
 
 %%% Wings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % name core | left | right
 \long\def\@pingu@wings@s#1#2#3{%
 	\tikzset{%
-		/pingu/wings #1/.style = {/pingu/wings={#1},
-								  /pingu/wings color={##1}
-								 },
+		/pingu/wings #1/.style   = {/pingu/wings={#1}, /pingu/wings color={##1}},%
 		/pingu/wings #1/.default = \pingu@color@body@main%
 	}%
-	\pingu@leftwing@add{#1}{#2}%
-	\pingu@rightwing@add{#1}{#3}%
+	\pingu@leftwing@add{#1}{#2}\pingu@rightwing@add{#1}{#3}%
 }
 \@pingu@wings@s{normal}{%
 \pgfonlayer{background}
