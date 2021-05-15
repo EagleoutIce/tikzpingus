@@ -99,6 +99,7 @@
   body main/.code               = \pingu@color{body@main}{#1},
   body head/.code               = \pingu@color{body@head}{#1},
   body/.style                   = {/pingu/body main={#1}, /pingu/body head={#1}},
+  body front/.code              = \pingu@color{body@front}{#1},
   % belly
   belly/.forward to             = /pingu/belly text,
   belly text/.style             = {/pingu/belly raw={\node[/pingu/@text] {#1};}},
@@ -146,7 +147,7 @@
   % size
   height/.code                  = \setlength{\pingu@side@h@half}{#1},%
   defaults/.style               = {%
-	name={pingu}, feet={pingu@yellow}, body={pingu@main}, %
+	name={pingu}, feet={pingu@yellow}, body={pingu@main}, body front={pingu@white},%
 	eyes={normal}, eyes color={pingu@black}, second eyes color={pingu@white},
 	bill={normal}, bill color={pingu@yellow},
 	wings={normal}, wings color=\pingu@color@body@main,
@@ -188,12 +189,12 @@
 \coordinate (\pingu@name-belly-back) at (\pingu@w@half,-1cm);
 \coordinate (\pingu@name-belly-center) at (\pingu@w@half,-.68\pingu@side@h@half);
 
-\pingu@block[save path=\pingu@whitepingu]{pingu@white} (\pingu@name-belly-back)++(-\pingu@w@half+.1cm,\pingu@lower@off) to[bend right=.8\pingu@bend] ++(0,1.05cm-\pingu@side@h@half-\pingu@lower@off) arc (180:270:.4cm and .2cm) arc (270:360:.5cm and .085cm) -- ++(-\pingu@one@eight,0) arc (180:270:.5cm and .085cm) arc (270:360:.4cm and .2cm) to[bend right=.8\pingu@bend] ++(0,\pingu@side@h@half-1.05cm+\pingu@lower@off) arc (0:180:\pingu@w@half-1mm and \pingu@w@half-1mm);
+\pingu@block[save path=\pingu@whitepingu]{\pingu@color@body@front} (\pingu@name-belly-back)++(-\pingu@w@half+.1cm,\pingu@lower@off) to[bend right=.8\pingu@bend] ++(0,1.05cm-\pingu@side@h@half-\pingu@lower@off) arc (180:270:.4cm and .2cm) arc (270:360:.5cm and .085cm) -- ++(-\pingu@one@eight,0) arc (180:270:.5cm and .085cm) arc (270:360:.4cm and .2cm) to[bend right=.8\pingu@bend] ++(0,\pingu@side@h@half-1.05cm+\pingu@lower@off) arc (0:180:\pingu@w@half-1mm and \pingu@w@half-1mm);
 
 \coordinate (\pingu@name-heartp-right) at ([xshift=-.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-bottom-top-center);
 \coordinate (\pingu@name-heartp-left) at ([xshift=.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-bottom-top-center);
-\pingu@block{pingu@white} (\pingu@name-heartp-right)++(0,-.025cm) ellipse [x radius=.525cm,y radius=.65cm];
-\pingu@block{pingu@white} (\pingu@name-heartp-left)++(0,-.025cm) ellipse [x radius=.525cm,y radius=.65cm];
+\pingu@block{\pingu@color@body@front} (\pingu@name-heartp-right)++(0,-.025cm) ellipse [x radius=.525cm,y radius=.65cm];
+\pingu@block{\pingu@color@body@front} (\pingu@name-heartp-left)++(0,-.025cm) ellipse [x radius=.525cm,y radius=.65cm];
 
 \path (\pingu@name-bottom-top-center)++(0,-.005cm-\pingu@outer@off) coordinate (\pingu@name-bill);
 
@@ -296,11 +297,11 @@
 \@pingu@eyes@s{angry}{%
 	\path (\pingu@name-heartp-left)++(\pingu@eye@shift,.75mm) coordinate (\pingu@name-left-eye);
 	\pingu@block{\pingu@color@eye@left} (\pingu@name-left-eye) ellipse [x radius=.1225cm, y radius=.1275cm];
-	\pingu@block{pingu@white} (\pingu@name-left-eye) ++(120:.1225cm and .1275cm) ellipse [x radius=1.5mm,y radius=.5mm];
+	\pingu@block{\pingu@color@body@front} (\pingu@name-left-eye) ++(120:.1225cm and .1275cm) ellipse [x radius=1.5mm,y radius=.5mm];
 }{%
 	\path (\pingu@name-heartp-right)++(-\pingu@eye@shift,.75mm) coordinate (\pingu@name-right-eye);
 	\pingu@block{\pingu@color@eye@right} (\pingu@name-right-eye) ellipse [x radius=.1225cm, y radius=.1275cm];
-	\pingu@block{pingu@white} (\pingu@name-right-eye) ++(60:.1225cm and .1275cm) ellipse [x radius=1.5mm,y radius=.5mm];
+	\pingu@block{\pingu@color@body@front} (\pingu@name-right-eye) ++(60:.1225cm and .1275cm) ellipse [x radius=1.5mm,y radius=.5mm];
 }
 
 \@pingu@eyes@s{devil}{%
