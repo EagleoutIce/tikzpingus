@@ -35,8 +35,8 @@
 \newdimen\pingu@foot@single@h \pingu@foot@single@h=.2cm\relax
 \def\eyebaseang{38.5}
 \newdimen\pingu@eye@shift     \pingu@eye@shift=.08cm\relax
-\def\pinguanglehl{.95}
-\def\pinguanglehr{.05}
+\def\pinguanglehl{.93}
+\def\pinguanglehr{.07}
 
 \def\pingu@csappto#1#2{\expandafter\ifx\csname #1\endcsname\@empty\@namedef{#1}{#2}\else\expandafter\g@addto@macro\csname #1\endcsname{, #2}\fi}
 
@@ -724,12 +724,13 @@
 \pgfmathsetmacro\pingu@devil@baseang@l{90-360*(1-\pinguanglehl)}
 \pgfmathsetmacro\pingu@devil@baseang@r{90-360*(1-\pinguanglehr)}
 \def\pingu@devil@baseoff{12}
+\def\pingu@devil@yshift{.65mm}
 \def\pingu@draw@ea@devil{%
 	% 90 - 360*.06
-	\pingu@block{\pingu@color@devil} (\pingu@name-head-left) arc (\pingu@devil@baseang@l:\pingu@devil@baseang@l-\pingu@devil@baseoff:\pingu@w@half{} and .9\pingu@w@half) coordinate (\pingu@name-devil-left-goal) to[out=32,in=-32,looseness=.9] ++(.3mm,2.5mm) to[bend left=17] (\pingu@name-head-left) -- cycle;
-	\pingu@block{\pingu@color@devil} (\pingu@name-head-left) to [bend right=38] (\pingu@name-devil-left-goal) arc (\pingu@devil@baseang@l-\pingu@devil@baseoff:\pingu@devil@baseang@l:\pingu@w@half{} and .9\pingu@w@half) -- cycle;
-	\pingu@block{\pingu@color@devil} (\pingu@name-head-right) arc (\pingu@devil@baseang@r:\pingu@devil@baseang@r+\pingu@devil@baseoff:\pingu@w@half{} and .9\pingu@w@half) coordinate (\pingu@name-devil-right-goal) to[out=148,in=-148,looseness=.9] ++(-.3mm,2.5mm) to[bend right=17] (\pingu@name-head-right) -- cycle;
-	\pingu@block{\pingu@color@devil} (\pingu@name-head-right) to [bend left=38] (\pingu@name-devil-right-goal) arc (\pingu@devil@baseang@r+\pingu@devil@baseoff:\pingu@devil@baseang@r:\pingu@w@half{} and .9\pingu@w@half) -- cycle;
+	\pingu@block{\pingu@color@devil} ([yshift=-\pingu@devil@yshift]\pingu@name-head-left) arc (\pingu@devil@baseang@l:\pingu@devil@baseang@l-\pingu@devil@baseoff:\pingu@w@half{} and .9\pingu@w@half) coordinate (\pingu@name-devil-left-goal) to[out=32,in=-32,looseness=.9] ++(.3mm,2.5mm) to[bend left=17] ([yshift=-\pingu@devil@yshift]\pingu@name-head-left) -- cycle;
+	\pingu@block{\pingu@color@devil} ([yshift=-\pingu@devil@yshift]\pingu@name-head-left) to [bend right=38] (\pingu@name-devil-left-goal) arc (\pingu@devil@baseang@l-\pingu@devil@baseoff:\pingu@devil@baseang@l:\pingu@w@half{} and .9\pingu@w@half) -- cycle;
+	\pingu@block{\pingu@color@devil} ([yshift=-\pingu@devil@yshift]\pingu@name-head-right) arc (\pingu@devil@baseang@r:\pingu@devil@baseang@r+\pingu@devil@baseoff:\pingu@w@half{} and .9\pingu@w@half) coordinate (\pingu@name-devil-right-goal) to[out=148,in=-148,looseness=.9] ++(-.3mm,2.5mm) to[bend right=17] ([yshift=-\pingu@devil@yshift]\pingu@name-head-right) -- cycle;
+	\pingu@block{\pingu@color@devil} ([yshift=-\pingu@devil@yshift]\pingu@name-head-right) to [bend left=38] (\pingu@name-devil-right-goal) arc (\pingu@devil@baseang@r+\pingu@devil@baseoff:\pingu@devil@baseang@r:\pingu@w@half{} and .9\pingu@w@half) -- cycle;
 }
 
 
