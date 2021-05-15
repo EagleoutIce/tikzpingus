@@ -646,15 +646,20 @@
 % .##.....##.#########.##.......##.....##
 % .##.....##.##.....##.##.......##.....##
 % .##.....##.##.....##.########..#######.
+\newif\if@pingu@x@halo@glow
 \pingu@create@extra{halo}{%
 	% extra halo
-	halo/.code    = \pingu@set@extra{halo}{true}\pingu@color{halo}{#1},
-	halo/.default = pingu@lightblue,
-}{}
+	halo/.code    	 = \pingu@set@extra{halo}{true}\pingu@color{halo}{#1},
+	halo/.default    = pingu@lightblue,
+	halo glow/.is if = @pingu@x@halo@glow% only active if glows loaded
+}{halo glow=true}
 
 \def\pingu@draw@ea@halo{%
 	% TODO: dynamic offsets
-\pingu@block[even odd rule]{\pingu@color@halo} (\pingu@name-head-top) circle [x radius=\pingu@w@half-1mm,y radius=.25cm] circle [x radius=\pingu@w@half-.195cm,y radius=.155cm];
+\pingu@block[even odd rule]{\pingu@color@halo} (\pingu@name-head-top) circle [x radius=\pingu@w@half-1mm,y radius=2.5mm] circle [x radius=\pingu@w@half-1.95mm,y radius=1.55mm];
+\if@pingu@x@halo@glow
+\pingu@block[even odd rule,/pingu/@glow]{\pingu@color@halo} (\pingu@name-head-top) circle [x radius=(\pingu@w@half-1.95mm)*1.7,y radius=1.55mm*2.35]  (\pingu@name-head-top) circle [x radius=\pingu@w@half-1.95mm,y radius=1.55mm];
+\fi
 }
 
 % .########.##....##.########.########.########.....###....##.....##.########
@@ -667,8 +672,8 @@
 \pingu@create@extra{eyeframe}{%
 	% extra halo
 	eyeframe/.forward to = /pingu/eye frame,
-	eye frame/.code = \pingu@set@extra{eyeframe}{true}\pingu@color{eyeframe}{#1},
-	eye frame/.default = pingu@black,
+	eye frame/.code      = \pingu@set@extra{eyeframe}{true}\pingu@color{eyeframe}{#1},
+	eye frame/.default   = pingu@black,
 }{}
 
 \def\pingu@draw@ea@eyeframe{%
