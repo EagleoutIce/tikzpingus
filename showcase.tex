@@ -8,11 +8,11 @@
 \errorcontextlines 999999
 
 \def\DrawDots#1{
-  \foreach \x in {belly-center,head,head-top,foot-left,foot-right,right-eye,left-eye,bill,bill-bottom,wings-side-left,wings-side-right,wings-left-start,wings-left-tip,wings-right-start,wings-right-tip,head-right,head-left} {
-    \fill[green] (#1-\x) circle[radius=1.25pt];
+  \foreach \x in {belly-center,head,head-top,foot-left,foot-right,right-eye,left-eye,bill,bill-bottom,wings-side-left,wings-side-right,wings-left-start,wings-left-tip,wings-right-start,wings-right-tip,head-right,head-left,head-center,head-back-con-left,head-back-con-right} {
+    \fill[green] (#1-\x) circle[radius=1.125pt];
   }
   \foreach \x in {wings-left,wings-right} {
-    \fill[yellow] (#1-\x) circle[radius=1.25pt];
+    \fill[yellow] (#1-\x) circle[radius=1.125pt];
   }
 }
 

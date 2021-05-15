@@ -191,12 +191,16 @@
 
 \pingu@block[save path=\pingu@whitepingu]{\pingu@color@body@front} (\pingu@name-belly-back)++(-\pingu@w@half+.1cm,\pingu@lower@off) to[bend right=.8\pingu@bend] ++(0,1.05cm-\pingu@side@h@half-\pingu@lower@off) arc (180:270:.4cm and .2cm) arc (270:360:.5cm and .085cm) -- ++(-\pingu@one@eight,0) arc (180:270:.5cm and .085cm) arc (270:360:.4cm and .2cm) to[bend right=.8\pingu@bend] ++(0,\pingu@side@h@half-1.05cm+\pingu@lower@off) arc (0:180:\pingu@w@half-1mm and \pingu@w@half-1mm);
 
-\coordinate (\pingu@name-heartp-right) at ([xshift=-.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-bottom-top-center);
-\coordinate (\pingu@name-heartp-left) at ([xshift=.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-bottom-top-center);
-\pingu@block{\pingu@color@body@front} (\pingu@name-heartp-right)++(0,-.025cm) ellipse [x radius=.525cm,y radius=.65cm];
-\pingu@block{\pingu@color@body@front} (\pingu@name-heartp-left)++(0,-.025cm) ellipse [x radius=.525cm,y radius=.65cm];
+\coordinate (\pingu@name-eye-back-right) at ([xshift=-.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-head-center);
+\coordinate (\pingu@name-eye-back-left) at ([xshift=.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-head-center);
 
-\path (\pingu@name-bottom-top-center)++(0,-.005cm-\pingu@outer@off) coordinate (\pingu@name-bill);
+\coordinate (\pingu@name-head-back-con-right) at ([xshift=-.525cm*.75,yshift=-.65cm*.75]\pingu@name-eye-back-right);
+\coordinate (\pingu@name-head-back-con-left) at ([xshift=.525cm*.75,yshift=-.65cm*.75]\pingu@name-eye-back-left);
+
+\pingu@block{\pingu@color@body@front} (\pingu@name-eye-back-right)++(0,-.025cm) ellipse [x radius=.525cm,y radius=.65cm];
+\pingu@block{\pingu@color@body@front} (\pingu@name-eye-back-left)++(0,-.025cm) ellipse [x radius=.525cm,y radius=.65cm];
+
+\path (\pingu@name-head-center)++(0,-.005cm-\pingu@outer@off) coordinate (\pingu@name-bill);
 
 \pingu@draw@extras@below
 
@@ -237,10 +241,10 @@
 		to[bend right=\pingu@bend] ++(0,\pingu@side@h@half+\pingu@outer@off)
 		% coordinate
 		coordinate (\pingu@name-wings-side-left)
-		-- (0,\pingu@outer@off) coordinate (\pingu@name-wings-side-right) coordinate[pos=.5] (\pingu@name-bottom-top-center) -- cycle;
+		-- (0,\pingu@outer@off) coordinate (\pingu@name-wings-side-right) coordinate[pos=.5] (\pingu@name-head-center) -- cycle;
 
 	% TODO: store widths and height of head and use for e.g. devil
-	\pingu@block[save path=\pingu@upperpingu]{\pingu@color@body@head} (\pingu@name-bottom-top-center)
+	\pingu@block[save path=\pingu@upperpingu]{\pingu@color@body@head} (\pingu@name-head-center)
 		++(0,.9\pingu@w@half) coordinate (\pingu@name-head-top)
 		arc(90:450:\pingu@w@half{} and .9\pingu@w@half)
 		coordinate[pos=\pinguanglehr] (\pingu@name-head-right)
@@ -263,58 +267,58 @@
 }
 
 \@pingu@eyes@s{normal}{%
-	\pingu@block{\pingu@color@eye@left} ([yshift=.075cm,xshift=\pingu@eye@shift]\pingu@name-heartp-left) coordinate (\pingu@name-left-eye) ellipse [x radius=.1225cm, y radius=.1275cm];
+	\pingu@block{\pingu@color@eye@left} ([yshift=.075cm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left) coordinate (\pingu@name-left-eye) ellipse [x radius=.1225cm, y radius=.1275cm];
 }{%
-	\pingu@block{\pingu@color@eye@right} ([yshift=.075cm,xshift=-\pingu@eye@shift]\pingu@name-heartp-right) coordinate(\pingu@name-right-eye) ellipse [x radius=.1225cm, y radius=.1275cm];
+	\pingu@block{\pingu@color@eye@right} ([yshift=.075cm,xshift=-\pingu@eye@shift]\pingu@name-eye-back-right) coordinate(\pingu@name-right-eye) ellipse [x radius=.1225cm, y radius=.1275cm];
 }
 
 \@pingu@eyes@s{shiny}{%
-	\pingu@block{\pingu@color@eye@left} ([yshift=.075cm,xshift=\pingu@eye@shift]\pingu@name-heartp-left) coordinate(\pingu@name-left-eye) ellipse [x radius=.22cm, y radius=.26cm];
+	\pingu@block{\pingu@color@eye@left} ([yshift=.075cm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left) coordinate(\pingu@name-left-eye) ellipse [x radius=.22cm, y radius=.26cm];
 	\pingu@block{\pingu@color@eye@second@left} (\pingu@name-left-eye)++(\eyebaseang:.085cm and 1mm) ellipse [x radius=.08cm, y radius=.1cm];
 	\pingu@block{\pingu@color@eye@second@left} (\pingu@name-left-eye)++(\eyebaseang+180:.12cm and .14cm) ellipse [x radius=.025cm, y radius=.035cm];
 }{%
-	\pingu@block{\pingu@color@eye@right} ([yshift=.075cm,xshift=-\pingu@eye@shift]\pingu@name-heartp-right) coordinate(\pingu@name-right-eye) ellipse [x radius=.22cm, y radius=.26cm];
+	\pingu@block{\pingu@color@eye@right} ([yshift=.075cm,xshift=-\pingu@eye@shift]\pingu@name-eye-back-right) coordinate(\pingu@name-right-eye) ellipse [x radius=.22cm, y radius=.26cm];
 	\pingu@block{\pingu@color@eye@second@right} (\pingu@name-right-eye)++(\eyebaseang:.085cm and 1mm) ellipse [x radius=.08cm, y radius=.1cm];
 	\pingu@block{\pingu@color@eye@second@right} (\pingu@name-right-eye)++(\eyebaseang+180:.12cm and .14cm) ellipse [x radius=.025cm, y radius=.035cm];
 }
 
 \@pingu@eyes@s{wink}{%
-	\coordinate (\pingu@name-left-eye) at ([yshift=.075cm,xshift=\pingu@eye@shift]\pingu@name-heartp-left);
+	\coordinate (\pingu@name-left-eye) at ([yshift=.075cm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left);
 	\pingu@block[rounded corners=.002cm,rotate around={-4:(\pingu@name-left-eye)}]{\pingu@color@eye@left} (\pingu@name-left-eye)++(174:.14cm and .14cm)++(0,-.065cm) arc (174:6:.14cm and .14cm) arc (-6:-174:.01cm and .008cm) arc (6:174:.12cm and .065cm) arc (-6:-174:.01cm and .008cm) -- cycle;
 }{%
-	\coordinate (\pingu@name-right-eye) at ([yshift=.075cm,xshift=-\pingu@eye@shift]\pingu@name-heartp-right);
+	\coordinate (\pingu@name-right-eye) at ([yshift=.075cm,xshift=-\pingu@eye@shift]\pingu@name-eye-back-right);
 	\pingu@block[rounded corners=.002cm,rotate around={4:(\pingu@name-right-eye)}]{\pingu@color@eye@right} (\pingu@name-right-eye)++(174:.14cm and .14cm)++(0,-.065cm) arc (174:6:.14cm and .14cm) arc (-6:-174:.01cm and .008cm) arc (6:174:.12cm and .065cm) arc (-6:-174:.01cm and .008cm) -- cycle;
 }
 
 \@pingu@eyes@s{shock}{%
-	\pingu@block{\pingu@color@eye@left} ([yshift=.075cm,xshift=\pingu@eye@shift]\pingu@name-heartp-left) coordinate (\pingu@name-left-eye) ellipse [x radius=.1535cm, y radius=.1575cm];
-	\pingu@block{\pingu@color@eye@second@left} ([yshift=.075cm,xshift=\pingu@eye@shift]\pingu@name-heartp-left) coordinate (\pingu@name-left-eye) ellipse [x radius=.1325cm, y radius=.1375cm];
+	\pingu@block{\pingu@color@eye@left} ([yshift=.075cm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left) coordinate (\pingu@name-left-eye) ellipse [x radius=.1535cm, y radius=.1575cm];
+	\pingu@block{\pingu@color@eye@second@left} ([yshift=.075cm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left) coordinate (\pingu@name-left-eye) ellipse [x radius=.1325cm, y radius=.1375cm];
 }{%
-	\pingu@block{\pingu@color@eye@right} ([yshift=.075cm,xshift=-\pingu@eye@shift]\pingu@name-heartp-right) coordinate(\pingu@name-right-eye) ellipse [x radius=.1535cm, y radius=.1575cm];
-	\pingu@block{\pingu@color@eye@second@right} ([yshift=.075cm,xshift=-\pingu@eye@shift]\pingu@name-heartp-right) coordinate(\pingu@name-right-eye) ellipse [x radius=.1325cm, y radius=.1375cm];
+	\pingu@block{\pingu@color@eye@right} ([yshift=.075cm,xshift=-\pingu@eye@shift]\pingu@name-eye-back-right) coordinate(\pingu@name-right-eye) ellipse [x radius=.1535cm, y radius=.1575cm];
+	\pingu@block{\pingu@color@eye@second@right} ([yshift=.075cm,xshift=-\pingu@eye@shift]\pingu@name-eye-back-right) coordinate(\pingu@name-right-eye) ellipse [x radius=.1325cm, y radius=.1375cm];
 }
 
 \@pingu@eyes@s{angry}{%
-	\path (\pingu@name-heartp-left)++(\pingu@eye@shift,.75mm) coordinate (\pingu@name-left-eye);
+	\path (\pingu@name-eye-back-left)++(\pingu@eye@shift,.75mm) coordinate (\pingu@name-left-eye);
 	\pingu@block{\pingu@color@eye@left} (\pingu@name-left-eye) ellipse [x radius=.1225cm, y radius=.1275cm];
 	\pingu@block{\pingu@color@body@front} (\pingu@name-left-eye) ++(120:.1225cm and .1275cm) ellipse [x radius=1.5mm,y radius=.5mm];
 }{%
-	\path (\pingu@name-heartp-right)++(-\pingu@eye@shift,.75mm) coordinate (\pingu@name-right-eye);
+	\path (\pingu@name-eye-back-right)++(-\pingu@eye@shift,.75mm) coordinate (\pingu@name-right-eye);
 	\pingu@block{\pingu@color@eye@right} (\pingu@name-right-eye) ellipse [x radius=.1225cm, y radius=.1275cm];
 	\pingu@block{\pingu@color@body@front} (\pingu@name-right-eye) ++(60:.1225cm and .1275cm) ellipse [x radius=1.5mm,y radius=.5mm];
 }
 
 \@pingu@eyes@s{devil}{%
-	\pingu@block{pingu@black} ([yshift=.075cm,xshift=\pingu@eye@shift]\pingu@name-heartp-left) coordinate (\pingu@name-left-eye) ellipse [x radius=.1535cm, y radius=.1575cm];
-	\pingu@block{\pingu@color@eye@second@left} ([yshift=.075cm,xshift=\pingu@eye@shift]\pingu@name-heartp-left) coordinate (\pingu@name-left-eye) ellipse [x radius=.1325cm, y radius=.1375cm];
+	\pingu@block{pingu@black} ([yshift=.075cm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left) coordinate (\pingu@name-left-eye) ellipse [x radius=.1535cm, y radius=.1575cm];
+	\pingu@block{\pingu@color@eye@second@left} ([yshift=.075cm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left) coordinate (\pingu@name-left-eye) ellipse [x radius=.1325cm, y radius=.1375cm];
 	\fill[\pingu@color@eye@left,/pingu/@glow] (\pingu@name-left-eye) circle [radius=1.325mm];
 	\pingu@block[fill opacity=.66]{\pingu@color@eye@left} (\pingu@name-left-eye)++(0,0.36) to[bend right=58] ++(0.36,-0.36) to[bend right=58] ++(-0.36,-0.36) to[bend right=58] ++(-0.36,0.36) to[bend right=58] cycle;
 	\fill[/pingu/@glow,fill=\pingu@color@eye@left!20!pingu@yellow!15!pingu@white] (\pingu@name-left-eye)++(0,0.10) to[bend right=60] ++(0.10,-0.10) to[bend right=60] ++(-0.10,-0.10) to[bend right=60] ++(-0.10,0.10) to[bend right=60] cycle;
 	\fill[\pingu@color@eye@left!20!pingu@yellow!7!pingu@white] (\pingu@name-left-eye) circle [radius=.5pt]; %
 	\pingu@block{pingu@white} (\pingu@name-left-eye) circle [radius=.15pt];
 }{%
-	\pingu@block{pingu@black} ([yshift=.075cm,xshift=-\pingu@eye@shift]\pingu@name-heartp-right) coordinate (\pingu@name-right-eye) ellipse [x radius=.1535cm, y radius=.1575cm];
-	\pingu@block{\pingu@color@eye@second@right} ([yshift=.075cm,xshift=-\pingu@eye@shift]\pingu@name-heartp-right) coordinate (\pingu@name-right-eye) ellipse [x radius=.1325cm, y radius=.1375cm];
+	\pingu@block{pingu@black} ([yshift=.075cm,xshift=-\pingu@eye@shift]\pingu@name-eye-back-right) coordinate (\pingu@name-right-eye) ellipse [x radius=.1535cm, y radius=.1575cm];
+	\pingu@block{\pingu@color@eye@second@right} ([yshift=.075cm,xshift=-\pingu@eye@shift]\pingu@name-eye-back-right) coordinate (\pingu@name-right-eye) ellipse [x radius=.1325cm, y radius=.1375cm];
 	\fill[\pingu@color@eye@right,/pingu/@glow] (\pingu@name-right-eye) circle [radius=1.325mm];
 	\pingu@block[fill opacity=.66]{\pingu@color@eye@right} (\pingu@name-right-eye)++(0,0.36) to[bend right=58] ++(0.36,-0.36) to[bend right=58] ++(-0.36,-0.36) to[bend right=58] ++(-0.36,0.36) to[bend right=58] cycle;
 	\fill[/pingu/@glow,fill=\pingu@color@eye@right!20!pingu@yellow!15!pingu@white] (\pingu@name-right-eye)++(0,0.10) to[bend right=60] ++(0.10,-0.10) to[bend right=60] ++(-0.10,-0.10) to[bend right=60] ++(-0.10,0.10) to[bend right=60] cycle;
