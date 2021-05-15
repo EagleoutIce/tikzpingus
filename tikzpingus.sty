@@ -16,6 +16,8 @@
 \def\@pingu@color@ #1#2(#3,#4,#5){\definecolor{pingu@#1}{#2}{#3,#4,#5}}
 \@pingu@color@{main}RGB(3,14,29)
 \@pingu@color@{black}RGB(23,19,19)
+\@pingu@color@{silver}RGB(192,192,192)
+\@pingu@color@{bronze}RGB(205,127,50)
 \@pingu@color@{white}RGB(248,248,248)
 \@pingu@color@{yellow}RGB(252,187,21)
 \@pingu@color@{lightblue}RGB(174,229,243)
@@ -585,17 +587,22 @@
 	% TODO: medal band
 	medal/.code    	  = {\pingu@set@extra{medal}{true}\pingu@color{medal}{#1}},
 	medal/.default    = pingu@yellow,%
+	gold medal/.style = {medal, medal text=#1}, gold medal/.default={1},
+	silver medal/.style = {medal=pingu@silver, medal text=#1}, silver medal/.default={2},
+	bronze medal/.style = {medal=pingu@bronze, medal text=#1}, bronze medal/.default={3},
+	gold medal/.style = {medal, medal text=#1}, gold medal/.default={1},
 	medal band/.code  = \pingu@color{medal@band}{#1},%
 	medal shade/.code  = \pingu@color{medal@shade}{#1},%
+	medal shade width/.code  = \def\pingu@medal@shade@w{#1},%
 	medal text/.code  = \def\pingu@x@medal@text{#1},%
 	medal text style/.style = {\pingu@color@medal!65!pingu@white},
-}{medal band=pingu@red,medal text={1},medal shade={\pingu@color@medal!65!pingu@white}}
+}{medal band=pingu@red,medal text={},medal shade={\pingu@color@medal!65!pingu@white},medal shade width=.75\p@}
 
 \def\pingu@draw@eb@medal{%
-\coordinate (\pingu@name-medal-center) at ([yshift=2.5mm]\pingu@name-belly-center);
+\coordinate (\pingu@name-medal-center) at ([yshift=1.25mm]\pingu@name-belly-center);
 \pingu@block{\pingu@color@medal@band} [rounded corners=.15mm] (\pingu@name-head-back-con-right) -- (\pingu@name-medal-center) -- (\pingu@name-head-back-con-left) to[bend left=11] ++(-1.35mm,-.5mm) -- ([yshift=.7mm]\pingu@name-medal-center) -- ([xshift=1.35mm,yshift=-.5mm]\pingu@name-head-back-con-right) to[bend left=11] (\pingu@name-head-back-con-right) -- cycle;
-\pingu@block{\pingu@color@medal} (\pingu@name-medal-center) circle [radius=1.75mm];
-\pingu@draw{\pingu@color@medal@shade} (\pingu@name-medal-center) circle [radius=1.75mm];
+\pingu@block{\pingu@color@medal} (\pingu@name-medal-center) circle [radius=2.35mm];
+\pingu@draw[line width=\pingu@medal@shade@w]{\pingu@color@medal@shade} (\pingu@name-medal-center) circle [radius=2.35mm];
 \node[/pingu/@text,/pingu/medal text style] at (\pingu@name-medal-center) {\pingu@x@medal@text};
 }
 
