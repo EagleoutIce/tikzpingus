@@ -46,14 +46,6 @@
   \pingu[yshift=-4cm,xshift=17.5cm,name=pengu-6,left eye devil, right eye angry,left wing hug,right wing wave, sun glasses round=brown!65!black, devil,bill angry]
 
   \pingu[yshift=-4cm+.225cm,xshift=7cm,name=pengu-3,height=1.5cm,wings=wave,eyes=shiny,tie]
-  \begin{scope}
-    \makeatletter
-    \clip (7cm+\pingu@w@half,-6cm) rectangle ++(-2cm,4cm);
-    \begin{pgfonlayer}{background}
-      \clip (7cm+\pingu@w@half,-6cm) rectangle ++(-2cm,4cm);
-    \end{pgfonlayer}
-    \pingu[yshift=-4cm+.225cm,xshift=7cm,name=pengu-3-metal,height=1.5cm,wings=wave,eyes=shiny,@block/.style={fill=#1!92!gray},tie]
-  \end{scope}
 
   \pingu[yshift=-8cm,name=pengu-a,@pingu@all/.append style={opacity=.5},hat,eye frame]
   \pingu[yshift=-8cm,xshift=3.5cm,right eye=wink,name=pengu-b,@pingu@all/.append style={opacity=.5},tie,tie dots={white},glasses,bill flat]
