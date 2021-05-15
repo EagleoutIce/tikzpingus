@@ -251,8 +251,12 @@
 \long\def\@pingu@eyes@s#1#2#3{\@ifnextchar[{\@pingu@eyes@s@{#1}{#2}{#3}}{\@pingu@eyes@s@{#1}{#2}{#3}[pingu@black]}}
 \long\def\@pingu@eyes@s@#1#2#3[#4]{%
 	\tikzset{%
+		/pingu/left eye #1/.style   = {/pingu/left eye={#1}, /pingu/left eye color={##1}},%
+		/pingu/left eye #1/.default = {#4},%
+		/pingu/right eye #1/.style   = {/pingu/right eye={#1}, /pingu/right eye color={##1}},%
+		/pingu/right eye #1/.default = {#4},%
 		/pingu/eyes #1/.style   = {/pingu/eyes={#1}, /pingu/eyes color={##1}},%
-		/pingu/eyes #1/.default = #4%
+		/pingu/eyes #1/.default = {#4}%
 	}%
 	\pingu@lefteye@add{#1}{#2}\pingu@righteye@add{#1}{#3}%
 }
@@ -323,6 +327,10 @@
 % name core | left | right
 \long\def\@pingu@wings@s#1#2#3{%
 	\tikzset{%
+		/pingu/left wing #1/.style   = {/pingu/left wing={#1}, /pingu/left wing color={##1}},%
+		/pingu/left wing #1/.default = \pingu@color@body@main,%
+		/pingu/right wing #1/.style   = {/pingu/right wing={#1}, /pingu/right wing color={##1}},%
+		/pingu/right wing #1/.default = \pingu@color@body@main,%
 		/pingu/wings #1/.style   = {/pingu/wings={#1}, /pingu/wings color={##1}},%
 		/pingu/wings #1/.default = \pingu@color@body@main%
 	}%
@@ -330,32 +338,32 @@
 }
 \@pingu@wings@s{normal}{%
 \pgfonlayer{background}
-	\coordinate (\pingu@name-wings-left-start) at ([yshift=-.7cm]\pingu@name-wings-side-left);
+	\coordinate (\pingu@name-wings-left-start) at ([yshift=-6.5mm]\pingu@name-wings-side-left);
 	\pingu@block[rotate around={15:(\pingu@name-wings-left-start)}]{\pingu@color@left@wing} (\pingu@name-wings-left-start) ellipse [x radius=.195cm, y radius=9mm] +(-90:.195cm and 9mm) coordinate (\pingu@name-wings-left-tip) +(-90:.145cm and .75cm) coordinate (\pingu@name-wings-left);
 \endpgfonlayer}{%
 \pgfonlayer{background}
-	\coordinate (\pingu@name-wings-right-start) at ([yshift=-.7cm]\pingu@name-wings-side-right);
+	\coordinate (\pingu@name-wings-right-start) at ([yshift=-6.5mm]\pingu@name-wings-side-right);
 	\pingu@block[rotate around={-15:(\pingu@name-wings-right-start)}]{\pingu@color@right@wing} (\pingu@name-wings-right-start) ellipse [x radius=.195cm, y radius=9mm] +(-90:.195cm and 9mm) coordinate (\pingu@name-wings-right-tip) +(-90:.145cm and .75cm) coordinate (\pingu@name-wings-right);
 \endpgfonlayer}
 
 
 \@pingu@wings@s{wave}{%
 \pgfonlayer{background}
-	\coordinate (\pingu@name-wings-left-start) at ([yshift=-6mm]\pingu@name-wings-side-left);
+	\coordinate (\pingu@name-wings-left-start) at ([yshift=-5.5mm]\pingu@name-wings-side-left);
 	\pingu@block[rotate around={-39:(\pingu@name-wings-left-start)}]{\pingu@color@left@wing} (\pingu@name-wings-left-start) ellipse [x radius=.225cm, y radius=.925cm] +(90:.225cm and .925cm) coordinate (\pingu@name-wings-left-tip) +(90:.175cm and .775cm) coordinate (\pingu@name-wings-left);
 \endpgfonlayer}{%
 \pgfonlayer{background}
-	\coordinate (\pingu@name-wings-right-start) at ([yshift=-6mm]\pingu@name-wings-side-right);
+	\coordinate (\pingu@name-wings-right-start) at ([yshift=-5.5mm]\pingu@name-wings-side-right);
 	\pingu@block[rotate around={39:(\pingu@name-wings-right-start)}]{\pingu@color@right@wing} (\pingu@name-wings-right-start) ellipse [x radius=.225cm, y radius=.925cm] +(90:.225cm and .925cm) coordinate (\pingu@name-wings-right-tip) +(90:.175cm and .775cm) coordinate (\pingu@name-wings-right);
 \endpgfonlayer}
 
 \@pingu@wings@s{raise}{%
 \pgfonlayer{background}
-	\coordinate (\pingu@name-wings-left-start) at ([yshift=-6mm]\pingu@name-wings-side-left);
+	\coordinate (\pingu@name-wings-left-start) at ([yshift=-6.25mm]\pingu@name-wings-side-left);
 	\pingu@block[rotate around={-17:(\pingu@name-wings-left-start)}]{\pingu@color@left@wing} (\pingu@name-wings-left-start) ellipse [x radius=.195cm, y radius=.925cm] +(90:.195cm and .925cm) coordinate (\pingu@name-wings-left-tip) +(90:.145cm and .775cm) coordinate (\pingu@name-wings-left);
 \endpgfonlayer}{%
 \pgfonlayer{background}
-	\coordinate (\pingu@name-wings-right-start) at ([yshift=-6mm]\pingu@name-wings-side-right);
+	\coordinate (\pingu@name-wings-right-start) at ([yshift=-6.25mm]\pingu@name-wings-side-right);
 	\pingu@block[rotate around={17:(\pingu@name-wings-right-start)}]{\pingu@color@right@wing} (\pingu@name-wings-right-start) ellipse [x radius=.195cm, y radius=.925cm] +(90:.195cm and .925cm) coordinate (\pingu@name-wings-right-tip) +(90:.145cm and .775cm) coordinate (\pingu@name-wings-right);
 \endpgfonlayer}
 
@@ -377,23 +385,23 @@
 \pgfonlayer{foreground}
 \scope
 	\clip[use path=\pingu@lowerpingu];
-	\coordinate (\pingu@name-wings-left-start) at ([yshift=-8mm]\pingu@name-wings-side-left);
+	\coordinate (\pingu@name-wings-left-start) at ([yshift=-6.5mm]\pingu@name-wings-side-left);
 	\pingu@block[rotate around={65:(\pingu@name-wings-left-start)}]{\pingu@color@left@wing} (\pingu@name-wings-left-start) ellipse [x radius=.235cm, y radius=.85cm] +(90:.235cm and .85cm) coordinate (\pingu@name-wings-left-tip) +(90:.185cm and .7cm) coordinate (\pingu@name-wings-left);
 \endscope\endpgfonlayer}{%
 \pgfonlayer{foreground}
 \scope
 	\clip[use path=\pingu@lowerpingu];
-	\coordinate (\pingu@name-wings-right-start) at ([yshift=-8mm]\pingu@name-wings-side-right);
+	\coordinate (\pingu@name-wings-right-start) at ([yshift=-6.5mm]\pingu@name-wings-side-right);
 	\pingu@block[rotate around={-65:(\pingu@name-wings-right-start)}]{\pingu@color@right@wing} (\pingu@name-wings-right-start) ellipse [x radius=.235cm, y radius=.85cm] +(90:.235cm and .85cm) coordinate (\pingu@name-wings-right-tip) +(90:.185cm and .7cm) coordinate (\pingu@name-wings-right);
 \endscope\endpgfonlayer}
 
 \@pingu@wings@s{hug}{%
 \pgfonlayer{background}
-\coordinate (\pingu@name-wings-left-start) at ([yshift=-.5cm]\pingu@name-wings-side-left);
+\coordinate (\pingu@name-wings-left-start) at ([yshift=-6.25mm]\pingu@name-wings-side-left);
 \pingu@block[rotate around={-132:(\pingu@name-wings-left-start)}]{\pingu@color@left@wing} (\pingu@name-wings-left-start) ellipse [x radius=.24cm, y radius=.925cm] +(90:.24cm and .925cm) coordinate (\pingu@name-wings-left-tip) +(90:.175cm and .775cm) coordinate (\pingu@name-wings-left);
 \endpgfonlayer}{%
 \pgfonlayer{background}
-\coordinate (\pingu@name-wings-right-start) at ([yshift=-.5cm]\pingu@name-wings-side-right);
+\coordinate (\pingu@name-wings-right-start) at ([yshift=-6.25mm]\pingu@name-wings-side-right);
 \pingu@block[rotate around={132:(\pingu@name-wings-right-start)}]{\pingu@color@right@wing} (\pingu@name-wings-right-start) ellipse [x radius=.24cm, y radius=.925cm] +(90:.24cm and .925cm) coordinate (\pingu@name-wings-right-tip) +(90:.175cm and .775cm) coordinate (\pingu@name-wings-right);
 \endpgfonlayer}
 
