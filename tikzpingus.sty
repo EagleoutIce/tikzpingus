@@ -21,6 +21,7 @@
 \@pingu@color@{lightblue}RGB(174,229,243)
 \@pingu@color@{blue}RGB(48,161,247)
 \@pingu@color@{green}RGB(129,204,041)
+\@pingu@color@{red}RGB(217, 40, 28)
 \@pingu@color@{purple}RGB(244,48,93)
 \def\@pingu@none{!hide}
 
@@ -102,7 +103,7 @@
   body front/.code              = \pingu@color{body@front}{#1},
   % belly
   belly/.forward to             = /pingu/belly text,
-  belly text/.style             = {/pingu/belly raw={\node[/pingu/@text] {#1};}},
+  belly text/.style             = {/pingu/belly raw={\node[/pingu/@text,opacity=.2] {#1};}},
   belly raw/.code               = \def\pingu@belly@raw{#1},
   % eyes
   left eye/.code                = \pingu@lefteye@select{#1},
@@ -194,14 +195,18 @@
 \coordinate (\pingu@name-eye-back-right) at ([xshift=-.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-head-center);
 \coordinate (\pingu@name-eye-back-left) at ([xshift=.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-head-center);
 
-\coordinate (\pingu@name-head-back-con-right) at ([xshift=-.525cm*.75,yshift=-.65cm*.75]\pingu@name-eye-back-right);
-\coordinate (\pingu@name-head-back-con-left) at ([xshift=.525cm*.75,yshift=-.65cm*.75]\pingu@name-eye-back-left);
+\coordinate (\pingu@name-head-back-con-right) at ([xshift=-.525cm*.74,yshift=-.65cm*.719]\pingu@name-eye-back-right);
+\coordinate (\pingu@name-head-back-con-left) at ([xshift=.525cm*.74,yshift=-.65cm*.719]\pingu@name-eye-back-left);
 
 \pingu@block{\pingu@color@body@front} (\pingu@name-eye-back-right)++(0,-.025cm) ellipse [x radius=.525cm,y radius=.65cm];
 \pingu@block{\pingu@color@body@front} (\pingu@name-eye-back-left)++(0,-.025cm) ellipse [x radius=.525cm,y radius=.65cm];
 
 \path (\pingu@name-head-center)++(0,-.005cm-\pingu@outer@off) coordinate (\pingu@name-bill);
 
+\scope[shift=(\pingu@name-belly-center)]
+\clip[use path=\pingu@whitepingu];
+\pingu@belly@raw
+\endscope
 \pingu@draw@extras@below
 
 \@pingu@drawer@leftwing@
@@ -215,11 +220,6 @@
 \@pingu@drawer@righteye@
 
 \@pingu@drawer@bill@
-
-\scope[shift=(\pingu@name-belly-center)]
-\clip[use path=\pingu@whitepingu];
-\pingu@belly@raw
-\endscope
 
 \pingu@draw@extras@above
 
@@ -559,7 +559,7 @@
 % ..######...#######..##.......
 \pingu@create@extra{cup}{%
   % extra cup % TODO: as selection
-  cup/.code       = \pingu@set@extra{cup}{true}\pingu@color{cup}{#1},
+  cup/.code       = {\pingu@set@extra{cup}{true}\pingu@color{cup}{#1}},
   cup/.default    = pingu@green,
   cup straw/.code = \pingu@color{cup@straw}{#1}%
 }{cup straw=\pingu@color@cup}
@@ -573,16 +573,30 @@
 }
 
 
-% medal
+% .##.....##.########.########.....###....##......
+% .###...###.##.......##.....##...##.##...##......
+% .####.####.##.......##.....##..##...##..##......
+% .##.###.##.######...##.....##.##.....##.##......
+% .##.....##.##.......##.....##.#########.##......
+% .##.....##.##.......##.....##.##.....##.##......
+% .##.....##.########.########..##.....##.########
 \pingu@create@extra{medal}{%
 	% TODO: medal text
 	% TODO: medal band
-	medal/.code    	  = \pingu@set@extra{medal}{true}\pingu@color{medal}{#1},
-	medal/.default    = pingu@yellow,
-}{}
+	medal/.code    	  = {\pingu@set@extra{medal}{true}\pingu@color{medal}{#1}},
+	medal/.default    = pingu@yellow,%
+	medal band/.code  = \pingu@color{medal@band}{#1},%
+	medal shade/.code  = \pingu@color{medal@shade}{#1},%
+	medal text/.code  = \def\pingu@x@medal@text{#1},%
+	medal text style/.style = {\pingu@color@medal!65!pingu@white},
+}{medal band=pingu@red,medal text={1},medal shade={\pingu@color@medal!65!pingu@white}}
 
 \def\pingu@draw@eb@medal{%
-\pingu@block[even odd rule]{\pingu@color@medal} (\pingu@name-head-top) circle [x radius=\pingu@w@half-1mm,y radius=2.5mm] circle [x radius=\pingu@w@half-1.95mm,y radius=1.55mm];
+\coordinate (\pingu@name-medal-center) at ([yshift=2.5mm]\pingu@name-belly-center);
+\pingu@block{\pingu@color@medal@band} [rounded corners=.15mm] (\pingu@name-head-back-con-right) -- (\pingu@name-medal-center) -- (\pingu@name-head-back-con-left) to[bend left=11] ++(-1.35mm,-.5mm) -- ([yshift=.7mm]\pingu@name-medal-center) -- ([xshift=1.35mm,yshift=-.5mm]\pingu@name-head-back-con-right) to[bend left=11] (\pingu@name-head-back-con-right) -- cycle;
+\pingu@block{\pingu@color@medal} (\pingu@name-medal-center) circle [radius=1.75mm];
+\pingu@draw{\pingu@color@medal@shade} (\pingu@name-medal-center) circle [radius=1.75mm];
+\node[/pingu/@text,/pingu/medal text style] at (\pingu@name-medal-center) {\pingu@x@medal@text};
 }
 
 
