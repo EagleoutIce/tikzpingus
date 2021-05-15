@@ -269,11 +269,11 @@
 
 \@pingu@eyes@s{shiny}{%
 	\pingu@block{\pingu@color@eye@left} ([yshift=.075cm,xshift=\pingu@eye@shift]\pingu@name-heartp-left) coordinate(\pingu@name-left-eye) ellipse [x radius=.22cm, y radius=.26cm];
-	\pingu@block{\pingu@color@eye@second@left} (\pingu@name-left-eye)++(\eyebaseang:.085cm and .10cm) ellipse [x radius=.08cm, y radius=.1cm];
+	\pingu@block{\pingu@color@eye@second@left} (\pingu@name-left-eye)++(\eyebaseang:.085cm and 1mm) ellipse [x radius=.08cm, y radius=.1cm];
 	\pingu@block{\pingu@color@eye@second@left} (\pingu@name-left-eye)++(\eyebaseang+180:.12cm and .14cm) ellipse [x radius=.025cm, y radius=.035cm];
 }{%
 	\pingu@block{\pingu@color@eye@right} ([yshift=.075cm,xshift=-\pingu@eye@shift]\pingu@name-heartp-right) coordinate(\pingu@name-right-eye) ellipse [x radius=.22cm, y radius=.26cm];
-	\pingu@block{\pingu@color@eye@second@right} (\pingu@name-right-eye)++(\eyebaseang:.085cm and .10cm) ellipse [x radius=.08cm, y radius=.1cm];
+	\pingu@block{\pingu@color@eye@second@right} (\pingu@name-right-eye)++(\eyebaseang:.085cm and 1mm) ellipse [x radius=.08cm, y radius=.1cm];
 	\pingu@block{\pingu@color@eye@second@right} (\pingu@name-right-eye)++(\eyebaseang+180:.12cm and .14cm) ellipse [x radius=.025cm, y radius=.035cm];
 }
 
@@ -503,7 +503,7 @@
 	}%
 }
 \def\pingupathxtie{[rounded corners=.15mm] (\pingu@name-tie-start)++(-.04cm,-.025cm) -- ++(-\pingu@x@tie@width/2, -\pingu@x@tie@length+.125cm) -- ++(\pingu@x@tie@width/2+.04cm,-.125cm) -- ++(\pingu@x@tie@width/2+.04cm,.125cm) -- +(-\pingu@x@tie@width/2, \pingu@x@tie@length-.125cm) -- cycle}
-\def\pingupathxtieknot{[rounded corners=.025cm] (\pingu@name-tie-start)++(-.095cm-.02*\pingu@x@tie@width,0cm) -- ++(.03cm,-.15cm-.01*\pingu@x@tie@width) -- ++(.13cm+.04*\pingu@x@tie@width,0cm) -- ++(.03cm,.15cm+.01*\pingu@x@tie@width) -- cycle}
+\def\pingupathxtieknot{[rounded corners=.025cm] (\pingu@name-tie-start)++(-.095cm-.02*\pingu@x@tie@width,\z@) -- ++(.03cm,-.15cm-.01*\pingu@x@tie@width) -- ++(.13cm+.04*\pingu@x@tie@width,\z@) -- ++(.03cm,.15cm+.01*\pingu@x@tie@width) -- cycle}
 \def\pingu@draw@eb@tie{%
 	\path (\pingu@name-bill)++(0,-\pingu@x@tie@offset) coordinate(\pingu@name-tie-start);
 	\pingu@x@tie@pattern
@@ -559,7 +559,7 @@
 }{cup straw=\pingu@color@cup}
 
 \def\pingu@draw@eb@cup{%
-	\pingu@block[rounded corners=.025cm]{\pingu@color@cup} (\pingu@name-belly-center)++(-.325cm,.275cm) to[bend right=2] ++(.05cm,-.675cm) to[bend right=8] ++(.55cm,0cm) to[bend right=2] ++(.05cm,.675cm);
+	\pingu@block[rounded corners=.025cm]{\pingu@color@cup} (\pingu@name-belly-center)++(-.325cm,.275cm) to[bend right=2] ++(.05cm,-.675cm) to[bend right=8] ++(.55cm,\z@) to[bend right=2] ++(.05cm,.675cm);
 	\path (\pingu@name-belly-center)++(0,.275cm) -- (\pingu@name-bill) coordinate[pos=.5,xshift=-.2cm] (\pingu@name-cup-straw-outer-angle);
 	\path (\pingu@name-belly-center)++(-.115cm,.275cm) coordinate (\pingu@name-straw-outer-start);
 	\pingu@block[rounded corners=.15mm]{\pingu@color@cup@straw} (\pingu@name-straw-outer-start) -- (\pingu@name-cup-straw-outer-angle) -- (\pingu@name-bill) -- ++(.05cm,0) -- ([xshift=.05cm]\pingu@name-cup-straw-outer-angle) -- ([xshift=.05cm]\pingu@name-straw-outer-start) -- cycle;
@@ -632,8 +632,8 @@
 \pingu@block{\pingu@color@hat} \pingupathhatupper;
 \scope
 \clip\pingupathhatupper;
-\pingu@block{\pingu@color@hat@ribbon} (0cm,0.02cm) ellipse [x radius=.95\pingu@hat@w@half, y radius=.13cm];
-\pingu@block{\pingu@color@hat} (0cm,.134cm) ellipse [x radius=.95\pingu@hat@w@half, y radius=.13cm];
+\pingu@block{\pingu@color@hat@ribbon} (\z@,0.02cm) ellipse [x radius=.95\pingu@hat@w@half, y radius=.13cm];
+\pingu@block{\pingu@color@hat} (\z@,.134cm) ellipse [x radius=.95\pingu@hat@w@half, y radius=.13cm];
 \endscope
 \endscope
 }
