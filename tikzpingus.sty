@@ -309,17 +309,17 @@
 	\pingu@block{\pingu@color@eye@second@left} ([yshift=.075cm,xshift=\pingu@eye@shift]\pingu@name-heartp-left) coordinate (\pingu@name-left-eye) ellipse [x radius=.1325cm, y radius=.1375cm];
 	\fill[\pingu@color@eye@left,/pingu/@glow] (\pingu@name-left-eye) circle [radius=1.325mm];
 	\pingu@block[fill opacity=.66]{\pingu@color@eye@left} (\pingu@name-left-eye)++(0,0.36) to[bend right=58] ++(0.36,-0.36) to[bend right=58] ++(-0.36,-0.36) to[bend right=58] ++(-0.36,0.36) to[bend right=58] cycle;
-	\fill[/pingu/@glow,fill=\pingu@color@eye@left!20!yellow!15!white] (\pingu@name-left-eye)++(0,0.10) to[bend right=60] ++(0.10,-0.10) to[bend right=60] ++(-0.10,-0.10) to[bend right=60] ++(-0.10,0.10) to[bend right=60] cycle;
-	\fill[\pingu@color@eye@left!20!yellow!7!white] (\pingu@name-left-eye) circle [radius=.5pt]; %
-	\pingu@block{white} (\pingu@name-left-eye) circle [radius=.15pt];
+	\fill[/pingu/@glow,fill=\pingu@color@eye@left!20!pingu@yellow!15!pingu@white] (\pingu@name-left-eye)++(0,0.10) to[bend right=60] ++(0.10,-0.10) to[bend right=60] ++(-0.10,-0.10) to[bend right=60] ++(-0.10,0.10) to[bend right=60] cycle;
+	\fill[\pingu@color@eye@left!20!pingu@yellow!7!pingu@white] (\pingu@name-left-eye) circle [radius=.5pt]; %
+	\pingu@block{pingu@white} (\pingu@name-left-eye) circle [radius=.15pt];
 }{%
 	\pingu@block{pingu@black} ([yshift=.075cm,xshift=-\pingu@eye@shift]\pingu@name-heartp-right) coordinate (\pingu@name-right-eye) ellipse [x radius=.1535cm, y radius=.1575cm];
 	\pingu@block{\pingu@color@eye@second@right} ([yshift=.075cm,xshift=-\pingu@eye@shift]\pingu@name-heartp-right) coordinate (\pingu@name-right-eye) ellipse [x radius=.1325cm, y radius=.1375cm];
 	\fill[\pingu@color@eye@right,/pingu/@glow] (\pingu@name-right-eye) circle [radius=1.325mm];
 	\pingu@block[fill opacity=.66]{\pingu@color@eye@right} (\pingu@name-right-eye)++(0,0.36) to[bend right=58] ++(0.36,-0.36) to[bend right=58] ++(-0.36,-0.36) to[bend right=58] ++(-0.36,0.36) to[bend right=58] cycle;
-	\fill[/pingu/@glow,fill=\pingu@color@eye@right!20!yellow!15!white] (\pingu@name-right-eye)++(0,0.10) to[bend right=60] ++(0.10,-0.10) to[bend right=60] ++(-0.10,-0.10) to[bend right=60] ++(-0.10,0.10) to[bend right=60] cycle;
-	\fill[\pingu@color@eye@right!20!yellow!7!white] (\pingu@name-right-eye) circle [radius=.5pt]; %
-	\pingu@block{white} (\pingu@name-right-eye) circle [radius=.15pt];
+	\fill[/pingu/@glow,fill=\pingu@color@eye@right!20!pingu@yellow!15!pingu@white] (\pingu@name-right-eye)++(0,0.10) to[bend right=60] ++(0.10,-0.10) to[bend right=60] ++(-0.10,-0.10) to[bend right=60] ++(-0.10,0.10) to[bend right=60] cycle;
+	\fill[\pingu@color@eye@right!20!pingu@yellow!7!pingu@white] (\pingu@name-right-eye) circle [radius=.5pt]; %
+	\pingu@block{pingu@white} (\pingu@name-right-eye) circle [radius=.15pt];
 }[pingu@purple]
 
 \let\@pingu@eyes@s\relax
@@ -471,6 +471,7 @@
 \def\pingu@draw@extras@below{%
 	\if@pingu@x@tie@ \pingu@draw@eb@tie \fi
 	\if@pingu@x@bowtie@ \pingu@draw@eb@bowtie \fi
+	\if@pingu@x@medal@ \pingu@draw@eb@medal \fi
 	\if@pingu@x@cup@ \pingu@draw@eb@cup \fi
 }
 
@@ -567,6 +568,32 @@
 	\pingu@block{\pingu@color@cup} (\pingu@name-belly-center)++(0,.275cm) ellipse [x radius=.325cm,y radius=.05cm];
 }
 
+
+% medal
+\pingu@create@extra{medal}{%
+	% TODO: medal text
+	% TODO: medal band
+	medal/.code    	  = \pingu@set@extra{medal}{true}\pingu@color{medal}{#1},
+	medal/.default    = pingu@yellow,
+}{}
+
+\def\pingu@draw@eb@medal{%
+\pingu@block[even odd rule]{\pingu@color@halo} (\pingu@name-head-top) circle [x radius=\pingu@w@half-1mm,y radius=2.5mm] circle [x radius=\pingu@w@half-1.95mm,y radius=1.55mm];
+\if@pingu@x@halo@glow
+\pingu@block[even odd rule,/pingu/@glow]{\pingu@color@halo} (\pingu@name-head-top) circle [x radius=(\pingu@w@half-1.95mm)*1.7,y radius=1.55mm*2.35]  (\pingu@name-head-top) circle [x radius=\pingu@w@half-1.95mm,y radius=1.55mm];
+\fi
+}
+
+
+%            _
+%      /\   | |
+%     /  \  | |__   _____   _____
+%    / /\ \ | '_ \ / _ \ \ / / _ \
+%   / ____ \| |_) | (_) \ V /  __/
+%  /_/    \_\_.__/ \___/ \_/ \___|
+
+
+
 % TODO: auto append?
 % probably not; allows for clear drawing order independent of addition/deps
 \def\pingu@draw@extras@above{%
@@ -649,14 +676,12 @@
 % .##.....##.##.....##.########..#######.
 \newif\if@pingu@x@halo@glow
 \pingu@create@extra{halo}{%
-	% extra halo
 	halo/.code    	 = \pingu@set@extra{halo}{true}\pingu@color{halo}{#1},
 	halo/.default    = pingu@lightblue,
 	halo glow/.is if = @pingu@x@halo@glow% only active if glows loaded
 }{halo glow=true}
 
 \def\pingu@draw@ea@halo{%
-	% TODO: dynamic offsets
 \pingu@block[even odd rule]{\pingu@color@halo} (\pingu@name-head-top) circle [x radius=\pingu@w@half-1mm,y radius=2.5mm] circle [x radius=\pingu@w@half-1.95mm,y radius=1.55mm];
 \if@pingu@x@halo@glow
 \pingu@block[even odd rule,/pingu/@glow]{\pingu@color@halo} (\pingu@name-head-top) circle [x radius=(\pingu@w@half-1.95mm)*1.7,y radius=1.55mm*2.35]  (\pingu@name-head-top) circle [x radius=\pingu@w@half-1.95mm,y radius=1.55mm];
@@ -764,7 +789,13 @@
 	\endscope
 }
 
-% devil
+% .########..########.##.....##.####.##......
+% .##.....##.##.......##.....##..##..##......
+% .##.....##.##.......##.....##..##..##......
+% .##.....##.######...##.....##..##..##......
+% .##.....##.##........##...##...##..##......
+% .##.....##.##.........##.##....##..##......
+% .########..########....###....####.########
 \pingu@create@extra{devil}{%
 	devil/.code = \pingu@set@extra{devil}{true}\pingu@color{devil}{#1},
 	devil/.default = pingu@purple,
