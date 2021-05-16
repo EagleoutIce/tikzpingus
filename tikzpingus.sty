@@ -481,6 +481,7 @@
 	\if@pingu@x@medal@ \pingu@draw@eb@medal \fi
 	\if@pingu@x@cup@ \pingu@draw@eb@cup \fi
 	\if@pingu@x@eyepatchleft@ \pingu@draw@eb@eyepatch@l \fi
+	\if@pingu@x@eyepatchright@ \pingu@draw@eb@eyepatch@r \fi
 }
 
 % .########.####.########
@@ -618,13 +619,26 @@
 \pingu@create@extra{eyepatchleft}{%
 	eyepatch left/.forward to = /pingu/eye patch left,
 	eye patch left/.code      = \pingu@set@extra{eyepatchleft}{true}\pingu@color{eyepatchleft}{#1},
-	eye patch left/.default   = pingu@black,
+	eye patch left/.default   = \pingu@color@body@main,
 }{}
 
+\newlength\pingu@patchw \pingu@patchw=7.5pt
 \def\pingu@draw@eb@eyepatch@l{%
-	% TODO: dynamic offsets
-	\pingu@draw{\pingu@color@eyepatchleft} [rounded corners=.25mm](\pingu@name-left-eye)++(-2mm,1.5mm) to[bend left=8] ++(4.2mm,0) to[out=-80,in=70] ++(-.2mm,-2.75mm) to[bend left=32.5] ++(-3.65mm,0mm) to[out=135,in=-90] ++(-.8mm,2.7mm) -- cycle;
-	\pingu@draw{\pingu@color@eyepatchleft} [rounded corners=.25mm](\pingu@name-right-eye)++(2mm,1.5mm) to[bend right=8] ++(-4.2mm,0) to[out=-100,in=110] ++(.2mm,-2.75mm) to[bend right=32.5] ++(3.65mm,0mm) to[out=45,in=-90] ++(.8mm,2.7mm) -- cycle;
+	\pingu@draw[line width=1.25pt]{\pingu@color@eyepatchleft} (\pingu@name-head)++(0,1mm) to[bend right=40] coordinate[pos=.51] (\pingu@name-left-eye-patch) (\pingu@name-wings-side-left);
+	\pingu@block[rotate around={-31:(\pingu@name-left-eye-patch)}]{\pingu@color@eyepatchleft} (\pingu@name-left-eye-patch)++(0,1.5pt) ellipse [x radius=\pingu@patchw, y radius=2.25pt];
+	\pingu@block[rotate around={-31:(\pingu@name-left-eye-patch)}]{\pingu@color@eyepatchleft} (\pingu@name-left-eye-patch) ++(-\pingu@patchw,1.5pt) arc(180:360:\pingu@patchw{} and 8.75pt);
+}
+
+\pingu@create@extra{eyepatchright}{%
+	eyepatch right/.forward to = /pingu/eye patch right,
+	eye patch right/.code      = \pingu@set@extra{eyepatchright}{true}\pingu@color{eyepatchright}{#1},
+	eye patch right/.default   = \pingu@color@body@main,
+}{}
+
+\def\pingu@draw@eb@eyepatch@r{%
+	\pingu@draw[line width=1.25pt]{\pingu@color@eyepatchright} (\pingu@name-head)++(0,1mm) to[bend left=40] coordinate[pos=.51] (\pingu@name-right-eye-patch) (\pingu@name-wings-side-right);
+	\pingu@block[rotate around={31:(\pingu@name-right-eye-patch)}]{\pingu@color@eyepatchright} (\pingu@name-right-eye-patch)++(0,1.5pt) ellipse [x radius=\pingu@patchw, y radius=2.25pt];
+	\pingu@block[rotate around={31:(\pingu@name-right-eye-patch)}]{\pingu@color@eyepatchright} (\pingu@name-right-eye-patch) ++(-\pingu@patchw,1.5pt) arc(180:360:\pingu@patchw{} and 8.75pt);
 }
 
 %            _
