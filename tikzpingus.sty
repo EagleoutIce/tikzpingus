@@ -209,17 +209,18 @@
 \clip[use path=\pingu@whitepingu];
 \pingu@belly@raw
 \endscope
-\pingu@draw@extras@below
-
-\@pingu@drawer@leftwing@
-\@pingu@drawer@rightwing@
-
 
 \coordinate (\pingu@name-head) at (\pingu@w@half,.7375cm);
 % TODO: more lengths
 
 \@pingu@drawer@lefteye@
 \@pingu@drawer@righteye@
+
+\pingu@draw@extras@below
+
+\@pingu@drawer@leftwing@
+\@pingu@drawer@rightwing@
+
 
 \@pingu@drawer@bill@
 
@@ -479,6 +480,7 @@
 	\if@pingu@x@bowtie@ \pingu@draw@eb@bowtie \fi
 	\if@pingu@x@medal@ \pingu@draw@eb@medal \fi
 	\if@pingu@x@cup@ \pingu@draw@eb@cup \fi
+	\if@pingu@x@eyepatchleft@ \pingu@draw@eb@eyepatch@l \fi
 }
 
 % .########.####.########
@@ -606,6 +608,24 @@
 \node[/pingu/@text,/pingu/medal text style] at (\pingu@name-medal-center) {\pingu@x@medal@text};
 }
 
+% .########.##....##.########....########.....###....########..######..##.....##
+% .##........##..##..##..........##.....##...##.##......##....##....##.##.....##
+% .##.........####...##..........##.....##..##...##.....##....##.......##.....##
+% .######......##....######......########..##.....##....##....##.......#########
+% .##..........##....##..........##........#########....##....##.......##.....##
+% .##..........##....##..........##........##.....##....##....##....##.##.....##
+% .########....##....########....##........##.....##....##.....######..##.....##
+\pingu@create@extra{eyepatchleft}{%
+	eyepatch left/.forward to = /pingu/eye patch left,
+	eye patch left/.code      = \pingu@set@extra{eyepatchleft}{true}\pingu@color{eyepatchleft}{#1},
+	eye patch left/.default   = pingu@black,
+}{}
+
+\def\pingu@draw@eb@eyepatch@l{%
+	% TODO: dynamic offsets
+	\pingu@draw{\pingu@color@eyepatchleft} [rounded corners=.25mm](\pingu@name-left-eye)++(-2mm,1.5mm) to[bend left=8] ++(4.2mm,0) to[out=-80,in=70] ++(-.2mm,-2.75mm) to[bend left=32.5] ++(-3.65mm,0mm) to[out=135,in=-90] ++(-.8mm,2.7mm) -- cycle;
+	\pingu@draw{\pingu@color@eyepatchleft} [rounded corners=.25mm](\pingu@name-right-eye)++(2mm,1.5mm) to[bend right=8] ++(-4.2mm,0) to[out=-100,in=110] ++(.2mm,-2.75mm) to[bend right=32.5] ++(3.65mm,0mm) to[out=45,in=-90] ++(.8mm,2.7mm) -- cycle;
+}
 
 %            _
 %      /\   | |
