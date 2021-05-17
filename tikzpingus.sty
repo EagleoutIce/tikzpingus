@@ -624,9 +624,9 @@
 
 \newlength\pingu@patchw \pingu@patchw=6.5pt
 \def\pingu@draw@eb@eyepatch@l{%
-	\pingu@draw[line width=1.25pt,line cap=round]{\pingu@color@eyepatchleft} (\pingu@name-head-right)++(-1.8mm,-1.95mm) to[bend right=15] coordinate[pos=.69] (\pingu@name-left-eye-patch) ([xshift=-.8mm,yshift=1.25mm]\pingu@name-wings-side-left);
-	\pingu@block[rotate around={-10:(\pingu@name-left-eye-patch)}]{\pingu@color@eyepatchleft} (\pingu@name-left-eye-patch)++(0,1pt) ellipse [x radius=\pingu@patchw, y radius=.65pt];
-	\pingu@block[rotate around={-10:(\pingu@name-left-eye-patch)}]{\pingu@color@eyepatchleft} (\pingu@name-left-eye-patch) ++(-\pingu@patchw,1pt) arc(180:360:\pingu@patchw{} and 8.9pt);
+	\pingu@draw[line width=1.25pt,line cap=round]{\pingu@color@eyepatchleft} (\pingu@name-head-right)++(-2.75mm,-2.5mm) to[bend right=10] coordinate[pos=.71] (\pingu@name-left-eye-patch) ([xshift=-.85mm,yshift=1.25mm]\pingu@name-wings-side-left);
+	\pingu@block[rotate around={-9:(\pingu@name-left-eye-patch)}]{\pingu@color@eyepatchleft} (\pingu@name-left-eye-patch)++(0,.5pt) ellipse [x radius=\pingu@patchw, y radius=.65pt];
+	\pingu@block[rotate around={-9:(\pingu@name-left-eye-patch)}]{\pingu@color@eyepatchleft} (\pingu@name-left-eye-patch) ++(-\pingu@patchw,.5pt) arc(180:360:\pingu@patchw{} and 8.9pt);
 }
 
 \pingu@create@extra{eyepatchright}{%
@@ -636,9 +636,9 @@
 }{}
 
 \def\pingu@draw@eb@eyepatch@r{%
-	\pingu@draw[line width=1.25pt,line cap=round]{\pingu@color@eyepatchright} (\pingu@name-head-left)++(1.8mm,-1.95mm) to[bend left=15] coordinate[pos=.69] (\pingu@name-right-eye-patch) ([xshift=.8mm,yshift=1.25mm]\pingu@name-wings-side-right);
-	\pingu@block[rotate around={10:(\pingu@name-right-eye-patch)}]{\pingu@color@eyepatchright} (\pingu@name-right-eye-patch)++(0,1pt) ellipse [x radius=\pingu@patchw, y radius=.65pt];
-	\pingu@block[rotate around={10:(\pingu@name-right-eye-patch)}]{\pingu@color@eyepatchright} (\pingu@name-right-eye-patch) ++(-\pingu@patchw,1pt) arc(180:360:\pingu@patchw{} and 8.9pt);
+	\pingu@draw[line width=1.25pt,line cap=round]{\pingu@color@eyepatchright} (\pingu@name-head-left)++(2.75mm,-2.5mm) to[bend left=10] coordinate[pos=.71] (\pingu@name-right-eye-patch) ([xshift=.85mm,yshift=1.25mm]\pingu@name-wings-side-right);
+	\pingu@block[rotate around={9:(\pingu@name-right-eye-patch)}]{\pingu@color@eyepatchright} (\pingu@name-right-eye-patch)++(0,.5pt) ellipse [x radius=\pingu@patchw, y radius=.65pt];
+	\pingu@block[rotate around={9:(\pingu@name-right-eye-patch)}]{\pingu@color@eyepatchright} (\pingu@name-right-eye-patch) ++(-\pingu@patchw,.5pt) arc(180:360:\pingu@patchw{} and 8.9pt);
 }
 
 %            _
