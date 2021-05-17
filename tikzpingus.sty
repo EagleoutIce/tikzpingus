@@ -495,14 +495,16 @@
 %%% Dots %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \def\@pingu@draw@dots{%
 \pgfonlayer{foreground}
-  \foreach \x in {belly-center,head,head-top,foot-left,foot-right,right-eye,left-eye,bill,bill-bottom,wings-side-left,wings-side-right,wing-left-start,wing-left-tip,wing-right-start,wing-right-tip,head-right,head-left,head-center,head-back-con-left,head-back-con-right} {
-    \fill[green] (\pingu@name-\x) circle[radius=1.125pt];
+  \@for\@pingu@elem:={belly-center,head,head-top,foot-left,foot-right,right-eye,left-eye,bill,bill-bottom,wings-side-left,wings-side-right,wing-left-start,wing-left-tip,wing-right-start,wing-right-tip,head-right,head-left,head-center,head-back-con-left,head-back-con-right}\do{
+    \path[fill=green] (\pingu@name-\@pingu@elem) circle[radius=1.125\p@];
   }
-  \foreach \x in {wing-left,wing-right} {
-    \fill[yellow] (\pingu@name-\x) circle[radius=1.125pt];
+  \@for\@pingu@elem:={wing-left,wing-right}\do{
+    \path[fill=yellow] (\pingu@name-\@pingu@elem) circle[radius=1.125\p@];
   }
-  \draw[yellow,thick,rotate around={10:(\pingu@name-wing-left)}] (\pingu@name-wing-left)++(0,3mm) -- ++(0,-6mm);
-  \draw[yellow,thick,rotate around={10:(\pingu@name-wing-right)}] (\pingu@name-wing-right)++(0,3mm) -- ++(0,-6mm);
+  \path[draw=magenta,thick,rotate around={10:(\pingu@name-wing-left)}]
+  	(\pingu@name-wing-left)++(0,3mm) -- ++(0,-6mm);
+  \path[draw=magenta,thick,rotate around={10:(\pingu@name-wing-right)}]
+  	(\pingu@name-wing-right)++(0,3mm) -- ++(0,-6mm);
 \endpgfonlayer
 }
 
