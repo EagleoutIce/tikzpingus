@@ -63,6 +63,7 @@
 	\expandafter\def\csname pingu@#1@select\endcsname##1{%
 		\ifcsname @pingu@drawer@#1@##1@\endcsname
 			\expandafter\let\csname @pingu@drawer@#1@\expandafter\endcsname\csname @pingu@drawer@#1@##1@\endcsname
+			\expandafter\def\csname @pingu@select@#1@\expandafter\endcsname{##1}%
 		\else\pingu@create@sel@err{#1}{##1}\fi
 	}%
 	\csname pingu@#1@add\endcsname{none}{}%
@@ -364,7 +365,7 @@
 	\coordinate (\pingu@name-wing-right-start) at ([yshift=-6.5mm]\pingu@name-wings-side-right);
 	\pingu@block[rotate around={-15:(\pingu@name-wing-right-start)}]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.195cm, y radius=9mm] +(-90:.195cm and 9mm) coordinate (\pingu@name-wing-right-tip) +(-90:.145cm and .75cm) coordinate (\pingu@name-wing-right);
 \endpgfonlayer}%
-{\pingu@wi@above}{90}
+{\pingu@wi@above}{0}
 
 
 \@pingu@wings@s{wave}{%
@@ -376,7 +377,7 @@
 	\coordinate (\pingu@name-wing-right-start) at ([yshift=-5.5mm]\pingu@name-wings-side-right);
 	\pingu@block[rotate around={39:(\pingu@name-wing-right-start)}]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.225cm, y radius=.925cm] +(90:.225cm and .925cm) coordinate (\pingu@name-wing-right-tip) +(90:.175cm and .775cm) coordinate (\pingu@name-wing-right);
 \endpgfonlayer}%
-{\pingu@wi@above}{90}
+{\pingu@wi@above}{-10}
 
 \@pingu@wings@s{raise}{%
 \pgfonlayer{background}
@@ -501,10 +502,10 @@
   \@for\@pingu@elem:={wing-left,wing-right}\do{
     \path[fill=yellow] (\pingu@name-\@pingu@elem) circle[radius=1.125\p@];
   }
-  \path[draw=magenta,thick,rotate around={10:(\pingu@name-wing-left)}]
-  	(\pingu@name-wing-left)++(0,3mm) -- ++(0,-6mm);
-  \path[draw=magenta,thick,rotate around={10:(\pingu@name-wing-right)}]
-  	(\pingu@name-wing-right)++(0,3mm) -- ++(0,-6mm);
+  \path[draw=magenta,thick,rotate around={\csname @pingu@wingangle@\@pingu@select@leftwing@ @\endcsname:(\pingu@name-wing-left)}]
+  	(\pingu@name-wing-left)++(0,3mm) circle [radius=1mm] -- ++(0,-6mm);
+  \path[draw=magenta,thick,rotate around={-\csname @pingu@wingangle@\@pingu@select@rightwing@ @\endcsname:(\pingu@name-wing-right)}]
+  	(\pingu@name-wing-right)++(0,3mm) circle [radius=1mm] -- ++(0,-6mm);
 \endpgfonlayer
 }
 
