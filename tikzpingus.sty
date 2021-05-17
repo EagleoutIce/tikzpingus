@@ -365,7 +365,7 @@
 	\coordinate (\pingu@name-wing-right-start) at ([yshift=-6.5mm]\pingu@name-wings-side-right);
 	\pingu@block[rotate around={-15:(\pingu@name-wing-right-start)}]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.195cm, y radius=9mm] +(-90:.195cm and 9mm) coordinate (\pingu@name-wing-right-tip) +(-90:.145cm and .75cm) coordinate (\pingu@name-wing-right);
 \endpgfonlayer}%
-{\pingu@wi@above}{0}
+{\pingu@wi@above}{-5}
 
 
 \@pingu@wings@s{wave}{%
@@ -388,7 +388,7 @@
 	\coordinate (\pingu@name-wing-right-start) at ([yshift=-6.25mm]\pingu@name-wings-side-right);
 	\pingu@block[rotate around={17:(\pingu@name-wing-right-start)}]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.195cm, y radius=.925cm] +(90:.195cm and .925cm) coordinate (\pingu@name-wing-right-tip) +(90:.145cm and .775cm) coordinate (\pingu@name-wing-right);
 \endpgfonlayer}%
-{\pingu@wi@above}{90}
+{\pingu@wi@above}{0}
 
 \@pingu@wings@s{grab}{%
 \pgfonlayer{foreground}
@@ -403,7 +403,7 @@
 	\coordinate (\pingu@name-wing-right-start) at ([yshift=-4.5mm]\pingu@name-wings-side-right);
 	\pingu@block[rotate around={42:(\pingu@name-wing-right-start)}]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.225cm, y radius=1.05cm] +(-90:.225cm and 1.05cm) coordinate (\pingu@name-wing-right-tip) +(-90:.175cm and 9mm) coordinate (\pingu@name-wing-right);
 \endscope\endpgfonlayer}%
-{\pingu@wi@above}{90}
+{\pingu@wi@below}{0}
 
 \@pingu@wings@s{shock}{%
 \pgfonlayer{foreground}
@@ -418,7 +418,7 @@
 	\coordinate (\pingu@name-wing-right-start) at ([yshift=-6.5mm]\pingu@name-wings-side-right);
 	\pingu@block[rotate around={-65:(\pingu@name-wing-right-start)}]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.235cm, y radius=.85cm] +(90:.235cm and .85cm) coordinate (\pingu@name-wing-right-tip) +(90:.185cm and .7cm) coordinate (\pingu@name-wing-right);
 \endscope\endpgfonlayer}%
-{\pingu@wi@above}{90}
+{\pingu@wi@below}{-180}
 
 \@pingu@wings@s{hug}{%
 \pgfonlayer{background}
@@ -429,7 +429,7 @@
 \coordinate (\pingu@name-wing-right-start) at ([yshift=-6.25mm]\pingu@name-wings-side-right);
 \pingu@block[rotate around={132:(\pingu@name-wing-right-start)}]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.24cm, y radius=.925cm] +(90:.24cm and .925cm) coordinate (\pingu@name-wing-right-tip) +(90:.175cm and .775cm) coordinate (\pingu@name-wing-right);
 \endpgfonlayer}%
-{\pingu@wi@above}{90}
+{\pingu@wi@above}{-30}
 
 \let\@pingu@wings@s\relax
 
@@ -470,6 +470,7 @@
 	}%
 	\pingu@bill@add{#1}{#2}%
 }
+
 \@pingu@bill@s{normal}{%
 \pingu@block{\pingu@color@bill} (\pingu@name-bill)++(-.19cm,0)
 	arc (180:360:.19cm and .225cm)
@@ -483,7 +484,6 @@
 	coordinate[pos=.5] (\pingu@name-bill-bottom)
 	-- cycle;
 }
-
 
 \@pingu@bill@s{angry}{%
 \pingu@block{\pingu@color@bill} (\pingu@name-bill)++(-.19cm,0)
@@ -502,10 +502,13 @@
   \@for\@pingu@elem:={wing-left,wing-right}\do{
     \path[fill=yellow] (\pingu@name-\@pingu@elem) circle[radius=1.125\p@];
   }
-  \path[draw=magenta,thick,rotate around={\csname @pingu@wingangle@\@pingu@select@leftwing@ @\endcsname:(\pingu@name-wing-left)}]
-  	(\pingu@name-wing-left)++(0,3mm) circle [radius=1mm] -- ++(0,-6mm);
-  \path[draw=magenta,thick,rotate around={-\csname @pingu@wingangle@\@pingu@select@rightwing@ @\endcsname:(\pingu@name-wing-right)}]
-  	(\pingu@name-wing-right)++(0,3mm) circle [radius=1mm] -- ++(0,-6mm);
+
+  \csname @pingu@wingitem@\@pingu@select@leftwing@ @\endcsname \colorlet{@wmark}{magenta} \else \colorlet{@wmark}{teal} \fi
+  \pingu@block[draw=@wmark,thick,rotate around={\csname @pingu@wingangle@\@pingu@select@leftwing@ @\endcsname:(\pingu@name-wing-left)}]{@wmark}
+    (\pingu@name-wing-left)++(0,3mm) circle [radius=1mm] -- ++(0,-6mm);
+  \csname @pingu@wingitem@\@pingu@select@rightwing@ @\endcsname \colorlet{@wmark}{magenta} \else \colorlet{@wmark}{teal} \fi
+  \pingu@block[draw=@wmark,thick,rotate around={-\csname @pingu@wingangle@\@pingu@select@rightwing@ @\endcsname:(\pingu@name-wing-right)}]{@wmark}
+    (\pingu@name-wing-right)++(0,3mm) circle [radius=1mm] -- ++(0,-6mm);
 \endpgfonlayer
 }
 
