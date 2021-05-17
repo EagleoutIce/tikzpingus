@@ -980,9 +980,9 @@
 \def\pingu@draw@wi@lollipop#1{%
 	\pingu@setup@wing{lollipop}{#1}%
 	\pingu@draw[thick,rotate around={\@angle:(\pingu@name-wing-#1)}]{\csname pingu@color@lollipop#1@handle\endcsname}(\pingu@name-wing-#1)++(0,4.75mm) -- ++(0,-6.25mm);
-	\pingu@block[thick,rotate around={\@angle:(\pingu@name-wing-#1)}]{\@col}(\pingu@name-wing-#1)++(0,4.75mm) coordinate (\pingu@name-lollipop-#1-top) circle[radius=1.33mm];
-	\pingu@block[thick,rotate around={\@angle-1:(\pingu@name-lollipop-#1-top)}]{\csname pingu@color@lollipop#1@second\endcsname} (\pingu@name-lollipop-#1-top) ellipse [x radius=1.5mm, y radius=1.5\p@];
-	\pingu@block[thick,rotate around={\@angle-1:(\pingu@name-lollipop-#1-top)}]{\@col} (\pingu@name-lollipop-#1-top)++(0,.5\p@) ellipse [x radius=1.33mm, y radius=\p@];
+	\pingu@block[thick,rotate around={\@angle:(\pingu@name-wing-#1)}]{\@col}(\pingu@name-wing-#1)++(0,4.75mm) coordinate (\pingu@name-lollipop-#1-top) circle[radius=1.4mm];
+	\pingu@block[thick,rotate around={\@angle-1:(\pingu@name-lollipop-#1-top)}]{\csname pingu@color@lollipop#1@second\endcsname} (\pingu@name-lollipop-#1-top) ellipse [x radius=1.57mm, y radius=1.5\p@];
+	\pingu@block[thick,rotate around={\@angle-1:(\pingu@name-lollipop-#1-top)}]{\@col} (\pingu@name-lollipop-#1-top)++(0,.5\p@) ellipse [x radius=1.4mm, y radius=\p@];
 }
 
 \let\pingu@create@selection\relax
