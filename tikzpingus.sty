@@ -84,11 +84,15 @@
 \tikzset{/tikz/scale/.append code={\def\pingu@default@scale{#1}}}
 \def\pingu@default@scale{1}
 
+\newif\if@pingu@drawdots
+
 % TODO: other selections
 \tikzset{%
   /pingu/.search also={/tikz,/pgf}, /pingu/.cd,%
   name/.code                    = \def\pingu@name{#1},
   scale/.code                   = \def\pingu@scale{#1},
+  dots/.is if					= @pingu@drawdots,
+  dots/.default 			    = true,
   @pingu@all/.style             = {},
   @block/.style                 = {/pingu/@pingu@all=#1, fill=#1},
   @draw/.style                  = {/pingu/@pingu@all=#1, draw=#1},
@@ -225,8 +229,10 @@
 \@pingu@drawer@bill@
 
 \pingu@draw@extras@above
-
 \endscope
+\if@pingu@drawdots
+\@pingu@draw@dots
+\fi
 \endgroup
 }
 
@@ -483,6 +489,21 @@
 	to[out=-90,in=170] ++(1.9mm,-2.25mm) coordinate (\pingu@name-bill-bottom)
 	to[out=10,in=-90] ++(1.9mm,2.25mm)
 	to[bend right=.25cm] cycle;
+}
+
+
+%%% Dots %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\@pingu@draw@dots{%
+\pgfonlayer{foreground}
+  \foreach \x in {belly-center,head,head-top,foot-left,foot-right,right-eye,left-eye,bill,bill-bottom,wings-side-left,wings-side-right,wing-left-start,wing-left-tip,wing-right-start,wing-right-tip,head-right,head-left,head-center,head-back-con-left,head-back-con-right} {
+    \fill[green] (\pingu@name-\x) circle[radius=1.125pt];
+  }
+  \foreach \x in {wing-left,wing-right} {
+    \fill[yellow] (\pingu@name-\x) circle[radius=1.125pt];
+  }
+  \draw[yellow,thick,rotate around={10:(\pingu@name-wing-left)}] (\pingu@name-wing-left)++(0,3mm) -- ++(0,-6mm);
+  \draw[yellow,thick,rotate around={10:(\pingu@name-wing-right)}] (\pingu@name-wing-right)++(0,3mm) -- ++(0,-6mm);
+\endpgfonlayer
 }
 
 %%% Extras %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
