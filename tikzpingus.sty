@@ -10,8 +10,8 @@
 \RequirePackage{tikz}
 \usetikzlibrary{intersections,patterns.meta}
 
-\pgfdeclarelayer{background}\pgfdeclarelayer{foreground}
-\pgfsetlayers{background,main,foreground}
+\pgfdeclarelayer{background}\pgfdeclarelayer{foreground}\pgfdeclarelayer{middle}
+\pgfsetlayers{background,main,middle,foreground}
 
 \def\@pingu@color@ #1#2(#3,#4,#5){\definecolor{pingu@#1}{#2}{#3,#4,#5}}
 \@pingu@color@{main}RGB(3,14,29)
@@ -96,7 +96,7 @@
   meta-dots/.default            = true,
   @pingu@all/.style             = {},
   @block/.style                 = {/pingu/@pingu@all=#1, fill=#1},
-  @draw/.style                  = {/pingu/@pingu@all=#1, draw=#1},
+  @draw/.style                  = {/pingu/@pingu@all=#1, cap=round, draw=#1},
   @text/.style                  = {transform shape,text=\pingu@color@body@main},
   @pingu/.style = {},
   % feet
@@ -230,6 +230,7 @@
 \@pingu@drawer@bill@
 
 \pingu@draw@extras@above
+\pingu@draw@wing@items
 \endscope
 \if@pingu@draw@metadots
 \@pingu@draw@dots
@@ -403,7 +404,7 @@
 	\coordinate (\pingu@name-wing-right-start) at ([yshift=-4.5mm]\pingu@name-wings-side-right);
 	\pingu@block[rotate around={42:(\pingu@name-wing-right-start)}]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.225cm, y radius=1.05cm] +(-90:.225cm and 1.05cm) coordinate (\pingu@name-wing-right-tip) +(-90:.175cm and 9mm) coordinate (\pingu@name-wing-right);
 \endscope\endpgfonlayer}%
-{\pingu@wi@below}{0}
+{\pingu@wi@below}{12}
 
 \@pingu@wings@s{shock}{%
 \pgfonlayer{foreground}
@@ -905,6 +906,83 @@
 	\pingu@block{\pingu@color@devil} ([yshift=-\pingu@devil@yshift]\pingu@name-head-left) to [bend right=38] (\pingu@name-devil-left-goal) arc (\pingu@devil@baseang@l-\pingu@devil@baseoff:\pingu@devil@baseang@l:\pingu@w@half{} and .9\pingu@w@half) -- cycle;
 	\pingu@block{\pingu@color@devil} ([yshift=-\pingu@devil@yshift]\pingu@name-head-right) arc (\pingu@devil@baseang@r:\pingu@devil@baseang@r+\pingu@devil@baseoff:\pingu@w@half{} and .9\pingu@w@half) coordinate (\pingu@name-devil-right-goal) to[out=148,in=-148,looseness=.9] ++(-.3mm,2.65mm) to[bend right=17] ([yshift=-\pingu@devil@yshift]\pingu@name-head-right) -- cycle;
 	\pingu@block{\pingu@color@devil} ([yshift=-\pingu@devil@yshift]\pingu@name-head-right) to [bend left=38] (\pingu@name-devil-right-goal) arc (\pingu@devil@baseang@r+\pingu@devil@baseoff:\pingu@devil@baseang@r:\pingu@w@half{} and .9\pingu@w@half) -- cycle;
+}
+
+%
+
+%                         #                                #
+%                        ###                              ###     #
+% ##                      #                                #     ##
+% ##                                                             ##
+%  ##    ###    ####    ###   ###  /###     /###         ###   ######## /##  ### /### /###      /###
+%   ##    ###     ###  / ###   ###/ #### / /  ###  /      ### ######## / ###  ##/ ###/ /##  /  / #### /
+%   ##     ###     ###/   ##    ##   ###/ /    ###/        ##    ##   /   ###  ##  ###/ ###/  ##  ###/
+%   ##      ##      ##    ##    ##    ## ##     ##         ##    ##  ##    ### ##   ##   ##  ####
+%   ##      ##      ##    ##    ##    ## ##     ##         ##    ##  ########  ##   ##   ##    ###
+%   ##      ##      ##    ##    ##    ## ##     ##         ##    ##  #######   ##   ##   ##      ###
+%   ##      ##      ##    ##    ##    ## ##     ##         ##    ##  ##        ##   ##   ##        ###
+%   ##      /#      /     ##    ##    ## ##     ##         ##    ##  ####    / ##   ##   ##   /###  ##
+%    ######/ ######/      ### / ###   ### ########         ### / ##   ######/  ###  ###  ### / #### /
+%     #####   #####        ##/   ###   ###  ### ###         ##/   ##   #####    ###  ###  ###   ###/
+%                                                ###
+%                                          ####   ###
+%                                        /######  /#
+%                                       /     ###/
+
+\def\pingu@may@draw@wing#1#2{\csname if@pingu@x@#1#2@\endcsname \csname pingu@draw@wi@#1\endcsname{#2}\fi}
+\edef\pingu@str@wing@left{left}
+\def\pingu@setup@wing#1#2{%
+	\edef\@tmpa{#2}% minus on left
+	\ifx\pingu@str@wing@left\@tmpa
+		\expandafter\def\expandafter\@angle{\csname @pingu@wingangle@\csname @pingu@select@#2wing@\endcsname @\endcsname}%
+	\else
+		\expandafter\def\expandafter\@angle{-(\csname @pingu@wingangle@\csname @pingu@select@#2wing@\endcsname @\endcsname)}%
+	\fi
+	\expandafter\def\expandafter\@col{\csname pingu@color@#1#2\endcsname}%
+}
+
+\def\pingu@draw@wing@items{%
+\csname @pingu@wingitem@\@pingu@select@leftwing@ @\endcsname
+	\@pingu@draw@wing@items@left\else
+	\pgfonlayer{middle} \@pingu@draw@wing@items@left \endpgfonlayer
+\fi
+\csname @pingu@wingitem@\@pingu@select@rightwing@ @\endcsname
+	\@pingu@draw@wing@items@right\else
+	\pgfonlayer{middle} \@pingu@draw@wing@items@right \endpgfonlayer
+\fi
+}
+
+\def\@pingu@draw@wing@items@left{%
+	\pingu@may@draw@wing{lollipop}{left}%
+}
+
+\def\@pingu@draw@wing@items@right{%
+	\pingu@may@draw@wing{lollipop}{right}%
+}
+
+\def\pingu@create@wing@extra#1#2#3{%
+\def\@lr{left}%
+\protected@edef\@tmp{\expandafter\expandafter\expandafter\expandafter\expandafter\unexpanded{{#1left}{#2}{#3}}}%
+\expandafter\pingu@create@extra\@tmp
+\def\@lr{right}%
+\protected@edef\@tmp{\expandafter\expandafter\expandafter\expandafter\expandafter\unexpanded{{#1right}{#2}{#3}}}%
+\expandafter\pingu@create@extra\@tmp
+}
+
+\pingu@create@wing@extra{lollipop}{%
+  lollipop \@lr/.code         = {\pingu@set@extra{lollipop\@lr}{true}\pingu@color{lollipop\@lr}{##1}},
+  lollipop \@lr/.default      = pingu@green,
+  lollipop \@lr\space handle/.code = \pingu@color{lollipop\@lr @handle}{##1},%
+  lollipop \@lr\space second/.code = \pingu@color{lollipop\@lr @second}{##1}%
+}{lollipop \@lr\space handle=pingu@bronze,lollipop \@lr\space second={\csname pingu@color@lollipop\@lr\endcsname!95!black}}
+
+% #1 wing
+\def\pingu@draw@wi@lollipop#1{%
+	\pingu@setup@wing{lollipop}{#1}%
+	\pingu@draw[thick,rotate around={\@angle:(\pingu@name-wing-#1)}]{\csname pingu@color@lollipop#1@handle\endcsname}(\pingu@name-wing-#1)++(0,4.75mm) -- ++(0,-6.25mm);
+	\pingu@block[thick,rotate around={\@angle:(\pingu@name-wing-#1)}]{\@col}(\pingu@name-wing-#1)++(0,4.75mm) coordinate (\pingu@name-lollipop-#1-top) circle[radius=1.33mm];
+	\pingu@block[thick,rotate around={\@angle-1:(\pingu@name-lollipop-#1-top)}]{\csname pingu@color@lollipop#1@second\endcsname} (\pingu@name-lollipop-#1-top) ellipse [x radius=1.5mm, y radius=1.5\p@];
+	\pingu@block[thick,rotate around={\@angle-1:(\pingu@name-lollipop-#1-top)}]{\@col} (\pingu@name-lollipop-#1-top)++(0,.5\p@) ellipse [x radius=1.33mm, y radius=\p@];
 }
 
 \let\pingu@create@selection\relax
