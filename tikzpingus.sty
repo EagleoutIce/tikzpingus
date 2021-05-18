@@ -931,12 +931,15 @@
 
 \def\pingu@may@draw@wing#1#2{\csname if@pingu@x@#1#2@\endcsname \csname pingu@draw@wi@#1\endcsname{#2}\fi}
 \edef\pingu@str@wing@left{left}
+\newif\if@pingu@wing@item@side@left@
 \def\pingu@setup@wing#1#2{%
 	\edef\@tmpa{#2}% minus on left
 	\ifx\pingu@str@wing@left\@tmpa
 		\expandafter\def\expandafter\@angle{\csname @pingu@wingangle@\csname @pingu@select@#2wing@\endcsname @\endcsname}%
+		\@pingu@wing@item@side@left@true
 	\else
 		\expandafter\def\expandafter\@angle{-(\csname @pingu@wingangle@\csname @pingu@select@#2wing@\endcsname @\endcsname)}%
+		\@pingu@wing@item@side@left@false
 	\fi
 	\expandafter\def\expandafter\@col{\csname pingu@color@#1#2\endcsname}%
 }
@@ -954,10 +957,12 @@
 
 \def\@pingu@draw@wing@items@left{%
 	\pingu@may@draw@wing{lollipop}{left}%
+	\pingu@may@draw@wing{cane}{left}%
 }
 
 \def\@pingu@draw@wing@items@right{%
 	\pingu@may@draw@wing{lollipop}{right}%
+	\pingu@may@draw@wing{cane}{right}%
 }
 
 \def\pingu@create@wing@extra#1#2#3{%
@@ -969,6 +974,13 @@
 \expandafter\pingu@create@extra\@tmp
 }
 
+% .##........#######..##.......##.......####.########...#######..########.
+% .##.......##.....##.##.......##........##..##.....##.##.....##.##.....##
+% .##.......##.....##.##.......##........##..##.....##.##.....##.##.....##
+% .##.......##.....##.##.......##........##..########..##.....##.########.
+% .##.......##.....##.##.......##........##..##........##.....##.##.......
+% .##.......##.....##.##.......##........##..##........##.....##.##.......
+% .########..#######..########.########.####.##.........#######..##.......
 \pingu@create@wing@extra{lollipop}{%
   lollipop \@lr/.code         = {\pingu@set@extra{lollipop\@lr}{true}\pingu@color{lollipop\@lr}{##1}},
   lollipop \@lr/.default      = pingu@green,
@@ -983,6 +995,21 @@
 	\pingu@block[thick,rotate around={\@angle:(\pingu@name-wing-#1)}]{\@col}(\pingu@name-wing-#1)++(0,4.75mm) coordinate (\pingu@name-lollipop-#1-top) circle[radius=1.4mm];
 	\pingu@block[thick,rotate around={\@angle-1:(\pingu@name-lollipop-#1-top)}]{\csname pingu@color@lollipop#1@second\endcsname} (\pingu@name-lollipop-#1-top) ellipse [x radius=1.57mm, y radius=1.5\p@];
 	\pingu@block[thick,rotate around={\@angle-1:(\pingu@name-lollipop-#1-top)}]{\@col} (\pingu@name-lollipop-#1-top)++(0,.5\p@) ellipse [x radius=1.4mm, y radius=\p@];
+}
+
+\pingu@create@wing@extra{cane}{%
+  cane \@lr/.code         = {\pingu@set@extra{cane\@lr}{true}\pingu@color{cane\@lr}{##1}},
+  cane \@lr/.default      = pingu@bronze,
+}{}
+
+% #1 wing
+\def\pingu@draw@wi@cane#1{%
+	\pingu@setup@wing{cane}{#1}%
+	\if@pingu@wing@item@side@left@
+		\pingu@block[thick,rotate around={\@angle+5:(\pingu@name-wing-#1)}]{\@col}(\pingu@name-wing-#1)++(0,-7mm) -- ++(0,15mm) arc(180:0:2.25mm and 2.2mm) arc(360:180:.3mm and .275mm) arc(0:180:1.65mm and 1.65mm) -- ++(0,-15mm) arc(360:180:.3mm and .275mm) -- cycle;
+	\else
+		\pingu@block[thick,rotate around={\@angle-5:(\pingu@name-wing-#1)}]{\@col}(\pingu@name-wing-#1)++(0,-7mm) -- ++(0,15mm) arc(0:180:2.25mm and 2.2mm) arc(180:360:.3mm and .275mm) arc(180:0:1.65mm and 1.65mm) -- ++(0,-15mm) arc(180:360:.3mm and .275mm) -- cycle;
+	\fi
 }
 
 \let\pingu@create@selection\relax
