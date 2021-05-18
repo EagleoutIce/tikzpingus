@@ -21,7 +21,7 @@ jobs:
     - name: Setup and run sltx-install (and pu)
       run: |
         sudo apt install poppler-utils
-        pip install sltx
+        pip install six sltx
         echo "tx-default" | sltx docker
     - name: 'Compile the document and generate preview'
       run: |
