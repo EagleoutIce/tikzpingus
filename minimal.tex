@@ -6,15 +6,18 @@
 
 \definecolor{pink}{RGB}{247, 71, 195}
 \definecolor{pinksoft}{RGB}{255, 192, 203}
+\definecolor{background}{RGB}{153, 255, 255}
 
 \newsavebox\rbsbox
 \sbox\rbsbox{\begin{tikzpicture}
   \pingu[eyes shiny, left wing shock,right wing grab,hat=pink,hat ribbon=pingu@main, hat coronal=pinksoft,belly=\color{pinksoft}\faHeart,lollipop right=pink,bowtie=pinksoft]
 \end{tikzpicture}}
 
+\setlength\PreviewBorder{0pt}
+
 \begin{document}
 \begin{preview}
-\parbox{\ht\rbsbox}{\centering
-\usebox\rbsbox}
+\colorbox{background}{\parbox{\ht\rbsbox}{\centering
+\usebox\rbsbox}}
 \end{preview}
 \end{document}

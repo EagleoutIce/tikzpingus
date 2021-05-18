@@ -8,7 +8,7 @@
 \ProcessOptions*%
 
 \RequirePackage{tikz}
-\usetikzlibrary{intersections,patterns.meta}
+\usetikzlibrary{intersections,patterns.meta,decorations.pathmorphing}
 
 \pgfdeclarelayer{background}\pgfdeclarelayer{foreground}\pgfdeclarelayer{middle}
 \pgfsetlayers{background,main,middle,foreground}
@@ -958,11 +958,13 @@
 \def\@pingu@draw@wing@items@left{%
 	\pingu@may@draw@wing{lollipop}{left}%
 	\pingu@may@draw@wing{cane}{left}%
+	\pingu@may@draw@wing{handcast}{left}%
 }
 
 \def\@pingu@draw@wing@items@right{%
 	\pingu@may@draw@wing{lollipop}{right}%
 	\pingu@may@draw@wing{cane}{right}%
+	\pingu@may@draw@wing{handcast}{right}%
 }
 
 \def\pingu@create@wing@extra#1#2#3{%
@@ -997,6 +999,13 @@
 	\pingu@block[thick,rotate around={\@angle-1:(\pingu@name-lollipop-#1-top)}]{\@col} (\pingu@name-lollipop-#1-top)++(0,.5\p@) ellipse [x radius=1.4mm, y radius=\p@];
 }
 
+% ..######.....###....##....##.########
+% .##....##...##.##...###...##.##......
+% .##........##...##..####..##.##......
+% .##.......##.....##.##.##.##.######..
+% .##.......#########.##..####.##......
+% .##....##.##.....##.##...###.##......
+% ..######..##.....##.##....##.########
 \pingu@create@wing@extra{cane}{%
   cane \@lr/.code         = {\pingu@set@extra{cane\@lr}{true}\pingu@color{cane\@lr}{##1}},
   cane \@lr/.default      = pingu@bronze,
@@ -1011,6 +1020,26 @@
 		\pingu@block[thick,rotate around={\@angle-5:(\pingu@name-wing-#1)}]{\@col}(\pingu@name-wing-#1)++(0,-7mm) -- ++(0,15mm) arc(0:180:2.25mm and 2.2mm) arc(180:360:.3mm and .275mm) arc(180:0:1.65mm and 1.65mm) -- ++(0,-15mm) arc(180:360:.3mm and .275mm) -- cycle;
 	\fi
 }
+
+% .##.....##....###....##....##.########......######.....###.....######..########
+% .##.....##...##.##...###...##.##.....##....##....##...##.##...##....##....##...
+% .##.....##..##...##..####..##.##.....##....##........##...##..##..........##...
+% .#########.##.....##.##.##.##.##.....##....##.......##.....##..######.....##...
+% .##.....##.#########.##..####.##.....##....##.......#########.......##....##...
+% .##.....##.##.....##.##...###.##.....##....##....##.##.....##.##....##....##...
+% .##.....##.##.....##.##....##.########......######..##.....##..######.....##...
+\pingu@create@wing@extra{handcast}{%
+  handcast \@lr/.forward to    = hand cast \@lr,
+  hand cast \@lr/.code         = {\pingu@set@extra{handcast\@lr}{true}\@namedef{pingu@handcast@\@lr}{##1}},
+  hand cast \@lr/.default      = {X},
+  handcast \@lr\space color/.forward to    = hand cast \@lr\space color,
+  hand cast \@lr\space color/.code = \pingu@color{handcast@\@lr @color}{##1},%
+}{hand cast \@lr\space color=pingu@purple}
+\def\pingu@draw@wi@handcast#1{%
+	\pingu@setup@wing{handcast}{#1}%
+	\path[rotate around={\@angle:(\pingu@name-wing-#1)}] (\pingu@name-wing-#1)++(0,5mm) node[\csname pingu@color@handcast@\@lr @color\endcsname] {\@nameuse{pingu@handcast@#1}};
+}
+
 
 \let\pingu@create@selection\relax
 \let\pingu@create@extra\relax
