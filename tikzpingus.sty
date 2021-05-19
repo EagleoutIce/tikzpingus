@@ -8,7 +8,7 @@
 \ProcessOptions*%
 
 \RequirePackage{tikz}
-\usetikzlibrary{intersections,patterns.meta,decorations.pathmorphing}
+\usetikzlibrary{intersections,patterns.meta,decorations.pathmorphing,shadings}
 
 \pgfdeclarelayer{background}\pgfdeclarelayer{foreground}\pgfdeclarelayer{middle}
 \pgfsetlayers{background,main,middle,foreground}
@@ -760,7 +760,15 @@
 \pingu@block{\pingu@color@hat} (\z@,.134cm) ellipse [x radius=.95\pingu@hat@w@half, y radius=.13cm];
 \endscope\endscope}
 
+% ..######..########...#######..##......##.##....##
+% .##....##.##.....##.##.....##.##..##..##.###...##
+% .##.......##.....##.##.....##.##..##..##.####..##
+% .##.......########..##.....##.##..##..##.##.##.##
+% .##.......##...##...##.....##.##..##..##.##..####
+% .##....##.##....##..##.....##.##..##..##.##...###
+% ..######..##.....##..#######...###..###..##....##
 \newif\if@pingu@x@crown@ddd@ % 3d
+\newif\if@pingu@x@crown@shade@ % 3d
 \pingu@create@extra{crown}{%
   crown/.code             = \pingu@set@extra{crown}{true}\pingu@color{crown}{#1},
   crown/.default          = pingu@yellow,
@@ -770,8 +778,11 @@
   crown back/.code        = \pingu@color{crown@back}{#1},
   crown front bend/.code  = \def\pingu@x@crown@f@bend{#1},
   crown back bend/.code   = \def\pingu@x@crown@b@bend{#1},
+  crown gem shade/.is if  = @pingu@x@crown@shade@, crown gem shade/.default = true,
+  crown gem colors/.code n args = 7{\pingu@color{crown@gem@a}{#1}\pingu@color{crown@gem@b}{#2}\pingu@color{crown@gem@c}{#3}\pingu@color{crown@gem@d}{#4}\pingu@color{crown@gem@e}{#5}\pingu@color{crown@gem@f}{#6}\pingu@color{crown@gem@g}{#7}},
+  crown gem ring/.code   = \pingu@color{crown@gem@ring}{#1},
   crown position/.code args  = {#1:(#2,#3)#4}{\def\pingu@x@crown@angle{#1}\def\pingu@x@crown@xshift{#2}\def\pingu@x@crown@yshift{#3}\def\pingu@x@crown@scale{#4}},
-}{crown position={-9:(1mm,0)1},crown front bend=16,crown back bend=9,crown back=\pingu@color@crown!93!black,crown 3d}
+}{crown position={-9:(1mm,0)1},crown front bend=16,crown back bend=9,crown back=\pingu@color@crown!93!black,crown 3d,crown gem colors={pingu@purple}{pingu@blue}{pingu@green}{pingu@purple}{pingu@green}{pingu@blue}{pingu@purple},crown gem ring=\pingu@color@crown!85!white,crown gem shade}
 
 % color | bend1 | bend1
 \def\pingu@draw@ea@crown@s#1#2#3{
@@ -792,6 +803,16 @@
 \pingu@block{#1} (r2)++(0,-.2mm) to[bend left=2] ++(0,1.95mm) -- (r1) -- cycle;
 }
 
+% TODO: shading option
+% color | at | shift | scale
+\def\pingu@draw@ea@crown@g#1#2#3#4{
+    \pingu@block{\pingu@color@crown@gem@ring} (#22)++(#3,0) ellipse [x radius=.65mm*#4, y radius=.885mm*#4];
+    \pingu@block{#1} (#22)++(#3,0) ellipse [x radius=.575mm*#4, y radius=.8mm*#4];
+    \if@pingu@x@crown@shade@
+    \protected@edef\@tmp{#1}\ifx\@tmp\@pingu@none\else
+    \shade[ball color=#1,fill opacity=.33] (#22)++(#3,0) ellipse [x radius=.575mm*#4, y radius=.8mm*#4];
+    \fi\fi
+}
 \def\pingu@draw@ea@crown{%
 \scope[rotate around={\pingu@x@crown@angle:(\pingu@name-head-top)},%
        shift={(\pingu@name-head-top)},
@@ -800,15 +821,27 @@
 % draw front
 \if@pingu@x@crown@ddd@
     \pingu@draw@ea@crown@s{\pingu@color@crown}{right}{left}
+    \def\@tmpa{.06mm}\def\@tmpb{.035mm}
 \else
     \pingu@draw@ea@crown@s{\pingu@color@crown}{left}{right}
+    \def\@tmpa{-.015mm}\def\@tmpb{-.035mm}
 \fi
+% draw the emaralds
+\pingu@draw@ea@crown@g{\pingu@color@crown@gem@b}{a}{-\@tmpa}1
+\pingu@draw@ea@crown@g{\pingu@color@crown@gem@c}{b}{-\@tmpb}1
+\pingu@draw@ea@crown@g{\pingu@color@crown@gem@d}{x}{\z@}{1.35}
+\pingu@draw@ea@crown@g{\pingu@color@crown@gem@e}{d}{\@tmpb}1
+\pingu@draw@ea@crown@g{\pingu@color@crown@gem@f}{e}{\@tmpa}1
+\pgfonlayer{background}
+\pingu@block{\pingu@color@crown@gem@a} (r2) ellipse [x radius=.3mm, y radius=.8mm];
+\pingu@block{\pingu@color@crown@gem@ring} (r2) ellipse [x radius=.1mm, y radius=.885mm];
+\pingu@block{\pingu@color@crown@gem@g} (l2) ellipse [x radius=.3mm, y radius=.8mm];
+\pingu@block{\pingu@color@crown@gem@ring} (l2) ellipse [x radius=.1mm, y radius=.885mm];
 % draw back if 3d
 \if@pingu@x@crown@ddd@
-    \pgfonlayer{background}
     \pingu@draw@ea@crown@s{\pingu@color@crown@back}{left}{right}
-    \endpgfonlayer
 \fi
+\endpgfonlayer
 \endscope
 }
 
