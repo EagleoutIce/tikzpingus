@@ -323,16 +323,16 @@
 	\pingu@block{pingu@black} ([yshift=.075cm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left) coordinate (\pingu@name-left-eye) ellipse [x radius=.1535cm, y radius=.1575cm];
 	\pingu@block{\pingu@color@eye@second@left} ([yshift=.075cm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left) coordinate (\pingu@name-left-eye) ellipse [x radius=.1325cm, y radius=.1375cm];
 	\fill[\pingu@color@eye@left,/pingu/@glow] (\pingu@name-left-eye) circle [radius=1.325mm];
-	\pingu@block[fill opacity=.66]{\pingu@color@eye@left} (\pingu@name-left-eye)++(0,0.36) to[bend right=58] ++(0.36,-0.36) to[bend right=58] ++(-0.36,-0.36) to[bend right=58] ++(-0.36,0.36) to[bend right=58] cycle;
-	\fill[/pingu/@glow,fill=\pingu@color@eye@left!20!pingu@yellow!15!pingu@white] (\pingu@name-left-eye)++(0,0.10) to[bend right=60] ++(0.10,-0.10) to[bend right=60] ++(-0.10,-0.10) to[bend right=60] ++(-0.10,0.10) to[bend right=60] cycle;
+	\pingu@block[fill opacity=.66]{\pingu@color@eye@left} (\pingu@name-left-eye)++(0,.36) to[bend right=58] ++(.36,-.36) to[bend right=58] ++(-.36,-.36) to[bend right=58] ++(-.36,.36) to[bend right=58] cycle;
+	\fill[/pingu/@glow,fill=\pingu@color@eye@left!20!pingu@yellow!15!pingu@white] (\pingu@name-left-eye)++(0,.10) to[bend right=60] ++(.10,-.10) to[bend right=60] ++(-.10,-.10) to[bend right=60] ++(-.10,.10) to[bend right=60] cycle;
 	\fill[\pingu@color@eye@left!20!pingu@yellow!7!pingu@white] (\pingu@name-left-eye) circle [radius=.5pt]; %
 	\pingu@block{pingu@white} (\pingu@name-left-eye) circle [radius=.15pt];
 }{%
 	\pingu@block{pingu@black} ([yshift=.075cm,xshift=-\pingu@eye@shift]\pingu@name-eye-back-right) coordinate (\pingu@name-right-eye) ellipse [x radius=.1535cm, y radius=.1575cm];
 	\pingu@block{\pingu@color@eye@second@right} ([yshift=.075cm,xshift=-\pingu@eye@shift]\pingu@name-eye-back-right) coordinate (\pingu@name-right-eye) ellipse [x radius=.1325cm, y radius=.1375cm];
 	\fill[\pingu@color@eye@right,/pingu/@glow] (\pingu@name-right-eye) circle [radius=1.325mm];
-	\pingu@block[fill opacity=.66]{\pingu@color@eye@right} (\pingu@name-right-eye)++(0,0.36) to[bend right=58] ++(0.36,-0.36) to[bend right=58] ++(-0.36,-0.36) to[bend right=58] ++(-0.36,0.36) to[bend right=58] cycle;
-	\fill[/pingu/@glow,fill=\pingu@color@eye@right!20!pingu@yellow!15!pingu@white] (\pingu@name-right-eye)++(0,0.10) to[bend right=60] ++(0.10,-0.10) to[bend right=60] ++(-0.10,-0.10) to[bend right=60] ++(-0.10,0.10) to[bend right=60] cycle;
+	\pingu@block[fill opacity=.66]{\pingu@color@eye@right} (\pingu@name-right-eye)++(0,.36) to[bend right=58] ++(.36,-.36) to[bend right=58] ++(-.36,-.36) to[bend right=58] ++(-.36,.36) to[bend right=58] cycle;
+	\fill[/pingu/@glow,fill=\pingu@color@eye@right!20!pingu@yellow!15!pingu@white] (\pingu@name-right-eye)++(0,.10) to[bend right=60] ++(.10,-.10) to[bend right=60] ++(-.10,-.10) to[bend right=60] ++(-.10,.10) to[bend right=60] cycle;
 	\fill[\pingu@color@eye@right!20!pingu@yellow!7!pingu@white] (\pingu@name-right-eye) circle [radius=.5pt]; %
 	\pingu@block{pingu@white} (\pingu@name-right-eye) circle [radius=.15pt];
 }[pingu@purple]
@@ -755,11 +755,9 @@
 \pingu@block{\pingu@color@hat} \pingupathhatupper;
 \scope
 \clip\pingupathhatupper;
-\pingu@block{\pingu@color@hat@ribbon} (\z@,0.02cm) ellipse [x radius=.95\pingu@hat@w@half, y radius=.13cm];
+\pingu@block{\pingu@color@hat@ribbon} (\z@,.02cm) ellipse [x radius=.95\pingu@hat@w@half, y radius=.13cm];
 \pingu@block{\pingu@color@hat} (\z@,.134cm) ellipse [x radius=.95\pingu@hat@w@half, y radius=.13cm];
-\endscope
-\endscope
-}
+\endscope\endscope}
 
 
 % .##.....##....###....##........#######.
