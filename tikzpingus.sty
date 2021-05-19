@@ -189,11 +189,6 @@
 \scope[/pingu/@pingu]
 \@pingu@base
 
-\pgfonlayer{background}
-	\@pingu@drawer@hairstyle@
-	\pingu@draw@feet
-\endpgfonlayer
-
 \coordinate (\pingu@name-belly-back) at (\pingu@w@half,-1cm);
 \coordinate (\pingu@name-belly-center) at (\pingu@w@half,-.68\pingu@side@h@half);
 
@@ -226,11 +221,16 @@
 \@pingu@drawer@leftwing@
 \@pingu@drawer@rightwing@
 
-
 \@pingu@drawer@bill@
 
 \pingu@draw@extras@above
 \pingu@draw@wing@items
+
+\pgfonlayer{background}
+	\@pingu@drawer@hairstyle@
+	\pingu@draw@feet
+\endpgfonlayer
+
 \endscope
 \if@pingu@draw@metadots
 \@pingu@draw@dots
@@ -697,6 +697,7 @@
 	\if@pingu@x@glassesround@ \pingu@draw@ea@glassesround \fi
 	\if@pingu@x@strawhat@ \pingu@draw@ea@strawhat \fi
 	\if@pingu@x@hat@ \pingu@draw@ea@hat \fi
+	\if@pingu@x@crown@ \pingu@draw@ea@crown \fi
 	\if@pingu@x@devil@ \pingu@draw@ea@devil \fi
 	\if@pingu@x@halo@ \pingu@draw@ea@halo \fi
 }
@@ -744,11 +745,11 @@
   hat coronal/.code = \pingu@color{hat@coronal}{#1},
   hat ribbon/.code = \pingu@color{hat@ribbon}{#1},
   hat position/.code args  = {#1:(#2,#3)#4}{\def\pingu@x@hat@angle{#1}\def\pingu@x@hat@xshift{#2}\def\pingu@x@hat@yshift{#3}\def\pingu@x@hat@scale{#4}},
-}{hat position={-2:(.035cm,0)1},hat base=\pingu@color@hat,hat coronal=\pingu@color@hat!91!white,hat ribbon=\pingu@color@hat!87!white}
+}{hat position={-2:(.35mm,0)1},hat base=\pingu@color@hat,hat coronal=\pingu@color@hat!91!white,hat ribbon=\pingu@color@hat!87!white}
 
 \newdimen\pingu@hat@w@half \pingu@hat@w@half=.925cm
 \newdimen\pingu@hat@h \pingu@hat@h=.625cm
-\def\pingupathhatupper{[rounded corners=.025cm](-.65cm,-.25cm) to[out=90,in=200] ++(.35cm,\pingu@hat@h) to[bend left=11] ++(.25cm,0) to[bend right=2.5] ++(.1cm,0) to[bend left=11] ++(.25cm,0) to[out=-20,in=90] ++(.35cm,-\pingu@hat@h) to[bend left=12] cycle}
+\def\pingupathhatupper{[rounded corners=.025cm](-.65cm,-.25cm) to[out=90,in=200] ++(.35cm,\pingu@hat@h) to[bend left=11] ++(.25cm,0) to[bend right=2.5] ++(.1cm,0) to[bend left=11] ++(.25cm,0) to[out=-20,in=90] ++(.35cm,-\pingu@hat@h) to[bend left=12] (-.65cm,-.25cm) -- cycle}
 \def\pingu@draw@ea@hat{%
 \scope[rotate around={\pingu@x@hat@angle:(\pingu@name-head-top)},shift={(\pingu@name-head-top)},shift={(\pingu@x@hat@xshift,\pingu@x@hat@yshift)},scale=\pingu@x@hat@scale]
 \pingu@block[draw=\pingu@color@hat@coronal,thick]{\pingu@color@hat@base} (0,-.25cm)++(180:\pingu@hat@w@half{} and .15cm) arc (180:360:\pingu@hat@w@half{} and .15cm) arc (0:180:\pingu@hat@w@half{} and .115cm) -- cycle;
@@ -758,6 +759,21 @@
 \pingu@block{\pingu@color@hat@ribbon} (\z@,.02cm) ellipse [x radius=.95\pingu@hat@w@half, y radius=.13cm];
 \pingu@block{\pingu@color@hat} (\z@,.134cm) ellipse [x radius=.95\pingu@hat@w@half, y radius=.13cm];
 \endscope\endscope}
+
+\pingu@create@extra{crown}{%
+  crown/.code      = \pingu@set@extra{crown}{true}\pingu@color{crown}{#1},
+  crown/.default   = pingu@yellow,
+  crown position/.code args  = {#1:(#2,#3)#4}{\def\pingu@x@crown@angle{#1}\def\pingu@x@crown@xshift{#2}\def\pingu@x@crown@yshift{#3}\def\pingu@x@crown@scale{#4}},
+}{crown position={-9:(1mm,0)1}}
+
+\def\pingu@draw@ea@crown{%
+\scope[rotate around={\pingu@x@crown@angle:(\pingu@name-head-top)},shift={(\pingu@name-head-top)},shift={(\pingu@x@crown@xshift,\pingu@x@crown@yshift)},scale=\pingu@x@crown@scale]
+\pingu@block{\pingu@color@crown} [rounded corners=.2mm](-6.25mm,-.25cm) to[bend left=2] ++(0,3mm) to[bend right=16] ++(1.375cm,0) to[bend left=2] ++(0,-3mm) to[bend left=16] (-6mm,-.25cm) -- cycle;
+\pgfonlayer{background}
+\pingu@block{\pingu@color@crown!95!black} [rounded corners=.2mm](-6.25mm,-.25cm) to[bend left=2] ++(0,3mm) to[bend left=16] ++(1.375cm,0) to[bend left=2] ++(0,-3mm) to[bend right=16] (-6mm,-.25cm) -- cycle;
+\endpgfonlayer
+\endscope
+}
 
 
 % .##.....##....###....##........#######.
