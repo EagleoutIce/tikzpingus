@@ -763,14 +763,34 @@
 \pingu@create@extra{crown}{%
   crown/.code      = \pingu@set@extra{crown}{true}\pingu@color{crown}{#1},
   crown/.default   = pingu@yellow,
+  crown front bend/.code  = \def\pingu@x@crown@f@bend{#1},
+  crown back bend/.code   = \def\pingu@x@crown@b@bend{#1},
   crown position/.code args  = {#1:(#2,#3)#4}{\def\pingu@x@crown@angle{#1}\def\pingu@x@crown@xshift{#2}\def\pingu@x@crown@yshift{#3}\def\pingu@x@crown@scale{#4}},
-}{crown position={-9:(1mm,0)1}}
+}{crown position={-9:(1mm,0)1},crown front bend=16,crown back bend=9}
 
 \def\pingu@draw@ea@crown{%
 \scope[rotate around={\pingu@x@crown@angle:(\pingu@name-head-top)},shift={(\pingu@name-head-top)},shift={(\pingu@x@crown@xshift,\pingu@x@crown@yshift)},scale=\pingu@x@crown@scale]
-\pingu@block{\pingu@color@crown} [rounded corners=.2mm](-6.25mm,-.25cm) to[bend left=2] ++(0,3mm) to[bend right=16] ++(1.375cm,0) to[bend left=2] ++(0,-3mm) to[bend left=16] (-6mm,-.25cm) -- cycle;
+\pingu@block{\pingu@color@crown} [rounded corners=.2mm](-6.25mm,-.25cm) to[bend left=2] ++(0,3.25mm) to[bend right=\pingu@x@crown@f@bend]
+	coordinate[pos=.14-.07] (a1)  coordinate[pos=.14] (a2) coordinate[pos=.14+.07] (a3)
+	coordinate[pos=.30-.07] (b1)  coordinate[pos=.30] (b2) coordinate[pos=.30+.07] (b3)
+	coordinate[pos=.50-.07] (c1)  coordinate[pos=.50] (c2) coordinate[pos=.50+.07] (c3)
+	coordinate[pos=.69-.07] (d1)  coordinate[pos=.69] (d2) coordinate[pos=.69+.07] (d3)
+	coordinate[pos=.85-.07] (e1)  coordinate[pos=.85] (e2) coordinate[pos=.85+.07] (e3)
+	++(1.375cm,0) to[bend left=2] ++(0,-3.25mm) to[bend left=\pingu@x@crown@f@bend] (-6mm,-.25cm) -- cycle;
+\@for\a:={a,b,c,d,e}\do{
+	\pingu@block{\pingu@color@crown}  (\a1) to[bend right=\pingu@x@crown@f@bend] (\a3) -- ([yshift=1.85mm]\a2) -- cycle;
+}
 \pgfonlayer{background}
-\pingu@block{\pingu@color@crown!95!black} [rounded corners=.2mm](-6.25mm,-.25cm) to[bend left=2] ++(0,3mm) to[bend left=16] ++(1.375cm,0) to[bend left=2] ++(0,-3mm) to[bend right=16] (-6mm,-.25cm) -- cycle;
+\pingu@block{\pingu@color@crown!93!black} [rounded corners=.2mm](-6.25mm,-.25cm) to[bend left=2] ++(0,3.25mm) to[bend left=\pingu@x@crown@b@bend]
+	coordinate[pos=.14-.07] (a1)  coordinate[pos=.14] (a2) coordinate[pos=.14+.07] (a3)
+	coordinate[pos=.30-.07] (b1)  coordinate[pos=.30] (b2) coordinate[pos=.30+.07] (b3)
+	coordinate[pos=.50-.07] (c1)  coordinate[pos=.50] (c2) coordinate[pos=.50+.07] (c3)
+	coordinate[pos=.69-.07] (d1)  coordinate[pos=.69] (d2) coordinate[pos=.69+.07] (d3)
+	coordinate[pos=.85-.07] (e1)  coordinate[pos=.85] (e2) coordinate[pos=.85+.07] (e3)
+	++(1.375cm,0) to[bend left=2] ++(0,-3.25mm) to[bend right=\pingu@x@crown@b@bend] (-6mm,-.25cm) -- cycle;
+\@for\a:={a,b,c,d,e}\do{
+	\pingu@block{\pingu@color@crown!93!black}  (\a1) to[bend right=\pingu@x@crown@f@bend] (\a3) -- ([yshift=1.85mm]\a2) -- cycle;
+}
 \endpgfonlayer
 \endscope
 }
