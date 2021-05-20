@@ -811,9 +811,10 @@
     \pingu@block{#1}  ellipse [x radius=.633mm*#4, y radius=.85mm*#4];
     \protected@edef\@tmp{#1}\ifx\@tmp\@pingu@none\else
     \if@pingu@x@crown@shade@
-    \shade[ball color=#1,fill opacity=.33]  ellipse [x radius=.633mm*#4, y radius=.85mm*#4];
+    \shade[ball color=#1,fill opacity=.45,shading angle=-95]  ellipse [x radius=.633mm*#4, y radius=.85mm*#4];
     \else
-    \pingu@block{#1!90!white} (100:.633mm*#4 and .85mm*#4) arc (100:-70:.633mm*#4 and .85mm*#4) to[bend right=42] cycle;
+    \pingu@block[rotate around={7:(42:.3mm*#4 and .4mm*#4)}]{#1!45!pingu@white} (42:.3mm*#4 and .4mm*#4) ellipse[x radius=.17mm*#4, y radius=.24mm*#4];
+    \pingu@block[rotate around={7:(232:.275mm*#4 and .35mm*#4)}]{#1!45!pingu@white} (232:.275mm*#4 and .35mm*#4) ellipse[x radius=.06mm*#4, y radius=.085mm*#4];
     \fi\fi
 \endscope
 }
