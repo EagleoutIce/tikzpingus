@@ -806,12 +806,16 @@
 % TODO: shading option
 % color | at | shift | scale
 \def\pingu@draw@ea@crown@g#1#2#3#4{
-    \pingu@block{\pingu@color@crown@gem@ring} (#22)++(#3,0) ellipse [x radius=.65mm*#4, y radius=.885mm*#4];
-    \pingu@block{#1} (#22)++(#3,0) ellipse [x radius=.575mm*#4, y radius=.8mm*#4];
-    \if@pingu@x@crown@shade@
+\scope[shift={(#22)},shift={(#3,-.33mm)}]
+    \pingu@block{\pingu@color@crown@gem@ring}  ellipse [x radius=.715mm*#4, y radius=.925mm*#4];
+    \pingu@block{#1}  ellipse [x radius=.633mm*#4, y radius=.85mm*#4];
     \protected@edef\@tmp{#1}\ifx\@tmp\@pingu@none\else
-    \shade[ball color=#1,fill opacity=.33] (#22)++(#3,0) ellipse [x radius=.575mm*#4, y radius=.8mm*#4];
+    \if@pingu@x@crown@shade@
+    \shade[ball color=#1,fill opacity=.33]  ellipse [x radius=.633mm*#4, y radius=.85mm*#4];
+    \else
+    \pingu@block{#1!90!white} (100:.633mm*#4 and .85mm*#4) arc (100:-70:.633mm*#4 and .85mm*#4) to[bend right=42] cycle;
     \fi\fi
+\endscope
 }
 \def\pingu@draw@ea@crown{%
 \scope[rotate around={\pingu@x@crown@angle:(\pingu@name-head-top)},%
@@ -821,7 +825,7 @@
 % draw front
 \if@pingu@x@crown@ddd@
     \pingu@draw@ea@crown@s{\pingu@color@crown}{right}{left}
-    \def\@tmpa{.06mm}\def\@tmpb{.035mm}
+    \def\@tmpa{.05mm}\def\@tmpb{.025mm}
 \else
     \pingu@draw@ea@crown@s{\pingu@color@crown}{left}{right}
     \def\@tmpa{-.015mm}\def\@tmpb{-.035mm}
@@ -833,10 +837,10 @@
 \pingu@draw@ea@crown@g{\pingu@color@crown@gem@e}{d}{\@tmpb}1
 \pingu@draw@ea@crown@g{\pingu@color@crown@gem@f}{e}{\@tmpa}1
 \pgfonlayer{background}
-\pingu@block{\pingu@color@crown@gem@a} (r2) ellipse [x radius=.3mm, y radius=.8mm];
-\pingu@block{\pingu@color@crown@gem@ring} (r2) ellipse [x radius=.1mm, y radius=.885mm];
-\pingu@block{\pingu@color@crown@gem@g} (l2) ellipse [x radius=.3mm, y radius=.8mm];
-\pingu@block{\pingu@color@crown@gem@ring} (l2) ellipse [x radius=.1mm, y radius=.885mm];
+\pingu@block{\pingu@color@crown@gem@a} (r2)++(0,-.33mm) ellipse [x radius=.3mm, y radius=.8mm];
+\pingu@block{\pingu@color@crown@gem@ring} (r2)++(0,-.33mm) ellipse [x radius=.1mm, y radius=.885mm];
+\pingu@block{\pingu@color@crown@gem@g} (l2)++(0,-.33mm) ellipse [x radius=.3mm, y radius=.8mm];
+\pingu@block{\pingu@color@crown@gem@ring} (l2)++(0,-.33mm) ellipse [x radius=.1mm, y radius=.885mm];
 % draw back if 3d
 \if@pingu@x@crown@ddd@
     \pingu@draw@ea@crown@s{\pingu@color@crown@back}{left}{right}
