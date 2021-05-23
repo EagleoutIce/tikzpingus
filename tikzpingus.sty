@@ -625,14 +625,12 @@
 % .##.....##.##.......##.....##.##.....##.##......
 % .##.....##.########.########..##.....##.########
 \pingu@create@extra{medal}{%
-    % TODO: medal text
     % TODO: medal band
     medal/.code    	  = {\pingu@set@extra{medal}{true}\pingu@color{medal}{#1}},
     medal/.default    = pingu@yellow,%
     gold medal/.style = {medal, medal text=#1}, gold medal/.default={1},
     silver medal/.style = {medal=pingu@silver, medal text=#1}, silver medal/.default={2},
     bronze medal/.style = {medal=pingu@bronze, medal text=#1}, bronze medal/.default={3},
-    gold medal/.style = {medal, medal text=#1}, gold medal/.default={1},
     medal band/.code  = \pingu@color{medal@band}{#1},%
     medal shade/.code  = \pingu@color{medal@shade}{#1},%
     medal shade width/.code  = \def\pingu@medal@shade@w{#1},%
