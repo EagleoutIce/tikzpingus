@@ -728,16 +728,15 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
 
 
 
-% TODO: auto append?
-% probably not; allows for clear drawing order independent of addition/deps
+% NOTE: No auto append to allow easy order change
 \def\pingu@draw@extras@above{%
     \if@pingu@x@eyeframe@ \pingu@draw@ea@eyeframe \fi
     \if@pingu@x@glasses@ \pingu@draw@ea@glasses \fi
     \if@pingu@x@glassesround@ \pingu@draw@ea@glassesround \fi
+    \if@pingu@x@devilhorns@ \pingu@draw@ea@devilhorns \fi
     \if@pingu@x@strawhat@ \pingu@draw@ea@strawhat \fi
     \if@pingu@x@hat@ \pingu@draw@ea@hat \fi
     \if@pingu@x@crown@ \pingu@draw@ea@crown \fi
-    \if@pingu@x@devil@ \pingu@draw@ea@devil \fi
     \if@pingu@x@halo@ \pingu@draw@ea@halo \fi
 }
 
@@ -1012,28 +1011,33 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
     \endscope
 }
 
-% .########..########.##.....##.####.##......
-% .##.....##.##.......##.....##..##..##......
-% .##.....##.##.......##.....##..##..##......
-% .##.....##.######...##.....##..##..##......
-% .##.....##.##........##...##...##..##......
-% .##.....##.##.........##.##....##..##......
-% .########..########....###....####.########
-\pingu@create@extra{devil}{%
-    devil/.code = \pingu@set@extra{devil}{true}\pingu@color{devil}{#1},
-    devil/.default = pingu@purple,
-}{}
+% .########..########.##.....##.####.##..........##.....##..#######..########..##....##..######.
+% .##.....##.##.......##.....##..##..##..........##.....##.##.....##.##.....##.###...##.##....##
+% .##.....##.##.......##.....##..##..##..........##.....##.##.....##.##.....##.####..##.##......
+% .##.....##.######...##.....##..##..##..........#########.##.....##.########..##.##.##..######.
+% .##.....##.##........##...##...##..##..........##.....##.##.....##.##...##...##..####.......##
+% .##.....##.##.........##.##....##..##..........##.....##.##.....##.##....##..##...###.##....##
+% .########..########....###....####.########....##.....##..#######..##.....##.##....##..######.
+\pingu@create@extra{devilhorns}{%
+    devilhorns/.forward to = /pingu/devil horns,
+    devil-horns/.forward to = /pingu/devil horns,
+    devil horns/.code    = \pingu@set@extra{devilhorns}{true}\pingu@color{devilhorns}{#1},
+    devil horns/.default = pingu@purple,
+    devil horns b/.code  = \pingu@color{devilhorns@b}{#1},
+    devilhorns b/.forward to = /pingu/devil horns b,
+    devil-horns b/.forward to = /pingu/devil horns b
+}{devil horns b=\pingu@color@devilhorns}
 
-\pgfmathsetmacro\pingu@devil@baseang@l{90-360*(1-\pinguanglehl)}
-\pgfmathsetmacro\pingu@devil@baseang@r{90-360*(1-\pinguanglehr)}
-\def\pingu@devil@baseoff{12}
-\def\pingu@devil@yshift{.65mm}
-\def\pingu@draw@ea@devil{%
+\pgfmathsetmacro\pingu@devilhorns@baseang@l{90-360*(1-\pinguanglehl)}
+\pgfmathsetmacro\pingu@devilhorns@baseang@r{90-360*(1-\pinguanglehr)}
+\def\pingu@devilhorns@baseoff{12}
+\def\pingu@devilhorns@yshift{.65mm}
+\def\pingu@draw@ea@devilhorns{%
     % 90 - 360*.06
-    \pingu@block{\pingu@color@devil} ([yshift=-\pingu@devil@yshift]\pingu@name-head-left) arc (\pingu@devil@baseang@l:\pingu@devil@baseang@l-\pingu@devil@baseoff:\pingu@w@half{} and .9\pingu@w@half) coordinate (\pingu@name-devil-left-goal) to[out=32,in=-32,looseness=.9] ++(.3mm,2.65mm) to[bend left=17] ([yshift=-\pingu@devil@yshift]\pingu@name-head-left) -- cycle;
-    \pingu@block{\pingu@color@devil} ([yshift=-\pingu@devil@yshift]\pingu@name-head-left) to [bend right=38] (\pingu@name-devil-left-goal) arc (\pingu@devil@baseang@l-\pingu@devil@baseoff:\pingu@devil@baseang@l:\pingu@w@half{} and .9\pingu@w@half) -- cycle;
-    \pingu@block{\pingu@color@devil} ([yshift=-\pingu@devil@yshift]\pingu@name-head-right) arc (\pingu@devil@baseang@r:\pingu@devil@baseang@r+\pingu@devil@baseoff:\pingu@w@half{} and .9\pingu@w@half) coordinate (\pingu@name-devil-right-goal) to[out=148,in=-148,looseness=.9] ++(-.3mm,2.65mm) to[bend right=17] ([yshift=-\pingu@devil@yshift]\pingu@name-head-right) -- cycle;
-    \pingu@block{\pingu@color@devil} ([yshift=-\pingu@devil@yshift]\pingu@name-head-right) to [bend left=38] (\pingu@name-devil-right-goal) arc (\pingu@devil@baseang@r+\pingu@devil@baseoff:\pingu@devil@baseang@r:\pingu@w@half{} and .9\pingu@w@half) -- cycle;
+    \pingu@block{\pingu@color@devilhorns} ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-left) arc (\pingu@devilhorns@baseang@l:\pingu@devilhorns@baseang@l-\pingu@devilhorns@baseoff:\pingu@w@half{} and .9\pingu@w@half) coordinate (\pingu@name-devilhorns-left-goal) to[out=32,in=-32,looseness=.9] ++(.3mm,2.65mm) to[bend left=17] ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-left) -- cycle;
+    \pingu@block{\pingu@color@devilhorns} ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-left) to [bend right=38] (\pingu@name-devilhorns-left-goal) to[bend right=30] ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-left) -- cycle;
+    \pingu@block{\pingu@color@devilhorns@b} ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-right) arc (\pingu@devilhorns@baseang@r:\pingu@devilhorns@baseang@r+\pingu@devilhorns@baseoff:\pingu@w@half{} and .9\pingu@w@half) coordinate (\pingu@name-devilhorns-right-goal) to[out=148,in=-148,looseness=.9] ++(-.3mm,2.65mm) to[bend right=17] ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-right) -- cycle;
+    \pingu@block{\pingu@color@devilhorns@b} ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-right) to [bend left=38] (\pingu@name-devilhorns-right-goal) to[bend left=30] ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-right) -- cycle;
 }
 
 %
