@@ -153,9 +153,17 @@
                                    /pingu/hair 5 color={#1}},
   hair style/.forward to        = /pingu/hairstyle,
   hairstyle/.code               = \pingu@hairstyle@select{#1},
-  % TODO: glow color
   % size
-  height/.code                  = \setlength{\pingu@side@h@half}{#1},%
+  height/.code                 = \setlength{\pingu@side@h@half}{#1},%
+  small/.forward to            = /pingu/small size,
+  small height/.forward to     = /pingu/small size,
+  small size/.style            = {height=1.1cm},
+  normal/.forward to           = /pingu/normal size,
+  normal height/.forward to    = /pingu/normal size,
+  normal size/.style           = {height=1.275cm},
+  large/.forward to           = /pingu/large size,
+  large height/.forward to    = /pingu/large size,
+  large size/.style            = {height=1.5cm},
   defaults/.style               = {%
     name={pingu}, feet={pingu@yellow}, body={pingu@main}, body front={pingu@white},%
     eyes={normal}, eyes color={pingu@black}, second eyes color={pingu@white},
