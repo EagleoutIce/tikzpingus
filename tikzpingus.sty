@@ -465,19 +465,17 @@ to[bend right=\pingu@bend] ++(0,\pingu@side@h@half+\pingu@outer@off)
 
 %%% Feet %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \def\pingu@draw@feet{%
-    \coordinate (\pingu@name-foot-right-1) at ([xshift=-.5\pingu@foot@single@h]\pingu@name-foot-right);
-    \coordinate (\pingu@name-foot-right-2) at (\pingu@name-foot-right);
-    \coordinate (\pingu@name-foot-right-3) at ([xshift= .5\pingu@foot@single@h]\pingu@name-foot-right);
-    \pingu@block[rotate around={-25-\basicfeetbend:(\pingu@name-foot-right-1)}]{\pingu@color@foot@right} (\pingu@name-foot-right-1) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
-    \pingu@block[rotate around={-\basicfeetbend:(\pingu@name-foot-right-2)}]{\pingu@color@foot@right} (\pingu@name-foot-right-2) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
-    \pingu@block[rotate around={25-\basicfeetbend:(\pingu@name-foot-right-3)}]{\pingu@color@foot@right} (\pingu@name-foot-right-3) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
+    \coordinate (@tmp) at ([xshift=-.5\pingu@foot@single@h]\pingu@name-foot-right);
+    \pingu@block[rotate around={-25-\basicfeetbend:(@tmp)}]{\pingu@color@foot@right} (@tmp) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
+    \pingu@block[rotate around={-\basicfeetbend:(\pingu@name-foot-right)}]{\pingu@color@foot@right} (\pingu@name-foot-right) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
+    \coordinate (@tmp) at ([xshift= .5\pingu@foot@single@h]\pingu@name-foot-right);
+    \pingu@block[rotate around={25-\basicfeetbend:(@tmp)}]{\pingu@color@foot@right} (@tmp) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
 
-    \coordinate (\pingu@name-foot-left-1) at ([xshift=-.5\pingu@foot@single@h]\pingu@name-foot-left);
-    \coordinate (\pingu@name-foot-left-2) at (\pingu@name-foot-left);
-    \coordinate (\pingu@name-foot-left-3) at ([xshift= .5\pingu@foot@single@h]\pingu@name-foot-left);
-    \pingu@block[rotate around={-25+\basicfeetbend:(\pingu@name-foot-left-1)}]{\pingu@color@foot@left} (\pingu@name-foot-left-1) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
-    \pingu@block[rotate around={\basicfeetbend:(\pingu@name-foot-left-2)}]{\pingu@color@foot@left} (\pingu@name-foot-left-2) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
-    \pingu@block[rotate around={25+\basicfeetbend:(\pingu@name-foot-left-3)}]{\pingu@color@foot@left} (\pingu@name-foot-left-3) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
+    \coordinate (@tmp) at ([xshift=-.5\pingu@foot@single@h]\pingu@name-foot-left);
+    \pingu@block[rotate around={-25+\basicfeetbend:(@tmp)}]{\pingu@color@foot@left} (@tmp) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
+    \pingu@block[rotate around={\basicfeetbend:(\pingu@name-foot-left)}]{\pingu@color@foot@left} (\pingu@name-foot-left) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
+    \coordinate (@tmp) at ([xshift= .5\pingu@foot@single@h]\pingu@name-foot-left);
+    \pingu@block[rotate around={25+\basicfeetbend:(@tmp)}]{\pingu@color@foot@left} (@tmp) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
 }
 
 %%% Bill %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
