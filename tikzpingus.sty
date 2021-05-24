@@ -901,7 +901,7 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
     halo/.code    	 = \pingu@set@extra{halo}{true}\pingu@color{halo}{#1},
     halo/.default    = pingu@lightblue,
     halo glow/.is if = @pingu@x@halo@glow% only active if glows loaded
-}{halo glow=true}
+}{halo glow=\ifpengu@setup@glows@ true\else false\fi}
 
 \def\pingu@draw@ea@halo{%
 \pingu@block[even odd rule]{\pingu@color@halo} (\pingu@name-head-top) circle [x radius=\pingu@w@half-1mm,y radius=2.5mm] circle [x radius=\pingu@w@half-1.95mm,y radius=1.55mm];
