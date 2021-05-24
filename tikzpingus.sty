@@ -98,6 +98,8 @@
   @block/.style                 = {/pingu/@pingu@all=#1, fill=#1},
   @draw/.style                  = {/pingu/@pingu@all=#1, cap=round, draw=#1},
   @text/.style                  = {transform shape,text=\pingu@color@body@main},
+  @clip even odd rule/.code={\pgfseteorule}, % Credit to Andrew Stacey
+  @invclip/.style               = {clip,insert path=[/pingu/@clip even odd rule]{[reset cm](-\maxdimen,-\maxdimen)rectangle(\maxdimen,\maxdimen)}},
   @pingu/.style = {},
   % feet
   left foot/.code               = \pingu@color{foot@left}{#1},
@@ -237,7 +239,18 @@
 \fi
 \endgroup
 }
-
+% Note: to be used in clippies
+\def\pingu@path@lowerpingu{(0,\pingu@outer@off)
+% left side
+to[bend right=\pingu@bend] ++(0,-\pingu@side@h@half-\pingu@outer@off)
+% feety stuff
+arc (180:270:\pingu@foot@outer@w{} and \pingu@foot@outer@h)
+arc (270:360:\pingu@foot@inner@w{} and \pingu@foot@inner@h) -- ++(\pingu@foot@offset@w,0)
+arc (180:270:\pingu@foot@inner@w{} and \pingu@foot@inner@h)
+arc (270:360:\pingu@foot@outer@w{} and \pingu@foot@outer@h)%
+% right side
+to[bend right=\pingu@bend] ++(0,\pingu@side@h@half+\pingu@outer@off)
+-- (0,\pingu@outer@off) -- cycle}
 \def\@pingu@base{%
     \pingu@block[save path=\pingu@lowerpingu]{\pingu@color@body@main} (0,\pingu@outer@off)
         % left side
@@ -370,12 +383,15 @@
 
 
 \@pingu@wings@s{wave}{%
-\pgfonlayer{background}
     \coordinate (\pingu@name-wing-left-start) at ([yshift=-5.5mm]\pingu@name-wings-side-left);
-    %\pingu@block[rotate around={-39:(\pingu@name-wing-left-start)}]{\pingu@color@left@wing} (\pingu@name-wing-left-start) ellipse [x radius=2.25mm, y radius=9.25mm];
-    \pingu@block[rotate around={-39:(\pingu@name-wing-left-start)}]{\pingu@color@left@wing} (\pingu@name-wing-left-start) ++(162:2.25mm and 9.25mm) arc (162:-16:2.25mm and 9.25mm) +(90:.225cm and .925cm) coordinate (\pingu@name-wing-left-tip) +(90:.175cm and .775cm) coordinate (\pingu@name-wing-left);
+    \scope
+    \pgfinterruptboundingbox
+    \path[/pingu/@invclip] \pingu@path@lowerpingu;
+    \endpgfinterruptboundingbox
+    \pingu@block[rotate around={-39:(\pingu@name-wing-left-start)}]{\pingu@color@left@wing} (\pingu@name-wing-left-start) ellipse [x radius=2.25mm, y radius=9.25mm] coordinate (\pingu@name-wing-left-tip) +(90:.175cm and .775cm) coordinate (\pingu@name-wing-left);
+    \endscope
     \pingu@block{\pingu@color@left@wing} (\pingu@name-wing-left-start)++(0,5mm) to[bend right=60] ++(1mm,-.8mm) -- ++(-1mm,-2mm);
-\endpgfonlayer}{%
+}{%
 \pgfonlayer{background}
     \coordinate (\pingu@name-wing-right-start) at ([yshift=-5.5mm]\pingu@name-wings-side-right);
     \pingu@block[rotate around={39:(\pingu@name-wing-right-start)}]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.225cm, y radius=.925cm] +(90:.225cm and .925cm) coordinate (\pingu@name-wing-right-tip) +(90:.175cm and .775cm) coordinate (\pingu@name-wing-right);
@@ -507,10 +523,10 @@
   }
 
   \csname @pingu@wingitem@\@pingu@select@leftwing@ @\endcsname \colorlet{@wmark}{magenta} \else \colorlet{@wmark}{teal} \fi
-  \pingu@block[draw=@wmark,thick,rotate around={\csname @pingu@wingangle@\@pingu@select@leftwing@ @\endcsname:(\pingu@name-wing-left)}]{@wmark}
+  \pingu@block[/pingu/@draw=@wmark,thick,rotate around={\csname @pingu@wingangle@\@pingu@select@leftwing@ @\endcsname:(\pingu@name-wing-left)}]{@wmark}
     (\pingu@name-wing-left)++(0,3mm) circle [radius=1mm] -- ++(0,-6mm);
   \csname @pingu@wingitem@\@pingu@select@rightwing@ @\endcsname \colorlet{@wmark}{magenta} \else \colorlet{@wmark}{teal} \fi
-  \pingu@block[draw=@wmark,thick,rotate around={-\csname @pingu@wingangle@\@pingu@select@rightwing@ @\endcsname:(\pingu@name-wing-right)}]{@wmark}
+  \pingu@block[/pingu/@draw=@wmark,thick,rotate around={-\csname @pingu@wingangle@\@pingu@select@rightwing@ @\endcsname:(\pingu@name-wing-right)}]{@wmark}
     (\pingu@name-wing-right)++(0,3mm) circle [radius=1mm] -- ++(0,-6mm);
 \endpgfonlayer
 }
@@ -752,7 +768,7 @@
 \def\pingupathhatupper{[rounded corners=.025cm](-.65cm,-.25cm) to[out=90,in=200] ++(.35cm,\pingu@hat@h) to[bend left=11] ++(.25cm,0) to[bend right=2.5] ++(.1cm,0) to[bend left=11] ++(.25cm,0) to[out=-20,in=90] ++(.35cm,-\pingu@hat@h) to[bend left=12] (-.65cm,-.25cm) -- cycle}
 \def\pingu@draw@ea@hat{%
 \scope[rotate around={\pingu@x@hat@angle:(\pingu@name-head-top)},shift={(\pingu@name-head-top)},shift={(\pingu@x@hat@xshift,\pingu@x@hat@yshift)},scale=\pingu@x@hat@scale]
-\pingu@block[draw=\pingu@color@hat@coronal,thick]{\pingu@color@hat@base} (0,-.25cm)++(180:\pingu@hat@w@half{} and .15cm) arc (180:360:\pingu@hat@w@half{} and .15cm) arc (0:180:\pingu@hat@w@half{} and .115cm) -- cycle;
+\pingu@block[/pingu/@draw=\pingu@color@hat@coronal,thick]{\pingu@color@hat@base} (0,-.25cm)++(180:\pingu@hat@w@half{} and .15cm) arc (180:360:\pingu@hat@w@half{} and .15cm) arc (0:180:\pingu@hat@w@half{} and .115cm) -- cycle;
 \pingu@block{\pingu@color@hat} \pingupathhatupper;
 \scope
 \clip\pingupathhatupper;
