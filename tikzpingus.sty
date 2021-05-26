@@ -1,17 +1,22 @@
 \def\filename{tikzpingus}
 \ProvidesPackage{\filename}[2021/04/30 version v1.0 Penguins in TikZ]
 
-
 \newif\ifpengu@setup@glows@
 \DeclareOption{glows}{\pengu@setup@glows@true}
 \DeclareOption{noglows}{\pengu@setup@glows@false}
+
+\newif\ifpengu@setup@manual@layers@
+\DeclareOption{manual-layers}{\pengu@setup@manual@layers@true}
+\DeclareOption{nomanual-layers}{\pengu@setup@manual@layers@false}
 \ProcessOptions*%
 
 \RequirePackage{tikz}
 \usetikzlibrary{intersections,patterns.meta,decorations.pathmorphing,shadings}
 
 \pgfdeclarelayer{background}\pgfdeclarelayer{foreground}\pgfdeclarelayer{middle}
+\ifpengu@setup@manual@layers@\else
 \pgfsetlayers{background,main,middle,foreground}
+\fi
 
 \def\@pingu@color@ #1#2(#3,#4,#5){\definecolor{pingu@#1}{#2}{#3,#4,#5}}
 \@pingu@color@{main}RGB(3,14,29)
@@ -249,7 +254,7 @@
 \@pingu@draw@dots
 \fi
 \endgroup
-}
+\ifpengu@setup@manual@layers@\pgfsetlayers{background,main,middle,foreground}\fi}
 % Note: to be used in clippies
 \def\pingu@path@lowerpingu{(0,\pingu@outer@off)
 % left side
