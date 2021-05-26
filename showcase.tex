@@ -12,10 +12,10 @@
   \pingu[xshift=3.5cm,eyes=shiny,wings grab,belly={\color{gray}\scalebox{2.5}{\faSquare}},lollipop right=pingu@blue]
 
 \scope[/pingu/defaults/.append style={meta-dots}]
-  \pingu[xshift=7cm,eyes=shock,wings shock,hair 1=green,hair 2=blue,hair 3=orange,hair 4=!hide,hair 5=olive,belly=\faHeart,meta-dots=false,hand cast left=L,hand cast right=R,cane left,cane right]
+  \pingu[xshift=7cm,eyes=shock,wings shock,hair 1=green,hair 2=blue,hair 3=orange,hair 4=!hide,hair 5=olive,belly=\faHeart,meta-dots=false,hand cast left=L,hand cast right=R,cane left,cane right,body front=green,left wing color=orange,right wing color=purple,right eye second color=teal]
   \pingu[xshift=10.5cm,eyes=shiny,body=pingu@black,hair=purple,hair 3=purple!80!black,name=right-pengu,rook]
   \pingu[xshift=14cm,yshift=.225cm,height=1.5cm,right eye={wink}, left eye=normal,wings raise,belly=\faSunO,hairstyle=none,name=large-pengu]
-  \pingu[xshift=17.5cm,eyes angry=pingu@white,name=add-pengu,wings hug,bill angry,body front=pingu@main,devil=pingu@main,meta-dots=false,hand cast left=\faLinux,hand cast right=\faWindows]
+  \pingu[xshift=17.5cm,eyes angry=pingu@white,name=add-pengu,wings hug,bill angry,body front=pingu@main,devil horns=pingu@main,meta-dots=false,hand cast left=\faLinux,hand cast right=\faWindows]
   \begin{pgfonlayer}{foreground}
     \begin{scope}[every path/.style={draw,gray,thin}]
   \path ([xshift=-1.5cm]left-pengu-right-eye) coordinate (l) -- ([xshift=8.5cm]right-pengu-left-eye) coordinate (r);
@@ -30,19 +30,19 @@
   \end{scope}
   \end{pgfonlayer}
 
-  \pingu[yshift=-4cm-.175cm,name=pengu-1,height=1.1cm,bow tie,hat,eye frame]
-  \pingu[yshift=-4cm,xshift=3.5cm,name=pengu-2,height=1.275cm,wings=shock,right eye=wink,tie,tie dots={white},glasses,bill flat,crown 2d=pingu@bronze,crown gem shade=false]
-  \pingu[yshift=-4cm+.225cm,xshift=7cm,name=pengu-3,height=1.5cm,wings=wave,eyes=shiny,gold medal,tie,crown,belly=\Large\faHeart]
+  \pingu[yshift=-4cm-.175cm,name=pengu-1,small size,bow tie,hat,eye frame]
+  \pingu[yshift=-4cm,xshift=3.5cm,name=pengu-2,normal size,wings=shock,right eye=wink,tie,tie dots={white},glasses,bill flat,crown 2d=pingu@bronze,crown gem shade=false]
+  \pingu[yshift=-4cm+.225cm,xshift=7cm,name=pengu-3,large size,wings=wave,eyes=shiny,gold medal,tie,crown,belly=\Large\faHeart]
   \pingu[yshift=-4cm,xshift=10.5cm,name=pengu-4,wings=grab,left eye=wink,strawhat,cup,tie=pingu@purple,tie length=1.2cm,tie width=.4cm,tie offset=.325cm,sunglasses]
   \pingu[yshift=-4cm,xshift=14cm,name=pengu-5,wings=raise,eye patch left,halo, silver medal]
-  \pingu[yshift=-4cm,xshift=17.5cm,name=pengu-6,left eye devil, right eye angry,left wing hug,right wing wave, sun glasses round=brown!65!black, devil,bill angry,bronze medal,meta-dots=false,cane left,cane right]
+  \pingu[yshift=-4cm,xshift=17.5cm,name=pengu-6,left eye devil, right eye angry,left wing hug,right wing wave, sun glasses round=brown!65!black, devil horns, devil horns b=green, straw hat, bill angry,bronze medal,meta-dots=false,cane left,cane right,glasses round left opacity=0]
 
   \pingu[yshift=-8cm,name=pengu-a,@pingu@all/.append style={opacity=.5},hat,eye frame]
   \pingu[yshift=-8cm,xshift=3.5cm,right eye=wink,name=pengu-b,@pingu@all/.append style={opacity=.5},tie,tie dots={white},glasses,bill flat,crown 2d=pingu@bronze,wings shock,crown gem shade=false]
-  \pingu[yshift=-8cm+.225cm,xshift=7cm,eyes=shiny,height=1.5cm,name=pengu-c,@pingu@all/.append style={fill opacity=.5,draw=#1!80!black},tie,gold medal,crown,belly=\Large\faHeart]
+  \pingu[yshift=-8cm+.225cm,xshift=7cm,eyes=shiny,height=1.5cm,name=pengu-c,@pingu@all/.append style={fill opacity=.5,draw=#1!80!black},tie,gold medal,crown,belly=\Large\faHeart,wings wave]
   \pingu[yshift=-8cm,xshift=10.5cm,name=pengu-d,@block/.append style={fill=none,draw=#1!80!black},left eye=wink,straw hat=red,straw hat ribbon=pingu@blue,cup,tie=pingu@purple,tie length=1.2cm,tie width=.4cm,tie offset=.325cm,sunglasses,wings grab]
   \pingu[yshift=-8cm,xshift=14cm,name=pengu-e,@block/.append style={fill=none,draw=#1!80!black},wings=raise,halo,eye patch left,silver medal]
-  \pingu[yshift=-8cm,xshift=17.5cm,eyes devil,@block/.append style={fill=none,draw=#1!80!black},left eye devil, right eye angry,left wing hug,right wing wave,sun glasses round=brown!65!black,devil,bill angry,bronze medal,cane left,cane right]
+  \pingu[yshift=-8cm,xshift=17.5cm,eyes devil,@block/.append style={fill=none,draw=#1!80!black},left eye devil, right eye angry,left wing hug,right wing wave,sun glasses round=brown!65!black,glasses round left opacity=0,devil horns,devil horns b=green,straw hat,bill angry,bronze medal,cane left,cane right]
 \endscope
 \end{tikzpicture}
 \end{preview}

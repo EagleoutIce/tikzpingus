@@ -98,6 +98,8 @@
   @block/.style                 = {/pingu/@pingu@all=#1, fill=#1},
   @draw/.style                  = {/pingu/@pingu@all=#1, cap=round, draw=#1},
   @text/.style                  = {transform shape,text=\pingu@color@body@main},
+  @clip even odd rule/.code={\pgfseteorule}, % Credit to Andrew Stacey
+  @invclip/.style               = {clip,insert path=[/pingu/@clip even odd rule]{[reset cm](-\maxdimen,-\maxdimen)rectangle(\maxdimen,\maxdimen)}},
   @pingu/.style = {},
   % feet
   left foot/.code               = \pingu@color{foot@left}{#1},
@@ -115,13 +117,13 @@
   % eyes
   left eye/.code                = \pingu@lefteye@select{#1},
   left eye color/.code          = \pingu@color{eye@left}{#1},
-  left second eye color/.code   = \pingu@color{eye@second@left}{#1},
+  left eye second color/.code   = \pingu@color{eye@second@left}{#1},
   right eye/.code               = \pingu@righteye@select{#1},
   right eye color/.code         = \pingu@color{eye@right}{#1},
-  right second eye color/.code  = \pingu@color{eye@second@right}{#1},
+  right eye second color/.code  = \pingu@color{eye@second@right}{#1},
   eyes/.style                   = {/pingu/left eye={#1}, /pingu/right eye={#1}},
   eyes color/.style             = {/pingu/left eye color={#1}, /pingu/right eye color={#1}},
-  second eyes color/.style      = {/pingu/left second eye color={#1}, /pingu/right second eye color={#1}},
+  second eyes color/.style      = {/pingu/left eye second color={#1}, /pingu/right eye second color={#1}},
   % wings
   left wing color/.code         = \pingu@color{left@wing}{#1},
   left wing/.code               = \pingu@leftwing@select{#1},
@@ -151,9 +153,20 @@
                                    /pingu/hair 5 color={#1}},
   hair style/.forward to        = /pingu/hairstyle,
   hairstyle/.code               = \pingu@hairstyle@select{#1},
-  % TODO: glow color
   % size
-  height/.code                  = \setlength{\pingu@side@h@half}{#1},%
+  height/.code                 = \setlength{\pingu@side@h@half}{#1},%
+  small/.forward to            = /pingu/small size,
+  small height/.forward to     = /pingu/small size,
+  small size/.style            = {height=1.1cm},
+  normal/.forward to           = /pingu/normal size,
+  normal height/.forward to    = /pingu/normal size,
+  normal size/.style           = {height=1.275cm},
+  large/.forward to            = /pingu/large size,
+  large height/.forward to     = /pingu/large size,
+  large size/.style            = {height=1.5cm},
+  % complete sets
+  pingu devil/.style           = {devil horns=#1,eyes devil=#1},
+  pingu devil/.default         = pingu@purple,
   defaults/.style               = {%
     name={pingu}, feet={pingu@yellow}, body={pingu@main}, body front={pingu@white},%
     eyes={normal}, eyes color={pingu@black}, second eyes color={pingu@white},
@@ -237,7 +250,18 @@
 \fi
 \endgroup
 }
-
+% Note: to be used in clippies
+\def\pingu@path@lowerpingu{(0,\pingu@outer@off)
+% left side
+to[bend right=\pingu@bend] ++(0,-\pingu@side@h@half-\pingu@outer@off)
+% feety stuff
+arc (180:270:\pingu@foot@outer@w{} and \pingu@foot@outer@h)
+arc (270:360:\pingu@foot@inner@w{} and \pingu@foot@inner@h) -- ++(\pingu@foot@offset@w,0)
+arc (180:270:\pingu@foot@inner@w{} and \pingu@foot@inner@h)
+arc (270:360:\pingu@foot@outer@w{} and \pingu@foot@outer@h)%
+% right side
+to[bend right=\pingu@bend] ++(0,\pingu@side@h@half+\pingu@outer@off)
+arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
 \def\@pingu@base{%
     \pingu@block[save path=\pingu@lowerpingu]{\pingu@color@body@main} (0,\pingu@outer@off)
         % left side
@@ -358,37 +382,57 @@
     \expandafter\def\csname @pingu@wingangle@#1@\endcsname{#5}% TODO: for left and right
 }
 \@pingu@wings@s{normal}{%
-\pgfonlayer{background}
     \coordinate (\pingu@name-wing-left-start) at ([yshift=-6.5mm]\pingu@name-wings-side-left);
+\scope[xshift=-\p@] % shift to avoid rounding errors in pdf viewers
+    \pgfinterruptboundingbox
+    \path[/pingu/@invclip] \pingu@path@lowerpingu;
+    \endpgfinterruptboundingbox
     \pingu@block[rotate around={15:(\pingu@name-wing-left-start)}]{\pingu@color@left@wing} (\pingu@name-wing-left-start) ellipse [x radius=.195cm, y radius=9mm] +(-90:.195cm and 9mm) coordinate (\pingu@name-wing-left-tip) +(-90:.145cm and .75cm) coordinate (\pingu@name-wing-left);
-\endpgfonlayer}{%
-\pgfonlayer{background}
-    \coordinate (\pingu@name-wing-right-start) at ([yshift=-6.5mm]\pingu@name-wings-side-right);
+\endscope}{%
+\coordinate (\pingu@name-wing-right-start) at ([yshift=-6.5mm]\pingu@name-wings-side-right);
+\scope[xshift=\p@] % shift to avoid rounding errors in pdf viewers
+    \pgfinterruptboundingbox
+    \path[/pingu/@invclip] \pingu@path@lowerpingu;
+    \endpgfinterruptboundingbox
     \pingu@block[rotate around={-15:(\pingu@name-wing-right-start)}]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.195cm, y radius=9mm] +(-90:.195cm and 9mm) coordinate (\pingu@name-wing-right-tip) +(-90:.145cm and .75cm) coordinate (\pingu@name-wing-right);
-\endpgfonlayer}%
-{\pingu@wi@above}{-5}
+\endscope}{\pingu@wi@above}{-5}
 
 
 \@pingu@wings@s{wave}{%
-\pgfonlayer{background}
-    \coordinate (\pingu@name-wing-left-start) at ([yshift=-5.5mm]\pingu@name-wings-side-left);
-    \pingu@block[rotate around={-39:(\pingu@name-wing-left-start)}]{\pingu@color@left@wing} (\pingu@name-wing-left-start) ellipse [x radius=.225cm, y radius=.925cm] +(90:.225cm and .925cm) coordinate (\pingu@name-wing-left-tip) +(90:.175cm and .775cm) coordinate (\pingu@name-wing-left);
-\endpgfonlayer}{%
-\pgfonlayer{background}
-    \coordinate (\pingu@name-wing-right-start) at ([yshift=-5.5mm]\pingu@name-wings-side-right);
-    \pingu@block[rotate around={39:(\pingu@name-wing-right-start)}]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.225cm, y radius=.925cm] +(90:.225cm and .925cm) coordinate (\pingu@name-wing-right-tip) +(90:.175cm and .775cm) coordinate (\pingu@name-wing-right);
-\endpgfonlayer}%
-{\pingu@wi@above}{-10}
+    \coordinate (\pingu@name-wing-left-start) at ([yshift=-5.85mm]\pingu@name-wings-side-left);
+    \scope[xshift=-\p@] % shift to avoid rounding errors in pdf viewers
+    \pgfinterruptboundingbox
+    \path[/pingu/@invclip] \pingu@path@lowerpingu;
+    \endpgfinterruptboundingbox
+    \pingu@block[rotate around={-39:(\pingu@name-wing-left-start)}]{\pingu@color@left@wing} (\pingu@name-wing-left-start) ellipse [x radius=2.2mm, y radius=9.35mm] +(90:.22cm and .935cm)  coordinate (\pingu@name-wing-left-tip) +(150:.22cm and .935cm) coordinate (\pingu@name-wing-left-cap-up) +(-3:.22cm and .935cm) coordinate (\pingu@name-wing-left-cap-down) +(90:.175cm and .75cm) coordinate (\pingu@name-wing-left);
+    \pingu@block{\pingu@color@left@wing} (\pingu@name-wing-left-start)++(.03mm,4.6mm) to[out=-80,in=220] (\pingu@name-wing-left-cap-up) -- (\pingu@name-wing-left-start) -- cycle;
+    \pingu@block{\pingu@color@left@wing} (\pingu@name-wing-left-start)++(.085mm,-4.4mm) to[out=80,in=-131] (\pingu@name-wing-left-cap-down) -- (\pingu@name-wing-left-start) -- cycle;
+    \endscope}{%
+    \coordinate (\pingu@name-wing-right-start) at ([yshift=-5.85mm]\pingu@name-wings-side-right);
+\scope[xshift=\p@] % shift to avoid rounding errors in pdf viewers
+    \pgfinterruptboundingbox
+    \path[/pingu/@invclip] \pingu@path@lowerpingu;
+    \endpgfinterruptboundingbox
+    \pingu@block[rotate around={39:(\pingu@name-wing-right-start)}]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.22cm, y radius=.935cm] +(90:.22cm and .935cm) coordinate (\pingu@name-wing-right-tip) +(30:.22cm and .935cm) coordinate (\pingu@name-wing-right-cap-up) +(177:.22cm and .935cm) coordinate (\pingu@name-wing-right-cap-down) +(90:.175cm and .775cm) coordinate (\pingu@name-wing-right);
+    \pingu@block{\pingu@color@right@wing} (\pingu@name-wing-right-start)++(-.03mm,4.6mm) to[out=-100,in=-45] (\pingu@name-wing-right-cap-up) -- (\pingu@name-wing-right-start) -- cycle;
+    \pingu@block{\pingu@color@right@wing} (\pingu@name-wing-right-start)++(-.1mm,-4.4mm) to[out=100,in=-50] (\pingu@name-wing-right-cap-down) -- (\pingu@name-wing-right-start) -- cycle;
+\endscope}{\pingu@wi@above}{-10}
 
 \@pingu@wings@s{raise}{%
-\pgfonlayer{background}
-    \coordinate (\pingu@name-wing-left-start) at ([yshift=-6.25mm]\pingu@name-wings-side-left);
+\coordinate (\pingu@name-wing-left-start) at ([yshift=-6.25mm]\pingu@name-wings-side-left);
+\scope[xshift=-\p@] % shift to avoid rounding errors in pdf viewers
+\pgfinterruptboundingbox
+\path[/pingu/@invclip] \pingu@path@lowerpingu;
+\endpgfinterruptboundingbox
     \pingu@block[rotate around={-17:(\pingu@name-wing-left-start)}]{\pingu@color@left@wing} (\pingu@name-wing-left-start) ellipse [x radius=.195cm, y radius=.925cm] +(90:.195cm and .925cm) coordinate (\pingu@name-wing-left-tip) +(90:.145cm and .775cm) coordinate (\pingu@name-wing-left);
-\endpgfonlayer}{%
-\pgfonlayer{background}
+\endscope}{%
+\scope[xshift=\p@] % shift to avoid rounding errors in pdf viewers
+    \pgfinterruptboundingbox
+    \path[/pingu/@invclip] \pingu@path@lowerpingu;
+    \endpgfinterruptboundingbox
     \coordinate (\pingu@name-wing-right-start) at ([yshift=-6.25mm]\pingu@name-wings-side-right);
     \pingu@block[rotate around={17:(\pingu@name-wing-right-start)}]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.195cm, y radius=.925cm] +(90:.195cm and .925cm) coordinate (\pingu@name-wing-right-tip) +(90:.145cm and .775cm) coordinate (\pingu@name-wing-right);
-\endpgfonlayer}%
+\endscope}%
 {\pingu@wi@above}{0}
 
 \@pingu@wings@s{grab}{%
@@ -421,16 +465,26 @@
 \endscope\endpgfonlayer}%
 {\pingu@wi@below}{-180}
 
+
 \@pingu@wings@s{hug}{%
-\pgfonlayer{background}
 \coordinate (\pingu@name-wing-left-start) at ([yshift=-6.25mm]\pingu@name-wings-side-left);
-\pingu@block[rotate around={-132:(\pingu@name-wing-left-start)}]{\pingu@color@left@wing} (\pingu@name-wing-left-start) ellipse [x radius=.24cm, y radius=.925cm] +(90:.24cm and .925cm) coordinate (\pingu@name-wing-left-tip) +(90:.175cm and .775cm) coordinate (\pingu@name-wing-left);
-\endpgfonlayer}{%
-\pgfonlayer{background}
+\scope[xshift=-\p@] % shift to avoid rounding errors in pdf viewers
+\pgfinterruptboundingbox
+\path[/pingu/@invclip] \pingu@path@lowerpingu;
+\endpgfinterruptboundingbox
+\pingu@block[rotate around={-128:(\pingu@name-wing-left-start)}]{\pingu@color@left@wing} (\pingu@name-wing-left-start) ellipse [x radius=.235cm, y radius=.925cm] +(90:.235cm and .935cm) coordinate (\pingu@name-wing-left-tip) +(175:.235cm and .935cm) coordinate (\pingu@name-wing-left-cap-up) +(22:.235cm and .935cm) coordinate (\pingu@name-wing-left-cap-down) +(90:.175cm and .775cm) coordinate (\pingu@name-wing-left);
+\pingu@block{\pingu@color@left@wing} (\pingu@name-wing-left-start)++(.03mm,4.6mm) to[out=-80,in=140] (\pingu@name-wing-left-cap-up) -- (\pingu@name-wing-left-start) -- cycle;
+\pingu@block{\pingu@color@left@wing} (\pingu@name-wing-left-start)++(.085mm,-4.4mm) to[out=82,in=155] (\pingu@name-wing-left-cap-down) -- (\pingu@name-wing-left-start) -- cycle;
+\endscope}{%
 \coordinate (\pingu@name-wing-right-start) at ([yshift=-6.25mm]\pingu@name-wings-side-right);
-\pingu@block[rotate around={132:(\pingu@name-wing-right-start)}]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.24cm, y radius=.925cm] +(90:.24cm and .925cm) coordinate (\pingu@name-wing-right-tip) +(90:.175cm and .775cm) coordinate (\pingu@name-wing-right);
-\endpgfonlayer}%
-{\pingu@wi@above}{-30}
+\scope[xshift=\p@] % shift to avoid rounding errors in pdf viewers
+\pgfinterruptboundingbox
+\path[/pingu/@invclip] \pingu@path@lowerpingu;
+\endpgfinterruptboundingbox
+\pingu@block[rotate around={128:(\pingu@name-wing-right-start)}]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.235cm, y radius=.935cm] +(90:.235cm and .935cm) coordinate (\pingu@name-wing-right-tip) +(5:.235cm and .935cm) coordinate (\pingu@name-wing-right-cap-up) +(160:.235cm and .935cm) coordinate (\pingu@name-wing-right-cap-down) +(90:.175cm and .775cm) coordinate (\pingu@name-wing-right);
+\pingu@block{\pingu@color@right@wing} (\pingu@name-wing-right-start)++(-.03mm,4.6mm) to[out=-100,in=40] (\pingu@name-wing-right-cap-up) -- (\pingu@name-wing-right-start) -- cycle;
+\pingu@block{\pingu@color@right@wing} (\pingu@name-wing-right-start)++(-.085mm,-4.4mm) to[out=92,in=20] (\pingu@name-wing-right-cap-down) -- (\pingu@name-wing-right-start) -- cycle;
+\endscope}{\pingu@wi@above}{-30}
 
 \let\@pingu@wings@s\relax
 
@@ -446,19 +500,17 @@
 
 %%% Feet %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \def\pingu@draw@feet{%
-    \coordinate (\pingu@name-foot-right-1) at ([xshift=-.5\pingu@foot@single@h]\pingu@name-foot-right);
-    \coordinate (\pingu@name-foot-right-2) at (\pingu@name-foot-right);
-    \coordinate (\pingu@name-foot-right-3) at ([xshift= .5\pingu@foot@single@h]\pingu@name-foot-right);
-    \pingu@block[rotate around={-25-\basicfeetbend:(\pingu@name-foot-right-1)}]{\pingu@color@foot@right} (\pingu@name-foot-right-1) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
-    \pingu@block[rotate around={-\basicfeetbend:(\pingu@name-foot-right-2)}]{\pingu@color@foot@right} (\pingu@name-foot-right-2) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
-    \pingu@block[rotate around={25-\basicfeetbend:(\pingu@name-foot-right-3)}]{\pingu@color@foot@right} (\pingu@name-foot-right-3) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
+    \coordinate (@tmp) at ([xshift=-.5\pingu@foot@single@h]\pingu@name-foot-right);
+    \pingu@block[rotate around={-25-\basicfeetbend:(@tmp)}]{\pingu@color@foot@right} (@tmp) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
+    \pingu@block[rotate around={-\basicfeetbend:(\pingu@name-foot-right)}]{\pingu@color@foot@right} (\pingu@name-foot-right) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
+    \coordinate (@tmp) at ([xshift= .5\pingu@foot@single@h]\pingu@name-foot-right);
+    \pingu@block[rotate around={25-\basicfeetbend:(@tmp)}]{\pingu@color@foot@right} (@tmp) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
 
-    \coordinate (\pingu@name-foot-left-1) at ([xshift=-.5\pingu@foot@single@h]\pingu@name-foot-left);
-    \coordinate (\pingu@name-foot-left-2) at (\pingu@name-foot-left);
-    \coordinate (\pingu@name-foot-left-3) at ([xshift= .5\pingu@foot@single@h]\pingu@name-foot-left);
-    \pingu@block[rotate around={-25+\basicfeetbend:(\pingu@name-foot-left-1)}]{\pingu@color@foot@left} (\pingu@name-foot-left-1) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
-    \pingu@block[rotate around={\basicfeetbend:(\pingu@name-foot-left-2)}]{\pingu@color@foot@left} (\pingu@name-foot-left-2) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
-    \pingu@block[rotate around={25+\basicfeetbend:(\pingu@name-foot-left-3)}]{\pingu@color@foot@left} (\pingu@name-foot-left-3) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
+    \coordinate (@tmp) at ([xshift=-.5\pingu@foot@single@h]\pingu@name-foot-left);
+    \pingu@block[rotate around={-25+\basicfeetbend:(@tmp)}]{\pingu@color@foot@left} (@tmp) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
+    \pingu@block[rotate around={\basicfeetbend:(\pingu@name-foot-left)}]{\pingu@color@foot@left} (\pingu@name-foot-left) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
+    \coordinate (@tmp) at ([xshift= .5\pingu@foot@single@h]\pingu@name-foot-left);
+    \pingu@block[rotate around={25+\basicfeetbend:(@tmp)}]{\pingu@color@foot@left} (@tmp) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
 }
 
 %%% Bill %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -505,10 +557,10 @@
   }
 
   \csname @pingu@wingitem@\@pingu@select@leftwing@ @\endcsname \colorlet{@wmark}{magenta} \else \colorlet{@wmark}{teal} \fi
-  \pingu@block[draw=@wmark,thick,rotate around={\csname @pingu@wingangle@\@pingu@select@leftwing@ @\endcsname:(\pingu@name-wing-left)}]{@wmark}
+  \pingu@block[/pingu/@draw=@wmark,thick,rotate around={\csname @pingu@wingangle@\@pingu@select@leftwing@ @\endcsname:(\pingu@name-wing-left)}]{@wmark}
     (\pingu@name-wing-left)++(0,3mm) circle [radius=1mm] -- ++(0,-6mm);
   \csname @pingu@wingitem@\@pingu@select@rightwing@ @\endcsname \colorlet{@wmark}{magenta} \else \colorlet{@wmark}{teal} \fi
-  \pingu@block[draw=@wmark,thick,rotate around={-\csname @pingu@wingangle@\@pingu@select@rightwing@ @\endcsname:(\pingu@name-wing-right)}]{@wmark}
+  \pingu@block[/pingu/@draw=@wmark,thick,rotate around={-\csname @pingu@wingangle@\@pingu@select@rightwing@ @\endcsname:(\pingu@name-wing-right)}]{@wmark}
     (\pingu@name-wing-right)++(0,3mm) circle [radius=1mm] -- ++(0,-6mm);
 \endpgfonlayer
 }
@@ -625,14 +677,12 @@
 % .##.....##.##.......##.....##.##.....##.##......
 % .##.....##.########.########..##.....##.########
 \pingu@create@extra{medal}{%
-    % TODO: medal text
     % TODO: medal band
     medal/.code    	  = {\pingu@set@extra{medal}{true}\pingu@color{medal}{#1}},
     medal/.default    = pingu@yellow,%
     gold medal/.style = {medal, medal text=#1}, gold medal/.default={1},
     silver medal/.style = {medal=pingu@silver, medal text=#1}, silver medal/.default={2},
     bronze medal/.style = {medal=pingu@bronze, medal text=#1}, bronze medal/.default={3},
-    gold medal/.style = {medal, medal text=#1}, gold medal/.default={1},
     medal band/.code  = \pingu@color{medal@band}{#1},%
     medal shade/.code  = \pingu@color{medal@shade}{#1},%
     medal shade width/.code  = \def\pingu@medal@shade@w{#1},%
@@ -689,16 +739,15 @@
 
 
 
-% TODO: auto append?
-% probably not; allows for clear drawing order independent of addition/deps
+% NOTE: No auto append to allow easy order change
 \def\pingu@draw@extras@above{%
     \if@pingu@x@eyeframe@ \pingu@draw@ea@eyeframe \fi
     \if@pingu@x@glasses@ \pingu@draw@ea@glasses \fi
     \if@pingu@x@glassesround@ \pingu@draw@ea@glassesround \fi
+    \if@pingu@x@devilhorns@ \pingu@draw@ea@devilhorns \fi
     \if@pingu@x@strawhat@ \pingu@draw@ea@strawhat \fi
     \if@pingu@x@hat@ \pingu@draw@ea@hat \fi
     \if@pingu@x@crown@ \pingu@draw@ea@crown \fi
-    \if@pingu@x@devil@ \pingu@draw@ea@devil \fi
     \if@pingu@x@halo@ \pingu@draw@ea@halo \fi
     \if@pingu@x@rook@ \pingu@draw@ea@rook \fi
 }
@@ -753,7 +802,7 @@
 \def\pingupathhatupper{[rounded corners=.025cm](-.65cm,-.25cm) to[out=90,in=200] ++(.35cm,\pingu@hat@h) to[bend left=11] ++(.25cm,0) to[bend right=2.5] ++(.1cm,0) to[bend left=11] ++(.25cm,0) to[out=-20,in=90] ++(.35cm,-\pingu@hat@h) to[bend left=12] (-.65cm,-.25cm) -- cycle}
 \def\pingu@draw@ea@hat{%
 \scope[rotate around={\pingu@x@hat@angle:(\pingu@name-head-top)},shift={(\pingu@name-head-top)},shift={(\pingu@x@hat@xshift,\pingu@x@hat@yshift)},scale=\pingu@x@hat@scale]
-\pingu@block[draw=\pingu@color@hat@coronal,thick]{\pingu@color@hat@base} (0,-.25cm)++(180:\pingu@hat@w@half{} and .15cm) arc (180:360:\pingu@hat@w@half{} and .15cm) arc (0:180:\pingu@hat@w@half{} and .115cm) -- cycle;
+\pingu@block[/pingu/@draw=\pingu@color@hat@coronal,thick]{\pingu@color@hat@base} (0,-.25cm)++(180:\pingu@hat@w@half{} and .15cm) arc (180:360:\pingu@hat@w@half{} and .15cm) arc (0:180:\pingu@hat@w@half{} and .115cm) -- cycle;
 \pingu@block{\pingu@color@hat} \pingupathhatupper;
 \scope
 \clip\pingupathhatupper;
@@ -864,7 +913,7 @@
     halo/.code    	 = \pingu@set@extra{halo}{true}\pingu@color{halo}{#1},
     halo/.default    = pingu@lightblue,
     halo glow/.is if = @pingu@x@halo@glow% only active if glows loaded
-}{halo glow=true}
+}{halo glow=\ifpengu@setup@glows@ true\else false\fi}
 
 \def\pingu@draw@ea@halo{%
 \pingu@block[even odd rule]{\pingu@color@halo} (\pingu@name-head-top) circle [x radius=\pingu@w@half-1mm,y radius=2.5mm] circle [x radius=\pingu@w@half-1.95mm,y radius=1.55mm];
@@ -974,28 +1023,33 @@
     \endscope
 }
 
-% .########..########.##.....##.####.##......
-% .##.....##.##.......##.....##..##..##......
-% .##.....##.##.......##.....##..##..##......
-% .##.....##.######...##.....##..##..##......
-% .##.....##.##........##...##...##..##......
-% .##.....##.##.........##.##....##..##......
-% .########..########....###....####.########
-\pingu@create@extra{devil}{%
-    devil/.code = \pingu@set@extra{devil}{true}\pingu@color{devil}{#1},
-    devil/.default = pingu@purple,
-}{}
+% .########..########.##.....##.####.##..........##.....##..#######..########..##....##..######.
+% .##.....##.##.......##.....##..##..##..........##.....##.##.....##.##.....##.###...##.##....##
+% .##.....##.##.......##.....##..##..##..........##.....##.##.....##.##.....##.####..##.##......
+% .##.....##.######...##.....##..##..##..........#########.##.....##.########..##.##.##..######.
+% .##.....##.##........##...##...##..##..........##.....##.##.....##.##...##...##..####.......##
+% .##.....##.##.........##.##....##..##..........##.....##.##.....##.##....##..##...###.##....##
+% .########..########....###....####.########....##.....##..#######..##.....##.##....##..######.
+\pingu@create@extra{devilhorns}{%
+    devilhorns/.forward to = /pingu/devil horns,
+    devil-horns/.forward to = /pingu/devil horns,
+    devil horns/.code    = \pingu@set@extra{devilhorns}{true}\pingu@color{devilhorns}{#1},
+    devil horns/.default = pingu@purple,
+    devil horns b/.code  = \pingu@color{devilhorns@b}{#1},
+    devilhorns b/.forward to = /pingu/devil horns b,
+    devil-horns b/.forward to = /pingu/devil horns b
+}{devil horns b=\pingu@color@devilhorns}
 
-\pgfmathsetmacro\pingu@devil@baseang@l{90-360*(1-\pinguanglehl)}
-\pgfmathsetmacro\pingu@devil@baseang@r{90-360*(1-\pinguanglehr)}
-\def\pingu@devil@baseoff{12}
-\def\pingu@devil@yshift{.65mm}
-\def\pingu@draw@ea@devil{%
+\pgfmathsetmacro\pingu@devilhorns@baseang@l{90-360*(1-\pinguanglehl)}
+\pgfmathsetmacro\pingu@devilhorns@baseang@r{90-360*(1-\pinguanglehr)}
+\def\pingu@devilhorns@baseoff{12}
+\def\pingu@devilhorns@yshift{.65mm}
+\def\pingu@draw@ea@devilhorns{%
     % 90 - 360*.06
-    \pingu@block{\pingu@color@devil} ([yshift=-\pingu@devil@yshift]\pingu@name-head-left) arc (\pingu@devil@baseang@l:\pingu@devil@baseang@l-\pingu@devil@baseoff:\pingu@w@half{} and .9\pingu@w@half) coordinate (\pingu@name-devil-left-goal) to[out=32,in=-32,looseness=.9] ++(.3mm,2.65mm) to[bend left=17] ([yshift=-\pingu@devil@yshift]\pingu@name-head-left) -- cycle;
-    \pingu@block{\pingu@color@devil} ([yshift=-\pingu@devil@yshift]\pingu@name-head-left) to [bend right=38] (\pingu@name-devil-left-goal) arc (\pingu@devil@baseang@l-\pingu@devil@baseoff:\pingu@devil@baseang@l:\pingu@w@half{} and .9\pingu@w@half) -- cycle;
-    \pingu@block{\pingu@color@devil} ([yshift=-\pingu@devil@yshift]\pingu@name-head-right) arc (\pingu@devil@baseang@r:\pingu@devil@baseang@r+\pingu@devil@baseoff:\pingu@w@half{} and .9\pingu@w@half) coordinate (\pingu@name-devil-right-goal) to[out=148,in=-148,looseness=.9] ++(-.3mm,2.65mm) to[bend right=17] ([yshift=-\pingu@devil@yshift]\pingu@name-head-right) -- cycle;
-    \pingu@block{\pingu@color@devil} ([yshift=-\pingu@devil@yshift]\pingu@name-head-right) to [bend left=38] (\pingu@name-devil-right-goal) arc (\pingu@devil@baseang@r+\pingu@devil@baseoff:\pingu@devil@baseang@r:\pingu@w@half{} and .9\pingu@w@half) -- cycle;
+    \pingu@block{\pingu@color@devilhorns} ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-left) arc (\pingu@devilhorns@baseang@l:\pingu@devilhorns@baseang@l-\pingu@devilhorns@baseoff:\pingu@w@half{} and .9\pingu@w@half) coordinate (\pingu@name-devilhorns-left-goal) to[out=32,in=-32,looseness=.9] ++(.3mm,2.65mm) to[bend left=17] ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-left) -- cycle;
+    \pingu@block{\pingu@color@devilhorns} ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-left) to [bend right=38] (\pingu@name-devilhorns-left-goal) to[bend right=30] ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-left) -- cycle;
+    \pingu@block{\pingu@color@devilhorns@b} ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-right) arc (\pingu@devilhorns@baseang@r:\pingu@devilhorns@baseang@r+\pingu@devilhorns@baseoff:\pingu@w@half{} and .9\pingu@w@half) coordinate (\pingu@name-devilhorns-right-goal) to[out=148,in=-148,looseness=.9] ++(-.3mm,2.65mm) to[bend right=17] ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-right) -- cycle;
+    \pingu@block{\pingu@color@devilhorns@b} ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-right) to [bend left=38] (\pingu@name-devilhorns-right-goal) to[bend left=30] ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-right) -- cycle;
 }
 
 % ########...#######...#######..##....##
@@ -1013,7 +1067,7 @@
 }{rook back=\pingu@color@rook!85!black,rook shade=\pingu@color@rook!92!black}
 
 \def\pingu@draw@ea@rook{%
-    \pingu@block[even odd rule,save path=\pingu@rookpath]{\pingu@color@rook} (\pingu@name-wings-side-right|-\pingu@name-foot-right) to[bend right=3] coordinate[pos=.15] (@tmpe) (\pingu@name-wings-side-left|-\pingu@name-foot-left) to[bend right=1.5*\pingu@bend] (\pingu@name-wings-side-left|-\pingu@name-head-top) coordinate (@tmp) to[bend left=3] coordinate[pos=.3] (@tmpc) coordinate[pos=.7] (@tmpd) (\pingu@name-wings-side-right|-\pingu@name-head-top) coordinate (@tmpb) to[bend right=1.5*\pingu@bend] cycle (\pingu@name-head-center) ellipse[x radius=.8\pingu@w@half, y radius=.45\pingu@w@half];
+    \pingu@block[even odd rule]{\pingu@color@rook} (\pingu@name-wings-side-right|-\pingu@name-foot-right) to[bend right=3] coordinate[pos=.15] (@tmpe) (\pingu@name-wings-side-left|-\pingu@name-foot-left) to[bend right=1.5*\pingu@bend] (\pingu@name-wings-side-left|-\pingu@name-head-top) coordinate (@tmp) to[bend left=3] coordinate[pos=.3] (@tmpc) coordinate[pos=.7] (@tmpd) (\pingu@name-wings-side-right|-\pingu@name-head-top) coordinate (@tmpb) to[bend right=1.5*\pingu@bend] cycle (\pingu@name-head-center) ellipse[x radius=.8\pingu@w@half, y radius=.45\pingu@w@half];
     \pingu@block{\pingu@color@rook} (@tmp) to[bend right=2] ++(0,2mm) [rounded corners=.25mm] to[bend left=1] ++(-2mm,-0.1mm) -- ++(0,-2.25mm);
     \pingu@block{\pingu@color@rook} (@tmpb) to[bend left=2] ++(0,2mm) [rounded corners=.25mm] to[bend right=1] ++(2mm,-0.1mm) -- ++(0,-2.25mm);
 
@@ -1022,9 +1076,9 @@
 
     % custom shade boi (or gurl, wateva)
     \scope
-        \clip[use path=\pingu@rookpath];
-        % \clip[/pingu/@invclip] (\pingu@name-head-center) ellipse[x radius=.8\pingu@w@half, y radius=.45\pingu@w@half];
-        \pingu@block{\pingu@color@rook@shade} (@tmpe) -- (@tmpe-|@tmp) to[bend right=1.5*\pingu@bend] (@tmp) to[bend left=9] cycle;
+        \clip (\pingu@name-wings-side-right|-\pingu@name-foot-right) to[bend right=3] (\pingu@name-wings-side-left|-\pingu@name-foot-left) to[bend right=1.5*\pingu@bend] (\pingu@name-wings-side-left|-\pingu@name-head-top) -- ++(0,2mm) to[bend left=3] (\pingu@name-wings-side-right|-\pingu@name-head-top) to[bend right=1.5*\pingu@bend] cycle;
+        \clip[/pingu/@invclip] (\pingu@name-head-center) ellipse[x radius=.8\pingu@w@half, y radius=.45\pingu@w@half];
+        \pingu@block{\pingu@color@rook@shade} (@tmpe) -- (@tmpe-|@tmp) to[bend right=1.5*\pingu@bend] ([yshift=2mm]@tmp) to[bend left=10] cycle;
     \endscope
 
     \pgfonlayer{background}
