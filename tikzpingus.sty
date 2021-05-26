@@ -748,8 +748,8 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
     \if@pingu@x@strawhat@ \pingu@draw@ea@strawhat \fi
     \if@pingu@x@hat@ \pingu@draw@ea@hat \fi
     \if@pingu@x@crown@ \pingu@draw@ea@crown \fi
-    \if@pingu@x@halo@ \pingu@draw@ea@halo \fi
     \if@pingu@x@rook@ \pingu@draw@ea@rook \fi
+    \if@pingu@x@halo@ \pingu@draw@ea@halo \fi
 }
 
 % ..######..########.########.....###....##......##....##.....##....###....########
@@ -912,13 +912,14 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
 \pingu@create@extra{halo}{%
     halo/.code    	 = \pingu@set@extra{halo}{true}\pingu@color{halo}{#1},
     halo/.default    = pingu@lightblue,
+    halo raise/.code = \def\pingu@x@halo@raise{#1},
     halo glow/.is if = @pingu@x@halo@glow% only active if glows loaded
-}{halo glow=\ifpengu@setup@glows@ true\else false\fi}
+}{halo glow=\ifpengu@setup@glows@ true\else false\fi,halo raise=0mm}
 
 \def\pingu@draw@ea@halo{%
-\pingu@block[even odd rule]{\pingu@color@halo} (\pingu@name-head-top) circle [x radius=\pingu@w@half-1mm,y radius=2.5mm] circle [x radius=\pingu@w@half-1.95mm,y radius=1.55mm];
+\pingu@block[even odd rule]{\pingu@color@halo} ([yshift=\pingu@x@halo@raise]\pingu@name-head-top) circle [x radius=\pingu@w@half-1mm,y radius=2.5mm] circle [x radius=\pingu@w@half-1.95mm,y radius=1.55mm];
 \if@pingu@x@halo@glow
-\pingu@block[even odd rule,/pingu/@glow]{\pingu@color@halo} (\pingu@name-head-top) circle [x radius=(\pingu@w@half-1.95mm)*1.7,y radius=1.55mm*2.35]  (\pingu@name-head-top) circle [x radius=\pingu@w@half-1.95mm,y radius=1.55mm];
+\pingu@block[even odd rule,/pingu/@glow]{\pingu@color@halo} ([yshift=\pingu@x@halo@raise]\pingu@name-head-top) circle [x radius=(\pingu@w@half-1.95mm)*1.7,y radius=1.55mm*2.35] circle [x radius=\pingu@w@half-1.95mm,y radius=1.55mm];
 \fi
 }
 
