@@ -58,8 +58,8 @@
     \PackageError{\filename}{There is no '#2' drawer for '#1'. Choose one of '\@nameuse{@pingu@#1@}'}{Or ask the package maintainer :D}%
 }
 
-% #1 name;
-\def\pingu@create@selection#1{%
+% #1 name | none default
+\def\pingu@create@selection#1#2{%
     \expandafter\let\csname @pingu@#1@\endcsname\@empty
     \expandafter\long\expandafter\def\csname pingu@#1@add\endcsname##1##2{%
         \pingu@csappto{@pingu@#1@}{##1}%
@@ -71,18 +71,18 @@
             \expandafter\def\csname @pingu@select@#1@\expandafter\endcsname{##1}%
         \else\pingu@create@sel@err{#1}{##1}\fi
     }%
-    \csname pingu@#1@add\endcsname{none}{}%
+    \csname pingu@#1@add\endcsname{none}{#2}%
 }
 
 \long\def\pingu@create@extra#1#2#3{\expandafter\newif\csname if@pingu@x@#1@\endcsname\tikzset{/pingu/.cd,#2,extra defaults/.append style={#3}}}
 \def\pingu@set@extra#1#2{\csname @pingu@x@#1@#2\endcsname}
 
-\pingu@create@selection{lefteye}
-\pingu@create@selection{righteye}
-\pingu@create@selection{leftwing}
-\pingu@create@selection{rightwing}
-\pingu@create@selection{hairstyle}
-\pingu@create@selection{bill}
+\pingu@create@selection{lefteye}{}
+\pingu@create@selection{righteye}{}
+\pingu@create@selection{leftwing}{}
+\pingu@create@selection{rightwing}{}
+\pingu@create@selection{hairstyle}{}
+\pingu@create@selection{bill}{\coordinate (\pingu@name-bill-bottom) at (\pingu@name-bill);}
 
 \def\pingu@color#1#2{\expandafter\def\csname pingu@color@#1\endcsname{#2}}
 
@@ -172,6 +172,7 @@
   % complete sets
   pingu devil/.style           = {devil horns=#1,eyes devil=#1},
   pingu devil/.default         = pingu@purple,
+  pingu back/.style            = {eyes=none,bill=none,body front=\pingu@color@body@main},
   defaults/.style               = {%
     name={pingu}, feet={pingu@yellow}, body={pingu@main}, body front={pingu@white},%
     eyes={normal}, eyes color={pingu@black}, second eyes color={pingu@white},
@@ -210,7 +211,7 @@
 \coordinate (\pingu@name-belly-back) at (\pingu@w@half,-1cm);
 \coordinate (\pingu@name-belly-center) at (\pingu@w@half,-.68\pingu@side@h@half);
 
-\pingu@block[save path=\pingu@whitepingu]{\pingu@color@body@front} (\pingu@name-belly-back)++(-\pingu@w@half+.1cm,\pingu@lower@off) to[bend right=.8\pingu@bend] ++(0,1.05cm-\pingu@side@h@half-\pingu@lower@off) arc (180:270:.4cm and .2cm) arc (270:360:.5cm and .085cm) -- ++(-\pingu@one@eight,0) arc (180:270:.5cm and .085cm) arc (270:360:.4cm and .2cm) to[bend right=.8\pingu@bend] ++(0,\pingu@side@h@half-1.05cm+\pingu@lower@off) arc (0:180:\pingu@w@half-1mm and \pingu@w@half-1mm);
+\pingu@block[save path=\pingu@whitepingu]{\pingu@color@body@front} (\pingu@name-belly-back)++(-\pingu@w@half+1mm,\pingu@lower@off) to[bend right=.8\pingu@bend] ++(0,1.05cm-\pingu@side@h@half-\pingu@lower@off) arc (180:270:.4cm and .2cm) arc (270:360:.5cm and .085cm) -- ++(-\pingu@one@eight,0) arc (180:270:.5cm and .085cm) arc (270:360:.4cm and .2cm) to[bend right=.8\pingu@bend] ++(0,\pingu@side@h@half-1.05cm+\pingu@lower@off) arc (0:180:\pingu@w@half-1mm and \pingu@w@half-1mm);
 
 \coordinate (\pingu@name-eye-back-right) at ([xshift=-.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-head-center);
 \coordinate (\pingu@name-eye-back-left) at ([xshift=.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-head-center);
@@ -314,12 +315,12 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
 
 \@pingu@eyes@s{shiny}{%
     \pingu@block{\pingu@color@eye@left} ([yshift=.75mm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left) coordinate(\pingu@name-left-eye) ellipse [x radius=.22cm, y radius=.26cm];
-    \pingu@block{\pingu@color@eye@second@left} (\pingu@name-left-eye)++(\eyebaseang:.085cm and 1mm) ellipse [x radius=.08cm, y radius=.1cm];
-    \pingu@block{\pingu@color@eye@second@left} (\pingu@name-left-eye)++(\eyebaseang+180:.12cm and .14cm) ellipse [x radius=.025cm, y radius=.035cm];
+    \pingu@block{\pingu@color@eye@second@left} (\pingu@name-left-eye)++(\eyebaseang:.085cm and 1mm) ellipse [x radius=.08cm, y radius=1mm];
+    \pingu@block{\pingu@color@eye@second@left} (\pingu@name-left-eye)++(\eyebaseang+180:.12cm and .14cm) ellipse [x radius=.025cm, y radius=.35mm];
 }{%
     \pingu@block{\pingu@color@eye@right} ([yshift=.75mm,xshift=-\pingu@eye@shift]\pingu@name-eye-back-right) coordinate(\pingu@name-right-eye) ellipse [x radius=.22cm, y radius=.26cm];
-    \pingu@block{\pingu@color@eye@second@right} (\pingu@name-right-eye)++(\eyebaseang:.085cm and 1mm) ellipse [x radius=.08cm, y radius=.1cm];
-    \pingu@block{\pingu@color@eye@second@right} (\pingu@name-right-eye)++(\eyebaseang+180:.12cm and .14cm) ellipse [x radius=.025cm, y radius=.035cm];
+    \pingu@block{\pingu@color@eye@second@right} (\pingu@name-right-eye)++(\eyebaseang:.085cm and 1mm) ellipse [x radius=.08cm, y radius=1mm];
+    \pingu@block{\pingu@color@eye@second@right} (\pingu@name-right-eye)++(\eyebaseang+180:.12cm and .14cm) ellipse [x radius=.025cm, y radius=.35mm];
 }
 
 \@pingu@eyes@s{wink}{%
@@ -495,12 +496,12 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
 
 %%% Hairstyle %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pingu@hairstyle@add{normal}{%
-\scope[rounded corners=.008cm]
-\pingu@block{\pingu@color@hair@a} ([yshift=-1mm]\pingu@name-head-top) -- ++(.15mm,0) arc (0:90:\pingu@one@eight{} and .135cm) arc (90:0:.035cm and .75mm);
-\pingu@block{\pingu@color@hair@b} ([yshift=-1mm]\pingu@name-head-top) -- ++(.033cm,0) arc (0:90:\pingu@one@eight{} and .175cm) arc (90:0:.035cm and .1cm);
+\scope[rounded corners=.08mm]
+\pingu@block{\pingu@color@hair@a} ([yshift=-1mm]\pingu@name-head-top) -- ++(.15mm,0) arc (0:90:\pingu@one@eight{} and .135cm) arc (90:0:.35mm and .75mm);
+\pingu@block{\pingu@color@hair@b} ([yshift=-1mm]\pingu@name-head-top) -- ++(.033cm,0) arc (0:90:\pingu@one@eight{} and .175cm) arc (90:0:.35mm and 1mm);
 \pingu@block{\pingu@color@hair@c} ([yshift=-1mm]\pingu@name-head-top) -- ++(-.033cm,0) arc (180:90:.17cm and .215cm) arc (90:180:.75mm and .18cm);
-\pingu@block{\pingu@color@hair@d} ([yshift=-1mm]\pingu@name-head-top) -- ++(.025cm,0) arc (180:90:\pingu@one@eight{} and .175cm) arc (90:180:.035cm and \pingu@one@eight);
-\pingu@block{\pingu@color@hair@e} ([yshift=-1mm]\pingu@name-head-top) -- ++(.044cm,0) arc (180:90:\pingu@one@eight{} and .135cm) arc (90:180:.035cm and .75mm);
+\pingu@block{\pingu@color@hair@d} ([yshift=-1mm]\pingu@name-head-top) -- ++(.025cm,0) arc (180:90:\pingu@one@eight{} and .175cm) arc (90:180:.35mm and \pingu@one@eight);
+\pingu@block{\pingu@color@hair@e} ([yshift=-1mm]\pingu@name-head-top) -- ++(.044cm,0) arc (180:90:\pingu@one@eight{} and .135cm) arc (90:180:.35mm and .75mm);
 \endscope}
 
 %%% Feet %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -640,7 +641,7 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
     bow tie b=\pingu@color@bowtie%
 }
 
-\def\pingupathxbowtieknot{[rounded corners=.025cm] (\pingu@name-bow-tie-start)++(-.0625cm,-.035cm) to[bend right=10] ++(.125cm,0) -- ++(0,-.13cm) to[bend right=10] ++(-.125cm, 0) -- cycle}
+\def\pingupathxbowtieknot{[rounded corners=.025cm] (\pingu@name-bow-tie-start)++(-.0625cm,-.35mm) to[bend right=10] ++(.125cm,0) -- ++(0,-.13cm) to[bend right=10] ++(-.125cm, 0) -- cycle}
 \def\pingupathxbowtieleft{[rounded corners=.025cm]  (\pingu@name-bow-tie-start)++(-.15mm,-.06cm) to[out=155,in=-5] ++(-.25cm,.065cm) to[bend right=15] ++(0,-.21cm) to[in=-155,out=5] ++(.25cm,.065cm) -- cycle}
 \def\pingupathxbowtieright{[rounded corners=.025cm]  (\pingu@name-bow-tie-start)++(.15mm,-.06cm) to[out=25,in=-175] ++(.25cm,.065cm) to[bend left=15] ++(0,-.21cm) to[in=-25,out=175] ++(-.25cm,.065cm) -- cycle}
 \def\pingu@draw@eb@bowtie{%
@@ -777,7 +778,7 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
 
 \def\pingu@draw@ea@strawhat{%
 \scope[rotate around={\pingu@x@strawhat@angle:(\pingu@name-head)},shift={(\pingu@name-head)},shift={(\pingu@x@strawhat@xshift,\pingu@x@strawhat@yshift)},scale=\pingu@x@strawhat@scale]
-\pingu@block{\pingu@color@strawhat} (.34cm,\z@) ellipse[x radius=.75cm, y radius=.1cm];
+\pingu@block{\pingu@color@strawhat} (.34cm,\z@) ellipse[x radius=.75cm, y radius=1mm];
 \pingu@block{\pingu@color@strawhat} (\z@,.05cm) rectangle (.68cm,.5cm);
 \pingu@block{\pingu@color@strawhat} (.34cm,.5cm) ellipse[x radius=.34cm, y radius=.08cm];
 \pingu@block{\pingu@color@strawhat} (-.3955cm,.02cm) -- (1.0755cm,.02cm) -- (.68cm,.2cm) -- (0,.2cm) -- cycle;
@@ -804,7 +805,7 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
 
 \newdimen\pingu@hat@w@half \pingu@hat@w@half=.925cm
 \newdimen\pingu@hat@h \pingu@hat@h=.625cm
-\def\pingupathhatupper{[rounded corners=.025cm](-.65cm,-.25cm) to[out=90,in=200] ++(.35cm,\pingu@hat@h) to[bend left=11] ++(.25cm,0) to[bend right=2.5] ++(.1cm,0) to[bend left=11] ++(.25cm,0) to[out=-20,in=90] ++(.35cm,-\pingu@hat@h) to[bend left=12] (-.65cm,-.25cm) -- cycle}
+\def\pingupathhatupper{[rounded corners=.025cm](-.65cm,-.25cm) to[out=90,in=200] ++(.35cm,\pingu@hat@h) to[bend left=11] ++(.25cm,0) to[bend right=2.5] ++(1mm,0) to[bend left=11] ++(.25cm,0) to[out=-20,in=90] ++(.35cm,-\pingu@hat@h) to[bend left=12] (-.65cm,-.25cm) -- cycle}
 \def\pingu@draw@ea@hat{%
 \scope[rotate around={\pingu@x@hat@angle:(\pingu@name-head-top)},shift={(\pingu@name-head-top)},shift={(\pingu@x@hat@xshift,\pingu@x@hat@yshift)},scale=\pingu@x@hat@scale]
 \pingu@block[/pingu/@draw=\pingu@color@hat@coronal,thick]{\pingu@color@hat@base} (0,-.25cm)++(180:\pingu@hat@w@half{} and .15cm) arc (180:360:\pingu@hat@w@half{} and .15cm) arc (0:180:\pingu@hat@w@half{} and .115cm) -- cycle;
