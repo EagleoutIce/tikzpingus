@@ -1074,8 +1074,8 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
 
 \def\pingu@draw@ea@rook{%
     \pingu@block[even odd rule]{\pingu@color@rook} (\pingu@name-wings-side-right|-\pingu@name-foot-right) to[bend right=3] coordinate[pos=.15] (@tmpe) (\pingu@name-wings-side-left|-\pingu@name-foot-left) to[bend right=1.5*\pingu@bend] (\pingu@name-wings-side-left|-\pingu@name-head-top) coordinate (@tmp) to[bend left=3] coordinate[pos=.3] (@tmpc) coordinate[pos=.7] (@tmpd) (\pingu@name-wings-side-right|-\pingu@name-head-top) coordinate (@tmpb) to[bend right=1.5*\pingu@bend] cycle (\pingu@name-head-center) ellipse[x radius=.8\pingu@w@half, y radius=.45\pingu@w@half];
-    \pingu@block{\pingu@color@rook} (@tmp) to[bend right=2] ++(0,2mm) [rounded corners=.25mm] to[bend left=1] ++(-2mm,-0.1mm) -- ++(0,-2.25mm);
-    \pingu@block{\pingu@color@rook} (@tmpb) to[bend left=2] ++(0,2mm) [rounded corners=.25mm] to[bend right=1] ++(2mm,-0.1mm) -- ++(0,-2.25mm);
+    \pingu@block{\pingu@color@rook} (@tmp) to[bend right=2] ++(0,2mm) [rounded corners=.25mm] to[bend left=1] ++(-2mm,-.1mm) -- ++(0,-2.25mm);
+    \pingu@block{\pingu@color@rook} (@tmpb) to[bend left=2] ++(0,2mm) [rounded corners=.25mm] to[bend right=1] ++(2mm,-.1mm) -- ++(0,-2.25mm);
 
     \pingu@block{\pingu@color@rook} (@tmpc)++(-2mm,-.25mm) [rounded corners=.25mm] to[bend left=2] ++(0,2.25mm) to[bend right=1] ++(4mm,.05mm) -- ++(0,-2.25mm);
     \pingu@block{\pingu@color@rook} (@tmpd)++(2mm,-.25mm) [rounded corners=.25mm] to[bend left=2] ++(0,2.25mm) to[bend left=1] ++(-4mm,-.05mm) -- ++(0,-2.25mm);
@@ -1089,8 +1089,8 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
 
     \pgfonlayer{background}
         \pingu@block{\pingu@color@rook@back} (@tmp) to[bend right=3] coordinate[pos=.3] (@tmpc) coordinate[pos=.7] (@tmpd) (@tmpb) to[bend right=30] cycle;
-        \pingu@block{\pingu@color@rook@back} (@tmpb) to[bend left=2] ++(0,2mm) [rounded corners=.25mm] to[bend left=1] ++(2mm,0.1mm) -- ++(0,-2.25mm);
-        \pingu@block{\pingu@color@rook@back} (@tmp) to[bend right=2] ++(0,2mm) [rounded corners=.25mm] to[bend right=1] ++(-2mm,0.1mm) -- ++(0,-2.25mm);
+        \pingu@block{\pingu@color@rook@back} (@tmpb) to[bend left=2] ++(0,2mm) [rounded corners=.25mm] to[bend left=1] ++(2mm,.1mm) -- ++(0,-2.25mm);
+        \pingu@block{\pingu@color@rook@back} (@tmp) to[bend right=2] ++(0,2mm) [rounded corners=.25mm] to[bend right=1] ++(-2mm,.1mm) -- ++(0,-2.25mm);
 
         \pingu@block{\pingu@color@rook@back} (@tmpc)++(-2mm,-.49mm) [rounded corners=.25mm] to[bend left=2] ++(0,2.25mm) to[bend right=1] ++(4mm,.05mm) -- ++(0,-2.25mm);
         \pingu@block{\pingu@color@rook@back} (@tmpd)++(2mm,-.49mm) [rounded corners=.25mm] to[bend left=2] ++(0,2.25mm) to[bend left=1] ++(-4mm,-.05mm) -- ++(0,-2.25mm);
