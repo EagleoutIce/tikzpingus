@@ -77,12 +77,28 @@
 \long\def\pingu@create@extra#1#2#3{\expandafter\newif\csname if@pingu@x@#1@\endcsname\tikzset{/pingu/.cd,#2,extra defaults/.append style={#3}}}
 \def\pingu@set@extra#1#2{\csname @pingu@x@#1@#2\endcsname}
 
-\pingu@create@selection{lefteye}{}
-\pingu@create@selection{righteye}{}
-\pingu@create@selection{leftwing}{}
-\pingu@create@selection{rightwing}{}
+\pingu@create@selection{lefteye}{%
+    \path ([yshift=.75mm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left) coordinate (\pingu@name-left-eye);%
+}
+\pingu@create@selection{righteye}{%
+    \path ([yshift=.75mm,xshift=-\pingu@eye@shift]\pingu@name-eye-back-right) coordinate (\pingu@name-right-eye);%
+}
+\pingu@create@selection{leftwing}{%
+    \path ([yshift=-6.5mm]\pingu@name-wings-side-left)
+        coordinate (\pingu@name-wing-left-start)
+        coordinate (\pingu@name-wing-left-tip)
+        coordinate (\pingu@name-wing-left);%
+}
+\pingu@create@selection{rightwing}{%
+    \path ([yshift=-6.5mm]\pingu@name-wings-side-right)
+        coordinate (\pingu@name-wing-right-start)
+        coordinate (\pingu@name-wing-right-tip)
+        coordinate (\pingu@name-wing-right);%
+}
 \pingu@create@selection{hairstyle}{}
-\pingu@create@selection{bill}{\coordinate (\pingu@name-bill-bottom) at (\pingu@name-bill);}
+\pingu@create@selection{bill}{%
+    \coordinate (\pingu@name-bill-bottom) at (\pingu@name-bill);%
+}
 
 \def\pingu@color#1#2{\expandafter\def\csname pingu@color@#1\endcsname{#2}}
 
@@ -387,6 +403,8 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
     \expandafter\let\csname @pingu@wingitem@#1@\endcsname#4\relax
     \expandafter\def\csname @pingu@wingangle@#1@\endcsname{#5}% TODO: for left and right
 }
+\let\@pingu@wingitem@none@\pingu@wi@above
+\def\@pingu@wingangle@none@\endcsname{90}
 \@pingu@wings@s{normal}{%
     \coordinate (\pingu@name-wing-left-start) at ([yshift=-6.5mm]\pingu@name-wings-side-left);
 \scope[xshift=-\p@] % shift to avoid rounding errors in pdf viewers
