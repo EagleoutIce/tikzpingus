@@ -99,6 +99,8 @@
 \pingu@create@selection{bill}{%
     \coordinate (\pingu@name-bill-bottom) at (\pingu@name-bill);%
 }
+\pingu@create@selection{leftfoot}{}
+\pingu@create@selection{rightfoot}{}
 
 \def\pingu@color#1#2{\expandafter\def\csname pingu@color@#1\endcsname{#2}}
 
@@ -123,9 +125,12 @@
   @invclip/.style               = {clip,insert path=[/pingu/@clip even odd rule]{[reset cm](-\maxdimen,-\maxdimen)rectangle(\maxdimen,\maxdimen)}},
   @pingu/.style = {},
   % feet
-  left foot/.code               = \pingu@color{foot@left}{#1},
-  right foot/.code              = \pingu@color{foot@right}{#1},
+  left foot color/.code         = \pingu@color{foot@left}{#1},
+  left foot/.code               = \pingu@leftfoot@select{#1},
+  right foot color/.code        = \pingu@color{foot@right}{#1},
+  right foot/.code              = \pingu@rightfoot@select{#1},
   feet/.style                   = {/pingu/left foot={#1}, /pingu/right foot={#1}},
+  feet color/.style             = {/pingu/left foot color={#1}, /pingu/right foot color={#1}},
   % body
   body main/.code               = \pingu@color{body@main}{#1},
   body head/.code               = \pingu@color{body@head}{#1},
@@ -191,7 +196,8 @@
   % TODO: feet
   pingu back/.style            = {/pingu/eyes=none,/pingu/bill=none,/pingu/body front=\pingu@color@body@main,/pingu/@pingu/.append style={xshift=2\pingu@w@half,xscale=-1}},
   defaults/.style               = {%
-    name={pingu}, feet={pingu@yellow}, body={pingu@main}, body front={pingu@white},%
+    name={pingu}, feet=normal, feet color=pingu@yellow,
+    body={pingu@main}, body front={pingu@white},%
     eyes={normal}, eyes color={pingu@black}, second eyes color={pingu@white},
     bill={normal}, bill color={pingu@yellow},
     wings={normal}, wings color=\pingu@color@body@main,
@@ -264,7 +270,8 @@
 
 \pgfonlayer{background}
     \@pingu@drawer@hairstyle@
-    \pingu@draw@feet
+    \@pingu@drawer@leftfoot@
+    \@pingu@drawer@rightfoot@
 \endpgfonlayer
 
 \endscope
@@ -524,18 +531,33 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
 \endscope}
 
 %%% Feet %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\def\pingu@draw@feet{%
-    \coordinate (@tmp) at ([xshift=-.5\pingu@foot@single@h]\pingu@name-foot-right);
-    \pingu@block[rotate around={-25-\basicfeetbend:(@tmp)}]{\pingu@color@foot@right} (@tmp) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
-    \pingu@block[rotate around={-\basicfeetbend:(\pingu@name-foot-right)}]{\pingu@color@foot@right} (\pingu@name-foot-right) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
-    \coordinate (@tmp) at ([xshift= .5\pingu@foot@single@h]\pingu@name-foot-right);
-    \pingu@block[rotate around={25-\basicfeetbend:(@tmp)}]{\pingu@color@foot@right} (@tmp) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
 
+\long\def\@pingu@feet@s#1#2#3{\@ifnextchar[{\@pingu@feet@s@{#1}{#2}{#3}}{\@pingu@feet@s@{#1}{#2}{#3}[pingu@yellow]}}
+\long\def\@pingu@feet@s@#1#2#3[#4]{%
+    \tikzset{%
+        /pingu/left foot #1/.style   = {/pingu/left foot={#1}, /pingu/left foot color={##1}},%
+        /pingu/left foot #1/.default = {#4},%
+        /pingu/right foot #1/.style   = {/pingu/right foot={#1}, /pingu/right foot color={##1}},%
+        /pingu/right foot #1/.default = {#4},%
+        /pingu/feet #1/.style   = {/pingu/feet={#1}, /pingu/feet color={##1}},%
+        /pingu/feet #1/.default = {#4}%
+    }%
+    \pingu@leftfoot@add{#1}{#2}\pingu@rightfoot@add{#1}{#3}%
+}
+
+
+\@pingu@feet@s{normal}{%
     \coordinate (@tmp) at ([xshift=-.5\pingu@foot@single@h]\pingu@name-foot-left);
     \pingu@block[rotate around={-25+\basicfeetbend:(@tmp)}]{\pingu@color@foot@left} (@tmp) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
     \pingu@block[rotate around={\basicfeetbend:(\pingu@name-foot-left)}]{\pingu@color@foot@left} (\pingu@name-foot-left) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
     \coordinate (@tmp) at ([xshift= .5\pingu@foot@single@h]\pingu@name-foot-left);
     \pingu@block[rotate around={25+\basicfeetbend:(@tmp)}]{\pingu@color@foot@left} (@tmp) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
+}{%
+    \coordinate (@tmp) at ([xshift=-.5\pingu@foot@single@h]\pingu@name-foot-right);
+    \pingu@block[rotate around={-25-\basicfeetbend:(@tmp)}]{\pingu@color@foot@right} (@tmp) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
+    \pingu@block[rotate around={-\basicfeetbend:(\pingu@name-foot-right)}]{\pingu@color@foot@right} (\pingu@name-foot-right) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
+    \coordinate (@tmp) at ([xshift= .5\pingu@foot@single@h]\pingu@name-foot-right);
+    \pingu@block[rotate around={25-\basicfeetbend:(@tmp)}]{\pingu@color@foot@right} (@tmp) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
 }
 
 %%% Bill %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
