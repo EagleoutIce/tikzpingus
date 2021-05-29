@@ -286,7 +286,7 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
 \def\@pingu@base{%
     \pingu@block[save path=\pingu@lowerpingu]{\pingu@color@body@main} (0,\pingu@outer@off)
         % left side
-        to[bend right=\pingu@bend] coordinate[pos=.825] (\pingu@name-waist-right) ++(0,-\pingu@side@h@half-\pingu@outer@off)
+        to[bend right=\pingu@bend] coordinate[pos=.775] (\pingu@name-waist-right) ++(0,-\pingu@side@h@half-\pingu@outer@off)
         % feety stuff
         arc (180:270:\pingu@foot@outer@w{} and \pingu@foot@outer@h) coordinate (\pingu@name-foot-right)
         arc (270:332:\pingu@foot@inner@w{} and \pingu@foot@inner@h)
@@ -294,7 +294,7 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
         arc (208:270:\pingu@foot@inner@w{} and \pingu@foot@inner@h) coordinate (\pingu@name-foot-left)
         arc (270:360:\pingu@foot@outer@w{} and \pingu@foot@outer@h)%
         % right side
-        to[bend right=\pingu@bend] coordinate[pos=.175] (\pingu@name-waist-left) ++(0,\pingu@side@h@half+\pingu@outer@off)
+        to[bend right=\pingu@bend] coordinate[pos=.225] (\pingu@name-waist-left) ++(0,\pingu@side@h@half+\pingu@outer@off)
         % coordinate
         coordinate (\pingu@name-wings-side-left)
         -- (0,\pingu@outer@off) coordinate (\pingu@name-wings-side-right) coordinate[pos=.5] (\pingu@name-head-center) -- cycle;
@@ -794,20 +794,31 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
 % .##........##.....##.##....##....##.....######.
 
 \pingu@create@extra{pants}{%
-    pants/.code    	 = \pingu@set@extra{pants}{true}\pingu@color{pants}{#1},
-    pants/.default    = pingu@red,
-}{}
+    pants/.code    	               = \pingu@set@extra{pants}{true}\pingu@color{pants}{#1},
+    pants/.default                 = pingu@red,
+    pants button left/.code        = \pingu@color{pants@button@left}{#1},
+    pants button right/.code       = \pingu@color{pants@button@right}{#1},
+    pants buttons/.style           = {/pingu/pants button left={#1}, /pingu/pants button right={#1}},
+    pants button left shade/.code  = \pingu@color{pants@button@left@shade}{#1},
+    pants button right shade/.code = \pingu@color{pants@button@right@shade}{#1},
+    pants buttons shade/.style     = {/pingu/pants button left shade={#1}, /pingu/pants button right shade={#1}},
+    pants no buttons/.style        = {pants buttons=\@pingu@none, pants buttons shade=\@pingu@none},
+    pants extra height/.code = \def\pingu@x@pants@extra@height{#1},
+}{pants extra height=1.5mm,pants buttons=pingu@black,pants button left shade=\pingu@color@pants@button@left!70!white,pants button right shade=\pingu@color@pants@button@right!70!white}
 
 \def\pingu@draw@eb@pants{%
-\scope
-\ifx\@pingu@select@rightwing@\@pingu@wing@str@normal@
-    % \clip[/pingu/@invclip] (\pingu@name-waist-right) ellipse [x radius=1.5mm, y radius=2.5mm];
-\fi
-\ifx\@pingu@select@leftwing@\@pingu@wing@str@normal@
-\fi
-    \pingu@block[rounded corners=\p@]{\pingu@color@pants} (\pingu@name-waist-right) to[bend right=6] (\pingu@name-waist-left) to[bend left=\pingu@bend] (\pingu@name-bottom-center-|\pingu@name-waist-left) to[bend left=15] ([yshift=-.15mm]\pingu@name-bottom-center) to[bend left=15] (\pingu@name-bottom-center-|\pingu@name-waist-right) to[bend left=4] cycle;
-\endscope
-}
+\pingu@block[rounded corners=\p@]{\pingu@color@pants} ([xshift=.85mm,yshift=\pingu@x@pants@extra@height]\pingu@name-waist-right) coordinate(@tmp) to[bend right=6] ([xshift=-.85mm,yshift=\pingu@x@pants@extra@height]\pingu@name-waist-left) coordinate(@tmpb) -- ++(0,-\pingu@x@pants@extra@height) arc(180:270:.85mm and 2.5mm) to[bend left=\pingu@bend] (\pingu@name-bottom-center-|\pingu@name-waist-left) to[bend left=15] ([yshift=-.15mm]\pingu@name-bottom-center) to[bend left=15] (\pingu@name-bottom-center-|\pingu@name-waist-right) to[bend left=4] ([yshift=-2.5mm]\pingu@name-waist-right) arc (-90:0:.85mm and 2.5mm) -- cycle;
+%\pingu@block{\pingu@color@pants} (@tmpb)++(-.25mm,.125mm) to[bend right=10] ++(6mm,2.65mm)-- ++(0,-.1mm) to[bend left=10] ++(-6mm,-3.35mm) -- cycle;
+%\pingu@block{\pingu@color@pants} (@tmp)++(.25mm,.125mm) to[bend left=10] ++(-6mm,2.65mm)-- ++(0,-.1mm) to[bend right=10] ++(6mm,-3.35mm) -- cycle;
+\pingu@block{\pingu@color@pants@button@right}(@tmp)++(.25mm,-.25mm)circle[radius=.7mm];
+\pingu@block{\pingu@color@pants@button@left}(@tmpb)++(-.25mm,-.25mm)circle[radius=.7mm];
+\pingu@block[even odd rule]{\pingu@color@pants@button@right@shade}(@tmp)++(.25mm,-.25mm)circle[radius=.7mm] circle[radius=.615mm];
+\pingu@block[even odd rule]{\pingu@color@pants@button@left@shade}(@tmpb)++(-.25mm,-.25mm)circle[radius=.7mm] circle[radius=.615mm];
+\@for\i:={0,90,180,270}\do{
+    \pingu@block{\pingu@color@pants@button@right@shade} (@tmp)++(.25mm,-.25mm)++(\i:.
+    35mm) circle[radius=.1mm];
+    \pingu@block{\pingu@color@pants@button@left@shade} (@tmpb)++(-.25mm,-.25mm)++(\i:.35mm) circle[radius=.1mm];
+}}
 
 %            _
 %      /\   | |
