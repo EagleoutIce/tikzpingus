@@ -793,6 +793,7 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
 
 % NOTE: No auto append to allow easy order change
 \def\pingu@draw@extras@above{%
+    \if@pingu@x@pants@ \pingu@draw@ea@pants \fi
     \if@pingu@x@eyeframe@ \pingu@draw@ea@eyeframe \fi
     \if@pingu@x@glasses@ \pingu@draw@ea@glasses \fi
     \if@pingu@x@glassesround@ \pingu@draw@ea@glassesround \fi
@@ -1147,6 +1148,23 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
         \pingu@block{\pingu@color@rook@back} (@tmpc)++(-2mm,-.49mm) [rounded corners=.25mm] to[bend left=2] ++(0,2.25mm) to[bend right=1] ++(4mm,.05mm) -- ++(0,-2.25mm);
         \pingu@block{\pingu@color@rook@back} (@tmpd)++(2mm,-.49mm) [rounded corners=.25mm] to[bend left=2] ++(0,2.25mm) to[bend left=1] ++(-4mm,-.05mm) -- ++(0,-2.25mm);
     \endpgfonlayer
+}
+
+% .########.....###....##....##.########..######.
+% .##.....##...##.##...###...##....##....##....##
+% .##.....##..##...##..####..##....##....##......
+% .########..##.....##.##.##.##....##.....######.
+% .##........#########.##..####....##..........##
+% .##........##.....##.##...###....##....##....##
+% .##........##.....##.##....##....##.....######.
+
+\pingu@create@extra{pants}{%
+    pants/.code    	 = \pingu@set@extra{pants}{true}\pingu@color{pants}{#1},
+    pants/.default    = pingu@red,
+}{}
+
+\def\pingu@draw@ea@pants{%
+
 }
 
 %                         #                                #
