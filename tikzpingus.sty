@@ -286,7 +286,7 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
 \def\@pingu@base{%
     \pingu@block[save path=\pingu@lowerpingu]{\pingu@color@body@main} (0,\pingu@outer@off)
         % left side
-        to[bend right=\pingu@bend] ++(0,-\pingu@side@h@half-\pingu@outer@off)
+        to[bend right=\pingu@bend] coordinate[pos=.825] (\pingu@name-waist-right) ++(0,-\pingu@side@h@half-\pingu@outer@off)
         % feety stuff
         arc (180:270:\pingu@foot@outer@w{} and \pingu@foot@outer@h) coordinate (\pingu@name-foot-right)
         arc (270:332:\pingu@foot@inner@w{} and \pingu@foot@inner@h)
@@ -294,7 +294,7 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
         arc (208:270:\pingu@foot@inner@w{} and \pingu@foot@inner@h) coordinate (\pingu@name-foot-left)
         arc (270:360:\pingu@foot@outer@w{} and \pingu@foot@outer@h)%
         % right side
-        to[bend right=\pingu@bend] ++(0,\pingu@side@h@half+\pingu@outer@off)
+        to[bend right=\pingu@bend] coordinate[pos=.175] (\pingu@name-waist-left) ++(0,\pingu@side@h@half+\pingu@outer@off)
         % coordinate
         coordinate (\pingu@name-wings-side-left)
         -- (0,\pingu@outer@off) coordinate (\pingu@name-wings-side-right) coordinate[pos=.5] (\pingu@name-head-center) -- cycle;
@@ -398,6 +398,7 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
         /pingu/wings #1/.style   = {/pingu/wings={#1}, /pingu/wings color={##1}},%
         /pingu/wings #1/.default = \pingu@color@body@main%
     }%
+    \expandafter\def\csname @pingu@wing@str@#1@\endcsname{#1}%
     \pingu@leftwing@add{#1}{#2}\pingu@rightwing@add{#1}{#3}%
     \expandafter\let\csname @pingu@wingitem@#1@\endcsname#4\relax
     \expandafter\def\csname @pingu@wingangle@#1@\endcsname{#5}% TODO: for left and right
@@ -559,9 +560,9 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
 
 
 \@pingu@feet@s{back}{%
-    \pingu@block{\pingu@color@foot@left} ([yshift=.25\pingu@foot@single@h]\pingu@name-foot-left) ellipse [x radius=2.5\pingu@foot@single@w,y radius=.5\pingu@foot@single@h];
+    \pingu@block{\pingu@color@foot@left} ([yshift=.2\pingu@foot@single@h]\pingu@name-foot-left) ellipse [x radius=2.5\pingu@foot@single@w,y radius=.5\pingu@foot@single@h];
 }{%
-    \pingu@block{\pingu@color@foot@right} ([yshift=.25\pingu@foot@single@h]\pingu@name-foot-right) ellipse [x radius=2.5\pingu@foot@single@w,y radius=.5\pingu@foot@single@h];
+    \pingu@block{\pingu@color@foot@right} ([yshift=.2\pingu@foot@single@h]\pingu@name-foot-right) ellipse [x radius=2.5\pingu@foot@single@w,y radius=.5\pingu@foot@single@h];
 }
 
 
@@ -601,7 +602,7 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
 %%% Dots %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \def\@pingu@draw@dots{%
 \pgfonlayer{foreground}
-  \@for\@pingu@elem:={belly-center,head,head-top,foot-left,foot-right,right-eye,left-eye,bill,bill-bottom,wings-side-left,wings-side-right,wing-left-start,wing-left-tip,wing-right-start,wing-right-tip,head-right,head-left,head-center,head-back-con-left,head-back-con-right,bottom-center}\do{
+  \@for\@pingu@elem:={belly-center,head,head-top,foot-left,foot-right,right-eye,left-eye,bill,bill-bottom,wings-side-left,wings-side-right,wing-left-start,wing-left-tip,wing-right-start,wing-right-tip,head-right,head-left,head-center,head-back-con-left,head-back-con-right,bottom-center,waist-left,waist-right}\do{
     \path[fill=green] (\pingu@name-\@pingu@elem) circle[radius=1.125\p@];
   }
   \@for\@pingu@elem:={wing-left,wing-right}\do{
@@ -621,6 +622,7 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
 \def\pingu@draw@extras@below{%
     \if@pingu@x@tie@ \pingu@draw@eb@tie \fi
     \if@pingu@x@bowtie@ \pingu@draw@eb@bowtie \fi
+    \if@pingu@x@pants@ \pingu@draw@eb@pants \fi
     \if@pingu@x@medal@ \pingu@draw@eb@medal \fi
     \if@pingu@x@cup@ \pingu@draw@eb@cup \fi
     \if@pingu@x@eyepatchleft@ \pingu@draw@eb@eyepatch@l \fi
@@ -782,6 +784,31 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
     \pingu@block[rotate around={9:(\pingu@name-right-eye-patch)}]{\pingu@color@eyepatchright} (\pingu@name-right-eye-patch) ++(-\pingu@patchw,.5pt) arc(180:360:\pingu@patchw{} and 8.9pt);
 }
 
+
+% .########.....###....##....##.########..######.
+% .##.....##...##.##...###...##....##....##....##
+% .##.....##..##...##..####..##....##....##......
+% .########..##.....##.##.##.##....##.....######.
+% .##........#########.##..####....##..........##
+% .##........##.....##.##...###....##....##....##
+% .##........##.....##.##....##....##.....######.
+
+\pingu@create@extra{pants}{%
+    pants/.code    	 = \pingu@set@extra{pants}{true}\pingu@color{pants}{#1},
+    pants/.default    = pingu@red,
+}{}
+
+\def\pingu@draw@eb@pants{%
+\scope
+\ifx\@pingu@select@rightwing@\@pingu@wing@str@normal@
+    % \clip[/pingu/@invclip] (\pingu@name-waist-right) ellipse [x radius=1.5mm, y radius=2.5mm];
+\fi
+\ifx\@pingu@select@leftwing@\@pingu@wing@str@normal@
+\fi
+    \pingu@block[rounded corners=\p@]{\pingu@color@pants} (\pingu@name-waist-right) to[bend right=6] (\pingu@name-waist-left) to[bend left=\pingu@bend] (\pingu@name-bottom-center-|\pingu@name-waist-left) to[bend left=15] ([yshift=-.15mm]\pingu@name-bottom-center) to[bend left=15] (\pingu@name-bottom-center-|\pingu@name-waist-right) to[bend left=4] cycle;
+\endscope
+}
+
 %            _
 %      /\   | |
 %     /  \  | |__   _____   _____
@@ -789,11 +816,8 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
 %   / ____ \| |_) | (_) \ V /  __/
 %  /_/    \_\_.__/ \___/ \_/ \___|
 
-
-
 % NOTE: No auto append to allow easy order change
 \def\pingu@draw@extras@above{%
-    \if@pingu@x@pants@ \pingu@draw@ea@pants \fi
     \if@pingu@x@eyeframe@ \pingu@draw@ea@eyeframe \fi
     \if@pingu@x@glasses@ \pingu@draw@ea@glasses \fi
     \if@pingu@x@glassesround@ \pingu@draw@ea@glassesround \fi
@@ -1148,23 +1172,6 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
         \pingu@block{\pingu@color@rook@back} (@tmpc)++(-2mm,-.49mm) [rounded corners=.25mm] to[bend left=2] ++(0,2.25mm) to[bend right=1] ++(4mm,.05mm) -- ++(0,-2.25mm);
         \pingu@block{\pingu@color@rook@back} (@tmpd)++(2mm,-.49mm) [rounded corners=.25mm] to[bend left=2] ++(0,2.25mm) to[bend left=1] ++(-4mm,-.05mm) -- ++(0,-2.25mm);
     \endpgfonlayer
-}
-
-% .########.....###....##....##.########..######.
-% .##.....##...##.##...###...##....##....##....##
-% .##.....##..##...##..####..##....##....##......
-% .########..##.....##.##.##.##....##.....######.
-% .##........#########.##..####....##..........##
-% .##........##.....##.##...###....##....##....##
-% .##........##.....##.##....##....##.....######.
-
-\pingu@create@extra{pants}{%
-    pants/.code    	 = \pingu@set@extra{pants}{true}\pingu@color{pants}{#1},
-    pants/.default    = pingu@red,
-}{}
-
-\def\pingu@draw@ea@pants{%
-
 }
 
 %                         #                                #
