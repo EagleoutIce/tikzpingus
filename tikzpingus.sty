@@ -121,7 +121,7 @@
   @block/.style                 = {/pingu/@pingu@all=#1, fill=#1},
   @draw/.style                  = {/pingu/@pingu@all=#1, cap=round, draw=#1},
   @text/.style                  = {transform shape,text=\pingu@color@body@main},
-  @clip even odd rule/.code={\pgfseteorule}, % Credit to Andrew Stacey
+  @clip even odd rule/.code     = {\pgfseteorule}, % Credit to Andrew Stacey
   @invclip/.style               = {clip,insert path=[/pingu/@clip even odd rule]{[reset cm](-\maxdimen,-\maxdimen)rectangle(\maxdimen,\maxdimen)}},
   @pingu/.style = {},
   % feet
@@ -164,44 +164,35 @@
   % hair color TODO: other colors
   hair/.forward to              = /pingu/hairs color,
   hairs/.forward to             = /pingu/hairs color,
-  hair 1/.forward to = /pingu/hair 1 color,
-  hair 1 color/.code            = \pingu@color{hair@a}{#1},
-  hair 2/.forward to = /pingu/hair 2 color,
-  hair 2 color/.code            = \pingu@color{hair@b}{#1},
-  hair 3/.forward to = /pingu/hair 3 color,
-  hair 3 color/.code            = \pingu@color{hair@c}{#1},
-  hair 4/.forward to = /pingu/hair 4 color,
-  hair 4 color/.code            = \pingu@color{hair@d}{#1},
-  hair 5/.forward to = /pingu/hair 5 color,
-  hair 5 color/.code            = \pingu@color{hair@e}{#1},
-  hairs color/.style            = {/pingu/hair 1 color={#1}, /pingu/hair 2 color={#1},
-                                   /pingu/hair 3 color={#1}, /pingu/hair 4 color={#1},
-                                   /pingu/hair 5 color={#1}},
+  hair 1 color/.code            = \pingu@color{hair@a}{#1}, hair 1/.forward to = /pingu/hair 1 color,
+  hair 2 color/.code            = \pingu@color{hair@b}{#1}, hair 2/.forward to = /pingu/hair 2 color,
+  hair 3 color/.code            = \pingu@color{hair@c}{#1}, hair 3/.forward to = /pingu/hair 3 color,
+  hair 4 color/.code            = \pingu@color{hair@d}{#1}, hair 4/.forward to = /pingu/hair 4 color,
+  hair 5 color/.code            = \pingu@color{hair@e}{#1}, hair 5/.forward to = /pingu/hair 5 color,
+  hairs color/.style            = {/pingu/hair 1 color={#1}, /pingu/hair 2 color={#1}, /pingu/hair 3 color={#1},
+                                   /pingu/hair 4 color={#1}, /pingu/hair 5 color={#1}},
   hair style/.forward to        = /pingu/hairstyle,
   hairstyle/.code               = \pingu@hairstyle@select{#1},
   % size
   height/.code                 = \setlength{\pingu@side@h@half}{#1},%
-  small/.forward to            = /pingu/small size,
-  small height/.forward to     = /pingu/small size,
-  small size/.style            = {height=1.1cm},
-  normal/.forward to           = /pingu/normal size,
-  normal height/.forward to    = /pingu/normal size,
+  small height/.forward to     = /pingu/small size, small/.forward to = /pingu/small size,
+  small size/.style            = {height=11mm},
+  normal height/.forward to    = /pingu/normal size, normal/.forward to = /pingu/normal size,
   normal size/.style           = {height=1.275cm},
-  large/.forward to            = /pingu/large size,
-  large height/.forward to     = /pingu/large size,
-  large size/.style            = {height=1.5cm},
+  large height/.forward to     = /pingu/large size, large/.forward to = /pingu/large size,
+  large size/.style            = {height=15mm},
   % complete sets
   pingu devil/.style           = {devil horns=#1,eyes devil=#1},
   pingu devil/.default         = pingu@purple,
-  % TODO: feet
-  pingu back/.style            = {/pingu/eyes=none,/pingu/bill=none,/pingu/body front=\pingu@color@body@main,/pingu/@pingu/.append style={xshift=2\pingu@w@half,xscale=-1},/pingu/feet back},% TODO: draw another penguin that is then drawn above with only back
+  % TODO: draw another penguin that is then drawn above with only back
+  pingu back/.style            = {/pingu/eyes=none,/pingu/bill=none,/pingu/body front=\pingu@color@body@main,/pingu/@pingu/.append style={xshift=2\pingu@w@half,xscale=-1},/pingu/feet back},
   defaults/.style               = {%
-    name={pingu}, feet=normal, feet color=pingu@yellow,
-    body={pingu@main}, body front={pingu@white},%
-    eyes={normal}, eyes color={pingu@black}, second eyes color={pingu@white},
-    bill={normal}, bill color={pingu@yellow},
-    wings={normal}, wings color=\pingu@color@body@main,
-    hairstyle={normal}, hairs color=\pingu@color@body@main,
+    name=pingu, feet=normal, feet color=pingu@yellow, body=pingu@main,
+    body front=pingu@white,%
+    eyes=normal, eyes color=pingu@black, second eyes color=pingu@white,
+    bill=normal, bill color=pingu@yellow,
+    wings=normal, wings color=\pingu@color@body@main,
+    hairstyle=normal, hairs color=\pingu@color@body@main,
     belly raw={}, scale=\pingu@default@scale,extra defaults%
   },
   % will be set individually
@@ -234,7 +225,7 @@
 \coordinate (\pingu@name-belly-back) at (\pingu@w@half,-1cm);
 \coordinate (\pingu@name-belly-center) at (\pingu@w@half,-.68\pingu@side@h@half);
 
-\pingu@block[save path=\pingu@whitepingu]{\pingu@color@body@front} (\pingu@name-belly-back)++(-\pingu@w@half+1mm,\pingu@lower@off) to[bend right=.8\pingu@bend] ++(0,1.05cm-\pingu@side@h@half-\pingu@lower@off) arc (180:270:.4cm and .2cm) arc (270:360:.5cm and .085cm) -- ++(-\pingu@one@eight,0) arc (180:270:.5cm and .085cm) arc (270:360:.4cm and .2cm) to[bend right=.8\pingu@bend] ++(0,\pingu@side@h@half-1.05cm+\pingu@lower@off) arc (0:180:\pingu@w@half-1mm and \pingu@w@half-1mm);
+\pingu@block[save path=\pingu@whitepingu]{\pingu@color@body@front} (\pingu@name-belly-back)++(-\pingu@w@half+1mm,\pingu@lower@off) to[bend right=.8\pingu@bend] ++(0,1.05cm-\pingu@side@h@half-\pingu@lower@off) arc (180:270:4mm and 2mm) arc (270:360:5mm and .85mm) -- ++(-\pingu@one@eight,0) arc (180:270:5mm and .85mm) arc (270:360:4mm and 2mm) to[bend right=.8\pingu@bend] ++(0,\pingu@side@h@half-1.05cm+\pingu@lower@off) arc (0:180:\pingu@w@half-1mm and \pingu@w@half-1mm);
 
 \coordinate (\pingu@name-eye-back-right) at ([xshift=-.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-head-center);
 \coordinate (\pingu@name-eye-back-left) at ([xshift=.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-head-center);
@@ -242,10 +233,10 @@
 \coordinate (\pingu@name-head-back-con-right) at ([xshift=-.525cm*.74,yshift=-.65cm*.719]\pingu@name-eye-back-right);
 \coordinate (\pingu@name-head-back-con-left) at ([xshift=.525cm*.74,yshift=-.65cm*.719]\pingu@name-eye-back-left);
 
-\pingu@block{\pingu@color@body@front} (\pingu@name-eye-back-right)++(0,-.025cm) ellipse [x radius=.525cm,y radius=.65cm];
-\pingu@block{\pingu@color@body@front} (\pingu@name-eye-back-left)++(0,-.025cm) ellipse [x radius=.525cm,y radius=.65cm];
+\pingu@block{\pingu@color@body@front} (\pingu@name-eye-back-right)++(0,-.25mm) ellipse [x radius=.525cm,y radius=.65cm];
+\pingu@block{\pingu@color@body@front} (\pingu@name-eye-back-left)++(0,-.25mm) ellipse [x radius=.525cm,y radius=.65cm];
 
-\path (\pingu@name-head-center)++(0,-.005cm-\pingu@outer@off) coordinate (\pingu@name-bill);
+\path (\pingu@name-head-center)++(0,-.05mm-\pingu@outer@off) coordinate (\pingu@name-bill);
 
 \scope[shift=(\pingu@name-belly-center)]
 \clip[use path=\pingu@whitepingu];
