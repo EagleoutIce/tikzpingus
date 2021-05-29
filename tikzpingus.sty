@@ -225,7 +225,7 @@
 \coordinate (\pingu@name-belly-back) at (\pingu@w@half,-1cm);
 \coordinate (\pingu@name-belly-center) at (\pingu@w@half,-.68\pingu@side@h@half);
 
-\pingu@block[save path=\pingu@whitepingu]{\pingu@color@body@front} (\pingu@name-belly-back)++(-\pingu@w@half+1mm,\pingu@lower@off) to[bend right=.8\pingu@bend] ++(0,1.05cm-\pingu@side@h@half-\pingu@lower@off) arc (180:270:4mm and 2mm) arc (270:331:5mm and .85mm) arc (207:270:5mm and .85mm) arc (270:360:4mm and 2mm) to[bend right=.8\pingu@bend] ++(0,\pingu@side@h@half-1.05cm+\pingu@lower@off) arc (0:180:\pingu@w@half-1mm and \pingu@w@half-1mm);
+\pingu@block[save path=\pingu@whitepingu]{\pingu@color@body@front} (\pingu@name-belly-back)++(-\pingu@w@half+1mm,\pingu@lower@off) to[bend right=.8\pingu@bend] ++(0,1.05cm-\pingu@side@h@half-\pingu@lower@off) arc (180:270:4mm and 2mm) arc (270:331:5mm and .85mm) arc (207:270:5mm and .85mm) arc (270:360:4mm and 2mm) to[bend right=.8\pingu@bend] ++(0,\pingu@side@h@half-1.05cm+\pingu@lower@off) arc (0:180:\pingu@w@half-.96mm and \pingu@w@half-1mm) -- cycle;
 
 \coordinate (\pingu@name-eye-back-right) at ([xshift=-.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-head-center);
 \coordinate (\pingu@name-eye-back-left) at ([xshift=.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-head-center);
@@ -290,7 +290,7 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
         % feety stuff
         arc (180:270:\pingu@foot@outer@w{} and \pingu@foot@outer@h) coordinate (\pingu@name-foot-right)
         arc (270:332:\pingu@foot@inner@w{} and \pingu@foot@inner@h)
-        coordinate[pos=.5,yshift=-\pingu@foot@inner@h*\pingu@scale] (\pingu@name-bottom-center)
+        coordinate (\pingu@name-bottom-center)
         arc (208:270:\pingu@foot@inner@w{} and \pingu@foot@inner@h) coordinate (\pingu@name-foot-left)
         arc (270:360:\pingu@foot@outer@w{} and \pingu@foot@outer@h)%
         % right side
@@ -601,7 +601,7 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
 %%% Dots %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \def\@pingu@draw@dots{%
 \pgfonlayer{foreground}
-  \@for\@pingu@elem:={belly-center,head,head-top,foot-left,foot-right,right-eye,left-eye,bill,bill-bottom,wings-side-left,wings-side-right,wing-left-start,wing-left-tip,wing-right-start,wing-right-tip,head-right,head-left,head-center,head-back-con-left,head-back-con-right}\do{
+  \@for\@pingu@elem:={belly-center,head,head-top,foot-left,foot-right,right-eye,left-eye,bill,bill-bottom,wings-side-left,wings-side-right,wing-left-start,wing-left-tip,wing-right-start,wing-right-tip,head-right,head-left,head-center,head-back-con-left,head-back-con-right,bottom-center}\do{
     \path[fill=green] (\pingu@name-\@pingu@elem) circle[radius=1.125\p@];
   }
   \@for\@pingu@elem:={wing-left,wing-right}\do{
