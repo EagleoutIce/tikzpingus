@@ -194,7 +194,7 @@
   pingu devil/.style           = {devil horns=#1,eyes devil=#1},
   pingu devil/.default         = pingu@purple,
   % TODO: feet
-  pingu back/.style            = {/pingu/eyes=none,/pingu/bill=none,/pingu/body front=\pingu@color@body@main,/pingu/@pingu/.append style={xshift=2\pingu@w@half,xscale=-1},/pingu/feet back},
+  pingu back/.style            = {/pingu/eyes=none,/pingu/bill=none,/pingu/body front=\pingu@color@body@main,/pingu/@pingu/.append style={xshift=2\pingu@w@half,xscale=-1},/pingu/feet back},% TODO: draw another penguin that is then drawn above with only back
   defaults/.style               = {%
     name={pingu}, feet=normal, feet color=pingu@yellow,
     body={pingu@main}, body front={pingu@white},%
@@ -1132,7 +1132,7 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
 }{rook back=\pingu@color@rook!85!black,rook shade=\pingu@color@rook!92!black,rook hatch}
 
 \def\pingu@draw@ea@rook{%
-    \pingu@block[even odd rule]{\pingu@color@rook} (\pingu@name-wings-side-right|-\pingu@name-foot-right) to[bend right=3] coordinate[pos=.15] (@tmpe) (\pingu@name-wings-side-left|-\pingu@name-foot-left) to[bend right=1.5*\pingu@bend] (\pingu@name-wings-side-left|-\pingu@name-head-top) coordinate (@tmp) to[bend left=3] coordinate[pos=.3] (@tmpc) coordinate[pos=.7] (@tmpd) (\pingu@name-wings-side-right|-\pingu@name-head-top) coordinate (@tmpb) to[bend right=1.5*\pingu@bend] cycle \if@pingu@x@rook@draw@hatch@ (\pingu@name-head-center) ellipse[x radius=.8\pingu@w@half, y radius=.45\pingu@w@half]\fi;
+    \pingu@block[even odd rule]{\pingu@color@rook} (\pingu@name-wings-side-right|-\pingu@name-foot-right) [rounded corners=\p@] to[bend right=5] coordinate[pos=.15] (@tmpe) (\pingu@name-wings-side-left|-\pingu@name-foot-left) [sharp corners] to[bend right=1.5*\pingu@bend] (\pingu@name-wings-side-left|-\pingu@name-head-top) coordinate (@tmp) to[bend left=3] coordinate[pos=.3] (@tmpc) coordinate[pos=.7] (@tmpd) (\pingu@name-wings-side-right|-\pingu@name-head-top) [rounded corners=\p@] coordinate (@tmpb) to[bend right=1.5*\pingu@bend] cycle \if@pingu@x@rook@draw@hatch@ (\pingu@name-head-center) ellipse[x radius=.8\pingu@w@half, y radius=.45\pingu@w@half]\fi;
     \pingu@block{\pingu@color@rook} (@tmp) to[bend right=2] ++(0,2mm) [rounded corners=.25mm] to[bend left=1] ++(-2mm,-.1mm) -- ++(0,-2.25mm);
     \pingu@block{\pingu@color@rook} (@tmpb) to[bend left=2] ++(0,2mm) [rounded corners=.25mm] to[bend right=1] ++(2mm,-.1mm) -- ++(0,-2.25mm);
 
@@ -1141,11 +1141,11 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
 
     % custom shade boi (or gurl, wateva)
     \scope
-        \clip (\pingu@name-wings-side-right|-\pingu@name-foot-right) to[bend right=3] (\pingu@name-wings-side-left|-\pingu@name-foot-left) to[bend right=1.5*\pingu@bend] (\pingu@name-wings-side-left|-\pingu@name-head-top) -- ++(0,2mm) to[bend left=3] (\pingu@name-wings-side-right|-\pingu@name-head-top) to[bend right=1.5*\pingu@bend] cycle;
+        \clip (\pingu@name-wings-side-right|-\pingu@name-foot-right) [rounded corners=\p@] to[bend right=5] (\pingu@name-wings-side-left|-\pingu@name-foot-left) [sharp corners] to[bend right=1.5*\pingu@bend] (\pingu@name-wings-side-left|-\pingu@name-head-top) -- ++(0,2mm) to[bend left=3] (\pingu@name-wings-side-right|-\pingu@name-head-top) to[bend right=1.5*\pingu@bend] cycle;
         \if@pingu@x@rook@draw@hatch@
         \clip[/pingu/@invclip] (\pingu@name-head-center) ellipse[x radius=.8\pingu@w@half, y radius=.45\pingu@w@half];
         \fi
-        \pingu@block{\pingu@color@rook@shade} (@tmpe) -- (@tmpe-|@tmp) to[bend right=1.5*\pingu@bend] ([yshift=2mm]@tmp) to[bend left=10] cycle;
+        \pingu@block{\pingu@color@rook@shade} (@tmpe) to[bend right=5] (@tmpe-|@tmp) to[bend right=1.5*\pingu@bend] ([yshift=2mm]@tmp) to[bend left=10] cycle;
     \endscope
 
     \pgfonlayer{background}
