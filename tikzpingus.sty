@@ -282,7 +282,7 @@ arc (208:270:\pingu@foot@inner@w{} and \pingu@foot@inner@h)
 arc (270:360:\pingu@foot@outer@w{} and \pingu@foot@outer@h)%
 % right side
 to[bend right=\pingu@bend] ++(0,\pingu@side@h@half+\pingu@outer@off)
-arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
+arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure wings
 \def\@pingu@base{%
     \pingu@block[save path=\pingu@lowerpingu]{\pingu@color@body@main} (0,\pingu@outer@off)
         % left side
@@ -792,11 +792,12 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
 % .##........#########.##..####....##..........##
 % .##........##.....##.##...###....##....##....##
 % .##........##.....##.##....##....##.....######.
-
+\newif\if@pingu@x@pants@bands
 \pingu@create@extra{pants}{%
     pants/.code    	               = \pingu@set@extra{pants}{true}\pingu@color{pants}{#1},
     pants/.default                 = pingu@red,
     pants button left/.code        = \pingu@color{pants@button@left}{#1},
+    pants bands/.is if             = @pingu@x@pants@bands,
     pants button right/.code       = \pingu@color{pants@button@right}{#1},
     pants buttons/.style           = {/pingu/pants button left={#1}, /pingu/pants button right={#1}},
     pants button left shade/.code  = \pingu@color{pants@button@left@shade}{#1},
@@ -809,6 +810,15 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
 
 \def\pingu@draw@eb@pants{%
 \pingu@block[rounded corners=\p@]{\pingu@color@pants} ([xshift=.85mm,yshift=\pingu@x@pants@extra@height]\pingu@name-waist-right) coordinate(@tmp) to[bend right=6] ([xshift=-.85mm,yshift=\pingu@x@pants@extra@height]\pingu@name-waist-left) coordinate(@tmpb) -- ++(0,-\pingu@x@pants@extra@height) arc(180:270:.85mm and 2.5mm) to[bend left=\pingu@bend] (\pingu@name-bottom-center-|\pingu@name-waist-left) to[bend left=15] ([yshift=-.15mm]\pingu@name-bottom-center) to[bend left=15] (\pingu@name-bottom-center-|\pingu@name-waist-right) to[bend left=6] ([yshift=-2.5mm]\pingu@name-waist-right) arc (-90:0:.85mm and 2.5mm) -- cycle;
+\if@pingu@x@pants@bands
+\pgfonlayer{middle}
+% draw stripes
+\scope
+\clip \pingu@path@lowerpingu;
+\pingu@block{\pingu@color@pants} (@tmp)++(.55mm,-1mm) to[bend right=3] ([yshift=1.65mm]\pingu@name-wings-side-right) -- ++(-.25mm,-.25mm) to[bend left=3] ([yshift=-1mm]@tmp) -- cycle;
+\pingu@block{\pingu@color@pants} (@tmpb)++(-.55mm,-1mm) to[bend left=3] ([yshift=1.65mm]\pingu@name-wings-side-left) -- ++(.25mm,-.25mm) to[bend right=3] ([yshift=-1mm]@tmpb) -- cycle;
+\endscope
+\fi
 \pingu@block{\pingu@color@pants@button@right}(@tmp)++(.25mm,-.25mm)circle[radius=.7mm];
 \pingu@block{\pingu@color@pants@button@left}(@tmpb)++(-.25mm,-.25mm)circle[radius=.7mm];
 \pingu@block[even odd rule]{\pingu@color@pants@button@right@shade}(@tmp)++(.25mm,-.25mm)circle[radius=.7mm] circle[radius=.615mm];
@@ -817,7 +827,11 @@ arc(0:180:\pingu@w@half) -- cycle}% arc clip to secure wings
     \pingu@block{\pingu@color@pants@button@right@shade} (@tmp)++(.25mm,-.25mm)++(\i:.
     35mm) circle[radius=.1mm];
     \pingu@block{\pingu@color@pants@button@left@shade} (@tmpb)++(-.25mm,-.25mm)++(\i:.35mm) circle[radius=.1mm];
-}}
+}%
+\if@pingu@x@pants@bands
+\endpgfonlayer
+\fi
+}
 
 %            _
 %      /\   | |
