@@ -1203,6 +1203,7 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
 % #endregion
 
 % #region wingitems
+% #region wingitmes-setup
 \def\pingu@may@draw@wing#1#2{\csname if@pingu@x@#1#2@\endcsname \csname pingu@draw@wi@#1\endcsname{#2}\fi}
 \edef\pingu@str@wing@left{left}
 \newif\if@pingu@wing@item@side@left@
@@ -1229,6 +1230,15 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
 \fi
 }
 
+\def\pingu@create@wing@extra#1#2#3{%
+\def\@lr{left}%
+\protected@edef\@tmp{\expandafter\expandafter\expandafter\expandafter\expandafter\unexpanded{{#1left}{#2}{#3}}}%
+\expandafter\pingu@create@extra\@tmp
+\def\@lr{right}%
+\protected@edef\@tmp{\expandafter\expandafter\expandafter\expandafter\expandafter\unexpanded{{#1right}{#2}{#3}}}%
+\expandafter\pingu@create@extra\@tmp}
+% #endregion
+
 \def\@pingu@draw@wing@items@left{%
     \pingu@may@draw@wing{lollipop}{left}%
     \pingu@may@draw@wing{cane}{left}%
@@ -1243,22 +1253,7 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
     \pingu@may@draw@wing{lightsaber}{right}%
 }
 
-\def\pingu@create@wing@extra#1#2#3{%
-\def\@lr{left}%
-\protected@edef\@tmp{\expandafter\expandafter\expandafter\expandafter\expandafter\unexpanded{{#1left}{#2}{#3}}}%
-\expandafter\pingu@create@extra\@tmp
-\def\@lr{right}%
-\protected@edef\@tmp{\expandafter\expandafter\expandafter\expandafter\expandafter\unexpanded{{#1right}{#2}{#3}}}%
-\expandafter\pingu@create@extra\@tmp
-}
-
-% .##........#######..##.......##.......####.########...#######..########.
-% .##.......##.....##.##.......##........##..##.....##.##.....##.##.....##
-% .##.......##.....##.##.......##........##..##.....##.##.....##.##.....##
-% .##.......##.....##.##.......##........##..########..##.....##.########.
-% .##.......##.....##.##.......##........##..##........##.....##.##.......
-% .##.......##.....##.##.......##........##..##........##.....##.##.......
-% .########..#######..########.########.####.##.........#######..##.......
+%     #region lillipop
 \pingu@create@wing@extra{lollipop}{%
   lollipop \@lr/.code         = {\pingu@set@extra{lollipop\@lr}{true}\pingu@color{lollipop\@lr}{##1}},
   lollipop \@lr/.default      = pingu@green,
@@ -1274,14 +1269,9 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
     \pingu@block[thick,rotate around={\@angle-1:(\pingu@name-lollipop-#1-top)}]{\csname pingu@color@lollipop#1@second\endcsname} (\pingu@name-lollipop-#1-top) ellipse [x radius=1.57mm, y radius=1.5\p@];
     \pingu@block[thick,rotate around={\@angle-1:(\pingu@name-lollipop-#1-top)}]{\@col} (\pingu@name-lollipop-#1-top)++(0,.5\p@) ellipse [x radius=1.4mm, y radius=\p@];
 }
+%     #endregion
 
-% ..######.....###....##....##.########
-% .##....##...##.##...###...##.##......
-% .##........##...##..####..##.##......
-% .##.......##.....##.##.##.##.######..
-% .##.......#########.##..####.##......
-% .##....##.##.....##.##...###.##......
-% ..######..##.....##.##....##.########
+%     #region cane
 \pingu@create@wing@extra{cane}{%
   cane \@lr/.code         = {\pingu@set@extra{cane\@lr}{true}\pingu@color{cane\@lr}{##1}},
   cane \@lr/.default      = pingu@bronze,
@@ -1296,14 +1286,9 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
         \pingu@block[thick,rotate around={\@angle-5:(\pingu@name-wing-#1)}]{\@col}(\pingu@name-wing-#1)++(0,-7mm) -- ++(0,15mm) arc(0:180:2.25mm and 2.2mm) arc(180:360:.3mm and .275mm) arc(180:0:1.65mm and 1.65mm) -- ++(0,-15mm) arc(180:360:.3mm and .275mm) -- cycle;
     \fi
 }
+%     #endregion
 
-% .##.....##....###....##....##.########......######.....###.....######..########
-% .##.....##...##.##...###...##.##.....##....##....##...##.##...##....##....##...
-% .##.....##..##...##..####..##.##.....##....##........##...##..##..........##...
-% .#########.##.....##.##.##.##.##.....##....##.......##.....##..######.....##...
-% .##.....##.#########.##..####.##.....##....##.......#########.......##....##...
-% .##.....##.##.....##.##...###.##.....##....##....##.##.....##.##....##....##...
-% .##.....##.##.....##.##....##.########......######..##.....##..######.....##...
+%     #region handcast
 \pingu@create@wing@extra{handcast}{%
   handcast \@lr/.forward to    = hand cast \@lr,
   hand cast \@lr/.code         = {\pingu@set@extra{handcast\@lr}{true}\@namedef{pingu@handcast@\@lr}{##1}},
@@ -1315,14 +1300,9 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
     \pingu@setup@wing{handcast}{#1}%
     \path[rotate around={\@angle:(\pingu@name-wing-#1)}] (\pingu@name-wing-#1)++(0,5mm) node[\csname pingu@color@handcast@\@lr @color\endcsname] {\@nameuse{pingu@handcast@#1}};
 }
+%     #endregion
 
-% .##.......####..######...##.....##.########..######.....###....########..########.########.
-% .##........##..##....##..##.....##....##....##....##...##.##...##.....##.##.......##.....##
-% .##........##..##........##.....##....##....##........##...##..##.....##.##.......##.....##
-% .##........##..##...####.#########....##.....######..##.....##.########..######...########.
-% .##........##..##....##..##.....##....##..........##.#########.##.....##.##.......##...##..
-% .##........##..##....##..##.....##....##....##....##.##.....##.##.....##.##.......##....##.
-% .########.####..######...##.....##....##.....######..##.....##.########..########.##.....##
+%     #region lightsaber
 \pingu@create@wing@extra{lightsaber}{%
   light saber \@lr/.forward to       = /pingu/lightsaber \@lr,
   light-saber \@lr/.forward to       = /pingu/lightsaber \@lr,
@@ -1337,6 +1317,7 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
     \pingu@draw[thick,rotate around={\@angle:(\pingu@name-wing-#1)}]{\csname pingu@color@lollipop#1@handle\endcsname}(\pingu@name-wing-#1)++(0,4.75mm) -- ++(0,-6.25mm);
 
 }
+%     #endregion
 % #endregion
 \let\pingu@create@selection\relax
 \let\pingu@create@extra\relax
