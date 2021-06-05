@@ -1247,12 +1247,14 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
     \pingu@may@draw@wing{lollipop}{left}%
     \pingu@may@draw@wing{cane}{left}%
     \pingu@may@draw@wing{handcast}{left}%
+    \pingu@may@draw@wing{lightsaber}{left}%
 }
 
 \def\@pingu@draw@wing@items@right{%
     \pingu@may@draw@wing{lollipop}{right}%
     \pingu@may@draw@wing{cane}{right}%
     \pingu@may@draw@wing{handcast}{right}%
+    \pingu@may@draw@wing{lightsaber}{right}%
 }
 
 \def\pingu@create@wing@extra#1#2#3{%
@@ -1328,6 +1330,25 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
     \path[rotate around={\@angle:(\pingu@name-wing-#1)}] (\pingu@name-wing-#1)++(0,5mm) node[\csname pingu@color@handcast@\@lr @color\endcsname] {\@nameuse{pingu@handcast@#1}};
 }
 
+% .##.......####..######...##.....##.########..######.....###....########..########.########.
+% .##........##..##....##..##.....##....##....##....##...##.##...##.....##.##.......##.....##
+% .##........##..##........##.....##....##....##........##...##..##.....##.##.......##.....##
+% .##........##..##...####.#########....##.....######..##.....##.########..######...########.
+% .##........##..##....##..##.....##....##..........##.#########.##.....##.##.......##...##..
+% .##........##..##....##..##.....##....##....##....##.##.....##.##.....##.##.......##....##.
+% .########.####..######...##.....##....##.....######..##.....##.########..########.##.....##
+\pingu@create@wing@extra{lightsaber}{%
+  lightsaber \@lr/.code              = {\pingu@set@extra{lightsaber\@lr}{true}\pingu@color{lightsaber\@lr}{##1}},
+  lightsaber \@lr/.default           = pingu@blue,
+  lightsaber \@lr\space handle/.code = \pingu@color{lightsaber\@lr @handle}{##1},%
+}{lightsaber \@lr\space handle=pingu@silver}
+
+% #1 wing
+\def\pingu@draw@wi@lightsaber#1{%
+    \pingu@setup@wing{lightsaber}{#1}%
+    \pingu@draw[thick,rotate around={\@angle:(\pingu@name-wing-#1)}]{\csname pingu@color@lollipop#1@handle\endcsname}(\pingu@name-wing-#1)++(0,4.75mm) -- ++(0,-6.25mm);
+
+}
 
 \let\pingu@create@selection\relax
 \let\pingu@create@extra\relax
