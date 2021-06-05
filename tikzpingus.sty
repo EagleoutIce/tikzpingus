@@ -1203,7 +1203,7 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
 % #endregion
 
 % #region wingitems
-% #region wingitmes-setup
+%     #region wingitmes-setup
 \def\pingu@may@draw@wing#1#2{\csname if@pingu@x@#1#2@\endcsname \csname pingu@draw@wi@#1\endcsname{#2}\fi}
 \edef\pingu@str@wing@left{left}
 \newif\if@pingu@wing@item@side@left@
@@ -1230,28 +1230,19 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
 \fi
 }
 
+\let\@pingu@draw@wing@items@left\@empty
+\let\@pingu@draw@wing@items@right\@empty
+
 \def\pingu@create@wing@extra#1#2#3{%
+\expandafter\def\expandafter\@pingu@draw@wing@items@left\expandafter{\@pingu@draw@wing@items@left\pingu@may@draw@wing{#1}{left}}%
+\expandafter\def\expandafter\@pingu@draw@wing@items@right\expandafter{\@pingu@draw@wing@items@right\pingu@may@draw@wing{#1}{right}}%
 \def\@lr{left}%
 \protected@edef\@tmp{\expandafter\expandafter\expandafter\expandafter\expandafter\unexpanded{{#1left}{#2}{#3}}}%
 \expandafter\pingu@create@extra\@tmp
 \def\@lr{right}%
 \protected@edef\@tmp{\expandafter\expandafter\expandafter\expandafter\expandafter\unexpanded{{#1right}{#2}{#3}}}%
 \expandafter\pingu@create@extra\@tmp}
-% #endregion
-
-\def\@pingu@draw@wing@items@left{%
-    \pingu@may@draw@wing{lollipop}{left}%
-    \pingu@may@draw@wing{cane}{left}%
-    \pingu@may@draw@wing{handcast}{left}%
-    \pingu@may@draw@wing{lightsaber}{left}%
-}
-
-\def\@pingu@draw@wing@items@right{%
-    \pingu@may@draw@wing{lollipop}{right}%
-    \pingu@may@draw@wing{cane}{right}%
-    \pingu@may@draw@wing{handcast}{right}%
-    \pingu@may@draw@wing{lightsaber}{right}%
-}
+%     #endregion
 
 %     #region lillipop
 \pingu@create@wing@extra{lollipop}{%
