@@ -18,6 +18,7 @@
 \pgfsetlayers{background,main,middle,foreground}
 \fi
 
+% #region colors
 \def\@pingu@color@ #1#2(#3,#4,#5){\definecolor{pingu@#1}{#2}{#3,#4,#5}}
 \@pingu@color@{main}RGB(3,14,29)
 \@pingu@color@{black}RGB(23,19,19)
@@ -31,7 +32,9 @@
 \@pingu@color@{red}RGB(217, 40, 28)
 \@pingu@color@{purple}RGB(244,48,93)
 \def\@pingu@none{!hide}
+% #endregion
 
+% #region lengths and dimens
 \newdimen\pingu@one@eight     \pingu@one@eight=.125cm\relax
 \newdimen\pingu@w@half        \pingu@w@half=\dimexpr1cm-.5\pingu@one@eight\relax
 \newdimen\pingu@side@h@half   \pingu@side@h@half=1.275cm\relax
@@ -51,7 +54,9 @@
 \newdimen\pingu@eye@shift     \pingu@eye@shift=.8mm\relax
 \def\pinguanglehl{.93}
 \def\pinguanglehr{.07}
+% #endregion
 
+% #region selections
 \def\pingu@csappto#1#2{\expandafter\ifx\csname #1\endcsname\@empty\@namedef{#1}{#2}\else\expandafter\g@addto@macro\csname #1\endcsname{, #2}\fi}
 
 \def\pingu@create@sel@err#1#2{%
@@ -101,7 +106,9 @@
 }
 \pingu@create@selection{leftfoot}{}
 \pingu@create@selection{rightfoot}{}
+% #endregion
 
+% #region key setup
 \def\pingu@color#1#2{\expandafter\def\csname pingu@color@#1\endcsname{#2}}
 
 % HACK: store scale
@@ -115,6 +122,7 @@
   /pingu/.search also={/tikz,/pgf}, /pingu/.cd,%
   name/.code                    = \def\pingu@name{#1},
   scale/.code                   = \def\pingu@scale{#1},
+  meta dots/.forward to         = /pingu/meta-dots,
   meta-dots/.is if              = @pingu@draw@metadots,
   meta-dots/.default            = true,
   @pingu@all/.style             = {},
@@ -199,7 +207,7 @@
   extra defaults/.style = {}
 }
 % TODO: free defaults
-
+% #endregion
 
 \ifpengu@setup@glows@
 \usetikzlibrary{fadings}%
@@ -209,7 +217,7 @@
 \tikzset{/pingu/@glow/.style={}}
 \fi
 
-
+% #region core
 \long\def\pingu@path{\@dblarg\pingu@path@}
 \def\pingu@path@[#1]#2#3;{\protected@edef\@tmp{#2}\ifx\@tmp\@pingu@none\else\path[#1,#2] #3;\fi}
 \long\def\pingu@block{\@dblarg\pingu@block@}
@@ -306,8 +314,9 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
         coordinate[pos=\pinguanglehr] (\pingu@name-head-right)
         coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 }
+% #endregion
 
-%%% eyes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% #region eyes
 % name core | left | right
 \long\def\@pingu@eyes@s#1#2#3{\@ifnextchar[{\@pingu@eyes@s@{#1}{#2}{#3}}{\@pingu@eyes@s@{#1}{#2}{#3}[pingu@black]}}
 \long\def\@pingu@eyes@s@#1#2#3[#4]{%
@@ -381,10 +390,10 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
     \fill[\pingu@color@eye@right!20!pingu@yellow!7!pingu@white] (\pingu@name-right-eye) circle [radius=.5pt]; %
     \pingu@block{pingu@white} (\pingu@name-right-eye) circle [radius=.15pt];
 }[pingu@purple]
-
 \let\@pingu@eyes@s\relax
+% #endregion
 
-%%% Wings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% #region wings
 % every wing has to define 1) a base element angle and 2) a marker if before or after the wing
 \let\pingu@wi@above\iftrue
 \let\pingu@wi@below\iffalse
@@ -420,7 +429,6 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
     \endpgfinterruptboundingbox
     \pingu@block[rotate around={-15:(\pingu@name-wing-right-start)}]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.195cm, y radius=9mm] +(-90:.195cm and 9mm) coordinate (\pingu@name-wing-right-tip) +(-90:.145cm and .75cm) coordinate (\pingu@name-wing-right);
 \endscope}{\pingu@wi@above}{-5}
-
 
 \@pingu@wings@s{wave}{%
     \coordinate (\pingu@name-wing-left-start) at ([yshift=-5.85mm]\pingu@name-wings-side-left);
@@ -489,7 +497,6 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
 \endscope\endpgfonlayer}%
 {\pingu@wi@below}{-180}
 
-
 \@pingu@wings@s{hug}{%
 \coordinate (\pingu@name-wing-left-start) at ([yshift=-6.25mm]\pingu@name-wings-side-left);
 \scope[xshift=-\p@] % shift to avoid rounding errors in pdf viewers
@@ -509,10 +516,10 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
 \pingu@block{\pingu@color@right@wing} (\pingu@name-wing-right-start)++(-.03mm,4.6mm) to[out=-100,in=40] (\pingu@name-wing-right-cap-up) -- (\pingu@name-wing-right-start) -- cycle;
 \pingu@block{\pingu@color@right@wing} (\pingu@name-wing-right-start)++(-.085mm,-4.4mm) to[out=92,in=20] (\pingu@name-wing-right-cap-down) -- (\pingu@name-wing-right-start) -- cycle;
 \endscope}{\pingu@wi@above}{-30}
-
 \let\@pingu@wings@s\relax
+% #endregion
 
-%%% Hairstyle %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% #region hairstyle
 \pingu@hairstyle@add{normal}{%
 \scope[rounded corners=.08mm]
 \pingu@block{\pingu@color@hair@a} ([yshift=-1mm]\pingu@name-head-top) -- ++(.15mm,0) arc (0:90:\pingu@one@eight{} and .135cm) arc (90:0:.35mm and .75mm);
@@ -521,9 +528,9 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
 \pingu@block{\pingu@color@hair@d} ([yshift=-1mm]\pingu@name-head-top) -- ++(.25mm,0) arc (180:90:\pingu@one@eight{} and .175cm) arc (90:180:.35mm and \pingu@one@eight);
 \pingu@block{\pingu@color@hair@e} ([yshift=-1mm]\pingu@name-head-top) -- ++(.44mm,0) arc (180:90:\pingu@one@eight{} and .135cm) arc (90:180:.35mm and .75mm);
 \endscope}
+% #endregion
 
-%%% Feet %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+% #region feet
 \long\def\@pingu@feet@s#1#2#3{\@ifnextchar[{\@pingu@feet@s@{#1}{#2}{#3}}{\@pingu@feet@s@{#1}{#2}{#3}[pingu@yellow]}}
 \long\def\@pingu@feet@s@#1#2#3[#4]{%
     \tikzset{%
@@ -536,7 +543,6 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
     }%
     \pingu@leftfoot@add{#1}{#2}\pingu@rightfoot@add{#1}{#3}%
 }
-
 
 \@pingu@feet@s{normal}{%
     \coordinate (@tmp) at ([xshift=-.5\pingu@foot@single@h]\pingu@name-foot-left);
@@ -564,10 +570,9 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
 }{%
     \pingu@block{\pingu@color@foot@right} ([yshift=.2\pingu@foot@single@h]\pingu@name-foot-right) ellipse [x radius=2.5\pingu@foot@single@w,y radius=.5\pingu@foot@single@h];
 }
+% #endregion
 
-
-%%% Bill %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+% #region bill
 % name core | main
 \long\def\@pingu@bill@s#1#2{%
     \tikzset{%
@@ -597,9 +602,9 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
     to[out=10,in=-90] ++(1.9mm,2.25mm)
     to[bend right=.25cm] cycle;
 }
+% #endregion
 
-
-%%% Dots %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% #region dots
 \def\@pingu@draw@dots{%
 \pgfonlayer{foreground}
   \@for\@pingu@elem:={belly-center,head,head-top,foot-left,foot-right,right-eye,left-eye,bill,bill-bottom,wings-side-left,wings-side-right,wing-left-start,wing-left-tip,wing-right-start,wing-right-tip,head-right,head-left,head-center,head-back-con-left,head-back-con-right,bottom-center,waist-left,waist-right}\do{
@@ -617,8 +622,10 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
     (\pingu@name-wing-right)++(0,3mm) circle [radius=1mm] -- ++(0,-6mm);
 \endpgfonlayer
 }
+% endregion
 
-%%% Extras %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% #region extras
+%     #region extras below
 \def\pingu@draw@extras@below{%
     \if@pingu@x@tie@ \pingu@draw@eb@tie \fi
     \if@pingu@x@bowtie@ \pingu@draw@eb@bowtie \fi
@@ -832,14 +839,9 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
 \endpgfonlayer
 \fi
 }
+%     #endregion
 
-%            _
-%      /\   | |
-%     /  \  | |__   _____   _____
-%    / /\ \ | '_ \ / _ \ \ / / _ \
-%   / ____ \| |_) | (_) \ V /  __/
-%  /_/    \_\_.__/ \___/ \_/ \___|
-
+%     #region extras above
 % NOTE: No auto append to allow easy order change
 \def\pingu@draw@extras@above{%
     \if@pingu@x@eyeframe@ \pingu@draw@ea@eyeframe \fi
@@ -1000,7 +1002,6 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
 \endpgfonlayer
 \endscope
 }
-
 
 % .##.....##....###....##........#######.
 % .##.....##...##.##...##.......##.....##
@@ -1198,25 +1199,10 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
     \endpgfonlayer
 }
 
-%                         #                                #
-%                        ###                              ###     #
-% ##                      #                                #     ##
-% ##                                                             ##
-%  ##    ###    ####    ###   ###  /###     /###         ###   ######## /##  ### /### /###      /###
-%   ##    ###     ###  / ###   ###/ #### / /  ###  /      ### ######## / ###  ##/ ###/ /##  /  / #### /
-%   ##     ###     ###/   ##    ##   ###/ /    ###/        ##    ##   /   ###  ##  ###/ ###/  ##  ###/
-%   ##      ##      ##    ##    ##    ## ##     ##         ##    ##  ##    ### ##   ##   ##  ####
-%   ##      ##      ##    ##    ##    ## ##     ##         ##    ##  ########  ##   ##   ##    ###
-%   ##      ##      ##    ##    ##    ## ##     ##         ##    ##  #######   ##   ##   ##      ###
-%   ##      ##      ##    ##    ##    ## ##     ##         ##    ##  ##        ##   ##   ##        ###
-%   ##      /#      /     ##    ##    ## ##     ##         ##    ##  ####    / ##   ##   ##   /###  ##
-%    ######/ ######/      ### / ###   ### ########         ### / ##   ######/  ###  ###  ### / #### /
-%     #####   #####        ##/   ###   ###  ### ###         ##/   ##   #####    ###  ###  ###   ###/
-%                                                ###
-%                                          ####   ###
-%                                        /######  /#
-%                                       /     ###/
+%     #endregion
+% #endregion
 
+% #region wingitems
 \def\pingu@may@draw@wing#1#2{\csname if@pingu@x@#1#2@\endcsname \csname pingu@draw@wi@#1\endcsname{#2}\fi}
 \edef\pingu@str@wing@left{left}
 \newif\if@pingu@wing@item@side@left@
@@ -1338,6 +1324,8 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
 % .##........##..##....##..##.....##....##....##....##.##.....##.##.....##.##.......##....##.
 % .########.####..######...##.....##....##.....######..##.....##.########..########.##.....##
 \pingu@create@wing@extra{lightsaber}{%
+  light saber \@lr/.forward to       = /pingu/lightsaber \@lr,
+  light-saber \@lr/.forward to       = /pingu/lightsaber \@lr,
   lightsaber \@lr/.code              = {\pingu@set@extra{lightsaber\@lr}{true}\pingu@color{lightsaber\@lr}{##1}},
   lightsaber \@lr/.default           = pingu@blue,
   lightsaber \@lr\space handle/.code = \pingu@color{lightsaber\@lr @handle}{##1},%
@@ -1349,7 +1337,7 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
     \pingu@draw[thick,rotate around={\@angle:(\pingu@name-wing-#1)}]{\csname pingu@color@lollipop#1@handle\endcsname}(\pingu@name-wing-#1)++(0,4.75mm) -- ++(0,-6.25mm);
 
 }
-
+% #endregion
 \let\pingu@create@selection\relax
 \let\pingu@create@extra\relax
 \endinput
