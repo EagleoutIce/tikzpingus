@@ -1309,6 +1309,7 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
   lightsaber \@lr\space button b/.code   = \pingu@color{lightsaber\@lr @button@b}{##1},%
   lightsaber \@lr\space angle/.code    = {\@namedef{pingu@x@lightsaber@angle@\@lr}{##1}},%
   lightsaber \@lr\space length/.code   = {\@namedef{pingu@x@lightsaber@length@\@lr}{##1}},%
+  lightsaber \@lr\space yshift/.code   = {\@namedef{pingu@x@lightsaber@yshift@\@lr}{##1}},%
   lightsaber \@lr\space glow/.is if    = @pingu@x@lightsaber@glow@\@lr,%
   lightsaber \@lr\space double/.is if  = @pingu@x@lightsaber@double@\@lr,%
   % TODO: lower color
@@ -1316,15 +1317,15 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
   lightsaber \@lr\space solid/.style = {/pingu/lightsaber \@lr\space glow=false},
   lightsaber \@lr\space disabled/.style = {/pingu/lightsaber \@lr\space solid,/pingu/lightsaber \@lr=\@pingu@none},
   lightsaber \@lr\space outer glow factor/.code  = {\@namedef{pingu@x@lightsaber@ogf@\@lr}{##1}}%
-}{lightsaber \@lr\space handle=pingu@silver, lightsaber \@lr\space deco=pingu@silver!12!pingu@black, lightsaber \@lr\space button=pingu@red!85!pingu@black,lightsaber \@lr\space button b=pingu@red!85!pingu@black, lightsaber \@lr\space ribbs=pingu@silver!50!pingu@black,lightsaber \@lr\space angle=0,lightsaber \@lr\space length=2cm,lightsaber \@lr\space glow=\ifpengu@setup@glows@ true\else false\fi,lightsaber \@lr\space glow core=white,lightsaber \@lr\space outer glow factor=.0435}
+}{lightsaber \@lr\space handle=pingu@silver, lightsaber \@lr\space deco=pingu@silver!12!pingu@black, lightsaber \@lr\space button=pingu@red!85!pingu@black,lightsaber \@lr\space button b=pingu@red!85!pingu@black, lightsaber \@lr\space ribbs=pingu@silver!50!pingu@black,lightsaber \@lr\space angle=0,lightsaber \@lr\space length=2cm,lightsaber \@lr\space glow=\ifpengu@setup@glows@ true\else false\fi,lightsaber \@lr\space glow core=white,lightsaber \@lr\space outer glow factor=.0435,lightsaber \@lr\space yshift=\z@}
 
 \def\pingu@draw@wi@lightsaber@base#1{%
 % deco-elements
     % base
-    \pingu@block{\csname pingu@color@lightsaber#1@deco\endcsname}(\pingu@name-wing-#1)++(-.4mm,2.65mm) -- ++(0,-5mm) -- ++(.8mm,0) |- cycle;
+    \pingu@block{\csname pingu@color@lightsaber#1@deco\endcsname}(\pingu@name-wing-#1)++(-.4mm,2.65mm+\csname pingu@x@lightsaber@yshift@#1\endcsname) -- ++(0,-5mm) -- ++(.8mm,0) |- cycle;
     \if@pingu@wing@item@side@left@
     % ribbs; single path saves memory :D
-    \pingu@block{\csname pingu@color@lightsaber#1@ribbs\endcsname}(\pingu@name-wing-#1)++(-.45mm,2.225mm)
+    \pingu@block{\csname pingu@color@lightsaber#1@ribbs\endcsname}(\pingu@name-wing-#1)++(-.45mm,2.225mm+\csname pingu@x@lightsaber@yshift@#1\endcsname)
     arc(90:270:.075mm) -| ++(.8mm,-.165mm) -- ++(-.8mm,0)
     arc(90:270:.075mm) -| ++(.8mm,-.165mm) -- ++(-.8mm,0)
     arc(90:270:.075mm) -| ++(.8mm,-.165mm) -- ++(-.8mm,0)
@@ -1340,13 +1341,13 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
     arc(90:270:.075mm) -| ++(.8mm,-.165mm) -- ++(-.8mm,0)
     arc(90:270:.075mm) -- ++(.8mm,0) |- cycle;
     % button
-    \pingu@block{\csname pingu@color@lightsaber#1@button@b\endcsname}(\pingu@name-wing-#1)++(.49mm,-1.75mm) ellipse [x radius=.1mm, y radius=.3mm];
-    \pingu@block{\csname pingu@color@lightsaber#1@button\endcsname}(\pingu@name-wing-#1)++(.49mm,1.9mm) ellipse [x radius=.1mm, y radius=.3mm];
+    \pingu@block{\csname pingu@color@lightsaber#1@button@b\endcsname}(\pingu@name-wing-#1)++(.49mm,-1.75mm+\csname pingu@x@lightsaber@yshift@#1\endcsname) ellipse [x radius=.1mm, y radius=.3mm];
+    \pingu@block{\csname pingu@color@lightsaber#1@button\endcsname}(\pingu@name-wing-#1)++(.49mm,1.9mm+\csname pingu@x@lightsaber@yshift@#1\endcsname) ellipse [x radius=.1mm, y radius=.3mm];
     % cover
-    \pingu@block{\csname pingu@color@lightsaber#1@handle\endcsname}(\pingu@name-wing-#1)++(-.5mm,2.65mm) arc(180:90:.15mm) -- ++(.7mm,0) arc(90:0:.16mm) -- ++(0,-5mm) arc(360:270:.15mm) -- ++(-.7mm,0) arc (270:180:.15mm) -- ++(0,.25mm) arc(270:360:.33mm and .2mm) -- ++(0,4.1mm) arc(0:90:.33mm and .2mm) -- ++(0,.25mm) -- cycle;
+    \pingu@block{\csname pingu@color@lightsaber#1@handle\endcsname}(\pingu@name-wing-#1)++(-.5mm,2.65mm+\csname pingu@x@lightsaber@yshift@#1\endcsname) arc(180:90:.15mm) -- ++(.7mm,0) arc(90:0:.16mm) -- ++(0,-5mm) arc(360:270:.15mm) -- ++(-.7mm,0) arc (270:180:.15mm) -- ++(0,.25mm) arc(270:360:.33mm and .2mm) -- ++(0,4.1mm) arc(0:90:.33mm and .2mm) -- ++(0,.25mm) -- cycle;
     \else
     % ribbs; single path saves memory :D (the second)
-    \pingu@block{\csname pingu@color@lightsaber#1@ribbs\endcsname}(\pingu@name-wing-#1)++(.45mm,2.225mm)
+    \pingu@block{\csname pingu@color@lightsaber#1@ribbs\endcsname}(\pingu@name-wing-#1)++(.45mm,2.225mm+\csname pingu@x@lightsaber@yshift@#1\endcsname)
         arc(90:-90:.075mm) -| ++(-.8mm,-.165mm) -- ++(.8mm,0)
         arc(90:-90:.075mm) -| ++(-.8mm,-.165mm) -- ++(.8mm,0)
         arc(90:-90:.075mm) -| ++(-.8mm,-.165mm) -- ++(.8mm,0)
@@ -1362,10 +1363,10 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
         arc(90:-90:.075mm) -| ++(-.8mm,-.165mm) -- ++(.8mm,0)
         arc(90:-90:.075mm) -- ++(-.8mm,0) |- cycle;
     % buttons
-    \pingu@block{\csname pingu@color@lightsaber#1@button@b\endcsname}(\pingu@name-wing-#1)++(-.49mm,-1.75mm) ellipse [x radius=.1mm, y radius=.3mm];
-    \pingu@block{\csname pingu@color@lightsaber#1@button\endcsname}(\pingu@name-wing-#1)++(-.49mm,1.9mm) ellipse [x radius=.1mm, y radius=.3mm];
+    \pingu@block{\csname pingu@color@lightsaber#1@button@b\endcsname}(\pingu@name-wing-#1)++(-.49mm,-1.75mm+\csname pingu@x@lightsaber@yshift@#1\endcsname) ellipse [x radius=.1mm, y radius=.3mm];
+    \pingu@block{\csname pingu@color@lightsaber#1@button\endcsname}(\pingu@name-wing-#1)++(-.49mm,1.9mm+\csname pingu@x@lightsaber@yshift@#1\endcsname) ellipse [x radius=.1mm, y radius=.3mm];
     % cover
-    \pingu@block{\csname pingu@color@lightsaber#1@handle\endcsname}(\pingu@name-wing-#1)++(.5mm,2.65mm) arc(0:90:.15mm) -- ++(-.7mm,0) arc(90:180:.16mm) -- ++(0,-5mm) arc(180:270:.15mm) -- ++(.7mm,0) arc (270:360:.15mm) -- ++(0,.25mm) arc(270:180:.33mm and .2mm) -- ++(0,4.1mm) arc(180:90:.33mm and .2mm) -- ++(0,.25mm) -- cycle;
+    \pingu@block{\csname pingu@color@lightsaber#1@handle\endcsname}(\pingu@name-wing-#1)++(.5mm,2.65mm+\csname pingu@x@lightsaber@yshift@#1\endcsname) arc(0:90:.15mm) -- ++(-.7mm,0) arc(90:180:.16mm) -- ++(0,-5mm) arc(180:270:.15mm) -- ++(.7mm,0) arc (270:360:.15mm) -- ++(0,.25mm) arc(270:180:.33mm and .2mm) -- ++(0,4.1mm) arc(180:90:.33mm and .2mm) -- ++(0,.25mm) -- cycle;
     \fi
 }
 
@@ -1405,16 +1406,16 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
 % #1 wing
 \def\pingu@draw@wi@lightsaber#1{%
     \pingu@setup@wing{lightsaber}{#1}%
-    \scope[rotate around={\@angle+\csname pingu@x@lightsaber@angle@#1\endcsname:(\pingu@name-wing-#1)},xscale=1.2]
-    \pingu@draw@wi@lightsaber@pre{#1}{2.9mm}{0}
+    \scope[rotate around={\@angle+\csname pingu@x@lightsaber@angle@#1\endcsname:([yshift=+\csname pingu@x@lightsaber@yshift@#1\endcsname]\pingu@name-wing-#1)},xscale=1.2]
+    \pingu@draw@wi@lightsaber@pre{#1}{2.9mm+\csname pingu@x@lightsaber@yshift@#1\endcsname}{0}
     \csname if@pingu@x@lightsaber@double@#1\endcsname
-    \pingu@draw@wi@lightsaber@pre{#1}{2.65mm}{180}
+    \pingu@draw@wi@lightsaber@pre{#1}{2.65mm-\csname pingu@x@lightsaber@yshift@#1\endcsname}{180}
     \fi
     \pingu@draw@wi@lightsaber@base{#1}
     % afterglow (whuile watching everglow :D)
-    \pingu@draw@wi@lightsaber@post{#1}{2.9mm}{0}
+    \pingu@draw@wi@lightsaber@post{#1}{2.9mm+\csname pingu@x@lightsaber@yshift@#1\endcsname}{0}
     \csname if@pingu@x@lightsaber@double@#1\endcsname
-    \pingu@draw@wi@lightsaber@post{#1}{2.65mm}{180}
+    \pingu@draw@wi@lightsaber@post{#1}{2.65mm-\csname pingu@x@lightsaber@yshift@#1\endcsname}{180}
     \fi
     \endscope
 }
