@@ -212,9 +212,14 @@
 \ifpengu@setup@glows@
 \usetikzlibrary{fadings}%
 \tikzfading[name=pingu@halo fade out,inner color=transparent!0,outer color=transparent!100]
-\tikzset{/pingu/@glow/.style={path fading={pingu@halo fade out}}}
+\begin{tikzfadingfrompicture}[name=pingu@saber fade]
+    \foreach[evaluate=\i as \k using {.25-\i/500}] \i in {0,...,100} {
+        \path [fill=white!\i!black] ellipse [x radius=\k, y radius=40];
+    }
+\end{tikzfadingfrompicture}
+\tikzset{/pingu/@glow/.style={path fading={pingu@halo fade out},#1},/pingu/@saber@glow/.style={path fading={pingu@saber fade},#1}}
 \else
-\tikzset{/pingu/@glow/.style={}}
+\tikzset{/pingu/@glow/.style={},/pingu/@saber@glow/.style={}}
 \fi
 
 % #region core
@@ -1019,9 +1024,9 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
 }{halo glow=\ifpengu@setup@glows@ true\else false\fi,halo raise=0mm}
 
 \def\pingu@draw@ea@halo{%
-\pingu@block[even odd rule]{\pingu@color@halo} ([yshift=\pingu@x@halo@raise]\pingu@name-head-top) circle [x radius=\pingu@w@half-1mm,y radius=2.5mm] circle [x radius=\pingu@w@half-1.95mm,y radius=1.55mm];
+\pingu@block[even odd rule]{\pingu@color@halo} ([yshift=\pingu@x@halo@raise]\pingu@name-head-top) ellipse [x radius=\pingu@w@half-1mm,y radius=2.5mm] ellipse [x radius=\pingu@w@half-1.95mm,y radius=1.55mm];
 \if@pingu@x@halo@glow
-\pingu@block[even odd rule,/pingu/@glow]{\pingu@color@halo} ([yshift=\pingu@x@halo@raise]\pingu@name-head-top) circle [x radius=(\pingu@w@half-1.95mm)*1.7,y radius=1.55mm*2.35] circle [x radius=\pingu@w@half-1.95mm,y radius=1.55mm];
+\pingu@block[even odd rule,/pingu/@glow]{\pingu@color@halo} ([yshift=\pingu@x@halo@raise]\pingu@name-head-top) ellipse [x radius=(\pingu@w@half-1.95mm)*1.7,y radius=1.55mm*2.35] ellipse [x radius=\pingu@w@half-1.95mm,y radius=1.55mm];
 \fi
 }
 
@@ -1294,19 +1299,52 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
 %     #endregion
 
 %     #region lightsaber
+\newif\if@pingu@x@lightsaber@glow@left
+\newif\if@pingu@x@lightsaber@glow@right
 \pingu@create@wing@extra{lightsaber}{%
-  light saber \@lr/.forward to       = /pingu/lightsaber \@lr,
-  light-saber \@lr/.forward to       = /pingu/lightsaber \@lr,
   lightsaber \@lr/.code              = {\pingu@set@extra{lightsaber\@lr}{true}\pingu@color{lightsaber\@lr}{##1}},
   lightsaber \@lr/.default           = pingu@blue,
   lightsaber \@lr\space handle/.code = \pingu@color{lightsaber\@lr @handle}{##1},%
-}{lightsaber \@lr\space handle=pingu@silver}
+  lightsaber \@lr\space deco/.code   = \pingu@color{lightsaber\@lr @deco}{##1},%
+  lightsaber \@lr\space ribbs/.code  = \pingu@color{lightsaber\@lr @ribbs}{##1},%
+  lightsaber \@lr\space angle/.code  = {\@namedef{pingu@x@lightsaber@angle@\@lr}{##1}},%
+  lightsaber \@lr\space length/.code = {\@namedef{pingu@x@lightsaber@length@\@lr}{##1}},%
+  lightsaber \@lr\space glow/.is if  = @pingu@x@lightsaber@glow@\@lr,%
+  lightsaber \@lr\space glow core/.code   = \pingu@color{lightsaber\@lr @glow@core}{##1},%
+  lightsaber \@lr\space solid/.style = {/pingu/lightsaber \@lr\space glow=false},
+}{lightsaber \@lr\space handle=pingu@silver, lightsaber \@lr\space deco=pingu@silver!12!pingu@black, lightsaber \@lr\space ribbs=pingu@silver!50!pingu@black,lightsaber \@lr\space angle=0,lightsaber \@lr\space length=15mm,lightsaber \@lr\space glow=\ifpengu@setup@glows@ true\else false\fi,lightsaber \@lr\space glow core=pingu@white,}
 
 % #1 wing
 \def\pingu@draw@wi@lightsaber#1{%
     \pingu@setup@wing{lightsaber}{#1}%
-    \pingu@draw[thick,rotate around={\@angle:(\pingu@name-wing-#1)}]{\csname pingu@color@lollipop#1@handle\endcsname}(\pingu@name-wing-#1)++(0,4.75mm) -- ++(0,-6.25mm);
-
+    \scope[rotate around={\@angle+\csname pingu@x@lightsaber@angle@#1\endcsname:(\pingu@name-wing-#1)}]
+    % the saber itself
+    \csname if@pingu@x@lightsaber@glow@#1\endcsname
+        \pingu@block[/pingu/@saber@glow={fading angle=\@angle+\csname pingu@x@lightsaber@angle@#1\endcsname}]{\@col} (\pingu@name-wing-#1)++(-.9mm,2.9mm) ellipse[x radius=3mm, y radius=15mm];
+        % \pingu@block[/pingu/@saber@glow={fading angle=\@angle+\csname pingu@x@lightsaber@angle@#1\endcsname}]{\@col} (\pingu@name-wing-#1)++(-.9mm,2.9mm) -- ++(.05mm,\csname pingu@x@lightsaber@length@#1\endcsname) arc(180:0:.85mm and .5mm) -- ++(.05mm,-\csname pingu@x@lightsaber@length@#1\endcsname) arc (0:-180:.9mm);
+        \pingu@block{\csname pingu@color@lightsaber#1@glow@core\endcsname} (\pingu@name-wing-#1)++(-.275mm,2.9mm) -- ++(.1mm,\csname pingu@x@lightsaber@length@#1\endcsname) arc(180:0:.175mm and .25mm) -- ++(.1mm,-\csname pingu@x@lightsaber@length@#1\endcsname) arc (0:-180:.275mm);
+    \else % draw solid
+        \pingu@block{\@col} (\pingu@name-wing-#1)++(-.45mm,2.9mm) -- ++(.05mm,\csname pingu@x@lightsaber@length@#1\endcsname) arc(180:0:.4mm and .375mm) -- ++(.05mm,-\csname pingu@x@lightsaber@length@#1\endcsname) arc (0:-180:.45mm);
+    \fi
+    % deco-elements
+    % base
+    \pingu@block{\csname pingu@color@lightsaber#1@deco\endcsname}(\pingu@name-wing-#1)++(-.4mm,2.65mm) -- ++(0,-4.25mm) -- ++(.8mm,0) |- cycle;
+    \if@pingu@wing@item@side@left@
+    % ribbs
+    \@for\i:={0,1,2,3,4,5,6,7,8,9,10,11}\do{
+        \pingu@block{\csname pingu@color@lightsaber#1@ribbs\endcsname}(\pingu@name-wing-#1)++(-.45mm,2.25mm-\i*.299mm) arc(90:270:.075mm) -| ++(.8mm,.075mm) -- cycle;
+    }
+    % cover
+    \pingu@block{\csname pingu@color@lightsaber#1@handle\endcsname}(\pingu@name-wing-#1)++(-.5mm,2.65mm) arc(180:90:.15mm) -- ++(.7mm,0) arc(90:0:.16mm) -- ++(0,-4.25mm) arc(360:270:.15mm) -- ++(-.7mm,0) arc (270:180:.15mm) -- ++(0,.25mm) arc(270:360:.33mm and .2mm) -- ++(0,3.35mm) arc(0:90:.33mm and .2mm) -- ++(0,.25mm) -- cycle;
+    \else
+    % ribbs
+    \@for\i:={0,1,2,3,4,5,6,7,8,9,10,11}\do{
+        \pingu@block{\csname pingu@color@lightsaber#1@ribbs\endcsname}(\pingu@name-wing-#1)++(.45mm,2.25mm-\i*.299mm) arc(90:-90:.075mm) -| ++(-.8mm,.075mm) -- cycle;
+    }
+    % cover
+    \pingu@block{\csname pingu@color@lightsaber#1@handle\endcsname}(\pingu@name-wing-#1)++(.5mm,2.65mm) arc(0:90:.15mm) -- ++(-.7mm,0) arc(90:180:.16mm) -- ++(0,-4.25mm) arc(180:270:.15mm) -- ++(.7mm,0) arc (270:360:.15mm) -- ++(0,.25mm) arc(270:180:.33mm and .2mm) -- ++(0,3.35mm) arc(180:90:.33mm and .2mm) -- ++(0,.25mm) -- cycle;
+    \fi
+    \endscope
 }
 %     #endregion
 % #endregion
