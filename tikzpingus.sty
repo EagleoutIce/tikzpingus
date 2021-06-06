@@ -1366,7 +1366,7 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
     \scope[rotate around={\@angle+\csname pingu@x@lightsaber@angle@#1\endcsname:(\pingu@name-wing-#1)},xscale=1.2]
     \csname if@pingu@x@lightsaber@glow@#1\endcsname
     \@for\i:={0,2,4,5,6,7,8,9,10,11,12,13,14,15,16}\do{
-        \pingu@block[fill opacity=\ifnum\i>14 .2\else.106\fi*\i/20]{\@col} (\pingu@name-wing-#1)++(-\pingu@x@saberglow@w@half+\i*\i mm/440,2.9mm) -- ++(.05mm,\csname pingu@x@lightsaber@length@#1\endcsname) arc(180:0:\pingu@x@saberglow@w@half-.05mm-\i*\i mm/440 and .9mm-\i mm/30) -- ++(.05mm,-\csname pingu@x@lightsaber@length@#1\endcsname) arc (0:-180:\pingu@x@saberglow@w@half-\i*\i mm/440 and .35mm);
+        \pingu@block[fill opacity=\ifnum\i>14 .19\else.101\fi*\i/20]{\@col} (\pingu@name-wing-#1)++(-\pingu@x@saberglow@w@half+\i*\i mm/440,2.9mm) -- ++(.05mm,\csname pingu@x@lightsaber@length@#1\endcsname) arc(180:0:\pingu@x@saberglow@w@half-.05mm-\i*\i mm/440 and .9mm-\i mm/30) -- ++(.05mm,-\csname pingu@x@lightsaber@length@#1\endcsname) arc (0:-180:\pingu@x@saberglow@w@half-\i*\i mm/440 and .35mm);
     }
     \else % draw solid
         \pingu@block{\@col} (\pingu@name-wing-#1)++(-.425mm,2.8mm) -- ++(.05mm,\csname pingu@x@lightsaber@length@#1\endcsname) arc(180:0:.375mm and .375mm) -- ++(.05mm,-\csname pingu@x@lightsaber@length@#1\endcsname) arc (0:-180:.425mm and .05mm);
