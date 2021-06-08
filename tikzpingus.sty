@@ -1458,7 +1458,7 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
     cloak padding/.code      = {\def\pingu@x@cloak@padding{#1}}
 }{cloak padding=3.5mm,cloak bottom color=\pingu@color@cloak}
 \def\pingu@draw@cloth@cloak@behind{%
-    \pingu@block[bottom color=\pingu@color@cloak@bottom,top color=\pingu@color@cloak]{\pingu@color@cloak} (\pingu@name-bottom-center)++(-\pingu@x@cloak@padding-\pingu@w@half,-.5mm) arc (180:0:{\pingu@x@cloak@padding+\pingu@w@half} and 1mm) -- (\pingu@name-wings-side-left) -- (\pingu@name-wings-side-right) -- cycle;
+    \pingu@block[bottom color=\pingu@color@cloak@bottom,top color=\pingu@color@cloak]{\pingu@color@cloak} (\pingu@name-bottom-center)++(-\pingu@x@cloak@padding-\pingu@w@half,-.5mm) arc (180:0:{\pingu@x@cloak@padding+\pingu@w@half} and 1mm) to[bend left=1] (\pingu@name-wings-side-left) arc(0:180:\pingu@w@half{} and .75mm) to[bend left=1] cycle;
 }
 \def\pingu@draw@cloth@cloak{%
 }
