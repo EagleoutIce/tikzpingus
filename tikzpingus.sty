@@ -209,8 +209,8 @@
 % #region complete sets and styles
 \tikzset{
   pingu line/.style            =  {/pingu/@block/.append style={fill=none,draw=##1!80!black,shade=none,path fading=none}},
-  pingu ghost parts/.style           = {/pingu/@pingu@all/.append style={opacity=#1}},
-  pingu ghost parts/.default         = {.5},
+  pingu ghost parts/.style     = {/pingu/@pingu@all/.append style={opacity={#1}}},
+  pingu ghost parts/.default   = {.5},
   pingu ghost/.style           = {/pingu/@pingu/.append style={opacity=#1,transparency group}},
   pingu ghost/.default         = {.5},
   pingu devil/.style           = {devil horns=#1,eyes devil=#1},
@@ -1452,6 +1452,7 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
 
 %     #region cloaks
 \pingu@create@extra{cloak}{%
+    cape/.forward to         = /pingu/cloak, % TODO: update if it changes
     cloak/.code              = \pingu@set@extra{cloak}{true}\pingu@color{cloak}{#1},
     cloak/.default           = pingu@bronze,
     cloak bottom color/.code = \pingu@color{cloak@bottom}{#1},
