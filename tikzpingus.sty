@@ -256,7 +256,9 @@
 
 \@pingu@drawer@lefteye@
 \@pingu@drawer@righteye@
-
+\pgfonlayer{background}
+\pingu@draw@clothing@behind
+\endpgfonlayer
 \pingu@draw@extras@below
 
 \@pingu@drawer@leftwing@
@@ -272,7 +274,7 @@
     \@pingu@drawer@leftfoot@
     \@pingu@drawer@rightfoot@
 \endpgfonlayer
-
+\pingu@draw@clothing@main
 \endscope
 \if@pingu@draw@metadots
 \@pingu@draw@dots
@@ -1299,6 +1301,7 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
 \newif\if@pingu@x@lightsaber@double@left
 \newif\if@pingu@x@lightsaber@double@right
 \def\pingu@x@saberglow@w@half{.9mm}
+\def\pingulightsaberfactor{.0225}
 \pingu@create@wing@extra{lightsaber}{%
   lightsaber \@lr/.code                = {\pingu@set@extra{lightsaber\@lr}{true}\pingu@color{lightsaber\@lr}{##1}},
   lightsaber \@lr/.default             = pingu@blue,
@@ -1319,7 +1322,7 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
   lightsaber \@lr\space solid/.style = {/pingu/lightsaber \@lr\space glow=false},
   lightsaber \@lr\space disabled/.style = {/pingu/lightsaber \@lr\space solid,/pingu/lightsaber \@lr=\@pingu@none},
   lightsaber \@lr\space outer glow factor/.code  = {\@namedef{pingu@x@lightsaber@ogf@\@lr}{##1}}%
-}{lightsaber \@lr\space handle=pingu@silver, lightsaber \@lr\space deco=pingu@silver!12!pingu@black, lightsaber \@lr\space button=pingu@red!85!pingu@black,lightsaber \@lr\space button b=pingu@red!85!pingu@black, lightsaber \@lr\space ribbs=pingu@silver!50!pingu@black,lightsaber \@lr\space angle=0,lightsaber \@lr\space length=2cm,lightsaber \@lr\space glow=\ifpengu@setup@glows@ true\else false\fi,lightsaber \@lr\space glow core=white,lightsaber \@lr\space outer glow factor=.0435,lightsaber \@lr\space yshift=\z@,lightsaber \@lr\space length b=\csname pingu@x@lightsaber@length@\@lr\endcsname,lightsaber \@lr\space color b=\noexpand\@col}
+}{lightsaber \@lr\space handle=pingu@silver, lightsaber \@lr\space deco=pingu@silver!12!pingu@black, lightsaber \@lr\space button=pingu@red!85!pingu@black,lightsaber \@lr\space button b=pingu@red!85!pingu@black, lightsaber \@lr\space ribbs=pingu@silver!50!pingu@black,lightsaber \@lr\space angle=0,lightsaber \@lr\space length=2cm,lightsaber \@lr\space glow=\ifpengu@setup@glows@ true\else false\fi,lightsaber \@lr\space glow core=white,lightsaber \@lr\space outer glow factor=\pingulightsaberfactor,lightsaber \@lr\space yshift=\z@,lightsaber \@lr\space length b=\csname pingu@x@lightsaber@length@\@lr\endcsname,lightsaber \@lr\space color b=\noexpand\@col}
 
 \def\pingu@draw@wi@lightsaber@base#1{%
 % deco-elements
@@ -1423,6 +1426,30 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
 }
 %     #endregion
 % #endregion
+
+% #region clothes
+
+\def\pingu@draw@clothing@behind{%
+    \if@pingu@x@cloak@ \pingu@draw@cloth@cloak@behind \fi
+}
+
+\def\pingu@draw@clothing@main{%
+    \if@pingu@x@cloak@ \pingu@draw@cloth@cloak \fi
+}
+
+%     #region cloaks
+\pingu@create@extra{cloak}{%
+    cloak/.code         = \pingu@set@extra{cloak}{true}\pingu@color{cloak}{#1},
+    cloak/.default      = pingu@bronze,
+}{}
+\def\pingu@draw@cloth@cloak@behind{%
+}
+\def\pingu@draw@cloth@cloak{%
+}
+%     #endregion
+
+% #endregion
+
 \let\pingu@create@selection\relax
 \let\pingu@create@extra\relax
 \endinput
