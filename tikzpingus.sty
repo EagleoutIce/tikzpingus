@@ -189,11 +189,6 @@
   normal size/.style           = {height=1.275cm},
   large height/.forward to     = /pingu/large size, large/.forward to = /pingu/large size,
   large size/.style            = {height=15mm},
-  % complete sets
-  pingu devil/.style           = {devil horns=#1,eyes devil=#1},
-  pingu devil/.default         = pingu@purple,
-  % TODO: draw another penguin that is then drawn above with only back
-  pingu back/.style            = {/pingu/eyes=none,/pingu/bill=none,/pingu/body front=\pingu@color@body@main,/pingu/@pingu/.append style={xshift=2\pingu@w@half,xscale=-1},/pingu/feet back},
   defaults/.style               = {%
     name=pingu, feet=normal, feet color=pingu@yellow, body=pingu@main,
     body front=pingu@white,%
@@ -201,14 +196,27 @@
     bill=normal, bill color=pingu@yellow,
     wings=normal, wings color=\pingu@color@body@main,
     hairstyle=normal, hairs color=\pingu@color@body@main,
-    belly raw={}, scale=\pingu@default@scale,extra defaults%
+    belly raw={}, scale=\pingu@default@scale,extra defaults,user defaults%
   },
+  user defaults/.style = {},
   % will be set individually
   extra defaults/.style = {}
 }
-% TODO: free defaults
+\def\pingudefaults#1{\tikzset{/pingu/user defaults/.style={#1}}}
+\def\pingudefaultsappend#1{\tikzset{/pingu/user defaults/.append style={#1}}}
 % #endregion
 
+% #region complete sets and styles
+\tikzset{
+  pingu line/.style            =  {/pingu/@block/.append style={fill=none,draw=##1!80!black,shade=none}},
+  pingu devil/.style           = {devil horns=#1,eyes devil=#1},
+  pingu devil/.default         = pingu@purple,
+  % TODO: draw another penguin that is then drawn above with only back
+  pingu back/.style            = {/pingu/eyes=none,/pingu/bill=none,/pingu/body front=\pingu@color@body@main,/pingu/@pingu/.append style={xshift=2\pingu@w@half,xscale=-1},/pingu/feet back},
+}
+% #endregion
+
+% #region glows
 \ifpengu@setup@glows@
 \usetikzlibrary{fadings}%
 \tikzfading[name=pingu@halo fade out,inner color=transparent!0,outer color=transparent!100]
@@ -216,6 +224,7 @@
 \else
 \tikzset{/pingu/@glow/.style={},/pingu/@saber@glow/.style={}}
 \fi
+% #endregion
 
 % #region core
 \long\def\pingu@path{\@dblarg\pingu@path@}
