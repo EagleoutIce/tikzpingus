@@ -206,6 +206,11 @@
 \def\pingudefaultsappend#1{\tikzset{/pingu/user defaults/.append style={#1}}}
 % #endregion
 
+% #region subenvs
+\def\pingu@layer#1[#2]{\pgfonlayer{#1}\scope[/pingu/@pingu,#2]}
+\def\endpingu@layer{\endscope\endpgfonlayer}
+% #endregion
+
 % #region complete sets and styles
 \tikzset{
   pingu line/.style            =  {/pingu/@block/.append style={fill=none,draw=##1!80!black,shade=none,path fading=none}},
@@ -266,7 +271,7 @@
 \@pingu@drawer@lefteye@
 \@pingu@drawer@righteye@
 
-\pgfonlayer{background}\pingu@draw@clothing@behind\endpgfonlayer
+\pingu@layer{background}[]\pingu@draw@clothing@behind\endpingu@layer
 
 \pingu@draw@extras@below
 
@@ -275,10 +280,10 @@
 
 \@pingu@drawer@bill@
 \@pingu@drawer@hairstyle@
-\pgfonlayer{background}
+\pingu@layer{background}[]
 \@pingu@drawer@leftfoot@
 \@pingu@drawer@rightfoot@
-\endpgfonlayer
+\endpingu@layer
 
 \pingu@draw@extras@above
 \pingu@draw@wing@items
@@ -480,33 +485,29 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
 {\pingu@wi@above}{0}
 
 \@pingu@wings@s{grab}{%
-\pgfonlayer{foreground}
-\scope
+\pingu@layer{foreground}[]
     \clip[use path=\pingu@lowerpingu];
     \coordinate (\pingu@name-wing-left-start) at ([yshift=-4.5mm]\pingu@name-wings-side-left);
     \pingu@block[rotate around={-42:(\pingu@name-wing-left-start)}]{\pingu@color@left@wing} (\pingu@name-wing-left-start) ellipse [x radius=.225cm, y radius=1.05cm] +(-90:.225cm and 1.05cm) coordinate (\pingu@name-wing-left-tip) +(-90:.175cm and 9mm) coordinate (\pingu@name-wing-left);
-\endscope\endpgfonlayer}{%
-\pgfonlayer{foreground}
-\scope
+\endpingu@layer}{%
+\pingu@layer{foreground}[]
     \clip[use path=\pingu@lowerpingu];
     \coordinate (\pingu@name-wing-right-start) at ([yshift=-4.5mm]\pingu@name-wings-side-right);
     \pingu@block[rotate around={42:(\pingu@name-wing-right-start)}]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.225cm, y radius=1.05cm] +(-90:.225cm and 1.05cm) coordinate (\pingu@name-wing-right-tip) +(-90:.175cm and 9mm) coordinate (\pingu@name-wing-right);
-\endscope\endpgfonlayer}%
+\endpingu@layer}%
 {\pingu@wi@below}{12}
 
 \@pingu@wings@s{shock}{%
-\pgfonlayer{foreground}
-\scope
+\pingu@layer{foreground}[]
     \clip[use path=\pingu@lowerpingu];
     \coordinate (\pingu@name-wing-left-start) at ([yshift=-6.5mm]\pingu@name-wings-side-left);
     \pingu@block[rotate around={65:(\pingu@name-wing-left-start)}]{\pingu@color@left@wing} (\pingu@name-wing-left-start) ellipse [x radius=.235cm, y radius=.85cm] +(90:.235cm and .85cm) coordinate (\pingu@name-wing-left-tip) +(90:.185cm and .7cm) coordinate (\pingu@name-wing-left);
-\endscope\endpgfonlayer}{%
-\pgfonlayer{foreground}
-\scope
+\endpingu@layer}{%
+\pingu@layer{foreground}[]
     \clip[use path=\pingu@lowerpingu];
     \coordinate (\pingu@name-wing-right-start) at ([yshift=-6.5mm]\pingu@name-wings-side-right);
     \pingu@block[rotate around={-65:(\pingu@name-wing-right-start)}]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.235cm, y radius=.85cm] +(90:.235cm and .85cm) coordinate (\pingu@name-wing-right-tip) +(90:.185cm and .7cm) coordinate (\pingu@name-wing-right);
-\endscope\endpgfonlayer}%
+\endpingu@layer}%
 {\pingu@wi@below}{-180}
 
 \@pingu@wings@s{hug}{%
@@ -621,7 +622,7 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
 
 % #region dots
 \def\@pingu@draw@dots{%
-\pgfonlayer{foreground}
+\pingu@layer{foreground}[]
   \@for\@pingu@elem:={belly-center,head,head-top,foot-left,foot-right,right-eye,left-eye,bill,bill-bottom,wings-side-left,wings-side-right,wing-left-start,wing-left-tip,wing-right-start,wing-right-tip,head-right,head-left,head-center,head-back-con-left,head-back-con-right,bottom-center,waist-left,waist-right}\do{
     \path[fill=green] (\pingu@name-\@pingu@elem) circle[radius=1.125\p@];
   }
@@ -635,8 +636,7 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
   \csname @pingu@wingitem@\@pingu@select@rightwing@ @\endcsname \colorlet{@wmark}{magenta} \else \colorlet{@wmark}{teal} \fi
   \pingu@block[/pingu/@draw=@wmark,thick,rotate around={-\csname @pingu@wingangle@\@pingu@select@rightwing@ @\endcsname:(\pingu@name-wing-right)}]{@wmark}
     (\pingu@name-wing-right)++(0,3mm) circle [radius=1mm] -- ++(0,-6mm);
-\endpgfonlayer
-}
+\endpingu@layer}
 % endregion
 
 % #region extras
@@ -833,7 +833,7 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
 \def\pingu@draw@eb@pants{%
 \pingu@block[rounded corners=\p@]{\pingu@color@pants} ([xshift=.85mm,yshift=\pingu@x@pants@extra@height]\pingu@name-waist-right) coordinate(@tmp) to[bend right=6] ([xshift=-.85mm,yshift=\pingu@x@pants@extra@height]\pingu@name-waist-left) coordinate(@tmpb) -- ++(0,-\pingu@x@pants@extra@height) arc(180:270:.85mm and 2.5mm) to[bend left=\pingu@bend] (\pingu@name-bottom-center-|\pingu@name-waist-left) to[bend left=15] ([yshift=-.15mm]\pingu@name-bottom-center) to[bend left=15] (\pingu@name-bottom-center-|\pingu@name-waist-right) to[bend left=6] ([yshift=-2.5mm]\pingu@name-waist-right) arc (-90:0:.85mm and 2.5mm) -- cycle;
 \if@pingu@x@pants@bands
-\pgfonlayer{middle}
+\pingu@layer{middle}[]
 % draw stripes
 \scope
 \clip \pingu@path@lowerpingu;
@@ -851,7 +851,7 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
     \pingu@block{\pingu@color@pants@button@left@shade} (@tmpb)++(-.25mm,-.25mm)++(\i:.35mm) circle[radius=.1mm];
 }%
 \if@pingu@x@pants@bands
-\endpgfonlayer
+\endpingu@layer
 \fi
 }
 %     #endregion
