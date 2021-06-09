@@ -131,7 +131,7 @@
   @text/.style                  = {transform shape,text=\pingu@color@body@main},
   @clip even odd rule/.code     = {\pgfseteorule}, % Credit to Andrew Stacey
   @invclip/.style               = {clip,insert path=[/pingu/@clip even odd rule]{[reset cm](-\maxdimen,-\maxdimen)rectangle(\maxdimen,\maxdimen)}},
-  @pingu/.style = {},
+  @pingu/.style = {}, @pingu@main/.style = {},
   % feet
   left foot color/.code         = \pingu@color{foot@left}{#1},
   left foot/.code               = \pingu@leftfoot@select{#1},
@@ -221,7 +221,7 @@
   pingu devil/.style           = {devil horns=#1,eyes devil=#1},
   pingu devil/.default         = pingu@purple,
   % TODO: draw another penguin that is then drawn above with only back
-  pingu back/.style            = {/pingu/eyes=none,/pingu/bill=none,/pingu/body front=\pingu@color@body@main,/pingu/@pingu/.append style={xshift=2\pingu@w@half,xscale=-1},/pingu/feet back},
+  pingu back/.style            = {/pingu/eyes=none,/pingu/bill=none,/pingu/body front=\pingu@color@body@main,/pingu/@pingu@main/.append style={xshift=2\pingu@w@half,xscale=-1},/pingu/feet back},
 }
 % #endregion
 
@@ -245,7 +245,7 @@
 
 \newcommand*\pingu[1][]{\begingroup
 \tikzset{/pingu/.cd, defaults, #1}%
-\scope[/pingu/@pingu]
+\scope[/pingu/@pingu,/pingu/@pingu@main]
 \@pingu@base
 \coordinate (\pingu@name-belly-back) at (\pingu@w@half,-1cm);
 \coordinate (\pingu@name-belly-center) at (\pingu@w@half,-.68\pingu@side@h@half);
