@@ -190,11 +190,11 @@
   % size
   height/.code                 = \setlength{\pingu@side@h@half}{#1},%
   small height/.forward to     = /pingu/small size, small/.forward to = /pingu/small size,
-  small size/.style            = {height=11mm},
+  small size/.style            = {/pingu/height=11mm},
   normal height/.forward to    = /pingu/normal size, normal/.forward to = /pingu/normal size,
-  normal size/.style           = {height=1.275cm},
+  normal size/.style           = {/pingu/height=1.275cm},
   large height/.forward to     = /pingu/large size, large/.forward to = /pingu/large size,
-  large size/.style            = {height=15mm},
+  large size/.style            = {/pingu/height=15mm},
   defaults/.style               = {%
     name=pingu, feet=normal, feet color=pingu@yellow, body=pingu@main,
     body front=pingu@white,%
