@@ -250,7 +250,8 @@
 \long\def\pingu@draw{\@dblarg\pingu@draw@}
 \def\pingu@draw@[#1]#2#3;{\protected@edef\@tmp{#2}\ifx\@tmp\@pingu@none\else\path[#1,/pingu/@draw=#2] #3;\fi}
 
-\newcommand*\pingu[1][]{\begingroup
+\newcommand*\pingu[1][]{%
+\ifpengu@setup@manual@layers@\pgfsetlayers{background,main,middle,foreground}\fi\begingroup
 \tikzset{/pingu/.cd, defaults, #1}%
 \scope[/pingu/@pingu,/pingu/@pingu@main]
 \@pingu@base
@@ -300,8 +301,7 @@
 \if@pingu@draw@metadots
 \@pingu@draw@dots
 \fi
-\endgroup
-\ifpengu@setup@manual@layers@\pgfsetlayers{background,main,middle,foreground}\fi}
+\endgroup}
 % Note: to be used in clippies
 \def\pingu@path@lowerpingu{(0,\pingu@outer@off)
 % left side
