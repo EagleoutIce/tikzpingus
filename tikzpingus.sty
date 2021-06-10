@@ -17,7 +17,7 @@
 \ifpengu@setup@manual@layers@\else
 \pgfsetlayers{background,main,middle,foreground}
 \fi
-
+% #region whole setup
 % #region colors
 \def\@pingu@color@ #1#2(#3,#4,#5){\definecolor{pingu@#1}{#2}{#3,#4,#5}}
 \@pingu@color@{main}RGB(3,14,29)
@@ -233,6 +233,7 @@
 \else
 \tikzset{/pingu/@glow/.style={},/pingu/@saber@glow/.style={}}
 \fi
+% #endregion
 % #endregion
 
 % #region core
