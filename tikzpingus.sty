@@ -1218,7 +1218,7 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
 % #endregion
 
 % #region wingitems
-%     #region wingitmes-setup
+%     #region wingitems-setup
 \def\pingu@may@draw@wing#1#2{\csname if@pingu@x@#1#2@\endcsname \csname pingu@draw@wi@#1\endcsname{#2}\fi}
 \edef\pingu@str@wing@left{left}
 \newif\if@pingu@wing@item@side@left@
@@ -1235,14 +1235,14 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
 }
 
 \def\pingu@draw@wing@items{%
-\csname @pingu@wingitem@\@pingu@select@leftwing@ @\endcsname
+\pingu@layer{middle}[]\csname @pingu@wingitem@\@pingu@select@leftwing@ @\endcsname
     \@pingu@draw@wing@items@left\else
-    \pingu@layer{middle}[] \@pingu@draw@wing@items@left \endpingu@layer
-\fi
-\csname @pingu@wingitem@\@pingu@select@rightwing@ @\endcsname
+    \@pingu@draw@wing@items@left
+\fi\endpingu@layer
+\pingu@layer{middle}[]\csname @pingu@wingitem@\@pingu@select@rightwing@ @\endcsname
     \@pingu@draw@wing@items@right\else
-    \pingu@layer{middle}[] \@pingu@draw@wing@items@right \endpingu@layer
-\fi
+    \@pingu@draw@wing@items@right
+\fi\endpingu@layer
 }
 
 \let\@pingu@draw@wing@items@left\@empty
@@ -1462,6 +1462,13 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
     \pingu@block[bottom color=\pingu@color@cloak@bottom,top color=\pingu@color@cloak]{\pingu@color@cloak} (\pingu@name-bottom-center)++(-\pingu@x@cloak@padding-\pingu@w@half,-.5mm) arc (180:0:{\pingu@x@cloak@padding+\pingu@w@half} and 1mm) to[bend left=1] (\pingu@name-wings-side-left) arc(0:180:\pingu@w@half{} and .75mm) to[bend left=1] cycle;
 }
 \def\pingu@draw@cloth@cloak{%
+    % cape
+    \pingu@block{\pingu@color@cloak} ([yshift=-4mm]\pingu@name-wings-side-left)
+    -- ++(-.15mm,1.6mm) to[bend right=3] ([yshift=2mm]\pingu@name-head)
+    to[bend right=3] ([xshift=.15mm,yshift=1.6mm-4mm]\pingu@name-wings-side-right) -- ++(-.15mm,-1.6mm)
+    arc (270:180:.44mm and .8mm)
+    arc (180:0:\pingu@w@half+.44mm and 1.3\pingu@w@half+4mm)
+    arc (0:-90:.44mm and .8mm);
 }
 %     #endregion
 
