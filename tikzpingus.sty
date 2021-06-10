@@ -651,13 +651,7 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
     \if@pingu@x@eyepatchright@ \pingu@draw@eb@eyepatch@r \fi
 }
 
-% .########.####.########
-% ....##.....##..##......
-% ....##.....##..##......
-% ....##.....##..######..
-% ....##.....##..##......
-% ....##.....##..##......
-% ....##....####.########
+%       #region tie
 \pingu@create@extra{tie}{%
     tie/.code         = \pingu@set@extra{tie}{true}\pingu@color{tie}{#1},
     tie/.default      = pingu@green,
@@ -686,14 +680,9 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
     \path (\pingu@name-bill)++(0,-\pingu@x@tie@offset) coordinate(\pingu@name-tie-start);
     \pingu@x@tie@pattern
 }
+%       #endregion
 
-% .########...#######..##......##....########.####.########
-% .##.....##.##.....##.##..##..##.......##.....##..##......
-% .##.....##.##.....##.##..##..##.......##.....##..##......
-% .########..##.....##.##..##..##.......##.....##..######..
-% .##.....##.##.....##.##..##..##.......##.....##..##......
-% .##.....##.##.....##.##..##..##.......##.....##..##......
-% .########...#######...###..###........##....####.########
+%       #region bowtie
 \pingu@create@extra{bowtie}{%
     bowtie/.forward to         = /pingu/bow tie,
     bow-tie/.forward to        = /pingu/bow tie,
@@ -720,15 +709,9 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
     \pingu@block{\pingu@color@bowtie@b} \pingupathxbowtieright;
     \pingu@block{\pingu@color@bowtie@knot} \pingupathxbowtieknot;
 }
+%       #endregion
 
-
-% ..######..##.....##.########.
-% .##....##.##.....##.##.....##
-% .##.......##.....##.##.....##
-% .##.......##.....##.########.
-% .##.......##.....##.##.......
-% .##....##.##.....##.##.......
-% ..######...#######..##.......
+%       #region cup
 \pingu@create@extra{cup}{%
   % extra cup % TODO: as selection
   cup/.code       = {\pingu@set@extra{cup}{true}\pingu@color{cup}{#1}},
@@ -743,17 +726,10 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
     \pingu@block[rounded corners=.15mm]{\pingu@color@cup@straw} (\pingu@name-straw-outer-start) -- (\pingu@name-cup-straw-outer-angle) -- (\pingu@name-bill) -- ++(.5mm,0) -- ([xshift=.5mm]\pingu@name-cup-straw-outer-angle) -- ([xshift=.5mm]\pingu@name-straw-outer-start) -- cycle;
     \pingu@block{\pingu@color@cup} (\pingu@name-belly-center)++(0,.275cm) ellipse [x radius=.325cm,y radius=.5mm];
 }
+%       #endregion
 
-
-% .##.....##.########.########.....###....##......
-% .###...###.##.......##.....##...##.##...##......
-% .####.####.##.......##.....##..##...##..##......
-% .##.###.##.######...##.....##.##.....##.##......
-% .##.....##.##.......##.....##.#########.##......
-% .##.....##.##.......##.....##.##.....##.##......
-% .##.....##.########.########..##.....##.########
+%       #region medal
 \pingu@create@extra{medal}{%
-    % TODO: medal band
     medal/.code    	  = {\pingu@set@extra{medal}{true}\pingu@color{medal}{#1}},
     medal/.default    = pingu@yellow,%
     gold medal/.style = {medal, medal text=#1}, gold medal/.default={1},
@@ -773,14 +749,10 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
 \pingu@draw[line width=\pingu@medal@shade@w]{\pingu@color@medal@shade} (\pingu@name-medal-center) circle [radius=2.35mm];
 \node[/pingu/@text,/pingu/medal text style] at (\pingu@name-medal-center) {\pingu@x@medal@text};
 }
+%       #endregion
 
-% .########.##....##.########....########.....###....########..######..##.....##
-% .##........##..##..##..........##.....##...##.##......##....##....##.##.....##
-% .##.........####...##..........##.....##..##...##.....##....##.......##.....##
-% .######......##....######......########..##.....##....##....##.......#########
-% .##..........##....##..........##........#########....##....##.......##.....##
-% .##..........##....##..........##........##.....##....##....##....##.##.....##
-% .########....##....########....##........##.....##....##.....######..##.....##
+%       #region eye patch
+%         #region eye patch left
 \pingu@create@extra{eyepatchleft}{%
     eyepatch left/.forward to = /pingu/eye patch left,
     eye patch left/.code      = \pingu@set@extra{eyepatchleft}{true}\pingu@color{eyepatchleft}{#1},
@@ -793,7 +765,8 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
     \pingu@block[rotate around={-9:(\pingu@name-left-eye-patch)}]{\pingu@color@eyepatchleft} (\pingu@name-left-eye-patch)++(0,.5pt) ellipse [x radius=\pingu@patchw, y radius=.65pt];
     \pingu@block[rotate around={-9:(\pingu@name-left-eye-patch)}]{\pingu@color@eyepatchleft} (\pingu@name-left-eye-patch) ++(-\pingu@patchw,.5pt) arc(180:360:\pingu@patchw{} and 8.9pt);
 }
-
+%         #endregion
+%         #region eye patch right
 \pingu@create@extra{eyepatchright}{%
     eyepatch right/.forward to = /pingu/eye patch right,
     eye patch right/.code      = \pingu@set@extra{eyepatchright}{true}\pingu@color{eyepatchright}{#1},
@@ -805,15 +778,10 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
     \pingu@block[rotate around={9:(\pingu@name-right-eye-patch)}]{\pingu@color@eyepatchright} (\pingu@name-right-eye-patch)++(0,.5pt) ellipse [x radius=\pingu@patchw, y radius=.65pt];
     \pingu@block[rotate around={9:(\pingu@name-right-eye-patch)}]{\pingu@color@eyepatchright} (\pingu@name-right-eye-patch) ++(-\pingu@patchw,.5pt) arc(180:360:\pingu@patchw{} and 8.9pt);
 }
+%         #endregion
+%       #endregion
 
-
-% .########.....###....##....##.########..######.
-% .##.....##...##.##...###...##....##....##....##
-% .##.....##..##...##..####..##....##....##......
-% .########..##.....##.##.##.##....##.....######.
-% .##........#########.##..####....##..........##
-% .##........##.....##.##...###....##....##....##
-% .##........##.....##.##....##....##.....######.
+%       #region pants
 \newif\if@pingu@x@pants@bands
 \pingu@create@extra{pants}{%
     pants/.code    	               = \pingu@set@extra{pants}{true}\pingu@color{pants}{#1},
@@ -854,6 +822,7 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
 \endpingu@layer
 \fi
 }
+%       #endregion
 %     #endregion
 
 %     #region extras above
@@ -1446,7 +1415,7 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
     \if@pingu@x@cloak@ \pingu@draw@cloth@cloak \fi
 }
 
-%     #region cloaks
+%     #region cloak
 \pingu@create@extra{cloak}{%
     cape/.forward to         = /pingu/cloak, % TODO: update if it changes
     cloak/.code              = \pingu@set@extra{cloak}{true}\pingu@color{cloak}{#1},
