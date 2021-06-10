@@ -35,23 +35,28 @@
 % #endregion
 
 % #region lengths and dimens
-\newdimen\pingu@one@eight     \pingu@one@eight=.125cm\relax
-\newdimen\pingu@w@half        \pingu@w@half=\dimexpr1cm-.5\pingu@one@eight\relax
-\newdimen\pingu@side@h@half   \pingu@side@h@half=1.275cm\relax
-\newdimen\pingu@bend          \pingu@bend=\pingu@one@eight\relax
-\newdimen\pingu@lower@off     \pingu@lower@off=.25cm\relax
-\newdimen\pingu@outer@off     \pingu@outer@off=.25cm\relax
-\def\basicfeetbend{45}
-\newdimen\pingu@foot@outer@w  \pingu@foot@outer@w=4.5mm\relax
-\newdimen\pingu@foot@outer@h  \pingu@foot@outer@h=.25cm\relax
+\newdimen\pingu@one@eight     \pingu@one@eight=.125cm % constants to save tokens
+\newdimen\pingu@one           \pingu@one=1mm
 
-\newdimen\pingu@foot@inner@w  \pingu@foot@inner@w=.55cm\relax
-\newdimen\pingu@foot@inner@h  \pingu@foot@inner@h=.115cm\relax
-\newdimen\pingu@foot@offset@w \pingu@foot@offset@w=-\pingu@one@eight\relax
-\newdimen\pingu@foot@single@w \pingu@foot@single@w=.105cm\relax
-\newdimen\pingu@foot@single@h \pingu@foot@single@h=2mm\relax
+\newdimen\pingu@w@half        \pingu@w@half=.9375cm
+\newdimen\pingu@side@h@half   \pingu@side@h@half=1.275cm
+\newdimen\pingu@bend          \pingu@bend=\pingu@one@eight
+\newdimen\pingu@lower@off     \pingu@lower@off=.25cm
+\newdimen\pingu@outer@off     \pingu@outer@off=.25cm
+\def\basicfeetbend{45}
+\newdimen\pingu@foot@outer@w  \pingu@foot@outer@w=4.5mm
+\newdimen\pingu@foot@outer@h  \pingu@foot@outer@h=.25cm
+
+\newdimen\pingu@headcon@x     \pingu@headcon@x=.39375cm% .75*.525cm
+\newdimen\pingu@headcon@y     \pingu@headcon@y=.46735cm%.719*.65cm
+
+\newdimen\pingu@foot@inner@w  \pingu@foot@inner@w=.55cm
+\newdimen\pingu@foot@inner@h  \pingu@foot@inner@h=.115cm
+\newdimen\pingu@foot@offset@w \pingu@foot@offset@w=-.125cm
+\newdimen\pingu@foot@single@w \pingu@foot@single@w=.105cm
+\newdimen\pingu@foot@single@h \pingu@foot@single@h=2mm
 \def\eyebaseang{38.5}
-\newdimen\pingu@eye@shift     \pingu@eye@shift=.8mm\relax
+\newdimen\pingu@eye@shift     \pingu@eye@shift=.8mm
 \def\pinguanglehl{.93}
 \def\pinguanglehr{.07}
 % #endregion
@@ -250,13 +255,13 @@
 \@pingu@base
 \coordinate (\pingu@name-belly-back) at (\pingu@w@half,-1cm);
 \coordinate (\pingu@name-belly-center) at (\pingu@w@half,-.68\pingu@side@h@half);
-\pingu@block[save path=\pingu@whitepingu]{\pingu@color@body@front} (\pingu@name-belly-back)++(-\pingu@w@half+1mm,\pingu@lower@off) to[bend right=.8\pingu@bend] ++(0,1.05cm-\pingu@side@h@half-\pingu@lower@off) arc (180:270:4mm and 2mm) arc (270:331:5mm and .85mm) arc (207:270:5mm and .85mm) arc (270:360:4mm and 2mm) to[bend right=.8\pingu@bend] ++(0,\pingu@side@h@half-1.05cm+\pingu@lower@off) arc (0:180:\pingu@w@half-.96mm and \pingu@w@half-1mm) -- cycle;
+\pingu@block[save path=\pingu@whitepingu]{\pingu@color@body@front} (\pingu@name-belly-back)++(-\pingu@w@half+\pingu@one,\pingu@lower@off) to[bend right=.8\pingu@bend] ++(0,1.05cm-\pingu@side@h@half-\pingu@lower@off) arc (180:270:4mm and 2mm) arc (270:331:5mm and .85mm) arc (207:270:5mm and .85mm) arc (270:360:4mm and 2mm) to[bend right=.8\pingu@bend] ++(0,\pingu@side@h@half-1.05cm+\pingu@lower@off) arc (0:180:\pingu@w@half-.96mm and \pingu@w@half-\pingu@one) -- cycle;
 
 \coordinate (\pingu@name-eye-back-right) at ([xshift=-.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-head-center);
 \coordinate (\pingu@name-eye-back-left) at ([xshift=.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-head-center);
 
-\coordinate (\pingu@name-head-back-con-right) at ([xshift=-.525cm*.74,yshift=-.65cm*.719]\pingu@name-eye-back-right);
-\coordinate (\pingu@name-head-back-con-left) at ([xshift=.525cm*.74,yshift=-.65cm*.719]\pingu@name-eye-back-left);
+\coordinate (\pingu@name-head-back-con-right) at ([xshift=-\pingu@headcon@x,yshift=-\pingu@headcon@y]\pingu@name-eye-back-right);
+\coordinate (\pingu@name-head-back-con-left) at ([xshift=\pingu@headcon@x,yshift=-\pingu@headcon@y]\pingu@name-eye-back-left);
 
 \pingu@block{\pingu@color@body@front} (\pingu@name-eye-back-right)++(0,-.25mm) ellipse [x radius=.525cm,y radius=.65cm];
 \pingu@block{\pingu@color@body@front} (\pingu@name-eye-back-left)++(0,-.25mm) ellipse [x radius=.525cm,y radius=.65cm];
@@ -357,11 +362,11 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
 
 \@pingu@eyes@s{shiny}{%
     \pingu@block{\pingu@color@eye@left} ([yshift=.75mm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left) coordinate(\pingu@name-left-eye) ellipse [x radius=.22cm, y radius=.26cm];
-    \pingu@block{\pingu@color@eye@second@left} (\pingu@name-left-eye)++(\eyebaseang:.85mm and 1mm) ellipse [x radius=.8mm, y radius=1mm];
+    \pingu@block{\pingu@color@eye@second@left} (\pingu@name-left-eye)++(\eyebaseang:.85mm and \pingu@one) ellipse [x radius=.8mm, y radius=\pingu@one];
     \pingu@block{\pingu@color@eye@second@left} (\pingu@name-left-eye)++(\eyebaseang+180:.12cm and .14cm) ellipse [x radius=.25mm, y radius=.35mm];
 }{%
     \pingu@block{\pingu@color@eye@right} ([yshift=.75mm,xshift=-\pingu@eye@shift]\pingu@name-eye-back-right) coordinate(\pingu@name-right-eye) ellipse [x radius=.22cm, y radius=.26cm];
-    \pingu@block{\pingu@color@eye@second@right} (\pingu@name-right-eye)++(\eyebaseang:.85mm and 1mm) ellipse [x radius=.08cm, y radius=1mm];
+    \pingu@block{\pingu@color@eye@second@right} (\pingu@name-right-eye)++(\eyebaseang:.85mm and \pingu@one) ellipse [x radius=.08cm, y radius=\pingu@one];
     \pingu@block{\pingu@color@eye@second@right} (\pingu@name-right-eye)++(\eyebaseang+180:.12cm and .14cm) ellipse [x radius=.25mm, y radius=.35mm];
 }
 
@@ -539,11 +544,11 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
 \clip[/pingu/@invclip] (\pingu@name-head-center) ellipse [x radius=\pingu@w@half, y radius=.9\pingu@w@half-.0165mm];
 \endpgfinterruptboundingbox
 \scope[rounded corners=.08mm]
-\pingu@block{\pingu@color@hair@a} ([yshift=-1mm]\pingu@name-head-top) -- ++(.15mm,0) arc (0:90:\pingu@one@eight{} and .135cm) arc (90:0:.35mm and .75mm);
-\pingu@block{\pingu@color@hair@b} ([yshift=-1mm]\pingu@name-head-top) -- ++(.33mm,0) arc (0:90:\pingu@one@eight{} and .175cm) arc (90:0:.35mm and 1mm);
-\pingu@block{\pingu@color@hair@c} ([yshift=-1mm]\pingu@name-head-top) -- ++(-.33mm,0) arc (180:90:.17cm and .215cm) arc (90:180:.75mm and .18cm);
-\pingu@block{\pingu@color@hair@d} ([yshift=-1mm]\pingu@name-head-top) -- ++(.25mm,0) arc (180:90:\pingu@one@eight{} and .175cm) arc (90:180:.35mm and \pingu@one@eight);
-\pingu@block{\pingu@color@hair@e} ([yshift=-1mm]\pingu@name-head-top) -- ++(.44mm,0) arc (180:90:\pingu@one@eight{} and .135cm) arc (90:180:.35mm and .75mm);
+\pingu@block{\pingu@color@hair@a} ([yshift=-\pingu@one]\pingu@name-head-top) -- ++(.15mm,0) arc (0:90:\pingu@one@eight{} and .135cm) arc (90:0:.35mm and .75mm);
+\pingu@block{\pingu@color@hair@b} ([yshift=-\pingu@one]\pingu@name-head-top) -- ++(.33mm,0) arc (0:90:\pingu@one@eight{} and .175cm) arc (90:0:.35mm and \pingu@one);
+\pingu@block{\pingu@color@hair@c} ([yshift=-\pingu@one]\pingu@name-head-top) -- ++(-.33mm,0) arc (180:90:.17cm and .215cm) arc (90:180:.75mm and .18cm);
+\pingu@block{\pingu@color@hair@d} ([yshift=-\pingu@one]\pingu@name-head-top) -- ++(.25mm,0) arc (180:90:\pingu@one@eight{} and .175cm) arc (90:180:.35mm and \pingu@one@eight);
+\pingu@block{\pingu@color@hair@e} ([yshift=-\pingu@one]\pingu@name-head-top) -- ++(.44mm,0) arc (180:90:\pingu@one@eight{} and .135cm) arc (90:180:.35mm and .75mm);
 \endscope\endscope}
 % #endregion
 
@@ -633,10 +638,10 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
 
   \csname @pingu@wingitem@\@pingu@select@leftwing@ @\endcsname \colorlet{@wmark}{magenta} \else \colorlet{@wmark}{teal} \fi
   \pingu@block[/pingu/@draw=@wmark,thick,rotate around={\csname @pingu@wingangle@\@pingu@select@leftwing@ @\endcsname:(\pingu@name-wing-left)}]{@wmark}
-    (\pingu@name-wing-left)++(0,3mm) circle [radius=1mm] -- ++(0,-6mm);
+    (\pingu@name-wing-left)++(0,3mm) circle [radius=\pingu@one] -- ++(0,-6mm);
   \csname @pingu@wingitem@\@pingu@select@rightwing@ @\endcsname \colorlet{@wmark}{magenta} \else \colorlet{@wmark}{teal} \fi
   \pingu@block[/pingu/@draw=@wmark,thick,rotate around={-\csname @pingu@wingangle@\@pingu@select@rightwing@ @\endcsname:(\pingu@name-wing-right)}]{@wmark}
-    (\pingu@name-wing-right)++(0,3mm) circle [radius=1mm] -- ++(0,-6mm);
+    (\pingu@name-wing-right)++(0,3mm) circle [radius=\pingu@one] -- ++(0,-6mm);
 \endpingu@layer}
 % endregion
 
@@ -806,8 +811,8 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
 % draw stripes
 \scope
 \clip \pingu@path@lowerpingu;
-\pingu@block{\pingu@color@pants} (@tmp)++(.55mm,-1mm) to[bend right=3] ([yshift=1.65mm]\pingu@name-wings-side-right) -- ++(-.25mm,-.25mm) to[bend left=3] ([yshift=-1mm]@tmp) -- cycle;
-\pingu@block{\pingu@color@pants} (@tmpb)++(-.55mm,-1mm) to[bend left=3] ([yshift=1.65mm]\pingu@name-wings-side-left) -- ++(.25mm,-.25mm) to[bend right=3] ([yshift=-1mm]@tmpb) -- cycle;
+\pingu@block{\pingu@color@pants} (@tmp)++(.55mm,-\pingu@one) to[bend right=3] ([yshift=1.65mm]\pingu@name-wings-side-right) -- ++(-.25mm,-.25mm) to[bend left=3] ([yshift=-\pingu@one]@tmp) -- cycle;
+\pingu@block{\pingu@color@pants} (@tmpb)++(-.55mm,-\pingu@one) to[bend left=3] ([yshift=1.65mm]\pingu@name-wings-side-left) -- ++(.25mm,-.25mm) to[bend right=3] ([yshift=-\pingu@one]@tmpb) -- cycle;
 \endscope
 \fi
 \pingu@block{\pingu@color@pants@button@right}(@tmp)++(.25mm,-.25mm)circle[radius=.7mm];
@@ -860,7 +865,7 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
 
 \def\pingu@draw@ea@strawhat{%
 \scope[rotate around={\pingu@x@strawhat@angle:(\pingu@name-head)},shift={(\pingu@name-head)},shift={(\pingu@x@strawhat@xshift,\pingu@x@strawhat@yshift)},scale=\pingu@x@strawhat@scale]
-\pingu@block{\pingu@color@strawhat} (.34cm,\z@) ellipse[x radius=.75cm, y radius=1mm];
+\pingu@block{\pingu@color@strawhat} (.34cm,\z@) ellipse[x radius=.75cm, y radius=\pingu@one];
 \pingu@block{\pingu@color@strawhat} (\z@,.5mm) rectangle (.68cm,.5cm);
 \pingu@block{\pingu@color@strawhat} (.34cm,.5cm) ellipse[x radius=.34cm, y radius=.08cm];
 \pingu@block{\pingu@color@strawhat} (-.3955cm,.02cm) -- (1.0755cm,.02cm) -- (.68cm,.2cm) -- (0,.2cm) -- cycle;
@@ -887,7 +892,7 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
 
 \newdimen\pingu@hat@w@half \pingu@hat@w@half=.925cm
 \newdimen\pingu@hat@h \pingu@hat@h=.625cm
-\def\pingupathhatupper{[rounded corners=.25mm](-.65cm,-.25cm) to[out=90,in=200] ++(.35cm,\pingu@hat@h) to[bend left=11] ++(.25cm,0) to[bend right=2.5] ++(1mm,0) to[bend left=11] ++(.25cm,0) to[out=-20,in=90] ++(.35cm,-\pingu@hat@h) to[bend left=12] (-.65cm,-.25cm) -- cycle}
+\def\pingupathhatupper{[rounded corners=.25mm](-.65cm,-.25cm) to[out=90,in=200] ++(.35cm,\pingu@hat@h) to[bend left=11] ++(.25cm,0) to[bend right=2.5] ++(\pingu@one,0) to[bend left=11] ++(.25cm,0) to[out=-20,in=90] ++(.35cm,-\pingu@hat@h) to[bend left=12] (-.65cm,-.25cm) -- cycle}
 \def\pingu@draw@ea@hat{%
 \scope[rotate around={\pingu@x@hat@angle:(\pingu@name-head-top)},shift={(\pingu@name-head-top)},shift={(\pingu@x@hat@xshift,\pingu@x@hat@yshift)},scale=\pingu@x@hat@scale]
 \pingu@block[/pingu/@draw=\pingu@color@hat@coronal,thick]{\pingu@color@hat@base} (0,-.25cm)++(180:\pingu@hat@w@half{} and .15cm) arc (180:360:\pingu@hat@w@half{} and .15cm) arc (0:180:\pingu@hat@w@half{} and .115cm) -- cycle;
@@ -920,7 +925,7 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
   crown gem colors/.code n args = 7{\pingu@color{crown@gem@a}{#1}\pingu@color{crown@gem@b}{#2}\pingu@color{crown@gem@c}{#3}\pingu@color{crown@gem@d}{#4}\pingu@color{crown@gem@e}{#5}\pingu@color{crown@gem@f}{#6}\pingu@color{crown@gem@g}{#7}},
   crown gem ring/.code   = \pingu@color{crown@gem@ring}{#1},
   crown position/.code args  = {#1:(#2,#3)#4}{\def\pingu@x@crown@angle{#1}\def\pingu@x@crown@xshift{#2}\def\pingu@x@crown@yshift{#3}\def\pingu@x@crown@scale{#4}},
-}{crown position={-9:(1mm,0)1},crown front bend=16,crown back bend=9,crown back=\pingu@color@crown!93!black,crown 3d,crown gem colors={pingu@purple}{pingu@blue}{pingu@green}{pingu@purple}{pingu@green}{pingu@blue}{pingu@purple},crown gem ring=\pingu@color@crown!85!white,crown gem shade}
+}{crown position={-9:(\pingu@one,0)1},crown front bend=16,crown back bend=9,crown back=\pingu@color@crown!93!black,crown 3d,crown gem colors={pingu@purple}{pingu@blue}{pingu@green}{pingu@purple}{pingu@green}{pingu@blue}{pingu@purple},crown gem ring=\pingu@color@crown!85!white,crown gem shade}
 
 % color | bend1 | bend1
 \def\pingu@draw@ea@crown@s#1#2#3{
@@ -1004,7 +1009,7 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
 }{halo glow=\ifpengu@setup@glows@ true\else false\fi,halo raise=0mm}
 
 \def\pingu@draw@ea@halo{%
-\pingu@block[even odd rule]{\pingu@color@halo} ([yshift=\pingu@x@halo@raise]\pingu@name-head-top) ellipse [x radius=\pingu@w@half-1mm,y radius=2.5mm] ellipse [x radius=\pingu@w@half-1.95mm,y radius=1.55mm];
+\pingu@block[even odd rule]{\pingu@color@halo} ([yshift=\pingu@x@halo@raise]\pingu@name-head-top) ellipse [x radius=\pingu@w@half-\pingu@one,y radius=2.5mm] ellipse [x radius=\pingu@w@half-1.95mm,y radius=1.55mm];
 \if@pingu@x@halo@glow
 \pingu@block[even odd rule,/pingu/@glow]{\pingu@color@halo} ([yshift=\pingu@x@halo@raise]\pingu@name-head-top) ellipse [x radius=(\pingu@w@half-1.95mm)*1.7,y radius=1.55mm*2.35] ellipse [x radius=\pingu@w@half-1.95mm,y radius=1.55mm];
 \fi
@@ -1359,7 +1364,7 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
     \scope[rotate around={#3:(\pingu@name-wing-#1)}]
     \csname if@pingu@x@lightsaber@glow@#1\endcsname
     \@for\i:={0,2,4,6,7,8,9,10,11,12,13,14,15,16,17}\do{
-        \pingu@block[fill opacity=\ifnum\i>14 .225\else.1\fi*\i/20]{#5} (\pingu@name-wing-#1)++(-\pingu@x@saberglow@w@half+\i*\i mm/440,#2) -- ++(.05mm,#4) arc(180:0:\pingu@x@saberglow@w@half-.05mm-\i*\i mm/440 and \ifnum\i>14 .85mm\else 1mm\fi-\i mm/30) -- ++(.05mm,-#4) arc (0:-180:\pingu@x@saberglow@w@half-\i*\i mm/440 and .35mm);
+        \pingu@block[fill opacity=\ifnum\i>14 .225\else.1\fi*\i/20]{#5} (\pingu@name-wing-#1)++(-\pingu@x@saberglow@w@half+\i*\i mm/440,#2) -- ++(.05mm,#4) arc(180:0:\pingu@x@saberglow@w@half-.05mm-\i*\i mm/440 and \ifnum\i>14 .85mm\else\pingu@one\fi-\i mm/30) -- ++(.05mm,-#4) arc (0:-180:\pingu@x@saberglow@w@half-\i*\i mm/440 and .35mm);
     }
     \else % draw solid
         \pingu@block{#5} (\pingu@name-wing-#1)++(-.425mm,#2-.1mm) -- ++(.05mm,#4) arc(180:0:.375mm and .375mm) -- ++(.05mm,-#4) arc (0:-180:.425mm and .05mm);
@@ -1380,7 +1385,7 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
     \csname if@pingu@x@lightsaber@glow@#1\endcsname
         % fadings hat a rotation angle bug
         \@for\i:={1,2}\do{
-            \pingu@block[fill opacity=.125*\i/10]{#5} (\pingu@name-wing-#1)++(-\pingu@x@saberglow@w@half+\i*\i mm/440,#2) -- ++(.05mm,#4) arc(180:0:\pingu@x@saberglow@w@half-.05mm-\i*\i mm/440 and 1mm-\i mm/30) -- ++(.05mm,-#4) arc (0:-180:\pingu@x@saberglow@w@half-\i*\i mm/440 and .35mm);
+            \pingu@block[fill opacity=.125*\i/10]{#5} (\pingu@name-wing-#1)++(-\pingu@x@saberglow@w@half+\i*\i mm/440,#2) -- ++(.05mm,#4) arc(180:0:\pingu@x@saberglow@w@half-.05mm-\i*\i mm/440 and \pingu@one-\i mm/30) -- ++(.05mm,-#4) arc (0:-180:\pingu@x@saberglow@w@half-\i*\i mm/440 and .35mm);
         }
         \pingu@block{\csname pingu@color@lightsaber#1@glow@core\endcsname} (\pingu@name-wing-#1)++(-.275mm,#2-.1mm) -- ++(.1mm,#4) arc(180:0:.175mm and .25mm) -- ++(.1mm,-#4) arc (0:-180:.275mm and .065mm);
     \fi
@@ -1426,7 +1431,7 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
     cloak padding/.code      = {\def\pingu@x@cloak@padding{#1}}
 }{cloak padding=3.5mm,cloak bottom color=\pingu@color@cloak,cloak front color=\pingu@color@cloak!90!white}
 \def\pingu@draw@cloth@cloak@behind{%
-    \pingu@block[bottom color=\pingu@color@cloak@bottom,top color=\pingu@color@cloak]{\pingu@color@cloak} (\pingu@name-bottom-center)++(-\pingu@x@cloak@padding-\pingu@w@half,-.5mm) arc (180:0:{\pingu@x@cloak@padding+\pingu@w@half} and 1mm) to[bend left=1] (\pingu@name-wings-side-left) arc(0:180:\pingu@w@half{} and .75mm) to[bend left=1] cycle;
+    \pingu@block[bottom color=\pingu@color@cloak@bottom,top color=\pingu@color@cloak]{\pingu@color@cloak} (\pingu@name-bottom-center)++(-\pingu@x@cloak@padding-\pingu@w@half,-.5mm) arc (180:0:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend left=1] (\pingu@name-wings-side-left) arc(0:180:\pingu@w@half{} and .75mm) to[bend left=1] cycle;
 }
 % TODO: if flags to draw parts
 \def\pingu@draw@cloth@cloak{%
@@ -1438,14 +1443,14 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
     to[bend left=8]
     ([xshift=-.66mm]\pingu@name-wings-side-right)
     [rounded corners=.15mm]
-    to[bend left=32] ++(\pingu@w@half+.66mm,\pingu@w@half+1mm)
-    to[bend left=32] ++(\pingu@w@half+.66mm,-\pingu@w@half-1mm)
+    to[bend left=32] ++(\pingu@w@half+.66mm,\pingu@w@half+\pingu@one)
+    to[bend left=32] ++(\pingu@w@half+.66mm,-\pingu@w@half-\pingu@one)
     to[bend left=8] cycle;
     \pingu@block[rounded corners=.7mm]{\pingu@color@cloak}
-    (\pingu@name-bottom-center)++(-\pingu@x@cloak@padding-\pingu@w@half,-.5mm) arc (180:250:{\pingu@x@cloak@padding+\pingu@w@half} and 1mm) to[bend left=3]
+    (\pingu@name-bottom-center)++(-\pingu@x@cloak@padding-\pingu@w@half,-.5mm) arc (180:250:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend left=3]
     (\pingu@name-wings-side-right);
     \pingu@block[rounded corners=.7mm]{\pingu@color@cloak}
-    (\pingu@name-bottom-center)++(\pingu@x@cloak@padding+\pingu@w@half,-.5mm) arc (0:-70:{\pingu@x@cloak@padding+\pingu@w@half} and 1mm) to[bend left=3]
+    (\pingu@name-bottom-center)++(\pingu@x@cloak@padding+\pingu@w@half,-.5mm) arc (0:-70:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend left=3]
     (\pingu@name-wings-side-left);
 }
 %     #endregion
