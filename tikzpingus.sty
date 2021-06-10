@@ -39,6 +39,7 @@
 \newdimen\pingu@one           \pingu@one=1mm
 
 \newdimen\pingu@w@half        \pingu@w@half=.9375cm
+\newdimen\pingu@head@h@half   \pingu@head@h@half=.9\pingu@w@half
 \newdimen\pingu@side@h@half   \pingu@side@h@half=1.275cm
 \newdimen\pingu@bend          \pingu@bend=\pingu@one@eight
 \newdimen\pingu@lower@off     \pingu@lower@off=.25cm
@@ -312,8 +313,8 @@ arc (208:270:\pingu@foot@inner@w{} and \pingu@foot@inner@h)
 arc (270:360:\pingu@foot@outer@w{} and \pingu@foot@outer@h)%
 % right side
 to[bend right=\pingu@bend] ++(0,\pingu@side@h@half+\pingu@outer@off)
-arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure wings
-\def\pingu@path@upperpingu{(\pingu@name-head-center) ellipse [x radius=\pingu@w@half, y radius=.9\pingu@w@half]}
+arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure wings
+\def\pingu@path@upperpingu{(\pingu@name-head-center) ellipse [x radius=\pingu@w@half, y radius=\pingu@head@h@half]}
 \def\@pingu@base{%
     \pingu@block[save path=\pingu@lowerpingu]{\pingu@color@body@main} (0,\pingu@outer@off)
         % left side
@@ -332,8 +333,8 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
 
     % TODO: store widths and height of head and use for e.g. devil
     \pingu@block[save path=\pingu@upperpingu]{\pingu@color@body@head} (\pingu@name-head-center)
-        ++(0,.9\pingu@w@half) coordinate (\pingu@name-head-top)
-        arc(90:450:\pingu@w@half{} and .9\pingu@w@half)
+        ++(0,\pingu@head@h@half) coordinate (\pingu@name-head-top)
+        arc(90:450:\pingu@w@half{} and \pingu@head@h@half)
         coordinate[pos=\pinguanglehr] (\pingu@name-head-right)
         coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 }
@@ -541,7 +542,7 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
 % #region hairstyle
 \pingu@hairstyle@add{normal}{%
 \scope\pgfinterruptboundingbox
-\clip[/pingu/@invclip] (\pingu@name-head-center) ellipse [x radius=\pingu@w@half, y radius=.9\pingu@w@half-.0165mm];
+\clip[/pingu/@invclip] (\pingu@name-head-center) ellipse [x radius=\pingu@w@half, y radius=\pingu@head@h@half-.0165mm];
 \endpgfinterruptboundingbox
 \scope[rounded corners=.08mm]
 \pingu@block{\pingu@color@hair@a} ([yshift=-\pingu@one]\pingu@name-head-top) -- ++(.15mm,0) arc (0:90:\pingu@one@eight{} and .135cm) arc (90:0:.35mm and .75mm);
@@ -1139,9 +1140,9 @@ arc(0:180:\pingu@w@half{} and .9\pingu@w@half) -- cycle}% arc clip to secure win
 \def\pingu@devilhorns@yshift{.65mm}
 \def\pingu@draw@ea@devilhorns{%
     % 90 - 360*.06
-    \pingu@block{\pingu@color@devilhorns} ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-left) arc (\pingu@devilhorns@baseang@l:\pingu@devilhorns@baseang@l-\pingu@devilhorns@baseoff:\pingu@w@half{} and .9\pingu@w@half) coordinate (\pingu@name-devilhorns-left-goal) to[out=32,in=-32,looseness=.9] ++(.3mm,2.65mm) to[bend left=17] ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-left) -- cycle;
+    \pingu@block{\pingu@color@devilhorns} ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-left) arc (\pingu@devilhorns@baseang@l:\pingu@devilhorns@baseang@l-\pingu@devilhorns@baseoff:\pingu@w@half{} and \pingu@head@h@half) coordinate (\pingu@name-devilhorns-left-goal) to[out=32,in=-32,looseness=.9] ++(.3mm,2.65mm) to[bend left=17] ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-left) -- cycle;
     \pingu@block{\pingu@color@devilhorns} ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-left) to [bend right=38] (\pingu@name-devilhorns-left-goal) to[bend right=30] ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-left) -- cycle;
-    \pingu@block{\pingu@color@devilhorns@b} ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-right) arc (\pingu@devilhorns@baseang@r:\pingu@devilhorns@baseang@r+\pingu@devilhorns@baseoff:\pingu@w@half{} and .9\pingu@w@half) coordinate (\pingu@name-devilhorns-right-goal) to[out=148,in=-148,looseness=.9] ++(-.3mm,2.65mm) to[bend right=17] ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-right) -- cycle;
+    \pingu@block{\pingu@color@devilhorns@b} ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-right) arc (\pingu@devilhorns@baseang@r:\pingu@devilhorns@baseang@r+\pingu@devilhorns@baseoff:\pingu@w@half{} and \pingu@head@h@half) coordinate (\pingu@name-devilhorns-right-goal) to[out=148,in=-148,looseness=.9] ++(-.3mm,2.65mm) to[bend right=17] ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-right) -- cycle;
     \pingu@block{\pingu@color@devilhorns@b} ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-right) to [bend left=38] (\pingu@name-devilhorns-right-goal) to[bend left=30] ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-right) -- cycle;
 }
 
