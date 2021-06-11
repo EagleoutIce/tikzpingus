@@ -337,8 +337,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
         arc(90:450:\pingu@w@half{} and \pingu@head@h@half)
         coordinate[pos=\pinguanglehr] (\pingu@name-head-right)
         coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
-}
-% #endregion
+}% #endregion
 
 % #region eyes
 % name core | left | right
@@ -1016,13 +1015,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 \fi
 }
 
-% .########.##....##.########.########.########.....###....##.....##.########
-% .##........##..##..##.......##.......##.....##...##.##...###...###.##......
-% .##.........####...##.......##.......##.....##..##...##..####.####.##......
-% .######......##....######...######...########..##.....##.##.###.##.######..
-% .##..........##....##.......##.......##...##...#########.##.....##.##......
-% .##..........##....##.......##.......##....##..##.....##.##.....##.##......
-% .########....##....########.##.......##.....##.##.....##.##.....##.########
+% #region eye frame
 \pingu@create@extra{eyeframe}{%
     % extra halo
     eyeframe/.forward to = /pingu/eye frame,
@@ -1031,20 +1024,13 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 }{}
 
 \def\pingu@draw@ea@eyeframe{%
-    % TODO: dynamic offsets
     \pingu@draw{\pingu@color@eyeframe} [rounded corners=.25mm](\pingu@name-left-eye)++(-2mm,1.5mm) to[bend left=8] ++(4.2mm,0) to[out=-80,in=70] ++(-.2mm,-2.75mm) to[bend left=32.5] ++(-3.65mm,0mm) to[out=135,in=-90] ++(-.8mm,2.7mm) -- cycle;
     \pingu@draw{\pingu@color@eyeframe} [rounded corners=.25mm](\pingu@name-right-eye)++(2mm,1.5mm) to[bend right=8] ++(-4.2mm,0) to[out=-100,in=110] ++(.2mm,-2.75mm) to[bend right=32.5] ++(3.65mm,0mm) to[out=45,in=-90] ++(.8mm,2.7mm) -- cycle;
 }
+% #endregion
 
-% TODO: use save paths for everything
 
-% ..######...##..........###.....######...######..########..######.
-% .##....##..##.........##.##...##....##.##....##.##.......##....##
-% .##........##........##...##..##.......##.......##.......##......
-% .##...####.##.......##.....##..######...######..######....######.
-% .##....##..##.......#########.......##.......##.##.............##
-% .##....##..##.......##.....##.##....##.##....##.##.......##....##
-% ..######...########.##.....##..######...######..########..######.
+% #region glasses
 \pingu@create@extra{glasses}{%
     glasses/.code               = \pingu@set@extra{glasses}{true}\pingu@color{glasses}{#1},
     glasses/.default            = pingu@black,
@@ -1075,14 +1061,9 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     (\pingu@name-glasses-left-mid) to[bend left=8] ++(5.586mm,0) -- ++(5mm,.5mm);
     \endscope
 }
+% #endregion
 
-% ..######...##..........###.....######...######..########..######.....########...#######..##.....##.##....##.########.
-% .##....##..##.........##.##...##....##.##....##.##.......##....##....##.....##.##.....##.##.....##.###...##.##.....##
-% .##........##........##...##..##.......##.......##.......##..........##.....##.##.....##.##.....##.####..##.##.....##
-% .##...####.##.......##.....##..######...######..######....######.....########..##.....##.##.....##.##.##.##.##.....##
-% .##....##..##.......#########.......##.......##.##.............##....##...##...##.....##.##.....##.##..####.##.....##
-% .##....##..##.......##.....##.##....##.##....##.##.......##....##....##....##..##.....##.##.....##.##...###.##.....##
-% ..######...########.##.....##..######...######..########..######.....##.....##..#######...#######..##....##.########.
+% #region glasses round
 \pingu@create@extra{glassesround}{%
     glasses round/.code               = \pingu@set@extra{glassesround}{true}\pingu@color{glassesround}{#1},
     glasses round/.default            = pingu@black,
@@ -1116,14 +1097,9 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
      (\pingu@name-glassesround-left-mid) arc(150:30:\pingu@x@glassesround@r@r) -- ++(5mm,.65mm);
     \endscope
 }
+% #endregion
 
-% .########..########.##.....##.####.##..........##.....##..#######..########..##....##..######.
-% .##.....##.##.......##.....##..##..##..........##.....##.##.....##.##.....##.###...##.##....##
-% .##.....##.##.......##.....##..##..##..........##.....##.##.....##.##.....##.####..##.##......
-% .##.....##.######...##.....##..##..##..........#########.##.....##.########..##.##.##..######.
-% .##.....##.##........##...##...##..##..........##.....##.##.....##.##...##...##..####.......##
-% .##.....##.##.........##.##....##..##..........##.....##.##.....##.##....##..##...###.##....##
-% .########..########....###....####.########....##.....##..#######..##.....##.##....##..######.
+% #region devil-horns
 \pingu@create@extra{devilhorns}{%
     devilhorns/.forward to = /pingu/devil horns,
     devil-horns/.forward to = /pingu/devil horns,
@@ -1145,6 +1121,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     \pingu@block{\pingu@color@devilhorns@b} ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-right) arc (\pingu@devilhorns@baseang@r:\pingu@devilhorns@baseang@r+\pingu@devilhorns@baseoff:\pingu@w@half{} and \pingu@head@h@half) coordinate (\pingu@name-devilhorns-right-goal) to[out=148,in=-148,looseness=.9] ++(-.3mm,2.65mm) to[bend right=17] ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-right) -- cycle;
     \pingu@block{\pingu@color@devilhorns@b} ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-right) to [bend left=38] (\pingu@name-devilhorns-right-goal) to[bend left=30] ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-right) -- cycle;
 }
+% #endregion
 
 % ########...#######...#######..##....##
 % ##.....##.##.....##.##.....##.##...##.
