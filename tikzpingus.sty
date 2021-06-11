@@ -367,7 +367,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     \pingu@block{\pingu@color@eye@second@left} (\pingu@name-left-eye)++(\eyebaseang+180:.12cm and .14cm) ellipse [x radius=.25mm, y radius=.35mm];
 }{%
     \pingu@block{\pingu@color@eye@right} ([yshift=.75mm,xshift=-\pingu@eye@shift]\pingu@name-eye-back-right) coordinate(\pingu@name-right-eye) ellipse [x radius=.22cm, y radius=.26cm];
-    \pingu@block{\pingu@color@eye@second@right} (\pingu@name-right-eye)++(\eyebaseang:.85mm and \pingu@one) ellipse [x radius=.08cm, y radius=\pingu@one];
+    \pingu@block{\pingu@color@eye@second@right} (\pingu@name-right-eye)++(\eyebaseang:.85mm and \pingu@one) ellipse [x radius=.8mm, y radius=\pingu@one];
     \pingu@block{\pingu@color@eye@second@right} (\pingu@name-right-eye)++(\eyebaseang+180:.12cm and .14cm) ellipse [x radius=.25mm, y radius=.35mm];
 }
 
@@ -728,7 +728,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 
 \def\pingu@draw@eb@cup{%
     \pingu@block[rounded corners=.25mm]{\pingu@color@cup} (\pingu@name-belly-center)++(-.325cm,.275cm) to[bend right=2] ++(.5mm,-.675cm) to[bend right=8] ++(.55cm,\z@) to[bend right=2] ++(.5mm,.675cm);
-    \path (\pingu@name-belly-center)++(0,.275cm) -- (\pingu@name-bill) coordinate[pos=.5,xshift=-.2cm] (\pingu@name-cup-straw-outer-angle);
+    \path (\pingu@name-belly-center)++(0,.275cm) -- (\pingu@name-bill) coordinate[pos=.5,xshift=-2mm] (\pingu@name-cup-straw-outer-angle);
     \path (\pingu@name-belly-center)++(-.115cm,.275cm) coordinate (\pingu@name-straw-outer-start);
     \pingu@block[rounded corners=.15mm]{\pingu@color@cup@straw} (\pingu@name-straw-outer-start) -- (\pingu@name-cup-straw-outer-angle) -- (\pingu@name-bill) -- ++(.5mm,0) -- ([xshift=.5mm]\pingu@name-cup-straw-outer-angle) -- ([xshift=.5mm]\pingu@name-straw-outer-start) -- cycle;
     \pingu@block{\pingu@color@cup} (\pingu@name-belly-center)++(0,.275cm) ellipse [x radius=.325cm,y radius=.5mm];
@@ -866,13 +866,13 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 
 \def\pingu@draw@ea@strawhat{%
 \scope[rotate around={\pingu@x@strawhat@angle:(\pingu@name-head)},shift={(\pingu@name-head)},shift={(\pingu@x@strawhat@xshift,\pingu@x@strawhat@yshift)},scale=\pingu@x@strawhat@scale]
-\pingu@block{\pingu@color@strawhat} (.34cm,\z@) ellipse[x radius=.75cm, y radius=\pingu@one];
-\pingu@block{\pingu@color@strawhat} (\z@,.5mm) rectangle (.68cm,.5cm);
-\pingu@block{\pingu@color@strawhat} (.34cm,.5cm) ellipse[x radius=.34cm, y radius=.08cm];
-\pingu@block{\pingu@color@strawhat} (-.3955cm,.02cm) -- (1.0755cm,.02cm) -- (.68cm,.2cm) -- (0,.2cm) -- cycle;
-\pingu@block{\pingu@color@strawhat@ribbon} (.34cm,.2cm) ellipse[x radius=.34cm, y radius=.08cm];
-\pingu@block{\pingu@color@strawhat@ribbon} (\z@,.2cm) rectangle (.68cm,.3cm);
-\pingu@block{\pingu@color@strawhat} (.34cm,.3cm) ellipse[x radius=.34cm, y radius=.08cm];
+\pingu@block{\pingu@color@strawhat} (.34cm,0) ellipse[x radius=.75cm, y radius=\pingu@one];
+\pingu@block{\pingu@color@strawhat} (0,.5mm) rectangle (.68cm,5mm);
+\pingu@block{\pingu@color@strawhat} (.34cm,5mm) ellipse[x radius=.34cm, y radius=.8mm];
+\pingu@block{\pingu@color@strawhat} (-.3955cm,.2mm) -- (1.0755cm,.2mm) -- (.68cm,2mm) -- (0,2mm) -- cycle;
+\pingu@block{\pingu@color@strawhat@ribbon} (.34cm,2mm) ellipse[x radius=.34cm, y radius=.8mm];
+\pingu@block{\pingu@color@strawhat@ribbon} (0,2mm) rectangle (.68cm,3mm);
+\pingu@block{\pingu@color@strawhat} (.34cm,3mm) ellipse[x radius=.34cm, y radius=.8mm];
 \endscope}
 
 % .##.....##....###....########
@@ -900,7 +900,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 \pingu@block{\pingu@color@hat} \pingupathhatupper;
 \scope
 \clip\pingupathhatupper;
-\pingu@block{\pingu@color@hat@ribbon} (\z@,.02cm) ellipse [x radius=.95\pingu@hat@w@half, y radius=.13cm];
+\pingu@block{\pingu@color@hat@ribbon} (\z@,.2mm) ellipse [x radius=.95\pingu@hat@w@half, y radius=.13cm];
 \pingu@block{\pingu@color@hat} (\z@,.134cm) ellipse [x radius=.95\pingu@hat@w@half, y radius=.13cm];
 \endscope\endscope}
 
