@@ -638,13 +638,16 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 % #region dots
 \def\@pingu@draw@dots{%
 \pingu@layer{foreground}[]
+    % mark wing outer
+    \draw[pink,thick] (\pingu@name-wing-left-start) -- (\pingu@name-wing-left) -- ([turn]90:2.5mm); % -- (180:5mm);
+    \draw[pink,thick] (\pingu@name-wing-right-start) -- (\pingu@name-wing-right) -- ([turn]90:2.5mm); %  -- +(270:2.5mm);
   \@for\@pingu@elem:={belly-center,head,head-top,foot-left,foot-right,right-eye,left-eye,bill,bill-bottom,wings-side-left,wings-side-right,wing-left-start,wing-left-tip,wing-right-start,wing-right-tip,head-right,head-left,head-center,head-back-con-left,head-back-con-right,bottom-center,waist-left,waist-right}\do{
     \path[fill=green] (\pingu@name-\@pingu@elem) circle[radius=1.125\p@];
   }
   \@for\@pingu@elem:={wing-left,wing-right}\do{
     \path[fill=yellow] (\pingu@name-\@pingu@elem) circle[radius=1.125\p@];
   }
-
+  % mark wing items
   \csname @pingu@wingitem@\@pingu@select@leftwing@ @\endcsname \colorlet{@wmark}{magenta} \else \colorlet{@wmark}{teal} \fi
   \pingu@block[/pingu/@draw=@wmark,thick,rotate around={\csname @pingu@wingangle@items@\@pingu@select@leftwing@ @\endcsname:(\pingu@name-wing-left)}]{@wmark}
     (\pingu@name-wing-left)++(0,3mm) circle [radius=\pingu@one] -- ++(0,-6mm);
