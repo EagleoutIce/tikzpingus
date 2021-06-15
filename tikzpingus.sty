@@ -422,8 +422,8 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 % every wing has to define 1) a base element angle and 2) a marker if before or after the wing
 \let\pingu@wi@above\iftrue
 \let\pingu@wi@below\iffalse
-% name core | left | right | above: \iftrue | angle for items
-\long\def\@pingu@wings@s#1#2#3#4#5{%
+% name core | left | right | above: \iftrue | angle for items | angle of wings [left]
+\long\def\@pingu@wings@s#1#2#3#4#5#6{%
     \tikzset{%
         /pingu/left wing #1/.style   = {/pingu/left wing={#1}, /pingu/left wing color={##1}},%
         /pingu/left wing #1/.default = \pingu@color@body@main,%
@@ -436,9 +436,12 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     \pingu@leftwing@add{#1}{#2}\pingu@rightwing@add{#1}{#3}%
     \expandafter\let\csname @pingu@wingitem@#1@\endcsname#4\relax
     \expandafter\def\csname @pingu@wingangle@items@#1@\endcsname{#5}%
+    \expandafter\def\csname @pingu@wingangle@#1@\endcsname{#6}%
 }
 \let\@pingu@wingitem@none@\pingu@wi@above
 \def\@pingu@wingangle@items@none@\endcsname{90}
+\def\@pingu@wingangle@none@\endcsname{90}
+
 % #region wings-normal
 \@pingu@wings@s{normal}{%
     \coordinate (\pingu@name-wing-left-start) at ([yshift=-6.5mm]\pingu@name-wings-side-left);
@@ -454,7 +457,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     \path[/pingu/@invclip] \pingu@path@lowerpingu;
     \endpgfinterruptboundingbox
     \pingu@block[rotate around={-15:(\pingu@name-wing-right-start)}]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.195cm, y radius=9mm] +(-90:.195cm and 9mm) coordinate (\pingu@name-wing-right-tip) +(-90:.145cm and .75cm) coordinate (\pingu@name-wing-right);
-\endscope}{\pingu@wi@above}{-5}
+\endscope}{\pingu@wi@above}{-5}{15}
 % #endregion
 % #region wings-wave
 \@pingu@wings@s{wave}{%
@@ -475,7 +478,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     \pingu@block[rotate around={39:(\pingu@name-wing-right-start)}]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.22cm, y radius=.935cm] +(90:.22cm and .935cm) coordinate (\pingu@name-wing-right-tip) +(30:.22cm and .935cm) coordinate (\pingu@name-wing-right-cap-up) +(177:.22cm and .935cm) coordinate (\pingu@name-wing-right-cap-down) +(90:.175cm and .775cm) coordinate (\pingu@name-wing-right);
     \pingu@block{\pingu@color@right@wing} (\pingu@name-wing-right-start)++(-.03mm,4.6mm) to[out=-100,in=-45] (\pingu@name-wing-right-cap-up) -- (\pingu@name-wing-right-start) -- cycle;
     \pingu@block{\pingu@color@right@wing} (\pingu@name-wing-right-start)++(-.1mm,-4.4mm) to[out=100,in=-50] (\pingu@name-wing-right-cap-down) -- (\pingu@name-wing-right-start) -- cycle;
-\endscope}{\pingu@wi@above}{-10}
+\endscope}{\pingu@wi@above}{-10}{-39}
 % #endregion
 % #region wings-raise
 \@pingu@wings@s{raise}{%
@@ -493,7 +496,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     \coordinate (\pingu@name-wing-right-start) at ([yshift=-6.25mm]\pingu@name-wings-side-right);
     \pingu@block[rotate around={17:(\pingu@name-wing-right-start)}]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.195cm, y radius=.925cm] +(90:.195cm and .925cm) coordinate (\pingu@name-wing-right-tip) +(90:.145cm and .775cm) coordinate (\pingu@name-wing-right);
 \endscope}%
-{\pingu@wi@above}{0}
+{\pingu@wi@above}{0}{-17}
 % #endregion
 % #region wings-grab
 \@pingu@wings@s{grab}{%
@@ -507,7 +510,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     \coordinate (\pingu@name-wing-right-start) at ([yshift=-4.5mm]\pingu@name-wings-side-right);
     \pingu@block[rotate around={42:(\pingu@name-wing-right-start)}]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.225cm, y radius=1.05cm] +(-90:.225cm and 1.05cm) coordinate (\pingu@name-wing-right-tip) +(-90:.175cm and 9mm) coordinate (\pingu@name-wing-right);
 \endpingu@layer}%
-{\pingu@wi@below}{12}
+{\pingu@wi@below}{12}{-42}
 % #endregion
 % #region wings-shock
 \@pingu@wings@s{shock}{%
@@ -521,7 +524,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     \coordinate (\pingu@name-wing-right-start) at ([yshift=-6.5mm]\pingu@name-wings-side-right);
     \pingu@block[rotate around={-65:(\pingu@name-wing-right-start)}]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.235cm, y radius=.85cm] +(90:.235cm and .85cm) coordinate (\pingu@name-wing-right-tip) +(90:.185cm and .7cm) coordinate (\pingu@name-wing-right);
 \endpingu@layer}%
-{\pingu@wi@below}{-180}
+{\pingu@wi@below}{-180}{65}
 % #endregion
 % #region wings-hug
 \@pingu@wings@s{hug}{%
@@ -542,7 +545,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 \pingu@block[rotate around={128:(\pingu@name-wing-right-start)}]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.235cm, y radius=.935cm] +(90:.235cm and .935cm) coordinate (\pingu@name-wing-right-tip) +(5:.235cm and .935cm) coordinate (\pingu@name-wing-right-cap-up) +(160:.235cm and .935cm) coordinate (\pingu@name-wing-right-cap-down) +(90:.175cm and .775cm) coordinate (\pingu@name-wing-right);
 \pingu@block{\pingu@color@right@wing} (\pingu@name-wing-right-start)++(-.03mm,4.6mm) to[out=-100,in=40] (\pingu@name-wing-right-cap-up) -- (\pingu@name-wing-right-start) -- cycle;
 \pingu@block{\pingu@color@right@wing} (\pingu@name-wing-right-start)++(-.085mm,-4.4mm) to[out=92,in=20] (\pingu@name-wing-right-cap-down) -- (\pingu@name-wing-right-start) -- cycle;
-\endscope}{\pingu@wi@above}{-30}
+\endscope}{\pingu@wi@above}{-30}{-128}
 \let\@pingu@wings@s\relax
 % #endregion
 % #endregion
@@ -639,7 +642,9 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 \def\@pingu@draw@dots{%
 \pingu@layer{foreground}[]
     % mark wing outer
-    \draw[pink,thick] (\pingu@name-wing-left-start) -- (\pingu@name-wing-left) -- ([turn]90:2.5mm); % -- (180:5mm);
+    \draw[pink,thick] (\pingu@name-wing-left-start) -- (\pingu@name-wing-left) --
+    \ifnum\csname @pingu@wingangle@\@pingu@select@leftwing@ @\endcsname>0 ([turn]90:2.5mm)
+    \else ([turn]-90:2.5mm)\fi; % -- (180:5mm);
     \draw[pink,thick] (\pingu@name-wing-right-start) -- (\pingu@name-wing-right) -- ([turn]90:2.5mm); %  -- +(270:2.5mm);
   \@for\@pingu@elem:={belly-center,head,head-top,foot-left,foot-right,right-eye,left-eye,bill,bill-bottom,wings-side-left,wings-side-right,wing-left-start,wing-left-tip,wing-right-start,wing-right-tip,head-right,head-left,head-center,head-back-con-left,head-back-con-right,bottom-center,waist-left,waist-right}\do{
     \path[fill=green] (\pingu@name-\@pingu@elem) circle[radius=1.125\p@];
