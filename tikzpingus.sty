@@ -283,14 +283,6 @@
 
 \pingu@draw@extras@below
 
-\@pingu@drawer@leftwing@
-\@pingu@drawer@rightwing@
-
-\path (\pingu@name-wing-left-start) -- (\pingu@name-wing-left) --
-    ([turn]\csname @pingu@wingdown@\@pingu@select@leftwing@ @\endcsname:2.66mm) coordinate (\pingu@name-wing-left-low);
-\path (\pingu@name-wing-right-start) -- (\pingu@name-wing-right) --
-    ([turn]-\csname @pingu@wingdown@\@pingu@select@rightwing@ @\endcsname:2.5mm) coordinate (\pingu@name-wing-right-low);
-
 \@pingu@drawer@bill@
 \@pingu@drawer@hairstyle@
 \pingu@layer{background}[]
@@ -298,10 +290,24 @@
 \@pingu@drawer@rightfoot@
 \endpingu@layer
 
+
+\@pingu@drawer@leftwing@
+\@pingu@drawer@rightwing@
+
+\path (\pingu@name-wing-left-start) -- (\pingu@name-wing-left) --
+    ([turn]\csname @pingu@wingdown@\@pingu@select@leftwing@ @\endcsname:2.66mm)
+    coordinate (\pingu@name-wing-left-low) -- ([turn]180:5.32mm)
+    coordinate (\pingu@name-wing-left-up);
+\path (\pingu@name-wing-right-start) -- (\pingu@name-wing-right) --
+    ([turn]-\csname @pingu@wingdown@\@pingu@select@rightwing@ @\endcsname:2.5mm)
+    coordinate (\pingu@name-wing-right-low) -- ([turn]180:5.32mm)
+    coordinate (\pingu@name-wing-right-up);
+
+\pingu@draw@clothing@main
+
 \pingu@draw@extras@above
 \pingu@draw@wing@items
 
-\pingu@draw@clothing@main
 \endscope
 \if@pingu@draw@metadots
 \@pingu@draw@dots
@@ -652,7 +658,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
   \@for\@pingu@elem:={belly-center,head,head-top,foot-left,foot-right,right-eye,left-eye,bill,bill-bottom,wings-side-left,wings-side-right,wing-left-start,wing-left-tip,wing-right-start,wing-right-tip,head-right,head-left,head-center,head-back-con-left,head-back-con-right,bottom-center,waist-left,waist-right}\do{
     \path[fill=green] (\pingu@name-\@pingu@elem) circle[radius=1.125\p@];
   }
-  \@for\@pingu@elem:={wing-left,wing-right,wing-left-low,wing-right-low}\do{
+  \@for\@pingu@elem:={wing-left,wing-right,wing-left-low,wing-right-low,wing-left-up,wing-right-up}\do{
     \path[fill=yellow] (\pingu@name-\@pingu@elem) circle[radius=1.125\p@];
   }
   % mark wing items
@@ -1450,7 +1456,11 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     \pingu@block[rounded corners=.7mm]{\pingu@color@cloak}
     (\pingu@name-bottom-center)++(\pingu@x@cloak@padding+\pingu@w@half,-.5mm) arc (0:-70:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend left=3]
     (\pingu@name-wings-side-left);
-    % wing left
+    % wings
+    \pingu@layer{foreground}[]
+    \pingu@block{\pingu@color@cloak} (\pingu@name-wing-left-start)++(0,-6mm) to[bend right=10] (\pingu@name-wing-left-low) to[bend left=3]  (\pingu@name-wing-left-up) to[bend right=3] ([yshift=6mm]\pingu@name-wing-left-start) to[bend left=13] cycle;
+    \pingu@block{\pingu@color@cloak} (\pingu@name-wing-right-start)++(0,-6mm) to[bend left=10] (\pingu@name-wing-right-low) to[bend right=3]  (\pingu@name-wing-right-up) to[bend left=3] ([yshift=6mm]\pingu@name-wing-right-start) to[bend right=13] cycle;
+    \endpingu@layer
 }
 %     #endregion
 
