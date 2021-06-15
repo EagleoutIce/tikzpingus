@@ -453,24 +453,24 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 \def\@pingu@wingangle@items@none@\endcsname{90}
 \def\@pingu@wingdown@none@\endcsname{90}
 
-% #region wings-normal
+%     #region wings-normal
 \@pingu@wings@s{normal}{%
-    \coordinate (\pingu@name-wing-left-start) at ([yshift=-6.5mm]\pingu@name-wings-side-left);
-\scope[xshift=-\p@] % shift to avoid rounding errors in pdf viewers
+\pingu@layer{middle}[xshift=-\p@] % shift to avoid rounding errors in pdf viewers
+    \coordinate (\pingu@name-wing-left-start) at ([xshift=\p@,yshift=-6.5mm]\pingu@name-wings-side-left);
     \pgfinterruptboundingbox
     \path[/pingu/@invclip] \pingu@path@lowerpingu;
     \endpgfinterruptboundingbox
     \pingu@block[rotate around={15:(\pingu@name-wing-left-start)}]{\pingu@color@left@wing} (\pingu@name-wing-left-start) ellipse [x radius=.195cm, y radius=9mm] +(-90:.195cm and 9mm) coordinate (\pingu@name-wing-left-tip) +(-90:.145cm and .75cm) coordinate (\pingu@name-wing-left);
-\endscope}{%
-\coordinate (\pingu@name-wing-right-start) at ([yshift=-6.5mm]\pingu@name-wings-side-right);
-\scope[xshift=\p@] % shift to avoid rounding errors in pdf viewers
+\endpingu@layer}{%
+\pingu@layer{middle}[xshift=-\p@] % shift to avoid rounding errors in pdf viewers
+\coordinate (\pingu@name-wing-right-start) at ([xshift=\p@,yshift=-6.5mm]\pingu@name-wings-side-right);
     \pgfinterruptboundingbox
     \path[/pingu/@invclip] \pingu@path@lowerpingu;
     \endpgfinterruptboundingbox
     \pingu@block[rotate around={-15:(\pingu@name-wing-right-start)}]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.195cm, y radius=9mm] +(-90:.195cm and 9mm) coordinate (\pingu@name-wing-right-tip) +(-90:.145cm and .75cm) coordinate (\pingu@name-wing-right);
-\endscope}{\pingu@wi@above}{-5}{-70}
-% #endregion
-% #region wings-wave
+\endpingu@layer}{\pingu@wi@above}{-5}{-70}
+%     #endregion
+%     #region wings-wave
 \@pingu@wings@s{wave}{%
     \coordinate (\pingu@name-wing-left-start) at ([yshift=-5.85mm]\pingu@name-wings-side-left);
     \scope[xshift=-\p@] % shift to avoid rounding errors in pdf viewers
@@ -490,8 +490,8 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     \pingu@block{\pingu@color@right@wing} (\pingu@name-wing-right-start)++(-.03mm,4.6mm) to[out=-100,in=-45] (\pingu@name-wing-right-cap-up) -- (\pingu@name-wing-right-start) -- cycle;
     \pingu@block{\pingu@color@right@wing} (\pingu@name-wing-right-start)++(-.1mm,-4.4mm) to[out=100,in=-50] (\pingu@name-wing-right-cap-down) -- (\pingu@name-wing-right-start) -- cycle;
 \endscope}{\pingu@wi@above}{-10}{-110}
-% #endregion
-% #region wings-raise
+%     #endregion
+%     #region wings-raise
 \@pingu@wings@s{raise}{%
 \coordinate (\pingu@name-wing-left-start) at ([yshift=-6.25mm]\pingu@name-wings-side-left);
 \scope[xshift=-\p@] % shift to avoid rounding errors in pdf viewers
@@ -508,8 +508,8 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     \pingu@block[rotate around={17:(\pingu@name-wing-right-start)}]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.195cm, y radius=.925cm] +(90:.195cm and .925cm) coordinate (\pingu@name-wing-right-tip) +(90:.145cm and .775cm) coordinate (\pingu@name-wing-right);
 \endscope}%
 {\pingu@wi@above}{0}{-126}
-% #endregion
-% #region wings-grab
+%     #endregion
+%     #region wings-grab
 \@pingu@wings@s{grab}{%
 \pingu@layer{foreground}[]
     \clip[use path=\pingu@lowerpingu];
@@ -522,8 +522,8 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     \pingu@block[rotate around={42:(\pingu@name-wing-right-start)}]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.225cm, y radius=1.05cm] +(-90:.225cm and 1.05cm) coordinate (\pingu@name-wing-right-tip) +(-90:.175cm and 9mm) coordinate (\pingu@name-wing-right);
 \endpingu@layer}%
 {\pingu@wi@below}{12}{60}
-% #endregion
-% #region wings-shock
+%     #endregion
+%     #region wings-shock
 \@pingu@wings@s{shock}{%
 \pingu@layer{foreground}[]
     \clip[use path=\pingu@lowerpingu];
@@ -536,8 +536,8 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     \pingu@block[rotate around={-65:(\pingu@name-wing-right-start)}]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.235cm, y radius=.85cm] +(90:.235cm and .85cm) coordinate (\pingu@name-wing-right-tip) +(90:.185cm and .7cm) coordinate (\pingu@name-wing-right);
 \endpingu@layer}%
 {\pingu@wi@below}{-180}{116}
-% #endregion
-% #region wings-hug
+%     #endregion
+%     #region wings-hug
 \@pingu@wings@s{hug}{%
 \coordinate (\pingu@name-wing-left-start) at ([yshift=-6.25mm]\pingu@name-wings-side-left);
 \scope[xshift=-\p@] % shift to avoid rounding errors in pdf viewers
@@ -558,7 +558,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 \pingu@block{\pingu@color@right@wing} (\pingu@name-wing-right-start)++(-.085mm,-4.4mm) to[out=92,in=20] (\pingu@name-wing-right-cap-down) -- (\pingu@name-wing-right-start) -- cycle;
 \endscope}{\pingu@wi@above}{-30}{-62}
 \let\@pingu@wings@s\relax
-% #endregion
+%     #endregion
 % #endregion
 
 % #region hairstyle
@@ -1458,8 +1458,8 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     (\pingu@name-wings-side-left);
     % wings
     \pingu@layer{foreground}[]
-    \pingu@block{\pingu@color@cloak} (\pingu@name-wing-left-start)++(0,-6mm) to[bend right=10] (\pingu@name-wing-left-low) to[bend left=3]  (\pingu@name-wing-left-up) to[bend right=3] ([yshift=6mm]\pingu@name-wing-left-start) to[bend left=13] cycle;
-    \pingu@block{\pingu@color@cloak} (\pingu@name-wing-right-start)++(0,-6mm) to[bend left=10] (\pingu@name-wing-right-low) to[bend right=3]  (\pingu@name-wing-right-up) to[bend left=3] ([yshift=6mm]\pingu@name-wing-right-start) to[bend right=13] cycle;
+    \pingu@block{\pingu@color@cloak} (\pingu@name-wing-left-start)++(0,-8mm) to[bend right=10] (\pingu@name-wing-left-low) to[bend left=3] (\pingu@name-wing-left-up) to[bend right=3] ([yshift=8mm]\pingu@name-wing-left-start) -- ++(-1mm,0) to[bend right=13] cycle;
+    \pingu@block{\pingu@color@cloak} (\pingu@name-wing-right-start)++(0,-8mm) to[bend left=10] (\pingu@name-wing-right-low) to[bend right=3]  (\pingu@name-wing-right-up) to[bend left=3] ([yshift=8mm]\pingu@name-wing-right-start) -- ++(1mm,0) to[bend left=13] cycle;
     \endpingu@layer
 }
 %     #endregion
