@@ -286,6 +286,11 @@
 \@pingu@drawer@leftwing@
 \@pingu@drawer@rightwing@
 
+\path (\pingu@name-wing-left-start) -- (\pingu@name-wing-left) --
+    ([turn]\csname @pingu@wingdown@\@pingu@select@leftwing@ @\endcsname:2.66mm) coordinate (\pingu@name-wing-left-low);
+\path (\pingu@name-wing-right-start) -- (\pingu@name-wing-right) --
+    ([turn]-\csname @pingu@wingdown@\@pingu@select@rightwing@ @\endcsname:2.5mm) coordinate (\pingu@name-wing-right-low);
+
 \@pingu@drawer@bill@
 \@pingu@drawer@hairstyle@
 \pingu@layer{background}[]
@@ -642,13 +647,12 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 \def\@pingu@draw@dots{%
 \pingu@layer{foreground}[]
     % mark wing outer
-    \draw[pink,thick] (\pingu@name-wing-left-start) -- (\pingu@name-wing-left) --
-    ([turn]\csname @pingu@wingdown@\@pingu@select@leftwing@ @\endcsname:2.5mm); % -- (180:5mm);
-    \draw[pink,thick] (\pingu@name-wing-right-start) -- (\pingu@name-wing-right) -- ([turn]-\csname @pingu@wingdown@\@pingu@select@rightwing@ @\endcsname:2.5mm); %  -- +(270:2.5mm);
+    \path[draw,pink,thick] (\pingu@name-wing-left-start) -- (\pingu@name-wing-left) -- (\pingu@name-wing-left-low);
+    \path[draw,pink,thick] (\pingu@name-wing-right-start) -- (\pingu@name-wing-right) -- (\pingu@name-wing-right-low);
   \@for\@pingu@elem:={belly-center,head,head-top,foot-left,foot-right,right-eye,left-eye,bill,bill-bottom,wings-side-left,wings-side-right,wing-left-start,wing-left-tip,wing-right-start,wing-right-tip,head-right,head-left,head-center,head-back-con-left,head-back-con-right,bottom-center,waist-left,waist-right}\do{
     \path[fill=green] (\pingu@name-\@pingu@elem) circle[radius=1.125\p@];
   }
-  \@for\@pingu@elem:={wing-left,wing-right}\do{
+  \@for\@pingu@elem:={wing-left,wing-right,wing-left-low,wing-right-low}\do{
     \path[fill=yellow] (\pingu@name-\@pingu@elem) circle[radius=1.125\p@];
   }
   % mark wing items
@@ -1446,6 +1450,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     \pingu@block[rounded corners=.7mm]{\pingu@color@cloak}
     (\pingu@name-bottom-center)++(\pingu@x@cloak@padding+\pingu@w@half,-.5mm) arc (0:-70:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend left=3]
     (\pingu@name-wings-side-left);
+    % wing left
 }
 %     #endregion
 
