@@ -455,20 +455,20 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 
 %     #region wings-normal
 \@pingu@wings@s{normal}{%
-\pingu@layer{middle}[xshift=-\p@] % shift to avoid rounding errors in pdf viewers
-    \coordinate (\pingu@name-wing-left-start) at ([xshift=\p@,yshift=-6.5mm]\pingu@name-wings-side-left);
+    \coordinate (\pingu@name-wing-left-start) at ([yshift=-6.5mm]\pingu@name-wings-side-left);
+\scope[xshift=-\p@] % shift to avoid rounding errors in pdf viewers
     \pgfinterruptboundingbox
     \path[/pingu/@invclip] \pingu@path@lowerpingu;
     \endpgfinterruptboundingbox
     \pingu@block[rotate around={15:(\pingu@name-wing-left-start)}]{\pingu@color@left@wing} (\pingu@name-wing-left-start) ellipse [x radius=.195cm, y radius=9mm] +(-90:.195cm and 9mm) coordinate (\pingu@name-wing-left-tip) +(-90:.145cm and .75cm) coordinate (\pingu@name-wing-left);
-\endpingu@layer}{%
-\pingu@layer{middle}[xshift=-\p@] % shift to avoid rounding errors in pdf viewers
-\coordinate (\pingu@name-wing-right-start) at ([xshift=\p@,yshift=-6.5mm]\pingu@name-wings-side-right);
+\endscope}{%
+\coordinate (\pingu@name-wing-right-start) at ([yshift=-6.5mm]\pingu@name-wings-side-right);
+\scope[xshift=\p@] % shift to avoid rounding errors in pdf viewers
     \pgfinterruptboundingbox
     \path[/pingu/@invclip] \pingu@path@lowerpingu;
     \endpgfinterruptboundingbox
     \pingu@block[rotate around={-15:(\pingu@name-wing-right-start)}]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.195cm, y radius=9mm] +(-90:.195cm and 9mm) coordinate (\pingu@name-wing-right-tip) +(-90:.145cm and .75cm) coordinate (\pingu@name-wing-right);
-\endpingu@layer}{\pingu@wi@above}{-5}{-70}
+\endscope}{\pingu@wi@above}{-5}{-70}
 %     #endregion
 %     #region wings-wave
 \@pingu@wings@s{wave}{%
