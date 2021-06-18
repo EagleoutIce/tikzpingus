@@ -1379,10 +1379,10 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 % #1 wing, #2 yshift, #3 angle, #4 length, #5 color
 \def\pingu@draw@wi@lightsaber@post#1#2#3#4#5{
     \scope[rotate around={#3:(\pingu@name-wing-#1)}]
-    \ifdim\csname pingu@x@lightsaber@ogf@\@lr\endcsname pt>\z@
+    \ifdim\csname pingu@x@lightsaber@ogf@#1\endcsname pt>\z@
     \pgfinterruptboundingbox\pingu@layer{foreground}[]
     \@for\i:={1,1.1,1.2,1.5}\do{
-        \pingu@block[/pingu/@glow,fill opacity=\csname pingu@x@lightsaber@ogf@\@lr\endcsname/\i]{#5} (\pingu@name-wing-#1) ++(.05mm,#2+#4/2) circle[radius=\i*#4];
+        \pingu@block[/pingu/@glow,fill opacity=\csname pingu@x@lightsaber@ogf@#1\endcsname/\i]{#5} (\pingu@name-wing-#1) ++(.05mm,#2+#4/2) circle[radius=\i*#4];
     }
     \endpingu@layer\endpgfinterruptboundingbox
     \fi
