@@ -1283,6 +1283,25 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 }
 %     #endregion
 
+%     #region signpost
+\pingu@create@wing@extra{signpost}{%
+  signpost \@lr/.forward to    = sign post \@lr,
+  sign post \@lr/.code         = {\pingu@set@extra{signpost\@lr}{true}\@namedef{pingu@signpost@\@lr}{##1}},
+  sign post \@lr/.default      = {},
+  signpost \@lr\space color/.forward to    = sign post \@lr\space color,
+  sign post \@lr\space color/.code = \pingu@color{signpost\@lr}{##1},
+  signpost \@lr\space fontcolor/.forward to    = sign post \@lr\space font color,
+  sign post \@lr\space font color/.code = \pingu@color{signpost\@lr @font}{##1},
+}{sign post \@lr\space color=brown, sign post \@lr\space font color=white!90!brown}
+\def\pingu@draw@wi@signpost#1{%
+    \pingu@setup@wing{signpost}{#1}%
+\scope[rotate around={\@angle+5:(\pingu@name-wing-#1)}]
+    \pingu@block[thick]{\@col}(\pingu@name-wing-#1)++(0,-2mm) -- ++(0,15mm) arc(180:0:.45mm and .375mm) -- ++(0,-15mm) arc(360:180:.45mm and .375mm) -- cycle;
+    \path (\pingu@name-wing-#1)++(.45mm,13mm) node[fill=\@col,rounded corners=2\p@,minimum width=14mm,minimum height=8mm,align=center,rotate=\@angle+5,text=\csname pingu@color@signpost#1@font\endcsname] {\csname pingu@signpost@#1\endcsname};
+\endscope
+}
+%     #endregion
+
 %     #region lightsaber
 \newif\if@pingu@x@lightsaber@glow@left
 \newif\if@pingu@x@lightsaber@glow@right
