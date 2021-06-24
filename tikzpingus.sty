@@ -871,13 +871,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     \if@pingu@x@halo@ \pingu@draw@ea@halo \fi
 }
 
-% ..######..########.########.....###....##......##....##.....##....###....########
-% .##....##....##....##.....##...##.##...##..##..##....##.....##...##.##......##...
-% .##..........##....##.....##..##...##..##..##..##....##.....##..##...##.....##...
-% ..######.....##....########..##.....##.##..##..##....#########.##.....##....##...
-% .......##....##....##...##...#########.##..##..##....##.....##.#########....##...
-% .##....##....##....##....##..##.....##.##..##..##....##.....##.##.....##....##...
-% ..######.....##....##.....##.##.....##..###..###.....##.....##.##.....##....##...
+% #region strawhat
 \pingu@create@extra{strawhat}{%
   % extra strawhat (tikzducks basis)
   straw hat/.forward to         = /pingu/strawhat,
@@ -899,14 +893,9 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 \pingu@block{\pingu@color@strawhat@ribbon} (0,2mm) rectangle (.68cm,3mm);
 \pingu@block{\pingu@color@strawhat} (.34cm,3mm) ellipse[x radius=.34cm, y radius=.8mm];
 \endscope}
+% #endregion
 
-% .##.....##....###....########
-% .##.....##...##.##......##...
-% .##.....##..##...##.....##...
-% .#########.##.....##....##...
-% .##.....##.#########....##...
-% .##.....##.##.....##....##...
-% .##.....##.##.....##....##...
+% #region hat
 \pingu@create@extra{hat}{%
   hat/.default   = pingu@black!90!black,
   hat/.code      = \pingu@set@extra{hat}{true}\pingu@color{hat}{#1},
@@ -928,14 +917,9 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 \pingu@block{\pingu@color@hat@ribbon} (\z@,.2mm) ellipse [x radius=.95\pingu@hat@w@half, y radius=.13cm];
 \pingu@block{\pingu@color@hat} (\z@,.134cm) ellipse [x radius=.95\pingu@hat@w@half, y radius=.13cm];
 \endscope\endscope}
+% #endregion
 
-% ..######..########...#######..##......##.##....##
-% .##....##.##.....##.##.....##.##..##..##.###...##
-% .##.......##.....##.##.....##.##..##..##.####..##
-% .##.......########..##.....##.##..##..##.##.##.##
-% .##.......##...##...##.....##.##..##..##.##..####
-% .##....##.##....##..##.....##.##..##..##.##...###
-% ..######..##.....##..#######...###..###..##....##
+% #region crown
 \newif\if@pingu@x@crown@ddd@ % 3d
 \newif\if@pingu@x@crown@shade@ % 3d
 \pingu@create@extra{crown}{%
@@ -972,7 +956,6 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 \pingu@block{#1} (r2)++(0,-.2mm) to[bend left=2] ++(0,1.95mm) -- (r1) -- cycle;
 }
 
-% TODO: shading option
 % color | at | shift | scale
 \def\pingu@draw@ea@crown@g#1#2#3#4{
 \scope[shift={(#22)},shift={(#3,-.33mm)}]
@@ -1018,14 +1001,9 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 \endpingu@layer
 \endscope
 }
+% #endregion
 
-% .##.....##....###....##........#######.
-% .##.....##...##.##...##.......##.....##
-% .##.....##..##...##..##.......##.....##
-% .#########.##.....##.##.......##.....##
-% .##.....##.#########.##.......##.....##
-% .##.....##.##.....##.##.......##.....##
-% .##.....##.##.....##.########..#######.
+% #region halo
 \newif\if@pingu@x@halo@glow
 \pingu@create@extra{halo}{%
     halo/.code    	 = \pingu@set@extra{halo}{true}\pingu@color{halo}{#1},
@@ -1040,6 +1018,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 \pingu@block[even odd rule,/pingu/@glow]{\pingu@color@halo} ([yshift=\pingu@x@halo@raise]\pingu@name-head-top) ellipse [x radius=(\pingu@w@half-1.95mm)*1.7,y radius=1.55mm*2.35] ellipse [x radius=\pingu@w@half-1.95mm,y radius=1.55mm];
 \fi
 }
+% #endregion
 
 % #region eye frame
 \pingu@create@extra{eyeframe}{%
