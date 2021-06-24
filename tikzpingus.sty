@@ -867,6 +867,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     \if@pingu@x@strawhat@ \pingu@draw@ea@strawhat \fi
     \if@pingu@x@hat@ \pingu@draw@ea@hat \fi
     \if@pingu@x@crown@ \pingu@draw@ea@crown \fi
+    \if@pingu@x@princesscrown@ \pingu@draw@ea@princesscrown \fi
     \if@pingu@x@rook@ \pingu@draw@ea@rook \fi
     \if@pingu@x@halo@ \pingu@draw@ea@halo \fi
 }
@@ -983,7 +984,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     \pingu@draw@ea@crown@s{\pingu@color@crown}{left}{right}
     \def\@tmpa{-.015mm}\def\@tmpb{-.035mm}
 \fi
-% draw the emaralds
+% draw the emeralds
 \pingu@draw@ea@crown@g{\pingu@color@crown@gem@b}{a}{-\@tmpa}1
 \pingu@draw@ea@crown@g{\pingu@color@crown@gem@c}{b}{-\@tmpb}1
 \pingu@draw@ea@crown@g{\pingu@color@crown@gem@d}{x}{\z@}{1.35}
@@ -997,6 +998,91 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 % draw back if 3d
 \if@pingu@x@crown@ddd@
     \pingu@draw@ea@crown@s{\pingu@color@crown@back}{left}{right}
+\fi
+\endpingu@layer
+\endscope
+}
+% #endregion
+
+% #region princess-crown
+\newif\if@pingu@x@princesscrown@ddd@
+\newif\if@pingu@x@princesscrown@shade@
+\newif\if@pingu@x@princesscrown@bobbles@
+\pingu@create@extra{princesscrown}{%
+  princess crown/.code    = \pingu@set@extra{princesscrown}{true}\pingu@color{princesscrown}{#1},
+  princess crown/.default = pingu@yellow,
+  princess crown 3d/.is if= @pingu@x@princesscrown@ddd@, princess crown 3d/.default = true,
+  princess crown 2d/.style   = {princess crown=#1, princess crown 3d=false},
+  princess crown 2d/.default = pingu@yellow,
+  princess crown back/.code  = \pingu@color{princesscrown@back}{#1},
+  princess crown front bend/.code  = \def\pingu@x@princesscrown@f@bend{#1},
+  princess crown back bend/.code   = \def\pingu@x@princesscrown@b@bend{#1},
+  princess crown gem shade/.is if  = @pingu@x@princesscrown@shade@,
+  princess crown bobbles/.is if  = @pingu@x@princesscrown@bobbles@,
+  princess crown gem shade/.default = true,
+  princess crown gem colors/.code n args = 5{\pingu@color{princesscrown@gem@a}{#1}\pingu@color{princesscrown@gem@b}{#2}\pingu@color{princesscrown@gem@c}{#3}\pingu@color{princesscrown@gem@d}{#4}\pingu@color{princesscrown@gem@e}{#5}},
+  princess crown gem ring/.code   = \pingu@color{princesscrown@gem@ring}{#1},
+  princess crown position/.code args  = {#1:(#2,#3)#4}{\def\pingu@x@princesscrown@angle{#1}\def\pingu@x@princesscrown@xshift{#2}\def\pingu@x@princesscrown@yshift{#3}\def\pingu@x@princesscrown@scale{#4}},
+}{princess crown position={-9:(\pingu@one,0)1},princess crown front bend=12,princess crown back bend=7,princess crown back=\pingu@color@princesscrown!93!black,princess crown 3d,princess crown gem colors={pingu@purple}{pingu@blue}{pingu@green}{pingu@blue}{pingu@purple},princess crown gem ring=\pingu@color@princesscrown!85!white,princess crown gem shade,princess crown bobbles}
+
+% color | bend1 | bend1
+\def\pingu@draw@ea@princesscrown@s#1#2#3{
+\pingu@block{#1} [rounded corners=.2mm](-3.25mm,-.15cm) to[bend left=2] ++(0,2.32mm) to[bend #2=\pingu@x@princesscrown@f@bend]
+    coordinate[pos=0] (r2)  coordinate[pos=.065] (r1)
+    coordinate[pos=.11] (a1) coordinate[pos=.2] (a2) coordinate[pos=.29] (a3)
+    coordinate[pos=.35] (b1) coordinate[pos=.50] (x2) coordinate[pos=.65] (b3)
+    coordinate[pos=.71] (c1) coordinate[pos=.8] (c2) coordinate[pos=.89] (c3)
+    coordinate[pos=1] (l2)  coordinate[pos=.93] (l1)
+    ++(8mm,0) to[bend left=2] ++(0,-2.32mm) to[bend #3=\pingu@x@princesscrown@f@bend] (-3mm,-.15cm) -- cycle;
+\path (x2)++(0,.9mm) coordinate (b2);
+\@for\a:={a,b,c}\do{
+    \pingu@block{#1} ([yshift=-.1mm]\a1) to[bend right=\pingu@x@princesscrown@f@bend] ([yshift=-.1mm]\a3) to[bend left=2] ([yshift=2.15mm]\a2) to[bend left=2] ([yshift=-.1mm]\a1) -- cycle;
+    \if@pingu@x@princesscrown@bobbles@\pingu@block{#1} ([yshift=2.15mm]\a2) circle [radius=.45\p@];\fi
+}
+\pingu@block{#1} (l2)++(0,-.2mm) to[bend left=2] ++(0,2.25mm) -- (l1) -- cycle;
+\pingu@block{#1} (r2)++(0,-.2mm) to[bend right=2] ++(0,2.25mm) -- (r1) -- cycle;
+\if@pingu@x@princesscrown@bobbles@\pingu@block{#1} (l2)++(0,2.05mm) circle [radius=.45\p@];
+\pingu@block{#1} (r2)++(0,2.05mm) circle [radius=.45\p@];\fi
+}
+
+% draw single gem; color | at | shift | scale
+\def\pingu@draw@ea@princesscrown@g#1#2#3#4{
+\scope[shift={(#22)},shift={(#3,-.33mm)}]
+    \pingu@block{\pingu@color@princesscrown@gem@ring} ellipse [x radius=.715mm*#4, y radius=.925mm*#4];
+    \pingu@block{#1} ellipse [x radius=.633mm*#4, y radius=.85mm*#4];
+    \protected@edef\@tmp{#1}\ifx\@tmp\@pingu@none\else
+    \if@pingu@x@princesscrown@shade@
+    \shade[ball color=#1,fill opacity=.45,shading angle=-95] ellipse [x radius=.633mm*#4, y radius=.85mm*#4];
+    \else
+    \pingu@block[rotate around={7:(42:.3mm*#4 and .4mm*#4)}]{#1!45!pingu@white} (42:.3mm*#4 and .4mm*#4) ellipse[x radius=.17mm*#4, y radius=.24mm*#4];
+    \pingu@block[rotate around={7:(232:.275mm*#4 and .35mm*#4)}]{#1!45!pingu@white} (232:.275mm*#4 and .35mm*#4) ellipse[x radius=.06mm*#4, y radius=.085mm*#4];
+    \fi\fi
+\endscope}
+\def\pingu@draw@ea@princesscrown{%
+\scope[rotate around={\pingu@x@princesscrown@angle:(\pingu@name-head-top)},%
+       shift={(\pingu@name-head-top)},
+       shift={(\pingu@x@princesscrown@xshift,\pingu@x@princesscrown@yshift)},
+       scale=\pingu@x@princesscrown@scale]
+% draw front
+\if@pingu@x@princesscrown@ddd@
+    \pingu@draw@ea@princesscrown@s{\pingu@color@princesscrown}{right}{left}
+    \def\@tmpa{.05mm}
+\else
+    \pingu@draw@ea@princesscrown@s{\pingu@color@princesscrown}{left}{right}
+    \def\@tmpa{-.015mm}
+\fi
+% draw the emaralds
+\pingu@draw@ea@princesscrown@g{\pingu@color@princesscrown@gem@b}{a}{-\@tmpa}{.95}
+\pingu@draw@ea@princesscrown@g{\pingu@color@princesscrown@gem@c}{x}{\z@}{1.3}
+\pingu@draw@ea@princesscrown@g{\pingu@color@princesscrown@gem@d}{c}{\@tmpa}{.95}
+\pingu@layer{background}[]
+\pingu@block{\pingu@color@princesscrown@gem@a} (r2)++(0,-.33mm) ellipse [x radius=.3mm, y radius=.8mm];
+\pingu@block{\pingu@color@princesscrown@gem@ring} (r2)++(0,-.33mm) ellipse [x radius=.1mm, y radius=.885mm];
+\pingu@block{\pingu@color@princesscrown@gem@e} (l2)++(0,-.33mm) ellipse [x radius=.3mm, y radius=.8mm];
+\pingu@block{\pingu@color@princesscrown@gem@ring} (l2)++(0,-.33mm) ellipse [x radius=.1mm, y radius=.885mm];
+% draw back if 3d
+\if@pingu@x@princesscrown@ddd@
+    \pingu@draw@ea@princesscrown@s{\pingu@color@princesscrown@back}{left}{right}
 \fi
 \endpingu@layer
 \endscope
