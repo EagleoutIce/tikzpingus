@@ -318,10 +318,8 @@
 % left side
 to[bend right=\pingu@bend] ++(0,-\pingu@side@h@half-\pingu@outer@off)
 % feety stuff
-arc (180:270:\pingu@foot@outer@w{} and \pingu@foot@outer@h)
-arc (270:332:\pingu@foot@inner@w{} and \pingu@foot@inner@h)
-arc (208:270:\pingu@foot@inner@w{} and \pingu@foot@inner@h)
-arc (270:360:\pingu@foot@outer@w{} and \pingu@foot@outer@h)%
+arc (180:270:\pingu@foot@outer@w{} and \pingu@foot@outer@h) arc (270:332:\pingu@foot@inner@w{} and \pingu@foot@inner@h)
+arc (208:270:\pingu@foot@inner@w{} and \pingu@foot@inner@h) arc (270:360:\pingu@foot@outer@w{} and \pingu@foot@outer@h)%
 % right side
 to[bend right=\pingu@bend] ++(0,\pingu@side@h@half+\pingu@outer@off)
 arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure wings
@@ -459,14 +457,14 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     \pgfinterruptboundingbox
     \path[/pingu/@invclip] \pingu@path@lowerpingu;
     \endpgfinterruptboundingbox
-    \pingu@block[rotate around={15:(\pingu@name-wing-left-start)},save path=\pingu@path@wing@left]{\pingu@color@left@wing} (\pingu@name-wing-left-start) ellipse [x radius=.195cm, y radius=9mm] +(-90:.195cm and 9mm) coordinate (\pingu@name-wing-left-tip) +(-90:.145cm and .75cm) coordinate (\pingu@name-wing-left);
+    \pingu@block[rotate around={15:(\pingu@name-wing-left-start)}]{\pingu@color@left@wing} (\pingu@name-wing-left-start) ellipse [x radius=.195cm, y radius=9mm] +(-90:.195cm and 9mm) coordinate (\pingu@name-wing-left-tip) +(-90:.145cm and .75cm) coordinate (\pingu@name-wing-left);
 \endscope}{%
 \coordinate (\pingu@name-wing-right-start) at ([yshift=-6.5mm]\pingu@name-wings-side-right);
 \scope[xshift=\p@] % shift to avoid rounding errors in pdf viewers
     \pgfinterruptboundingbox
     \path[/pingu/@invclip] \pingu@path@lowerpingu;
     \endpgfinterruptboundingbox
-    \pingu@block[rotate around={-15:(\pingu@name-wing-right-start)},save path=\pingu@path@wing@left]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.195cm, y radius=9mm] +(-90:.195cm and 9mm) coordinate (\pingu@name-wing-right-tip) +(-90:.145cm and .75cm) coordinate (\pingu@name-wing-right);
+    \pingu@block[rotate around={-15:(\pingu@name-wing-right-start)}]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.195cm, y radius=9mm] +(-90:.195cm and 9mm) coordinate (\pingu@name-wing-right-tip) +(-90:.145cm and .75cm) coordinate (\pingu@name-wing-right);
 \endscope}{\pingu@wi@above}{-5}{-70}
 %     #endregion
 %     #region wings-wave
@@ -654,7 +652,6 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     % mark wing outer
     \path[draw,pink,thick] (\pingu@name-wing-left-start) -- (\pingu@name-wing-left) -- (\pingu@name-wing-left-low);
     \path[draw,pink,thick] (\pingu@name-wing-right-start) -- (\pingu@name-wing-right) -- (\pingu@name-wing-right-low);
-    \draw[yellowuse path=]
   \@for\@pingu@elem:={belly-center,head,head-top,foot-left,foot-right,right-eye,left-eye,bill,bill-bottom,wings-side-left,wings-side-right,wing-left-start,wing-left-tip,wing-right-start,wing-right-tip,head-right,head-left,head-center,head-back-con-left,head-back-con-right,bottom-center,waist-left,waist-right}\do{
     \path[fill=green] (\pingu@name-\@pingu@elem) circle[radius=1.125\p@];
   }
