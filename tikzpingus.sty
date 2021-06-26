@@ -280,26 +280,21 @@
 \clip[use path=\pingu@whitepingu]; \pingu@belly@raw
 \endscope
 \coordinate (\pingu@name-head) at (\pingu@w@half,.7375cm);
-% TODO: more lengths
 
-\@pingu@drawer@lefteye@
-\@pingu@drawer@righteye@
+\@pingu@drawer@lefteye@ \@pingu@drawer@righteye@
 
 \pingu@layer{background}[]\pingu@draw@clothing@behind\endpingu@layer
 
 \pingu@draw@clothing@middle
-
 \pingu@draw@extras@below
 
 \@pingu@drawer@bill@
 \@pingu@drawer@hairstyle@
 \pingu@layer{background}[]
-\@pingu@drawer@leftfoot@
-\@pingu@drawer@rightfoot@
+\@pingu@drawer@leftfoot@ \@pingu@drawer@rightfoot@
 \endpingu@layer
 
-\@pingu@drawer@leftwing@
-\@pingu@drawer@rightwing@
+\@pingu@drawer@leftwing@ \@pingu@drawer@rightwing@
 
 \path (\pingu@name-wing-left-start) -- (\pingu@name-wing-left) --
     ([turn]\csname @pingu@wingdown@\@pingu@select@leftwing@ @\endcsname:2.45mm)
@@ -314,7 +309,6 @@
 
 \pingu@draw@extras@above
 \pingu@draw@wing@items
-
 \endscope
 \if@pingu@draw@metadots
 \@pingu@draw@dots
@@ -359,6 +353,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 %   #endregion
 % #endregion
 
+% #region main body parts
 % #region eyes
 % name core | left | right
 \long\def\@pingu@eyes@s#1#2#3{\@ifnextchar[{\@pingu@eyes@s@{#1}{#2}{#3}}{\@pingu@eyes@s@{#1}{#2}{#3}[pingu@black]}}
@@ -654,6 +649,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     to[out=10,in=-90] ++(1.9mm,2.25mm)
     to[bend right=.25cm] cycle;
 }
+% #endregion
 % #endregion
 
 % #region dots
@@ -1279,7 +1275,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
         \expandafter\def\expandafter\@angle{\csname @pingu@wingangle@items@\csname @pingu@select@#2wing@\endcsname @\endcsname+\pingu@wing@left@item@angle@user}%
         \@pingu@wing@item@side@left@true
     \else
-        \expandafter\def\expandafter\@angle{-(\csname @pingu@wingangle@items@\csname @pingu@select@#2wing@\endcsname @\endcsname+\pingu@wing@left@item@angle@user)}%
+        \expandafter\def\expandafter\@angle{-(\csname @pingu@wingangle@items@\csname @pingu@select@#2wing@\endcsname @\endcsname+\pingu@wing@right@item@angle@user)}%
         \@pingu@wing@item@side@left@false
     \fi
     \expandafter\def\expandafter\@col{\csname pingu@color@#1#2\endcsname}%
