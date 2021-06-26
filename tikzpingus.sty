@@ -123,7 +123,6 @@
 
 \newif\if@pingu@draw@metadots
 
-% TODO: other selections
 \tikzset{%
   /pingu/.search also={/tikz,/pgf}, /pingu/.cd,%
   name/.code                    = \def\pingu@name{#1},
@@ -172,6 +171,10 @@
   wings/.style                  = {/pingu/left wing={#1}, /pingu/right wing={#1}},
   wings color/.style            = {/pingu/left wing color={#1},
                                    /pingu/right wing color={#1}},
+  /pingu/left item angle/.forward to = /pingu/left wing item angle,
+  /pingu/left wing item angle/.code  = {\def\pingu@wing@left@item@angle@user{#1}},%
+  /pingu/right item angle/.forward to = /pingu/right wing item angle,
+  /pingu/right wing item angle/.code  = {\def\pingu@wing@right@item@angle@user{#1}},%
   % bill
   bill/.code                    = \pingu@bill@select{#1},
   bill color/.code              = \pingu@color{bill}{#1},
@@ -202,7 +205,8 @@
     bill=normal, bill color=pingu@yellow,
     wings=normal, wings color=\pingu@color@body@main,
     hairstyle=normal, hairs color=\pingu@color@body@main,
-    belly raw={}, scale=\pingu@default@scale,extra defaults,user defaults%
+    belly raw={}, scale=\pingu@default@scale,
+    left wing item angle=0,right wing item angle=0,extra defaults,user defaults%
   },
   user defaults/.style = {},
   % will be set individually
@@ -1272,17 +1276,15 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 \def\pingu@setup@wing#1#2{%
     \edef\@tmpa{#2}% minus on left
     \ifx\pingu@str@wing@left\@tmpa
-        \expandafter\def\expandafter\@angle{\csname @pingu@wingangle@items@\csname @pingu@select@#2wing@\endcsname @\endcsname}%
+        \expandafter\def\expandafter\@angle{\csname @pingu@wingangle@items@\csname @pingu@select@#2wing@\endcsname @\endcsname+\pingu@wing@left@item@angle@user}%
         \@pingu@wing@item@side@left@true
     \else
-        \expandafter\def\expandafter\@angle{-(\csname @pingu@wingangle@items@\csname @pingu@select@#2wing@\endcsname @\endcsname)}%
+        \expandafter\def\expandafter\@angle{-(\csname @pingu@wingangle@items@\csname @pingu@select@#2wing@\endcsname @\endcsname+\pingu@wing@left@item@angle@user)}%
         \@pingu@wing@item@side@left@false
     \fi
     \expandafter\def\expandafter\@col{\csname pingu@color@#1#2\endcsname}%
 }
 
-% \csname @pingu@wingitem@\@pingu@select@leftwing@ @\endcsname
-% \csname @pingu@wingitem@\@pingu@select@rightwing@ @\endcsname
 \def\pingu@draw@wing@items{%
 \pingu@layer{middle}[]\@pingu@draw@wing@items@left\endpingu@layer
 \pingu@layer{middle}[]\@pingu@draw@wing@items@right\endpingu@layer
@@ -1386,7 +1388,6 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
   lightsaber \@lr\space button/.code   = \pingu@color{lightsaber\@lr @button}{##1},%
   lightsaber \@lr\space button b/.code   = \pingu@color{lightsaber\@lr @button@b}{##1},%
   lightsaber \@lr\space color b/.code   = \pingu@color{lightsaber\@lr @color@b}{##1},%
-  lightsaber \@lr\space angle/.code    = {\@namedef{pingu@x@lightsaber@angle@\@lr}{##1}},%
   lightsaber \@lr\space length/.code   = {\@namedef{pingu@x@lightsaber@length@\@lr}{##1}},%
   lightsaber \@lr\space length b/.code   = {\@namedef{pingu@x@lightsaber@length@b@\@lr}{##1}},%
   lightsaber \@lr\space yshift/.code   = {\@namedef{pingu@x@lightsaber@yshift@\@lr}{##1}},%
@@ -1397,7 +1398,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
   lightsaber \@lr\space solid/.style = {/pingu/lightsaber \@lr\space glow=false},
   lightsaber \@lr\space disabled/.style = {/pingu/lightsaber \@lr\space solid,/pingu/lightsaber \@lr=\@pingu@none},
   lightsaber \@lr\space outer glow factor/.code  = {\@namedef{pingu@x@lightsaber@ogf@\@lr}{##1}}%
-}{lightsaber \@lr\space handle=pingu@silver, lightsaber \@lr\space deco=pingu@silver!12!pingu@black, lightsaber \@lr\space button=pingu@red!85!pingu@black,lightsaber \@lr\space button b=pingu@red!85!pingu@black, lightsaber \@lr\space ribbs=pingu@silver!50!pingu@black,lightsaber \@lr\space angle=0,lightsaber \@lr\space length=2cm,lightsaber \@lr\space glow=\ifpengu@setup@glows@ true\else false\fi,lightsaber \@lr\space glow core=white,lightsaber \@lr\space outer glow factor=\pingulightsaberfactor,lightsaber \@lr\space yshift=\z@,lightsaber \@lr\space length b=\csname pingu@x@lightsaber@length@\@lr\endcsname,lightsaber \@lr\space color b=\noexpand\@col}
+}{lightsaber \@lr\space handle=pingu@silver, lightsaber \@lr\space deco=pingu@silver!12!pingu@black, lightsaber \@lr\space button=pingu@red!85!pingu@black,lightsaber \@lr\space button b=pingu@red!85!pingu@black, lightsaber \@lr\space ribbs=pingu@silver!50!pingu@black,lightsaber \@lr\space length=2cm,lightsaber \@lr\space glow=\ifpengu@setup@glows@ true\else false\fi,lightsaber \@lr\space glow core=white,lightsaber \@lr\space outer glow factor=\pingulightsaberfactor,lightsaber \@lr\space yshift=\z@,lightsaber \@lr\space length b=\csname pingu@x@lightsaber@length@\@lr\endcsname,lightsaber \@lr\space color b=\noexpand\@col}
 
 \def\pingu@draw@wi@lightsaber@base#1{%
 % deco-elements
@@ -1493,7 +1494,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 % #1 wing
 \def\pingu@draw@wi@lightsaber#1{%
     \pingu@setup@wing{lightsaber}{#1}%
-    \scope[rotate around={\@angle+\csname pingu@x@lightsaber@angle@#1\endcsname:([yshift=+\csname pingu@x@lightsaber@yshift@#1\endcsname]\pingu@name-wing-#1)},xscale=1.2]
+    \scope[rotate around={\@angle:([yshift=+\csname pingu@x@lightsaber@yshift@#1\endcsname]\pingu@name-wing-#1)},xscale=1.2]
     \pingu@draw@wi@lightsaber@pre{#1}{2.9mm+\csname pingu@x@lightsaber@yshift@#1\endcsname}{0}{\csname pingu@x@lightsaber@length@#1\endcsname}{\@col}
     \csname if@pingu@x@lightsaber@double@#1\endcsname
     \pingu@draw@wi@lightsaber@pre{#1}{2.65mm-\csname pingu@x@lightsaber@yshift@#1\endcsname}{180}{\csname pingu@x@lightsaber@length@b@#1\endcsname}{\csname pingu@color@lightsaber#1@color@b\endcsname}
