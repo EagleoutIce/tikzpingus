@@ -243,12 +243,14 @@
 % #endregion
 
 % #region core
+%   #region path commands
 \long\def\pingu@path{\@dblarg\pingu@path@}
 \def\pingu@path@[#1]#2#3;{\protected@edef\@tmp{#2}\ifx\@tmp\@pingu@none\else\path[#1,#2] #3;\fi}
 \long\def\pingu@block{\@dblarg\pingu@block@}
 \def\pingu@block@[#1]#2#3;{\protected@edef\@tmp{#2}\ifx\@tmp\@pingu@none\else\path[#1,/pingu/@block=#2] #3;\fi}
 \long\def\pingu@draw{\@dblarg\pingu@draw@}
 \def\pingu@draw@[#1]#2#3;{\protected@edef\@tmp{#2}\ifx\@tmp\@pingu@none\else\path[#1,/pingu/@draw=#2] #3;\fi}
+% #endregion
 
 \newcommand*\pingu[1][]{%
 \ifpengu@setup@manual@layers@\pgfsetlayers{background,main,middle,foreground}\fi\begingroup
@@ -281,6 +283,8 @@
 
 \pingu@layer{background}[]\pingu@draw@clothing@behind\endpingu@layer
 
+\pingu@draw@clothing@middle
+
 \pingu@draw@extras@below
 
 \@pingu@drawer@bill@
@@ -294,12 +298,12 @@
 \@pingu@drawer@rightwing@
 
 \path (\pingu@name-wing-left-start) -- (\pingu@name-wing-left) --
-    ([turn]\csname @pingu@wingdown@\@pingu@select@leftwing@ @\endcsname:2.66mm)
-    coordinate (\pingu@name-wing-left-low) -- ([turn]180:5.32mm)
+    ([turn]\csname @pingu@wingdown@\@pingu@select@leftwing@ @\endcsname:2.45mm)
+    coordinate (\pingu@name-wing-left-low) -- ([turn]180:4.9mm)
     coordinate (\pingu@name-wing-left-up);
 \path (\pingu@name-wing-right-start) -- (\pingu@name-wing-right) --
-    ([turn]-\csname @pingu@wingdown@\@pingu@select@rightwing@ @\endcsname:2.5mm)
-    coordinate (\pingu@name-wing-right-low) -- ([turn]180:5.32mm)
+    ([turn]-\csname @pingu@wingdown@\@pingu@select@rightwing@ @\endcsname:2.45mm)
+    coordinate (\pingu@name-wing-right-low) -- ([turn]180:4.9mm)
     coordinate (\pingu@name-wing-right-up);
 
 \pingu@draw@clothing@main
@@ -313,6 +317,7 @@
 \fi
 \endgroup
 }
+%   #region lower-pingu
 % Note: to be used in clippies
 \def\pingu@path@lowerpingu{(0,\pingu@outer@off)
 % left side
@@ -347,6 +352,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
         coordinate[pos=\pinguanglehr] (\pingu@name-head-right)
         coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 }
+%   #endregion
 % #endregion
 
 % #region eyes
@@ -1508,6 +1514,10 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     \if@pingu@x@cloak@ \pingu@draw@cloth@cloak@behind \fi
 }
 
+\def\pingu@draw@clothing@middle{%
+    \if@pingu@x@cloak@ \pingu@draw@cloth@cloak@middle \fi
+}
+
 \def\pingu@draw@clothing@main{%
     \if@pingu@x@cloak@ \pingu@draw@cloth@cloak \fi
 }
@@ -1517,13 +1527,24 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     cape/.forward to         = /pingu/cloak, % TODO: update if it changes
     cloak/.code              = \pingu@set@extra{cloak}{true}\pingu@color{cloak}{#1},
     cloak/.default           = pingu@bronze,
+    cloak wings color/.code  = \pingu@color{cloak@wings}{#1},
     cloak bottom color/.code = \pingu@color{cloak@bottom}{#1},
     cloak front color/.code = \pingu@color{cloak@front}{#1},
     cloak padding/.code      = {\def\pingu@x@cloak@padding{#1}}
-}{cloak padding=3.5mm,cloak bottom color=\pingu@color@cloak,cloak front color=\pingu@color@cloak!90!white}
+}{cloak padding=3.5mm,cloak bottom color=\pingu@color@cloak,cloak front color=\pingu@color@cloak!90!white,cloak wings color=\pingu@color@cloak!95!pingu@black}
 \def\pingu@draw@cloth@cloak@behind{%
     \pingu@block[bottom color=\pingu@color@cloak@bottom,top color=\pingu@color@cloak]{\pingu@color@cloak} (\pingu@name-bottom-center)++(-\pingu@x@cloak@padding-\pingu@w@half,-.5mm) arc (180:0:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend left=1] (\pingu@name-wings-side-left) arc(0:180:\pingu@w@half{} and .75mm) to[bend left=1] cycle;
 }
+
+\def\pingu@draw@cloth@cloak@middle{%
+\pingu@block[rounded corners=.7mm]{\pingu@color@cloak}
+(\pingu@name-bottom-center)++(-\pingu@x@cloak@padding-\pingu@w@half,-.5mm) arc (180:250:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend left=3]
+(\pingu@name-wings-side-right);
+\pingu@block[rounded corners=.7mm]{\pingu@color@cloak}
+(\pingu@name-bottom-center)++(\pingu@x@cloak@padding+\pingu@w@half,-.5mm) arc (0:-70:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend left=3]
+(\pingu@name-wings-side-left);
+}
+
 % TODO: if flags to draw parts
 \def\pingu@draw@cloth@cloak{%
     % cape
@@ -1537,16 +1558,10 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     to[bend left=32] ++(\pingu@w@half+.66mm,\pingu@w@half+\pingu@one)
     to[bend left=32] ++(\pingu@w@half+.66mm,-\pingu@w@half-\pingu@one)
     to[bend left=8] cycle;
-    \pingu@block[rounded corners=.7mm]{\pingu@color@cloak}
-    (\pingu@name-bottom-center)++(-\pingu@x@cloak@padding-\pingu@w@half,-.5mm) arc (180:250:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend left=3]
-    (\pingu@name-wings-side-right);
-    \pingu@block[rounded corners=.7mm]{\pingu@color@cloak}
-    (\pingu@name-bottom-center)++(\pingu@x@cloak@padding+\pingu@w@half,-.5mm) arc (0:-70:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend left=3]
-    (\pingu@name-wings-side-left);
     % wings
-    \pingu@layer{foreground}[]
-    \pingu@block{\pingu@color@cloak} (\pingu@name-wing-left-start)++(0,-8mm) to[bend right=10] (\pingu@name-wing-left-low) to[bend left=3] (\pingu@name-wing-left-up) to[bend right=3] ([yshift=8mm]\pingu@name-wing-left-start) -- ++(-1mm,0) to[bend right=13] cycle;
-    \pingu@block{\pingu@color@cloak} (\pingu@name-wing-right-start)++(0,-8mm) to[bend left=10] (\pingu@name-wing-right-low) to[bend right=3]  (\pingu@name-wing-right-up) to[bend left=3] ([yshift=8mm]\pingu@name-wing-right-start) -- ++(1mm,0) to[bend left=13] cycle;
+    \pingu@layer{foreground}[rounded corners=\p@]
+    \pingu@block[top color=\pingu@color@cloak,bottom color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} (\pingu@name-wing-left-start)++(-1.75mm,0) to[bend right=10] (\pingu@name-wing-left-low) to[bend left=5] (\pingu@name-wing-left-up) to[bend right=3] ([yshift=8mm,xshift=.265mm]\pingu@name-wing-left-start) -- ++(-1.5mm,0) to[bend right=13] cycle;
+    \pingu@block[top color=\pingu@color@cloak,bottom color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} (\pingu@name-wing-right-start)++(1.75mm,0) to[bend left=10] (\pingu@name-wing-right-low) to[bend right=3]  (\pingu@name-wing-right-up) to[bend left=3] ([yshift=8mm]\pingu@name-wing-right-start) -- ++(1mm,0) to[bend left=13] cycle;
     \endpingu@layer
 }
 %     #endregion
