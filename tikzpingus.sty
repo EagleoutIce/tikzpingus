@@ -1538,10 +1538,12 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 \def\pingu@draw@wi@flag#1{%
     \pingu@setup@wing{flag}{#1}%
 \scope[rotate around={\@angle:(\pingu@name-wing-#1)}]
-    \scope[shift={(\pingu@name-wing-#1)},shift={(\@sidesign*.15mm,17.5mm-3.5\p@)}]
+    % NOTE: not full foreground if placed under the wing
+    \pingu@layer{foreground}[shift={(\pingu@name-wing-#1)},shift={(\@sidesign*.15mm,17.5mm-3.5\p@)}]
         \if@pingu@wing@item@side@left@\tikzset{/pingu/@flag@first/.style={below right}}\else\tikzset{/pingu/@flag@first/.style={below left}}\fi
         \csname pingu@flag@#1@code\endcsname
-    \endscope
+        \pingu@block[thick]{\@col}(\pingu@name-wing-#1)++(\@sidesign*-.15mm,3mm) -- ++(0,13.65mm) -| ++(\@sidesign*.6mm,-13.65mm) -- cycle;
+    \endpingu@layer
     \pingu@block[thick]{\@col}(\pingu@name-wing-#1)++(\@sidesign*-.15mm,-3mm) -- ++(0,20mm) arc(180:0:\@sidesign*.3mm and .375mm) -- ++(0,-20mm) arc(360:180:\@sidesign*.3mm and .375mm) -- cycle;
     \pingu@block{\csname pingu@color@flag#1@bobble\endcsname} (\pingu@name-wing-#1)++(\@sidesign*.15mm,17.5mm) circle [radius=2.15\p@];
 \endscope
