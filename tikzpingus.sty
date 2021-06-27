@@ -1361,9 +1361,10 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 }{sign post \@lr\space color=brown!70!black, sign post \@lr\space font color=white!90!brown}
 \def\pingu@draw@wi@signpost#1{%
     \pingu@setup@wing{signpost}{#1}%
-\scope[rotate around={\@angle+5:(\pingu@name-wing-#1)}]
+    \def\@rot{\if@pingu@wing@item@side@left@-5\else+5\fi}%
+\scope[rotate around={\@angle+\@rot:(\pingu@name-wing-#1)}]
     \pingu@block[thick]{\@col}(\pingu@name-wing-#1)++(0,-2mm) -- ++(0,15mm) arc(180:0:.45mm and .375mm) -- ++(0,-15mm) arc(360:180:.45mm and .375mm) -- cycle;
-    \path (\pingu@name-wing-#1)++(.45mm,13mm) node[fill=\@col,rounded corners=2\p@,minimum width=14mm,minimum height=8mm,align=center,rotate=\@angle+5,text=\csname pingu@color@signpost#1@font\endcsname] {\csname pingu@signpost@#1\endcsname};
+    \path (\pingu@name-wing-#1)++(.45mm,13mm) node[fill=\@col,rounded corners=2\p@,minimum width=14mm,minimum height=8mm,align=center,rotate=\@angle+\@rot,text=\csname pingu@color@signpost#1@font\endcsname] {\csname pingu@signpost@#1\endcsname};
 \endscope
 }
 %     #endregion
@@ -1502,6 +1503,20 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     \pingu@draw@wi@lightsaber@post{#1}{2.65mm-\csname pingu@x@lightsaber@yshift@#1\endcsname}{180}{\csname pingu@x@lightsaber@length@b@#1\endcsname}{\csname pingu@color@lightsaber#1@color@b\endcsname}
     \fi
     \endscope
+}
+%     #endregion
+
+%     #region flag
+\pingu@create@wing@extra{flag}{%
+    flag \@lr/.code         = {\pingu@set@extra{flag\@lr}{true}\pingu@color{flag}{##1}},
+    flag \@lr/.default      = {pingu@bronze},
+}{}
+\def\pingu@draw@wi@flag#1{%
+    \pingu@setup@wing{flag}{#1}%
+\scope[rotate around={\@angle+5:(\pingu@name-wing-#1)}]
+    \pingu@block[thick]{\@col}(\pingu@name-wing-#1)++(0,-2mm) -- ++(0,15mm) arc(180:0:.45mm and .375mm) -- ++(0,-15mm) arc(360:180:.45mm and .375mm) -- cycle;
+    \path (\pingu@name-wing-#1)++(.45mm,13mm) node[fill=\@col,rounded corners=2\p@,minimum width=14mm,minimum height=8mm,align=center,rotate=\@angle+5,text=\csname pingu@color@signpost#1@font\endcsname] {\csname pingu@signpost@#1\endcsname};
+\endscope
 }
 %     #endregion
 % #endregion
