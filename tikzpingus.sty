@@ -122,6 +122,8 @@
 \def\pingu@default@scale{1}
 
 \newif\if@pingu@draw@metadots
+\newif\if@pingu@wi@flip@left
+\newif\if@pingu@wi@flip@right
 
 \tikzset{%
   /pingu/.search also={/tikz,/pgf}, /pingu/.cd,%
@@ -171,10 +173,14 @@
   wings/.style                  = {/pingu/left wing={#1}, /pingu/right wing={#1}},
   wings color/.style            = {/pingu/left wing color={#1},
                                    /pingu/right wing color={#1}},
-  /pingu/left item angle/.forward to = /pingu/left wing item angle,
-  /pingu/left wing item angle/.code  = {\def\pingu@wing@left@item@angle@user{#1}},%
-  /pingu/right item angle/.forward to = /pingu/right wing item angle,
-  /pingu/right wing item angle/.code  = {\def\pingu@wing@right@item@angle@user{#1}},%
+  left item angle/.forward to   = /pingu/left wing item angle,
+  left wing item angle/.code    = {\def\pingu@wing@left@item@angle@user{#1}},%
+  left item flip/.forward to    = /pingu/left wing item flip,
+  left wing item flip/.is if    = @pingu@wi@flip@left,
+  right item angle/.forward to  = /pingu/right wing item angle,
+  right item flip/.forward to   = /pingu/right wing item flip,
+  right wing item angle/.code   = {\def\pingu@wing@right@item@angle@user{#1}},%
+  right wing item flip/.is if   = @pingu@wi@flip@right,
   % bill
   bill/.code                    = \pingu@bill@select{#1},
   bill color/.code              = \pingu@color{bill}{#1},
@@ -1274,11 +1280,11 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     \ifx\pingu@str@wing@left\@tmpa
         \expandafter\def\expandafter\@angle{\csname @pingu@wingangle@items@\csname @pingu@select@#2wing@\endcsname @\endcsname+\pingu@wing@left@item@angle@user}%
         \def\@sidesign{1}%
-        \@pingu@wing@item@side@left@true
+        \if@pingu@wi@flip@left \@pingu@wing@item@side@left@false \else \@pingu@wing@item@side@left@true\fi
     \else
         \expandafter\def\expandafter\@angle{-(\csname @pingu@wingangle@items@\csname @pingu@select@#2wing@\endcsname @\endcsname+\pingu@wing@right@item@angle@user)}%
         \def\@sidesign{-1}%
-        \@pingu@wing@item@side@left@false
+        \if@pingu@wi@flip@right \@pingu@wing@item@side@left@true \else \@pingu@wing@item@side@left@false\fi
     \fi
     \expandafter\def\expandafter\@col{\csname pingu@color@#1#2\endcsname}%
 }
