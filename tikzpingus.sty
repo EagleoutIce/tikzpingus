@@ -1223,13 +1223,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 }
 % #endregion
 
-% ########...#######...#######..##....##
-% ##.....##.##.....##.##.....##.##...##.
-% ##.....##.##.....##.##.....##.##..##..
-% ########..##.....##.##.....##.#####...
-% ##...##...##.....##.##.....##.##..##..
-% ##....##..##.....##.##.....##.##...##.
-% ##.....##..#######...#######..##....##
+% #region rook
 \newif\if@pingu@x@rook@draw@hatch@
 \pingu@create@extra{rook}{%
     rook/.code          = \pingu@set@extra{rook}{true}\pingu@color{rook}{#1},
@@ -1266,6 +1260,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
         \pingu@block{\pingu@color@rook@back} (@tmpd)++(2mm,-.49mm) [rounded corners=.25mm] to[bend left=2] ++(0,2.25mm) to[bend left=1] ++(-4mm,-.05mm) -- ++(0,-2.25mm);
     \endpingu@layer
 }
+% #endregion
 
 %     #endregion
 % #endregion
