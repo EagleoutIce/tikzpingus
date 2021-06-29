@@ -866,18 +866,22 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 
 % #region glow
 \pingu@create@extra{glow}{%
-    glow/.code    = \pingu@set@extra{glow}{true}\pingu@color{glow}{#1},
-    glow/.default = pingu@white,
-}{}
+    glow/.code       = \pingu@set@extra{glow}{true}\pingu@color{glow}{#1},
+    glow/.default    = pingu@white,
+    glow steps/.code = \def\pingu@x@extra@glow@steps{#1},
+    glow function/.code = \def\pingu@x@extra@glow@func{#1},
+    glow width function/.code = \def\pingu@x@extra@glow@width@func{#1},
+}{glow steps={1,1.1,1.2,1.3,1.4,1.5},glow function={.1/\i},glow width function={2.85mm-1.65*\i mm}}
 
-% TODO: for wings, feet and hair? or only feet and wings?
 \def\pingu@draw@eb@glow{%
     \pingu@layer{background}[]
-    \@for\i:={1,1.1,1.2,1.3,1.4,1.5,1.6}\do{
-        \scope[/pingu/@block/.append style={draw=\pingu@color@glow,},/pingu/@block/.append style={draw=\pingu@color@glow,line width=3.65mm-2*\i mm},opacity=.1/\i,line width=3.65mm-2*\i mm,transparency group]
-        \pingu@draw[line width=3.65mm-2*\i mm]{\pingu@color@glow} \pingu@path@lowerpingu;
+    \@for\i:={\pingu@x@extra@glow@steps}\do{
+        \scope[/pingu/@block/.append style={draw=\pingu@color@glow,line width=\pingu@x@extra@glow@width@func},/pingu/@draw/.append style={draw=\pingu@color@glow,line width=\pingu@x@extra@glow@width@func},opacity=\pingu@x@extra@glow@func,transparency group]
+        \pingu@draw{\pingu@color@glow} \pingu@path@lowerpingu;
         % todo: disable re set of coordinates
-        \@pingu@drawer@leftwing@ \@pingu@drawer@rightwing@
+        % only draw, if not ofset
+        \csname @pingu@wingitem@\@pingu@select@leftwing@ @\endcsname\@pingu@drawer@leftwing@\fi
+        \csname @pingu@wingitem@\@pingu@select@rightwing@ @\endcsname\@pingu@drawer@rightwing@\fi
         \endscope
     }
     \endpingu@layer
