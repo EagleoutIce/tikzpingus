@@ -683,6 +683,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 % #region extras
 %     #region extras below
 \def\pingu@draw@extras@below{%
+    \if@pingu@x@glow@ \pingu@draw@eb@glow \fi
     \if@pingu@x@tie@ \pingu@draw@eb@tie \fi
     \if@pingu@x@bowtie@ \pingu@draw@eb@bowtie \fi
     \if@pingu@x@pants@ \pingu@draw@eb@pants \fi
@@ -864,6 +865,23 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 \fi
 }
 %       #endregion
+
+% #region glow
+\pingu@create@extra{glow}{%
+    glow/.code    = \pingu@set@extra{glow}{true}\pingu@color{glow}{#1},
+    glow/.default = pingu@white,
+}{}
+
+% TODO: for wings, feet and hair? or only feet and wings?
+\def\pingu@draw@eb@glow{%
+    \pingu@layer{background}[]
+    \@for\i:={1,1.1,1.2,1.3,1.4,1.5,1.6}\do{
+        \pingu@draw[opacity=.1/\i,line width=3.65mm-2*\i mm]{\pingu@color@glow}
+        \pingu@path@lowerpingu;
+    }
+    \endpingu@layer
+}
+% #endregion
 %     #endregion
 
 %     #region extras above
@@ -1129,7 +1147,6 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 }
 % #endregion
 
-
 % #region glasses
 \pingu@create@extra{glasses}{%
     glasses/.code               = \pingu@set@extra{glasses}{true}\pingu@color{glasses}{#1},
@@ -1261,7 +1278,6 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     \endpingu@layer
 }
 % #endregion
-
 %     #endregion
 % #endregion
 
