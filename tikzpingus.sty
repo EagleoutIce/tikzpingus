@@ -316,9 +316,7 @@
 \pingu@draw@extras@above
 \pingu@draw@wing@items
 \endscope
-\if@pingu@draw@metadots
-\@pingu@draw@dots
-\fi
+\if@pingu@draw@metadots \@pingu@draw@dots \fi
 \endgroup
 }
 %   #region lower-pingu
@@ -876,8 +874,11 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 \def\pingu@draw@eb@glow{%
     \pingu@layer{background}[]
     \@for\i:={1,1.1,1.2,1.3,1.4,1.5,1.6}\do{
-        \pingu@draw[opacity=.1/\i,line width=3.65mm-2*\i mm]{\pingu@color@glow}
-        \pingu@path@lowerpingu;
+        \scope[/pingu/@block/.append style={draw=\pingu@color@glow,},/pingu/@block/.append style={draw=\pingu@color@glow,line width=3.65mm-2*\i mm},opacity=.1/\i,line width=3.65mm-2*\i mm,transparency group]
+        \pingu@draw[line width=3.65mm-2*\i mm]{\pingu@color@glow} \pingu@path@lowerpingu;
+        % todo: disable re set of coordinates
+        \@pingu@drawer@leftwing@ \@pingu@drawer@rightwing@
+        \endscope
     }
     \endpingu@layer
 }
