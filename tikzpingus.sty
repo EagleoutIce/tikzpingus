@@ -689,6 +689,8 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     \if@pingu@x@cup@ \pingu@draw@eb@cup \fi
     \if@pingu@x@eyepatchleft@ \pingu@draw@eb@eyepatch@l \fi
     \if@pingu@x@eyepatchright@ \pingu@draw@eb@eyepatch@r \fi
+    \if@pingu@x@monocleleft@ \pingu@draw@eb@monocle@l \fi
+    \if@pingu@x@monocleright@ \pingu@draw@eb@monocle@r \fi
 }
 
 %       #region tie
@@ -820,6 +822,48 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 }
 %         #endregion
 %       #endregion
+
+%       #region monocle
+%         #region monocle left
+\pingu@create@extra{monocleleft}{%
+    monocle left/.code              = \pingu@set@extra{monocleleft}{true}\pingu@color{monocleleft}{#1},
+    monocle left/.default           = pingu@black,
+    monocle left glass/.code        = \pingu@color{monocleleft@glass}{#1},
+    monocle left opacity/.code      = \def\pingu@x@monocleleft@opacity{#1},
+    monocle left string/.code       = \pingu@color{monocleleft@string}{#1},
+    monocle left string length/.code= \def\pingu@x@monocleleft@string@l{#1},
+    monocle left blob/.code         = \pingu@color{monocleleft@blob}{#1},
+}{monocle left glass=pingu@blue,monocle left opacity=.155,monocle left string=\pingu@color@monocleleft,monocle left blob=\pingu@color@monocleleft,monocle left string length=5.65mm}
+
+\def\pingu@draw@eb@monocle@l{%
+    \pingu@block[/pingu/glow,opacity=\pingu@x@monocleleft@opacity]{\pingu@color@monocleleft@glass} (\pingu@name-left-eye) circle[radius=2mm];
+    \pingu@draw[thin]{\pingu@color@monocleleft@string} (\pingu@name-left-eye)++(2mm,0)
+    to[out=-75,in=100] ++(0,-\pingu@x@monocleleft@string@l);
+    \pingu@block{\pingu@color@monocleleft@blob} (\pingu@name-left-eye)++(2mm,-\pingu@x@monocleleft@string@l) circle [radius=.65\p@];
+    \pingu@draw[semithick]{\pingu@color@monocleleft} (\pingu@name-left-eye) circle[radius=2mm];
+}
+%         #endregion
+%         #region monocle right
+\pingu@create@extra{monocleright}{%
+    monocle right/.code              = \pingu@set@extra{monocleright}{true}\pingu@color{monocleright}{#1},
+    monocle right/.default           = pingu@black,
+    monocle right glass/.code        = \pingu@color{monocleright@glass}{#1},
+    monocle right opacity/.code      = \def\pingu@x@monocleright@opacity{#1},
+    monocle right string/.code       = \pingu@color{monocleright@string}{#1},
+    monocle right string length/.code= \def\pingu@x@monocleright@string@r{#1},
+    monocle right blob/.code         = \pingu@color{monocleright@blob}{#1},
+}{monocle right glass=pingu@blue,monocle right opacity=.155,monocle right string=\pingu@color@monocleright,monocle right blob=\pingu@color@monocleright,monocle right string length=5.65mm}
+
+\def\pingu@draw@eb@monocle@r{%
+    \pingu@block[/pingu/glow,opacity=\pingu@x@monocleright@opacity]{\pingu@color@monocleright@glass} (\pingu@name-right-eye) circle[radius=2mm];
+    \pingu@draw[thin]{\pingu@color@monocleright@string} (\pingu@name-right-eye)++(-2mm,0)
+    to[out=-105,in=80] ++(0,-\pingu@x@monocleright@string@r);
+    \pingu@block{\pingu@color@monocleright@blob} (\pingu@name-right-eye)++(-2mm,-\pingu@x@monocleright@string@r) circle [radius=.65\p@];
+    \pingu@draw[semithick]{\pingu@color@monocleright} (\pingu@name-right-eye) circle[radius=2mm];
+}
+%         #endregion
+%       #endregion
+
 
 %       #region pants
 \newif\if@pingu@x@pants@bands
