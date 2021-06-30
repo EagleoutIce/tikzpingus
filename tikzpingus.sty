@@ -154,6 +154,7 @@
   % belly
   belly/.forward to             = /pingu/belly text,
   belly text/.style             = {/pingu/belly raw={\node[/pingu/@text,opacity=.2] {#1};}},
+  heart/.style                  = {/pingu/belly raw={\node[/pingu/@text,#1] {\Large\faHeart};}},
   belly raw/.code               = \def\pingu@belly@raw{#1},
   % eyes
   left eye/.code                = \pingu@lefteye@select{#1},
