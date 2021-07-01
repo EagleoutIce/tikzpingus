@@ -903,9 +903,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     35mm) circle[radius=.1mm];
     \pingu@block{\pingu@color@pants@button@left@shade} (@tmpb)++(-.25mm,-.25mm)++(\i:.35mm) circle[radius=.1mm];
 }%
-\if@pingu@x@pants@bands
-\endpingu@layer
-\fi
+\if@pingu@x@pants@bands \endpingu@layer \fi
 }
 %       #endregion
 
@@ -942,6 +940,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     \if@pingu@x@glasses@ \pingu@draw@ea@glasses \fi
     \if@pingu@x@glassesround@ \pingu@draw@ea@glassesround \fi
     \if@pingu@x@devilhorns@ \pingu@draw@ea@devilhorns \fi
+    \if@pingu@x@headband@ \pingu@draw@ea@headband \fi
     \if@pingu@x@strawhat@ \pingu@draw@ea@strawhat \fi
     \if@pingu@x@hat@ \pingu@draw@ea@hat \fi
     \if@pingu@x@crown@ \pingu@draw@ea@crown \fi
@@ -1288,6 +1287,29 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     \pingu@block{\pingu@color@devilhorns} ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-left) to [bend right=38] (\pingu@name-devilhorns-left-goal) to[bend right=30] ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-left) -- cycle;
     \pingu@block{\pingu@color@devilhorns@b} ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-right) arc (\pingu@devilhorns@baseang@r:\pingu@devilhorns@baseang@r+\pingu@devilhorns@baseoff:\pingu@w@half{} and \pingu@head@h@half) coordinate (\pingu@name-devilhorns-right-goal) to[out=148,in=-148,looseness=.9] ++(-.3mm,2.65mm) to[bend right=17] ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-right) -- cycle;
     \pingu@block{\pingu@color@devilhorns@b} ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-right) to [bend left=38] (\pingu@name-devilhorns-right-goal) to[bend left=30] ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-right) -- cycle;
+}
+% #endregion
+
+% #region head-band
+\pingu@create@extra{headband}{%
+    headband/.forward to  = /pingu/head band,
+    head-band/.forward to = /pingu/head band,
+    head band/.code       = \pingu@set@extra{headband}{true}\pingu@color{headband}{#1},
+    head band/.default    = pingu@red,
+    headband bend/.forward to  = /pingu/head band bend,
+    head-band bend/.forward to = /pingu/head band bend,
+    head band bend/.code  = \def\pingu@x@headband@bend{#1},
+    headband angle/.forward to  = /pingu/head band angle,
+    head-band angle/.forward to = /pingu/head band angle,
+    head band angle/.code  = \def\pingu@x@headband@angle{#1},
+    headband upper angle/.forward to  = /pingu/head band upper angle,
+    head-band angle/.forward to = /pingu/head band upper angle,
+    head band upper angle/.code  = \def\pingu@x@headband@upangle{#1},
+}{head band bend=9, head band angle=16,head band upper angle=49}
+
+\def\pingu@draw@ea@headband{%
+    \path (\pingu@name-head-center)+(\pingu@x@headband@upangle-\pingu@x@headband@angle:\pingu@w@half{} and \pingu@head@h@half) coordinate (\pingu@name-head-band-lower);
+    \pingu@block{\pingu@color@headband} (\pingu@name-head-center)+(\pingu@x@headband@upangle:\pingu@w@half{} and \pingu@head@h@half) to[bend left=\pingu@x@headband@bend] +(180-\pingu@x@headband@upangle:\pingu@w@half{} and \pingu@head@h@half) arc(180-\pingu@x@headband@upangle:180-\pingu@x@headband@upangle+\pingu@x@headband@angle:\pingu@w@half{} and \pingu@head@h@half) to[bend right=\pingu@x@headband@bend] (\pingu@name-head-band-lower) arc(\pingu@x@headband@upangle-\pingu@x@headband@angle:\pingu@x@headband@upangle:\pingu@w@half{} and \pingu@head@h@half) -- cycle;
 }
 % #endregion
 
