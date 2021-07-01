@@ -916,6 +916,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     glow steps/.code = \def\pingu@x@extra@glow@steps{#1},
     glow function/.code = \def\pingu@x@extra@glow@func{#1},
     glow width function/.code = \def\pingu@x@extra@glow@width@func{#1},
+    glow solid/.style = {/pingu/glow={#1},/pingu/glow function={1},/pingu/glow steps={1,1.1}}
 }{glow steps={1,1.1,1.2,1.3,1.4,1.5},glow function={.1/\i},glow width function={2.85mm-1.65*\i mm}}
 
 \def\pingu@draw@eb@glow{%
