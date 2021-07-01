@@ -1593,6 +1593,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 % #1 wing, #2 yshift, #3 angle, #4 length, #5 color
 \def\pingu@draw@wi@lightsaber@post#1#2#3#4#5{
     \scope[rotate around={#3:(\pingu@name-wing-#1)}]
+    \csname if@pingu@x@lightsaber@glow@#1\endcsname
     \ifdim\csname pingu@x@lightsaber@ogf@#1\endcsname pt>\z@
     \pingu@layer{foreground}[]
     \pgfinterruptboundingbox
@@ -1603,7 +1604,6 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     \endpgfinterruptboundingbox
     \endpingu@layer
     \fi
-    \csname if@pingu@x@lightsaber@glow@#1\endcsname
         % fadings hat a rotation angle bug
         \@for\i:={1,2}\do{
             \pingu@block[fill opacity=.125*\i/10]{#5} (\pingu@name-wing-#1)++(-\pingu@x@saberglow@w@half+\i*\i mm/440,#2) -- ++(.05mm,#4) arc(180:0:\pingu@x@saberglow@w@half-.05mm-\i*\i mm/440 and \pingu@one-\i mm/30) -- ++(.05mm,-#4) arc (0:-180:\pingu@x@saberglow@w@half-\i*\i mm/440 and .35mm);
