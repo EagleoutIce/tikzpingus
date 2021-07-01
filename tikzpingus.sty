@@ -1291,6 +1291,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 % #endregion
 
 % #region head-band
+\newif\if@pingu@x@headbend@knot@
 \pingu@create@extra{headband}{%
     headband/.forward to  = /pingu/head band,
     head-band/.forward to = /pingu/head band,
@@ -1303,13 +1304,32 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     head-band angle/.forward to = /pingu/head band angle,
     head band angle/.code  = \def\pingu@x@headband@angle{#1},
     headband upper angle/.forward to  = /pingu/head band upper angle,
-    head-band angle/.forward to = /pingu/head band upper angle,
+    head-band upper angle/.forward to = /pingu/head band upper angle,
     head band upper angle/.code  = \def\pingu@x@headband@upangle{#1},
-}{head band bend=9, head band angle=16,head band upper angle=49}
+    headband knot/.forward to  = /pingu/head band knot,
+    head-band knot/.forward to = /pingu/head band knot,
+    head band knot/.is if = @pingu@x@headbend@knot@,
+    headband knot color/.forward to  = /pingu/head band knot color,
+    head-band knot color/.forward to = /pingu/head band knot color,
+    head band knot color/.code  = \pingu@color{headband@knot}{#1},
+    headband knot a color/.forward to  = /pingu/head band knot a color,
+    head-band knot a color/.forward to = /pingu/head band knot a color,
+    head band knot a color/.code  = \pingu@color{headband@knot@a}{#1},
+    headband knot b color/.forward to  = /pingu/head band knot b color,
+    head-band knot b color/.forward to = /pingu/head band knot b color,
+    head band knot b color/.code  = \pingu@color{headband@knot@b}{#1},
+}{head band bend=9, head band angle=16,head band upper angle=49, head band knot color=\pingu@color@headband!78!black,head band knot a color=\pingu@color@headband@knot!90!black,head band knot b color=\pingu@color@headband@knot!90!black}
 
+\def\pingu@draw@ea@headband@wh{1.25mm}
 \def\pingu@draw@ea@headband{%
     \path (\pingu@name-head-center)+(\pingu@x@headband@upangle-\pingu@x@headband@angle:\pingu@w@half{} and \pingu@head@h@half) coordinate (\pingu@name-head-band-lower);
-    \pingu@block{\pingu@color@headband} (\pingu@name-head-center)+(\pingu@x@headband@upangle:\pingu@w@half{} and \pingu@head@h@half) to[bend left=\pingu@x@headband@bend] +(180-\pingu@x@headband@upangle:\pingu@w@half{} and \pingu@head@h@half) arc(180-\pingu@x@headband@upangle:180-\pingu@x@headband@upangle+\pingu@x@headband@angle:\pingu@w@half{} and \pingu@head@h@half) to[bend right=\pingu@x@headband@bend] (\pingu@name-head-band-lower) arc(\pingu@x@headband@upangle-\pingu@x@headband@angle:\pingu@x@headband@upangle:\pingu@w@half{} and \pingu@head@h@half) -- cycle;
+    \pingu@block{\pingu@color@headband} (\pingu@name-head-center)+(\pingu@x@headband@upangle:\pingu@w@half{} and \pingu@head@h@half) to[bend left=\pingu@x@headband@bend] coordinate[pos=.5] (\pingu@name-headband-center-a) +(180-\pingu@x@headband@upangle:\pingu@w@half{} and \pingu@head@h@half) arc(180-\pingu@x@headband@upangle:180-\pingu@x@headband@upangle+\pingu@x@headband@angle:\pingu@w@half{} and \pingu@head@h@half) to[bend right=\pingu@x@headband@bend] coordinate[pos=.5] (\pingu@name-headband-center-b) (\pingu@name-head-band-lower) arc(\pingu@x@headband@upangle-\pingu@x@headband@angle:\pingu@x@headband@upangle:\pingu@w@half{} and \pingu@head@h@half) -- cycle;
+    \path (\pingu@name-headband-center-a) -- (\pingu@name-headband-center-b) coordinate[pos=.5] (\pingu@name-headband-center);
+    \if@pingu@x@headbend@knot@
+    \pingu@block[rounded corners=.25mm]{\pingu@color@headband@knot@a} (\pingu@name-headband-center-a)++(-.15mm,-.6mm) to[out=155,in=-5] ++(-.3cm,\pingu@one) to[bend right=15] ([xshift=-.3cm,yshift=-.2mm]\pingu@name-headband-center-b) to[in=-155,out=5] ++(.285cm,.8mm) -- cycle;
+    \pingu@block[rounded corners=.25mm]{\pingu@color@headband@knot@b} (\pingu@name-headband-center-a)++(.15mm,-.6mm) to[out=25,in=-175] ++(.3cm,\pingu@one) to[bend left=15] ([xshift=.3cm,yshift=-.2mm]\pingu@name-headband-center-b) to[in=-25,out=175] ++(-.285cm,.8mm) -- cycle;
+    \pingu@block[rounded corners=.25mm]{\pingu@color@headband@knot} (\pingu@name-headband-center-a)++(-\pingu@draw@ea@headband@wh,.12mm) to[bend right=9] ++(2*\pingu@draw@ea@headband@wh,0) -- ([xshift=\pingu@draw@ea@headband@wh,yshift=-.12mm]\pingu@name-headband-center-b) to[bend right=9] ++(-2*\pingu@draw@ea@headband@wh, 0) -- cycle;
+    \fi
 }
 % #endregion
 
