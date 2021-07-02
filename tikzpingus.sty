@@ -230,7 +230,7 @@
 
 % #region complete sets and styles
 \tikzset{
-  pingu line/.style            =  {/pingu/@block/.append style={fill=none,draw=##1!80!black,shade=none,path fading=none}},
+  pingu line/.style            = {/pingu/@block/.append style={fill=none,draw=##1!80!black,shade=none,path fading=none}},
   pingu ghost parts/.style     = {/pingu/@pingu@all/.append style={opacity={#1}}},
   pingu ghost parts/.default   = {.5},
   pingu ghost/.style           = {/pingu/@pingu/.append style={opacity=#1,transparency group}},
@@ -333,27 +333,26 @@ to[bend right=\pingu@bend] ++(0,\pingu@side@h@half+\pingu@outer@off)
 arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure wings
 \def\pingu@path@upperpingu{(\pingu@name-head-center) ellipse [x radius=\pingu@w@half, y radius=\pingu@head@h@half]}
 \def\@pingu@base{%
-    \pingu@block[save path=\pingu@lowerpingu]{\pingu@color@body@main} (0,\pingu@outer@off)
-        % left side
-        to[bend right=\pingu@bend] coordinate[pos=.775] (\pingu@name-waist-right) ++(0,-\pingu@side@h@half-\pingu@outer@off)
-        % feety stuff
-        arc (180:270:\pingu@foot@outer@w{} and \pingu@foot@outer@h) coordinate (\pingu@name-foot-right)
-        arc (270:332:\pingu@foot@inner@w{} and \pingu@foot@inner@h)
-        coordinate (\pingu@name-bottom-center)
-        arc (208:270:\pingu@foot@inner@w{} and \pingu@foot@inner@h) coordinate (\pingu@name-foot-left)
-        arc (270:360:\pingu@foot@outer@w{} and \pingu@foot@outer@h)%
-        % right side
-        to[bend right=\pingu@bend] coordinate[pos=.225] (\pingu@name-waist-left) ++(0,\pingu@side@h@half+\pingu@outer@off)
-        % coordinate
-        coordinate (\pingu@name-wings-side-left)
-        -- (0,\pingu@outer@off) coordinate (\pingu@name-wings-side-right) coordinate[pos=.5] (\pingu@name-head-center) -- cycle;
+\pingu@block[save path=\pingu@lowerpingu]{\pingu@color@body@main} (0,\pingu@outer@off)
+    % left side
+    to[bend right=\pingu@bend] coordinate[pos=.775] (\pingu@name-waist-right) ++(0,-\pingu@side@h@half-\pingu@outer@off)
+    % feety stuff
+    arc (180:270:\pingu@foot@outer@w{} and \pingu@foot@outer@h) coordinate (\pingu@name-foot-right)
+    arc (270:332:\pingu@foot@inner@w{} and \pingu@foot@inner@h)
+    coordinate (\pingu@name-bottom-center)
+    arc (208:270:\pingu@foot@inner@w{} and \pingu@foot@inner@h) coordinate (\pingu@name-foot-left)
+    arc (270:360:\pingu@foot@outer@w{} and \pingu@foot@outer@h)%
+    % right side
+    to[bend right=\pingu@bend] coordinate[pos=.225] (\pingu@name-waist-left) ++(0,\pingu@side@h@half+\pingu@outer@off)
+    % coordinate
+    coordinate (\pingu@name-wings-side-left)
+    -- (0,\pingu@outer@off) coordinate (\pingu@name-wings-side-right) coordinate[pos=.5] (\pingu@name-head-center) -- cycle;
 
-    % TODO: store widths and height of head and use for e.g. devil
-    \pingu@block[save path=\pingu@upperpingu]{\pingu@color@body@head} (\pingu@name-head-center)
-        ++(0,\pingu@head@h@half) coordinate (\pingu@name-head-top)
-        arc(90:450:\pingu@w@half{} and \pingu@head@h@half)
-        coordinate[pos=\pinguanglehr] (\pingu@name-head-right)
-        coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
+\pingu@block[save path=\pingu@upperpingu]{\pingu@color@body@head} (\pingu@name-head-center)
+    ++(0,\pingu@head@h@half) coordinate (\pingu@name-head-top)
+    arc(90:450:\pingu@w@half{} and \pingu@head@h@half)
+    coordinate[pos=\pinguanglehr] (\pingu@name-head-right)
+    coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 }
 %   #endregion
 % #endregion
@@ -364,11 +363,11 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 \long\def\@pingu@eyes@s#1#2#3{\@ifnextchar[{\@pingu@eyes@s@{#1}{#2}{#3}}{\@pingu@eyes@s@{#1}{#2}{#3}[pingu@black]}}
 \long\def\@pingu@eyes@s@#1#2#3[#4]{%
     \tikzset{%
-        /pingu/left eye #1/.style   = {/pingu/left eye={#1}, /pingu/left eye color={##1}},%
+        /pingu/left eye #1/.style = {/pingu/left eye={#1}, /pingu/left eye color={##1}},%
         /pingu/left eye #1/.default = {#4},%
-        /pingu/right eye #1/.style   = {/pingu/right eye={#1}, /pingu/right eye color={##1}},%
+        /pingu/right eye #1/.style = {/pingu/right eye={#1}, /pingu/right eye color={##1}},%
         /pingu/right eye #1/.default = {#4},%
-        /pingu/eyes #1/.style   = {/pingu/eyes={#1}, /pingu/eyes color={##1}},%
+        /pingu/eyes #1/.style = {/pingu/eyes={#1}, /pingu/eyes color={##1}},%
         /pingu/eyes #1/.default = {#4}%
     }%
     \pingu@lefteye@add{#1}{#2}\pingu@righteye@add{#1}{#3}%
