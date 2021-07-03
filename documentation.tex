@@ -1,3 +1,4 @@
+\errorcontextlines9999
 \documentclass[parskip=half]{scrartcl}
 
 \usepackage[T1]{fontenc}
@@ -11,10 +12,15 @@
 
 \usepackage[tex]{listings}
 \usepackage[most]{tcolorbox}
-\usepackage{imakeidx,tikz,fontawesome,csquotes,enumitem,microtype,tikzducks}
+\usepackage{imakeidx,tikz,fontawesome,csquotes,enumitem,microtype,tikzducks,datatool,relsize,multicol,footnotebackref}
 \newlist{inlist}{enumerate*}{1}
 \setlist[inlist]{itemjoin={{,\space}},itemjoin*={{, and }},label=$\roman*$),mode=boxed}
 \let\say\enquote
+\def\DTLlistformatoxford{,}
+\def\DTLandname{and}
+\def\DTLlistformatitem#1{\textit{#1}}
+\newcommand*\typesetselection[1][]{\begingroup\ifx!#1!\else\def\DTLlistformatitem##1{#1}\fi\dotypesetselection}
+\def\dotypesetselection#1{\expandafter\DTLformatlist\expandafter{\csname @pingu@#1@\endcsname}\endgroup}
 \usepackage{lmodern,CrimsonPro}
 
 \addtokomafont{sectioning}{\color{gray}}
@@ -24,25 +30,27 @@
 
 \lstdefinestyle{lstpingu}{%
 	tabsize=2, breaklines,
-	basicstyle=\small\ttfamily,
+	basicstyle=\relsize{-.8}\ttfamily,
 	commentstyle={\color{gray}\slshape},
 	columns=fullflexible,
 	emphstyle=\slshape,
-	alsoletter={ },
 	emphstyle=[2]\color{pingu@blue!80!black}\slshape,
+	emphstyle=[3]\color{gray!75!white},
 	texcsstyle=*\color{gray}\bfseries,
 	texcsstyle=*[2]\color{pingu@purple}\bfseries,
-	lineskip=2.5pt
+	lineskip=2.75pt,
+	moredelim=[s][\itshape]{<}{>}
 }
 \lstset{style=lstpingu}
+\def\ipingu#1{\lstinline'#1'}
 
 \lstdefinelanguage{pingulang}{
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
-	alsoletter={-},
-	moreemph=[2]{left,right,wing,eye,wings,eyes,shiny,wink,wave,grab,hug,wave,cup,xshift,yshift,meta,dots,name},
+	alsoletter={.-!},
+	moreemph=[2]{left,right,wing,eye,wings,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock},
 	moretexcs=[2]{pingu,duck,node},
-	moredelim=[s][\itshape]{<}{>}
+	moreemph=[3]{!hide}
 }
 
 \tcbset{%
@@ -56,7 +64,7 @@
 	bottom=0pt,top=0pt,
 	before lower={\parskip.5cm},
 }
-\lstMakeShortInline[style=lstpingu,language=pingulang]{|}
+\lstMakeShortInline[style=lstpingu]{|}
 
 \def\TikZ{Ti\textit{k}Z}
 \def\tikzpingus{\TikZ pingus}
@@ -73,7 +81,7 @@
 \maketitle
 
 \section{Motivation}
-For my slides at university, I started to use the fairly famous \LaTeX-package \textsl{\href{https://github.com/samcarter/tikzducks}{tikzducks}}.
+For my slides at university, I started to use the fairly famous \LaTeX-package \textsl{\href{https://github.com/samcarter/tikzducks}{tikzducks}} a few years ago.
 Yet, it seemed somewhat of a necessity to extend the range of available \say{cute} animals in \LaTeX.
 Therefore I started writing this package: \textsl{tikzpingus}.\footnote{Why \say{pingu} and not \say{pengu}? Well, this is the third try on achieving cute penguins without using any templates or vector formats as a basis. As a german, the short form \say{pingu} was merely a typo that originated from the german word \say{pinguin} for \say{penguin}. It somewhat sticked\ldots}
 
@@ -96,7 +104,7 @@ Furthermore, the following \TikZ-Libraries are in use:\footnote{A lot of the lib
 
 \subsection{Copyright}
 
-Copyright \textcopyright \texttt{Florian Sihler}. Permission is granted to copy, distribute and\slash or modify this software under the terms of the LaTeX project public licence, version 1.3c or later \url{http://www.latex-project.org/lppl.txt}.
+Copyright \textcopyright\ \texttt{Florian Sihler}. Permission is granted to copy, distribute and\slash or modify this software under the terms of the LaTeX project public licence, version 1.3c or later \url{http://www.latex-project.org/lppl.txt}.
 
 The shown example penguins are purely fictional characters, any resemblance to real penguins or persons is purely coincidental and no copyright infringement is intended.
 
@@ -127,7 +135,7 @@ Besides the keys defined by this package, you can use the keys of \TikZ\ and |pg
 	       eyes wink]
 \end{tikzpicture}
 \end{tcblisting}
-\subsection{Coordinates}
+\subsection{Using the Coordinates}
 While there are a lot of gadgets available already,
 every penguin is accompanied by \textit{a lot} of adaptive coordinates
 to place custom items, texts,~\ldots\ % TODO: links
@@ -156,7 +164,7 @@ Lets look at those coordinates in more detail (all labels are to be prefixed by 
 	\endscope
 	\foreach \c/\a in {wing-right/left,wing-right-low/left,wing-right-up/above} {
 		\path[fill=yellow] (pingu-\c) circle [radius=1.125pt];
-		\node[\a=.5mm,font=\ttfamily,scale=.35,inner sep=1.5pt] (expl-\c) at (pingu-\c) {\c};
+		\node[\a=.5mm,font=\ttfamily,scale=.35,inner sep=2.5pt] (expl-\c) at (pingu-\c) {\c};
 		\draw[yellow,thin] (expl-\c) -- (pingu-\c);
 	}
 \end{tikzpicture}%
@@ -184,7 +192,7 @@ Lets look at those coordinates in more detail (all labels are to be prefixed by 
 		\begin{tikzpicture}
 			\pingu[@block/.append style={fill=#1!35!white}, wings wave,eyes shiny,heart=gray!30!white]
 			\pgfonlayer{foreground}
-			\foreach \c/\a in {belly-center/above,head/below,head-top/above,foot-left/right,foot-right/left,right-eye/above left,left-eye/above right,bill/right,bill-bottom/below,wings-side-left/right,wings-side-right/left,wing-left-start/below right,wing-left-tip/right,wing-right-start/below left,wing-right-tip/left,head-right/left,head-left/right,head-center/below,head-back-con-left/right,head-back-con-right/left,bottom-center/above,waist-left/right,waist-right/left} {
+			\foreach \c/\a in {belly-center/above,head/below,head-top/above,foot-left/right,foot-right/left,right-eye/above left,left-eye/above right,bill/right,bill-bottom/below,wings-side-left/right,wings-side-right/left,wing-left-start/below right,wing-left-tip/right,wing-right-start/below left,wing-right-tip/left,head-right/left,head-left/right,head-center/below,head-back-con-left/above right,head-back-con-right/above left,bottom-center/above,waist-left/right,waist-right/left} {
 				\path[fill=green] (pingu-\c) circle [radius=1.125pt];
 				\node[\a=.5mm,font=\ttfamily,scale=.35,inner sep=1.5pt] (expl-\c) at (pingu-\c) {\c};
 				\draw[green,thin] (expl-\c) -- (pingu-\c);
@@ -193,12 +201,51 @@ Lets look at those coordinates in more detail (all labels are to be prefixed by 
 		\end{tikzpicture}
 	}
 \end{center}
+
 \paragraph{The Wings}
 This view excluded a lot of special data collected on the wings!
 While there is more information stored for each wing, the following three coordinates are the most important to place items into penguins hand:
 \begin{center}
-	\null\hfill\scalebox2{\usebox\pinguwingright}\hfill
-	\scalebox2{\usebox\pinguwingleft}\hfill\null
+	\null\hfill\parbox[c]{2\wd\pinguwingright}{\scalebox2{\usebox\pinguwingright}}\hfill\parbox[c]{4cm}{\centering\scriptsize\color{gray}\sffamily And yes, the wings are deliberately placed asymmetrical.\endgraf}\hfill
+	\parbox[c]{2\wd\pinguwingleft}{\scalebox2{\usebox\pinguwingleft}}\hfill\null
 \end{center}
+
+\subsection{Colors}
+A lot of options allow for a color to passed. In general, you can provide any color that \TikZ\ is happy with! Yet, there are some predefined pingu-colors shipped with this package, and there is one special \say{color}:
+\begin{multicols}{4}
+\begin{itemize}
+	\foreach \col in {main,black,silver,bronze,white,yellow,lightblue,blue,green,red,purple} {
+		\item[{\tikz[baseline=-.6ex]{\fill[pingu@\col,semithick,draw=black] circle (4pt);}}] \small\texttt{pingu@\col}
+	}
+	\item[] % buffer
+\end{itemize}
+\end{multicols}
+Furthermore, there is the color {\makeatletter\say{\expandafter\ipingu\expandafter{\@pingu@none}}} which is available for most\footnote{Why just \say{most}? Well, this package is work in progress and I have added the option late, so I may have forgotten to patch some keys.} extras and wing-items. This color prohibits the compartments from being drawn.
+
+As an example, lets take a look at the \say{cup}-extra, which provides an additional key \say{cup straw} to color the straw:
+\begin{tcblisting}{title={Cup without a straw}}
+\begin{tikzpicture}
+	\pingu[wings grab, cup=pingu@purple,
+	       cup straw=pingu@blue]
+	\pingu[wings grab, cup, xshift=3cm,
+	       cup straw=!hide]
+\end{tikzpicture}
+\end{tcblisting}
+
+\subsection{Changing the wings}
+As already demonstrated, it is possible to change the wing positions!
+All selected wing-items will adapt to the wing-position (although not all wing-items will make sense with every wing-position).
+Currently, there are the following wing-positions:
+\typesetselection{leftwing}. \say{none} is a special wing-position: it omits the drawing of wings (teaser: every selection has a none-option, which prohibits the part from being drawn)!
+
+For each valid wing-position you can use |wings <position>| to change both wings or |left wing <position>| and |right wing <position>| to change only one wing respectively. The default wing-position is \say{normal}. If you supply more than one option for a wing, only the last one will survive.\footnote{For the sake of completeness: \ipingu{wings <position>}, \ipingu{left wing <position>}, and \ipingu{right wing <position>} are just alternatives that i prefer over the underlying mechanism: \ipingu{wings=<position>}, \ipingu{left wing=<position>} and \ipingu{right wing=<position>}.}
+\begin{tcblisting}{sidebyside=false, title=Wing-Showcase}
+\begin{tikzpicture}
+	\pingu[left wing none, heart=green]
+	\pingu[wings wave, heart=teal,    xshift=3.5cm]
+	\pingu[wings hug,  heart=orange,  xshift=7cm]
+	\pingu[left wing grab, right wing shock, heart=purple,  xshift=10.5cm]
+\end{tikzpicture}
+\end{tcblisting}
 
 \end{document}
