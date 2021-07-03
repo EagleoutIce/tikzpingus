@@ -235,11 +235,10 @@
   pingu ghost parts/.default   = {.5},
   pingu ghost/.style           = {/pingu/@pingu/.append style={opacity=#1,transparency group}},
   pingu ghost/.default         = {.5},
-  pingu devil/.style           = {devil horns=#1,eyes devil=#1},
+  pingu devil/.style           = {/pingu/devil horns=#1,/pingu/eyes devil=#1},
   pingu devil/.default         = pingu@purple,
-  % TODO: draw another penguin that is then drawn above with only back
-  pingu back/.style            = {/pingu/eyes=none,/pingu/bill=none,/pingu/body front=\pingu@color@body@main,/pingu/@pingu@main/.append style={xshift=2\pingu@w@half,xscale=-1},/pingu/feet back},
-}
+  pingu back/.style            = {/pingu/eyes=none,/pingu/bill=none,/pingu/body front=\pingu@color@body@main,/pingu/@pingu@main/.append style={xshift=2\pingu@w@half,xscale=-1},/pingu/feet back}
+}% TODO: draw another penguin that is then drawn above with only back
 % #endregion
 
 % #region glows
@@ -374,6 +373,8 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     }%
     \pingu@lefteye@add{#1}{#2}\pingu@righteye@add{#1}{#3}%
 }
+\tikzset{/pingu/eyes none/.style={/pingu/eyes=none},/pingu/left eye none/.style={/pingu/left eye=none},/pingu/right eye none/.style={/pingu/right eye=none}} % adding the alias
+
 
 \@pingu@eyes@s{normal}{%
     \pingu@block{\pingu@color@eye@left} ([yshift=.75mm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left) coordinate (\pingu@name-left-eye) ellipse [x radius=.1225cm, y radius=.1275cm];
@@ -571,6 +572,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 % #endregion
 
 % #region hairstyle
+\tikzset{/pingu/hairstyle none/.style={/pingu/hairstyle=none}}
 \pingu@hairstyle@add{normal}{%
 \scope\pgfinterruptboundingbox
 \clip[/pingu/@invclip] (\pingu@name-head-center) ellipse [x radius=\pingu@w@half, y radius=\pingu@head@h@half-.0165mm];
@@ -597,6 +599,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     }%
     \pingu@leftfoot@add{#1}{#2}\pingu@rightfoot@add{#1}{#3}%
 }
+\tikzset{/pingu/feet none/.style={/pingu/feet=none}, /pingu/left foot none/.style={/pingu/left foot=none}, /pingu/right foot none/.style={/pingu/right foot=none}}
 
 \@pingu@feet@s{normal}{%
     \coordinate (@tmp) at ([xshift=-.5\pingu@foot@single@h]\pingu@name-foot-left);
@@ -635,6 +638,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     }%
     \pingu@bill@add{#1}{#2}%
 }
+\tikzset{/pingu/bill none/.style={/pingu/bill=none}}
 
 \@pingu@bill@s{normal}{%
 \pingu@block{\pingu@color@bill} (\pingu@name-bill)++(-.19cm,0)

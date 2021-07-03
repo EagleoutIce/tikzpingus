@@ -48,13 +48,13 @@
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
 	alsoletter={.-!},
-	moreemph=[2]{left,right,wing,eye,wings,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock},
-	moretexcs=[2]{pingu,duck,node},
+	moreemph=[2]{left,right,wing,eye,wings,tie,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal},
+	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend},
 	moreemph=[3]{!hide}
 }
 
 \tcbset{%
-	colframe=gray,
+	colframe=gray,enhanced,breakable,
 	arc=2mm, arc is angular,
 	fonttitle=\bfseries,
 	sidebyside,
@@ -62,7 +62,7 @@
 	center lower,
 	righthand width=5cm,
 	bottom=0pt,top=0pt,
-	before lower={\parskip.5cm},
+	before lower app={\parskip.5cm},
 }
 \lstMakeShortInline[style=lstpingu]{|}
 
@@ -220,7 +220,7 @@ A lot of options allow for a color to passed. In general, you can provide any co
 	\item[] % buffer
 \end{itemize}
 \end{multicols}
-Furthermore, there is the color {\makeatletter\say{\expandafter\ipingu\expandafter{\@pingu@none}}} which is available for most\footnote{Why just \say{most}? Well, this package is work in progress and I have added the option late, so I may have forgotten to patch some keys.} extras and wing-items. This color prohibits the compartments from being drawn.
+Furthermore, there is the color {\makeatletter\say{\expandafter\ipingu\expandafter{\@pingu@none}}} which is available for most\footnote{Why just \say{most}? Well, this package is work in progress and I have added the option late, so I may have forgotten to patch some keys.} extras and wing-items. This color prohibits the compartments from being drawn. To be more precise, the package defines the macro |\pingu@none|, which is matched against the selected color.
 
 As an example, lets take a look at the \say{cup}-extra, which provides an additional key \say{cup straw} to color the straw:
 \begin{tcblisting}{title={Cup without a straw}}
@@ -229,6 +229,18 @@ As an example, lets take a look at the \say{cup}-extra, which provides an additi
 	       cup straw=pingu@blue]
 	\pingu[wings grab, cup, xshift=3cm,
 	       cup straw=!hide]
+\end{tikzpicture}
+\end{tcblisting}
+
+\subsection{Setting the defaults}
+You do not have to state every key for every penguin.
+With the two macros \lstinline[language=pingulang]'\pingudefaults' and \lstinline[language=pingulang]'\pingudefaultsappend' (works the same, but will extend the current options) you can set default-options for all penguins to come:
+\begin{tcblisting}{title={Change the mainstream}}
+\begin{tikzpicture}
+	\pingudefaults{wings grab, eyes shiny,
+	               tie=pingu@purple}
+	\pingu
+	\pingu[left wing shock, xshift=3cm]
 \end{tikzpicture}
 \end{tcblisting}
 
@@ -247,5 +259,60 @@ For each valid wing-position you can use |wings <position>| to change both wings
 	\pingu[left wing grab, right wing shock, heart=purple,  xshift=10.5cm]
 \end{tikzpicture}
 \end{tcblisting}
+
+\subsection{Changing the eyes}
+Just like the wings, there are a couple of different eye-styles to choose from: \typesetselection{lefteye}. Just like the wings, there is a \say{none} and a \say{normal}-option (which is the default).
+Furthermore, the convenient selectors |eyes <style>|, |left eye <style>|, and |right eye <style>| exist as well:
+\begin{tcblisting}{sidebyside=false, title=Eye-Showcase}
+\begin{tikzpicture}
+	\pingu[left eye none, heart=green]
+	\pingu[eyes wink, heart=teal, xshift=3.5cm]
+	\pingu[eyes shock,  heart=orange, xshift=7cm]
+	\pingu[left eye devil, right eye angry, heart=purple,  xshift=10.5cm]
+\end{tikzpicture}
+\end{tcblisting}
+
+\subsection{Changing other components}
+Just like for the wings and the eyes, you can change th following body parts:
+\begin{itemize}
+	\item The \textit{feet} (again with separate left and right)\\*
+		Select from: \typesetselection{leftfoot}.
+	\item The \textit{bill} (does not have left and right, as there is just one)\\*
+		Select from: \typesetselection{bill}.
+	\item The \textit{hairstyle} (does not have left and right)\\*
+		Select from: \typesetselection{hairstyle}.
+\end{itemize}
+For each selection, \say{none} will prohibit the drawing, and \say{normal} is the default chosen.
+\begin{tcblisting}{sidebyside=false, title=Bodyparts-Showcase}
+\begin{tikzpicture}
+	\pingu[bill angry, heart=green]
+	\pingu[feet back, hairstyle none, heart=teal, xshift=3.5cm]
+	\pingu[bill flat, feet simple, heart=orange, xshift=7cm]
+	\pingu[feet none, bill none, heart=purple, xshift=10.5cm]
+\end{tikzpicture}
+\end{tcblisting}
+
+\subsection{Predefined Styles}
+While the penguin options offer modification of basically every drawing routine (through other styles like |@block|), it is tedious to change them every time.
+So I have started to create some predefined styles, that do change some of the penguins appearance (and are completely new, so beware of bugs):
+\begin{itemize}
+	\foreach \tx/\s in {{draw everything as a line}/{pingu line}, {draws every component with transparency}/{pingu ghost parts}, {draws every layer with transparency}/{pingu ghost}, {set all of the \say{devil}-components}/{pingu devil},{shows the penguin from the back (left and right are flipped!)}/{pingu back}} {
+		\item \texttt{\s}: \tx.\smallskip\\*
+		\null\qquad\scalebox{.5}{
+			\begin{tikzpicture}
+				\pingu[\s]
+			\end{tikzpicture}
+		}
+	}
+\end{itemize}
+
+\subsection{Extras}
+
+\subsection{Wing-Items}
+
+\section{Examples}
+
+\appendix
+\section{Full Reference}
 
 \end{document}
