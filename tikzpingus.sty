@@ -11,7 +11,7 @@
 \ProcessOptions*%
 
 \RequirePackage{tikz}
-\usetikzlibrary{intersections,patterns.meta,decorations.pathmorphing,shadings,shapes.symbols}
+\usetikzlibrary{intersections,shadings,patterns.meta,decorations.pathmorphing,shapes.symbols}
 
 \pgfdeclarelayer{background}\pgfdeclarelayer{foreground}\pgfdeclarelayer{middle}
 \ifpengu@setup@manual@layers@\else
@@ -320,6 +320,8 @@
 \if@pingu@draw@metadots \@pingu@draw@dots \fi
 \endgroup
 }
+\let\pengu\pingu% as an alias
+
 %   #region lower-pingu
 % Note: to be used in clippies
 \def\pingu@path@lowerpingu{(0,\pingu@outer@off)
