@@ -13,6 +13,9 @@
 \usepackage[tex]{listings}
 \usepackage[most]{tcolorbox}
 \usepackage{imakeidx,tikz,fontawesome,csquotes,enumitem,microtype,tikzducks,datatool,relsize,multicol,footnotebackref}
+\deffootnote{1.5em}{1em}{\textsuperscript{\hyperref[\BackrefFootnoteTag]{\thefootnotemark}}\thinspace}
+\def\thefootnote{$\langle$\arabic{footnote}$\rangle$}
+
 \newlist{inlist}{enumerate*}{1}
 \setlist[inlist]{itemjoin={{,\space}},itemjoin*={{, and }},label=$\roman*$),mode=boxed}
 \let\say\enquote
