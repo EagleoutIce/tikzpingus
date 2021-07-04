@@ -51,8 +51,8 @@
 \lstdefinelanguage{pingulang}{
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
-	alsoletter={.-!:},
-	moreemph=[2]{left,right,wing,eye,wings,tie,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal},
+	alsoletter={.-!:2},
+	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round},
 	moreemph=[4]{:line,:ghost,parts,:devil,:back},
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend},
 	moreemph=[3]{!hide}
@@ -243,7 +243,7 @@ With the two macros \lstinline[language=pingulang]'\pingudefaults' and \lstinlin
 \begin{tcblisting}{title={Change the mainstream}}
 \begin{tikzpicture}
 	\pingudefaults{wings grab, eyes shiny,
-	               tie=pingu@purple}
+	  tie=pingu@purple}
 	\pingu
 	\pingu[left wing shock, xshift=3cm]
 \end{tikzpicture}
@@ -321,12 +321,28 @@ Currently, only some of the styles do affect other items. As an example, conside
 \end{tcblisting}
 
 \subsection{Extras}
+An extra is considered everything, that is attached to the main penguin and not to the wings (as those items may be placed separately for both wings).
+Most extras are activated with the format |<extra>=<color>| (the |<color>| option is not mandatory)
+and try to adapt with other extras that have been placed (yet you can place multiple hats if you really like to).  A lot of the extras do offer more keys to customize their appearance.
+They are explained in the full reference (\autoref{sec:full-ref}).
+
+Consider the following, somewhat overkill-example:
+\begin{tcblisting}{title={Lord-Gadget, the penguin}}
+\begin{tikzpicture}
+	\pingu[crown 2d=pingu@bronze,
+	       medal=pingu@purple, tie,
+	       eye patch left=teal,
+	       eye patch right=orange,
+	       right wing wave, sunglasses,
+	       glow thick=yellow]
+\end{tikzpicture}
+\end{tcblisting}
 
 \subsection{Wing-Items}
 
 \section{Examples}
 
 \appendix
-\section{Full Reference}
+\section{Full Reference}\label{sec:full-ref}
 
 \end{document}

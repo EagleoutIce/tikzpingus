@@ -690,9 +690,9 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 \def\pingu@draw@extras@below{%
     \if@pingu@x@glow@ \pingu@draw@eb@glow \fi
     \if@pingu@x@tie@ \pingu@draw@eb@tie \fi
-    \if@pingu@x@bowtie@ \pingu@draw@eb@bowtie \fi
     \if@pingu@x@pants@ \pingu@draw@eb@pants \fi
     \if@pingu@x@medal@ \pingu@draw@eb@medal \fi
+    \if@pingu@x@bowtie@ \pingu@draw@eb@bowtie \fi
     \if@pingu@x@cup@ \pingu@draw@eb@cup \fi
     \if@pingu@x@eyepatchleft@ \pingu@draw@eb@eyepatch@l \fi
     \if@pingu@x@eyepatchright@ \pingu@draw@eb@eyepatch@r \fi
@@ -917,6 +917,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 \pingu@create@extra{glow}{%
     glow/.code       = \pingu@set@extra{glow}{true}\pingu@color{glow}{#1},
     glow/.default    = pingu@white,
+    glow thick/.style = {/pingu/glow={#1}, /pingu/glow width function={3.5mm-1.25*\i mm}},
     glow steps/.code = \def\pingu@x@extra@glow@steps{#1},
     glow function/.code = \def\pingu@x@extra@glow@func{#1},
     glow width function/.code = \def\pingu@x@extra@glow@width@func{#1},
