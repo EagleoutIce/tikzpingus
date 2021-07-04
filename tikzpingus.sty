@@ -230,14 +230,14 @@
 
 % #region complete sets and styles
 \tikzset{
-  pingu line/.style            = {/pingu/@block/.append style={fill=none,draw=##1!80!black,shade=none,path fading=none}},
-  pingu ghost parts/.style     = {/pingu/@pingu@all/.append style={opacity={#1}}},
-  pingu ghost parts/.default   = {.5},
-  pingu ghost/.style           = {/pingu/@pingu/.append style={opacity=#1,transparency group}},
-  pingu ghost/.default         = {.5},
-  pingu devil/.style           = {/pingu/devil horns=#1,/pingu/eyes devil=#1},
-  pingu devil/.default         = pingu@purple,
-  pingu back/.style            = {/pingu/eyes=none,/pingu/bill=none,/pingu/body front=\pingu@color@body@main,/pingu/@pingu@main/.append style={xshift=2\pingu@w@half,xscale=-1},/pingu/feet back}
+  :line/.style            = {/pingu/@block/.append style={fill=none,draw=##1!80!black,shade=none,path fading=none}},
+  :ghost parts/.style     = {/pingu/@pingu@all/.append style={opacity={#1}}},
+  :ghost parts/.default   = {.5},
+  :ghost/.style           = {/pingu/@pingu/.append style={opacity=#1,transparency group}},
+  :ghost/.default         = {.5},
+  :devil/.style           = {/pingu/devil horns=#1,/pingu/eyes devil=#1},
+  :devil/.default         = pingu@purple,
+  :back/.style            = {/pingu/eyes=none,/pingu/bill=none,/pingu/body front=\pingu@color@body@main,/pingu/@pingu@main/.append style={xshift=2\pingu@w@half,xscale=-1},/pingu/feet back}
 }% TODO: draw another penguin that is then drawn above with only back
 % #endregion
 

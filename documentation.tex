@@ -39,6 +39,7 @@
 	emphstyle=\slshape,
 	emphstyle=[2]\color{pingu@blue!80!black}\slshape,
 	emphstyle=[3]\color{gray!75!white},
+	emphstyle=[4]\color{pingu@blue!40!black},
 	texcsstyle=*\color{gray}\bfseries,
 	texcsstyle=*[2]\color{pingu@purple}\bfseries,
 	lineskip=2.75pt,
@@ -50,8 +51,9 @@
 \lstdefinelanguage{pingulang}{
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
-	alsoletter={.-!},
-	moreemph=[2]{left,right,wing,eye,wings,tie,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal},
+	alsoletter={.-!:},
+	moreemph=[2]{left,right,wing,eye,wings,tie,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal},
+	moreemph=[4]{:line,:ghost,parts,:devil,:back},
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend},
 	moreemph=[3]{!hide}
 }
@@ -296,18 +298,27 @@ For each selection, \say{none} will prohibit the drawing, and \say{normal} is th
 \end{tcblisting}
 
 \subsection{Predefined Styles}
-While the penguin options offer modification of basically every drawing routine (through other styles like |@block|), it is tedious to change them every time.
+While the penguin options offer the modification of basically every drawing routine (through other styles like |@block|), it is tedious to change them every time.
 So I have started to create some predefined styles, that do change some of the penguins appearance (and are completely new, so beware of bugs):
+\begin{multicols}{2}
 \begin{itemize}
-	\foreach \tx/\s in {{draw everything as a line}/{pingu line}, {draws every component with transparency}/{pingu ghost parts}, {draws every layer with transparency}/{pingu ghost}, {set all of the \say{devil}-components}/{pingu devil},{shows the penguin from the back (left and right are flipped!)}/{pingu back}} {
-		\item \texttt{\s}: \tx.\smallskip\\*
-		\null\qquad\scalebox{.5}{
-			\begin{tikzpicture}
+	\foreach \tx/\s in {{draw everything with a line}/{:line}, {draw components with transparency}/{:ghost parts}, {draw all layers with transparency}/{:ghost}, {set all of the \say{devil}-components}/{:devil},{flip the penguin (swaps left \& right)}/{:back}} {
+		\item \parbox[t]{.8\linewidth}{\raggedright\texttt{\s}, \tx.} \hfill
+		\parbox[t]{.175\linewidth}{\scalebox{.4}{%
+			\begin{tikzpicture}[baseline=.35\baselineskip]%
 				\pingu[\s]
-			\end{tikzpicture}
-		}
+			\end{tikzpicture}%
+		}}
 	}
+	\item[] \parbox[t][2.4\baselineskip]{0pt}{}% buffer
 \end{itemize}
+\end{multicols}
+Currently, only some of the styles do affect other items. As an example, consider |:line|, that changes the draw-style of wing-items and extras:
+\begin{tcblisting}{title={Line Penguin}}
+\begin{tikzpicture}
+	\pingu[:line, princess crown, silver medal]
+\end{tikzpicture}
+\end{tcblisting}
 
 \subsection{Extras}
 
