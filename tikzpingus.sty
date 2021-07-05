@@ -1401,6 +1401,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 %     #region wingitems-setup
 \def\pingu@may@draw@wing#1#2{\csname if@pingu@x@#1#2@\endcsname \csname pingu@draw@wi@#1\endcsname{#2}\fi}
 \edef\pingu@str@wing@left{left}
+\let\@pingu@wingitems@\@empty
 \newif\if@pingu@wing@item@side@left@
 \def\pingu@setup@wing#1#2{%
     \edef\@tmpa{#2}% minus on left
@@ -1425,6 +1426,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 \let\@pingu@draw@wing@items@right\@empty
 
 \def\pingu@create@wing@extra#1#2#3{%
+\pingu@csappto{@pingu@wingitems@}{#1}%
 \expandafter\def\expandafter\@pingu@draw@wing@items@left\expandafter{\@pingu@draw@wing@items@left\pingu@may@draw@wing{#1}{left}}%
 \expandafter\def\expandafter\@pingu@draw@wing@items@right\expandafter{\@pingu@draw@wing@items@right\pingu@may@draw@wing{#1}{right}}%
 \def\@lr{left}%
@@ -1510,7 +1512,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 \newif\if@pingu@x@lightsaber@double@left
 \newif\if@pingu@x@lightsaber@double@right
 \def\pingu@x@saberglow@w@half{.9mm}
-\def\pingulightsaberfactor{.023}
+\def\pingulightsaberfactor{.028}
 \pingu@create@wing@extra{lightsaber}{%
   lightsaber \@lr/.code                = {\pingu@set@extra{lightsaber\@lr}{true}\pingu@color{lightsaber\@lr}{##1}},
   lightsaber \@lr/.default             = pingu@blue,
@@ -1641,7 +1643,8 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 %     #region flag
 \pingu@create@wing@extra{flag}{%
     flag \@lr/.code         = {\pingu@set@extra{flag\@lr}{true}\pingu@color{flag\@lr}{##1}},
-    flag \@lr/.default      = pingu@bronze,
+    flag \@lr/.default      = pingu@purple,
+    flag \@lr pole/.code    = \pingu@color{flag\@lr @pole}{##1},
     flag \@lr code/.code    = \expandafter\def\csname pingu@flag@\@lr @code\endcsname{##1},
     flag \@lr bobble/.code  = {\pingu@color{flag\@lr @bobble}{##1}},
     pride flag \@lr/.style  = {%
@@ -1652,7 +1655,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
             \noexpand\node[below,/pingu/@flag={green}{1.85mm}] (d) at (c.south) {};
             \noexpand\node[below,/pingu/@flag={blue}{1.85mm}] (e) at (d.south) {};
             \noexpand\node[below,/pingu/@flag={violet}{1.85mm}] (f) at (e.south) {};
-        }, /pingu/flag \@lr={##1}%
+        }, /pingu/flag, /pingu/flag \@lr pole={##1}%
     },%
     @flag/.style 2 args={tape bend height=.5mm,shape=tape,minimum height=##2, minimum width=15mm,outer sep=\z@,inner sep=\z@,fill,draw,##1,rotate=\noexpand\@angle},
     pride flag \@lr/.default = pingu@bronze,%
@@ -1661,10 +1664,12 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
             \noexpand\node[/pingu/@flag@first,/pingu/@flag={black}{3mm}] (a) at (0,0) {};
             \noexpand\node[below,/pingu/@flag={red}{3mm}] (b) at (a.south) {};
             \noexpand\node[below,/pingu/@flag={yellow}{3mm}] (c) at (b.south) {};
-        }, /pingu/flag \@lr={##1}%
+        }, /pingu/flag, /pingu/flag \@lr pole={##1}%
     },%
     german flag \@lr/.default = pingu@bronze%
-}{flag \@lr bobble=\noexpand\@col}
+}{flag \@lr bobble=pingu@bronze, flag \@lr pole=pingu@bronze, flag \@lr code = {%
+    \noexpand\node[/pingu/@flag@first,/pingu/@flag={\noexpand\@col}{9mm}] (a) at (0,0) {};
+}}
 \def\pingu@draw@wi@flag#1{%
     \pingu@setup@wing{flag}{#1}%
 \scope[rotate around={\@angle:(\pingu@name-wing-#1)}]
@@ -1672,9 +1677,9 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     \pingu@layer{foreground}[shift={(\pingu@name-wing-#1)},shift={(\@sidesign*.15mm,17.5mm-3.5\p@)}]
         \if@pingu@wing@item@side@left@\tikzset{/pingu/@flag@first/.style={below right}}\else\tikzset{/pingu/@flag@first/.style={below left}}\fi
         \csname pingu@flag@#1@code\endcsname
-        \pingu@block[thick]{\@col}(\pingu@name-wing-#1)++(\@sidesign*-.15mm,3mm) -- ++(0,13.65mm) -| ++(\@sidesign*.6mm,-13.65mm) -- cycle;
+        \pingu@block[thick]{\csname pingu@color@flag#1@pole\endcsname}(\pingu@name-wing-#1)++(\@sidesign*-.15mm,3mm) -- ++(0,13.65mm) -| ++(\@sidesign*.6mm,-13.65mm) -- cycle;
     \endpingu@layer
-    \pingu@block[thick]{\@col}(\pingu@name-wing-#1)++(\@sidesign*-.15mm,-3mm) -- ++(0,20mm) arc(180:0:\@sidesign*.3mm and .375mm) -- ++(0,-20mm) arc(360:180:\@sidesign*.3mm and .375mm) -- cycle;
+    \pingu@block[thick]{\csname pingu@color@flag#1@pole\endcsname}(\pingu@name-wing-#1)++(\@sidesign*-.15mm,-3mm) -- ++(0,20mm) arc(180:0:\@sidesign*.3mm and .375mm) -- ++(0,-20mm) arc(360:180:\@sidesign*.3mm and .375mm) -- cycle;
     \pingu@block{\csname pingu@color@flag#1@bobble\endcsname} (\pingu@name-wing-#1)++(\@sidesign*.15mm,17.5mm) circle [radius=2.15\p@];
 \endscope
 }
