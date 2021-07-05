@@ -43,6 +43,7 @@
 	texcsstyle=*\color{gray}\bfseries,
 	texcsstyle=*[2]\color{pingu@purple}\bfseries,
 	lineskip=2.75pt,
+	keepspaces=true,
 	moredelim=[s][\itshape]{<}{>}
 }
 \lstset{style=lstpingu}
@@ -52,7 +53,7 @@
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
 	alsoletter={.-!:2},
-	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round},
+	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post},
 	moreemph=[4]{:line,:ghost,parts,:devil,:back},
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend},
 	moreemph=[3]{!hide}
@@ -250,7 +251,7 @@ With the two macros \lstinline[language=pingulang]'\pingudefaults' and \lstinlin
 \end{tcblisting}
 
 \subsection{Changing the wings}
-As already demonstrated, it is possible to change the wing positions!
+\label{subsec:wings}As already demonstrated, it is possible to change the wing positions!
 All selected wing-items will adapt to the wing-position (although not all wing-items will make sense with every wing-position).
 Currently, there are the following wing-positions:
 \typesetselection{leftwing}. \say{none} is a special wing-position: it omits the drawing of wings (teaser: every selection has a none-option, which prohibits the part from being drawn)!
@@ -339,6 +340,25 @@ Consider the following, somewhat overkill-example:
 \end{tcblisting}
 
 \subsection{Wing-Items}
+Wing items are basically just like extras, but they can be selected separately for the left and right wing. Furthermore, they adapt their \textit{default} appearance to the active wing positions (\autoref{subsec:wings}).
+Currently there are the following wing items:
+\typesetselection{wingitems}.
+They are selected using |<wing item> <left/right>|.
+
+Additionally, they can be customized by |<left/right> item angle=<angle>| and |<left/right> item flip=<true/false>|.
+Lets consider an example\ldots
+\begin{tcblisting}{title={Penguin with full wings!}}
+\begin{tikzpicture}[scale=.75]
+	\pingu[lightsaber right=orange,
+	  lollipop left,
+	  right item angle=70,
+	  right wing raise, left wing grab]
+	\pingu[cane left, right item flip,
+	  sign post right={Hi!}, xshift=35mm]
+\end{tikzpicture}
+\end{tcblisting}
+
+
 
 \subsection{Clothing}
 

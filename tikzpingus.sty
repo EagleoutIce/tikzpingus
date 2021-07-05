@@ -1657,7 +1657,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
             \noexpand\node[below,/pingu/@flag={violet}{1.85mm}] (f) at (e.south) {};
         }, /pingu/flag, /pingu/flag \@lr pole={##1}%
     },%
-    @flag/.style 2 args={tape bend height=.5mm,shape=tape,minimum height=##2, minimum width=15mm,outer sep=\z@,inner sep=\z@,fill,draw,##1,rotate=\noexpand\@angle},
+    @flag/.style 2 args={tape bend height=.5mm,shape=tape,minimum height=##2, minimum width=15mm,outer sep=\z@,inner sep=\z@,fill,draw,##1,rotate=\noexpand\@angle,transform shape},
     pride flag \@lr/.default = pingu@bronze,%
     german flag \@lr/.style  = {%
     /pingu/flag \@lr code = {%
