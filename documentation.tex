@@ -243,8 +243,8 @@ You do not have to state every key for every penguin.
 With the two macros \lstinline[language=pingulang]'\pingudefaults' and \lstinline[language=pingulang]'\pingudefaultsappend' (works the same, but will extend the current options) you can set default-options for all penguins to come:
 \begin{tcblisting}{title={Change the mainstream}}
 \begin{tikzpicture}
-	\pingudefaults{wings grab, eyes shiny,
-	  tie=pingu@purple}
+	  tie=pingu@purple
+	\pingudefaults{wings grab, eyes shiny,}
 	\pingu
 	\pingu[left wing shock, xshift=3cm]
 \end{tikzpicture}
@@ -371,5 +371,15 @@ I am working on the \textit{cloak}-Clothing at the moment:
 
 \appendix
 \section{Full Reference}\label{sec:full-ref}
+
+\subsection{Penguin Keys}
+
+\subsection{Drawing Styles}
+
+\subsection{Extras}
+
+\subsection{Wing-Items}
+
+\subsection{Clothes}
 
 \end{document}
