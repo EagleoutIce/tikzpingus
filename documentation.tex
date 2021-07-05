@@ -37,7 +37,7 @@
 	commentstyle={\color{gray}\slshape},
 	columns=fullflexible,
 	emphstyle=\slshape,
-	emphstyle=[2]\color{pingu@blue!80!black}\slshape,
+	emphstyle=[2]\color{pingu@blue!75!black}\slshape,
 	emphstyle=[3]\color{gray!75!white},
 	emphstyle=[4]\color{pingu@blue!40!black},
 	texcsstyle=*\color{gray}\bfseries,
@@ -53,7 +53,7 @@
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
 	alsoletter={.-!:2},
-	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post},
+	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale},
 	moreemph=[4]{:line,:ghost,parts,:devil,:back},
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend},
 	moreemph=[3]{!hide}
@@ -358,9 +358,14 @@ Lets consider an example\ldots
 \end{tikzpicture}
 \end{tcblisting}
 
-
-
 \subsection{Clothing}
+Clothing is the newest extension to the collection, at and the moment there is not one \say{real} clothing, that really adapts to the penguins-position.
+I am working on the \textit{cloak}-Clothing at the moment:
+\begin{tcblisting}{title={Pengu-Clothes}}
+\begin{tikzpicture}[scale=.75]
+	\pingu[cloak]
+\end{tikzpicture}
+\end{tcblisting}
 
 \section{Examples}
 

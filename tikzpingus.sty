@@ -1708,7 +1708,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     cloak bottom color/.code = \pingu@color{cloak@bottom}{#1},
     cloak front color/.code = \pingu@color{cloak@front}{#1},
     cloak padding/.code      = {\def\pingu@x@cloak@padding{#1}}
-}{cloak padding=3.5mm,cloak bottom color=\pingu@color@cloak,cloak front color=\pingu@color@cloak!90!white,cloak wings color=\pingu@color@cloak!95!pingu@black}
+}{cloak padding=3.5mm,cloak bottom color=\pingu@color@cloak!90!black,cloak front color=\pingu@color@cloak!90!white,cloak wings color=\pingu@color@cloak!92!pingu@black}
 \def\pingu@draw@cloth@cloak@behind{%
     \pingu@block[bottom color=\pingu@color@cloak@bottom,top color=\pingu@color@cloak]{\pingu@color@cloak} (\pingu@name-bottom-center)++(-\pingu@x@cloak@padding-\pingu@w@half,-.5mm) arc (180:0:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend left=1] (\pingu@name-wings-side-left) arc(0:180:\pingu@w@half{} and .75mm) to[bend left=1] cycle;
 }
