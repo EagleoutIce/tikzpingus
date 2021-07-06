@@ -80,6 +80,7 @@
 \lstMakeShortInline[style=lstpingu]{|}
 
 \newenvironment{keyexplain}[4][/pingu/]{\begin{minipage}{\linewidth}%
+	\parskip\medskipamount
 	\phantomsection\label{pk:#1#2}\index{#2?\hyperref[pk:#1#2]{\lpingu{#2}}}%
 	\expandafter\gdef\csname pinguopt#2\endcsname{#3}%
 	\expandafter\gdef\csname pingudefa#2\endcsname{#4}%
@@ -95,7 +96,7 @@
 \newcommand*\keyref[2][/pingu/]{\hyperref[pk:#1#2]{\lpingu{#1#2}}}
 
 \newcommand{\keyalias}[3][/pingu/]{\begin{keyexplain}[#1]{#2}{\csname pinguopt#3\endcsname}{\csname pingudefa#3\endcsname}%
-	Alias for \keyref{#1}{#3}.
+	Alias for \keyref[#1]{#3}.
 \end{keyexplain}}
 
 \def\TikZ{Ti\textit{k}Z}
@@ -293,7 +294,7 @@ For each valid wing-position you can use |wings <position>| to change both wings
 \end{tcblisting}
 
 \subsection{Changing the eyes}
-Just like the wings, there are a couple of different eye-styles to choose from: \typesetselection{lefteye}. Just like the wings, there is a \say{none} and a \say{normal}-option (which is the default).
+\label{mrk:pengu-eye}Just like the wings, there are a couple of different eye-styles to choose from: \typesetselection{lefteye}. Just like the wings, there is a \say{none} and a \say{normal}-option (which is the default).
 Furthermore, the convenient selectors |eyes <style>|, |left eye <style>|, and |right eye <style>| exist as well:
 \begin{tcblisting}{sidebyside=false, title=Eye-Showcase}
 \begin{tikzpicture}
@@ -417,6 +418,8 @@ I am working on the \textit{cloak}-Clothing at the moment:
 
 \keyalias{meta dots}{meta-dots}
 
+\subsubsection{The Feet}
+
 \begin{keyexplain}{left foot color}{color}{\pingu@color@foot@left}
 	Change the color of the left foot of the penguin.%
 \begin{tcblisting}{}
@@ -471,6 +474,7 @@ I am working on the \textit{cloak}-Clothing at the moment:
 \end{tcblisting}
 \end{keyexplain}
 
+\subsubsection{The body}
 \begin{keyexplain}{body main}{color}{\pingu@color@body@main}
 	Set the main color of the penguin. This will affect \keyref{hair} as well, as this chooses its default value from the main color.%
 \begin{tcblisting}{}
@@ -506,6 +510,36 @@ I am working on the \textit{cloak}-Clothing at the moment:
 \end{tikzpicture}
 \end{tcblisting}
 \end{keyexplain}
+
+\subsubsection{The Eyes}
+\begin{keyexplain}{left eye}{eye-selector}{\@pingu@select@lefteye@}
+	Change the style of the left eye. All valid values are listed in \autoref{mrk:pengu-eye}.
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[left eye=wink]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{keyexplain}{right eye}{eye-selector}{\@pingu@select@righteye@}
+	Change the style of the right eye. All valid values are listed in \autoref{mrk:pengu-eye}.
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[right eye=wink]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{keyexplain}{eyes}{eye-selector}{}
+	Change the style of both eyes by calling \keyref{left eye} and \keyref{right eye} with the same value.
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[eyes=wink]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+% TODO: all the shortcuts like eyes wink
 
 \subsection{Drawing Styles}
 
