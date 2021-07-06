@@ -13,7 +13,7 @@
 \usepackage[tex,hyper]{listings}
 \usepackage[most]{tcolorbox}
 \usepackage{imakeidx,tikz,fontawesome,csquotes,enumitem,microtype,tikzducks,datatool,relsize,multicol,footnotebackref}
-\makeindex[title=Befehlsübersicht,columns=2,columnsep=.75cm,noautomatic=true]
+\makeindex[title=Command Overview,columns=2,columnsep=.75cm,noautomatic=true]
 \deffootnote{1.5em}{1em}{\textsuperscript{\hyperref[\BackrefFootnoteTag]{\thefootnotemark}}\thinspace}
 \def\thefootnote{$\langle$\arabic{footnote}$\rangle$}
 
@@ -59,7 +59,7 @@
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
 	alsoletter={.-!:2},
-	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main},
+	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front},
 	moreemph=[4]{:line,:ghost,parts,:devil,:back},
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend},
 	moreemph=[3]{!hide},
@@ -86,9 +86,9 @@
 	\hspace*{-2em}\colorbox{gray!10!white}{%
 		\parbox{\dimexpr\linewidth-2\fboxsep+2em}{%
 			\lpingu{#1#2 =\ }\texttt{<\textit{#3}>}\hfill
-				\textcolor{gray}{(}\pgfkeys{/pingu/.cd,defaults}#4\textcolor{gray}{)}%
+				\ifx\\\detokenize{#4}\\\else\textcolor{gray}{(}\pgfkeys{/pingu/.cd,defaults}#4\textcolor{gray}{)}\fi%
 		}
-	}\smallskip\\*}
+	}\\*[\smallskipamount]}
 {\bigskip\par}
 
 \newcommand*\keyref[2][/pingu/]{\hyperref[pk:#1#2]{\lpingu{#1#2}}}
@@ -304,7 +304,7 @@ Furthermore, the convenient selectors |eyes <style>|, |left eye <style>|, and |r
 \end{tcblisting}
 
 \subsection{Changing other components}
-Just like for the wings and the eyes, you can change th following body parts:
+\label{mrk:pengu-change-comps}Just like for the wings and the eyes, you can change th following body parts:
 \begin{itemize}
 	\item The \textit{feet} (again with separate left and right)\\*
 		Select from: \typesetselection{leftfoot}.
@@ -425,11 +425,29 @@ I am working on the \textit{cloak}-Clothing at the moment:
 \end{tcblisting}
 \end{keyexplain}
 
+\begin{keyexplain}{left foot}{foot-selector}{\@pingu@select@leftfoot@}
+	Change the style of the left foot. All valid values are listed in \autoref{mrk:pengu-change-comps}.
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[left foot=simple]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
 \begin{keyexplain}{right foot color}{color}{\pingu@color@foot@right}
 	Change the color of the right foot of the penguin.%
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[right foot color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{keyexplain}{right foot}{foot-selector}{\@pingu@select@rightfoot@}
+	Change the style of the right foot. All valid values are listed in \autoref{mrk:pengu-change-comps}.
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[right foot=simple]
 \end{tikzpicture}
 \end{tcblisting}
 \end{keyexplain}
@@ -443,8 +461,17 @@ I am working on the \textit{cloak}-Clothing at the moment:
 \end{tcblisting}
 \end{keyexplain}
 
+\begin{keyexplain}{feet}{foot-selector}{}
+	Change the style of both feet by calling \keyref{left foot} and \keyref{right foot} with the same value.
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[feet=simple]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
 \begin{keyexplain}{body main}{color}{\pingu@color@body@main}
-	Set the main color of the penguin.%
+	Set the main color of the penguin. This will affect \keyref{hair} as well, as this chooses its default value from the main color.%
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[body main=green]
@@ -466,6 +493,15 @@ I am working on the \textit{cloak}-Clothing at the moment:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[body=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{keyexplain}{body front}{color}{\pingu@color@body@front}
+	Sets the frontal color of the penguin.
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[body front=green]
 \end{tikzpicture}
 \end{tcblisting}
 \end{keyexplain}
