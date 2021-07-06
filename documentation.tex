@@ -10,7 +10,7 @@
 \urlstyle{same}
 \expandafter\def\expandafter\UrlBreaks\expandafter{\UrlBreaks\do-}
 
-\usepackage[tex]{listings}
+\usepackage[tex,hyper]{listings}
 \usepackage[most]{tcolorbox}
 \usepackage{imakeidx,tikz,fontawesome,csquotes,enumitem,microtype,tikzducks,datatool,relsize,multicol,footnotebackref}
 \deffootnote{1.5em}{1em}{\textsuperscript{\hyperref[\BackrefFootnoteTag]{\thefootnotemark}}\thinspace}
@@ -25,6 +25,7 @@
 \newcommand*\typesetselection[1][]{\begingroup\ifx!#1!\else\def\DTLlistformatitem##1{#1}\fi\dotypesetselection}
 \def\dotypesetselection#1{\expandafter\DTLformatlist\expandafter{\csname @pingu@#1@\endcsname}\endgroup}
 \usepackage{lmodern,CrimsonPro}
+\makeatletter
 
 \addtokomafont{sectioning}{\color{gray}}
 \addtokomafont{title}{\color{pingu@purple}}
@@ -48,6 +49,10 @@
 }
 \lstset{style=lstpingu}
 \def\ipingu#1{\lstinline'#1'}
+\def\lpingu#1{\lstinline[style=lstpingu,language=pingulang]'#1'}
+
+\def\t@lst@addToLiterate#1{\protected@edef\lst@literate{\unexpanded\expandafter{\lst@literate}\unexpanded{#1}}}
+\lst@Key{add to literate}{}{\t@lst@addToLiterate{#1}}
 
 \lstdefinelanguage{pingulang}{
 	language={[LaTeX]TeX},
@@ -56,7 +61,8 @@
 	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale},
 	moreemph=[4]{:line,:ghost,parts,:devil,:back},
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend},
-	moreemph=[3]{!hide}
+	moreemph=[3]{!hide},
+	add to literate={/pingu/}{{\textcolor{gray}{/pingu/}}}7
 }
 
 \tcbset{%
@@ -72,13 +78,23 @@
 }
 \lstMakeShortInline[style=lstpingu]{|}
 
+\newenvironment{keyexplain}[4][/pingu/]{%
+	\phantomsection\label{pk:#1#2}%
+	\hspace*{-2em}\colorbox{gray!10!white}{%
+		\parbox{\dimexpr\linewidth-2\fboxsep+2em}{%
+			\lpingu{#1#2 =\ }\texttt{<\textit{#3}>}\hfill
+				\textcolor{gray}{(}\pgfkeys{/pingu/.cd,defaults}#4\textcolor{gray}{)}%
+		}
+	}\par}
+{\par}
+
 \def\TikZ{Ti\textit{k}Z}
 \def\tikzpingus{\TikZ pingus}
 
 \title{The \texorpdfstring{\tikzpingus}{tikzpingus} package}
 \subtitle{penguins in \TikZ}
 \author{%
-	\texorpdfstring{Florian Sihler\\[0.4em]
+	\texorpdfstring{Florian Sihler\\[.4em]
 		\url{https://github.com/EagleoutIce/tikzpingus}
 	}{Florian Sihler}}
 \date{Version v1.0 \textendash\ 2021/07/02}
@@ -142,7 +158,7 @@ Besides the keys defined by this package, you can use the keys of \TikZ\ and |pg
 \end{tikzpicture}
 \end{tcblisting}
 \subsection{Using the Coordinates}
-While there are a lot of gadgets available already,
+\label{mrk:coordinates}While there are a lot of gadgets available already,
 every penguin is accompanied by \textit{a lot} of adaptive coordinates
 to place custom items, texts,~\ldots\ % TODO: links
 They can be placed by the meta-dots option and change their positions, angles,~\ldots\ depending on other options.
@@ -373,6 +389,9 @@ I am working on the \textit{cloak}-Clothing at the moment:
 \section{Full Reference}\label{sec:full-ref}
 
 \subsection{Penguin Keys}
+\begin{keyexplain}{name}{text}{\pingu@name}
+	Sets the name of the penguin. This name is used for all the automatically generated coordinates (see \autoref{mrk:coordinates}).
+\end{keyexplain}
 
 \subsection{Drawing Styles}
 
