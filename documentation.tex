@@ -79,17 +79,18 @@
 }
 \lstMakeShortInline[style=lstpingu]{|}
 
-\newenvironment{keyexplain}[4][/pingu/]{%
+\newenvironment{keyexplain}[4][/pingu/]{\begin{minipage}{\linewidth}%
 	\phantomsection\label{pk:#1#2}\index{#2?\hyperref[pk:#1#2]{\lpingu{#2}}}%
 	\expandafter\gdef\csname pinguopt#2\endcsname{#3}%
 	\expandafter\gdef\csname pingudefa#2\endcsname{#4}%
+	\def\@tmp{#4}%
 	\hspace*{-2em}\colorbox{gray!10!white}{%
 		\parbox{\dimexpr\linewidth-2\fboxsep+2em}{%
 			\lpingu{#1#2 =\ }\texttt{<\textit{#3}>}\hfill
-				\ifx\\\detokenize{#4}\\\else\textcolor{gray}{(}\pgfkeys{/pingu/.cd,defaults}#4\textcolor{gray}{)}\fi%
+				\ifx\@tmp\@empty\else\textcolor{gray}{(}\pgfkeys{/pingu/.cd,defaults}#4\textcolor{gray}{)}\fi%
 		}
 	}\\*[\smallskipamount]}
-{\bigskip\par}
+{\end{minipage}\bigskip\par}
 
 \newcommand*\keyref[2][/pingu/]{\hyperref[pk:#1#2]{\lpingu{#1#2}}}
 
