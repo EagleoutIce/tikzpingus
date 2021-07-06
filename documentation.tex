@@ -59,7 +59,7 @@
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
 	alsoletter={.-!:2},
-	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color},
+	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main},
 	moreemph=[4]{:line,:ghost,parts,:devil,:back},
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend},
 	moreemph=[3]{!hide},
@@ -88,11 +88,13 @@
 			\lpingu{#1#2 =\ }\texttt{<\textit{#3}>}\hfill
 				\textcolor{gray}{(}\pgfkeys{/pingu/.cd,defaults}#4\textcolor{gray}{)}%
 		}
-	}\\*}
+	}\smallskip\\*}
 {\bigskip\par}
 
+\newcommand*\keyref[2][/pingu/]{\hyperref[pk:#1#2]{\lpingu{#1#2}}}
+
 \newcommand{\keyalias}[3][/pingu/]{\begin{keyexplain}[#1]{#2}{\csname pinguopt#3\endcsname}{\csname pingudefa#3\endcsname}%
-	Alias for \hyperref[pk:#1#3]{\lpingu{#1#3}}.
+	Alias for \keyref{#1}{#3}.
 \end{keyexplain}}
 
 \def\TikZ{Ti\textit{k}Z}
@@ -415,13 +417,58 @@ I am working on the \textit{cloak}-Clothing at the moment:
 \keyalias{meta dots}{meta-dots}
 
 \begin{keyexplain}{left foot color}{color}{\pingu@color@foot@left}
-	Change the color of the left foot of the penguin.
+	Change the color of the left foot of the penguin.%
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[left foot color=green]
+\end{tikzpicture}
+\end{tcblisting}
 \end{keyexplain}
 
 \begin{keyexplain}{right foot color}{color}{\pingu@color@foot@right}
-	Change the color of the right foot of the penguin.
+	Change the color of the right foot of the penguin.%
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[right foot color=green]
+\end{tikzpicture}
+\end{tcblisting}
 \end{keyexplain}
 
+\begin{keyexplain}{feet color}{color}{}
+	Sets the color of both feet by calling \keyref{left foot color} and \keyref{right foot color} with the same value.
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[feet color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{keyexplain}{body main}{color}{\pingu@color@body@main}
+	Set the main color of the penguin.%
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[body main=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{keyexplain}{body head}{color}{\pingu@color@body@head}
+	Set the color of the penguin head.%
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[body head=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{keyexplain}{body}{color}{}
+	Sets the color of the main penguin and the head, by calling \keyref{body main} and \keyref{body head} with the same value.
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[body=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
 
 \subsection{Drawing Styles}
 
