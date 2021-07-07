@@ -46,7 +46,7 @@
 	texcsstyle=*[2]\color{pingu@purple}\bfseries,
 	lineskip=2.75pt,
 	keepspaces=true,
-	moredelim=[s][\itshape]{<}{>}
+	moredelim=[s][\itshape]{<}{>},
 }
 \lstset{style=lstpingu}
 \def\ipingu#1{\lstinline'#1'}
@@ -431,7 +431,7 @@ I am working on the \textit{cloak}-Clothing at the moment:
 
 \begin{keyexplain}{left foot}{foot-selector}{\@pingu@select@leftfoot@}
 	Change the style of the left foot. All valid values are listed in \autoref{mrk:pengu-change-comps}.
-\begin{tcblisting}{}
+\begin{tcblisting}{listing options={style=lstpingu,language=pingulang,deleteemph={[2]{simple}}}}
 \begin{tikzpicture}
 	\pingu[left foot=simple]
 \end{tikzpicture}
@@ -449,7 +449,7 @@ I am working on the \textit{cloak}-Clothing at the moment:
 
 \begin{keyexplain}{right foot}{foot-selector}{\@pingu@select@rightfoot@}
 	Change the style of the right foot. All valid values are listed in \autoref{mrk:pengu-change-comps}.
-\begin{tcblisting}{}
+\begin{tcblisting}{listing options={style=lstpingu,language=pingulang,deleteemph={[2]{simple}}}}
 \begin{tikzpicture}
 	\pingu[right foot=simple]
 \end{tikzpicture}
@@ -467,7 +467,7 @@ I am working on the \textit{cloak}-Clothing at the moment:
 
 \begin{keyexplain}{feet}{foot-selector}{}
 	Change the style of both feet by calling \keyref{left foot} and \keyref{right foot} with the same value.
-\begin{tcblisting}{}
+\begin{tcblisting}{listing options={style=lstpingu,language=pingulang,deleteemph={[2]{simple}}}}
 \begin{tikzpicture}
 	\pingu[feet=simple]
 \end{tikzpicture}
@@ -514,7 +514,7 @@ I am working on the \textit{cloak}-Clothing at the moment:
 \subsubsection{The Eyes}
 \begin{keyexplain}{left eye}{eye-selector}{\@pingu@select@lefteye@}
 	Change the style of the left eye. All valid values are listed in \autoref{mrk:pengu-eye}.
-\begin{tcblisting}{}
+\begin{tcblisting}{listing options={style=lstpingu,language=pingulang,deleteemph={[2]{wink}}}}
 \begin{tikzpicture}
 	\pingu[left eye=wink]
 \end{tikzpicture}
@@ -523,7 +523,7 @@ I am working on the \textit{cloak}-Clothing at the moment:
 
 \begin{keyexplain}{right eye}{eye-selector}{\@pingu@select@righteye@}
 	Change the style of the right eye. All valid values are listed in \autoref{mrk:pengu-eye}.
-\begin{tcblisting}{}
+\begin{tcblisting}{listing options={style=lstpingu,language=pingulang,deleteemph={[2]{wink}}}}
 \begin{tikzpicture}
 	\pingu[right eye=wink]
 \end{tikzpicture}
@@ -532,7 +532,7 @@ I am working on the \textit{cloak}-Clothing at the moment:
 
 \begin{keyexplain}{eyes}{eye-selector}{}
 	Change the style of both eyes by calling \keyref{left eye} and \keyref{right eye} with the same value.
-\begin{tcblisting}{}
+\begin{tcblisting}{listing options={style=lstpingu,language=pingulang,deleteemph={[2]{wink}}}}
 \begin{tikzpicture}
 	\pingu[eyes=wink]
 \end{tikzpicture}
