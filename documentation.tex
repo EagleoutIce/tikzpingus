@@ -559,6 +559,25 @@ I am working on the \textit{cloak}-Clothing at the moment:
 \end{tcblisting}
 \end{keyexplain}
 
+\begin{keyexplain}{right eye color}{color}{\pingu@color@eye@right}
+	Change the main color of the right eye.
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[right eye color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{keyexplain}{right eye second color}{color}{\pingu@color@eye@second@right}
+	Change the secondary color of the right eye. It will be used in some styles selected by \keyref{right eye} (e.g. \textit{shiny}):
+\begin{tcblisting}{listing options={style=lstpingu,language=pingulang,deleteemph={[2]{shock}}}}
+\begin{tikzpicture}
+	\pingu[right eye=shock,
+	  right eye second color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
 \begin{keyexplain}{eyes}{eye-selector}{}
 	Change the style of both eyes by calling \keyref{left eye} and \keyref{right eye} with the same value.
 \begin{tcblisting}{listing options={style=lstpingu,language=pingulang,deleteemph={[2]{wink}}}}
@@ -567,6 +586,26 @@ I am working on the \textit{cloak}-Clothing at the moment:
 \end{tikzpicture}
 \end{tcblisting}
 \end{keyexplain}
+
+\begin{keyexplain}{eyes color}{color}{}
+	Change the main color of both eyes by calling \keyref{left eye color} and \keyref{right eye color} with the same value.
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[eyes color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{keyexplain}{eyes second color}{color}{}
+	Change the secondary color of  both eyes by calling \keyref{left eye second color} and \keyref{right eye second  color} with the same value.
+\begin{tcblisting}{listing options={style=lstpingu,language=pingulang,deleteemph={[2]{shock,shiny}}}}
+\begin{tikzpicture}
+	\pingu[left eye=shock, right eye=shiny,
+	  eyes second color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
 
 % TODO: all the shortcuts like eyes wink
 
