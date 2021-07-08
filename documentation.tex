@@ -12,8 +12,8 @@
 
 \usepackage[tex,hyper]{listings}
 \usepackage[most]{tcolorbox}
-\usepackage{imakeidx,tikz,fontawesome,csquotes,enumitem,microtype,tikzducks,datatool,relsize,multicol,footnotebackref}
-\makeindex[title=Command Overview,columns=2,columnsep=.75cm,noautomatic=true]
+\usepackage{imakeidx,tikz,fontawesome,csquotes,enumitem,microtype,tikzducks,datatool,relsize,multicol,footnotebackref,adjustbox}
+\makeindex[title={Key Overview},columns=2,columnsep=.75cm,noautomatic=true]
 \deffootnote{1.5em}{1em}{\textsuperscript{\hyperref[\BackrefFootnoteTag]{\thefootnotemark}}\thinspace}
 \def\thefootnote{$\langle$\arabic{footnote}$\rangle$}
 
@@ -59,12 +59,13 @@
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
 	alsoletter={.-!:2},
-	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front},
+	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second},
 	moreemph=[4]{:line,:ghost,parts,:devil,:back},
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend},
 	moreemph=[3]{!hide},
 	add to literate={/pingu/}{{\textcolor{gray}{/pingu/}}}7
 }
+\NewEnviron{scaleme}[1]{\scalebox{#1}{\BODY}}
 
 \tcbset{%
 	colframe=gray,enhanced,breakable,
@@ -399,6 +400,15 @@ I am working on the \textit{cloak}-Clothing at the moment:
 \appendix
 \section{Full Reference}\label{sec:full-ref}
 
+\begin{center}
+	\textit{Please note, that all preview-penguins have been reduced in scale by \(50\,\%\) to save space and make the documentation more concise.}
+\end{center}
+
+\tcbset{%
+	before lower={\begin{adjustbox}{scale=.6}},
+	after lower={\end{adjustbox}}%
+}
+
 \subsection{Penguin Keys}
 \begin{keyexplain}{name}{text}{\pingu@name}
 	Sets the name of the penguin. This name is used for all the automatically generated coordinates (see \autoref{mrk:coordinates}).
@@ -517,6 +527,25 @@ I am working on the \textit{cloak}-Clothing at the moment:
 \begin{tcblisting}{listing options={style=lstpingu,language=pingulang,deleteemph={[2]{wink}}}}
 \begin{tikzpicture}
 	\pingu[left eye=wink]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{keyexplain}{left eye color}{color}{\pingu@color@eye@left}
+	Change the main color of the left eye.
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[left eye color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{keyexplain}{left eye second color}{color}{\pingu@color@eye@second@left}
+	Change the secondary color of the left eye. It will be used in some styles selected by \keyref{left eye} (e.g. \textit{shiny}):
+\begin{tcblisting}{listing options={style=lstpingu,language=pingulang,deleteemph={[2]{shiny}}}}
+\begin{tikzpicture}
+	\pingu[left eye=shiny,
+	  left eye second color=green]
 \end{tikzpicture}
 \end{tcblisting}
 \end{keyexplain}
