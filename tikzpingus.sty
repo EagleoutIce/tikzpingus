@@ -714,7 +714,8 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
             \pingu@block[postaction={pattern={Dots[angle=40,distance=1.5pt,radius=.35pt]},pattern color=#1}]{\pingu@color@tie} \pingupathxtie;
             \pingu@block[postaction={pattern={Dots[angle=-30,distance=1.45pt,radius=.35pt@]},pattern color=#1}]{\pingu@color@tie@knot} \pingupathxtieknot;
         }%
-    }
+    },
+    tie dots/.default={pingu@white}%
 }{% defaults
     tie length=.625\pingu@side@h@half,  tie offset=.399cm,%
     tie knot=\pingu@color@tie!92!black, tie width=.21cm,%
