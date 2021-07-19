@@ -1685,6 +1685,20 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 \endscope
 }
 %     #endregion
+
+
+%     #region staff
+\pingu@create@wing@extra{staff}{%
+    staff \@lr/.code         = {\pingu@set@extra{staff\@lr}{true}\pingu@color{staff\@lr}{##1}},
+    staff \@lr/.default      = pingu@bronze
+}{}
+\def\pingu@draw@wi@staff#1{%
+    \pingu@setup@wing{staff}{#1}%
+\scope[rotate around={\@angle:(\pingu@name-wing-#1)}]
+    \pingu@block{\csname pingu@color@staff#1\endcsname}(\pingu@name-wing-#1)++(\@sidesign*-.2mm,-11mm) -- ++(0,28mm) arc(180:0:\@sidesign*.4mm and .3mm) -- ++(0,-28mm) arc(360:180:\@sidesign*.4mm and .3mm) -- cycle;
+\endscope
+}
+%     #endregion
 % #endregion
 
 % #region clothes
