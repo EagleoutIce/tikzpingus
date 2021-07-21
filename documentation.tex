@@ -90,7 +90,7 @@
 	\expandafter\gdef\csname pingudefa#2\endcsname{#4}%
 	\begingroup\pgfkeys{/pingu/.cd,defaults}\protected@edef\@tmp{#4}%
 	\hspace*{-2em}\colorbox{\explaincolor}{%
-		\parbox{\dimexpr\linewidth-2\fboxsep+2em}{%
+		\parbox{\dimexpr\linewidth-2\fboxsep+2em}{\small%
 			\lpingu{#1#2 =\ }\texttt{<\textit{#3}>}\hfill
 				\ifx\@tmp\@empty\else\textcolor{gray}{(}#4\textcolor{gray}{)}\fi%
 		}
@@ -101,8 +101,9 @@
 	This is a shortcut for: \texttt{\keyref[#1]{#2} = {\optstyle#3}}.
 \end{keyexplain}}
 \newcommand*\shortcuts[4][/pingu/]{\begingroup
+\protected@edef\@tmp{#3}%
 \def\explaincolor{gray!10!white}%
-\foreach \type in {#3} {%
+\foreach \type in \@tmp {%
 \edef\tmp{\noexpand\singleshortcut{#1}{#2}{\type}{#4}}\tmp
 }\endgroup}
 
@@ -462,7 +463,7 @@ I am working on the \textit{cloak}-Clothing at the moment:
 \end{tcblisting}
 \end{keyexplain}
 
-\shortcuts{left foot}{none,normal,simple,back}{left foot color}
+\shortcuts{left foot}{\@pingu@leftfoot@}{left foot color}
 
 \begin{keyexplain}{right foot color}{color}{\pingu@color@foot@right}
 	Change the color of the right foot of the penguin.%
@@ -482,7 +483,7 @@ I am working on the \textit{cloak}-Clothing at the moment:
 \end{tcblisting}
 \end{keyexplain}
 
-\shortcuts{right foot}{none,normal,simple,back}{right foot color}
+\shortcuts{right foot}{\@pingu@rightfoot@}{right foot color}
 
 \begin{keyexplain}{feet color}{color}{}
 	Sets the color of both feet by calling \keyref{left foot color} and \keyref{right foot color} with the same value.
@@ -502,9 +503,9 @@ I am working on the \textit{cloak}-Clothing at the moment:
 \end{tcblisting}
 \end{keyexplain}
 
-\shortcuts{feet}{none,normal,simple,back}{feet color}
+\shortcuts{feet}{\@pingu@leftfoot@}{feet color}
 
-\subsubsection{The body}
+\subsubsection{The Body}
 \begin{keyexplain}{body main}{color}{\pingu@color@body@main}
 	Set the main color of the penguin. This will affect \keyref{hair} as well, as this chooses its default value from the main color.%
 \begin{tcblisting}{}
@@ -541,6 +542,8 @@ I am working on the \textit{cloak}-Clothing at the moment:
 \end{tcblisting}
 \end{keyexplain}
 
+\paragraph{The Size of the Penguin}
+
 \subsubsection{The Eyes}
 \begin{keyexplain}{left eye}{eye-selector}{\@pingu@select@lefteye@}
 	Change the style of the left eye. All valid values are listed in \autoref{mrk:pengu-eye}.
@@ -570,6 +573,8 @@ I am working on the \textit{cloak}-Clothing at the moment:
 \end{tcblisting}
 \end{keyexplain}
 
+\shortcuts{left eye}{\@pingu@lefteye@}{left eye color}
+
 \begin{keyexplain}{right eye}{eye-selector}{\@pingu@select@righteye@}
 	Change the style of the right eye. All valid values are listed in \autoref{mrk:pengu-eye}.
 \begin{tcblisting}{listing options={style=lstpingu,language=pingulang,deleteemph={[2]{wink}}}}
@@ -597,6 +602,8 @@ I am working on the \textit{cloak}-Clothing at the moment:
 \end{tikzpicture}
 \end{tcblisting}
 \end{keyexplain}
+
+\shortcuts{right eye}{\@pingu@righteye@}{right eye color}
 
 \begin{keyexplain}{eyes}{eye-selector}{}
 	Change the style of both eyes by calling \keyref{left eye} and \keyref{right eye} with the same value.
@@ -626,8 +633,14 @@ I am working on the \textit{cloak}-Clothing at the moment:
 \end{tcblisting}
 \end{keyexplain}
 
+\shortcuts{eyes}{\@pingu@lefteye@}{eyes color}
 
-% TODO: all the shortcuts like eyes wink
+\subsubsection{The Wings}
+
+\subsubsection{The Hair}
+
+\subsubsection{The Bill}
+
 
 \subsection{Drawing Styles}
 
