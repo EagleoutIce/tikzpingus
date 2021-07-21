@@ -81,21 +81,21 @@
 }
 \lstMakeShortInline[style=lstpingu]{|}
 
-\def\explaincolor{pingu@purple!6!white}
+\def\explaincolor{pingu@purple!8!white}
 \def\cursub{}
 \newenvironment{keyexplain}[4][/pingu/]{\begin{minipage}{\linewidth}%
 	\parskip\medskipamount
 	\phantomsection\label{pk:#1#2}\index{\cursub#2?\hyperref[pk:#1#2]{\lpingu{#2}}}%
 	\expandafter\gdef\csname pinguopt#2\endcsname{#3}%
 	\expandafter\gdef\csname pingudefa#2\endcsname{#4}%
-	\def\@tmp{#4}%
+	\begingroup\pgfkeys{/pingu/.cd,defaults}\protected@edef\@tmp{#4}%
 	\hspace*{-2em}\colorbox{\explaincolor}{%
 		\parbox{\dimexpr\linewidth-2\fboxsep+2em}{%
 			\lpingu{#1#2 =\ }\texttt{<\textit{#3}>}\hfill
-				\ifx\@tmp\@empty\else\textcolor{gray}{(}\pgfkeys{/pingu/.cd,defaults}#4\textcolor{gray}{)}\fi%
+				\ifx\@tmp\@empty\else\textcolor{gray}{(}#4\textcolor{gray}{)}\fi%
 		}
-	}\\*[\smallskipamount]}
-{\end{minipage}\bigskip\par}
+	}\\*[\smallskipamount]\endgroup}
+{\end{minipage}\medskip\par}
 
 \def\singleshortcut#1#2#3#4{\def\cursub{#2?\hyperref[pk:#1#2]{\lpingu{#2}}!}\begin{keyexplain}[#1]{#2 #3}{\csname pinguopt#4\endcsname}{\csname pingudefa#4\endcsname}%
 	This is a shortcut for: \texttt{\keyref[#1]{#2} = {\optstyle#3}}.
