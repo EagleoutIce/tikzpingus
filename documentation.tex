@@ -445,15 +445,6 @@ I am working on the \textit{cloak}-Clothing at the moment:
 
 \subsubsection{The Feet}
 
-\begin{keyexplain}{left foot color}{color}{\pingu@color@foot@left}
-	Change the color of the left foot of the penguin.%
-\begin{tcblisting}{}
-\begin{tikzpicture}
-	\pingu[left foot color=green]
-\end{tikzpicture}
-\end{tcblisting}
-\end{keyexplain}
-
 \begin{keyexplain}{left foot}{foot-selector}{\@pingu@select@leftfoot@}
 	Change the style of the left foot. All valid values are listed in \autoref{mrk:pengu-change-comps}.
 \begin{tcblisting}{listing options={style=lstpingu,language=pingulang,deleteemph={[2]{simple}}}}
@@ -463,16 +454,16 @@ I am working on the \textit{cloak}-Clothing at the moment:
 \end{tcblisting}
 \end{keyexplain}
 
-\shortcuts{left foot}{\@pingu@leftfoot@}{left foot color}
-
-\begin{keyexplain}{right foot color}{color}{\pingu@color@foot@right}
-	Change the color of the right foot of the penguin.%
+\begin{keyexplain}{left foot color}{color}{\pingu@color@foot@left}
+	Change the color of the left foot of the penguin.%
 \begin{tcblisting}{}
 \begin{tikzpicture}
-	\pingu[right foot color=green]
+	\pingu[left foot color=green]
 \end{tikzpicture}
 \end{tcblisting}
 \end{keyexplain}
+
+\shortcuts{left foot}{\@pingu@leftfoot@}{left foot color}
 
 \begin{keyexplain}{right foot}{foot-selector}{\@pingu@select@rightfoot@}
 	Change the style of the right foot. All valid values are listed in \autoref{mrk:pengu-change-comps}.
@@ -483,22 +474,31 @@ I am working on the \textit{cloak}-Clothing at the moment:
 \end{tcblisting}
 \end{keyexplain}
 
-\shortcuts{right foot}{\@pingu@rightfoot@}{right foot color}
-
-\begin{keyexplain}{feet color}{color}{}
-	Sets the color of both feet by calling \keyref{left foot color} and \keyref{right foot color} with the same value.
+\begin{keyexplain}{right foot color}{color}{\pingu@color@foot@right}
+	Change the color of the right foot of the penguin.%
 \begin{tcblisting}{}
 \begin{tikzpicture}
-	\pingu[feet color=green]
+	\pingu[right foot color=green]
 \end{tikzpicture}
 \end{tcblisting}
 \end{keyexplain}
+
+\shortcuts{right foot}{\@pingu@rightfoot@}{right foot color}
 
 \begin{keyexplain}{feet}{foot-selector}{}
 	Change the style of both feet by calling \keyref{left foot} and \keyref{right foot} with the same value.
 \begin{tcblisting}{listing options={style=lstpingu,language=pingulang,deleteemph={[2]{simple}}}}
 \begin{tikzpicture}
 	\pingu[feet=simple]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{keyexplain}{feet color}{color}{}
+	Sets the color of both feet by calling \keyref{left foot color} and \keyref{right foot color} with the same value.
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[feet color=green]
 \end{tikzpicture}
 \end{tcblisting}
 \end{keyexplain}
