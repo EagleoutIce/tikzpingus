@@ -98,7 +98,7 @@
 {\end{minipage}\medskip\par}
 
 \def\singleshortcut#1#2#3#4{\def\cursub{#2?\hyperref[pk:#1#2]{\lpingu{#2}}!}\begin{keyexplain}[#1]{#2 #3}{\csname pinguopt#4\endcsname}{\csname pingudefa#4\endcsname}%
-	This is a shortcut for: \texttt{\keyref[#1]{#2} = {\optstyle#3}}.
+	\textcolor{gray}{\footnotesize This is a shortcut for: \texttt{\keyref[#1]{#2} = {\optstyle#3}}. The \enquote{\texttt{\textit{\csname pinguopt#4\endcsname}}} argument is passed to the key \keyref[#1]{#4}.}
 \end{keyexplain}}
 \newcommand*\shortcuts[4][/pingu/]{\begingroup
 \protected@edef\@tmp{#3}%
@@ -636,6 +636,66 @@ I am working on the \textit{cloak}-Clothing at the moment:
 \shortcuts{eyes}{\@pingu@lefteye@}{eyes color}
 
 \subsubsection{The Wings}
+
+\begin{keyexplain}{left wing}{wing-selector}{\@pingu@select@leftwing@}
+	Change the style of the left wing. All valid values are listed in \autoref{subsec:wings}.
+\begin{tcblisting}{listing options={style=lstpingu,language=pingulang,deleteemph={[2]{wave}}}}
+\begin{tikzpicture}
+	\pingu[left wing=wave]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{keyexplain}{left wing color}{color}{\pingu@color@left@wing}
+	Change the main color of the left wing.
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[left wing color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\shortcuts{left wing}{\@pingu@leftwing@}{left wing color}
+
+\begin{keyexplain}{right wing}{wing-selector}{\@pingu@select@rightwing@}
+	Change the style of the right wing. All valid values are listed in \autoref{subsec:wings}.
+\begin{tcblisting}{listing options={style=lstpingu,language=pingulang,deleteemph={[2]{wave}}}}
+\begin{tikzpicture}
+	\pingu[right wing=hug]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{keyexplain}{right wing color}{color}{\pingu@color@right@wing}
+	Change the main color of the right wing.
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[right wing color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\shortcuts{right wing}{\@pingu@rightwing@}{right wing color}
+
+\begin{keyexplain}{wings}{wing-selector}{}
+	Change the style of both wings by calling \keyref{left wing} and \keyref{right wing} with the same value.
+\begin{tcblisting}{listing options={style=lstpingu,language=pingulang,deleteemph={[2]{wink}}}}
+\begin{tikzpicture}
+	\pingu[wings=grab]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{keyexplain}{wings color}{color}{}
+	Change the main color of both wings by calling \keyref{left wing color} and \keyref{right wing color} with the same value.
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[wings color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\shortcuts{wings}{\@pingu@leftwing@}{wings color}
 
 \subsubsection{The Hair}
 
