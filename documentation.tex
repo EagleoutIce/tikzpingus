@@ -33,13 +33,14 @@
 \addtokomafont{author}{\normalsize}
 \addtokomafont{date}{\normalsize}
 
+\def\optstyle{\color{pingu@blue!75!black}\slshape}
 \lstdefinestyle{lstpingu}{%
 	tabsize=2, breaklines,
 	basicstyle=\relsize{-.8}\ttfamily,
 	commentstyle={\color{gray}\slshape},
 	columns=fullflexible,
 	emphstyle=\slshape,
-	emphstyle=[2]\color{pingu@blue!75!black}\slshape,
+	emphstyle=[2]\optstyle,
 	emphstyle=[3]\color{gray!75!white},
 	emphstyle=[4]\color{pingu@blue!40!black},
 	texcsstyle=*\color{gray}\bfseries,
@@ -80,19 +81,36 @@
 }
 \lstMakeShortInline[style=lstpingu]{|}
 
+\def\explaincolor{pingu@purple!6!white}
 \newenvironment{keyexplain}[4][/pingu/]{\begin{minipage}{\linewidth}%
 	\parskip\medskipamount
 	\phantomsection\label{pk:#1#2}\index{#2?\hyperref[pk:#1#2]{\lpingu{#2}}}%
 	\expandafter\gdef\csname pinguopt#2\endcsname{#3}%
 	\expandafter\gdef\csname pingudefa#2\endcsname{#4}%
 	\def\@tmp{#4}%
-	\hspace*{-2em}\colorbox{gray!10!white}{%
+	\hspace*{-2em}\colorbox{\explaincolor}{%
 		\parbox{\dimexpr\linewidth-2\fboxsep+2em}{%
 			\lpingu{#1#2 =\ }\texttt{<\textit{#3}>}\hfill
 				\ifx\@tmp\@empty\else\textcolor{gray}{(}\pgfkeys{/pingu/.cd,defaults}#4\textcolor{gray}{)}\fi%
 		}
 	}\\*[\smallskipamount]}
 {\end{minipage}\bigskip\par}
+
+\def\singleshortcut#1#2#3#4{\begin{keyexplain}[#1]{#2 #3}{#4}{\csname pingudefa#2\endcsname}%
+	This is a shortcut for: \texttt{\keyref[#1]{#2} = {\optstyle#3}}.
+\bgroup
+\scantokens{\begin{tcblisting}{}
+\begin{tikzpicture}^^J
+^^h\pingu[#2 #3]^^J
+\end{tikzpicture}
+\end{tcblisting}}
+\egroup
+\end{keyexplain}}
+\newcommand*\shortcuts[4][/pingu/]{\begingroup
+\def\explaincolor{gray!10!white}%
+\foreach \type in {#3} {%
+\edef\tmp{\noexpand\singleshortcut{#1}{#2}{\type}{#4}}\tmp
+}\endgroup}
 
 \newcommand*\keyref[2][/pingu/]{\hyperref[pk:#1#2]{\lpingu{#1#2}}}
 
@@ -448,6 +466,8 @@ I am working on the \textit{cloak}-Clothing at the moment:
 \end{tcblisting}
 \end{keyexplain}
 
+\shortcuts{left foot}{none,normal,simple,back}{color}
+
 \begin{keyexplain}{right foot color}{color}{\pingu@color@foot@right}
 	Change the color of the right foot of the penguin.%
 \begin{tcblisting}{}
@@ -466,6 +486,8 @@ I am working on the \textit{cloak}-Clothing at the moment:
 \end{tcblisting}
 \end{keyexplain}
 
+\shortcuts{right foot}{none,normal,simple,back}{color}
+
 \begin{keyexplain}{feet color}{color}{}
 	Sets the color of both feet by calling \keyref{left foot color} and \keyref{right foot color} with the same value.
 \begin{tcblisting}{}
@@ -483,6 +505,8 @@ I am working on the \textit{cloak}-Clothing at the moment:
 \end{tikzpicture}
 \end{tcblisting}
 \end{keyexplain}
+
+\shortcuts{feet}{none,normal,simple,back}{color}
 
 \subsubsection{The body}
 \begin{keyexplain}{body main}{color}{\pingu@color@body@main}
