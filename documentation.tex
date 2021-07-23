@@ -698,6 +698,18 @@ I am working on the \textit{cloak}-Clothing at the moment:
 
 \shortcuts{wings}{\@pingu@leftwing@}{wings color}
 
+\subsubsection{The Hair}
+
+\subsubsection{The Bill}
+
+
+\subsection{Drawing Styles}
+
+\subsection{Extras}
+
+\subsection{Wing-Items}
+\label{sub:wing-items}
+
 \begin{keyexplain}{left wing item angle}{angle}{\pingu@wing@left@item@angle@user}
 	Relative rotation of the \hyperref[sub:wing-items]{wing items} placed in the left wing:
 \begin{tcblisting}{}
@@ -710,16 +722,17 @@ I am working on the \textit{cloak}-Clothing at the moment:
 
 \keyalias{left item angle}{left wing item angle}
 
+\begin{keyexplain}{left wing item flip}{true/false}{\if@pingu@wi@flip@left true\else false\fi}
+	Some \hyperref[sub:wing-items]{wing items} do have a different style, depending on the wing they are in (e.g. they are mirrored). This option toggles the stile for the left wing.
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[flag left, flag right,
+				 left wing item flip]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
 
-% TODO:
-% \begin{keyexplain}{left item flip}{true/false}{}
-
-% \begin{tcblisting}{}
-% \begin{tikzpicture}
-% 	\pingu[cane left, left item angle=70]
-% \end{tikzpicture}
-% \end{tcblisting}
-% \end{keyexplain}
+\keyalias{left item flip}{left wing item flip}
 
 \begin{keyexplain}{right wing item angle}{angle}{\pingu@wing@right@item@angle@user}
 	Relative rotation of the \hyperref[sub:wing-items]{wing items} placed in the right wing:
@@ -733,17 +746,17 @@ I am working on the \textit{cloak}-Clothing at the moment:
 
 \keyalias{right item angle}{right wing item angle}
 
-\subsubsection{The Hair}
+\begin{keyexplain}{right wing item flip}{true/false}{\if@pingu@wi@flip@right true\else false\fi}
+	Some \hyperref[sub:wing-items]{wing items} do have a different style, depending on the wing they are in (e.g. they are mirrored). This option toggles the stile for the right wing.
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[flag left, flag right,
+				 right wing item flip]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
 
-\subsubsection{The Bill}
-
-
-\subsection{Drawing Styles}
-
-\subsection{Extras}
-
-\subsection{Wing-Items}
-\label{sub:wing-items}
+\keyalias{right item flip}{right wing item flip}
 
 \subsection{Clothes}
 
