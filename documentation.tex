@@ -60,7 +60,7 @@
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
 	alsoletter={.-!:2},
-	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second},
+	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large},
 	moreemph=[4]{:line,:ghost,parts,:devil,:back},
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend},
 	moreemph=[3]{!hide},
@@ -89,9 +89,10 @@
 	\expandafter\gdef\csname pinguopt#2\endcsname{#3}%
 	\expandafter\gdef\csname pingudefa#2\endcsname{#4}%
 	\begingroup\pgfkeys{/pingu/.cd,defaults}\protected@edef\@tmp{#4}%
+	\protected@edef\@tmpb{#3}%
 	\hspace*{-2em}\colorbox{\explaincolor}{%
 		\parbox{\dimexpr\linewidth-2\fboxsep+2em}{\small%
-			\lpingu{#1#2 =\ }\texttt{<\textit{#3}>}\hfill
+		\ifx\@tmp\@empty\lpingu{#1#2}\else\lpingu{#1#2 =\ }\texttt{<\textit{#3}>}\fi\hfill
 				\ifx\@tmp\@empty\else\textcolor{gray}{(}#4\textcolor{gray}{)}\fi%
 		}
 	}\\*[\smallskipamount]\endgroup}
@@ -543,7 +544,53 @@ I am working on the \textit{cloak}-Clothing at the moment:
 \end{tcblisting}
 \end{keyexplain}
 
-\paragraph{The Size of the Penguin}
+
+\subsubsection{The Size}
+
+\begin{keyexplain}{height}{length}{\the\pingu@side@h@half}
+	Change the height of the penguin manually. You probably should not use this key directly and refer to \keyref{small size}, \keyref{normal size}, and \keyref{large size}:
+\begin{tcblisting}{listing options={style=lstpingu,language=pingulang}}
+\begin{tikzpicture}
+	\pingu[height=17mm]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{keyexplain}{small size}{}{}
+	Will use \keyref{height} to create a small pingu:
+\begin{tcblisting}{listing options={style=lstpingu,language=pingulang}}
+\begin{tikzpicture}
+	\pingu[small size]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\keyalias{small}{small size}
+\keyalias{small height}{small size}
+
+\begin{keyexplain}{normal size}{}{}
+	Will use \keyref{height} to create a normal pingu:
+\begin{tcblisting}{listing options={style=lstpingu,language=pingulang}}
+\begin{tikzpicture}
+	\pingu[normal size]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\keyalias{normal}{normal size}
+\keyalias{normal height}{normal size}
+
+\begin{keyexplain}{large size}{}{}
+	Will use \keyref{height} to create a large pingu:
+\begin{tcblisting}{listing options={style=lstpingu,language=pingulang}}
+\begin{tikzpicture}
+	\pingu[large size]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\keyalias{large}{large size}
+\keyalias{large height}{large size}
 
 \subsubsection{The Eyes}
 \begin{keyexplain}{left eye}{eye-selector}{\@pingu@select@lefteye@}
