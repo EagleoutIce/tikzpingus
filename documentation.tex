@@ -697,7 +697,38 @@ I am working on the \textit{cloak}-Clothing at the moment:
 
 \shortcuts{wings}{\@pingu@leftwing@}{wings color}
 
-% TODO: item angle etc.
+\begin{keyexplain}{left wing item angle}{angle}{\pingu@wing@left@item@angle@user}
+	Relative rotation of the \hyperref[sub:wing-items]{wing items} placed in the left wing:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[cane left, left item angle=70]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\keyalias{left item angle}{left wing item angle}
+
+
+% TODO:
+% \begin{keyexplain}{left item flip}{true/false}{}
+
+% \begin{tcblisting}{}
+% \begin{tikzpicture}
+% 	\pingu[cane left, left item angle=70]
+% \end{tikzpicture}
+% \end{tcblisting}
+% \end{keyexplain}
+
+\begin{keyexplain}{right wing item angle}{angle}{\pingu@wing@right@item@angle@user}
+	Relative rotation of the \hyperref[sub:wing-items]{wing items} placed in the right wing:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[cane right, right item angle=70]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\keyalias{right item angle}{right wing item angle}
 
 \subsubsection{The Hair}
 
@@ -709,6 +740,7 @@ I am working on the \textit{cloak}-Clothing at the moment:
 \subsection{Extras}
 
 \subsection{Wing-Items}
+\label{sub:wing-items}
 
 \subsection{Clothes}
 
