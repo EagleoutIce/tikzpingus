@@ -59,8 +59,8 @@
 \lstdefinelanguage{pingulang}{
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
-	alsoletter={.-!:2},
-	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large},
+	alsoletter={.-!:0123456789},%disable number
+	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5},
 	moreemph=[4]{:line,:ghost,parts,:devil,:back},
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend},
 	moreemph=[3]{!hide},
@@ -746,6 +746,74 @@ I am working on the \textit{cloak}-Clothing at the moment:
 \shortcuts{wings}{\@pingu@leftwing@}{wings color}
 
 \subsubsection{The Hair}
+\begin{keyexplain}{hairstyle}{hair-selector}{\@pingu@select@hairstyle@}
+	Change the hairstyle (\autoref{mrk:pengu-change-comps}):
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[hairstyle=none]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\keyalias{hair style}{hairstyle}
+% \shortcuts{hair}{\@pingu@hairstyle@}{wings color}
+
+\begin{keyexplain}{hair 1 color}{color}{\pingu@color@hair@a}
+	Set the color of the first hair (this may be used differently by other hairstyles):
+\begin{tcblisting}{listing options={style=lstpingu,language=pingulang,moreemph={[2]{1}}}}
+\begin{tikzpicture}
+	\pingu[hair 1 color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{keyexplain}{hair 2 color}{color}{\pingu@color@hair@b}
+	Set the color of the second hair (this may be used differently by other hairstyles):
+\begin{tcblisting}{listing options={style=lstpingu,language=pingulang,moreemph={[2]{2}}}}
+\begin{tikzpicture}
+	\pingu[hair 2 color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{keyexplain}{hair 3 color}{color}{\pingu@color@hair@c}
+	Set the color of the third hair (this may be used differently by other hairstyles):
+\begin{tcblisting}{listing options={style=lstpingu,language=pingulang,moreemph={[2]{3}}}}
+\begin{tikzpicture}
+	\pingu[hair 3 color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{keyexplain}{hair 4 color}{color}{\pingu@color@hair@d}
+	Set the color of the fourth hair (this may be used differently by other hairstyles):
+\begin{tcblisting}{listing options={style=lstpingu,language=pingulang,moreemph={[2]{4}}}}
+\begin{tikzpicture}
+	\pingu[hair 4 color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{keyexplain}{hair 5 color}{color}{\pingu@color@hair@e}
+	Set the color of the fifth hair (this may be used differently by other hairstyles):
+\begin{tcblisting}{listing options={style=lstpingu,language=pingulang,moreemph={[2]{5}}}}
+\begin{tikzpicture}
+	\pingu[hair 5 color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{keyexplain}{hairs color}{color}{}
+	Set the color of all hairs by calling \keyref{hair 1 color}, \keyref{hair 2 color}, \keyref{hair 3 color}, \keyref{hair 4 color}, and \keyref{hair 5 color} with the same argument:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[hairs color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\keyalias{hairs}{hairs color}
+\keyalias{hair}{hairs color}
 
 \subsubsection{The Bill}
 
