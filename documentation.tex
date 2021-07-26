@@ -92,7 +92,7 @@
 	\protected@edef\@tmpb{#3}%
 	\hspace*{-2em}\colorbox{\explaincolor}{%
 		\parbox{\dimexpr\linewidth-2\fboxsep+2em}{\small%
-		\ifx\@tmp\@empty\lpingu{#1#2}\else\lpingu{#1#2 =\ }\texttt{<\textit{#3}>}\fi\hfill
+		\ifx\@tmpb\@empty\lpingu{#1#2}\else\lpingu{#1#2 =\ }\texttt{<\textit{\@tmpb}>}\fi\hfill
 				\ifx\@tmp\@empty\else\textcolor{gray}{(}#4\textcolor{gray}{)}\fi%
 		}
 	}\\*[\smallskipamount]\endgroup}
@@ -420,6 +420,8 @@ I am working on the \textit{cloak}-Clothing at the moment:
 \begin{center}
 	\textit{Please note, that all preview-penguins have been reduced in scale by \(50\,\%\) to save space and make the documentation more concise.}
 \end{center}
+
+Aliases my set custom defaults. Those defaults are not listed as they may change.
 
 \tcbset{%
 	before lower={\begin{adjustbox}{scale=.6}},
