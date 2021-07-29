@@ -869,6 +869,27 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \end{tcblisting}
 \end{keyexplain}
 
+\begin{keyexplain}{:devil}{color}{pingu@purple}
+	Enable all devil components and set their main color:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[:devil=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{keyexplain}{:back}{}{}
+	Mirror the penguin, this swaps left and right, the rotation and more.
+	Yet, at least at the time of writing, this does not swap the drawing order in each layer, but just the layers:\typeout{KTWKKS}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[:back, left wing wave,
+	       cane left, left item angle=70]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+
 \def\cursub{}
 
 \subsection{Extras}
