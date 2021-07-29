@@ -237,7 +237,7 @@
   :ghost/.default         = {.5},
   :devil/.style           = {/pingu/devil horns=#1,/pingu/eyes devil=#1},
   :devil/.default         = pingu@purple,
-  :back/.code            = {\tikzset{/pingu/eyes=none,/pingu/bill=none,/pingu/body front=\pingu@color@body@main,/pingu/@pingu@main/.append style={xshift=2\pingu@w@half,xscale=-1},/pingu/feet back}\gdef\pingu@back@init@call{\pgfsetlayers{foreground,middle,main,background}\gdef\pingu@back@init@call{}}}%
+  :back/.code            = {\tikzset{/pingu/eyes=none,/pingu/bill=none,/pingu/body front=\pingu@color@body@main,/pingu/@pingu@main/.append style={xshift=2\pingu@w@half,xscale=-1},/pingu/feet back}\gdef\pingu@back@init@call{\pgfsetlayers{foreground,middle,main,background}\gdef\pingu@back@init@call{}}}% TODO: back foot clipping?
 }% TODO: draw another penguin that is then drawn above with only back
 \let\pingu@back@init@call\@empty
 % #endregion
