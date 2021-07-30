@@ -60,7 +60,7 @@
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
 	alsoletter={.-!:0123456789},%disable number
-	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5},
+	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot},
 	moreemph=[4]{:line,:ghost,parts,:devil,:back},
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend},
 	moreemph=[3]{!hide},
@@ -109,6 +109,14 @@
 }\endgroup}
 
 \newcommand*\keyref[2][/pingu/]{\hyperref[pk:#1#2]{\lpingu{#1#2}}}
+
+\newenvironment{subkeyexplain}[5][/pingu/]{%
+\begingroup
+\def\explaincolor{gray!10!white}%
+\def\cursub{#2?\hyperref[pk:#1#2]{\lpingu{#2}}!}%
+\begin{keyexplain}[#1]{#3}{#4}{#5}%
+	\textcolor{gray}{\footnotesize This command is only active in combination with \keyref[#1]{#2}.}\par
+}{\end{keyexplain}\endgroup}
 
 \newcommand{\keyalias}[3][/pingu/]{\begingroup
 \def\explaincolor{gray!10!white}%
@@ -889,10 +897,30 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \end{tcblisting}
 \end{keyexplain}
 
-
 \def\cursub{}
 
 \subsection{Extras}
+
+\begin{keyexplain}{tie}{color}{pingu@green}
+	Enable the tie extra:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[tie]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+{\def\pingu@color@tie{<tie-color>}
+\begin{subkeyexplain}{tie}{tie knot}{color}{\pingu@color@tie@knot}
+	Change the tie knot:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[tie, tie knot=orange]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+}
+
 
 \subsection{Wing-Items}
 \label{sub:wing-items}
