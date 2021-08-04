@@ -60,7 +60,7 @@
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
 	alsoletter={.-!:0123456789},%disable number
-	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot},
+	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,b},
 	moreemph=[4]{:line,:ghost,parts,:devil,:back},
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend},
 	moreemph=[3]{!hide},
@@ -901,6 +901,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 
 \subsection{Extras}
 
+\subsubsection{The tie}
 \begin{keyexplain}{tie}{color}{pingu@green}
 	Enable the tie extra:
 \begin{tcblisting}{}
@@ -920,6 +921,72 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \end{tcblisting}
 \end{subkeyexplain}
 }
+
+\begin{subkeyexplain}{tie}{tie length}{length}{\expandafter\detokenize\expandafter{\pingu@x@tie@length}}
+	Change the length of the tie:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[tie, tie length=1.25cm]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{tie}{tie offset}{length}{\pingu@x@tie@offset}
+	Change the upper vertical offset of the tie:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[tie, tie offset=.75cm]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{tie}{tie width}{length}{\pingu@x@tie@width}
+	Change the width of the tie:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[tie, tie width=.5cm]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{tie}{tie pattern}{tex-code}{}
+	Change the tie pattern.
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{tie}{tie dots}{color}{pingu@white}
+	Change the \keyref{tie pattern} to dots:
+	\begin{tcblisting}{}
+	\begin{tikzpicture}
+		\pingu[tie, tie dots]
+	\end{tikzpicture}
+	\end{tcblisting}
+\end{subkeyexplain}
+
+\subsubsection{The bowtie}
+
+\begin{keyexplain}{bow tie}{color}{pingu@blue}
+	Enable the bow tie extra:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[bow tie]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\keyalias{bowtie}{bow tie}
+\keyalias{bow-tie}{bow tie}
+
+\begin{subkeyexplain}{bow tie}{bow tie b}{color}{<bow tie color>}
+Change the color of the other wing
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[bow tie, bow tie b=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\keyalias{bowtie b}{bow tie b}
+\keyalias{bow-tie b}{bow tie b}
 
 
 \subsection{Wing-Items}
