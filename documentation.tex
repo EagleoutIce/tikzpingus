@@ -977,7 +977,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \keyalias{bow-tie}{bow tie}
 
 \begin{subkeyexplain}{bow tie}{bow tie b}{color}{<bow tie color>}
-Change the color of the other wing
+Change the color of the other bow-tie-wing:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[bow tie, bow tie b=green]
@@ -988,6 +988,17 @@ Change the color of the other wing
 \keyalias{bowtie b}{bow tie b}
 \keyalias{bow-tie b}{bow tie b}
 
+\begin{subkeyexplain}{bow tie}{bow tie offset}{length}{\pingu@x@bowtie@offset}
+Change the vertical offset of the bow tie:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[bow tie, bow tie offset=8mm]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\keyalias{bowtie offset}{bow tie offset}
+\keyalias{bow-tie offset}{bow tie offset}
 
 \subsection{Wing-Items}
 \label{sub:wing-items}
