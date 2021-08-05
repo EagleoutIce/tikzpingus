@@ -36,7 +36,7 @@
 \def\optstyle{\color{pingu@blue!75!black}\slshape}
 \lstdefinestyle{lstpingu}{%
 	tabsize=2, breaklines,
-	basicstyle=\relsize{-.8}\ttfamily,
+	basicstyle=\relsize{-.7}\ttfamily,
 	commentstyle={\color{gray}\slshape},
 	columns=fullflexible,
 	emphstyle=\slshape,
@@ -76,8 +76,8 @@
 	listing options={style=lstpingu,language=pingulang},
 	center lower,
 	righthand width=5cm,
-	bottom=0pt,top=0pt,
-	before lower app={\parskip.5cm},
+	bottom=0pt,top=0pt,boxsep=2.25pt,
+	before lower app={\parskip.5cm}
 }
 \lstMakeShortInline[style=lstpingu]{|}
 
@@ -99,7 +99,7 @@
 {\end{minipage}\medskip\par}
 
 \def\singleshortcut#1#2#3#4{\def\cursub{#2?\hyperref[pk:#1#2]{\lpingu{#2}}!}\begin{keyexplain}[#1]{#2 #3}{\csname pinguopt#4\endcsname}{\csname pingudefa#4\endcsname}%
-	\textcolor{gray}{\footnotesize This is a shortcut for: \texttt{\keyref[#1]{#2} = {\optstyle#3}}. The \enquote{\texttt{\textit{\csname pinguopt#4\endcsname}}} argument is passed to the key \keyref[#1]{#4}.}
+	\textcolor{gray}{\footnotesize This is a shortcut for: \texttt{\keyref[#1]{#2} = {\optstyle#3}}. The \enquote{\texttt{\textit{\csname pinguopt#4\endcsname}}} argument is passed to \keyref[#1]{#4}.}
 \end{keyexplain}}
 \newcommand*\shortcuts[4][/pingu/]{\begingroup
 \protected@edef\@tmp{#3}%
@@ -426,14 +426,15 @@ I am working on the \textit{cloak}-Clothing at the moment:
 \section{Full Reference}\label{sec:full-ref}
 
 \begin{center}
-	\textit{Please note, that all preview-penguins have been reduced in scale by \(50\,\%\) to save space and make the documentation more concise.}
+	\textit{Please note, that all preview-penguins have been reduced in scale by \(40\,\%\) to save space and make the documentation more concise.}
 \end{center}
 
 Aliases my set custom defaults. Those defaults are not listed as they may change.
 
 \tcbset{%
 	before lower={\begin{adjustbox}{scale=.6}},
-	after lower={\end{adjustbox}}%
+	after lower={\end{adjustbox}},%
+	boxsep=0pt%
 }
 
 \subsection{Penguin Keys}
@@ -976,7 +977,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \keyalias{bowtie}{bow tie}
 \keyalias{bow-tie}{bow tie}
 
-\begin{subkeyexplain}{bow tie}{bow tie b}{color}{<bow tie color>}
+\begin{subkeyexplain}{bow tie}{bow tie b}{color}{<bowtie-color>}
 Change the color of the other bow-tie-wing:
 \begin{tcblisting}{}
 \begin{tikzpicture}
@@ -987,6 +988,20 @@ Change the color of the other bow-tie-wing:
 
 \keyalias{bowtie b}{bow tie b}
 \keyalias{bow-tie b}{bow tie b}
+
+{\def\pingu@color@bowtie{<bowtie-color>}
+\begin{subkeyexplain}{bow tie}{bow tie knot}{color}{\pingu@color@bowtie@knot}
+change the color of the knot:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[bow tie, bow tie knot=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\keyalias{bowtie knot}{bow tie knot}
+\keyalias{bow-tie knot}{bow tie knot}
+}
 
 \begin{subkeyexplain}{bow tie}{bow tie offset}{length}{\pingu@x@bowtie@offset}
 Change the vertical offset of the bow tie:
