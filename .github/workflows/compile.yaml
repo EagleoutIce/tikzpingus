@@ -23,16 +23,16 @@ jobs:
         sudo apt install poppler-utils
         pip install six sltx
         echo "tx-default" | sltx docker
-    - name: 'Compile the document and generate preview'
+    - name: 'Compile the documents and generate previews'
       run: |
-        sltx compile --root --profile "tx-default" "showcase" "minimal"
+        sltx compile --root --profile "tx-default" "showcase" "minimal" "documentation"
         pdftoppm -png -r 300 -f 1 -l 1 ./showcase.pdf preview
         pdftoppm -png -r 300 -f 1 -l 1 ./minimal.pdf minimal
     - name: Commit
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add -f "showcase.pdf" "minimal.pdf" "preview-1.png" "minimal-1.png"
+        git add -f "showcase.pdf" "minimal.pdf" "documentation.pdf" "preview-1.png" "minimal-1.png"
         git commit -m "Newly compiled data"
     - name: Push changes
       uses: ad-m/github-push-action@master
