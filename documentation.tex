@@ -126,7 +126,7 @@
 \end{keyexplain}\endgroup}
 \newcommand{\subkeyalias}[4][/pingu/]{\begingroup
 \def\explaincolor{gray!10!white}%
-\def\cursub{#4!#3?\hyperref[pk:#1#4]{\protect\lpingu{#4}}!\hyperref[pk:#1#3]{\protect\lpingu{#3}}!}%
+\def\cursub{#4?\hyperref[pk:#1#4]{\protect\lpingu{#4}}!#3?\hyperref[pk:#1#3]{\protect\lpingu{#3}}!}%
 \begin{keyexplain}[#1]{#2}{\csname pinguopt#3\endcsname}{\csname pingudefa#3\endcsname}%
 	\textcolor{gray}{\footnotesize This is an alias for \keyref[#1]{#3}.}%
 \end{keyexplain}\endgroup}
