@@ -60,10 +60,10 @@
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
 	alsoletter={.-!:0123456789},%disable number
-	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,b},
+	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,b,text,gold,bronze,band},
 	moreemph=[4]{:line,:ghost,parts,:devil,:back},
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend},
-	moreemph=[3]{!hide},
+	moreemph=[3]{!hide,.style},
 	add to literate={/pingu/}{{\textcolor{gray}{/pingu/}}}7
 }
 \NewEnviron{scaleme}[1]{\scalebox{#1}{\BODY}}
@@ -115,7 +115,7 @@
 \def\explaincolor{gray!10!white}%
 \def\cursub{#2?\hyperref[pk:#1#2]{\protect\lpingu{#2}}!}%
 \begin{keyexplain}[#1]{#3}{#4}{#5}%
-	\textcolor{gray}{\footnotesize This command is only active in combination with \keyref[#1]{#2}.}\par
+	\textcolor{gray}{\footnotesize This command is only in effect if \keyref[#1]{#2} is active.}\newline
 }{\end{keyexplain}\endgroup}
 
 \newcommand{\keyalias}[3][/pingu/]{\begingroup
@@ -1051,7 +1051,72 @@ Change the color of the cup straw
 \end{tcblisting}
 \end{keyexplain}
 
+\begin{subkeyexplain}{medal}{medal band}{color}{\pingu@color@medal@band}
+Change the color of the medal band:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[medal, medal band=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
 
+{\def\pingu@color@medal{<medal-color>}
+\begin{subkeyexplain}{medal}{medal shade}{color}{\pingu@color@medal@shade}
+Change the color of the outer medal ring:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[medal, medal shade=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}}
+
+\begin{subkeyexplain}{medal}{medal shade width}{length}{.75pt}
+Change the width of the outer medal ring:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[medal, medal shade=green,
+	       medal shade width=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{medal}{medal text}{text}{\pingu@x@medal@text}
+Set the text displayed in the medal. The style can be changed by
+updating the substyle \texttt{medal text style}.
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[medal, medal text=XY,
+	      medal text style/.style={black}]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{keyexplain}{gold medal}{text}{1}
+Basically the same as the normal medal. This will activate \keyref{medal}:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[gold medal]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{keyexplain}{silver medal}{text}{2}
+Basically the same as the normal medal, but with a silver color. This will activate \keyref{medal}:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[silver medal]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{keyexplain}{bronze medal}{text}{3}
+Basically the same as the normal medal, but with a bronze color. This will activate \keyref{medal}:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[bronze medal]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
 
 
 \subsection{Wing-Items}
