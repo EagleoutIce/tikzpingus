@@ -287,7 +287,7 @@ A lot of options allow for a color to passed. In general, you can provide any co
 \end{multicols}
 Furthermore, there is the color {\makeatletter\say{\expandafter\ipingu\expandafter{\@pingu@none}}} which is available for most\footnote{Why just \say{most}? Well, this package is work in progress and I have added the option late, so I may have forgotten to patch some keys.} extras and wing-items. This color prohibits the compartments from being drawn. To be more precise, the package defines the macro |\pingu@none|, which is matched against the selected color.
 
-As an example, lets take a look at the \say{cup}-extra, which provides an additional key \say{cup straw} to color the straw:
+As an example, lets take a look at the \keyref{cup}-extra, which provides an additional key \keyref{cup straw} to color the straw:
 \begin{tcblisting}{title={Cup without a straw}}
 \begin{tikzpicture}
 	\pingu[wings grab, cup=pingu@purple,
@@ -302,8 +302,7 @@ You do not have to state every key for every penguin.
 With the two macros \lstinline[language=pingulang]'\pingudefaults' and \lstinline[language=pingulang]'\pingudefaultsappend' (works the same, but will extend the current options) you can set default-options for all penguins to come:
 \begin{tcblisting}{title={Change the mainstream}}
 \begin{tikzpicture}
-	  tie=pingu@purple
-	\pingudefaults{wings grab, eyes shiny,}
+	\pingudefaults{wings grab, eyes shiny}
 	\pingu
 	\pingu[left wing shock, xshift=3cm]
 \end{tikzpicture}
