@@ -85,7 +85,7 @@
 \def\cursub{}
 \newenvironment{keyexplain}[4][/pingu/]{\begin{minipage}{\linewidth}%
 	\parskip\medskipamount
-	\phantomsection\label{pk:#1#2}\index{\cursub#2?\hyperref[pk:#1#2]{\lpingu{#2}}}%
+	\phantomsection\label{pk:#1#2}\index{\cursub#2?\hyperref[pk:#1#2]{\protect\lpingu{#2}}}%
 	\expandafter\gdef\csname pinguopt#2\endcsname{#3}%
 	\expandafter\gdef\csname pingudefa#2\endcsname{#4}%
 	\begingroup\pgfkeys{/pingu/.cd,defaults}\protected@edef\@tmp{#4}%
@@ -98,7 +98,7 @@
 	}\\*[\smallskipamount]\endgroup}
 {\end{minipage}\medskip\par}
 
-\def\singleshortcut#1#2#3#4{\def\cursub{#2?\hyperref[pk:#1#2]{\lpingu{#2}}!}\begin{keyexplain}[#1]{#2 #3}{\csname pinguopt#4\endcsname}{\csname pingudefa#4\endcsname}%
+\def\singleshortcut#1#2#3#4{\def\cursub{#2?\hyperref[pk:#1#2]{\protect\lpingu{#2}}!}\begin{keyexplain}[#1]{#2 #3}{\csname pinguopt#4\endcsname}{\csname pingudefa#4\endcsname}%
 	\textcolor{gray}{\footnotesize This is a shortcut for: \texttt{\keyref[#1]{#2} = {\optstyle#3}}. The \enquote{\texttt{\textit{\csname pinguopt#4\endcsname}}} argument is passed to \keyref[#1]{#4}.}
 \end{keyexplain}}
 \newcommand*\shortcuts[4][/pingu/]{\begingroup
@@ -113,14 +113,20 @@
 \newenvironment{subkeyexplain}[5][/pingu/]{%
 \begingroup
 \def\explaincolor{gray!10!white}%
-\def\cursub{#2?\hyperref[pk:#1#2]{\lpingu{#2}}!}%
+\def\cursub{#2?\hyperref[pk:#1#2]{\protect\lpingu{#2}}!}%
 \begin{keyexplain}[#1]{#3}{#4}{#5}%
 	\textcolor{gray}{\footnotesize This command is only active in combination with \keyref[#1]{#2}.}\par
 }{\end{keyexplain}\endgroup}
 
 \newcommand{\keyalias}[3][/pingu/]{\begingroup
 \def\explaincolor{gray!10!white}%
-\def\cursub{#3?\hyperref[pk:#1#3]{\lpingu{#3}}!}%
+\def\cursub{#3?\hyperref[pk:#1#3]{\protect\lpingu{#3}}!}%
+\begin{keyexplain}[#1]{#2}{\csname pinguopt#3\endcsname}{\csname pingudefa#3\endcsname}%
+	\textcolor{gray}{\footnotesize This is an alias for \keyref[#1]{#3}.}%
+\end{keyexplain}\endgroup}
+\newcommand{\subkeyalias}[4][/pingu/]{\begingroup
+\def\explaincolor{gray!10!white}%
+\def\cursub{#4!#3?\hyperref[pk:#1#4]{\protect\lpingu{#4}}!\hyperref[pk:#1#3]{\protect\lpingu{#3}}!}%
 \begin{keyexplain}[#1]{#2}{\csname pinguopt#3\endcsname}{\csname pingudefa#3\endcsname}%
 	\textcolor{gray}{\footnotesize This is an alias for \keyref[#1]{#3}.}%
 \end{keyexplain}\endgroup}
@@ -1012,11 +1018,10 @@ Change the vertical offset of the bow tie:
 \end{tcblisting}
 \end{subkeyexplain}
 
-\keyalias{bowtie offset}{bow tie offset}
-\keyalias{bow-tie offset}{bow tie offset}
+\subkeyalias{bowtie offset}{bow tie offset}{bow tie}
+\subkeyalias{bow-tie offset}{bow tie offset}{bow tie}
 
 \subsubsection{The cup}
-
 \begin{keyexplain}{cup}{color}{pingu@green}
 	Change the color of the cup:
 \begin{tcblisting}{}
@@ -1035,6 +1040,19 @@ Change the color of the cup straw
 \end{tikzpicture}
 \end{tcblisting}
 \end{subkeyexplain}}
+
+\subsubsection{The medal}
+\begin{keyexplain}{medal}{color}{pingu@yellow}
+	Change the color of the medal:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[medal]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+
+
 
 \subsection{Wing-Items}
 \label{sub:wing-items}
