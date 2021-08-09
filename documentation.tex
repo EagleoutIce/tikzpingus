@@ -1196,6 +1196,60 @@ Set the color of the blob at the end of the string of the left monocle:
 \end{tcblisting}
 \end{subkeyexplain}}
 
+\begin{keyexplain}{monocle right}{color}{pingu@black}
+Sets the color of the right monocle:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[monocle right]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{subkeyexplain}{monocle right}{monocle right glass}{color}{\pingu@color@monocleright@glass}
+Set the color of the glass of the right monocle. The opacity of this color is set by \keyref{monocle right opacity}.
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[monocle right,
+	       monocle right glass=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{monocle right}{monocle right opacity}{factor}{\pingu@x@monocleright@opacity}
+Set the opacity of the glass color of the right monocle (set by \keyref{monocle right glass}):
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[monocle right,
+	       monocle right opacity=1]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+{\def\pingu@color@monocleright{<right-monocle-color>}
+\begin{subkeyexplain}{monocle right}{monocle right string}{color}{\pingu@color@monocleright@string}
+Set the color of the string of the right monocle:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[monocle right,
+	       monocle right string=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}}
+
+{\def\pingu@color@monocleright{<right-monocle-color>}
+\begin{subkeyexplain}{monocle right}{monocle right blob}{color}{\pingu@color@monocleright@blob}
+Set the color of the blob at the end of the string of the right monocle:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[monocle right,
+	       monocle right blob=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}}
+
+
+
+
 \subsection{Wing-Items}
 \label{sub:wing-items}
 
