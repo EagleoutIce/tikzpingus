@@ -60,7 +60,7 @@
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
 	alsoletter={.-!:0123456789},%disable number
-	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,b,text,gold,bronze,band},
+	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,b,text,gold,bronze,band,eyepatch,eye-patch},
 	moreemph=[4]{:line,:ghost,parts,:devil,:back},
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend},
 	moreemph=[3]{!hide,.style},
@@ -1117,6 +1117,31 @@ Basically the same as the normal medal, but with a bronze color. This will activ
 \end{tcblisting}
 \end{keyexplain}
 
+\subsection{The eye patches}
+
+\begin{keyexplain}{eye patch left}{color}{<pingu-main-color>}
+Sets the color of the left eye patch:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[eye patch left]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\keyalias{eyepatch left}{eye patch left}
+\keyalias{eye-patch left}{eye patch left}
+
+\begin{keyexplain}{eye patch right}{color}{<pingu-main-color>}
+Sets the color of the right eye patch:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[eye patch right]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\keyalias{eyepatch right}{eye patch right}
+\keyalias{eye-patch right}{eye patch right}
 
 \subsection{Wing-Items}
 \label{sub:wing-items}
