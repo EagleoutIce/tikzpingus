@@ -60,7 +60,7 @@
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
 	alsoletter={.-!:0123456789},%disable number
-	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,b,text,gold,bronze,band,eyepatch,eye-patch},
+	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,b,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob},
 	moreemph=[4]{:line,:ghost,parts,:devil,:back},
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend},
 	moreemph=[3]{!hide,.style},
@@ -1142,6 +1142,59 @@ Sets the color of the right eye patch:
 
 \keyalias{eyepatch right}{eye patch right}
 \keyalias{eye-patch right}{eye patch right}
+
+\subsection{The monocle}
+
+\begin{keyexplain}{monocle left}{color}{pingu@black}
+Sets the color of the right monocle:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[monocle left]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{subkeyexplain}{monocle left}{monocle left glass}{color}{\pingu@color@monocleleft@glass}
+Set the color of the glass of the left monocle. The opacity of this color is set by \keyref{monocle left opacity}.
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[monocle left,
+	       monocle left glass=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{monocle left}{monocle left opacity}{factor}{\pingu@x@monocleleft@opacity}
+Set the opacity of the glass color of the left monocle (set by \keyref{monocle left glass}):
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[monocle left,
+	       monocle left opacity=1]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+{\def\pingu@color@monocleleft{<left-monocle-color>}
+\begin{subkeyexplain}{monocle left}{monocle left string}{color}{\pingu@color@monocleleft@string}
+Set the color of the string of the left monocle:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[monocle left,
+	       monocle left string=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}}
+
+{\def\pingu@color@monocleleft{<left-monocle-color>}
+\begin{subkeyexplain}{monocle left}{monocle left blob}{color}{\pingu@color@monocleleft@blob}
+Set the color of the blob at the end of the string of the left monocle:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[monocle left,
+	       monocle left blob=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}}
 
 \subsection{Wing-Items}
 \label{sub:wing-items}
