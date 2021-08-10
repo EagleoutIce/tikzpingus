@@ -883,8 +883,8 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 \pingu@create@extra{pants}{%
     pants/.code    	               = \pingu@set@extra{pants}{true}\pingu@color{pants}{#1},
     pants/.default                 = pingu@red,
-    pants button left/.code        = \pingu@color{pants@button@left}{#1},
     pants bands/.is if             = @pingu@x@pants@bands,
+    pants button left/.code        = \pingu@color{pants@button@left}{#1},
     pants button right/.code       = \pingu@color{pants@button@right}{#1},
     pants buttons/.style           = {/pingu/pants button left={#1}, /pingu/pants button right={#1}},
     pants button left shade/.code  = \pingu@color{pants@button@left@shade}{#1},

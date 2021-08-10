@@ -60,7 +60,7 @@
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
 	alsoletter={.-!:0123456789},%disable number
-	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,b,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob,pants},
+	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,b,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob,pants,button,buttons,bands,no,without,extra},
 	moreemph=[4]{:line,:ghost,parts,:devil,:back},
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend},
 	moreemph=[3]{!hide,.style},
@@ -1253,10 +1253,20 @@ Set the color of the blob at the end of the string of the right monocle:
 Sets the color of the pants:
 \begin{tcblisting}{}
 \begin{tikzpicture}
-	\pingu[pants]
+	\pingu[pants=green]
 \end{tikzpicture}
 \end{tcblisting}
 \end{keyexplain}
+
+\begin{subkeyexplain}{pants}{pants bands}{true/false}{false}
+Switch the bands of the pants on and of:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[pants, pants bands]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
 
 \begin{subkeyexplain}{pants}{pants button left}{color}{\pingu@color@pants@button@left}
 Set the color of the left pant button:
@@ -1275,6 +1285,67 @@ Set the color of the right pant button:
 \end{tikzpicture}
 \end{tcblisting}
 \end{subkeyexplain}
+
+\begin{subkeyexplain}{pants}{pants buttons}{color}{\pingu@color@pants@button@left}
+Sets \keyref{pants button left} and \keyref{pants button right} with the same color.
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[pants, pants buttons=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+{\def\pingu@color@pants@button@left{<left-button-color>}%
+\begin{subkeyexplain}{pants}{pants button left shade}{color}{\pingu@color@pants@button@left@shade}
+Set the color of the left pant button shade:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[pants,
+	       pants button left shade=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}}
+
+{\def\pingu@color@pants@button@left{<right-button-color>}%
+\begin{subkeyexplain}{pants}{pants button right shade}{color}{\pingu@color@pants@button@right@shade}
+Set the color of the right pant button shade:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[pants,
+	       pants button right shade=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}}
+
+{\def\pingu@color@pants@button@left{<left-button-color>}%
+\begin{subkeyexplain}{pants}{pants buttons shade}{color}{\pingu@color@pants@button@left@shade}
+Sets \keyref{pants button left shade} and \keyref{pants button right shade} with the same color.
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[pants, pants buttons shade=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}}
+
+\begin{subkeyexplain}{pants}{pants no buttons}{}{}
+Remove the buttons from the pants:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[pants, pants no buttons]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{pants}{pants extra height}{length}{\pingu@x@pants@extra@height}
+Raise the pants:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[pants, pants extra height=6mm]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\subkeyalias{pants without buttons}{pants no buttons}{pants}
 
 \subsection{Wing-Items}
 \label{sub:wing-items}
