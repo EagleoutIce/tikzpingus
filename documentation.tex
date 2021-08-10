@@ -60,7 +60,7 @@
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
 	alsoletter={.-!:0123456789},%disable number
-	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,b,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob},
+	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,b,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob,pants},
 	moreemph=[4]{:line,:ghost,parts,:devil,:back},
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend},
 	moreemph=[3]{!hide,.style},
@@ -1117,7 +1117,7 @@ Basically the same as the normal medal, but with a bronze color. This will activ
 \end{tcblisting}
 \end{keyexplain}
 
-\subsection{The eye patches}
+\subsubsection{The eye patches}
 
 \begin{keyexplain}{eye patch left}{color}{<pingu-main-color>}
 Sets the color of the left eye patch:
@@ -1143,7 +1143,7 @@ Sets the color of the right eye patch:
 \keyalias{eyepatch right}{eye patch right}
 \keyalias{eye-patch right}{eye patch right}
 
-\subsection{The monocle}
+\subsubsection{The monocle}
 
 \begin{keyexplain}{monocle left}{color}{pingu@black}
 Sets the color of the right monocle:
@@ -1248,7 +1248,33 @@ Set the color of the blob at the end of the string of the right monocle:
 \end{subkeyexplain}}
 
 
+\subsubsection{The pants}
+\begin{keyexplain}{pants}{color}{pingu@red}
+Sets the color of the pants:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[pants]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
 
+\begin{subkeyexplain}{pants}{pants button left}{color}{\pingu@color@pants@button@left}
+Set the color of the left pant button:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[pants, pants button left=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{pants}{pants button right}{color}{\pingu@color@pants@button@right}
+Set the color of the right pant button:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[pants, pants button right=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
 
 \subsection{Wing-Items}
 \label{sub:wing-items}
