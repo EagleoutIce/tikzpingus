@@ -59,8 +59,8 @@
 \lstdefinelanguage{pingulang}{
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
-	alsoletter={.-!:0123456789},%disable number
-	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,b,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob,pants,button,buttons,bands,no,without,extra},
+	alsoletter={.-!:0123456789,},%disable number
+	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,b,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob,pants,button,buttons,bands,no,without,extra,steps,function,solid},
 	moreemph=[4]{:line,:ghost,parts,:devil,:back},
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend},
 	moreemph=[3]{!hide,.style},
@@ -1357,6 +1357,56 @@ Raise the pants:
 \end{tikzpicture}
 \end{tcblisting}
 \end{keyexplain}
+
+\begin{keyexplain}{glow thick}{color}{}
+Will pass on the color to \keyref{glow} and use a \keyref{glow width function} width a thicker line width:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[glow thick=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{keyexplain}{glow solid}{color}{}
+Will pass on the color to \keyref{glow} and use a \keyref{glow width function} combined with \keyref{glow function} to create a solid glow:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[glow solid=green, wings wave]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{subkeyexplain}{glow}{glow steps}{list}{\pingu@x@extra@glow@steps}
+	Comma separated list of discrete intervals for the glow calculation:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[glow=green, glow steps={.3,.5,1}]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+{\def\i{\textbackslash i}%
+\begin{subkeyexplain}{glow}{glow function}{function}{\pingu@x@extra@glow@func}
+	Function using the token \lpingu{\i} to refer to the current \keyref{glow steps}. Its evaluation will be used to determine the opacity of the current step:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[glow=green,
+	       glow function={.5/\i}]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}}
+
+{\def\i{\textbackslash i}%
+\begin{subkeyexplain}{glow}{glow width function}{function}{\pingu@x@extra@glow@width@func}
+	Function using the token \lpingu{\i} to refer to the current \keyref{glow steps}. Its evaluation will be used to determine the width of the current step:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[glow=green,
+	  glow width function={5mm-\i mm}]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}}
+
 
 \subsection{Wing-Items}
 \label{sub:wing-items}
