@@ -1539,10 +1539,10 @@ scale=\pingu@x@cakehat@scale]
 
 %     #region handcast
 \pingu@create@wing@extra{handcast}{%
-  handcast \@lr/.forward to    = hand cast \@lr,
+  handcast \@lr/.forward to    = /pingu/hand cast \@lr,
   hand cast \@lr/.code         = {\pingu@set@extra{handcast\@lr}{true}\@namedef{pingu@handcast@\@lr}{##1}},
   hand cast \@lr/.default      = {X},
-  handcast \@lr\space color/.forward to    = hand cast \@lr\space color,
+  handcast \@lr\space color/.forward to    = /pingu/hand cast \@lr\space color,
   hand cast \@lr\space color/.code = \pingu@color{handcast@\@lr @color}{##1},%
 }{hand cast \@lr\space color=pingu@purple}
 \def\pingu@draw@wi@handcast#1{%
