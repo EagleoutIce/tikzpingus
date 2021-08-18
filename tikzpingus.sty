@@ -1272,9 +1272,10 @@ scale=\pingu@x@cakehat@scale]
 % #region eye frame
 \pingu@create@extra{eyeframe}{%
     % extra halo
-    eyeframe/.forward to = /pingu/eye frame,
-    eye frame/.code      = \pingu@set@extra{eyeframe}{true}\pingu@color{eyeframe}{#1},
-    eye frame/.default   = pingu@black,
+    eyeframe/.forward to  = /pingu/eye frame,
+    eye-frame/.forward to = /pingu/eye frame,
+    eye frame/.code       = \pingu@set@extra{eyeframe}{true}\pingu@color{eyeframe}{#1},
+    eye frame/.default    = pingu@black,
 }{}
 
 \def\pingu@draw@ea@eyeframe{%
