@@ -1432,7 +1432,7 @@ Display glasses for the penguin:
 \end{keyexplain}
 
 \begin{subkeyexplain}{glasses}{glasses left fill}{color}{\pingu@color@glasses@fill@l}
-	Sets the fill color of the left glass:
+	Sets the fill color of the left glass. The opacity is determined by \keyref{glasses left opacity}.
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[glasses,
@@ -1442,11 +1442,33 @@ Display glasses for the penguin:
 \end{subkeyexplain}
 
 \begin{subkeyexplain}{glasses}{glasses right fill}{color}{\pingu@color@glasses@fill@r}
-	Sets the fill color of the right glass:
+	Sets the fill color of the right glass. The opacity is determined by \keyref{glasses right opacity}.
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[glasses,
 	       glasses right fill=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{glasses}{glasses left opacity}{color}{\pingu@x@glasses@op@l}
+	Sets the fill opacity of the left glass:
+\begin{tcblisting}{listing options={style=lstpingu,language=pingulang,deleteemph={[2]{1}}}}
+\begin{tikzpicture}
+	\pingu[glasses,
+	       glasses left fill=green,
+				 glasses left opacity=1]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{glasses}{glasses right opacity}{color}{\pingu@x@glasses@op@r}
+	Sets the fill opacity of the right glass:
+\begin{tcblisting}{listing options={style=lstpingu,language=pingulang,deleteemph={[2]{1}}}}
+\begin{tikzpicture}
+	\pingu[glasses,
+	       glasses right fill=green,
+				 glasses right opacity=1]
 \end{tikzpicture}
 \end{tcblisting}
 \end{subkeyexplain}
