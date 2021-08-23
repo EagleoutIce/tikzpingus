@@ -1451,7 +1451,16 @@ Display glasses for the penguin:
 \end{tcblisting}
 \end{subkeyexplain}
 
-\begin{subkeyexplain}{glasses}{glasses left opacity}{color}{\pingu@x@glasses@op@l}
+\begin{subkeyexplain}{glasses}{glasses fill}{color}{}
+	Change the color of both glasses by calling \keyref{glasses left fill} and \keyref{glasses right fill} with the same value.
+\begin{tcblisting}{listing options={style=lstpingu,language=pingulang,deleteemph={[2]{simple}}}}
+\begin{tikzpicture}
+	\pingu[glasses, glasses fill=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{glasses}{glasses left opacity}{factor}{\pingu@x@glasses@op@l}
 	Sets the fill opacity of the left glass:
 \begin{tcblisting}{listing options={style=lstpingu,language=pingulang,deleteemph={[2]{1}}}}
 \begin{tikzpicture}
@@ -1462,7 +1471,7 @@ Display glasses for the penguin:
 \end{tcblisting}
 \end{subkeyexplain}
 
-\begin{subkeyexplain}{glasses}{glasses right opacity}{color}{\pingu@x@glasses@op@r}
+\begin{subkeyexplain}{glasses}{glasses right opacity}{factor}{\pingu@x@glasses@op@r}
 	Sets the fill opacity of the right glass:
 \begin{tcblisting}{listing options={style=lstpingu,language=pingulang,deleteemph={[2]{1}}}}
 \begin{tikzpicture}
@@ -1472,6 +1481,18 @@ Display glasses for the penguin:
 \end{tikzpicture}
 \end{tcblisting}
 \end{subkeyexplain}
+
+\begin{subkeyexplain}{glasses}{glasses opacity}{factor}{}
+	Change the opacity of both glasses by calling \keyref{glasses left opacity} and \keyref{glasses right opacity} with the same value.
+\begin{tcblisting}{listing options={style=lstpingu,language=pingulang,deleteemph={[2]{1}}}}
+\begin{tikzpicture}
+	\pingu[glasses,
+		glasses fill=teal,
+		glasses opacity=1]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
 
 \subsection{Wing-Items}
 \label{sub:wing-items}
