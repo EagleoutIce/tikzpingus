@@ -1513,6 +1513,98 @@ Configure the \keyref{glasses} to display sunglasses. The color is passed on to 
 
 \keyalias{sunglasses}{sun glasses}
 
+\subsubsection{The rounded glasses}
+
+\begin{keyexplain}{glasses round}{color}{pingu@black}
+Behaves equivalent to \keyref{glasses} but produces a round counterpart:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[glasses round=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{subkeyexplain}{glasses round}{glasses left fill}{color}{\pingu@color@glassesround@fill@l}
+	Sets the fill color of the left glass. The opacity is determined by \keyref{glasses round left opacity}.
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[glasses round,
+	       glasses round left fill=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{glasses round}{glasses round right fill}{color}{\pingu@color@glassesround@fill@r}
+	Sets the fill color of the right glass. The opacity is determined by \keyref{glasses round right opacity}.
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[glasses round,
+		  glasses round right fill=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{glasses round}{glasses round fill}{color}{}
+	Change the color of both glasses by calling \keyref{glasses round left fill} and \keyref{glasses round right fill} with the same value.
+\begin{tcblisting}{listing options={style=lstpingu,language=pingulang,deleteemph={[2]{simple}}}}
+\begin{tikzpicture}
+	\pingu[glasses round, glasses round fill=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{glasses round}{glasses round left opacity}{factor}{\pingu@x@glassesround@op@l}
+	Sets the fill opacity of the left glass:
+\begin{tcblisting}{listing options={style=lstpingu,language=pingulang,deleteemph={[2]{1}}}}
+\begin{tikzpicture}
+	\pingu[glasses round,
+			 glasses round left fill=green,
+			 glasses round left opacity=1]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{glasses round}{glasses round right opacity}{factor}{\pingu@x@glassesround@op@r}
+	Sets the fill opacity of the right glass:
+\begin{tcblisting}{listing options={style=lstpingu,language=pingulang,deleteemph={[2]{1}}}}
+\begin{tikzpicture}
+	\pingu[glasses round,
+			 glasses round right fill=green,
+			 glasses round right opacity=1]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{glasses round}{glasses round opacity}{factor}{}
+	Change the opacity of both glasses round by calling \keyref{glasses round left opacity} and \keyref{glasses round right opacity} with the same value.
+\begin{tcblisting}{listing options={style=lstpingu,language=pingulang,deleteemph={[2]{1}}}}
+\begin{tikzpicture}
+	\pingu[glasses round,
+		glasses round fill=teal,
+		glasses round opacity=1]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{glasses round}{glasses round line width}{length}{1.125pt}
+	Change the thickness of the lines:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[glasses round, glasses round line width=1mm]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{keyexplain}{sun glasses round}{color}{pingu@black}
+Configure the \keyref{glasses round} to display sunglasses round. The color is passed on to \keyref{glasses round fill}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[sun glasses round=orange]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\keyalias{sunglasses round}{sun glasses round}
 
 \subsection{Wing-Items}
 \label{sub:wing-items}
