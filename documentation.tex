@@ -60,7 +60,7 @@
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
 	alsoletter={.-!:0123456789},%disable number
-	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,b,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob,pants,button,buttons,bands,no,without,extra,steps,function,solid,right,frame,eye-frame,eyeframe,glasses,fill,line,sun,horns,devilhorns,devil-horns,headband,head-band,bend},
+	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,b,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob,pants,button,buttons,bands,no,without,extra,steps,function,solid,right,frame,eye-frame,eyeframe,glasses,fill,line,sun,horns,devilhorns,devil-horns,headband,head-band,bend, upper},
 	moreemph=[4]{:line,:ghost,parts,:devil,:back},
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend},
 	moreemph=[3]{!hide,.style},
@@ -1637,7 +1637,7 @@ Places a head band with the specified color:
 
 
 \begin{subkeyexplain}{head band}{head band bend}{angle}{\pingu@x@headband@bend}
-Defines te angle of the head band:
+Defines the bending angle of the head band:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[head band, head band bend=25]
@@ -1647,6 +1647,31 @@ Defines te angle of the head band:
 
 \keyalias{headband bend}{head band bend}
 \keyalias{head-band bend}{head band bend}
+
+\begin{subkeyexplain}{head band}{head band angle}{angle}{\pingu@x@headband@angle}
+Defines the lower start-angle of the head band:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[head band, head band angle=25]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\keyalias{headband angle}{head band angle}
+\keyalias{head-band angle}{head band angle}
+
+\begin{subkeyexplain}{head band}{head band upper angle}{angle}{\pingu@x@headband@angle}
+Defines the upper start-angle of the head band:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[head band,
+	   head band upper angle=25]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\keyalias{headband upper angle}{head band upper angle}
+\keyalias{head-band upper angle}{head band upper angle}
 
 \subsection{Wing-Items}
 \label{sub:wing-items}
