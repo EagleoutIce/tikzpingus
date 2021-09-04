@@ -34,9 +34,10 @@
 \addtokomafont{date}{\normalsize}
 
 \def\optstyle{\color{pingu@blue!75!black}\slshape}
+\def\lstfnsize{-.7}
 \lstdefinestyle{lstpingu}{%
 	tabsize=2, breaklines,
-	basicstyle=\relsize{-.7}\ttfamily,
+	basicstyle=\relsize{\lstfnsize}\ttfamily,
 	commentstyle={\color{gray}\slshape},
 	columns=fullflexible,
 	emphstyle=\slshape,
@@ -45,6 +46,7 @@
 	emphstyle=[4]\color{pingu@blue!40!black},
 	texcsstyle=*\color{gray}\bfseries,
 	texcsstyle=*[2]\color{pingu@purple}\bfseries,
+	texcsstyle=*[3]\color{gray!60!white},
 	lineskip=2.75pt,
 	keepspaces=true,
 	moredelim=[s][\itshape]{<}{>},
@@ -62,11 +64,16 @@
 	alsoletter={.-!:0123456789},%disable number
 	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,b,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob,pants,button,buttons,bands,no,without,extra,steps,function,solid,right,frame,eye-frame,eyeframe,glasses,fill,line,sun,horns,devilhorns,devil-horns,headband,head-band,bend, upper},
 	moreemph=[4]{:line,:ghost,parts,:devil,:back},
+	deletetexcs={begin,end},
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend},
+	moretexcs=[3]{begin,end},
 	moreemph=[3]{!hide,.style},
 	add to literate={/pingu/}{{\textcolor{gray}{/pingu/}}}7
+		{\{tikzpicture\}}{{\textcolor{gray!60!white}{\{tikzpicture\}}}}{13}
 }
 \NewEnviron{scaleme}[1]{\scalebox{#1}{\BODY}}
+
+\RedeclareSectionCommand[afterskip=-2mm]{section}
 
 \tcbset{%
 	colframe=gray,enhanced,breakable,
@@ -75,7 +82,7 @@
 	sidebyside,
 	listing options={style=lstpingu,language=pingulang},
 	center lower,
-	righthand width=5cm,
+	righthand width=4.75cm,
 	bottom=0pt,top=0pt,boxsep=2.25pt,
 	before lower app={\parskip.5cm}
 }
@@ -197,7 +204,7 @@ Besides the keys defined by this package, you can use the keys of \TikZ\ and |pg
 \begin{tcblisting}{title={The Reunion}}
 \begin{tikzpicture}
 	\duck
-	\pingu[xshift=3cm, yshift=14mm,
+	\pingu[xshift=2.8cm, yshift=14mm,
 	       eyes wink]
 \end{tikzpicture}
 \end{tcblisting}
@@ -292,7 +299,7 @@ As an example, lets take a look at the \keyref{cup}-extra, which provides an add
 \begin{tikzpicture}
 	\pingu[wings grab, cup=pingu@purple,
 	       cup straw=pingu@blue]
-	\pingu[wings grab, cup, xshift=3cm,
+	\pingu[wings grab, cup, xshift=2.8cm,
 	       cup straw=!hide]
 \end{tikzpicture}
 \end{tcblisting}
@@ -304,7 +311,7 @@ With the two macros \lstinline[language=pingulang]'\pingudefaults' and \lstinlin
 \begin{tikzpicture}
 	\pingudefaults{wings grab, eyes shiny}
 	\pingu
-	\pingu[left wing shock, xshift=3cm]
+	\pingu[left wing shock, xshift=2.8cm]
 \end{tikzpicture}
 \end{tcblisting}
 
@@ -436,6 +443,7 @@ I am working on the \textit{cloak}-Clothing at the moment:
 
 Aliases my set custom defaults. Those defaults are not listed as they may change.
 
+\def\lstfnsize{-1.65}
 \tcbset{%
 	before lower={\begin{adjustbox}{scale=.6}},
 	after lower={\end{adjustbox}},%
@@ -1166,7 +1174,7 @@ Set the color of the glass of the left monocle. The opacity of this color is set
 
 \begin{subkeyexplain}{monocle left}{monocle left opacity}{factor}{\pingu@x@monocleleft@opacity}
 Set the opacity of the glass color of the left monocle (set by \keyref{monocle left glass}):
-\begin{tcblisting}{}
+\begin{tcblisting}{listing options={style=lstpingu,language=pingulang,deleteemph={[2]{1}}}}
 \begin{tikzpicture}
 	\pingu[monocle left,
 	       monocle left opacity=1]
@@ -1217,7 +1225,7 @@ Set the color of the glass of the right monocle. The opacity of this color is se
 
 \begin{subkeyexplain}{monocle right}{monocle right opacity}{factor}{\pingu@x@monocleright@opacity}
 Set the opacity of the glass color of the right monocle (set by \keyref{monocle right glass}):
-\begin{tcblisting}{}
+\begin{tcblisting}{listing options={style=lstpingu,language=pingulang,deleteemph={[2]{1}}}}
 \begin{tikzpicture}
 	\pingu[monocle right,
 	       monocle right opacity=1]
@@ -1664,8 +1672,7 @@ Defines the lower start-angle of the head band:
 Defines the upper start-angle of the head band:
 \begin{tcblisting}{}
 \begin{tikzpicture}
-	\pingu[head band,
-	   head band upper angle=25]
+	\pingu[head band, head band upper angle=25]
 \end{tikzpicture}
 \end{tcblisting}
 \end{subkeyexplain}
