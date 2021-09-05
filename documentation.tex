@@ -1680,6 +1680,32 @@ Defines the upper start-angle of the head band:
 \keyalias{headband upper angle}{head band upper angle}
 \keyalias{head-band upper angle}{head band upper angle}
 
+\begin{subkeyexplain}{head band}{head band knot}{true/false}{\if@pingu@x@headband@knot@ true\else false\fi}
+En- and disable the head band knot:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[head band, head band knot]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\keyalias{headband knot}{head band knot}
+\keyalias{head-band knot}{head band knot}
+
+{\def\pingu@color@headband{<headband-color>}
+\begin{subkeyexplain}{head band}{head band knot color}{color}{\pingu@color@headband@knot}
+If \keyref{head band knot} is enabled, this setting changes the color of the knot:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[head band, head band knot,
+		head band knot color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\keyalias{headband knot color}{head band knot color}
+\keyalias{head-band knot color}{head band knot color}}
+
 \subsection{Wing-Items}
 \label{sub:wing-items}
 
