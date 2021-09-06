@@ -1735,6 +1735,18 @@ If \keyref{head band knot} is enabled, this setting changes the color of the lef
 \keyalias{headband knot b color}{head band knot b color}
 \keyalias{head-band knot b color}{head band knot b color}}
 
+\begin{subkeyexplain}{head band}{head band bands}{true/false}{\if@pingu@x@headband@bands@ true\else false\fi}
+En- and disable the head band bands:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[head band, head band bands=false]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\keyalias{headband bands}{head band bands}
+\keyalias{head-band bands}{head band bands}
+
 \subsection{Wing-Items}
 \label{sub:wing-items}
 
