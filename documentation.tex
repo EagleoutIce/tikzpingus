@@ -1747,6 +1747,35 @@ En- and disable the head band bands:
 \keyalias{headband bands}{head band bands}
 \keyalias{head-band bands}{head band bands}
 
+{\def\pingu@color@headband{<headband-color>}
+\begin{subkeyexplain}{head band}{head band bands a color}{color}{\pingu@color@headband@bands@a}
+If \keyref{head band bands} is enabled, this setting changes the color of the large one of the both bands:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[head band, head band bands,
+		head band bands a color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\keyalias{headband bands a color}{head band bands a color}
+\keyalias{head-band bands a color}{head band bands a color}}
+
+{\def\pingu@color@headband{<headband-color>}
+\begin{subkeyexplain}{head band}{head band bands b color}{color}{\pingu@color@headband@bands@b}
+If \keyref{head band bands} is enabled, this setting changes the color of the left headband wing (this will, by default, affect the right wing was well):
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[head band, head band bands,
+		head band bands a color=orange,
+		head band bands b color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\keyalias{headband bands b color}{head band bands b color}
+\keyalias{head-band bands b color}{head band bands b color}}
+
 \subsection{Wing-Items}
 \label{sub:wing-items}
 
