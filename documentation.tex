@@ -62,7 +62,7 @@
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
 	alsoletter={.-!:0123456789},%disable number
-	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,a,b,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob,pants,button,buttons,bands,no,without,extra,steps,function,solid,right,frame,eye-frame,eyeframe,glasses,fill,line,sun,horns,devilhorns,devil-horns,headband,head-band,bend, upper},
+	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,a,b,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob,pants,button,buttons,bands,no,without,extra,steps,function,solid,right,frame,eye-frame,eyeframe,glasses,fill,line,sun,horns,devilhorns,devil-horns,headband,head-band,bend, upper,rook},
 	moreemph=[4]{:line,:ghost,parts,:devil,:back},
 	deletetexcs={begin,end},
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend},
@@ -1726,7 +1726,7 @@ If \keyref{head band knot} is enabled, this setting changes the color of the lef
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[head band, head band knot,
-		head band knot a color=orange,
+		head band knot a color=blue,
 		head band knot b color=green]
 \end{tikzpicture}
 \end{tcblisting}
@@ -1767,7 +1767,7 @@ If \keyref{head band bands} is enabled, this setting changes the color of the le
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[head band, head band bands,
-		head band bands a color=orange,
+		head band bands a color=blue,
 		head band bands b color=green]
 \end{tikzpicture}
 \end{tcblisting}
@@ -1775,6 +1775,46 @@ If \keyref{head band bands} is enabled, this setting changes the color of the le
 
 \keyalias{headband bands b color}{head band bands b color}
 \keyalias{head-band bands b color}{head band bands b color}}
+
+\subsection{The rook}
+
+\begin{keyexplain}{rook}{color}{pingu@silver}
+Covers the penguin in a rook-costume with the given color:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[rook=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+{\def\pingu@color@rook{<rook-color>}
+\begin{subkeyexplain}{rook}{rook back}{color}{\pingu@color@rook@back}
+Change the color of the rook-costume background:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[rook, rook back=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}}
+
+\begin{subkeyexplain}{rook}{rook hatch}{true/false}{\if@pingu@x@rook@draw@hatch@ true\else false\fi}
+Toggles the opening in the rook costume:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[rook, rook hatch=false]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+{\def\pingu@color@rook{<rook-color>}
+\begin{subkeyexplain}{rook}{rook shade}{color}{\pingu@color@rook@shade}
+Change the color of the costume shading:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[rook, rook shade=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}}
 
 \subsection{Wing-Items}
 \label{sub:wing-items}

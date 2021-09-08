@@ -1440,11 +1440,11 @@ scale=\pingu@x@cakehat@scale]
 \newif\if@pingu@x@rook@draw@hatch@
 \pingu@create@extra{rook}{%
     rook/.code          = \pingu@set@extra{rook}{true}\pingu@color{rook}{#1},
+    rook/.default       = pingu@silver,
     rook back/.code     = \pingu@color{rook@back}{#1},
     rook hatch/.is if   = @pingu@x@rook@draw@hatch@,
     rook hatch/.default = true,
     rook shade/.code    = \pingu@color{rook@shade}{#1},
-    rook/.default       = pingu@silver,
 }{rook back=\pingu@color@rook!85!black,rook shade=\pingu@color@rook!92!black,rook hatch}
 
 \def\pingu@draw@ea@rook{%
