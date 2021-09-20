@@ -1775,7 +1775,7 @@ If \keyref{head band bands} is enabled, this setting changes the color of the le
 \subkeyalias{headband bands b color}{head band bands b color}{head band}
 \subkeyalias{head-band bands b color}{head band bands b color}{head band}}
 
-\subsection{The rook}
+\subsubsection{The rook}
 
 \begin{keyexplain}{rook}{color}{pingu@silver}
 Covers the penguin in a rook-costume with the given color:
@@ -1814,6 +1814,34 @@ Change the color of the costume shading:
 \end{tikzpicture}
 \end{tcblisting}
 \end{subkeyexplain}}
+
+\subsubsection{The halo}
+\begin{keyexplain}{halo}{color}{pingu@lightblue}
+Enable the halo with a specific color:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[halo=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{subkeyexplain}{halo}{halo raise}{length}{\pingu@x@halo@raise}
+Define the vertical raise of the halo above the penguins head:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[halo, halo raise=4mm]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{halo}{halo glow}{true/false}{\if@pingu@x@halo@glow true\else false\fi}
+Disable or enable the glow of the halo. The default is controlled by the \texttt{glows}-package option.
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[halo, halo glow=false]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
 
 \subsection{Wing-Items}
 \label{sub:wing-items}
