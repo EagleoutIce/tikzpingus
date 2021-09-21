@@ -1927,6 +1927,25 @@ Currently, this is a very cumbersome command to change various hat parameters at
 \end{tcblisting}
 \end{subkeyexplain}
 
+\subsubsection{The crown}
+\begin{keyexplain}{crown}{color}{pingu@yellow}
+Enable the crown with a specific color:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[crown=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{subkeyexplain}{crown}{crown 3d}{true/false}{\if@pingu@x@crown@ddd@ true\else false\fi}
+Toggle the 3d-Design of the crown.
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[crown, crown 3d=false]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
 \subsection{Wing-Items}
 \label{sub:wing-items}
 
