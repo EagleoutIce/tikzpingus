@@ -2003,6 +2003,16 @@ Change the color of the rings around the crown
 \end{tcblisting}
 \end{subkeyexplain}}
 
+\begin{subkeyexplain}{crown}{crown position}{angle>:(<x>,<y>)<scale}{\pingu@x@crown@angle:(\pingu@x@crown@xshift,\pingu@x@crown@yshift)\{\pingu@x@crown@scale\}}
+Currently, this is a very cumbersome command to change various crown parameters at the same time:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[crown, eyes wink,
+		crown position={1:(-.1cm,-.275cm){1.33}}]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
 \begin{keyexplain}{crown 2d}{color}{pingu@yellow}
 Enables the \keyref{crown} with the given color and disables \keyref{crown 3d}:
 \begin{tcblisting}{}
