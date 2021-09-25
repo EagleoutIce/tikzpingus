@@ -1995,7 +1995,7 @@ Change the color of all the seven gems of the crown:
 
 {\def\pingu@color@crown{<crown-color>}
 \begin{subkeyexplain}{crown}{crown gem ring}{color}{\pingu@color@crown@gem@ring}
-Change the color of the rings around the crown
+Change the color of the rings around the crown:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[crown, crown gem ring=green]
@@ -2022,6 +2022,114 @@ Enables the \keyref{crown} with the given color and disables \keyref{crown 3d}:
 \end{tcblisting}
 \end{keyexplain}
 
+\subsection{The princess crown}
+Similar to \keyref{crown} but smaller.
+
+\begin{keyexplain}{princess crown}{color}{pingu@yellow}
+Enable the smaller crown with a specific color:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[princess crown=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{subkeyexplain}{princess crown}{princess crown 3d}{true/false}{\if@pingu@x@princesscrown@ddd@ true\else false\fi}
+Toggle the 3d-Design of the smaller crown.
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[princess crown, princess crown 3d=false]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+{\def\pingu@color@princesscrown{<princess-crown-color>}
+\begin{subkeyexplain}{princess crown}{princess crown back}{color}{\pingu@color@princesscrown@back}
+Change the back color of the smaller crown:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[princess crown, princess crown back=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}}
+
+\begin{subkeyexplain}{princess crown}{princess crown front bend}{angle}{\pingu@x@princesscrown@f@bend}
+Change the front lower bend of the smaller crown:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[princess crown, princess crown front bend=52]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{princess crown}{princess crown back bend}{angle}{\pingu@x@princesscrown@b@bend}
+Change the back lower bend of the smaller crown:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[princess crown, princess crown back bend=46]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{princess crown}{princess crown gem shade}{true/false}{\if@pingu@x@princesscrown@shade@ true\else false\fi}
+Toggle the gem shading of the smaller crown.
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[princess crown,
+		princess crown gem shade=false]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{princess crown}{princess crown bobbles}{true/false}{\if@pingu@x@princesscrown@bobbles@ true\else false\fi}
+Toggle the bobbles of the smaller crown.
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[princess crown, princess crown bobbles=false]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{princess crown}{princess crown gem colors}{a><b><c><d}{\{\pingu@color@princesscrown@gem@a\}\{\pingu@color@princesscrown@gem@b\}\ldots}
+Change the color of all the seven gems of the smaller crown:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[princess crown,
+		princess crown gem colors={green}{green}{white}
+		{green}{green}]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+{\def\pingu@color@princesscrown{<princess-crown-color>}
+\begin{subkeyexplain}{princess crown}{princess crown gem ring}{color}{\pingu@color@princesscrown@gem@ring}
+Change the color of the rings around the small crown:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[princess crown,
+		princess crown gem ring=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}}
+
+\begin{subkeyexplain}{princess crown}{princess crown position}{angle>:(<x>,<y>)<scale}{\pingu@x@princesscrown@angle:(\pingu@x@princesscrown@xshift,\pingu@x@princesscrown@yshift)\{\pingu@x@princesscrown@scale\}}
+Currently, this is a very cumbersome command to change various princess crown parameters at the same time:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[princess crown, eyes wink,
+		princess crown position={1:(-.19cm,-.2cm){2.2}}]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{keyexplain}{princess crown 2d}{color}{pingu@yellow}
+Enables the \keyref{princess crown} with the given color and disables \keyref{princess crown 3d}:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[princess crown 2d=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
 
 \subsection{Wing-Items}
 \label{sub:wing-items}

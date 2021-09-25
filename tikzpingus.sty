@@ -1108,12 +1108,12 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
   princess crown front bend/.code  = \def\pingu@x@princesscrown@f@bend{#1},
   princess crown back bend/.code   = \def\pingu@x@princesscrown@b@bend{#1},
   princess crown gem shade/.is if  = @pingu@x@princesscrown@shade@,
-  princess crown bobbles/.is if  = @pingu@x@princesscrown@bobbles@,
+  princess crown bobbles/.is if = @pingu@x@princesscrown@bobbles@,
   princess crown gem shade/.default = true,
   princess crown gem colors/.code n args = 5{\pingu@color{princesscrown@gem@a}{#1}\pingu@color{princesscrown@gem@b}{#2}\pingu@color{princesscrown@gem@c}{#3}\pingu@color{princesscrown@gem@d}{#4}\pingu@color{princesscrown@gem@e}{#5}},
   princess crown gem ring/.code   = \pingu@color{princesscrown@gem@ring}{#1},
   princess crown position/.code args  = {#1:(#2,#3)#4}{\def\pingu@x@princesscrown@angle{#1}\def\pingu@x@princesscrown@xshift{#2}\def\pingu@x@princesscrown@yshift{#3}\def\pingu@x@princesscrown@scale{#4}},
-}{princess crown position={-9:(\pingu@one,0)1},princess crown front bend=12,princess crown back bend=7,princess crown back=\pingu@color@princesscrown!93!black,princess crown 3d,princess crown gem colors={pingu@purple}{pingu@blue}{pingu@green}{pingu@blue}{pingu@purple},princess crown gem ring=\pingu@color@princesscrown!85!white,princess crown gem shade,princess crown bobbles}
+}{princess crown position={-9:(1mm,0mm)1},princess crown front bend=12,princess crown back bend=7,princess crown back=\pingu@color@princesscrown!93!black,princess crown 3d,princess crown gem colors={pingu@purple}{pingu@blue}{pingu@green}{pingu@blue}{pingu@purple},princess crown gem ring=\pingu@color@princesscrown!85!white,princess crown gem shade,princess crown bobbles}
 
 % color | bend1 | bend1
 \def\pingu@draw@ea@princesscrown@s#1#2#3{
