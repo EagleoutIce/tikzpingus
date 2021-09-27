@@ -62,7 +62,7 @@
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
 	alsoletter={.-!:0123456789},%disable number
-	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,a,b,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob,pants,button,buttons,bands,no,without,extra,steps,function,solid,right,frame,eye-frame,eyeframe,glasses,fill,line,sun,horns,devilhorns,devil-horns,headband,head-band,bend, upper,rook,hatch,strawhat,hat,ribbon,position,base,coronal,3d,colors,ring,bobbles,cake-hat},
+	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,a,b,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob,pants,button,buttons,bands,no,without,extra,steps,function,solid,right,frame,eye-frame,eyeframe,glasses,fill,line,sun,horns,devilhorns,devil-horns,headband,head-band,bend, upper,rook,hatch,strawhat,hat,ribbon,position,base,coronal,3d,colors,ring,bobbles,cake-hat,candle,fire},
 	moreemph=[4]{:line,:ghost,parts,:devil,:back},
 	deletetexcs={begin,end},
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend},
@@ -2141,6 +2141,62 @@ Enable a cake hat with a specific color:
 \end{tikzpicture}
 \end{tcblisting}
 \end{keyexplain}
+
+\begin{subkeyexplain}{cake-hat}{cake-hat top}{color}{\pingu@color@cakehat@top}
+Change the color of the cake hat top:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[cake-hat, cake-hat top=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{cake-hat}{cake-hat shade}{color}{\pingu@color@cakehat@shade}
+Change the color of the heavily transparent cake hat shading:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[cake-hat, cake-hat shade=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{cake-hat}{cake-hat candle}{color}{\pingu@color@cakehat@candle}
+Change the color of the cake hats' candle:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[cake-hat, cake-hat candle=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{cake-hat}{cake-hat candle fire}{color}{\pingu@color@cakehat@candle@fire}
+Change the color of the cake hats' candle most outer fire:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[cake-hat, cake-hat candle fire=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+{\def\pingu@color@cakehat@candle@fire{<cake-hat-candle-fire>}
+\begin{subkeyexplain}{cake-hat}{cake-hat candle fire 2}{color}{\pingu@color@cakehat@candle@fire@b}
+Change the color of the cake hats' candle middle fire:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[cake-hat, cake-hat candle fire 2=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}}
+
+{\def\pingu@color@cakehat@candle@fire{<cake-hat-candle-fire>}
+\begin{subkeyexplain}{cake-hat}{cake-hat candle fire 3}{color}{\pingu@color@cakehat@candle@fire@b}
+Change the color of the cake hats' candle inner fire:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[cake-hat, cake-hat candle fire 3=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}}
 
 \subsection{Wing-Items}
 \label{sub:wing-items}
