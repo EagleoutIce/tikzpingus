@@ -62,7 +62,7 @@
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
 	alsoletter={.-!:0123456789},%disable number
-	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,a,b,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob,pants,button,buttons,bands,no,without,extra,steps,function,solid,right,frame,eye-frame,eyeframe,glasses,fill,line,sun,horns,devilhorns,devil-horns,headband,head-band,bend, upper,rook,hatch,strawhat,hat,ribbon,position,base,coronal,3d,colors,ring,bobbles,cake-hat,candle,fire,wick},
+	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,a,b,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob,pants,button,buttons,bands,no,without,extra,steps,function,solid,right,frame,eye-frame,eyeframe,glasses,fill,line,sun,horns,devilhorns,devil-horns,headband,head-band,bend, upper,rook,hatch,strawhat,hat,ribbon,position,base,coronal,3d,colors,ring,bobbles,cake-hat,candle,fire,wick,outline},
 	moreemph=[4]{:line,:ghost,parts,:devil,:back},
 	deletetexcs={begin,end},
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend},
@@ -2202,6 +2202,53 @@ Change the color of the cake hats' candle wick:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[cake-hat, cake-hat candle wick=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{cake-hat}{cake-hat candle shade}{color}{\pingu@color@cakehat@candle@shade}
+Change the color of the cake hats' candle shade:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[cake-hat, cake-hat candle shade=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{cake-hat}{cake-hat candle back}{color}{\pingu@color@cakehat@candle@back}
+Change the color of the cake hats' candle back:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[cake-hat, cake-hat candle back=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+{\def\pingu@color@cakehat{<cake-hat-color>}
+\begin{subkeyexplain}{cake-hat}{cake-hat outline}{color}{\pingu@color@cakehat@outline}
+Change the color of the cake hats' outline (width by \keyref{cake-hat outline width}):
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[cake-hat, cake-hat outline=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}}
+
+\begin{subkeyexplain}{cake-hat}{cake-hat outline width}{color}{\pingu@x@cakehat@outline@w}
+Change the width of the cake hats' outline (color by \keyref{cake-hat outline}):
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[cake-hat, cake-hat outline width=1mm]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{cake-hat}{cake-hat position}{angle>:(<x>,<y>)<scale}{\pingu@x@cakehat@angle:(\pingu@x@cakehat@xshift,\pingu@x@cakehat@yshift)\{\pingu@x@cakehat@scale\}}
+Currently, this is a very cumbersome command to change various cake hat parameters at the same time:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[cake-hat,
+		cake-hat position={1:(-.085cm,-.2cm){1.275}}]
 \end{tikzpicture}
 \end{tcblisting}
 \end{subkeyexplain}
