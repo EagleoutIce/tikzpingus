@@ -62,7 +62,7 @@
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
 	alsoletter={.-!:0123456789},%disable number
-	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,a,b,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob,pants,button,buttons,bands,no,without,extra,steps,function,solid,right,frame,eye-frame,eyeframe,glasses,fill,line,sun,horns,devilhorns,devil-horns,headband,head-band,bend, upper,rook,hatch,strawhat,hat,ribbon,position,base,coronal,3d,colors,ring,bobbles,cake-hat,candle,fire,wick,outline,top},
+	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,a,b,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob,pants,button,buttons,bands,no,without,extra,steps,function,solid,right,frame,eye-frame,eyeframe,glasses,fill,line,sun,horns,devilhorns,devil-horns,headband,head-band,bend, upper,rook,hatch,strawhat,hat,ribbon,position,base,coronal,3d,colors,ring,bobbles,cake-hat,candle,fire,wick,outline,top,handle},
 	moreemph=[4]{:line,:ghost,parts,:devil,:back},
 	deletetexcs={begin,end},
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend},
@@ -2254,7 +2254,7 @@ Currently, this is a very cumbersome command to change various cake hat paramete
 \end{subkeyexplain}
 
 \subsection{Wing-Items}
-\label{sub:wing-items}
+\label{sub:wing-items}Most wing items created have a two variants: one for the left and one for the right wing. For consistency, both of them are represented in the documentation~-- many times, they are not just mirrored but two different shapes that appear to be mirrored with special care.
 
 \begin{keyexplain}{left wing item angle}{angle}{\pingu@wing@left@item@angle@user}
 	Relative rotation of the \hyperref[sub:wing-items]{wing items} placed in the left wing:
@@ -2303,6 +2303,62 @@ Currently, this is a very cumbersome command to change various cake hat paramete
 \end{keyexplain}
 
 \keyalias{right item flip}{right wing item flip}
+
+\subsubsection{The lollipop}
+
+\begin{keyexplain}{lollipop left}{color}{pingu@green}
+	Enable the left lollipop for the penguin:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[lollipop left=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{subkeyexplain}{lollipop left}{lollipop left handle}{color}{\pingu@color@lollipopleft@handle}
+	Change the handle color of the left lollipop:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[lollipop left, lollipop left handle=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{lollipop left}{lollipop left second}{color}{\pingu@color@lollipopleft@second}
+	Change the second color of the left lollipop, used for the ring:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[lollipop left, lollipop left second=blue]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{keyexplain}{lollipop right}{color}{pingu@green}
+	Enable the right lollipop for the penguin:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[lollipop right=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{subkeyexplain}{lollipop right}{lollipop right handle}{color}{\pingu@color@lollipopright@handle}
+	Change the handle color of the right lollipop:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[lollipop right, lollipop right handle=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{lollipop right}{lollipop right second}{color}{\pingu@color@lollipopright@second}
+	Change the second color of the right lollipop, used for the ring:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[lollipop right, lollipop right second=blue]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
 
 \subsection{Clothes}
 
