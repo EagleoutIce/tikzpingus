@@ -2512,7 +2512,38 @@ Currently, this is a very cumbersome command to change various cake hat paramete
 \end{tcblisting}
 \end{keyexplain}
 
+\begin{subkeyexplain}{lightsaber left}{lightsaber left handle}{color}{\pingu@color@lightsaberleft@handle}
+	Change the color of the penguins lightsaber
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[lightsaber left,
+		lightsaber left handle=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{keyexplain}{lightsaber right}{color}{pingu@blue}
+	Give the penguin a lightsaber:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[lightsaber right=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{subkeyexplain}{lightsaber right}{lightsaber right handle}{color}{\pingu@color@lightsaberright@handle}
+	Change the color of the penguins lightsaber
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[lightsaber right,
+		lightsaber right handle=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
 \subsection{Clothes}
+
+\subsection{Internals}
 
 \printindex
 
