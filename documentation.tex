@@ -62,7 +62,7 @@
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
 	alsoletter={.-!:0123456789},%disable number
-	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,a,b,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob,pants,button,buttons,bands,no,without,extra,steps,function,solid,right,frame,eye-frame,eyeframe,glasses,fill,line,sun,horns,devilhorns,devil-horns,headband,head-band,bend, upper,rook,hatch,strawhat,hat,ribbon,position,base,coronal,3d,colors,ring,bobbles,cake-hat,candle,fire,wick,outline,top,handle,hand,cast,handcast,signpost,font,fontcolor,deco,ribbs},
+	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,a,b,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob,pants,button,buttons,bands,no,without,extra,steps,function,solid,right,frame,eye-frame,eyeframe,glasses,fill,line,sun,horns,devilhorns,devil-horns,headband,head-band,bend, upper,rook,hatch,strawhat,hat,ribbon,position,base,coronal,3d,colors,ring,bobbles,cake-hat,candle,fire,wick,outline,top,handle,hand,cast,handcast,signpost,font,fontcolor,deco,ribbs,double},
 	moreemph=[4]{:line,:ghost,parts,:devil,:back},
 	deletetexcs={begin,end},
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend},
@@ -2542,6 +2542,48 @@ Currently, this is a very cumbersome command to change various cake hat paramete
 \end{tcblisting}
 \end{subkeyexplain}
 
+\begin{subkeyexplain}{lightsaber left}{lightsaber left button}{color}{\pingu@color@lightsaberleft@button}
+	Change the color of the penguins lightsabers' first button:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[lightsaber left,
+		lightsaber left button=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{lightsaber left}{lightsaber left button b}{color}{\pingu@color@lightsaberleft@button@b}
+	Change the color of the penguins lightsabers' second button:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[lightsaber left,
+		lightsaber left button b=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{lightsaber left}{lightsaber left double}{true/false}{\if@pingu@x@lightsaber@double@left true\else false\fi}
+Toggle the visibility of the second lightsaber:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[lightsaber left, lightsaber left double,
+		left wing item angle=90]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+{\def\@col{<lightsaber-color>}
+\begin{subkeyexplain}{lightsaber left}{lightsaber left color b}{color}{\pingu@color@lightsaberleft@color@b}
+	Change the color of the penguins second lightsaber, which is only shown if \keyref{lightsaber left double} is enabled:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[lightsaber left, lightsaber left double,
+		lightsaber left color b=green,
+		left wing item angle=90]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}}
+
 \begin{keyexplain}{lightsaber right}{color}{pingu@blue}
 	Give the penguin a lightsaber:
 \begin{tcblisting}{}
@@ -2581,6 +2623,48 @@ Currently, this is a very cumbersome command to change various cake hat paramete
 \end{tikzpicture}
 \end{tcblisting}
 \end{subkeyexplain}
+
+\begin{subkeyexplain}{lightsaber right}{lightsaber right button}{color}{\pingu@color@lightsaberright@button}
+	Change the color of the penguins lightsabers' first button:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[lightsaber right,
+		lightsaber right button=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{lightsaber right}{lightsaber right button b}{color}{\pingu@color@lightsaberright@button@b}
+	Change the color of the penguins lightsabers' second button:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[lightsaber right,
+		lightsaber right button b=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{lightsaber right}{lightsaber right double}{true/false}{\if@pingu@x@lightsaber@double@right true\else false\fi}
+Toggle the visibility of the second lightsaber:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[lightsaber right, lightsaber right double,
+		right wing item angle=90]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+{\def\@col{<lightsaber-color>}
+\begin{subkeyexplain}{lightsaber right}{lightsaber right color b}{color}{\pingu@color@lightsaberright@color@b}
+	Change the color of the penguins second lightsaber, which is only shown if \keyref{lightsaber right double} is enabled:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[lightsaber right, lightsaber right double,
+		lightsaber right color b=green,
+		right wing item angle=90]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}}
 
 \subsection{Clothes}
 
