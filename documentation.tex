@@ -2852,8 +2852,9 @@ You can use the styles \lpingu{/pingu/@flag@first} and \lpingu{/pingu/@flag} to 
 	\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[flag left, flag left code={
-	  \node[/pingu/@flag@first,/pingu/@flag={blue}{5mm}]
-	  	(upper) at (0,0) {};
+	  \node[/pingu/@flag@first,
+	  	/pingu/@flag={blue}{5mm}]
+	  		(upper) at (0,0) {};
 	  \node[below,/pingu/@flag={black}{4mm}]
 	  	(lower) at (upper.south) {};
 	}]
