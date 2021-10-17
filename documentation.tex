@@ -2681,7 +2681,6 @@ Disables the lightsaber so only the handle is visible:
 \end{tcblisting}
 \end{subkeyexplain}
 
-
 \begin{subkeyexplain}{lightsaber right}{lightsaber right deco}{color}{\pingu@color@lightsaberright@deco}
 	Change the color of the penguins lightsabers' decoration elements:
 \begin{tcblisting}{}
@@ -2822,6 +2821,43 @@ Disables the lightsaber so only the handle is visible:
 	\pingu[lightsaber right, lightsaber right disabled]
 \end{tikzpicture}
 \end{tcblisting}
+\end{subkeyexplain}
+
+
+\subsubsection{The flag}
+
+The flag is special in that it is meant to be customized by commands so that the visible insignia is to the users liking.
+
+\begin{keyexplain}{flag left}{color}{pingu@purple}
+	Give the penguin a small flag:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[flag left=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{subkeyexplain}{flag left}{flag left pole}{color}{\pingu@color@flagleft@pole}
+Change the color of the flag pole:
+	\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[flag left, flag left pole=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{flag left}{flag left code}{\LaTeX-code}{omitted}
+Set the flag code which is effectively the drawing code of the flag.
+You can use the styles \lpingu{/pingu/@flag@first} and \lpingu{/pingu/@flag} to inherit the default flag styles and to stay compliant with the modifications of the other macros:
+	\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[flag left, flag left code={
+		\node[/pingu/@flag@first,/pingu/@flag={blue}{5mm}] (a) at (0,0) {};
+		\node[below,/pingu/@flag={black}{4mm}] (b) at (a.south) {};
+	}]
+\end{tikzpicture}
+\end{tcblisting}
+Note that \lpingu{/pingu/@flag} expects two arguments: the color of the flag segment and its thickness.
 \end{subkeyexplain}
 
 \subsection{Clothes}
