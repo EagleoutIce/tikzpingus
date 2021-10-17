@@ -1727,14 +1727,14 @@ scale=\pingu@x@cakehat@scale]
     flag \@lr\space code/.code    = \expandafter\def\csname pingu@flag@\@lr @code\endcsname{##1},
     flag \@lr\space bobble/.code  = {\pingu@color{flag\@lr @bobble}{##1}},
     pride flag \@lr/.style  = {%
-        /pingu/flag \@lr code = {%
+        /pingu/flag \@lr\space code = {%
             \noexpand\node[/pingu/@flag@first,/pingu/@flag={{rgb:yellow,1;red,5;magenta,2;black,1}}{1.9mm}] (a) at (0,0) {};
             \noexpand\node[below,/pingu/@flag={{rgb:yellow,5;red,5;green,1;white,1}}{1.9mm}] (b) at (a.south) {};
             \noexpand\node[below,/pingu/@flag={yellow}{1.9mm}] (c) at (b.south) {};
             \noexpand\node[below,/pingu/@flag={{rgb:blue,1;cyan,1;green,4;black,2}}{1.9mm}] (d) at (c.south) {};
             \noexpand\node[below,/pingu/@flag={{rgb:magenta,3;blue,5;cyan,4;black,3}}{1.9mm}] (e) at (d.south) {};
             \noexpand\node[below,/pingu/@flag={{rgb:red,2;magenta,2;blue,5}}{1.9mm}] (f) at (e.south) {};
-        }, /pingu/flag \@lr, /pingu/flag \@lr pole={##1}%
+        }, /pingu/flag \@lr, /pingu/flag \@lr\space pole={##1}%
     },%
     @flag/.style 2 args={tape bend height=.5mm,shape=tape,minimum height=##2, minimum width=15mm,outer sep=\z@,inner sep=\z@,fill=##1,draw=##1,rotate=\noexpand\@angle},
     pride flag \@lr/.default = pingu@bronze,%
