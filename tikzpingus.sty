@@ -1723,9 +1723,9 @@ scale=\pingu@x@cakehat@scale]
 \pingu@create@wing@extra{flag}{%
     flag \@lr/.code         = {\pingu@set@extra{flag\@lr}{true}\pingu@color{flag\@lr}{##1}},
     flag \@lr/.default      = pingu@purple,
-    flag \@lr pole/.code    = \pingu@color{flag\@lr @pole}{##1},
-    flag \@lr code/.code    = \expandafter\def\csname pingu@flag@\@lr @code\endcsname{##1},
-    flag \@lr bobble/.code  = {\pingu@color{flag\@lr @bobble}{##1}},
+    flag \@lr\space pole/.code    = \pingu@color{flag\@lr @pole}{##1},
+    flag \@lr\space code/.code    = \expandafter\def\csname pingu@flag@\@lr @code\endcsname{##1},
+    flag \@lr\space bobble/.code  = {\pingu@color{flag\@lr @bobble}{##1}},
     pride flag \@lr/.style  = {%
         /pingu/flag \@lr code = {%
             \noexpand\node[/pingu/@flag@first,/pingu/@flag={{rgb:yellow,1;red,5;magenta,2;black,1}}{1.9mm}] (a) at (0,0) {};
@@ -1739,14 +1739,14 @@ scale=\pingu@x@cakehat@scale]
     @flag/.style 2 args={tape bend height=.5mm,shape=tape,minimum height=##2, minimum width=15mm,outer sep=\z@,inner sep=\z@,fill=##1,draw=##1,rotate=\noexpand\@angle},
     pride flag \@lr/.default = pingu@bronze,%
     german flag \@lr/.style  = {%
-    /pingu/flag \@lr code = {%
+    /pingu/flag \@lr\space code = {%
             \noexpand\node[/pingu/@flag@first,/pingu/@flag={black}{3.33mm}] (a) at (0,0) {};
             \noexpand\node[below,/pingu/@flag={red}{3.33mm}] (b) at (a.south) {};
             \noexpand\node[below,/pingu/@flag={yellow}{3.33mm}] (c) at (b.south) {};
-        }, /pingu/flag \@lr, /pingu/flag \@lr pole={##1}%
+        }, /pingu/flag \@lr, /pingu/flag \@lr\space pole={##1}%
     },%
     german flag \@lr/.default = pingu@bronze%
-}{flag \@lr bobble=pingu@bronze, flag \@lr pole=pingu@bronze, flag \@lr code = {%
+}{flag \@lr\space bobble=pingu@bronze, flag \@lr\space pole=pingu@bronze, flag \@lr\space code = {%
     \noexpand\node[/pingu/@flag@first,/pingu/@flag={\noexpand\@col}{9.75mm}] (a) at (0,0) {};
 }}
 \def\pingu@draw@wi@flag#1{%
