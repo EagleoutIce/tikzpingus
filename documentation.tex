@@ -2846,6 +2846,15 @@ Change the color of the flag pole:
 \end{tcblisting}
 \end{subkeyexplain}
 
+\begin{subkeyexplain}{flag left}{flag left bobble}{color}{\pingu@color@flagleft@bobble}
+Change the color of the flag poles top bobble:
+	\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[flag left, flag left bobble=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
 \begin{subkeyexplain}{flag left}{flag left code}{\LaTeX-code}{omitted}
 Set the flag code which is effectively the drawing code of the flag.
 You can use the styles \lpingu{/pingu/@flag@first} and \lpingu{/pingu/@flag} to inherit the default flag styles and to stay compliant with the modifications of the other macros:
