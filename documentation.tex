@@ -62,7 +62,7 @@
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
 	alsoletter={.-!:0123456789},%disable number
-	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,a,b,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob,pants,button,buttons,bands,no,without,extra,steps,function,solid,right,frame,eye-frame,eyeframe,glasses,fill,line,sun,horns,devilhorns,devil-horns,headband,head-band,bend, upper,rook,hatch,strawhat,hat,ribbon,position,base,coronal,3d,colors,ring,bobbles,cake-hat,candle,fire,wick,outline,top,handle,hand,cast,handcast,signpost,font,fontcolor,deco,ribbs,double,core,outer,disabled,factor,german,code,pole,pride},
+	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,a,b,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob,pants,button,buttons,bands,no,without,extra,steps,function,solid,right,frame,eye-frame,eyeframe,glasses,fill,line,sun,horns,devilhorns,devil-horns,headband,head-band,bend, upper,rook,hatch,strawhat,hat,ribbon,position,base,coronal,3d,colors,ring,bobbles,bobble,cake-hat,candle,fire,wick,outline,top,handle,hand,cast,handcast,signpost,font,fontcolor,deco,ribbs,double,core,outer,disabled,factor,german,code,pole,pride},
 	moreemph=[4]{:line,:ghost,parts,:devil,:back},
 	deletetexcs={begin,end},
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend},
@@ -2430,7 +2430,7 @@ Currently, this is a very cumbersome command to change various cake hat paramete
 
 \keyalias{handcast right color}{hand cast right color}
 
-\subsection{The sign post}
+\subsubsection{The sign post}
 
 \begin{keyexplain}{sign post left}{text}{}
 	Give the penguin a small sign post:
@@ -2499,7 +2499,6 @@ Currently, this is a very cumbersome command to change various cake hat paramete
 \end{subkeyexplain}
 
 \subkeyalias{signpost right fontcolor}{sign post right font color}{sign post right}
-
 
 \subsubsection{The lightsaber}
 
@@ -2890,6 +2889,71 @@ Note that \lpingu{/pingu/@flag} expects two arguments: the color of the flag seg
 \end{tikzpicture}
 \end{tcblisting}
 \end{keyexplain}
+
+
+\begin{keyexplain}{flag right}{color}{pingu@purple}
+	Give the penguin a small flag:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[flag right=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{subkeyexplain}{flag right}{flag right pole}{color}{\pingu@color@flagright@pole}
+Change the color of the flag pole:
+	\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[flag right, flag right pole=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{flag right}{flag right bobble}{color}{\pingu@color@flagright@bobble}
+Change the color of the flag poles top bobble:
+	\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[flag right, flag right bobble=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{flag right}{flag right code}{\LaTeX-code}{omitted}
+Set the flag code which is effectively the drawing code of the flag.
+You can use the styles \lpingu{/pingu/@flag@first} and \lpingu{/pingu/@flag} to inherit the default flag styles and to stay compliant with the modifications of the other macros:
+	\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[flag right, flag right code={
+	  \node[/pingu/@flag@first,
+	  	/pingu/@flag={blue}{5mm}]
+	  		(upper) at (0,0) {};
+	  \node[below,/pingu/@flag={black}{4mm}]
+	  	(lower) at (upper.south) {};
+	}]
+\end{tikzpicture}
+\end{tcblisting}
+Note that \lpingu{/pingu/@flag} expects two arguments: the color of the flag segment and its thickness.
+\end{subkeyexplain}
+
+\begin{keyexplain}{pride flag right}{color}{pingu@bronze}
+	Uses \keyref{flag right}, \keyref{flag right code}, and \keyref{flag right pole} to set a pride flag. The color argument is passed to \keyref{flag right pole}.
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[pride flag right=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+
+\begin{keyexplain}{german flag right}{color}{pingu@bronze}
+	Uses \keyref{flag right}, \keyref{flag right code}, and \keyref{flag right pole} to set a german flag. The color argument is passed to \keyref{flag right pole}.
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[german flag right=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
 
 \subsection{Clothes}
 
