@@ -3003,7 +3003,15 @@ Originally developed just as a cape, the cloak is no a whole extension.
 
 \keyalias{cape}{cloak}
 
-% More to come
+{\def\pingu@color@cloak{<cloak-color>}
+\begin{subkeyexplain}{cloak}{cloak wings color}{color}{\pingu@color@cloak@wings}
+	Change the cloaks wing colors:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[cloak, cloak wings color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}}
 
 \subsection{Internals}
 
