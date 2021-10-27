@@ -1536,17 +1536,18 @@ scale=\pingu@x@cakehat@scale]
 
 %     #region cane
 \pingu@create@wing@extra{cane}{%
-  cane \@lr/.code         = {\pingu@set@extra{cane\@lr}{true}\pingu@color{cane\@lr}{##1}},
-  cane \@lr/.default      = pingu@bronze,
-}{}
+  cane \@lr/.code             = {\pingu@set@extra{cane\@lr}{true}\pingu@color{cane\@lr}{##1}},
+  cane \@lr/.default          = pingu@bronze,
+  cane \@lr\space raise/.code = {\@namedef{pinug@x@cane@raise@\@lr}{##1}},
+}{cane \@lr\space raise=0mm}
 
 % #1 wing
 \def\pingu@draw@wi@cane#1{%
     \pingu@setup@wing{cane}{#1}%
     \if@pingu@wing@item@side@left@
-        \pingu@block[thick,rotate around={\@angle+5:(\pingu@name-wing-#1)}]{\@col}(\pingu@name-wing-#1)++(0,-7mm) -- ++(0,15mm) arc(180:0:2.25mm and 2.2mm) arc(360:180:.3mm and .275mm) arc(0:180:1.65mm and 1.65mm) -- ++(0,-15mm) arc(360:180:.3mm and .275mm) -- cycle;
+        \pingu@block[thick,rotate around={\@angle+5:(\pingu@name-wing-#1)}]{\@col}(\pingu@name-wing-#1)++(0,-7mm+\pinug@x@cane@raise@left) -- ++(0,15mm) arc(180:0:2.25mm and 2.2mm) arc(360:180:.3mm and .275mm) arc(0:180:1.65mm and 1.65mm) -- ++(0,-15mm) arc(360:180:.3mm and .275mm) -- cycle;
     \else
-        \pingu@block[thick,rotate around={\@angle-5:(\pingu@name-wing-#1)}]{\@col}(\pingu@name-wing-#1)++(0,-7mm) -- ++(0,15mm) arc(0:180:2.25mm and 2.2mm) arc(180:360:.3mm and .275mm) arc(180:0:1.65mm and 1.65mm) -- ++(0,-15mm) arc(180:360:.3mm and .275mm) -- cycle;
+        \pingu@block[thick,rotate around={\@angle-5:(\pingu@name-wing-#1)}]{\@col}(\pingu@name-wing-#1)++(0,-7mm+\pinug@x@cane@raise@right) -- ++(0,15mm) arc(0:180:2.25mm and 2.2mm) arc(180:360:.3mm and .275mm) arc(180:0:1.65mm and 1.65mm) -- ++(0,-15mm) arc(180:360:.3mm and .275mm) -- cycle;
     \fi
 }
 %     #endregion
