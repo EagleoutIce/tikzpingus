@@ -223,8 +223,7 @@
 % #endregion
 
 % #region subenvs
-\let\pingu@at@nxt@layer\@empty
-\def\pingu@layer#1[#2]{\pgfonlayer{#1}\scope[/pingu/@pingu,#2]\pingu@at@nxt@layer\gdef\pingu@at@nxt@layer{}}
+\def\pingu@layer#1[#2]{\pgfonlayer{#1}\scope[/pingu/@pingu,#2]}
 \def\endpingu@layer{\endscope\endpgfonlayer}
 % #endregion
 
@@ -309,8 +308,8 @@
     coordinate (\pingu@name-wing-left-up);
 \path (\pingu@name-wing-left-start) -- (\pingu@name-wing-left) --
     (\pingu@name-wing-left-start) --
-    ([turn]-180+\csname @pingu@wingdown@\@pingu@select@leftwing@ @\endcsname:4.45mm)
-  coordinate (\pingu@name-wing-left-start-low) -- ([turn]180:8.9mm)
+    ([turn]-180+\csname @pingu@wingdown@\@pingu@select@leftwing@ @\endcsname:3.45mm)
+  coordinate (\pingu@name-wing-left-start-low) -- ([turn]180:6.9mm)
   coordinate (\pingu@name-wing-left-start-up);
 \path (\pingu@name-wing-right-start) -- (\pingu@name-wing-right) --
     ([turn]-\csname @pingu@wingdown@\@pingu@select@rightwing@ @\endcsname:2.45mm)
@@ -319,8 +318,8 @@
 % double path to fix turn
 \path (\pingu@name-wing-right-start) -- (\pingu@name-wing-right) --
       (\pingu@name-wing-right-start) --
-      ([turn]180-\csname @pingu@wingdown@\@pingu@select@rightwing@ @\endcsname:4.45mm)
-    coordinate (\pingu@name-wing-right-start-low) -- ([turn]180:8.9mm)
+      ([turn]180-\csname @pingu@wingdown@\@pingu@select@rightwing@ @\endcsname:3.45mm)
+    coordinate (\pingu@name-wing-right-start-low) -- ([turn]180:6.9mm)
     coordinate (\pingu@name-wing-right-start-up);
 \pingu@draw@clothing@main
 
@@ -1827,27 +1826,8 @@ scale=\pingu@x@cakehat@scale]
 (\pingu@name-wings-side-left);
 }
 
-\def\pingu@cloak@leftwing@@clip{\pgfinterruptboundingbox
-\path[/pingu/@invclip] (\pingu@name-wing-left-low) -- (\pingu@name-wing-left-up) to[bend left=150,looseness=4] cycle;
-\endpgfinterruptboundingbox}
-\def\pingu@cloak@rightwing@@clip{\pgfinterruptboundingbox
-\path[/pingu/@invclip] (\pingu@name-wing-right-low) -- (\pingu@name-wing-right-up) to[bend right=150,looseness=4] cycle;
-\endpgfinterruptboundingbox}
 % TODO: if flags to draw parts
 \def\pingu@draw@cloth@cloak{%
-% wings; clip re-draw them with different color clipped
-\scope[/pingu/@block/.append style={line width=\p@,draw=##1}]
-\def\pingu@color@left@wing{\pingu@color@cloak}
-\def\pingu@at@nxt@layer{\pingu@cloak@leftwing@@clip}
-\pingu@cloak@leftwing@@clip
-\@pingu@drawer@leftwing@
-\endscope
-\scope[/pingu/@block/.append style={line width=\p@,draw=##1}]
-\def\pingu@color@right@wing{\pingu@color@cloak}
-\def\pingu@at@nxt@layer{\pingu@cloak@rightwing@@clip}
-\pingu@cloak@rightwing@@clip
-\@pingu@drawer@rightwing@
-\endscope
 \pingu@layer{foreground}[rounded corners=\p@]
     % cape
     \pingu@block[rounded corners=.7mm]{\pingu@color@cloak} (\pingu@name-wing-left-start) to[bend left=4] ([xshift=-.66mm]\pingu@name-wings-side-left) to[bend right=3]
@@ -1860,6 +1840,12 @@ scale=\pingu@x@cakehat@scale]
     to[bend left=32] ++(\pingu@w@half+.66mm,\pingu@w@half+\pingu@one)
     to[bend left=32] ++(\pingu@w@half+.66mm,-\pingu@w@half-\pingu@one)
     to[bend left=8] cycle;
+    % wings
+    \pingu@block[top color=\pingu@color@cloak,bottom color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} (\pingu@name-wing-left) -- (\pingu@name-wing-left-low)
+    to[bend right=13] (\pingu@name-wing-left-start-low) to[bend right=20] (\pingu@name-wing-left-start-up) to[bend right=13] (\pingu@name-wing-left-low);
+
+    % \pingu@block[top color=\pingu@color@cloak,bottom color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} (\pingu@name-wing-left-start)++(-1.75mm,0) to[bend right=10] (\pingu@name-wing-left-low) to[bend left=5] (\pingu@name-wing-left-up) to[bend right=3] ([yshift=8mm,xshift=.265mm]\pingu@name-wing-left-start) -- ++(-1.5mm,0) to[bend right=13] cycle;
+    % \pingu@block[top color=\pingu@color@cloak,bottom color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} (\pingu@name-wing-right-start)++(1.75mm,0) to[bend left=10] (\pingu@name-wing-right-low) to[bend right=3]  (\pingu@name-wing-right-up) to[bend left=3] ([yshift=8mm]\pingu@name-wing-right-start) -- ++(1mm,0) to[bend left=13] cycle;
 \endpingu@layer
 }
 %     #endregion
