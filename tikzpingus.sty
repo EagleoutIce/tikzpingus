@@ -967,6 +967,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     \if@pingu@x@hat@ \pingu@draw@ea@hat \fi
     \if@pingu@x@crown@ \pingu@draw@ea@crown \fi
     \if@pingu@x@cakehat@ \pingu@draw@ea@cakehat \fi
+    \if@pingu@x@pumpkinhat@ \pingu@draw@ea@pumpkinhat \fi
     \if@pingu@x@princesscrown@ \pingu@draw@ea@princesscrown \fi
     \if@pingu@x@rook@ \pingu@draw@ea@rook \fi
     \if@pingu@x@halo@ \pingu@draw@ea@halo \fi
@@ -1257,6 +1258,42 @@ scale=\pingu@x@cakehat@scale]
   \pingu@block[fill opacity=.125]{\pingu@color@cakehat@candle@shade} (\pingu@name-cake-tc)++(-.3mm,-.1mm) to[bend right=20] ++(1.1mm,0) to[bend left=.5] ++(0,2.66mm) to[bend left=15] ++(-1.1mm,-2.5mm) -- cycle;
   \pingu@block[fill opacity=.225]{\pingu@color@cakehat@candle@shade} (\pingu@name-cake-tc)++(-.3mm,-.1mm) to[bend left=2] ++(1.1mm,-1.1mm) to[bend left=5] ++(1.1mm,0) to[bend left=2] ++(-1.1mm,1.2mm) to[bend left =15] cycle;
   \pingu@block[fill opacity=.225]{\pingu@color@cakehat@candle@shade} (\pingu@name-cake-tc)++(1.35mm,-1.25mm) circle [radius=.1mm];
+\endscope
+}
+% #endregion
+
+
+% #region pumpkin-hat
+\pingu@create@extra{pumpkinhat}{%
+  pumpkin-hat/.code           = \pingu@set@extra{pumpkinhat}{true}\pingu@color{pumpkinhat}{#1},
+  pumpkin-hat/.default        = pingu@bronze!97!white,
+  pumpkin-hat stalk/.code     = \pingu@color{pumpkinhat@stalk}{#1},
+  pumpkin-hat stalk top/.code = \pingu@color{pumpkinhat@stalk@top}{#1},
+  pumpkin-hat stripe a/.code  = \pingu@color{pumpkinhat@stripe@a}{#1},
+  pumpkin-hat stripe b/.code  = \pingu@color{pumpkinhat@stripe@b}{#1},
+  pumpkin-hat stripe c/.code  = \pingu@color{pumpkinhat@stripe@c}{#1},
+  pumpkin-hat outline/.code   = \pingu@color{pumpkinhat@outline}{#1},
+  % TODO: jack o lantern?
+  pumpkin-hat position/.code args  = {#1:(#2,#3)#4}{\def\pingu@x@pumpkinhat@angle{#1}\def\pingu@x@pumpkinhat@xshift{#2}\def\pingu@x@pumpkinhat@yshift{#3}\def\pingu@x@pumpkinhat@scale{#4}}
+}{pumpkin-hat position={-9:(1.65mm,.25mm)1.05},pumpkin-hat stalk=pingu@green!95!\pingu@color@pumpkinhat!45!pingu@black,pumpkin-hat stalk top=\pingu@color@pumpkinhat@stalk!95!pingu@black,pumpkin-hat stripe a=pingu@black,pumpkin-hat stripe b=\pingu@color@pumpkinhat@stripe@a,pumpkin-hat stripe c=\pingu@color@pumpkinhat@stripe@a,pumpkin-hat outline=pingu@black}
+
+\def\pingu@pumpkinhat@outerpath{(0,.125cm)++(-60:6.75mm and 5.5mm) arc(-60:86: 6.75mm and 5.5mm) to[bend left=3] ++(-1.75mm,0) arc(95:242:6.75mm and 5.5mm) to[bend left=5] cycle;}
+\def\pingu@draw@ea@pumpkinhat{%
+\scope[rotate around={\pingu@x@pumpkinhat@angle:(\pingu@name-head-top)},%
+shift={(\pingu@name-head-top)},
+shift={(\pingu@x@pumpkinhat@xshift,\pingu@x@pumpkinhat@yshift)},
+scale=\pingu@x@pumpkinhat@scale]
+  % give it a small cut
+  \pingu@block{\pingu@color@pumpkinhat} (0,.125cm)++(-60:6.75mm and 5.5mm) coordinate (@pkll) arc(-60:86: 6.75mm and 5.5mm) coordinate (@pkl) to[bend left=3] coordinate[pos=.5] (@pkuc) ++(-1.75mm,0) coordinate (@pkr) arc(95:242:6.75mm and 5.5mm) coordinate (@pklr) to[bend left=5] coordinate[pos=.5] (@pklc) cycle;
+  \pingu@draw[line join=round]{\pingu@color@pumpkinhat@outline} \pingu@pumpkinhat@outerpath;
+  \pingu@block{\pingu@color@pumpkinhat@stalk} (@pkl) to[bend left=3] (@pkr) to[bend right=8] ++(.85mm,2mm) -- ++(.65mm,0) coordinate[pos=.5] (@pkc) to[bend right=3] cycle;
+  \pingu@block{\pingu@color@pumpkinhat@stalk@top} (@pkc) ellipse[x radius=.65mm/2, y radius=.085mm];
+\scope
+\clip (0,.125cm)++(-60:6.75mm and 5.5mm) coordinate (@pkll) arc(-60:86: 6.75mm and 5.5mm) coordinate (@pkl) to[bend left=3] ++(-1.75mm,0) coordinate (@pkr) arc(95:242:6.75mm and 5.5mm) coordinate (@pklr) to[bend left=5] cycle;
+  \pingu@draw[line cap=round,opacity=.3]{\pingu@color@pumpkinhat@stripe@a} (@pklr) to[bend left=55] (@pkr);
+  \pingu@draw[line cap=round,opacity=.3]{\pingu@color@pumpkinhat@stripe@b} (@pkll) to[bend right=55] (@pkl);
+  \pingu@draw[line cap=round,opacity=.3]{\pingu@color@pumpkinhat@stripe@c} (@pklc) to[bend right=5] (@pkuc);
+\endscope
 \endscope
 }
 % #endregion
