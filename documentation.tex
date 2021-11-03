@@ -2265,6 +2265,15 @@ Enable a pumpkin hat with a specific color:
 \end{tcblisting}
 \end{keyexplain}
 
+\begin{subkeyexplain}{pumpkin-hat}{pumpkin-hat position}{angle>:(<x>,<y>)<scale}{\pingu@x@pumpkinhat@angle:(\pingu@x@pumpkinhat@xshift,\pingu@x@pumpkinhat@yshift)\{\pingu@x@pumpkinhat@scale\}}
+Currently, this is a very cumbersome command to change various pumpkin hat parameters at the same time:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[pumpkin-hat,
+		pumpkin-hat position={1:(-.085cm,-.15cm){1.275}}]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
 
 \subsection{Wing-Items}
 \label{sub:wing-items}Most wing items created have a two variants: one for the left and one for the right wing. For consistency, both of them are represented in the documentation~-- many times, they are not just mirrored but two different shapes that appear to be mirrored with special care.
