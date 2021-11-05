@@ -2275,6 +2275,16 @@ Change the stalks color of the pumpkin hat:
 \end{tcblisting}
 \end{subkeyexplain}}
 
+{\def\pingu@color@pumpkinhat{<pumpkinhat-color>}\def\pingu@color@pumpkinhat@stalk{<pumpkinhat-stalk-color>}
+\begin{subkeyexplain}{pumpkin-hat}{pumpkin-hat stalk top}{color}{\pingu@color@pumpkinhat@stalk@top}
+Change the stalks top color of the pumpkin hat:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[pumpkin-hat,pumpkin-hat stalk top=teal]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}}
+
 \begin{subkeyexplain}{pumpkin-hat}{pumpkin-hat position}{angle>:(<x>,<y>)<scale}{\pingu@x@pumpkinhat@angle:(\pingu@x@pumpkinhat@xshift,\pingu@x@pumpkinhat@yshift)\{\pingu@x@pumpkinhat@scale\}}
 Currently, this is a very cumbersome command to change various pumpkin hat parameters at the same time:
 \begin{tcblisting}{}
