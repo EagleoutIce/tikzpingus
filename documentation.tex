@@ -1393,7 +1393,7 @@ Will pass on the color to \keyref{glow} and use a \keyref{glow width function} c
 \end{tcblisting}
 \end{subkeyexplain}
 
-{\def\i{\textbackslash i}%
+{\def\i{\textbackslash i~}%
 \begin{subkeyexplain}{glow}{glow function}{function}{\pingu@x@extra@glow@func}
 	Function using the token \lpingu{\i} to refer to the current \keyref{glow steps}. Its evaluation will be used to determine the opacity of the current step:
 \begin{tcblisting}{}
@@ -1404,7 +1404,7 @@ Will pass on the color to \keyref{glow} and use a \keyref{glow width function} c
 \end{tcblisting}
 \end{subkeyexplain}}
 
-{\def\i{\textbackslash i}%
+{\def\i{\textbackslash i~}%
 \begin{subkeyexplain}{glow}{glow width function}{function}{\pingu@x@extra@glow@width@func}
 	Function using the token \lpingu{\i} to refer to the current \keyref{glow steps}. Its evaluation will be used to determine the width of the current step:
 \begin{tcblisting}{}
@@ -2275,8 +2275,7 @@ Change the stalks color of the pumpkin hat:
 \end{tcblisting}
 \end{subkeyexplain}}
 
-{\def\pingu@color@pumpkinhat{<pumpkinhat-color>}\def\pingu@color@pumpkinhat@stalk{<pumpkinhat-stalk-color>}
-\begin{subkeyexplain}{pumpkin-hat}{pumpkin-hat stalk top}{color}{\pingu@color@pumpkinhat@stalk@top}
+{\begin{subkeyexplain}{pumpkin-hat}{pumpkin-hat stalk top}{color}{<pumpkinhat-stalk-color>!95!pingu@black}
 Change the stalks top color of the pumpkin hat:
 \begin{tcblisting}{}
 \begin{tikzpicture}
@@ -2311,6 +2310,17 @@ Change the color of the third stripe:
 \end{tikzpicture}
 \end{tcblisting}
 \end{subkeyexplain}
+
+
+\begin{subkeyexplain}{pumpkin-hat}{pumpkin-hat outline}{color}{\pingu@color@pumpkinhat@outline}
+Exchange the outline color of the pumpkin hat:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[pumpkin-hat,pumpkin-hat outline=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
 
 \begin{subkeyexplain}{pumpkin-hat}{pumpkin-hat position}{angle>:(<x>,<y>)<scale}{\pingu@x@pumpkinhat@angle:(\pingu@x@pumpkinhat@xshift,\pingu@x@pumpkinhat@yshift)\{\pingu@x@pumpkinhat@scale\}}
 Currently, this is a very cumbersome command to change various pumpkin hat parameters at the same time:
