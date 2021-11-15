@@ -385,7 +385,6 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 }
 \pgfqkeys{/pingu}{eyes none/.style={eyes=none},left eye none/.style={left eye=none},right eye none/.style={right eye=none}} % adding the alias
 
-
 \@pingu@eyes@s{normal}{%
     \pingu@block{\pingu@color@eye@left} ([yshift=.75mm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left) coordinate (\pingu@name-eye-left) ellipse [x radius=.1225cm, y radius=.1275cm];
 }{%
@@ -445,7 +444,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     \fill[\pingu@color@eye@right!20!pingu@yellow!7!pingu@white] (\pingu@name-eye-right) circle [radius=.5pt]; %
     \pingu@block{pingu@white} (\pingu@name-eye-right) circle [radius=.15pt];
 }[pingu@purple]
-\let\@pingu@eyes@s\relax
+% \let\@pingu@eyes@s\relax
 % #endregion
 
 % #region wings
