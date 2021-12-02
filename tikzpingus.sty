@@ -389,9 +389,15 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 \pgfqkeys{/pingu}{eyes none/.style={eyes=none},left eye none/.style={left eye=none},right eye none/.style={right eye=none}} % adding the alias
 
 \@pingu@eyes@s{normal}{%
-    \pingu@block{\pingu@color@eye@left} ([yshift=.75mm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left) coordinate (\pingu@name-eye-left) ellipse [x radius=.1225cm, y radius=.1275cm];
+    \pingu@block{\pingu@color@eye@left} ([yshift=.75mm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left) coordinate (\pingu@name-eye-left) ellipse [x radius=.1225cm, y radius=.1365cm];
 }{%
-    \pingu@block{\pingu@color@eye@right} ([yshift=.75mm,xshift=-\pingu@eye@shift]\pingu@name-eye-back-right) coordinate(\pingu@name-eye-right) ellipse [x radius=.1225cm, y radius=.1275cm];
+    \pingu@block{\pingu@color@eye@right} ([yshift=.75mm,xshift=-\pingu@eye@shift]\pingu@name-eye-back-right) coordinate(\pingu@name-eye-right) ellipse [x radius=.1225cm, y radius=.1365cm];
+}
+
+\@pingu@eyes@s{vertical}{%
+    \pingu@block{\pingu@color@eye@left} ([yshift=.75mm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left) coordinate (\pingu@name-eye-left) ellipse [x radius=1.13mm, y radius=.145cm];
+}{%
+    \pingu@block{\pingu@color@eye@right} ([yshift=.75mm,xshift=-\pingu@eye@shift]\pingu@name-eye-back-right) coordinate(\pingu@name-eye-right) ellipse [x radius=1.13mm, y radius=.145cm];
 }
 
 \@pingu@eyes@s{shiny}{%
@@ -960,6 +966,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 %     #region extras above
 % NOTE: No auto append to allow easy order change
 \def\pingu@draw@extras@above{%
+    \if@pingu@x@cap@ \pingu@draw@ea@cap \fi % lowest forground
     \if@pingu@x@eyeframe@ \pingu@draw@ea@eyeframe \fi
     \if@pingu@x@glasses@ \pingu@draw@ea@glasses \fi
     \if@pingu@x@glassesround@ \pingu@draw@ea@glassesround \fi
@@ -1021,6 +1028,29 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 \pingu@block{\pingu@color@hat@ribbon} (\z@,.2mm) ellipse [x radius=.95\pingu@hat@w@half, y radius=.13cm];
 \pingu@block{\pingu@color@hat} (\z@,.134cm) ellipse [x radius=.95\pingu@hat@w@half, y radius=.13cm];
 \endscope\endscope}
+% #endregion
+
+% #region cap
+\pingu@create@extra{cap}{%
+  cap/.default      = pingu@bronze,
+  cap/.code         = \pingu@set@extra{cap}{true}\pingu@color{cap}{#1},
+  cap padding/.code = {\def\pingu@x@cap@padding{#1}},
+}{cap padding=.8mm}
+
+\def\pingu@draw@ea@cap{%
+\pingu@layer{foreground}[]
+\pingu@block[rounded corners=.7mm]{\pingu@color@cap} ([xshift=.25mm]\pingu@name-wing-left-start) to[bend left=4] ([xshift=-\pingu@x@cap@padding]\pingu@name-wings-side-left) to[bend right=3]
+(\pingu@name-head)
+to[bend right=3]
+([xshift=\pingu@x@cap@padding]\pingu@name-wings-side-right) [rounded corners=.15mm] to[bend left=4] ([xshift=-.25mm]\pingu@name-wing-right-start)
+to[bend left=8]
+([xshift=-\pingu@x@cap@padding]\pingu@name-wings-side-right)
+[rounded corners=.15mm]
+to[bend left=32] ++(\pingu@w@half+\pingu@x@cap@padding,\pingu@w@half+\pingu@one)
+to[bend left=32] ++(\pingu@w@half+\pingu@x@cap@padding,-\pingu@w@half-\pingu@one)
+to[bend left=8] cycle;
+\endpingu@layer
+}
 % #endregion
 
 % #region crown
@@ -1303,18 +1333,22 @@ scale=\pingu@x@pumpkinhat@scale]
 
 % #region halo
 \newif\if@pingu@x@halo@glow
+\newif\if@pingu@x@halo@above
 \pingu@create@extra{halo}{%
     halo/.code    	 = \pingu@set@extra{halo}{true}\pingu@color{halo}{#1},
     halo/.default    = pingu@lightblue,
     halo raise/.code = \def\pingu@x@halo@raise{#1},
+    halo above/.is if = @pingu@x@halo@above,
     halo glow/.is if = @pingu@x@halo@glow% only active if glows loaded
-}{halo glow=\ifpengu@setup@glows@ true\else false\fi,halo raise=0mm}
+}{halo glow=\ifpengu@setup@glows@ true\else false\fi,halo raise=0mm,halo above=false}
 
 \def\pingu@draw@ea@halo{%
+\if@pingu@x@halo@above\pingu@layer{foreground}[]\fi
 \pingu@block[even odd rule]{\pingu@color@halo} ([yshift=\pingu@x@halo@raise]\pingu@name-head-top) ellipse [x radius=\pingu@w@half-\pingu@one,y radius=2.5mm] ellipse [x radius=\pingu@w@half-1.95mm,y radius=1.55mm];
 \if@pingu@x@halo@glow
 \pingu@block[even odd rule,/pingu/@glow]{\pingu@color@halo} ([yshift=\pingu@x@halo@raise]\pingu@name-head-top) ellipse [x radius=(\pingu@w@half-1.95mm)*1.7,y radius=1.55mm*2.35] ellipse [x radius=\pingu@w@half-1.95mm,y radius=1.55mm];
 \fi
+\if@pingu@x@halo@above\endpingu@layer{foreground}\fi
 }
 % #endregion
 
@@ -1831,37 +1865,43 @@ scale=\pingu@x@pumpkinhat@scale]
 
 % #region clothes
 \def\pingu@draw@clothing@behind{%
+    \if@pingu@x@shirt@ \pingu@draw@cloth@shirt@behind \fi
     \if@pingu@x@cloak@ \pingu@draw@cloth@cloak@behind \fi
 }
 
 \def\pingu@draw@clothing@middle{%
+    \if@pingu@x@shirt@ \pingu@draw@cloth@shirt@middle \fi
     \if@pingu@x@cloak@ \pingu@draw@cloth@cloak@middle \fi
 }
 
 \def\pingu@draw@clothing@main{%
+    \if@pingu@x@shirt@ \pingu@draw@cloth@shirt \fi
     \if@pingu@x@cloak@ \pingu@draw@cloth@cloak \fi
 }
 
 %     #region cloak
+\newif\if@pingu@x@cloak@wings
 \pingu@create@extra{cloak}{%
     cape/.forward to         = /pingu/cloak, % TODO: update if it changes
     cloak/.code              = \pingu@set@extra{cloak}{true}\pingu@color{cloak}{#1},
     cloak/.default           = pingu@bronze,
+    cloak cap/.code          = \pingu@color{cloak@cap}{#1},
     cloak wings color/.code  = \pingu@color{cloak@wings}{#1},
     cloak bottom color/.code = \pingu@color{cloak@bottom}{#1},
     cloak front color/.code = \pingu@color{cloak@front}{#1},
-    cloak padding/.code      = {\def\pingu@x@cloak@padding{#1}}
-}{cloak padding=3.5mm,cloak bottom color=\pingu@color@cloak!90!black,cloak front color=\pingu@color@cloak!90!white,cloak wings color=\pingu@color@cloak!96!pingu@black}
+    cloak padding/.code      = {\def\pingu@x@cloak@padding{#1}},
+    cloak wings/.is if       = @pingu@x@cloak@wings
+}{cloak padding=1.95mm,cloak bottom color=\pingu@color@cloak!90!black,cloak cap=\pingu@color@cloak!94!pingu@black,cloak front color=\pingu@color@cloak!90!white,cloak wings color=\pingu@color@cloak!96!pingu@black,cloak wings=true}
 \def\pingu@draw@cloth@cloak@behind{%
     \pingu@block[bottom color=\pingu@color@cloak@bottom,top color=\pingu@color@cloak]{\pingu@color@cloak} (\pingu@name-bottom-center)++(-\pingu@x@cloak@padding-\pingu@w@half,-.5mm) arc (180:0:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend left=1] (\pingu@name-wings-side-left) arc(0:180:\pingu@w@half{} and .75mm) to[bend left=1] cycle;
 }
 
 \def\pingu@draw@cloth@cloak@middle{%
 \pingu@block[rounded corners=.7mm]{\pingu@color@cloak}
-(\pingu@name-bottom-center)++(-\pingu@x@cloak@padding-\pingu@w@half,-.5mm) arc (180:250:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend left=3]
+(\pingu@name-bottom-center)++(-\pingu@x@cloak@padding-\pingu@w@half,-.5mm) arc (180:250:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend left=4]
 (\pingu@name-wings-side-right);
 \pingu@block[rounded corners=.7mm]{\pingu@color@cloak}
-(\pingu@name-bottom-center)++(\pingu@x@cloak@padding+\pingu@w@half,-.5mm) arc (0:-70:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend left=3]
+(\pingu@name-bottom-center)++(\pingu@x@cloak@padding+\pingu@w@half,-.5mm) arc (0:-70:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend left=4]
 (\pingu@name-wings-side-left);
 }
 
@@ -1869,10 +1909,10 @@ scale=\pingu@x@pumpkinhat@scale]
 \def\pingu@draw@cloth@cloak{%
 \pingu@layer{foreground}[rounded corners=.6\p@]
     % cape
-    \pingu@block[rounded corners=.7mm]{\pingu@color@cloak} (\pingu@name-wing-left-start) to[bend left=4] ([xshift=-.66mm]\pingu@name-wings-side-left) to[bend right=3]
+    \pingu@block[rounded corners=.8mm]{\pingu@color@cloak@cap} ([yshift=-8mm]\pingu@name-wing-left-start) to[bend left=4] ([xshift=-.4mm]\pingu@name-wings-side-left) to[bend right=3]
     (\pingu@name-head)
     to[bend right=3]
-    ([xshift=.66mm]\pingu@name-wings-side-right) [rounded corners=.15mm] to[bend left=4] (\pingu@name-wing-right-start)
+    ([xshift=.4mm]\pingu@name-wings-side-right) [rounded corners=.15mm] to[bend left=3] ([yshift=-8mm]\pingu@name-wing-right-start)
     to[bend left=8]
     ([xshift=-.66mm]\pingu@name-wings-side-right)
     [rounded corners=.15mm]
@@ -1880,12 +1920,13 @@ scale=\pingu@x@pumpkinhat@scale]
     to[bend left=32] ++(\pingu@w@half+.66mm,-\pingu@w@half-\pingu@one)
     to[bend left=8] cycle;
     % wings
+    \if@pingu@x@cloak@wings
     \edef\@la{\csname @pingu@wingdown@\@pingu@select@leftwing@ @\endcsname}
     \ifnum\@la>0 % wing is going inverted up
         \pingu@block[right color=\pingu@color@cloak,left color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} (\pingu@name-wing-left-start)++(.5mm,-3.5mm) to[bend left=10] (\pingu@name-wing-left-low) to[bend right=15] (\pingu@name-wing-left-up) to[bend left=3] (\pingu@name-wing-left-start-up) -- ++(0,-1.5mm) to[bend left=13] cycle;
     \else
         \ifnum\@la<-90% normal up
-            \pingu@block[upper right=\pingu@color@cloak@wings,lower right=\pingu@color@cloak,lower left=\pingu@color@cloak,upper left=\pingu@color@cloak]{\pingu@color@cloak@wings} (\pingu@name-wing-left-start-low) to[bend right=2] (\pingu@name-wing-left-low) to[bend left=8] (\pingu@name-wing-left-up) to[bend right=15] (\pingu@name-wing-left-start-up) to[bend right=13] ([yshift=-2mm]\pingu@name-waist-left) to[bend left=3] cycle;
+            \pingu@block[upper right=\pingu@color@cloak@wings,lower right=\pingu@color@cloak,lower left=\pingu@color@cloak,upper left=\pingu@color@cloak]{\pingu@color@cloak@wings} (\pingu@name-wing-left-start-low) to[bend right=14] (\pingu@name-wing-left-low) to[bend left=8] (\pingu@name-wing-left-up) to[bend right=17] (\pingu@name-wing-left-start-up) to[bend right=13] ([yshift=-2mm]\pingu@name-waist-left) to[bend left=3] cycle;
         \else
             \pingu@block[top color=\pingu@color@cloak,middle color=\pingu@color@cloak,bottom color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} (\pingu@name-wing-left-start)++(-1.5mm,0) to[bend right=40] (\pingu@name-wing-left-low) to[bend left=15] (\pingu@name-wing-left-up) to[bend right=3] ([yshift=8mm,xshift=.265mm]\pingu@name-wing-left-start) -- ++(-1.5mm,0) to[bend right=13] cycle;
         \fi
@@ -1895,12 +1936,54 @@ scale=\pingu@x@pumpkinhat@scale]
         \pingu@block[left color=\pingu@color@cloak,middle color=\pingu@color@cloak,right color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} (\pingu@name-wing-right-start-low) to[bend right=10] (\pingu@name-wing-right-low) to[bend left=15] (\pingu@name-wing-right-up) to[bend right=3] (\pingu@name-wing-right-start-up) -- ++(-.5mm,0mm) to[bend right=16] cycle;
     \else
         \ifnum\@ra<-90% normal up
-            \pingu@block[upper left=\pingu@color@cloak@wings,lower right=\pingu@color@cloak,lower left=\pingu@color@cloak,upper right=\pingu@color@cloak]{\pingu@color@cloak@wings} (\pingu@name-wing-right-start-low) to[bend left=2] (\pingu@name-wing-right-low) to[bend right=8] (\pingu@name-wing-right-up) to[bend left=15] (\pingu@name-wing-right-start-up) to[bend left=13] ([yshift=-2mm]\pingu@name-waist-right) to[bend right=2] cycle;
+            \pingu@block[upper left=\pingu@color@cloak@wings,lower right=\pingu@color@cloak,lower left=\pingu@color@cloak,upper right=\pingu@color@cloak]{\pingu@color@cloak@wings} (\pingu@name-wing-right-start-low) to[bend left=14] (\pingu@name-wing-right-low) to[bend right=8] (\pingu@name-wing-right-up) to[bend left=15] (\pingu@name-wing-right-start-up) to[bend left=13] ([yshift=-2mm]\pingu@name-waist-right) to[bend right=2] cycle;
         \else
             \pingu@block[top color=\pingu@color@cloak,middle color=\pingu@color@cloak,bottom color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} (\pingu@name-wing-right-start)++(1.65mm,0) to[bend left=10] (\pingu@name-wing-right-low) to[bend right=3]  (\pingu@name-wing-right-up) to[bend left=3] ([yshift=8mm]\pingu@name-wing-right-start) -- ++(1mm,0) to[bend left=13] cycle;
         \fi
     \fi
+    \fi
 \endpingu@layer
+}
+%     #endregion
+
+%     #region shirt
+\pingu@create@extra{shirt}{%
+    shirt/.code              = \pingu@set@extra{shirt}{true}\pingu@color{shirt}{#1},
+    shirt/.default           = pingu@bronze,
+    shirt button top/.code        = \pingu@color{shirt@button@top}{#1},
+    shirt button middle/.code       = \pingu@color{shirt@button@middle}{#1},
+    shirt button bottom/.code       = \pingu@color{shirt@button@bottom}{#1},
+    shirt buttons/.style           = {/pingu/shirt button top={#1}, /pingu/shirt button middle={#1}, /pingu/shirt button bottom={#1}},
+    shirt button top shade/.code  = \pingu@color{shirt@button@top@shade}{#1},
+    shirt button middle shade/.code = \pingu@color{shirt@button@middle@shade}{#1},
+    shirt button bottom shade/.code = \pingu@color{shirt@button@bottom@shade}{#1},
+    shirt buttons shade/.style     = {/pingu/shirt button top shade={#1}, /pingu/shirt button middle shade={#1}},
+    shirt without buttons/.forward to=/pingu/shirt no buttons,
+    shirt no buttons/.style        = {/pingu/shirt buttons=\@pingu@none, /pingu/shirt buttons shade=\@pingu@none},
+}{shirt buttons=pingu@black,shirt button top shade=\pingu@color@shirt@button@top!70!\pingu@color@shirt!70!white,shirt button middle shade=\pingu@color@shirt@button@middle!70!\pingu@color@shirt!70!white,shirt button bottom shade=\pingu@color@shirt@button@bottom!70!\pingu@color@shirt!70!white}
+\def\pingu@draw@cloth@shirt@behind{}
+
+\def\pingu@draw@cloth@shirt@middle{%
+\coordinate (\pingu@name-shirt-low) at ([yshift=2.25mm]\pingu@name-belly-center);
+\pingu@block{\pingu@color@shirt} [rounded corners=.071mm] (\pingu@name-head-back-con-right) -- (\pingu@name-shirt-low) -- (\pingu@name-head-back-con-left) to[bend left=12] (\pingu@name-waist-left) to[bend left=3] (\pingu@name-bottom-center-|\pingu@name-waist-left) to[bend left=10] ([yshift=-1.1\pingu@one]\pingu@name-bottom-center) to[bend left=10] (\pingu@name-bottom-center-|\pingu@name-waist-right) to[bend left=3] (\pingu@name-waist-right) to[bend left=12] ([xshift=-.15mm,yshift=-.15mm]\pingu@name-head-back-con-right) -- cycle;
+
+\coordinate (\pingu@name-shirt-bt) at ([yshift=-\pingu@one]\pingu@name-shirt-low);
+\pingu@block{\pingu@color@shirt@button@top}(\pingu@name-shirt-bt) circle[radius=.4mm];
+\pingu@block{\pingu@color@shirt@button@middle}(\pingu@name-shirt-bt)++(0,-1.35mm)circle[radius=.4mm];
+\pingu@block{\pingu@color@shirt@button@bottom}(\pingu@name-shirt-bt)++(0,2*-1.35mm)circle[radius=.4mm];
+\pingu@block[even odd rule]{\pingu@color@shirt@button@top@shade}(\pingu@name-shirt-bt) circle[radius=.4mm] circle[radius=.465mm];
+\pingu@block[even odd rule]{\pingu@color@shirt@button@middle@shade}(\pingu@name-shirt-bt)++(0,-1.35mm)circle[radius=.4mm] circle[radius=.465mm];
+\pingu@block[even odd rule]{\pingu@color@shirt@button@bottom@shade}(\pingu@name-shirt-bt)++(0,2*-1.35mm)circle[radius=.4mm] circle[radius=.465mm];
+\@for\i:={0,90,180,270}\do{
+    \pingu@block{\pingu@color@shirt@button@top@shade} (\pingu@name-shirt-bt)++(\i:.
+    25mm) circle[radius=.065mm];
+    \pingu@block{\pingu@color@shirt@button@middle@shade} (\pingu@name-shirt-bt)++(0,-1.35mm)++(\i:.25mm) circle[radius=.065mm];
+    \pingu@block{\pingu@color@shirt@button@bottom@shade} (\pingu@name-shirt-bt)++(0,2*-1.35mm)++(\i:.25mm) circle[radius=.065mm];
+}%
+}
+
+% TODO: if flags to draw parts
+\def\pingu@draw@cloth@shirt{%
 }
 %     #endregion
 
