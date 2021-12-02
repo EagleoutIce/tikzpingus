@@ -1847,6 +1847,15 @@ Disable or enable the glow of the halo. The default is controlled by the \texttt
 \end{tcblisting}
 \end{subkeyexplain}
 
+\begin{subkeyexplain}{halo}{halo above}{true/false}{\if@pingu@x@halo@above true\else false\fi}
+Draws the halo above, which is useful in case of other gadgets:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[halo, halo above=true]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
 \subsubsection{The strawhat}
 \begin{keyexplain}{strawhat}{color}{brown!50!white}
 Enable the strawhat with a specific color:
@@ -1927,6 +1936,26 @@ Currently, this is a very cumbersome command to change various hat parameters at
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[hat, hat position={1:(0cm,-.09cm){1.33}}]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+
+\subsubsection{The cap}
+\begin{keyexplain}{cap}{color}{pingu@bronze}
+Enable the cap with a specific color:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[cap=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{subkeyexplain}{cap padding}{cap padding}{length}{\pingu@x@cap@padding}
+Outer cap padding
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[cap, cap padding=4mm]
 \end{tikzpicture}
 \end{tcblisting}
 \end{subkeyexplain}
