@@ -1309,18 +1309,22 @@ scale=\pingu@x@pumpkinhat@scale]
 
 % #region halo
 \newif\if@pingu@x@halo@glow
+\newif\if@pingu@x@halo@above
 \pingu@create@extra{halo}{%
     halo/.code    	 = \pingu@set@extra{halo}{true}\pingu@color{halo}{#1},
     halo/.default    = pingu@lightblue,
     halo raise/.code = \def\pingu@x@halo@raise{#1},
+    halo above/.is if = @pingu@x@halo@above,
     halo glow/.is if = @pingu@x@halo@glow% only active if glows loaded
-}{halo glow=\ifpengu@setup@glows@ true\else false\fi,halo raise=0mm}
+}{halo glow=\ifpengu@setup@glows@ true\else false\fi,halo raise=0mm,halo above=false}
 
 \def\pingu@draw@ea@halo{%
+\if@pingu@x@halo@above\pingu@layer{foreground}[]\fi
 \pingu@block[even odd rule]{\pingu@color@halo} ([yshift=\pingu@x@halo@raise]\pingu@name-head-top) ellipse [x radius=\pingu@w@half-\pingu@one,y radius=2.5mm] ellipse [x radius=\pingu@w@half-1.95mm,y radius=1.55mm];
 \if@pingu@x@halo@glow
 \pingu@block[even odd rule,/pingu/@glow]{\pingu@color@halo} ([yshift=\pingu@x@halo@raise]\pingu@name-head-top) ellipse [x radius=(\pingu@w@half-1.95mm)*1.7,y radius=1.55mm*2.35] ellipse [x radius=\pingu@w@half-1.95mm,y radius=1.55mm];
 \fi
+\if@pingu@x@halo@above\endpingu@layer{foreground}\fi
 }
 % #endregion
 
