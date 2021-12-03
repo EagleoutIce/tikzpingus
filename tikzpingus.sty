@@ -1035,12 +1035,13 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
   cap/.default      = pingu@bronze,
   cap/.code         = \pingu@set@extra{cap}{true}\pingu@color{cap}{#1},
   cap padding/.code = {\def\pingu@x@cap@padding{#1}},
-}{cap padding=.8mm}
+  cap extra height/.code = {\def\pingu@x@cap@height{#1}},
+}{cap padding=.8mm, cap extra height=0pt}
 
 \def\pingu@draw@ea@cap{%
 \pingu@layer{foreground}[]
 \pingu@block[rounded corners=.7mm]{\pingu@color@cap} ([xshift=.25mm]\pingu@name-wing-left-start) to[bend left=4] ([xshift=-\pingu@x@cap@padding]\pingu@name-wings-side-left) to[bend right=3]
-(\pingu@name-head)
+([yshift=\pingu@x@cap@height]\pingu@name-head)
 to[bend right=3]
 ([xshift=\pingu@x@cap@padding]\pingu@name-wings-side-right) [rounded corners=.15mm] to[bend left=4] ([xshift=-.25mm]\pingu@name-wing-right-start)
 to[bend left=8]
