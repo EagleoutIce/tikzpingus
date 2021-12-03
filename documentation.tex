@@ -1952,10 +1952,20 @@ Enable the cap with a specific color:
 \end{keyexplain}
 
 \begin{subkeyexplain}{cap padding}{cap padding}{length}{\pingu@x@cap@padding}
-Outer cap padding
+Outer cap padding:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[cap, cap padding=4mm]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+
+\begin{subkeyexplain}{cap extra height}{cap extra height}{length}{\pingu@x@cap@height}
+Inner cap height:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[cap, cap extra height=2mm]
 \end{tikzpicture}
 \end{tcblisting}
 \end{subkeyexplain}
