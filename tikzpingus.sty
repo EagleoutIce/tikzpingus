@@ -234,6 +234,7 @@
 % #endregion
 
 % #region complete sets and styles
+\newif\if@pingu@do@back@
 \tikzset{
   :line/.style            = {/pingu/@block/.append style={fill=none,draw=##1!80!black,shade=none,path fading=none}},
   :ghost parts/.style     = {/pingu/@pingu@all/.append style={opacity={#1}}},
@@ -242,7 +243,7 @@
   :ghost/.default         = {.5},
   :devil/.style           = {/pingu/devil horns=#1,/pingu/eyes devil=#1},
   :devil/.default         = pingu@purple,
-  :back/.code            = {\tikzset{/pingu/eyes=none,/pingu/bill=none,/pingu/body front=\pingu@color@body@main,/pingu/@pingu@main/.append style={xshift=2\pingu@w@half,xscale=-1},/pingu/feet back}\gdef\pingu@back@init@call{\pgfsetlayers{foreground,middle,main,background}\gdef\pingu@back@init@call{}}}% TODO: back foot clipping?
+  :back/.code            = {\tikzset{/pingu/eyes=none,/pingu/bill=none,/pingu/body front=\pingu@color@body@main,/pingu/@pingu@main/.append style={xshift=2\pingu@w@half,xscale=-1},/pingu/feet back}\gdef\pingu@back@init@call{\pgfsetlayers{foreground,middle,main,background}\gdef\pingu@back@init@call{}}\@pingu@do@back@true}% TODO: back foot clipping?
 }% TODO: draw another penguin that is then drawn above with only back
 \let\pingu@back@init@call\@empty
 % #endregion
@@ -270,6 +271,7 @@
 
 \newcommand*\pingu[1][]{%
 \ifpengu@setup@manual@layers@\pgfsetlayers{background,main,middle,foreground}\fi\begingroup
+\@pingu@do@back@false
 \pgfqkeys{/pingu}{defaults, #1}%
 \scope[/pingu/@pingu,/pingu/@pingu@main]
 \@pingu@drawer@bodytype@
@@ -1499,27 +1501,36 @@ scale=\pingu@x@pumpkinhat@scale]
 \pingu@layer{middle}[]
     \pingu@block{\pingu@color@vrheadset} [rounded corners=1.25mm]([yshift=3.45mm]\pingu@name-waist-right|-\pingu@name-eye-right) to[bend left=2] coordinate[pos=.5] (@) ([yshift=3.45mm]\pingu@name-waist-left|-\pingu@name-eye-left) to[bend left=3] coordinate (\pingu@name-vrh-ol) ++(0,-6.25mm) to[bend left=13] ([yshift=-1mm]\pingu@name-head-center) to[bend left=13] ([yshift=3.45mm-6.25mm]\pingu@name-waist-right|-\pingu@name-eye-right) -- cycle;
     \path (\pingu@name-vrh-ol)++(-2.25mm,2mm) node[text=\pingu@color@vrheadset@text@color,scale=.25] {\pingu@x@vrheadset@text};
+\endpingu@layer
+\if@pingu@do@back@\else
     % top band
     \pingu@block[rounded corners=1pt]{\pingu@color@vrheadset@band@top} (@)++(-1.05mm+.15mm,0) to[bend right=2] ([xshift=-.85mm+.3mm,yshift=.3mm]\pingu@name-head-top) to[bend left=2] ++(1.6mm,0) to[bend left=2] ([xshift=1.25mm+.15mm]@);
-\endpingu@layer
+\fi
     % we draw a band for the background
 \pingu@layer{background}[]
 \pingu@block[line cap=round]{\pingu@color@vrheadset@band} ([yshift=1mm]\pingu@name-waist-right|-\pingu@name-eye-right) to[bend left=3] coordinate[pos=.5] (@b) ([yshift=1mm]\pingu@name-waist-left|-\pingu@name-eye-left) arc(90:-90:.25mm and 1mm) to[bend right=3] ([yshift=-1mm]\pingu@name-waist-right|-\pingu@name-eye-right) arc (270:90:.25mm and 1mm);
-\pingu@block[rounded corners=1pt]{\pingu@color@vrheadset@band@top} (@b)++(-1.25mm+.2mm,-1.25mm) to[bend right=2] ([xshift=-.85mm+.3mm,yshift=.3mm]\pingu@name-head-top) to[bend right=2] ++(1.6mm,0) to[bend right=2] ([xshift=1.15mm+.2mm,yshift=-1.25mm]@b) -- cycle;
 \endpingu@layer
+\if@pingu@do@back@\pingu@block[rounded corners=1pt]{\pingu@color@vrheadset@band@top} (@b)++(-1.25mm+.2mm,-1.25mm) to[bend right=2] ([xshift=-.85mm+.3mm,yshift=.3mm]\pingu@name-head-top) to[bend right=2] ++(1.6mm,0) to[bend right=2] ([xshift=1.15mm+.2mm,yshift=-1.25mm]@b) -- cycle;\fi
 }
 % #endregion
 
 % #region headphone
 \pingu@create@extra{headphone}{%
     headphone/.code             = \pingu@set@extra{headphone}{true}\pingu@color{headphone}{#1},
-    headphone/.default          = pingu@black!92!gray
-}{}
+    headphone/.default          = pingu@black!92!gray,
+    headphone left/.code        = \pingu@color{headphone@left}{#1},
+    headphone right/.code        = \pingu@color{headphone@right}{#1}
+}{headphone left=\pingu@color@headphone!65!pingu@black,headphone right=\pingu@color@headphone@left}
 
 \def\pingu@draw@ea@headphone{%
-(\pingu@name-head-top)
-    \pingu@draw{\pingu@color@headphone} ([xshift=-\pingu@one]\pingu@name-wings-side-right|-\pingu@name-eye-right)
-    arc(180:0:{\pingu@one+\pingu@w@half} and {\pingu@head@h@half+.33\pingu@one}) arc(0:-180:1mm and .33mm);
+\if@pingu@do@back@ \pingu@layer{background}[] \fi
+    \pingu@block[rounded corners=.1mm]{\pingu@color@headphone@right} ([xshift=-\pingu@one+.2mm,yshift=3.22mm]\pingu@name-wings-side-right|-\pingu@name-eye-right) arc (92:272:.565mm and 2.1mm) -- ++(.8mm,-.05mm) arc (270:450:.5mm and 2.1mm) -- cycle;
+    \pingu@block[rounded corners=.1mm]{\pingu@color@headphone@right} ([xshift=\pingu@one-.2mm,yshift=3.22mm]\pingu@name-wings-side-left|-\pingu@name-eye-left) arc (88:-92:.565mm and 2.1mm) -- ++(-.8mm,-.05mm) arc (270:90:.5mm and 2.1mm) -- cycle;
+    \pingu@block{\pingu@color@headphone} ([xshift=-\pingu@one,yshift=\pingu@one]\pingu@name-wings-side-right|-\pingu@name-eye-right)
+    arc(180:0:{\pingu@one+\pingu@w@half} and {\pingu@head@h@half-.5\pingu@one}) arc(0:-180:.65mm and .33mm)
+    arc(0:180:{\pingu@one+\pingu@w@half-2*.65mm} and {\pingu@head@h@half+.33\pingu@one-2*.6mm-1.1\pingu@one})
+    arc(0:-180:.65mm and .33mm) -- cycle;
+\if@pingu@do@back@ \endpingu@layer \fi
 }
 % #endregion
 
