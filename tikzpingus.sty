@@ -980,6 +980,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     \if@pingu@x@princesscrown@ \pingu@draw@ea@princesscrown \fi
     \if@pingu@x@rook@ \pingu@draw@ea@rook \fi
     \if@pingu@x@halo@ \pingu@draw@ea@halo \fi
+    \if@pingu@x@vrheadset@ \pingu@draw@ea@vrheadset \fi
 }
 
 % #region strawhat
@@ -1436,6 +1437,19 @@ scale=\pingu@x@pumpkinhat@scale]
     \endscope
 }
 % #endregion
+
+
+% #region vrheadset
+\pingu@create@extra{vrheadset}{%
+    vr-headset/.code    	 = \pingu@set@extra{vrheadset}{true}\pingu@color{vrheadset}{#1},
+    vr-headset/.default    = green% pingu@black
+}{}
+
+\def\pingu@draw@ea@vrheadset{%
+    \pingu@draw{\pingu@color@vrheadset} [rounded corners=1.25mm]([yshift=3.45mm]\pingu@name-waist-right|-\pingu@name-eye-right) -- ([yshift=3.45mm]\pingu@name-waist-left|-\pingu@name-eye-left) to[bend left=3] ++(0,-5.75mm)to[bend left=13] ([yshift=-1mm]\pingu@name-head-center) to[bend left=13] ([yshift=3.45mm-5.75mm]\pingu@name-waist-right|-\pingu@name-eye-right) -- cycle;
+}
+% #endregion
+
 
 % #region devil-horns
 \pingu@create@extra{devilhorns}{%
