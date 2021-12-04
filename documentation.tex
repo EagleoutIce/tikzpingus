@@ -65,7 +65,7 @@
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
 	alsoletter={.-!:0123456789},%disable number
-	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,a,b,c,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob,pants,button,buttons,bands,no,without,extra,steps,function,solid,right,frame,eye-frame,eyeframe,glasses,fill,line,sun,horns,devilhorns,devil-horns,headband,head-band,bend, upper,rook,hatch,strawhat,hat,ribbon,position,base,coronal,3d,colors,ring,bobbles,bobble,cake-hat,candle,fire,wick,outline,top,handle,hand,cast,handcast,signpost,font,fontcolor,deco,ribbs,double,core,outer,disabled,factor,german,code,pole,pride,staff,cape,bottom,padding,pumpkin-hat,stalk,stripe,cap},
+	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,a,b,c,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob,pants,button,buttons,bands,no,without,extra,steps,function,solid,right,frame,eye-frame,eyeframe,glasses,fill,line,sun,horns,devilhorns,devil-horns,headband,head-band,bend, upper,rook,hatch,strawhat,hat,ribbon,position,base,coronal,3d,colors,ring,bobbles,bobble,cake-hat,candle,fire,wick,outline,top,handle,hand,cast,handcast,signpost,font,fontcolor,deco,ribbs,double,core,outer,disabled,factor,german,code,pole,pride,staff,cape,bottom,padding,pumpkin-hat,stalk,stripe,cap,type,vr-headset,headphone,vertical,above},
 	moreemph=[4]{:line,:ghost,parts,:devil,:back},
 	deletetexcs={begin,end},
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend},
@@ -347,8 +347,10 @@ Furthermore, the convenient selectors |eyes <style>|, |left eye <style>|, and |r
 \end{tcblisting}
 
 \subsection{Changing other components}
-\label{mrk:pengu-change-comps}Just like for the wings and the eyes, you can change th following body parts:
+\label{mrk:pengu-change-comps}Just like for the wings and the eyes, you can change the following body parts:
 \begin{itemize}
+	\item The \textit{body type} itself\\*
+		Select from: \typesetselection{bodytype}. You should not use \textit{none} for this at the moment, as removes some of the important markers.
 	\item The \textit{feet} (again with separate left and right)\\*
 		Select from: \typesetselection{leftfoot}.
 	\item The \textit{bill} (does not have left and right, as there is just one)\\*
@@ -571,6 +573,15 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \end{tcblisting}
 \end{keyexplain}
 
+
+\begin{keyexplain}{body type}{body type}{default}
+	Change the active body type:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[body type=chubby]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
 
 \subsubsection{The Size}
 
@@ -1258,7 +1269,6 @@ Set the color of the blob at the end of the string of the right monocle:
 \end{tcblisting}
 \end{subkeyexplain}}
 
-
 \subsubsection{The pants}
 \begin{keyexplain}{pants}{color}{pingu@red}
 Sets the color of the pants:
@@ -1940,7 +1950,6 @@ Currently, this is a very cumbersome command to change various hat parameters at
 \end{tcblisting}
 \end{subkeyexplain}
 
-
 \subsubsection{The cap}
 \begin{keyexplain}{cap}{color}{pingu@bronze}
 Enable the cap with a specific color:
@@ -2064,6 +2073,7 @@ Enables the \keyref{crown} with the given color and disables \keyref{crown 3d}:
 \end{tikzpicture}
 \end{tcblisting}
 \end{keyexplain}
+
 \subsubsection{The princess crown}
 Similar to \keyref{crown} but smaller.
 
@@ -2380,6 +2390,96 @@ Currently, this is a very cumbersome command to change various pumpkin hat param
 \end{tikzpicture}
 \end{tcblisting}
 \end{subkeyexplain}
+
+\subsubsection{The vr headset}
+
+\begin{keyexplain}{vr-headset}{color}{pingu@black!92!gray}
+Enable a vr headset hat with a specific color:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[vr-headset=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+{\def\pingu@color@vrheadset{<vr-headset>}
+\begin{subkeyexplain}{vr-headset}{vr-headset band}{color}{\pingu@color@vrheadset@band}
+Change the color of the horizontal headset band:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[vr-headset, vr-headset band=purple]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}}
+
+{\def\pingu@color@vrheadset{<vr-headset>}
+\begin{subkeyexplain}{vr-headset}{vr-headset band top}{color}{\pingu@color@vrheadset@band@top}
+Change the color of the vertical headset band:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[vr-headset, vr-headset band top=purple]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}}
+
+\begin{subkeyexplain}{vr-headset}{vr-headset hair}{}{}
+Change the hair to support the headset:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[vr-headset, vr-headset hair]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{vr-headset}{vr-headset text}{text}{omitted}
+Change the text on the headset:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[vr-headset, vr-headset text={ABCD}]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{vr-headset}{vr-headset text color}{color}{\pingu@color@vrheadset@text@color}
+Change the text color of the headset text:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[vr-headset, vr-headset text color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+
+\subsubsection{The headphones}
+
+\begin{keyexplain}{headphone}{color}{pingu@blue!80!pingu@black}
+Enable a headphones hat with a specific color:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[headphone=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+{\def\pingu@color@headphone{<headphone>}
+\begin{subkeyexplain}{headphone}{headphone left}{color}{\pingu@color@headphone@left}
+Change the color of the left headphone (automatically sets the color of \keyref{headphone right}):
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[headphone, headphone left=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}}
+
+{\def\pingu@color@headphone{<headphone>}
+\begin{subkeyexplain}{headphone}{headphone right}{color}{\pingu@color@headphone@right}
+Change the color of the right headphone:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[headphone, headphone right=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}}
 
 \subsection{Wing-Items}
 \label{sub:wing-items}Most wing items created have a two variants: one for the left and one for the right wing. For consistency, both of them are represented in the documentation~--- many times, they are not just mirrored but two different shapes that appear to be mirrored with special care.
