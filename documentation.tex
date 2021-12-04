@@ -65,7 +65,7 @@
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
 	alsoletter={.-!:0123456789},%disable number
-	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,a,b,c,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob,pants,button,buttons,bands,no,without,extra,steps,function,solid,right,frame,eye-frame,eyeframe,glasses,fill,line,sun,horns,devilhorns,devil-horns,headband,head-band,bend, upper,rook,hatch,strawhat,hat,ribbon,position,base,coronal,3d,colors,ring,bobbles,bobble,cake-hat,candle,fire,wick,outline,top,handle,hand,cast,handcast,signpost,font,fontcolor,deco,ribbs,double,core,outer,disabled,factor,german,code,pole,pride,staff,cape,bottom,padding,pumpkin-hat,stalk,stripe,cap},
+	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,a,b,c,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob,pants,button,buttons,bands,no,without,extra,steps,function,solid,right,frame,eye-frame,eyeframe,glasses,fill,line,sun,horns,devilhorns,devil-horns,headband,head-band,bend, upper,rook,hatch,strawhat,hat,ribbon,position,base,coronal,3d,colors,ring,bobbles,bobble,cake-hat,candle,fire,wick,outline,top,handle,hand,cast,handcast,signpost,font,fontcolor,deco,ribbs,double,core,outer,disabled,factor,german,code,pole,pride,staff,cape,bottom,padding,pumpkin-hat,stalk,stripe,cap,type},
 	moreemph=[4]{:line,:ghost,parts,:devil,:back},
 	deletetexcs={begin,end},
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend},
@@ -347,8 +347,10 @@ Furthermore, the convenient selectors |eyes <style>|, |left eye <style>|, and |r
 \end{tcblisting}
 
 \subsection{Changing other components}
-\label{mrk:pengu-change-comps}Just like for the wings and the eyes, you can change th following body parts:
+\label{mrk:pengu-change-comps}Just like for the wings and the eyes, you can change the following body parts:
 \begin{itemize}
+	\item The \textit{body type} itself\\*
+		Select from: \typesetselection{bodytype}. You should not use \textit{none} for this at the moment, as removes some of the important markers.
 	\item The \textit{feet} (again with separate left and right)\\*
 		Select from: \typesetselection{leftfoot}.
 	\item The \textit{bill} (does not have left and right, as there is just one)\\*
@@ -571,6 +573,15 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \end{tcblisting}
 \end{keyexplain}
 
+
+\begin{keyexplain}{body type}{body type}{default}
+	Change the active body type:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[body type=chubby]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
 
 \subsubsection{The Size}
 

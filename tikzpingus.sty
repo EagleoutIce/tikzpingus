@@ -1026,6 +1026,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     \if@pingu@x@rook@ \pingu@draw@ea@rook \fi
     \if@pingu@x@halo@ \pingu@draw@ea@halo \fi
     \if@pingu@x@vrheadset@ \pingu@draw@ea@vrheadset \fi
+    \if@pingu@x@headphone@ \pingu@draw@ea@headphone \fi
 }
 
 % #region strawhat
@@ -1483,28 +1484,44 @@ scale=\pingu@x@pumpkinhat@scale]
 }
 % #endregion
 
-
 % #region vrheadset
 \pingu@create@extra{vrheadset}{%
     vr-headset/.code             = \pingu@set@extra{vrheadset}{true}\pingu@color{vrheadset}{#1},
     vr-headset/.default          = pingu@black!92!gray,
     vr-headset band/.code        = \pingu@color{vrheadset@band}{#1},
+    vr-headset band top/.code    = \pingu@color{vrheadset@band@top}{#1},
     vr-headset text/.code        = \def\pingu@x@vrheadset@text{#1},
     vr-headset text color/.code  = \pingu@color{vrheadset@text@color}{#1},
-}{vr-headset band=pingu@black!85!gray,vr-headset text={\textit{\textsf{VR\thinspace\texttrademark}}},vr-headset text color=pingu@white}
+    vr-headset hair/.style       = {/pingu/hair 2=!hide,/pingu/hair 3=!hide,/pingu/hair 4=!hide}
+}{vr-headset band=\pingu@color@vrheadset!92!gray,vr-headset text={\textit{\textsf{VR\thinspace\texttrademark}}},vr-headset text color=pingu@white,vr-headset band top=\pingu@color@vrheadset!96!gray}
 
 \def\pingu@draw@ea@vrheadset{%
 \pingu@layer{middle}[]
-    \pingu@block{\pingu@color@vrheadset} [rounded corners=1.25mm]([yshift=3.45mm]\pingu@name-waist-right|-\pingu@name-eye-right) to[bend left=2] ([yshift=3.45mm]\pingu@name-waist-left|-\pingu@name-eye-left) to[bend left=3] coordinate (\pingu@name-vrh-ol) ++(0,-6.25mm) to[bend left=13] ([yshift=-1mm]\pingu@name-head-center) to[bend left=13] ([yshift=3.45mm-6.25mm]\pingu@name-waist-right|-\pingu@name-eye-right) -- cycle;
+    \pingu@block{\pingu@color@vrheadset} [rounded corners=1.25mm]([yshift=3.45mm]\pingu@name-waist-right|-\pingu@name-eye-right) to[bend left=2] coordinate[pos=.5] (@) ([yshift=3.45mm]\pingu@name-waist-left|-\pingu@name-eye-left) to[bend left=3] coordinate (\pingu@name-vrh-ol) ++(0,-6.25mm) to[bend left=13] ([yshift=-1mm]\pingu@name-head-center) to[bend left=13] ([yshift=3.45mm-6.25mm]\pingu@name-waist-right|-\pingu@name-eye-right) -- cycle;
     \path (\pingu@name-vrh-ol)++(-2.25mm,2mm) node[text=\pingu@color@vrheadset@text@color,scale=.25] {\pingu@x@vrheadset@text};
+    % top band
+    \pingu@block[rounded corners=1pt]{\pingu@color@vrheadset@band@top} (@)++(-1.05mm+.15mm,0) to[bend right=2] ([xshift=-.85mm+.3mm,yshift=.3mm]\pingu@name-head-top) to[bend left=2] ++(1.6mm,0) to[bend left=2] ([xshift=1.25mm+.15mm]@);
 \endpingu@layer
     % we draw a band for the background
 \pingu@layer{background}[]
-\pingu@block[line cap=round]{\pingu@color@vrheadset@band} ([yshift=1mm]\pingu@name-waist-right|-\pingu@name-eye-right) to[bend left=3] ([yshift=1mm]\pingu@name-waist-left|-\pingu@name-eye-left) arc(90:-90:.25mm and 1mm) to[bend right=3] ([yshift=-1mm]\pingu@name-waist-right|-\pingu@name-eye-right) arc (270:90:.25mm and 1mm);
+\pingu@block[line cap=round]{\pingu@color@vrheadset@band} ([yshift=1mm]\pingu@name-waist-right|-\pingu@name-eye-right) to[bend left=3] coordinate[pos=.5] (@b) ([yshift=1mm]\pingu@name-waist-left|-\pingu@name-eye-left) arc(90:-90:.25mm and 1mm) to[bend right=3] ([yshift=-1mm]\pingu@name-waist-right|-\pingu@name-eye-right) arc (270:90:.25mm and 1mm);
+\pingu@block[rounded corners=1pt]{\pingu@color@vrheadset@band@top} (@b)++(-1.25mm+.2mm,-1.25mm) to[bend right=2] ([xshift=-.85mm+.3mm,yshift=.3mm]\pingu@name-head-top) to[bend right=2] ++(1.6mm,0) to[bend right=2] ([xshift=1.15mm+.2mm,yshift=-1.25mm]@b) -- cycle;
 \endpingu@layer
 }
 % #endregion
 
+% #region headphone
+\pingu@create@extra{headphone}{%
+    headphone/.code             = \pingu@set@extra{headphone}{true}\pingu@color{headphone}{#1},
+    headphone/.default          = pingu@black!92!gray
+}{}
+
+\def\pingu@draw@ea@headphone{%
+(\pingu@name-head-top)
+    \pingu@draw{\pingu@color@headphone} ([xshift=-\pingu@one]\pingu@name-wings-side-right|-\pingu@name-eye-right)
+    arc(180:0:{\pingu@one+\pingu@w@half} and {\pingu@head@h@half+.33\pingu@one}) arc(0:-180:1mm and .33mm);
+}
+% #endregion
 
 % #region devil-horns
 \pingu@create@extra{devilhorns}{%
