@@ -641,9 +641,9 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 
 
 \@pingu@feet@s{back}{%
-    \pingu@block{\pingu@color@foot@left} ([yshift=.2\pingu@foot@single@h]\pingu@name-foot-left) ellipse [x radius=2.5\pingu@foot@single@w,y radius=.5\pingu@foot@single@h];
+    \pingu@block{\pingu@color@foot@left} ([yshift=.2\pingu@foot@single@h]\pingu@name-foot-left) ellipse [x radius=2.5\pingu@foot@single@w,y radius=.435\pingu@foot@single@h];
 }{%
-    \pingu@block{\pingu@color@foot@right} ([yshift=.2\pingu@foot@single@h]\pingu@name-foot-right) ellipse [x radius=2.5\pingu@foot@single@w,y radius=.5\pingu@foot@single@h];
+    \pingu@block{\pingu@color@foot@right} ([yshift=.2\pingu@foot@single@h]\pingu@name-foot-right) ellipse [x radius=2.5\pingu@foot@single@w,y radius=.435\pingu@foot@single@h];
 }
 % #endregion
 
@@ -980,6 +980,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
     \if@pingu@x@princesscrown@ \pingu@draw@ea@princesscrown \fi
     \if@pingu@x@rook@ \pingu@draw@ea@rook \fi
     \if@pingu@x@halo@ \pingu@draw@ea@halo \fi
+    \if@pingu@x@vrheadset@ \pingu@draw@ea@vrheadset \fi
 }
 
 % #region strawhat
@@ -1436,6 +1437,29 @@ scale=\pingu@x@pumpkinhat@scale]
     \endscope
 }
 % #endregion
+
+
+% #region vrheadset
+\pingu@create@extra{vrheadset}{%
+    vr-headset/.code       = \pingu@set@extra{vrheadset}{true}\pingu@color{vrheadset}{#1},
+    vr-headset/.default    = pingu@black!92!gray,% pingu@black
+    vr-headset band/.code  = \pingu@color{vrheadset@band}{#1},
+    vr-headset text/.code  = \def\pingu@x@vrheadset@text{#1},
+    vr-headset text color/.code  = \pingu@color{vrheadset@text@color}{#1},
+}{vr-headset band=pingu@black!85!gray,vr-headset text={\textit{\textsf{VR\thinspace\texttrademark}}},vr-headset text color=pingu@white}
+
+\def\pingu@draw@ea@vrheadset{%
+\pingu@layer{middle}[]
+    \pingu@block{\pingu@color@vrheadset} [rounded corners=1.25mm]([yshift=3.45mm]\pingu@name-waist-right|-\pingu@name-eye-right) to[bend left=2] ([yshift=3.45mm]\pingu@name-waist-left|-\pingu@name-eye-left) to[bend left=3] coordinate (\pingu@name-vrh-ol) ++(0,-6.25mm) to[bend left=13] ([yshift=-1mm]\pingu@name-head-center) to[bend left=13] ([yshift=3.45mm-6.25mm]\pingu@name-waist-right|-\pingu@name-eye-right) -- cycle;
+    \path (\pingu@name-vrh-ol)++(-2.25mm,2mm) node[text=\pingu@color@vrheadset@text@color,scale=.25] {\pingu@x@vrheadset@text};
+\endpingu@layer
+    % we draw a band for the background
+\pingu@layer{background}[]
+\pingu@block[line cap=round]{\pingu@color@vrheadset@band} ([yshift=1mm]\pingu@name-waist-right|-\pingu@name-eye-right) to[bend left=3] ([yshift=1mm]\pingu@name-waist-left|-\pingu@name-eye-left) arc(90:-90:.25mm and 1mm) to[bend right=3] ([yshift=-1mm]\pingu@name-waist-right|-\pingu@name-eye-right) arc (270:90:.25mm and 1mm);
+\endpingu@layer
+}
+% #endregion
+
 
 % #region devil-horns
 \pingu@create@extra{devilhorns}{%
