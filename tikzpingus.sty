@@ -114,6 +114,7 @@
 }
 \pingu@create@selection{leftfoot}{}
 \pingu@create@selection{rightfoot}{}
+\pingu@create@selection{bodytype}{}
 % #endregion
 
 % #region key setup
@@ -149,6 +150,7 @@
   feet/.style                   = {/pingu/left foot={#1}, /pingu/right foot={#1}},
   feet color/.style             = {/pingu/left foot color={#1}, /pingu/right foot color={#1}},
   % body
+  body type/.code               = \pingu@bodytype@select{#1},
   body main/.code               = \pingu@color{body@main}{#1},
   body head/.code               = \pingu@color{body@head}{#1},
   body/.style                   = {/pingu/body main={#1}, /pingu/body head={#1}},
@@ -209,6 +211,7 @@
   large size/.style             = {/pingu/height=15mm},
   defaults/.style               = {%
     name=pingu, feet=normal, feet color=pingu@yellow, body=pingu@main,
+    body type=default,
     body front=pingu@white,%
     eyes=normal, eyes color=pingu@black, eyes second color=pingu@white,
     bill=normal, bill color=pingu@yellow,
@@ -269,20 +272,7 @@
 \ifpengu@setup@manual@layers@\pgfsetlayers{background,main,middle,foreground}\fi\begingroup
 \pgfqkeys{/pingu}{defaults, #1}%
 \scope[/pingu/@pingu,/pingu/@pingu@main]
-\@pingu@base
-\coordinate (\pingu@name-belly-back) at (\pingu@w@half,-1cm);
-\coordinate (\pingu@name-belly-center) at (\pingu@w@half,-.68\pingu@side@h@half);
-\pingu@block[save path=\pingu@whitepingu]{\pingu@color@body@front} (\pingu@name-belly-back)++(-\pingu@w@half+\pingu@one,\pingu@lower@off) to[bend right=.8\pingu@bend] ++(0,1.05cm-\pingu@side@h@half-\pingu@lower@off) arc (180:270:4mm and 2mm) arc (270:331:5mm and .85mm) arc (207:270:5mm and .85mm) arc (270:360:4mm and 2mm) to[bend right=.8\pingu@bend] ++(0,\pingu@side@h@half-1.05cm+\pingu@lower@off) arc (0:180:\pingu@w@half-.96mm and \pingu@w@half-\pingu@one) -- cycle;
-
-\coordinate (\pingu@name-eye-back-right) at ([xshift=-.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-head-center);
-\coordinate (\pingu@name-eye-back-left) at ([xshift=.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-head-center);
-
-\coordinate (\pingu@name-head-back-con-right) at ([xshift=-\pingu@headcon@x,yshift=-\pingu@headcon@y]\pingu@name-eye-back-right);
-\coordinate (\pingu@name-head-back-con-left) at ([xshift=\pingu@headcon@x,yshift=-\pingu@headcon@y]\pingu@name-eye-back-left);
-
-\pingu@block{\pingu@color@body@front} (\pingu@name-eye-back-right)++(0,-.25mm) ellipse [x radius=.525cm,y radius=.65cm];
-\pingu@block{\pingu@color@body@front} (\pingu@name-eye-back-left)++(0,-.25mm) ellipse [x radius=.525cm,y radius=.65cm];
-
+\@pingu@drawer@bodytype@
 \path (\pingu@name-head-center)++(0,-.05mm-\pingu@outer@off) coordinate (\pingu@name-bill);
 
 \scope[shift=(\pingu@name-belly-center)]
@@ -346,32 +336,87 @@ arc (208:270:\pingu@foot@inner@w{} and \pingu@foot@inner@h) arc (270:360:\pingu@
 to[bend right=\pingu@bend] ++(0,\pingu@side@h@half+\pingu@outer@off)
 arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure wings
 \def\pingu@path@upperpingu{(\pingu@name-head-center) ellipse [x radius=\pingu@w@half, y radius=\pingu@head@h@half]}
-\def\@pingu@base{%
-\pingu@block[save path=\pingu@lowerpingu]{\pingu@color@body@main} (0,\pingu@outer@off)
-    % left side
-    to[bend right=\pingu@bend] coordinate[pos=.775] (\pingu@name-waist-right) ++(0,-\pingu@side@h@half-\pingu@outer@off)
-    % feety stuff
-    arc (180:270:\pingu@foot@outer@w{} and \pingu@foot@outer@h) coordinate (\pingu@name-foot-right)
-    arc (270:332:\pingu@foot@inner@w{} and \pingu@foot@inner@h)
-    coordinate (\pingu@name-bottom-center)
-    arc (208:270:\pingu@foot@inner@w{} and \pingu@foot@inner@h) coordinate (\pingu@name-foot-left)
-    arc (270:360:\pingu@foot@outer@w{} and \pingu@foot@outer@h)%
-    % right side
-    to[bend right=\pingu@bend] coordinate[pos=.225] (\pingu@name-waist-left) ++(0,\pingu@side@h@half+\pingu@outer@off)
-    % coordinate
-    coordinate (\pingu@name-wings-side-left)
-    -- (0,\pingu@outer@off) coordinate (\pingu@name-wings-side-right) coordinate[pos=.5] (\pingu@name-head-center) -- cycle;
 
-\pingu@block[save path=\pingu@upperpingu]{\pingu@color@body@head} (\pingu@name-head-center)
-    ++(0,\pingu@head@h@half) coordinate (\pingu@name-head-top)
-    arc(90:450:\pingu@w@half{} and \pingu@head@h@half)
-    coordinate[pos=\pinguanglehr] (\pingu@name-head-right)
-    coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
-}
 %   #endregion
 % #endregion
 
 % #region main body parts
+% #region body front
+% #region default
+\pingu@bodytype@add{default}{%
+\pingu@block[save path=\pingu@lowerpingu]{\pingu@color@body@main} (0,\pingu@outer@off)
+% left side
+to[bend right=\pingu@bend] coordinate[pos=.775] (\pingu@name-waist-right) ++(0,-\pingu@side@h@half-\pingu@outer@off)
+% feety stuff
+arc (180:270:\pingu@foot@outer@w{} and \pingu@foot@outer@h) coordinate (\pingu@name-foot-right)
+arc (270:332:\pingu@foot@inner@w{} and \pingu@foot@inner@h)
+coordinate (\pingu@name-bottom-center)
+arc (208:270:\pingu@foot@inner@w{} and \pingu@foot@inner@h) coordinate (\pingu@name-foot-left)
+arc (270:360:\pingu@foot@outer@w{} and \pingu@foot@outer@h)%
+% right side
+to[bend right=\pingu@bend] coordinate[pos=.225] (\pingu@name-waist-left) ++(0,\pingu@side@h@half+\pingu@outer@off)
+% coordinate
+coordinate (\pingu@name-wings-side-left)
+-- (0,\pingu@outer@off) coordinate (\pingu@name-wings-side-right) coordinate[pos=.5] (\pingu@name-head-center) -- cycle;
+
+\pingu@block[save path=\pingu@upperpingu]{\pingu@color@body@head} (\pingu@name-head-center)
+++(0,\pingu@head@h@half) coordinate (\pingu@name-head-top)
+arc(90:450:\pingu@w@half{} and \pingu@head@h@half)
+coordinate[pos=\pinguanglehr] (\pingu@name-head-right)
+coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
+
+\coordinate (\pingu@name-belly-back) at (\pingu@w@half,-1cm);
+\coordinate (\pingu@name-belly-center) at (\pingu@w@half,-.68\pingu@side@h@half);
+\pingu@block[save path=\pingu@whitepingu]{\pingu@color@body@front} (\pingu@name-belly-back)++(-\pingu@w@half+\pingu@one,\pingu@lower@off) to[bend right=.8\pingu@bend] ++(0,1.05cm-\pingu@side@h@half-\pingu@lower@off) arc (180:270:4mm and 2mm) arc (270:331:5mm and .85mm) arc (207:270:5mm and .85mm) arc (270:360:4mm and 2mm) to[bend right=.8\pingu@bend] ++(0,\pingu@side@h@half-1.05cm+\pingu@lower@off) arc (0:180:\pingu@w@half-.96mm and \pingu@w@half-\pingu@one) -- cycle;
+
+\coordinate (\pingu@name-eye-back-right) at ([xshift=-.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-head-center);
+\coordinate (\pingu@name-eye-back-left) at ([xshift=.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-head-center);
+
+\coordinate (\pingu@name-head-back-con-right) at ([xshift=-\pingu@headcon@x,yshift=-\pingu@headcon@y]\pingu@name-eye-back-right);
+\coordinate (\pingu@name-head-back-con-left) at ([xshift=\pingu@headcon@x,yshift=-\pingu@headcon@y]\pingu@name-eye-back-left);
+
+\pingu@block{\pingu@color@body@front} (\pingu@name-eye-back-right)++(0,-.25mm) ellipse [x radius=.525cm,y radius=.65cm];
+\pingu@block{\pingu@color@body@front} (\pingu@name-eye-back-left)++(0,-.25mm) ellipse [x radius=.525cm,y radius=.65cm];
+}
+% #endregion
+% #region chubby
+\pingu@bodytype@add{chubby}{%
+\pingu@block[save path=\pingu@lowerpingu]{\pingu@color@body@main} (0,\pingu@outer@off)
+% left side
+to[bend right=1.65*\pingu@bend] coordinate[pos=.775] (\pingu@name-waist-right) ++(0,-\pingu@side@h@half-\pingu@outer@off)
+% feety stuff
+arc (180:270:\pingu@foot@outer@w{} and \pingu@foot@outer@h-.35mm) coordinate (\pingu@name-foot-right)
+arc (270:332:\pingu@foot@inner@w{} and 1.25*\pingu@foot@inner@h)
+coordinate (\pingu@name-bottom-center)
+arc (208:270:\pingu@foot@inner@w{} and 1.25*\pingu@foot@inner@h) coordinate (\pingu@name-foot-left)
+arc (270:360:\pingu@foot@outer@w{} and \pingu@foot@outer@h-.35mm)%
+% right side
+to[bend right=1.65*\pingu@bend] coordinate[pos=.225] (\pingu@name-waist-left) ++(0,\pingu@side@h@half+\pingu@outer@off)
+% coordinate
+coordinate (\pingu@name-wings-side-left)
+-- (0,\pingu@outer@off) coordinate (\pingu@name-wings-side-right) coordinate[pos=.5] (\pingu@name-head-center) -- cycle;
+
+\pingu@block[save path=\pingu@upperpingu]{\pingu@color@body@head} (\pingu@name-head-center)
+++(0,\pingu@head@h@half) coordinate (\pingu@name-head-top)
+arc(90:450:\pingu@w@half{} and \pingu@head@h@half)
+coordinate[pos=\pinguanglehr] (\pingu@name-head-right)
+coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
+
+\coordinate (\pingu@name-belly-back) at (\pingu@w@half,-.97cm);
+\coordinate (\pingu@name-belly-center) at (\pingu@w@half,-.65\pingu@side@h@half);
+\pingu@block[save path=\pingu@whitepingu]{\pingu@color@body@front} (\pingu@name-head-center)++(-\pingu@w@half+2.5\pingu@one,-4mm) coordinate (@) to[bend right=20] ([xshift=-1.25mm,yshift=1.5\pingu@one]@|-\pingu@name-bottom-center) arc (180:270:4.675mm and 1mm) arc (270:331:4mm and 1.15mm) arc (207:270:4mm and 1.15mm) arc (270:360:4.675mm and 1mm) to[bend right=20] ([xshift=\pingu@w@half-2.5\pingu@one,yshift=-4mm]\pingu@name-head-center) ;
+
+\coordinate (\pingu@name-eye-back-right) at ([xshift=-.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-head-center);
+\coordinate (\pingu@name-eye-back-left) at ([xshift=.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-head-center);
+
+\coordinate (\pingu@name-head-back-con-right) at ([xshift=-\pingu@headcon@x,yshift=-\pingu@headcon@y]\pingu@name-eye-back-right);
+\coordinate (\pingu@name-head-back-con-left) at ([xshift=\pingu@headcon@x,yshift=-\pingu@headcon@y]\pingu@name-eye-back-left);
+
+\pingu@block{\pingu@color@body@front} (\pingu@name-eye-back-right)++(0,-.5mm) ellipse [x radius=.525cm,y radius=.6cm];
+\pingu@block{\pingu@color@body@front} (\pingu@name-eye-back-left)++(0,-.5mm) ellipse [x radius=.525cm,y radius=.6cm];
+}
+% #endregion
+% #endregion
 % #region eyes
 % name core | left | right
 \long\def\@pingu@eyes@s#1#2#3{\@ifnextchar[{\@pingu@eyes@s@{#1}{#2}{#3}}{\@pingu@eyes@s@{#1}{#2}{#3}[pingu@black]}}
@@ -1441,10 +1486,10 @@ scale=\pingu@x@pumpkinhat@scale]
 
 % #region vrheadset
 \pingu@create@extra{vrheadset}{%
-    vr-headset/.code       = \pingu@set@extra{vrheadset}{true}\pingu@color{vrheadset}{#1},
-    vr-headset/.default    = pingu@black!92!gray,% pingu@black
-    vr-headset band/.code  = \pingu@color{vrheadset@band}{#1},
-    vr-headset text/.code  = \def\pingu@x@vrheadset@text{#1},
+    vr-headset/.code             = \pingu@set@extra{vrheadset}{true}\pingu@color{vrheadset}{#1},
+    vr-headset/.default          = pingu@black!92!gray,
+    vr-headset band/.code        = \pingu@color{vrheadset@band}{#1},
+    vr-headset text/.code        = \def\pingu@x@vrheadset@text{#1},
     vr-headset text color/.code  = \pingu@color{vrheadset@text@color}{#1},
 }{vr-headset band=pingu@black!85!gray,vr-headset text={\textit{\textsf{VR\thinspace\texttrademark}}},vr-headset text color=pingu@white}
 
