@@ -375,8 +375,8 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \coordinate (\pingu@name-head-back-con-right) at ([xshift=-\pingu@headcon@x,yshift=-\pingu@headcon@y]\pingu@name-eye-back-right);
 \coordinate (\pingu@name-head-back-con-left) at ([xshift=\pingu@headcon@x,yshift=-\pingu@headcon@y]\pingu@name-eye-back-left);
 
-\pingu@block{\pingu@color@body@front} (\pingu@name-eye-back-right)++(0,-.25mm) ellipse [x radius=.525cm,y radius=.65cm];
-\pingu@block{\pingu@color@body@front} (\pingu@name-eye-back-left)++(0,-.25mm) ellipse [x radius=.525cm,y radius=.65cm];
+\pingu@block{\pingu@color@body@front} (\pingu@name-eye-back-right)++(0,-.25mm) ellipse [x radius=.525cm,y radius=.625cm];
+\pingu@block{\pingu@color@body@front} (\pingu@name-eye-back-left)++(0,-.25mm) ellipse [x radius=.525cm,y radius=.625cm];
 }
 % #endregion
 % #region chubby
@@ -404,7 +404,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 
 \coordinate (\pingu@name-belly-back) at (\pingu@w@half,-.97cm);
 \coordinate (\pingu@name-belly-center) at (\pingu@w@half,-.65\pingu@side@h@half);
-\pingu@block[save path=\pingu@whitepingu]{\pingu@color@body@front} (\pingu@name-head-center)++(-\pingu@w@half+2.5\pingu@one,-4mm) coordinate (@) to[bend right=20] ([xshift=-1.25mm,yshift=1.5\pingu@one]@|-\pingu@name-bottom-center) arc (180:270:4.675mm and 1mm) arc (270:331:4mm and 1.15mm) arc (207:270:4mm and 1.15mm) arc (270:360:4.675mm and 1mm) to[bend right=20] ([xshift=\pingu@w@half-2.5\pingu@one,yshift=-4mm]\pingu@name-head-center) ;
+\pingu@block[save path=\pingu@whitepingu]{\pingu@color@body@front} (\pingu@name-head-center)++(-\pingu@w@half+2.5\pingu@one,-4.25mm) coordinate (@) to[bend right=19] ([xshift=-1.25mm,yshift=1.5\pingu@one]@|-\pingu@name-bottom-center) arc (180:270:4.675mm and 1mm) arc (270:331:4mm and 1.15mm) arc (207:270:4mm and 1.15mm) arc (270:360:4.675mm and 1mm) to[bend right=19] ([xshift=\pingu@w@half-2.5\pingu@one,yshift=-4.25mm]\pingu@name-head-center) ;
 
 \coordinate (\pingu@name-eye-back-right) at ([xshift=-.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-head-center);
 \coordinate (\pingu@name-eye-back-left) at ([xshift=.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-head-center);
