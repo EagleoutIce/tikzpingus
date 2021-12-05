@@ -13,7 +13,7 @@
 \ProcessOptions*
 
 \RequirePackage{tikz}
-\usetikzlibrary{intersections,shadings,patterns.meta,decorations.pathmorphing,shapes.symbols}
+\usetikzlibrary{intersections,shadings,patterns.meta,decorations.pathmorphing,shapes.symbols,shapes.geometric}
 
 \pgfdeclarelayer{background}\pgfdeclarelayer{foreground}\pgfdeclarelayer{middle}
 \ifpengu@setup@manual@layers@\else
@@ -1029,6 +1029,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     \if@pingu@x@halo@ \pingu@draw@ea@halo \fi
     \if@pingu@x@vrheadset@ \pingu@draw@ea@vrheadset \fi
     \if@pingu@x@headphone@ \pingu@draw@ea@headphone \fi
+    \if@pingu@x@sheriffstar@ \pingu@draw@ea@sheriffstar \fi
 }
 
 % #region strawhat
@@ -1532,6 +1533,25 @@ scale=\pingu@x@pumpkinhat@scale]
     arc(0:-180:.65mm and .33mm) -- cycle;
 \if@pingu@do@back@ \endpingu@layer \fi
 }
+% #endregion
+
+
+% #region sheriff star
+\pingu@create@extra{sheriffstar}{%
+    sheriff star/.code             = \pingu@set@extra{sheriffstar}{true}\pingu@color{sheriffstar}{#1},
+    sheriff star/.default          = pingu@yellow,
+}{}
+
+\def\pingu@draw@ea@sheriffstar{%
+\pingu@layer{middle}[]
+\path (\pingu@name-belly-center) -- (\pingu@name-head-back-con-left) node[pos=.6, star, star points=7, fill=\pingu@color@sheriffstar,minimum size=1.75mm,scale=.9,rotate=5] (@) {};
+\foreach \i in {1,...,7} {
+    \pingu@block{\pingu@color@sheriffstar!98!pingu@black} (@.outer point \i) circle [radius=.2mm];
+}
+\node[pingu@black!92!pingu@yellow,outer sep=0pt,inner xsep=0pt,inner ysep=.25mm] (@s) at (@) {\resizebox{2.25mm}!{\textsf{\bfseries Sheriff}}};
+\pingu@draw[line width=.002mm]{pingu@black!92!pingu@yellow} (@s.north east) -- (@s.north west);
+\pingu@draw[line width=.002mm]{pingu@black!92!pingu@yellow} (@s.south east) -- (@s.south west);
+\endpingu@layer}
 % #endregion
 
 % #region devil-horns
