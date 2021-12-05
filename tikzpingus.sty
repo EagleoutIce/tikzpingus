@@ -1716,6 +1716,31 @@ scale=\pingu@x@pumpkinhat@scale]
 }
 %     #endregion
 
+%     #region vr controller
+\pingu@create@wing@extra{vrcontroller}{%
+vr-controller \@lr/.code         = {\pingu@set@extra{vrcontroller\@lr}{true}\pingu@color{vrcontroller\@lr}{##1}},
+vr-controller \@lr/.default      = pingu@green,
+vr-controller \@lr\space handle/.code = \pingu@color{vrcontroller\@lr @handle}{##1},%
+vr-controller \@lr\space second/.code = \pingu@color{vrcontroller\@lr @second}{##1},%
+vr-controller \@lr\space second shade/.code = \pingu@color{vrcontroller\@lr @second@shade}{##1}%
+}{vr-controller \@lr\space handle={\csname pingu@color@vrcontroller\@lr\endcsname!76!pingu@black},vr-controller \@lr\space second={\csname pingu@color@vrcontroller\@lr\endcsname!56!pingu@black},vr-controller \@lr\space second shade={\csname pingu@color@vrcontroller\@lr\endcsname!96!pingu@black}}
+
+% #1 wing
+\def\pingu@draw@wi@vrcontroller#1{%
+    \pingu@setup@wing{vrcontroller}{#1}%
+    \pingu@block[rotate around={\@angle:(\pingu@name-wing-#1)}]{\csname pingu@color@vrcontroller#1@handle\endcsname}(\pingu@name-wing-#1)++(.5mm,5mm) to[bend right=1] ++(-.25mm,-5.5mm) arc (0:-180:.325mm and .1mm) to[bend right=1] ++(-.7mm,5.5mm) -- cycle coordinate[pos=.5] (@);
+    \def\@y{2.06mm} \def\@@y{.78mm}
+    \pingu@block[rotate around={\@angle:(\pingu@name-wing-#1)},even odd rule]{\csname pingu@color@vrcontroller#1@second\endcsname}([yshift=.1mm]@) arc (90:450:{\@y} and 1mm) coordinate[pos=.25] (@r) coordinate[pos=.75] (@l) ([yshift=-.6mm]@) arc (90:0:{\@@y} and .25mm) arc (0:-180:{\@@y} and .35mm) arc (180:90:{\@@y} and .25mm);
+    % \pingu@draw[rotate around={\@angle:(\pingu@name-wing-#1)}]{\csname pingu@color@vrcontroller#1@second@shade\endcsname} ([yshift=-.9mm]@)++(180:{\@@y} and .3mm) arc (180:0:{\@@y} and .3mm);
+    \def\@toruslow{(@l) to[bend left=7] ++(-.2mm,-.875mm) to[bend left=15] coordinate[pos=.95] (@c) ++(-2*\@y+.4mm,0) [sharp corners] to[bend left=7] ++(-.2mm,.875mm) to[bend right=30] cycle}
+    \pingu@block[rounded corners=.1mm,rotate around={\@angle:(\pingu@name-wing-#1)}]{\csname pingu@color@vrcontroller#1@second\endcsname} \@toruslow;
+    \scope[rounded corners=.1mm,rotate around={\@angle:(\pingu@name-wing-#1)}]
+    \clip \@toruslow;
+    \pingu@block[opacity=.1]{black} (@l) to[bend left=14] (@c) -- ++(0,-2mm) -| cycle;
+    \endscope
+}
+%     #endregion
+
 %     #region cane
 \pingu@create@wing@extra{cane}{%
   cane \@lr/.code             = {\pingu@set@extra{cane\@lr}{true}\pingu@color{cane\@lr}{##1}},
