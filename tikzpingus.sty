@@ -1564,13 +1564,13 @@ scale=\pingu@x@pumpkinhat@scale]
 \path (\pingu@name-head-center)+(152:\pingu@w@half{} and \pingu@head@h@half) coordinate (\pingu@name-santa-right);
 \path (\pingu@name-head-center)+(5:\pingu@w@half{} and \pingu@head@h@half) coordinate (\pingu@name-santa-left);
 \pingu@layer{middle}[]
-\pingu@block{\pingu@color@santahat@second} (\pingu@name-santa-right) to[out=48,in=132] (\pingu@name-santa-left) to[out=40,in=-60,looseness=1.25] ++(0,3.2mm)
+\pingu@block{\pingu@color@santahat@second} (\pingu@name-santa-right) to[out=48,in=132] (\pingu@name-santa-left) to[out=30,in=-45,looseness=1.325] ++(0,3.2mm)
 to[out=132,in=44,looseness=1.025] coordinate[pos=.915] (\pingu@name-santa-ur) coordinate[pos=.055] (\pingu@name-santa-ul) ([yshift=2mm]\pingu@name-santa-right) to[out=240,in=140] cycle;
 \endpingu@layer
 \pingu@layer{background}[]
-\pingu@block{\pingu@color@santahat} (\pingu@name-santa-ur) arc(143:-25:11.85mm and 15.125mm)
-    to[bend right=7] coordinate[pos=.5] (\pingu@name-santa-lc) ++(-1.54mm,.375mm) to[bend right=8] (\pingu@name-santa-ul) to[bend right=15] cycle;
-\pingu@block{\pingu@color@santahat@bobble} (\pingu@name-santa-lc) circle[radius=2.85mm];
+\pingu@block{\pingu@color@santahat} (\pingu@name-santa-ur) arc(146:-25:11.85mm and 15.125mm)
+    to[bend right=7] coordinate[pos=.5] (\pingu@name-santa-lc) ++(-1.11mm,.375mm) to[bend right=11] (\pingu@name-santa-ul) to[bend right=15] cycle;
+\pingu@block{\pingu@color@santahat@bobble} (\pingu@name-santa-lc) circle[radius=2.625mm];
 \endpingu@layer
 }
 % #endregion
