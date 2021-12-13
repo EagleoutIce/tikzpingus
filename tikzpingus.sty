@@ -1590,7 +1590,7 @@ to[out=135,in=47,looseness=1.025] coordinate[pos=.915] (\pingu@name-santa-ur) co
 \xdef\@pmaxY{18}\xdef\@pmaxYI{17}%
 \foreach[evaluate=\j as \maxj using int(\@pmaxY-\j),evaluate=\j as \widthred using \j/23pt] \j in {0,...,\@pmaxYI} {
 \foreach[remember=\i as \li (initially 0)] \i in {1,...,\maxj} {
-    \pgfmathsetmacro\@ptmp{93+rand*4.3}
+    \pgfmathsetmacro\@ptmp{94+rand*2.6}
     \pingu@block{\pingu@color@santabeard!\@ptmp!pingu@black} (\pingu@name-santa-beard-\i) circle [radius=1.85pt-\widthred pt+rand*.35pt];
     \ifnum\li>0 % make middle of last
         \path (\pingu@name-santa-beard-\li) -- (\pingu@name-santa-beard-\i) coordinate[pos=.5,yshift=-1.1pt,xshift=.133pt] (\pingu@name-santa-beard-\li); % smoll shift
