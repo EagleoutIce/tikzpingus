@@ -1030,6 +1030,8 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     \if@pingu@x@vrheadset@ \pingu@draw@ea@vrheadset \fi
     \if@pingu@x@headphone@ \pingu@draw@ea@headphone \fi
     \if@pingu@x@sheriffstar@ \pingu@draw@ea@sheriffstar \fi
+    \if@pingu@x@santahat@ \pingu@draw@ea@santahat \fi
+    \if@pingu@x@santabeard@ \pingu@draw@ea@santabeard \fi
 }
 
 % #region strawhat
@@ -1550,6 +1552,51 @@ scale=\pingu@x@pumpkinhat@scale]
 \pingu@draw[line width=.002mm]{pingu@black!92!pingu@yellow} (@s.north east) -- (@s.north west);
 \pingu@draw[line width=.002mm]{pingu@black!92!pingu@yellow} (@s.south east) -- (@s.south west);
 \endpingu@layer}
+% #endregion
+
+% #region santa hat
+\pingu@create@extra{santahat}{%
+    santa hat/.code             = \pingu@set@extra{santahat}{true}\pingu@color{santahat}{#1},
+    santa hat/.default          = pingu@red!87!pingu@black,
+    santa hat second/.code      = \pingu@color{santahat@second}{#1},
+    santa hat bobble/.code      = \pingu@color{santahat@bobble}{#1}
+}{santa hat second={pingu@white!97!\pingu@color@santahat},santa hat bobble={\pingu@color@santahat@second}}
+\def\pingu@draw@ea@santahat{%
+\path (\pingu@name-head-center)+(152:\pingu@w@half{} and \pingu@head@h@half) coordinate (\pingu@name-santa-right);
+\path (\pingu@name-head-center)+(5:\pingu@w@half{} and \pingu@head@h@half) coordinate (\pingu@name-santa-left);
+\pingu@layer{middle}[]
+\pingu@block{\pingu@color@santahat@second} (\pingu@name-santa-right) to[out=48,in=132] (\pingu@name-santa-left) to[out=30,in=-45,looseness=1.325] ++(0,3.2mm)
+to[out=135,in=47,looseness=1.025] coordinate[pos=.915] (\pingu@name-santa-ur) coordinate[pos=.055] (\pingu@name-santa-ul) ([yshift=2mm]\pingu@name-santa-right) to[out=240,in=140] cycle;
+\endpingu@layer
+\pingu@layer{background}[]
+\pingu@block{\pingu@color@santahat} (\pingu@name-santa-ur) arc(145:-25:11.85mm and 14.915mm)
+    to[bend right=7] coordinate[pos=.5] (\pingu@name-santa-lc) ++(-1.11mm,.375mm) to[bend right=11] (\pingu@name-santa-ul) to[bend right=15] cycle;
+\pingu@block{\pingu@color@santahat@bobble} (\pingu@name-santa-lc) circle[radius=2.625mm];
+\endpingu@layer
+}
+% #endregion
+
+% #region santa beard
+\pingu@create@extra{santabeard}{%
+    santa beard/.code             = \pingu@set@extra{santabeard}{true}\pingu@color{santabeard}{#1},
+    santa beard/.default          = pingu@white!96!pingu@red!98!pingu@black!92!gray,
+    santa beard string/.code      = \pingu@color{santabeard@string}{#1}
+}{santa beard string=\pingu@color@body@main!85!pingu@black}
+\def\pingu@draw@ea@santabeard{%
+% \coordinate (\pingu@name-santa-beard-center) at ([yshift=1.25mm]\pingu@name-belly-center);
+\pingu@block{\pingu@color@santabeard@string} ([xshift=-.35mm,yshift=.575mm]\pingu@name-head-back-con-right) to[bend right=28,edge node={foreach[count=\i] \l in {0.03,0.085,...,0.992} {coordinate[pos=\l-rand*.015,yshift=-.85pt] (\pingu@name-santa-beard-\i)}}]
+([yshift=.575mm,xshift=.35mm]\pingu@name-head-back-con-left) arc(20:110:.05mm and .15mm) to[bend left=26] ([yshift=.575mm+.15mm,xshift=-.35mm]\pingu@name-head-back-con-right) to[bend right] cycle;
+\ifx\pingu@color@santabeard\@pingu@none\else% to allow for random
+\xdef\@pmaxY{18}\xdef\@pmaxYI{17}%
+\foreach[evaluate=\j as \maxj using int(\@pmaxY-\j),evaluate=\j as \widthred using \j/23pt] \j in {0,...,\@pmaxYI} {
+\foreach[remember=\i as \li (initially 0)] \i in {1,...,\maxj} {
+    \pgfmathsetmacro\@ptmp{93+rand*4.3}
+    \pingu@block{\pingu@color@santabeard!\@ptmp!pingu@black} (\pingu@name-santa-beard-\i) circle [radius=1.85pt-\widthred pt+rand*.35pt];
+    \ifnum\li>0 % make middle of last
+        \path (\pingu@name-santa-beard-\li) -- (\pingu@name-santa-beard-\i) coordinate[pos=.5,yshift=-1.1pt,xshift=.133pt] (\pingu@name-santa-beard-\li); % smoll shift
+    \fi
+}}\fi
+}
 % #endregion
 
 % #region devil-horns
