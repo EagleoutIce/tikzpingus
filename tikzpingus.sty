@@ -1030,6 +1030,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     \if@pingu@x@vrheadset@ \pingu@draw@ea@vrheadset \fi
     \if@pingu@x@headphone@ \pingu@draw@ea@headphone \fi
     \if@pingu@x@sheriffstar@ \pingu@draw@ea@sheriffstar \fi
+    \if@pingu@x@santahat@ \pingu@draw@ea@santahat \fi
 }
 
 % #region strawhat
@@ -1550,6 +1551,28 @@ scale=\pingu@x@pumpkinhat@scale]
 \pingu@draw[line width=.002mm]{pingu@black!92!pingu@yellow} (@s.north east) -- (@s.north west);
 \pingu@draw[line width=.002mm]{pingu@black!92!pingu@yellow} (@s.south east) -- (@s.south west);
 \endpingu@layer}
+% #endregion
+
+% #region santa hat
+\pingu@create@extra{santahat}{%
+    santa hat/.code             = \pingu@set@extra{santahat}{true}\pingu@color{santahat}{#1},
+    santa hat/.default          = pingu@red!86!pingu@black,
+    santa hat second/.code      = \pingu@color{santahat@second}{#1},
+    santa hat bobble/.code      = \pingu@color{santahat@bobble}{#1}
+}{santa hat second={pingu@white!96!\pingu@color@santahat},santa hat bobble={\pingu@color@santahat@second}}
+\def\pingu@draw@ea@santahat{%
+\path (\pingu@name-head-center)+(152:\pingu@w@half{} and \pingu@head@h@half) coordinate (\pingu@name-santa-right);
+\path (\pingu@name-head-center)+(5:\pingu@w@half{} and \pingu@head@h@half) coordinate (\pingu@name-santa-left);
+\pingu@layer{middle}[]
+\pingu@block{\pingu@color@santahat@second} (\pingu@name-santa-right) to[out=48,in=132] (\pingu@name-santa-left) to[out=40,in=-60,looseness=1.25] ++(0,3.2mm)
+to[out=132,in=44,looseness=1.025] coordinate[pos=.915] (\pingu@name-santa-ur) coordinate[pos=.055] (\pingu@name-santa-ul) ([yshift=2mm]\pingu@name-santa-right) to[out=240,in=140] cycle;
+\endpingu@layer
+\pingu@layer{background}[]
+\pingu@block{\pingu@color@santahat} (\pingu@name-santa-ur) arc(143:-25:11.85mm and 15.125mm)
+    to[bend right=7] coordinate[pos=.5] (\pingu@name-santa-lc) ++(-1.54mm,.375mm) to[bend right=8] (\pingu@name-santa-ul) to[bend right=15] cycle;
+\pingu@block{\pingu@color@santahat@bobble} (\pingu@name-santa-lc) circle[radius=2.85mm];
+\endpingu@layer
+}
 % #endregion
 
 % #region devil-horns
