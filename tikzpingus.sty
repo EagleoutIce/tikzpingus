@@ -1571,7 +1571,7 @@ scale=\pingu@x@pumpkinhat@scale]
 
 % #region santa hat
 \pingu@create@extra{santahat}{%
-    santa hat/.code             = \pingu@set@extra{santahat}{true}\pingu@color{santahat}{#1},
+    santa hat/.code             = \pingu@set@extra{santahat}{true}\pingu@color{santahat}{#1}\tikzset{/pingu/hair=\@pingu@none},
     santa hat/.default          = pingu@red!87!pingu@black,
     santa hat second/.code      = \pingu@color{santahat@second}{#1},
     santa hat bobble/.code      = \pingu@color{santahat@bobble}{#1}
