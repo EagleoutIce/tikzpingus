@@ -243,6 +243,7 @@
   :ghost/.default         = {.5},
   :devil/.style           = {/pingu/devil horns=#1,/pingu/eyes devil=#1},
   :devil/.default         = pingu@purple,
+  :hide/.style            = {/pingu/body type=none,/pingu/hair=\@pingu@none,/pingu/feet=none,/pingu/wings=none,/pingu/bill=none,/pingu/eyes=none},
   :back/.code            = {\tikzset{/pingu/eyes=none,/pingu/bill=none,/pingu/body front=\pingu@color@body@main,/pingu/@pingu@main/.append style={xshift=2\pingu@w@half,xscale=-1},/pingu/feet back}\gdef\pingu@back@init@call{\pgfsetlayers{foreground,middle,main,background}\gdef\pingu@back@init@call{}}\@pingu@do@back@true}% TODO: back foot clipping?
 }% TODO: draw another penguin that is then drawn above with only back
 \let\pingu@back@init@call\@empty
@@ -379,6 +380,40 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 
 \pingu@block{\pingu@color@body@front} (\pingu@name-eye-back-right)++(0,-.25mm) ellipse [x radius=.525cm,y radius=.625cm];
 \pingu@block{\pingu@color@body@front} (\pingu@name-eye-back-left)++(0,-.25mm) ellipse [x radius=.525cm,y radius=.625cm];
+}
+% #endregion
+% #region none
+\pingu@bodytype@add{none}{%
+\path[save path=\pingu@lowerpingu] (0,\pingu@outer@off)
+% left side
+to[bend right=\pingu@bend] coordinate[pos=.775] (\pingu@name-waist-right) ++(0,-\pingu@side@h@half-\pingu@outer@off)
+% feety stuff
+arc (180:270:\pingu@foot@outer@w{} and \pingu@foot@outer@h) coordinate (\pingu@name-foot-right)
+arc (270:332:\pingu@foot@inner@w{} and \pingu@foot@inner@h)
+coordinate (\pingu@name-bottom-center)
+arc (208:270:\pingu@foot@inner@w{} and \pingu@foot@inner@h) coordinate (\pingu@name-foot-left)
+arc (270:360:\pingu@foot@outer@w{} and \pingu@foot@outer@h)%
+% right side
+to[bend right=\pingu@bend] coordinate[pos=.225] (\pingu@name-waist-left) ++(0,\pingu@side@h@half+\pingu@outer@off)
+% coordinate
+coordinate (\pingu@name-wings-side-left)
+-- (0,\pingu@outer@off) coordinate (\pingu@name-wings-side-right) coordinate[pos=.5] (\pingu@name-head-center) -- cycle;
+
+\path[save path=\pingu@upperpingu] (\pingu@name-head-center)
+++(0,\pingu@head@h@half) coordinate (\pingu@name-head-top)
+arc(90:450:\pingu@w@half{} and \pingu@head@h@half)
+coordinate[pos=\pinguanglehr] (\pingu@name-head-right)
+coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
+
+\coordinate (\pingu@name-belly-back) at (\pingu@w@half,-1cm);
+\coordinate (\pingu@name-belly-center) at (\pingu@w@half,-.68\pingu@side@h@half);
+\path[save path=\pingu@whitepingu] (\pingu@name-belly-back)++(-\pingu@w@half+\pingu@one,\pingu@lower@off) to[bend right=.8\pingu@bend] ++(0,1.05cm-\pingu@side@h@half-\pingu@lower@off) arc (180:270:4mm and 2mm) arc (270:331:5mm and .85mm) arc (207:270:5mm and .85mm) arc (270:360:4mm and 2mm) to[bend right=.8\pingu@bend] ++(0,\pingu@side@h@half-1.05cm+\pingu@lower@off) arc (0:180:\pingu@w@half-.96mm and \pingu@w@half-\pingu@one) -- cycle;
+
+\coordinate (\pingu@name-eye-back-right) at ([xshift=-.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-head-center);
+\coordinate (\pingu@name-eye-back-left) at ([xshift=.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-head-center);
+
+\coordinate (\pingu@name-head-back-con-right) at ([xshift=-\pingu@headcon@x,yshift=-\pingu@headcon@y]\pingu@name-eye-back-right);
+\coordinate (\pingu@name-head-back-con-left) at ([xshift=\pingu@headcon@x,yshift=-\pingu@headcon@y]\pingu@name-eye-back-left);
 }
 % #endregion
 % #region chubby

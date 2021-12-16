@@ -1,0 +1,16 @@
+% Florian Sihler, 2021
+% Licensed under GNU Lesser General Public License version 3
+% https://opensource.org/licenses/lgpl-3.0.html
+\def\filename{tikzpingus-onepath}
+\ProvidesPackage{\filename}[2021/12/16 version v1.0 Penguins in TikZ in a one-line version]
+\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{tikzpingus}}
+\ProcessOptions*
+
+\RequirePackage{tikzpingus}
+
+\newcommand*\pinguOnePath[1][]{%
+\pingu[#1]
+}
+
+
+\endinput
