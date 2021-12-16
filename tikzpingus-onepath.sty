@@ -7,10 +7,28 @@
 \ProcessOptions*
 
 \RequirePackage{tikzpingus}
-
+% dead cur
 \newcommand*\pinguOnePath[1][]{%
-\pingu[#1]
+\pingu[#1,:hide,@body@app={% feet
+\coordinate (@tmp) at ([xshift=-.5\pingu@foot@single@h]\pingu@name-foot-left);
+\pingu@block[rotate around={-25+\basicfeetbend:(@tmp)}]{\pingu@color@foot@left} (@tmp) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
+\pingu@block[rotate around={\basicfeetbend:(\pingu@name-foot-left)}]{\pingu@color@foot@left} (\pingu@name-foot-left) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
+\coordinate (@tmp) at ([xshift= .5\pingu@foot@single@h]\pingu@name-foot-left);
+\pingu@block[rotate around={25+\basicfeetbend:(@tmp)}]{\pingu@color@foot@left} (@tmp) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
+\coordinate (@tmp) at ([xshift=-.5\pingu@foot@single@h]\pingu@name-foot-right);
+\pingu@block[rotate around={-25-\basicfeetbend:(@tmp)}]{\pingu@color@foot@right} (@tmp) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
+\pingu@block[rotate around={-\basicfeetbend:(\pingu@name-foot-right)}]{\pingu@color@foot@right} (\pingu@name-foot-right) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
+\coordinate (@tmp) at ([xshift= .5\pingu@foot@single@h]\pingu@name-foot-right);
+\pingu@block[rotate around={25-\basicfeetbend:(@tmp)}]{\pingu@color@foot@right} (@tmp) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
+% body
+\pingu@block{\pingu@color@body@main} (0,\pingu@outer@off)
+to[bend right=\pingu@bend] ++(0,-\pingu@side@h@half-\pingu@outer@off)
+arc (180:270:\pingu@foot@outer@w{} and \pingu@foot@outer@h)
+arc (270:332:\pingu@foot@inner@w{} and \pingu@foot@inner@h)
+arc (208:270:\pingu@foot@inner@w{} and \pingu@foot@inner@h)
+arc (270:360:\pingu@foot@outer@w{} and \pingu@foot@outer@h)%
+to[bend right=\pingu@bend] ++(0,\pingu@side@h@half+\pingu@outer@off)
+arc(0:180:{\pingu@w@half-.065pt} and \pingu@head@h@half) -- cycle;
+}]
 }
-
-
 \endinput

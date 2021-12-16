@@ -132,6 +132,8 @@
   /pingu/.search also={/tikz,/pgf}, /pingu/.cd,%
   name/.code                    = \def\pingu@name{#1},
   scale/.code                   = \def\pingu@scale{#1},
+  @post/.code                   = \def\pingu@post{#1},
+  @body@app/.code               = \def\pingu@body@app{#1},
   meta dots/.forward to         = /pingu/meta-dots,
   meta-dots/.is if              = @pingu@draw@metadots,
   meta-dots/.default            = true,
@@ -211,7 +213,7 @@
   large size/.style             = {/pingu/height=15mm},
   defaults/.style               = {%
     name=pingu, feet=normal, feet color=pingu@yellow, body=pingu@main,
-    body type=default,
+    body type=default,@post={},@body@app={},
     body front=pingu@white,%
     eyes=normal, eyes color=pingu@black, eyes second color=pingu@white,
     bill=normal, bill color=pingu@yellow,
@@ -276,6 +278,7 @@
 \pgfqkeys{/pingu}{defaults, #1}%
 \scope[/pingu/@pingu,/pingu/@pingu@main]
 \@pingu@drawer@bodytype@
+\pingu@body@app
 \path (\pingu@name-head-center)++(0,-.05mm-\pingu@outer@off) coordinate (\pingu@name-bill);
 
 \scope[shift=(\pingu@name-belly-center)]
@@ -323,8 +326,10 @@
 \pingu@draw@wing@items
 \endscope
 \if@pingu@draw@metadots \@pingu@draw@dots \fi
+\pingu@post
 \endgroup
-\pingu@back@init@call}
+\pingu@back@init@call
+}
 \let\pengu\pingu% as an alias
 
 %   #region lower-pingu
