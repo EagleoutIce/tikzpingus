@@ -982,7 +982,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     blush/.default           = pingu@red,
     blush second/.code       = \pingu@color{blush@second}{#1},
     blush opacity/.code      = \def\pingu@x@blush@opacity{#1},
-}{blush opacity=.215,blush second=\pingu@color@blush}
+}{blush opacity=.2525,blush second=\pingu@color@blush}
 
 \def\pingu@draw@eb@blush{%
     \pingu@block[/pingu/@glow,opacity=\pingu@x@blush@opacity]{\pingu@color@blush} ([yshift=-2.7mm,xshift=-1.85mm]\pingu@name-eye-right) ellipse [x radius=2.66mm,y radius=2.25mm];
@@ -1606,7 +1606,7 @@ scale=\pingu@x@pumpkinhat@scale]
 
 % #region santa hat
 \pingu@create@extra{santahat}{%
-    santa hat/.code             = \pingu@set@extra{santahat}{true}\pingu@color{santahat}{#1},
+    santa hat/.code             = \pingu@set@extra{santahat}{true}\pingu@color{santahat}{#1}\tikzset{/pingu/hair=\@pingu@none},
     santa hat/.default          = pingu@red!87!pingu@black,
     santa hat second/.code      = \pingu@color{santahat@second}{#1},
     santa hat bobble/.code      = \pingu@color{santahat@bobble}{#1}
