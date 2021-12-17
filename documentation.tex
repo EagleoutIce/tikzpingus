@@ -66,7 +66,7 @@
 	moreemph={tikzpicture},
 	alsoletter={.-!:0123456789},%disable number
 	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,a,b,c,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob,pants,button,buttons,bands,no,without,extra,steps,function,solid,right,frame,eye-frame,eyeframe,glasses,fill,line,sun,horns,devilhorns,devil-horns,headband,head-band,bend, upper,rook,hatch,strawhat,hat,ribbon,position,base,coronal,3d,colors,ring,bobbles,bobble,cake-hat,candle,fire,wick,outline,top,handle,hand,cast,handcast,signpost,font,fontcolor,deco,ribbs,double,core,outer,disabled,factor,german,code,pole,pride,staff,cape,bottom,padding,pumpkin-hat,stalk,stripe,cap,type,vr-headset,headphone,vertical,above,santa,beard,blush},
-	moreemph=[4]{:line,:ghost,parts,:devil,:back},
+	moreemph=[4]{:line,:ghost,parts,:devil,:back,:hide},
 	deletetexcs={begin,end},
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend},
 	moretexcs=[3]{begin,end},
@@ -373,7 +373,7 @@ While the penguin options offer the modification of basically every drawing rout
 So I have started to create some predefined styles, that do change some of the penguins appearance (and are completely new, so beware of bugs):
 \begin{multicols}{2}
 \begin{itemize}
-	\foreach \tx/\s in {{draw everything with a line}/{:line}, {draw components with transparency}/{:ghost parts}, {draw all layers with transparency}/{:ghost}, {set all of the \say{devil}-components}/{:devil},{flip the penguin (swaps left \& right)}/{:back}} {
+	\foreach \tx/\s in {{draw everything with a line}/{:line}, {draw components with transparency}/{:ghost parts}, {draw all layers with transparency}/{:ghost}, {set all of the \say{devil}-components}/{:devil},{flip the penguin (swaps left \& right)}/{:back},{do not draw main pingu}/{:hide}} {
 		\item \parbox[t]{.8\linewidth}{\raggedright\texttt{\s}, \tx.} \hfill
 		\parbox[t]{.175\linewidth}{\scalebox{.4}{%
 			\begin{tikzpicture}[baseline=.35\baselineskip]%
@@ -910,6 +910,16 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[:devil=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+
+\begin{keyexplain}{:hide}{}{}
+	Do not draw the main pingu:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[santa hat,:hide]
 \end{tikzpicture}
 \end{tcblisting}
 \end{keyexplain}
