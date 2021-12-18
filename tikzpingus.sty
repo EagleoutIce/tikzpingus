@@ -3,13 +3,10 @@
 % https://opensource.org/licenses/lgpl-3.0.html
 \def\filename{tikzpingus}
 \ProvidesPackage{\filename}[2021/04/30 version v1.0 Penguins in TikZ]
-
 \newif\ifpengu@setup@glows@
-\DeclareOption{glows}{\pengu@setup@glows@true}
-\DeclareOption{noglows}{\pengu@setup@glows@false}
+\DeclareOption{glows}{\pengu@setup@glows@true}\DeclareOption{noglows}{\pengu@setup@glows@false}
 \newif\ifpengu@setup@manual@layers@
-\DeclareOption{manual-layers}{\pengu@setup@manual@layers@true}
-\DeclareOption{nomanual-layers}{\pengu@setup@manual@layers@false}
+\DeclareOption{manual-layers}{\pengu@setup@manual@layers@true}\DeclareOption{nomanual-layers}{\pengu@setup@manual@layers@false}
 \ProcessOptions*
 
 \RequirePackage{tikz}
@@ -2185,7 +2182,7 @@ vr-controller \@lr\space second shade/.code = \pingu@color{vrcontroller\@lr @sec
             \pingu@block[top color=\pingu@color@cloak,middle color=\pingu@color@cloak,bottom color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} (\pingu@name-wing-right-start)++(1.65mm,0) to[bend left=10] (\pingu@name-wing-right-low) to[bend right=3]  (\pingu@name-wing-right-up) to[bend left=3] ([yshift=8mm]\pingu@name-wing-right-start) -- ++(1mm,0) to[bend left=13] cycle;
         \fi
     \fi
-    \fi
+\fi
 \endpingu@layer
 }
 %     #endregion
@@ -2223,8 +2220,7 @@ vr-controller \@lr\space second shade/.code = \pingu@color{vrcontroller\@lr @sec
     25mm) circle[radius=.065mm];
     \pingu@block{\pingu@color@shirt@button@middle@shade} (\pingu@name-shirt-bt)++(0,-1.35mm)++(\i:.25mm) circle[radius=.065mm];
     \pingu@block{\pingu@color@shirt@button@bottom@shade} (\pingu@name-shirt-bt)++(0,2*-1.35mm)++(\i:.25mm) circle[radius=.065mm];
-}%
-}
+}}
 
 % TODO: if flags to draw parts
 \def\pingu@draw@cloth@shirt{%
