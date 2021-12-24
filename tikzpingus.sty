@@ -1,8 +1,8 @@
 % Florian Sihler, 2021
 % Licensed under GNU Lesser General Public License version 3
 % https://opensource.org/licenses/lgpl-3.0.html
-\def\filename{tikzpingus}
-\ProvidesPackage{\filename}[2021/04/30 version v1.0 Penguins in TikZ]
+\def\tikzpingus@filename{tikzpingus}
+\ProvidesPackage{\tikzpingus@filename}[2021/04/30 version v1.0 Penguins in TikZ]
 \newif\ifpengu@setup@glows@
 \DeclareOption{glows}{\pengu@setup@glows@true}\DeclareOption{noglows}{\pengu@setup@glows@false}
 \newif\ifpengu@setup@manual@layers@
@@ -65,7 +65,7 @@
 \def\pingu@csappto#1#2{\expandafter\ifx\csname #1\endcsname\@empty\@namedef{#1}{#2}\else\expandafter\g@addto@macro\csname #1\endcsname{, #2}\fi}
 
 \def\pingu@create@sel@err#1#2{%
-    \PackageError{\filename}{There is no '#2' drawer for '#1'. Choose one of '\@nameuse{@pingu@#1@}'}{Or ask the package maintainer :D}%
+    \PackageError{\tikzpingus@filename}{There is no '#2' drawer for '#1'. Choose one of '\@nameuse{@pingu@#1@}'}{Or ask the package maintainer :D}%
 }
 
 % #1 name | none default
