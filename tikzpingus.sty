@@ -124,6 +124,7 @@
 \newif\if@pingu@draw@metadots
 \newif\if@pingu@wi@flip@left
 \newif\if@pingu@wi@flip@right
+\newif\if@pingu@feet@front
 
 \tikzset{%
   /pingu/.search also={/tikz,/pgf}, /pingu/.cd,%
@@ -148,6 +149,7 @@
   right foot/.code              = \pingu@rightfoot@select{#1},
   feet/.style                   = {/pingu/left foot={#1}, /pingu/right foot={#1}},
   feet color/.style             = {/pingu/left foot color={#1}, /pingu/right foot color={#1}},
+  feet front/.is if             = @pingu@feet@front,
   % body
   body type/.code               = \pingu@bodytype@select{#1},
   body main/.code               = \pingu@color{body@main}{#1},
@@ -217,7 +219,8 @@
     wings=normal, wings color=\pingu@color@body@main,
     hairstyle=normal, hairs color=\pingu@color@body@main,
     belly raw={}, scale=\pingu@default@scale,
-    left wing item angle=0,right wing item angle=0,extra defaults,user defaults%
+    left wing item angle=0,right wing item angle=0,extra defaults,user defaults,%
+    feet front=false%
   },
   user defaults/.style = {},
   % will be set individually
@@ -240,6 +243,8 @@
   :ghost parts/.default   = {.5},
   :ghost/.style           = {/pingu/@pingu/.append style={opacity=#1,transparency group}},
   :ghost/.default         = {.5},
+  :ghost glow/.style           = {/pingu/@pingu/.append style={opacity=#1,transparency group},/pingu/@block/.append style={/pingu/@glow}},
+  :ghost glow/.default         = {.5},
   :devil/.style           = {/pingu/devil horns=#1,/pingu/eyes devil=#1},
   :devil/.default         = pingu@purple,
   :hide/.style            = {/pingu/body type=none,/pingu/hair=\@pingu@none,/pingu/feet=none,/pingu/wings=none,/pingu/bill=none,/pingu/eyes=none},
@@ -292,9 +297,9 @@
 
 \@pingu@drawer@bill@
 \@pingu@drawer@hairstyle@
-\pingu@layer{background}[]
+\if@pingu@feet@front\else\pingu@layer{background}[]\fi
 \@pingu@drawer@leftfoot@ \@pingu@drawer@rightfoot@
-\endpingu@layer
+\if@pingu@feet@front\else\endpingu@layer\fi
 
 \@pingu@drawer@leftwing@ \@pingu@drawer@rightwing@
 
