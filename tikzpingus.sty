@@ -1576,6 +1576,7 @@ scale=\pingu@x@pumpkinhat@scale]
 
 % #region headphone
 \pingu@create@extra{headphone}{%
+    headphones/.forward to      = /pingu/headphone,
     headphone/.code             = \pingu@set@extra{headphone}{true}\pingu@color{headphone}{#1},
     headphone/.default          = pingu@blue!80!pingu@black,
     headphone left/.code        = \pingu@color{headphone@left}{#1},
