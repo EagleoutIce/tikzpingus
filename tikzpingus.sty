@@ -1580,12 +1580,29 @@ scale=\pingu@x@pumpkinhat@scale]
     headphone/.code             = \pingu@set@extra{headphone}{true}\pingu@color{headphone}{#1},
     headphone/.default          = pingu@blue!80!pingu@black,
     headphone left/.code        = \pingu@color{headphone@left}{#1},
-    headphone right/.code       = \pingu@color{headphone@right}{#1}
-}{headphone left=\pingu@color@headphone!65!pingu@black,headphone right=\pingu@color@headphone@left}
+    headphone right/.code       = \pingu@color{headphone@right}{#1},
+    headphones winter/.forward to= /pingu/headphone winter,
+    headphone winter/.style     = {/pingu/headphone inner=pingu@white},
+    headphones outer/.forward to  = /pingu/headphone outer,
+    headphone outer/.style        = {/pingu/headphone left outer=#1,/pingu/headphone right outer=#1}, headphone outer/.default      = pingu@black,
+    headphone left outer/.code    = \pingu@color{headphone@left@p}{#1}, headphone left outer/.default  =pingu@black,
+    headphone right outer/.code   = \pingu@color{headphone@right@p}{#1}, headphone right outer/.default=pingu@black,
+    headphone winter/.default   = pingu@white,
+    headphones inner/.forward to  = /pingu/headphone inner,
+    headphone inner/.style        = {/pingu/headphone left inner=#1,/pingu/headphone right inner=#1}, headphone inner/.default      = pingu@black,
+    headphone left inner/.code    = \pingu@color{headphone@left@i}{#1}, headphone left inner/.default = pingu@black,
+    headphone right inner/.code   = \pingu@color{headphone@right@i}{#1}, headphone right inner/.default=pingu@black,
+}{headphone left=\pingu@color@headphone!65!pingu@black,headphone right=\pingu@color@headphone@left,headphone left outer=\@pingu@none,
+,headphone right outer=\@pingu@none,,headphone left inner=\@pingu@none,
+,headphone right inner=\@pingu@none}
 
 \def\pingu@draw@ea@headphone{%
 \if@pingu@do@back@ \pingu@layer{background}[] \fi
+    \pingu@block[rounded corners=.1mm]{\pingu@color@headphone@right@p} ([xshift=-\pingu@one,yshift=3.22mm]\pingu@name-wings-side-right|-\pingu@name-eye-right) arc (93:273:.565mm and 2.11mm) -- ++(.8mm,.075mm) -- ++(0,4.075mm);
+    \pingu@block[rounded corners=.1mm]{\pingu@color@headphone@right@i} ([xshift=\pingu@one-.366mm,yshift=3.22mm]\pingu@name-wings-side-right|-\pingu@name-eye-right) arc (87:-93:.565mm and 2.14mm) -- ++(-.8mm,.075mm) -- ++(0,4.075mm) -- cycle;
     \pingu@block[rounded corners=.1mm]{\pingu@color@headphone@right} ([xshift=-\pingu@one+.2mm,yshift=3.22mm]\pingu@name-wings-side-right|-\pingu@name-eye-right) arc (92:272:.565mm and 2.1mm) -- ++(.8mm,-.05mm) arc (270:450:.425mm and 2.1mm) -- cycle;
+    \pingu@block[rounded corners=.1mm]{\pingu@color@headphone@left@p} ([xshift=\pingu@one,yshift=3.22mm]\pingu@name-wings-side-left|-\pingu@name-eye-left) arc (87:-93:.565mm and 2.11mm) -- ++(-.8mm,.075mm) -- ++(0,4.075mm) -- cycle;
+    \pingu@block[rounded corners=.1mm]{\pingu@color@headphone@left@i} ([xshift=-\pingu@one+.366mm,yshift=3.22mm]\pingu@name-wings-side-left|-\pingu@name-eye-left) arc (93:273:.565mm and 2.14mm) -- ++(.8mm,.075mm) -- ++(0,4.075mm);
     \pingu@block[rounded corners=.1mm]{\pingu@color@headphone@left} ([xshift=\pingu@one-.2mm,yshift=3.22mm]\pingu@name-wings-side-left|-\pingu@name-eye-left) arc (88:-92:.565mm and 2.1mm) -- ++(-.8mm,-.05mm) arc (270:90:.425mm and 2.1mm) -- cycle;
     \pingu@block{\pingu@color@headphone} ([xshift=-\pingu@one,yshift=\pingu@one]\pingu@name-wings-side-right|-\pingu@name-eye-right)
     arc(180:0:{\pingu@one+\pingu@w@half} and {\pingu@head@h@half-.5\pingu@one}) arc(0:-180:.65mm and .33mm)
