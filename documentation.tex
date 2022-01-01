@@ -65,7 +65,7 @@
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
 	alsoletter={.-!:0123456789},%disable number
-	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,a,b,c,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob,pants,button,buttons,bands,no,without,extra,steps,function,solid,right,frame,eye-frame,eyeframe,glasses,fill,line,sun,horns,devilhorns,devil-horns,headband,head-band,bend, upper,rook,hatch,strawhat,hat,ribbon,position,base,coronal,3d,colors,ring,bobbles,bobble,cake-hat,candle,fire,wick,outline,top,handle,hand,cast,handcast,signpost,font,fontcolor,deco,ribbs,double,core,outer,disabled,factor,german,code,pole,pride,staff,cape,bottom,padding,pumpkin-hat,stalk,stripe,cap,type,vr-headset,headphone,vertical,above,santa,beard,blush},
+	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,a,b,c,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob,pants,button,buttons,bands,no,without,extra,steps,function,solid,right,frame,eye-frame,eyeframe,glasses,fill,line,sun,horns,devilhorns,devil-horns,headband,head-band,bend, upper,rook,hatch,strawhat,hat,ribbon,position,base,coronal,3d,colors,ring,bobbles,bobble,cake-hat,candle,fire,wick,outline,top,handle,hand,cast,handcast,signpost,font,fontcolor,deco,ribbs,double,core,outer,disabled,factor,german,code,pole,pride,staff,cape,bottom,padding,pumpkin-hat,stalk,stripe,cap,type,vr-headset,headphone,vertical,above,santa,beard,blush,inner},
 	moreemph=[4]{:line,:ghost,parts,:devil,:back,:hide},
 	deletetexcs={begin,end},
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend},
@@ -161,7 +161,7 @@ For my slides at university, I started to use the famous \LaTeX-package \textsl{
 Yet, it seemed somewhat of a necessity to extend the range of available \say{cute} animals in \LaTeX.
 Therefore I started writing this package: \textsl{tikzpingus}.\footnote{Why \say{pingu} and not \say{pengu}? Well, this is the third try on achieving cute penguins without using any templates or vector formats as a basis. As a german, the short form \say{pingu} was merely a typo that originated from the german word \say{pinguin} for \say{penguin}. It somewhat sticked\ldots}
 
-\textit{Please note:} While tikzpingus is certainly inspired by tikzducks, it does offer a different set of features (e.g. multiple arm positions,~\ldots).
+\textit{Please note:} While tikzpingus is certainly inspired by tikzducks, it does offer a different set of features (e.g., multiple wing positions,~\ldots).
 
 I would be happy for any feedback or issues on the \href{https://github.com/EagleoutIce/tikzpingus}{tikzpingus}-GitHub.
 
@@ -2491,6 +2491,64 @@ Change the color of the right headphone:
 \end{tikzpicture}
 \end{tcblisting}
 \end{subkeyexplain}}
+
+\begin{subkeyexplain}{headphone}{headphone left outer}{color}{pingu@black}
+Change the color of the left outer headphone padding:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[headphone, headphone left outer=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{headphone}{headphone right outer}{color}{pingu@black}
+Change the color of the right outer headphone padding:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[headphone, headphone right outer=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{headphone}{headphone outer}{color}{pingu@black}
+Set \keyref{headphone left outer} and \keyref{headphone right outer} with the same value:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[headphone, headphone outer=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\subkeyalias{headphones outer}{headphone outer}{headphone}
+
+\begin{subkeyexplain}{headphone}{headphone left inner}{color}{pingu@black}
+Change the color of the left inner headphone padding:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[headphone, headphone left inner=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{headphone}{headphone right inner}{color}{pingu@black}
+Change the color of the right inner headphone padding:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[headphone, headphone right inner=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{headphone}{headphone inner}{color}{pingu@black}
+Set \keyref{headphone left inner} and \keyref{headphone right inner} with the same value:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[headphone, headphone inner=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\subkeyalias{headphones inner}{headphone inner}{headphone}
 
 \subsubsection{The santa hat}
 
