@@ -57,6 +57,15 @@
 \lstset{style=lstpingu}
 \def\ipingu#1{\lstinline'#1'}
 \def\lpingu#1{\lstinline[style=lstpingu,language=pingulang]'#1'}
+\def\ltex#1{\lstinline[style=lstpingu,language=pinguinternallang]'#1'}
+
+\lstdefinelanguage{pinguinternallang}{
+	language={[LaTeX]TeX},
+	moreemph={tikzpicture},
+	alsoletter={@},
+	moretexcs=[2]{pingu@block,pingu@draw},
+	moretexcs={pingu@eye@shift,pingu@color@eye@left,pingu@color@eye@right,pingu@name,@pingu@eyes@s}
+}
 
 \def\t@lst@addToLiterate#1{\protected@edef\lst@literate{\unexpanded\expandafter{\lst@literate}\unexpanded{#1}}}
 \lst@Key{add to literate}{}{\t@lst@addToLiterate{#1}}
@@ -3468,13 +3477,13 @@ Originally developed just as a cape, the cloak is no a whole extension.
 \subsection{Internals}
 This subsection is not intended to explain every internal of tikzpingus as they would be subject to change. It rather aims to be a guide to the extension of the package by new features for the little penguins.
 
-\subsubsection{Adding a new eyes}
-The macro \lpingu{\\@pingu@eyes@s{<name>}{<left>}{<right>}} allows for the addition of new eye styles.
+\subsubsection{Adding new eyes}
+The macro \ltex{\\@pingu@eyes@s\{<name>\}\{<left>\}\{<right>\}} allows for the addition of new eye styles.
 The \say{normal} eyes could be defined as follows:
-\begin{lstlisting}[style=lstpingu,language=pingulang]
-\@pingu@eyes@s{normal}{%
+\begin{lstlisting}[style=lstpingu,language={pinguinternallang}]
+\@pingu@eyes@s{normal}{
 	\pingu@block{\pingu@color@eye@left} ([yshift=.75mm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left) coordinate (\pingu@name-eye-left) ellipse [x radius=.1225cm, y radius=.1275cm];
-}{%
+}{
 	\pingu@block{\pingu@color@eye@right} ([yshift=.75mm,xshift=-\pingu@eye@shift]\pingu@name-eye-back-right) coordinate(\pingu@name-eye-right) ellipse [x radius=.1225cm, y radius=.1275cm];
 }
 \end{lstlisting}
