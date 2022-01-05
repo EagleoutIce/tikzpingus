@@ -84,7 +84,7 @@
     \csname pingu@#1@add\endcsname{none}{#2}%
 }
 
-\long\def\pingu@create@extra#1#2#3{\expandafter\newif\csname if@pingu@x@#1@\endcsname\tikzset{/pingu/.cd,#2,extra defaults/.append style={#3}}}
+\long\def\pingu@create@extra#1#2#3{\expandafter\newif\csname if@pingu@x@#1@\endcsname\pgfqkeys{/pingu}{#2,extra defaults/.append style={#3}}}
 \def\pingu@set@extra#1#2{\csname @pingu@x@#1@#2\endcsname}
 
 \pingu@create@selection{lefteye}{%
@@ -118,7 +118,7 @@
 \def\pingu@color#1#2{\expandafter\def\csname pingu@color@#1\endcsname{#2}}
 
 % HACK: store scale
-\tikzset{/tikz/scale/.append code={\def\pingu@default@scale{#1}}}
+\pgfqkeys{/tikz}{scale/.append code={\def\pingu@default@scale{#1}}}
 \def\pingu@default@scale{1}
 
 \newif\if@pingu@draw@metadots
@@ -126,8 +126,8 @@
 \newif\if@pingu@wi@flip@right
 \newif\if@pingu@feet@front
 
-\tikzset{%
-  /pingu/.search also={/tikz,/pgf}, /pingu/.cd,%
+\pgfqkeys{/pingu}{
+  /pingu/.search also={/tikz,/pgf},
   name/.code                    = \def\pingu@name{#1},
   scale/.code                   = \def\pingu@scale{#1},
   @post/.code                   = \def\pingu@post{#1},
@@ -226,8 +226,8 @@
   % will be set individually
   extra defaults/.style = {}
 }
-\def\pingudefaults#1{\tikzset{/pingu/user defaults/.style={#1}}}
-\def\pingudefaultsappend#1{\tikzset{/pingu/user defaults/.append style={#1}}}
+\def\pingudefaults#1{\pgfqkeys{/pingu}{user defaults/.style={#1}}}
+\def\pingudefaultsappend#1{\pgfqkeys{/pingu}{user defaults/.append style={#1}}}
 % #endregion
 
 % #region subenvs
@@ -237,7 +237,7 @@
 
 % #region complete sets and styles
 \newif\if@pingu@do@back@
-\tikzset{
+\pgfqkeys{/pingu}{
   :line/.style            = {/pingu/@block/.append style={fill=none,draw=##1!80!black,shade=none,path fading=none}},
   :ghost parts/.style     = {/pingu/@pingu@all/.append style={opacity={#1}}},
   :ghost parts/.default   = {.5},
@@ -248,7 +248,7 @@
   :devil/.style           = {/pingu/devil horns=#1,/pingu/eyes devil=#1},
   :devil/.default         = pingu@purple,
   :hide/.style            = {/pingu/body type=none,/pingu/hair=\@pingu@none,/pingu/feet=none,/pingu/wings=none,/pingu/bill=none,/pingu/eyes=none},
-  :back/.code            = {\tikzset{/pingu/eyes=none,/pingu/bill=none,/pingu/body front=\pingu@color@body@main,/pingu/@pingu@main/.append style={xshift=2\pingu@w@half,xscale=-1},/pingu/feet back}\gdef\pingu@back@init@call{\pgfsetlayers{foreground,middle,main,background}\gdef\pingu@back@init@call{}}\@pingu@do@back@true}% TODO: back foot clipping?
+  :back/.code            = {\pgfqkeys{/pingu}{eyes=none,bill=none,body front=\pingu@color@body@main,@pingu@main/.append style={xshift=2\pingu@w@half,xscale=-1},feet back}\gdef\pingu@back@init@call{\pgfsetlayers{foreground,middle,main,background}\gdef\pingu@back@init@call{}}\@pingu@do@back@true}% TODO: back foot clipping?
 }% TODO: draw another penguin that is then drawn above with only back
 \let\pingu@back@init@call\@empty
 % #endregion
@@ -257,9 +257,9 @@
 \ifpengu@setup@glows@
 \usetikzlibrary{fadings}%
 \tikzfading[name=pingu@halo fade out,inner color=transparent!0,outer color=transparent!100]
-\tikzset{/pingu/@glow/.style={path fading={pingu@halo fade out},#1}}
+\pgfqkeys{/pingu}{@glow/.style={path fading={pingu@halo fade out},#1}}
 \else
-\tikzset{/pingu/@glow/.style={},/pingu/@saber@glow/.style={}}
+\pgfqkeys{/pingu}{@glow/.style={},/pingu/@saber@glow/.style={}}
 \fi
 % #endregion
 % #endregion
@@ -551,13 +551,13 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \let\pingu@wi@below\iffalse
 % name core | left | right | above: \iftrue | angle for items | wing down [left]
 \long\def\@pingu@wings@s#1#2#3#4#5#6{%
-    \tikzset{%
-        /pingu/left wing #1/.style   = {/pingu/left wing={#1}, /pingu/left wing color={##1}},%
-        /pingu/left wing #1/.default = \pingu@color@body@main,%
-        /pingu/right wing #1/.style   = {/pingu/right wing={#1}, /pingu/right wing color={##1}},%
-        /pingu/right wing #1/.default = \pingu@color@body@main,%
-        /pingu/wings #1/.style   = {/pingu/wings={#1}, /pingu/wings color={##1}},%
-        /pingu/wings #1/.default = \pingu@color@body@main%
+    \pgfqkeys{/pingu}{%
+        left wing #1/.style   = {/pingu/left wing={#1}, /pingu/left wing color={##1}},%
+        left wing #1/.default = \pingu@color@body@main,%
+        right wing #1/.style   = {/pingu/right wing={#1}, /pingu/right wing color={##1}},%
+        right wing #1/.default = \pingu@color@body@main,%
+        wings #1/.style   = {/pingu/wings={#1}, /pingu/wings color={##1}},%
+        wings #1/.default = \pingu@color@body@main%
     }%
     \expandafter\def\csname @pingu@wing@str@#1@\endcsname{#1}%
     \pingu@leftwing@add{#1}{#2}\pingu@rightwing@add{#1}{#3}%
@@ -565,7 +565,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     \expandafter\def\csname @pingu@wingangle@items@#1@\endcsname{#5}%
     \expandafter\def\csname @pingu@wingdown@#1@\endcsname{#6}%
 }
-\tikzset{/pingu/wings none/.style={/pingu/wings=none},/pingu/left wing none/.style={/pingu/left wing=none},/pingu/right wing none/.style={/pingu/right wing=none}} % adding the alias
+\pgfqkeys{/pingu}{wings none/.style={/pingu/wings=none},left wing none/.style={/pingu/left wing=none},right wing none/.style={/pingu/right wing=none}} % adding the alias
 \let\@pingu@wingitem@none@\pingu@wi@above
 \def\@pingu@wingangle@items@none@{90}
 \def\@pingu@wingdown@none@{90}
@@ -679,7 +679,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 % #endregion
 
 % #region hairstyle
-\tikzset{/pingu/hairstyle none/.style={/pingu/hairstyle=none}}
+\pgfqkeys{/pingu}{hairstyle none/.style={/pingu/hairstyle=none}}
 \pingu@hairstyle@add{normal}{%
 \scope\pgfinterruptboundingbox
 \clip[/pingu/@invclip] (\pingu@name-head-center) ellipse [x radius=\pingu@w@half, y radius=\pingu@head@h@half-.0165mm];
@@ -696,17 +696,17 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 % #region feet
 \long\def\@pingu@feet@s#1#2#3{\@ifnextchar[{\@pingu@feet@s@{#1}{#2}{#3}}{\@pingu@feet@s@{#1}{#2}{#3}[pingu@yellow]}}
 \long\def\@pingu@feet@s@#1#2#3[#4]{%
-    \tikzset{%
-        /pingu/left foot #1/.style    = {/pingu/left foot={#1}, /pingu/left foot color={##1}},%
-        /pingu/left foot #1/.default  = {#4},%
-        /pingu/right foot #1/.style   = {/pingu/right foot={#1}, /pingu/right foot color={##1}},%
-        /pingu/right foot #1/.default = {#4},%
-        /pingu/feet #1/.style         = {/pingu/feet={#1}, /pingu/feet color={##1}},%
-        /pingu/feet #1/.default       = {#4}%
+    \pgfqkeys{/pingu}{%
+        left foot #1/.style    = {/pingu/left foot={#1}, /pingu/left foot color={##1}},%
+        left foot #1/.default  = {#4},%
+        right foot #1/.style   = {/pingu/right foot={#1}, /pingu/right foot color={##1}},%
+        right foot #1/.default = {#4},%
+        feet #1/.style         = {/pingu/feet={#1}, /pingu/feet color={##1}},%
+        feet #1/.default       = {#4}%
     }%
     \pingu@leftfoot@add{#1}{#2}\pingu@rightfoot@add{#1}{#3}%
 }
-\tikzset{/pingu/feet none/.style={/pingu/feet=none}, /pingu/left foot none/.style={/pingu/left foot=none}, /pingu/right foot none/.style={/pingu/right foot=none}}
+\pgfqkeys{/pingu}{feet none/.style={/pingu/feet=none}, /left foot none/.style={/pingu/left foot=none}, right foot none/.style={/pingu/right foot=none}}
 
 \@pingu@feet@s{normal}{%
     \coordinate (@tmp) at ([xshift=-.5\pingu@foot@single@h]\pingu@name-foot-left);
@@ -739,13 +739,13 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 % #region bill
 % name core | main
 \long\def\@pingu@bill@s#1#2{%
-    \tikzset{%
-        /pingu/bill #1/.style   = {/pingu/bill={#1}, /pingu/bill color={##1}},%
-        /pingu/bill #1/.default = pingu@yellow% TODO: defaults
+    \pgfqkeys{/pingu}{%
+        bill #1/.style   = {/pingu/bill={#1}, /pingu/bill color={##1}},%
+        bill #1/.default = pingu@yellow% TODO: defaults
     }%
     \pingu@bill@add{#1}{#2}%
 }
-\tikzset{/pingu/bill none/.style={/pingu/bill=none}}
+\pgfqkeys{/pingu}{bill none/.style={/pingu/bill=none}}
 
 \@pingu@bill@s{normal}{%
 \pingu@block{\pingu@color@bill} (\pingu@name-bill)++(-.19cm,0)
@@ -1628,7 +1628,7 @@ scale=\pingu@x@pumpkinhat@scale]
 
 % #region santa hat
 \pingu@create@extra{santahat}{%
-    santa hat/.code             = \pingu@set@extra{santahat}{true}\pingu@color{santahat}{#1}\tikzset{/pingu/hair=\@pingu@none},
+    santa hat/.code             = \pingu@set@extra{santahat}{true}\pingu@color{santahat}{#1}\pgfqkeys{/pingu}{hair=\@pingu@none},
     santa hat/.default          = pingu@red!87!pingu@black,
     santa hat second/.code      = \pingu@color{santahat@second}{#1},
     santa hat bobble/.code      = \pingu@color{santahat@bobble}{#1}
@@ -2098,7 +2098,7 @@ vr-controller \@lr\space second shade/.code = \pingu@color{vrcontroller\@lr @sec
 \scope[rotate around={\@angle:(\pingu@name-wing-#1)}]
     % NOTE: not full foreground if placed under the wing
     \pingu@layer{foreground}[shift={(\pingu@name-wing-#1)},shift={(\@sidesign*.15mm,17.5mm-3.5\p@)}]
-        \if@pingu@wing@item@side@left@\tikzset{/pingu/@flag@first/.style={below right}}\else\tikzset{/pingu/@flag@first/.style={below left}}\fi
+        \if@pingu@wing@item@side@left@\pgfqkeys{/pingu}{@flag@first/.style={below right}}\else\pgfqkeys{/pingu}{@flag@first/.style={below left}}\fi
         \csname pingu@flag@#1@code\endcsname
         \pingu@block[thick]{\csname pingu@color@flag#1@pole\endcsname}(\pingu@name-wing-#1)++(\@sidesign*-.15mm,3mm) -- ++(0,13.65mm) -| ++(\@sidesign*.6mm,-13.65mm) -- cycle;
     \endpingu@layer
