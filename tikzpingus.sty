@@ -2130,16 +2130,19 @@ vr-controller \@lr\space second shade/.code = \pingu@color{vrcontroller\@lr @sec
 
 % #region clothes
 \def\pingu@draw@clothing@behind{%
+    \if@pingu@x@secondshirt@ \pingu@draw@cloth@secondshirt@behind \fi
     \if@pingu@x@shirt@ \pingu@draw@cloth@shirt@behind \fi
     \if@pingu@x@cloak@ \pingu@draw@cloth@cloak@behind \fi
 }
 
 \def\pingu@draw@clothing@middle{%
+    \if@pingu@x@secondshirt@ \pingu@draw@cloth@secondshirt@middle \fi
     \if@pingu@x@shirt@ \pingu@draw@cloth@shirt@middle \fi
     \if@pingu@x@cloak@ \pingu@draw@cloth@cloak@middle \fi
 }
 
 \def\pingu@draw@clothing@main{%
+    \if@pingu@x@secondshirt@ \pingu@draw@cloth@secondshirt \fi
     \if@pingu@x@shirt@ \pingu@draw@cloth@shirt \fi
     \if@pingu@x@cloak@ \pingu@draw@cloth@cloak \fi
 }
@@ -2249,6 +2252,23 @@ vr-controller \@lr\space second shade/.code = \pingu@color{vrcontroller\@lr @sec
 
 % TODO: if flags to draw parts
 \def\pingu@draw@cloth@shirt{%
+}
+%     #endregion
+
+%     #region second shirt
+\pingu@create@extra{secondshirt}{%
+    second shirt/.code              = \pingu@set@extra{secondshirt}{true}\pingu@color{secondshirt}{#1},
+    second shirt/.default           = pingu@red,
+}{}
+\def\pingu@draw@cloth@secondshirt@behind{}
+
+\def\pingu@draw@cloth@secondshirt@middle{%
+\coordinate (\pingu@name-secondshirt-low) at ([yshift=1.75mm]\pingu@name-belly-center);
+\pingu@block{\pingu@color@secondshirt} [rounded corners=.181mm] ([xshift=.225mm,yshift=.08mm]\pingu@name-head-back-con-right) -- (\pingu@name-secondshirt-low) -- ([xshift=-.15mm,yshift=.14mm]\pingu@name-head-back-con-left) to[bend left=12] (\pingu@name-waist-left) to[bend left=3] (\pingu@name-bottom-center-|\pingu@name-waist-left) to[bend left=10] ([yshift=-1.1\pingu@one]\pingu@name-bottom-center) to[bend left=10] (\pingu@name-bottom-center-|\pingu@name-waist-right) to[bend left=3] (\pingu@name-waist-right) to[bend left=12] (\pingu@name-head-back-con-right) -- cycle;
+}
+
+% TODO: if flags to draw parts
+\def\pingu@draw@cloth@secondshirt{%
 }
 %     #endregion
 % #endregion
