@@ -2143,25 +2143,26 @@ vr-controller \@lr\space second shade/.code = \pingu@color{vrcontroller\@lr @sec
 %     #region cloak
 \newif\if@pingu@x@cloak@wings
 \pingu@create@extra{cloak}{%
-    cape/.forward to         = /pingu/cloak, % TODO: update if it changes
     cloak/.code              = \pingu@set@extra{cloak}{true}\pingu@color{cloak}{#1},
     cloak/.default           = pingu@bronze,
     cloak cap/.code          = \pingu@color{cloak@cap}{#1},
     cloak wings color/.code  = \pingu@color{cloak@wings}{#1},
     cloak bottom color/.code = \pingu@color{cloak@bottom}{#1},
-    cloak front color/.code = \pingu@color{cloak@front}{#1},
-    cloak padding/.code      = {\def\pingu@x@cloak@padding{#1}},
-    cloak wings/.is if       = @pingu@x@cloak@wings
+    cloak front color/.code  = \pingu@color{cloak@front}{#1},
+    cloak padding/.code      = \def\pingu@x@cloak@padding{#1},
+    cloak wings/.is if       = @pingu@x@cloak@wings,
+    cape/.style              = {/pingu/cloak=#1, /pingu/cloak wings=false,/pingu/cloak front color=\@pingu@none, /pingu/cloak cap=\@pingu@none,/pingu/cloak front color=\@pingu@none},
+    cape/.default            = pingu@bronze,
 }{cloak padding=1.95mm,cloak bottom color=\pingu@color@cloak!90!black,cloak cap=\pingu@color@cloak!94!pingu@black,cloak front color=\pingu@color@cloak!90!white,cloak wings color=\pingu@color@cloak!96!pingu@black,cloak wings=true}
 \def\pingu@draw@cloth@cloak@behind{%
     \pingu@block[bottom color=\pingu@color@cloak@bottom,top color=\pingu@color@cloak]{\pingu@color@cloak} (\pingu@name-bottom-center)++(-\pingu@x@cloak@padding-\pingu@w@half,-.5mm) arc (180:0:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend left=1] (\pingu@name-wings-side-left) arc(0:180:\pingu@w@half{} and .75mm) to[bend left=1] cycle;
 }
 
 \def\pingu@draw@cloth@cloak@middle{%
-\pingu@block[rounded corners=.7mm]{\pingu@color@cloak}
+\pingu@block[rounded corners=.7mm]{\pingu@color@cloak@front}
 (\pingu@name-bottom-center)++(-\pingu@x@cloak@padding-\pingu@w@half,-.5mm) arc (180:250:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend left=4]
 (\pingu@name-wings-side-right);
-\pingu@block[rounded corners=.7mm]{\pingu@color@cloak}
+\pingu@block[rounded corners=.7mm]{\pingu@color@cloak@front}
 (\pingu@name-bottom-center)++(\pingu@x@cloak@padding+\pingu@w@half,-.5mm) arc (0:-70:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend left=4]
 (\pingu@name-wings-side-left);
 }
