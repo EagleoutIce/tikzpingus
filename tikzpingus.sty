@@ -2165,17 +2165,16 @@ vr-controller \@lr\space second shade/.code = \pingu@color{vrcontroller\@lr @sec
     \pingu@block[bottom color=\pingu@color@cloak@bottom,top color=\pingu@color@cloak]{\pingu@color@cloak} (\pingu@name-bottom-center)++(-\pingu@x@cloak@padding-\pingu@w@half,-.5mm) arc (180:0:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend left=1] (\pingu@name-wings-side-left) arc(0:180:\pingu@w@half{} and .75mm) to[bend left=1] cycle;
 }
 
-\def\pingu@draw@cloth@cloak@middle{%
+\def\pingu@draw@cloth@cloak@middle{}
+
+% TODO: if flags to draw parts
+\def\pingu@draw@cloth@cloak{%
 \pingu@block[rounded corners=.7mm]{\pingu@color@cloak@front}
 (\pingu@name-bottom-center)++(-\pingu@x@cloak@padding-\pingu@w@half,-.5mm) arc (180:250:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend right=6]
 ([xshift=1.3mm,yshift=.4mm]\pingu@name-wings-side-right) to[bend right=3] ([yshift=.65mm]\pingu@name-wings-side-right);
 \pingu@block[rounded corners=.7mm]{\pingu@color@cloak@front}
 (\pingu@name-bottom-center)++(\pingu@x@cloak@padding+\pingu@w@half,-.5mm) arc (0:-70:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend left=6]
 ([xshift=-1.3mm,yshift=.4mm]\pingu@name-wings-side-left) to[bend left=3] ([yshift=.65mm]\pingu@name-wings-side-left);
-}
-
-% TODO: if flags to draw parts
-\def\pingu@draw@cloth@cloak{%
 \pingu@layer{foreground}[rounded corners=.6\p@]
     % wings
     \if@pingu@x@cloak@wings
@@ -2224,14 +2223,16 @@ vr-controller \@lr\space second shade/.code = \pingu@color{vrcontroller\@lr @sec
 %     #endregion
 
 %     #region shirt
+\newif\if@pingu@shirt@above
 \pingu@create@extra{shirt}{%
     shirt/.code              = \pingu@set@extra{shirt}{true}\pingu@color{shirt}{#1},
     shirt/.default           = pingu@bronze,
+    shirt above/.is if       = @pingu@shirt@above,
     shirt raise/.code        = \def\pingu@shirt@raise{#1},
-    shirt padding/.code        = \def\pingu@shirt@padding{#1},
-    shirt button top/.code        = \pingu@color{shirt@button@top}{#1},
-    shirt button middle/.code       = \pingu@color{shirt@button@middle}{#1},
-    shirt button bottom/.code       = \pingu@color{shirt@button@bottom}{#1},
+    shirt padding/.code      = \def\pingu@shirt@padding{#1},
+    shirt button top/.code   = \pingu@color{shirt@button@top}{#1},
+    shirt button middle/.code      = \pingu@color{shirt@button@middle}{#1},
+    shirt button bottom/.code      = \pingu@color{shirt@button@bottom}{#1},
     shirt buttons/.style           = {/pingu/shirt button top={#1}, /pingu/shirt button middle={#1}, /pingu/shirt button bottom={#1}},
     shirt button top shade/.code  = \pingu@color{shirt@button@top@shade}{#1},
     shirt button middle shade/.code = \pingu@color{shirt@button@middle@shade}{#1},
@@ -2239,10 +2240,12 @@ vr-controller \@lr\space second shade/.code = \pingu@color{vrcontroller\@lr @sec
     shirt buttons shade/.style     = {/pingu/shirt button top shade={#1}, /pingu/shirt button middle shade={#1}},
     shirt without buttons/.forward to=/pingu/shirt no buttons,
     shirt no buttons/.style        = {/pingu/shirt buttons=\@pingu@none, /pingu/shirt buttons shade=\@pingu@none},
-}{shirt buttons=pingu@black,shirt padding=0mm,shirt button top shade=\pingu@color@shirt@button@top!70!\pingu@color@shirt!70!white,shirt button middle shade=\pingu@color@shirt@button@middle!70!\pingu@color@shirt!70!white,shirt button bottom shade=\pingu@color@shirt@button@bottom!70!\pingu@color@shirt!70!white,shirt raise=2.25mm}
+}{shirt buttons=pingu@black,shirt padding=0mm,shirt button top shade=\pingu@color@shirt@button@top!70!\pingu@color@shirt!70!white,shirt button middle shade=\pingu@color@shirt@button@middle!70!\pingu@color@shirt!70!white,shirt button bottom shade=\pingu@color@shirt@button@bottom!70!\pingu@color@shirt!70!white,shirt raise=2.25mm,shirt above=false}
 \def\pingu@draw@cloth@shirt@behind{}
 
-\def\pingu@draw@cloth@shirt@middle{%
+\def\pingu@draw@cloth@shirt@middle{\if@pingu@shirt@above\else\pingu@draw@cloth@shirt@main\fi}
+
+\def\pingu@draw@cloth@shirt@main{%
 \coordinate (\pingu@name-shirt-low) at ([yshift=\pingu@shirt@raise]\pingu@name-belly-center);
 \pingu@block{\pingu@color@shirt} [rounded corners=.181mm] ([xshift=.225mm,yshift=.08mm]\pingu@name-head-back-con-right) -- (\pingu@name-shirt-low) -- ([xshift=-.15mm,yshift=.14mm]\pingu@name-head-back-con-left) to[bend left=12] (\pingu@name-waist-left) to[bend left=3] ([xshift=\pingu@shirt@padding]\pingu@name-bottom-center-|\pingu@name-waist-left) to[bend left=10] ([yshift=-1.1\pingu@one]\pingu@name-bottom-center) to[bend left=10] ([xshift=-\pingu@shirt@padding]\pingu@name-bottom-center-|\pingu@name-waist-right) to[bend left=3] (\pingu@name-waist-right) to[bend left=12] (\pingu@name-head-back-con-right) -- cycle;
 
@@ -2261,8 +2264,8 @@ vr-controller \@lr\space second shade/.code = \pingu@color{vrcontroller\@lr @sec
 }}
 
 % TODO: if flags to draw parts
-\def\pingu@draw@cloth@shirt{%
-}
+\def\pingu@draw@cloth@shirt{\if@pingu@shirt@above\pingu@draw@cloth@shirt@main\fi}
+
 %     #endregion
 
 %     #region second shirt
