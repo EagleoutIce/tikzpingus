@@ -2175,33 +2175,37 @@ vr-controller \@lr\space second shade/.code = \pingu@color{vrcontroller\@lr @sec
 \pingu@block[rounded corners=.7mm]{\pingu@color@cloak@front}
 (\pingu@name-bottom-center)++(\pingu@x@cloak@padding+\pingu@w@half,-.5mm) arc (0:-70:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend left=6]
 ([xshift=-1.3mm,yshift=.4mm]\pingu@name-wings-side-left) to[bend left=3] ([yshift=.65mm]\pingu@name-wings-side-left);
-\pingu@layer{foreground}[rounded corners=.6\p@]
+\scope[rounded corners=.6\p@]
     % wings
     \if@pingu@x@cloak@wings
     \edef\@la{\csname @pingu@wingdown@\@pingu@select@leftwing@ @\endcsname}
     \ifnum\@la>0 % wing is going inverted up or down / \ => left
+        \pingu@layer{foreground}[]
         \ifnum\@la>70
             \pingu@block[right color=\pingu@color@cloak@front,left color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} (\pingu@name-wing-left-start)++(.5mm,-3.5mm) to[bend left=10] (\pingu@name-wing-left-low) to[bend right=13] (\pingu@name-wing-left-up) to[bend left=3] (\pingu@name-wing-left-start-up) to[bend left] ([xshift=.35mm,yshift=1mm]\pingu@name-wing-left-start);
             \else % down
             \pingu@block[right color=\pingu@color@cloak@front,left color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} (\pingu@name-wing-left-start)++(.5mm,-3.5mm) to[bend left=10] (\pingu@name-wing-left-low) to[bend right=13] (\pingu@name-wing-left-up) to[bend left=3] ([xshift=1mm,yshift=1mm]\pingu@name-wing-left-start-up) to[bend left=4.5] ([xshift=.5mm,yshift=-3.5mm]\pingu@name-wing-left-start);
         \fi
+        \endpingu@layer
     \else
         \ifnum\@la<-90% normal up \ / => left side
-            \pingu@block[upper right=\pingu@color@cloak@wings,lower right=\pingu@color@cloak@front,lower left=\pingu@color@cloak@front,upper left=\pingu@color@cloak@front]{\pingu@color@cloak@wings} (\pingu@name-wing-left-start-low) to[bend right=14] (\pingu@name-wing-left-low) to[bend left=8] (\pingu@name-wing-left-up) to[bend right=17] (\pingu@name-wing-left-start-up) to[bend right=13] ([xshift=-.15mm,yshift=-1mm]\pingu@name-waist-left)-- cycle;
+            \pingu@block[upper right=\pingu@color@cloak@wings,lower right=\pingu@color@cloak@front,lower left=\pingu@color@cloak@front,upper left=\pingu@color@cloak@front]{\pingu@color@cloak@wings} ([xshift=.25mm]\pingu@name-wing-left-start-low) to[bend right=14] (\pingu@name-wing-left-low) to[bend left=8] ([yshift=-.5mm]\pingu@name-wing-left-up) to[bend right=17] ([yshift=1.6mm]\pingu@name-wing-left-start-up) to[bend right=13] ([xshift=-.15mm,yshift=.15mm]\pingu@name-waist-left) -- cycle;
         \else % normal and hugging down => right
             \pingu@block[top color=\pingu@color@cloak@front,middle color=\pingu@color@cloak,bottom color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} plot[smooth] coordinates {([xshift=-1.38mm]\pingu@name-wings-side-left) (\pingu@name-wing-left-start-low) ([yshift=.65mm,xshift=-.65mm]\pingu@name-wing-left-low) ([yshift=.65mm,xshift=-.65mm]\pingu@name-wing-left-up) ([xshift=.68mm]\pingu@name-wings-side-left) ([xshift=-1.38mm]\pingu@name-wings-side-left)};
         \fi
     \fi
     \edef\@ra{\csname @pingu@wingdown@\@pingu@select@rightwing@ @\endcsname}
     \ifnum\@ra>0 % wing is going inverted up or down => right
+        \pingu@layer{foreground}[]
         \ifnum\@ra>70
             \pingu@block[left color=\pingu@color@cloak@front,middle color=\pingu@color@cloak@front,right color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} (\pingu@name-wing-right-start-low) to[bend right=10] (\pingu@name-wing-right-low) to[bend left=13] (\pingu@name-wing-right-up) to[bend right=3] (\pingu@name-wing-right-start-up) -- ++(-.25mm,0mm) to[bend right=11] cycle;
         \else
             \pingu@block[left color=\pingu@color@cloak@front,middle color=\pingu@color@cloak@front,right color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings}  ([xshift=1mm,yshift=-1mm]\pingu@name-wing-right-start-low) to[bend right=10] (\pingu@name-wing-right-low) to[bend left=13] (\pingu@name-wing-right-up) to[bend right=3] ([xshift=-1mm,yshift=1mm]\pingu@name-wing-right-start-up) to[bend right=4.5] ([xshift=-.5mm,yshift=-3.5mm]\pingu@name-wing-right-start);
         \fi
+        \endpingu@layer
     \else
         \ifnum\@ra<-90% normal up => right side
-            \pingu@block[upper left=\pingu@color@cloak@wings,lower left=\pingu@color@cloak@front,lower right=\pingu@color@cloak@front,upper right=\pingu@color@cloak@front]{\pingu@color@cloak@wings} (\pingu@name-wing-right-start-low) to[bend left=14] (\pingu@name-wing-right-low) to[bend right=8] (\pingu@name-wing-right-up) to[bend left=15] (\pingu@name-wing-right-start-up) to[bend left=13] ([xshift=.15mm,yshift=-1mm]\pingu@name-waist-right) -- cycle;
+            \pingu@block[upper left=\pingu@color@cloak@wings,lower left=\pingu@color@cloak@front,lower right=\pingu@color@cloak@front,upper right=\pingu@color@cloak@front]{\pingu@color@cloak@wings} ([xshift=.25mm]\pingu@name-wing-right-start-low) to[bend left=14] (\pingu@name-wing-right-low) to[bend right=8] ([yshift=-.5mm]\pingu@name-wing-right-up) to[bend left=17] ([yshift=1.6mm]\pingu@name-wing-right-start-up) to[bend left=13] ([xshift=.15mm,yshift=.15mm]\pingu@name-waist-right) -- cycle;
         \else % normal and hugging down => left
             \pingu@block[top color=\pingu@color@cloak@front,middle color=\pingu@color@cloak@front,bottom color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} plot[smooth] coordinates {([xshift=1.38mm]\pingu@name-wings-side-right) (\pingu@name-wing-right-start-low) ([yshift=.85mm,xshift=-.35mm]\pingu@name-wing-right-low) ([yshift=.85mm,xshift=.35mm]\pingu@name-wing-right-up) ([xshift=-.68mm]\pingu@name-wings-side-right) ([xshift=1.38mm]\pingu@name-wings-side-right)};
         \fi
@@ -2218,7 +2222,7 @@ vr-controller \@lr\space second shade/.code = \pingu@color{vrcontroller\@lr @sec
     to[bend left=32] ++(\pingu@w@half+.66mm,\pingu@w@half+1.2\pingu@one)
     to[bend left=32] ++(\pingu@w@half+.66mm,-\pingu@w@half-1.2\pingu@one)
     to[bend left=8] cycle;
-\endpingu@layer
+\endscope
 }
 %     #endregion
 
