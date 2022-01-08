@@ -2160,7 +2160,7 @@ vr-controller \@lr\space second shade/.code = \pingu@color{vrcontroller\@lr @sec
     cloak wings/.is if       = @pingu@x@cloak@wings,
     cape/.style              = {/pingu/cloak=#1, /pingu/cloak wings=false,/pingu/cloak front color=\@pingu@none, /pingu/cloak cap=\@pingu@none,/pingu/cloak front color=\@pingu@none},
     cape/.default            = pingu@bronze,
-}{cloak padding=1.95mm,cloak bottom color=\pingu@color@cloak!90!black,cloak cap=\pingu@color@cloak!94!pingu@black,cloak front color=\pingu@color@cloak!90!white,cloak wings color=\pingu@color@cloak@front,cloak wings=true}
+}{cloak padding=1.95mm,cloak bottom color=\pingu@color@cloak!90!black,cloak cap=\pingu@color@cloak!94!pingu@black,cloak front color=\pingu@color@cloak!90!white,cloak wings color=\pingu@color@cloak@front!94!pingu@black,cloak wings=true}
 \def\pingu@draw@cloth@cloak@behind{%
     \pingu@block[bottom color=\pingu@color@cloak@bottom,top color=\pingu@color@cloak]{\pingu@color@cloak} (\pingu@name-bottom-center)++(-\pingu@x@cloak@padding-\pingu@w@half,-.5mm) arc (180:0:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend left=1] (\pingu@name-wings-side-left) arc(0:180:\pingu@w@half{} and .75mm) to[bend left=1] cycle;
 }
@@ -2180,24 +2180,23 @@ vr-controller \@lr\space second shade/.code = \pingu@color{vrcontroller\@lr @sec
     % wings
     \if@pingu@x@cloak@wings
     \edef\@la{\csname @pingu@wingdown@\@pingu@select@leftwing@ @\endcsname}
-    \ifnum\@la>0 % wing is going inverted up / \
-        \pingu@block[right color=\pingu@color@cloak@front,left color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} (\pingu@name-wing-left-start)++(.5mm,-3.5mm) to[bend left=10] (\pingu@name-wing-left-low) to[bend right=15] (\pingu@name-wing-left-up) to[bend left=3] (\pingu@name-wing-left-start-up) -- ++(0,-1.5mm) to[bend left=13] cycle;
+    \ifnum\@la>0 % wing is going inverted up or down / \ => left
+        \pingu@block[right color=\pingu@color@cloak@front,left color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} (\pingu@name-wing-left-start)++(.5mm,-3.5mm) to[bend left=10] (\pingu@name-wing-left-low) to[bend right=15] (\pingu@name-wing-left-up) to[bend left=3] (\pingu@name-wing-left-start-up) to[bend left] ([xshift=.25mm,yshift=1mm]\pingu@name-wing-left-start);
     \else
-        \ifnum\@la<-90% normal up \ / => right side
-            % \pingu@block[upper right=\pingu@color@cloak@wings,lower right=\pingu@color@cloak,lower left=\pingu@color@cloak,upper left=\pingu@color@cloak]{\pingu@color@cloak@wings}
-            \pingu@block{green} (\pingu@name-wing-left-start-low) to[bend right=14] (\pingu@name-wing-left-low) to[bend left=8] (\pingu@name-wing-left-up) to[bend right=17] (\pingu@name-wing-left-start-up) to[bend right=13] ([yshift=-2mm]\pingu@name-waist-left) to[bend left=3] cycle;
+        \ifnum\@la<-90% normal up \ / => left side
+            \pingu@block[upper right=\pingu@color@cloak@wings,lower right=\pingu@color@cloak@front,lower left=\pingu@color@cloak@front,upper left=\pingu@color@cloak@front]{\pingu@color@cloak@wings} (\pingu@name-wing-left-start-low) to[bend right=14] (\pingu@name-wing-left-low) to[bend left=8] (\pingu@name-wing-left-up) to[bend right=17] (\pingu@name-wing-left-start-up) to[bend right=13] ([xshift=-.15mm,yshift=-1mm]\pingu@name-waist-left)-- cycle;
         \else % normal and hugging down => right
-            \pingu@block[top color=\pingu@color@cloak@front,middle color=\pingu@color@cloak,bottom color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} plot[smooth] coordinates {([xshift=-1.38mm]\pingu@name-wings-side-left) (\pingu@name-wing-left-start-low) (\pingu@name-wing-left-low) (\pingu@name-wing-left-up) ([xshift=.68mm]\pingu@name-wings-side-left) ([xshift=-1.38mm]\pingu@name-wings-side-left)};
+            \pingu@block[top color=\pingu@color@cloak@front,middle color=\pingu@color@cloak,bottom color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} plot[smooth] coordinates {([xshift=-1.38mm]\pingu@name-wings-side-left) (\pingu@name-wing-left-start-low) ([yshift=.65mm,xshift=-.65mm]\pingu@name-wing-left-low) ([yshift=.65mm,xshift=-.65mm]\pingu@name-wing-left-up) ([xshift=.68mm]\pingu@name-wings-side-left) ([xshift=-1.38mm]\pingu@name-wings-side-left)};
         \fi
     \fi
     \edef\@ra{\csname @pingu@wingdown@\@pingu@select@rightwing@ @\endcsname}
-    \ifnum\@ra>0 % wing is going inverted up
-        \pingu@block[left color=\pingu@color@cloak@front,middle color=\pingu@color@cloak@front,right color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} (\pingu@name-wing-right-start-low) to[bend right=10] (\pingu@name-wing-right-low) to[bend left=15] (\pingu@name-wing-right-up) to[bend right=3] (\pingu@name-wing-right-start-up) -- ++(-.5mm,0mm) to[bend right=16] cycle;
+    \ifnum\@ra>0 % wing is going inverted up or down => right
+        \pingu@block[left color=\pingu@color@cloak@front,middle color=\pingu@color@cloak@front,right color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} (\pingu@name-wing-right-start-low) to[bend right=10] (\pingu@name-wing-right-low) to[bend left=15] (\pingu@name-wing-right-up) to[bend right=3] (\pingu@name-wing-right-start-up) -- ++(-.25mm,0mm) to[bend right=11] cycle;
     \else
-        \ifnum\@ra<-90% normal up
-            \pingu@block[upper left=\pingu@color@cloak@wings,lower right=\pingu@color@cloak@front,lower left=\pingu@color@cloak@front,upper right=\pingu@color@cloak@front]{\pingu@color@cloak@wings} (\pingu@name-wing-right-start-low) to[bend left=14] (\pingu@name-wing-right-low) to[bend right=8] (\pingu@name-wing-right-up) to[bend left=15] (\pingu@name-wing-right-start-up) to[bend left=13] ([yshift=-2mm]\pingu@name-waist-right) to[bend right=2] cycle;
-        \else
-            \pingu@block[top color=\pingu@color@cloak@front,middle color=\pingu@color@cloak@front,bottom color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} (\pingu@name-wing-right-start)++(1.65mm,0) to[bend left=10] (\pingu@name-wing-right-low) to[bend right=3]  (\pingu@name-wing-right-up) to[bend left=3] ([yshift=8mm]\pingu@name-wing-right-start) -- ++(1mm,0) to[bend left=13] cycle;
+        \ifnum\@ra<-90% normal up => right side
+            \pingu@block[upper left=\pingu@color@cloak@wings,lower left=\pingu@color@cloak,lower right=\pingu@color@cloak@front,upper right=\pingu@color@cloak@front]{\pingu@color@cloak@wings} (\pingu@name-wing-right-start-low) to[bend left=14] (\pingu@name-wing-right-low) to[bend right=8] (\pingu@name-wing-right-up) to[bend left=15] (\pingu@name-wing-right-start-up) to[bend left=13] ([xshift=-.15mm,yshift=-1mm]\pingu@name-waist-right) -- cycle;
+        \else % normal and hugging down => left
+            \pingu@block[top color=\pingu@color@cloak@front,middle color=\pingu@color@cloak@front,bottom color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} plot[smooth] coordinates {([xshift=1.38mm]\pingu@name-wings-side-right) (\pingu@name-wing-right-start-low) ([yshift=.85mm,xshift=-.35mm]\pingu@name-wing-right-low) ([yshift=.85mm,xshift=.35mm]\pingu@name-wing-right-up) ([xshift=-.68mm]\pingu@name-wings-side-right) ([xshift=1.38mm]\pingu@name-wings-side-right)};
         \fi
     \fi
 \fi
