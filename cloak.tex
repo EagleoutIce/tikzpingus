@@ -2,17 +2,17 @@
 \documentclass{article}
 \usepackage[glows]{tikzpingus}
 \usepackage[active, tightpage]{preview}
-% \pingudefaults{meta-dots}
+\pingudefaults{meta-dots,cloak,cap=!hide}
 
 \begin{document}
 \begin{preview}
 \begin{tikzpicture}
-  \pingu[wings normal, cloak]
-  \pingu[right wing wave, left wing hug, cloak, xshift=3.5cm]
-  \pingu[wings shock, cloak, xshift=7cm]
-  \pingu[wings wave, cloak, xshift=10.5cm]
-  \pingu[right wing grab, left wing raise, cloak, xshift=14cm]
-  \pingu[wings raise, cloak, xshift=17.5cm]
+  \pingu[wings normal]
+  \pingu[right wing wave, left wing hug, xshift=3.5cm]
+  \pingu[wings shock, xshift=7cm]
+  \pingu[wings wave, xshift=10.5cm]
+  \pingu[right wing grab, left wing raise, xshift=14cm]
+  \pingu[wings raise, xshift=17.5cm]
 \end{tikzpicture}
 \end{preview}
 \end{document}

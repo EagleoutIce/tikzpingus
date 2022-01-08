@@ -2191,13 +2191,15 @@ vr-controller \@lr\space second shade/.code = \pingu@color{vrcontroller\@lr @sec
     % wings
     \if@pingu@x@cloak@wings
     \edef\@la{\csname @pingu@wingdown@\@pingu@select@leftwing@ @\endcsname}
-    \ifnum\@la>0 % wing is going inverted up
+    \ifnum\@la>0 % wing is going inverted up / \
         \pingu@block[right color=\pingu@color@cloak,left color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} (\pingu@name-wing-left-start)++(.5mm,-3.5mm) to[bend left=10] (\pingu@name-wing-left-low) to[bend right=15] (\pingu@name-wing-left-up) to[bend left=3] (\pingu@name-wing-left-start-up) -- ++(0,-1.5mm) to[bend left=13] cycle;
     \else
-        \ifnum\@la<-90% normal up
-            \pingu@block[upper right=\pingu@color@cloak@wings,lower right=\pingu@color@cloak,lower left=\pingu@color@cloak,upper left=\pingu@color@cloak]{\pingu@color@cloak@wings} (\pingu@name-wing-left-start-low) to[bend right=14] (\pingu@name-wing-left-low) to[bend left=8] (\pingu@name-wing-left-up) to[bend right=17] (\pingu@name-wing-left-start-up) to[bend right=13] ([yshift=-2mm]\pingu@name-waist-left) to[bend left=3] cycle;
-        \else
-            \pingu@block[top color=\pingu@color@cloak,middle color=\pingu@color@cloak,bottom color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} (\pingu@name-wing-left-start)++(-1.5mm,0) to[bend right=40] (\pingu@name-wing-left-low) to[bend left=15] (\pingu@name-wing-left-up) to[bend right=3] ([yshift=8mm,xshift=.265mm]\pingu@name-wing-left-start) -- ++(-1.5mm,0) to[bend right=13] cycle;
+        \ifnum\@la<-90% normal up \ / => right side
+            % \pingu@block[upper right=\pingu@color@cloak@wings,lower right=\pingu@color@cloak,lower left=\pingu@color@cloak,upper left=\pingu@color@cloak]{\pingu@color@cloak@wings}
+            \pingu@block{green} (\pingu@name-wing-left-start-low) to[bend right=14] (\pingu@name-wing-left-low) to[bend left=8] (\pingu@name-wing-left-up) to[bend right=17] (\pingu@name-wing-left-start-up) to[bend right=13] ([yshift=-2mm]\pingu@name-waist-left) to[bend left=3] cycle;
+        \else % normal and hugging down => right
+            % \pingu@block[top color=\pingu@color@cloak,middle color=\pingu@color@cloak,bottom color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings}
+            \pingu@block{teal} ([xshift=-.65mm]\pingu@name-wings-side-left) -- ++(-3mm,0) -- ++(0,-1mm);
         \fi
     \fi
     \edef\@ra{\csname @pingu@wingdown@\@pingu@select@rightwing@ @\endcsname}
