@@ -2160,17 +2160,17 @@ vr-controller \@lr\space second shade/.code = \pingu@color{vrcontroller\@lr @sec
     cloak wings/.is if       = @pingu@x@cloak@wings,
     cape/.style              = {/pingu/cloak=#1, /pingu/cloak wings=false,/pingu/cloak front color=\@pingu@none, /pingu/cloak cap=\@pingu@none,/pingu/cloak front color=\@pingu@none},
     cape/.default            = pingu@bronze,
-}{cloak padding=1.95mm,cloak bottom color=\pingu@color@cloak!90!black,cloak cap=\pingu@color@cloak!94!pingu@black,cloak front color=\pingu@color@cloak!90!white,cloak wings color=\pingu@color@cloak@front!94!pingu@black,cloak wings=true}
+}{cloak padding=1.95mm,cloak bottom color=\pingu@color@cloak!90!black,cloak cap=\pingu@color@cloak!98!pingu@black,cloak front color=\pingu@color@cloak!90!white,cloak wings color=\pingu@color@cloak@front!94!pingu@black,cloak wings=true}
 \def\pingu@draw@cloth@cloak@behind{%
     \pingu@block[bottom color=\pingu@color@cloak@bottom,top color=\pingu@color@cloak]{\pingu@color@cloak} (\pingu@name-bottom-center)++(-\pingu@x@cloak@padding-\pingu@w@half,-.5mm) arc (180:0:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend left=1] (\pingu@name-wings-side-left) arc(0:180:\pingu@w@half{} and .75mm) to[bend left=1] cycle;
 }
 
 \def\pingu@draw@cloth@cloak@middle{%
 \pingu@block[rounded corners=.7mm]{\pingu@color@cloak@front}
-(\pingu@name-bottom-center)++(-\pingu@x@cloak@padding-\pingu@w@half,-.5mm) arc (180:250:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend right=4]
+(\pingu@name-bottom-center)++(-\pingu@x@cloak@padding-\pingu@w@half,-.5mm) arc (180:250:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend right=6]
 ([xshift=1.3mm,yshift=.4mm]\pingu@name-wings-side-right) to[bend right=3] ([yshift=.65mm]\pingu@name-wings-side-right);
 \pingu@block[rounded corners=.7mm]{\pingu@color@cloak@front}
-(\pingu@name-bottom-center)++(\pingu@x@cloak@padding+\pingu@w@half,-.5mm) arc (0:-70:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend left=4]
+(\pingu@name-bottom-center)++(\pingu@x@cloak@padding+\pingu@w@half,-.5mm) arc (0:-70:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend left=6]
 ([xshift=-1.3mm,yshift=.4mm]\pingu@name-wings-side-left) to[bend left=3] ([yshift=.65mm]\pingu@name-wings-side-left);
 }
 
@@ -2182,9 +2182,9 @@ vr-controller \@lr\space second shade/.code = \pingu@color{vrcontroller\@lr @sec
     \edef\@la{\csname @pingu@wingdown@\@pingu@select@leftwing@ @\endcsname}
     \ifnum\@la>0 % wing is going inverted up or down / \ => left
         \ifnum\@la>70
-            \pingu@block[right color=\pingu@color@cloak@front,left color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} (\pingu@name-wing-left-start)++(.5mm,-3.5mm) to[bend left=10] (\pingu@name-wing-left-low) to[bend right=15] (\pingu@name-wing-left-up) to[bend left=3] (\pingu@name-wing-left-start-up) to[bend left] ([xshift=.35mm,yshift=1mm]\pingu@name-wing-left-start);
+            \pingu@block[right color=\pingu@color@cloak@front,left color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} (\pingu@name-wing-left-start)++(.5mm,-3.5mm) to[bend left=10] (\pingu@name-wing-left-low) to[bend right=13] (\pingu@name-wing-left-up) to[bend left=3] (\pingu@name-wing-left-start-up) to[bend left] ([xshift=.35mm,yshift=1mm]\pingu@name-wing-left-start);
             \else % down
-            \pingu@block[right color=\pingu@color@cloak@front,left color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} (\pingu@name-wing-left-start)++(.5mm,-3.5mm) to[bend left=10] (\pingu@name-wing-left-low) to[bend right=15] (\pingu@name-wing-left-up) to[bend left=3] ([xshift=1mm,yshift=1mm]\pingu@name-wing-left-start-up) to[bend left=4.5] ([xshift=.5mm,yshift=-3.5mm]\pingu@name-wing-left-start);
+            \pingu@block[right color=\pingu@color@cloak@front,left color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} (\pingu@name-wing-left-start)++(.5mm,-3.5mm) to[bend left=10] (\pingu@name-wing-left-low) to[bend right=13] (\pingu@name-wing-left-up) to[bend left=3] ([xshift=1mm,yshift=1mm]\pingu@name-wing-left-start-up) to[bend left=4.5] ([xshift=.5mm,yshift=-3.5mm]\pingu@name-wing-left-start);
         \fi
     \else
         \ifnum\@la<-90% normal up \ / => left side
@@ -2196,9 +2196,9 @@ vr-controller \@lr\space second shade/.code = \pingu@color{vrcontroller\@lr @sec
     \edef\@ra{\csname @pingu@wingdown@\@pingu@select@rightwing@ @\endcsname}
     \ifnum\@ra>0 % wing is going inverted up or down => right
         \ifnum\@ra>70
-            \pingu@block[left color=\pingu@color@cloak@front,middle color=\pingu@color@cloak@front,right color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} (\pingu@name-wing-right-start-low) to[bend right=10] (\pingu@name-wing-right-low) to[bend left=15] (\pingu@name-wing-right-up) to[bend right=3] (\pingu@name-wing-right-start-up) -- ++(-.25mm,0mm) to[bend right=11] cycle;
+            \pingu@block[left color=\pingu@color@cloak@front,middle color=\pingu@color@cloak@front,right color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} (\pingu@name-wing-right-start-low) to[bend right=10] (\pingu@name-wing-right-low) to[bend left=13] (\pingu@name-wing-right-up) to[bend right=3] (\pingu@name-wing-right-start-up) -- ++(-.25mm,0mm) to[bend right=11] cycle;
         \else
-            \pingu@block[left color=\pingu@color@cloak@front,middle color=\pingu@color@cloak@front,right color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings}  ([xshift=1mm,yshift=-1mm]\pingu@name-wing-right-start-low) to[bend right=10] (\pingu@name-wing-right-low) to[bend left=15] (\pingu@name-wing-right-up) to[bend right=3] ([xshift=-1mm,yshift=1mm]\pingu@name-wing-right-start-up) to[bend right=4.5] ([xshift=-.5mm,yshift=-3.5mm]\pingu@name-wing-right-start);
+            \pingu@block[left color=\pingu@color@cloak@front,middle color=\pingu@color@cloak@front,right color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings}  ([xshift=1mm,yshift=-1mm]\pingu@name-wing-right-start-low) to[bend right=10] (\pingu@name-wing-right-low) to[bend left=13] (\pingu@name-wing-right-up) to[bend right=3] ([xshift=-1mm,yshift=1mm]\pingu@name-wing-right-start-up) to[bend right=4.5] ([xshift=-.5mm,yshift=-3.5mm]\pingu@name-wing-right-start);
         \fi
     \else
         \ifnum\@ra<-90% normal up => right side
@@ -2209,15 +2209,15 @@ vr-controller \@lr\space second shade/.code = \pingu@color{vrcontroller\@lr @sec
     \fi
 \fi
     % cape
-    \pingu@block[rounded corners=.8mm]{\pingu@color@cloak@cap} ([yshift=-8mm]\pingu@name-wing-left-start) to[bend left=4] ([xshift=-.4mm]\pingu@name-wings-side-left) to[bend right=3]
+    \pingu@block[rounded corners=.8mm]{\pingu@color@cloak@cap} ([xshift=.85mm,yshift=-2.75mm]\pingu@name-wing-left-start) to[bend left=4] ([xshift=-.45mm,yshift=-.65mm]\pingu@name-wings-side-left) to[bend right=3]
     (\pingu@name-head)
     to[bend right=3]
-    ([xshift=.4mm]\pingu@name-wings-side-right) [rounded corners=.15mm] to[bend left=3] ([yshift=-8mm]\pingu@name-wing-right-start)
+    ([xshift=.4mm,yshift=-.65mm]\pingu@name-wings-side-right) [rounded corners=.15mm] to[bend left=3] ([xshift=-.85mm,yshift=-2.75mm]\pingu@name-wing-right-start)
     to[bend left=8]
     ([xshift=-.66mm]\pingu@name-wings-side-right)
     [rounded corners=.15mm]
-    to[bend left=32] ++(\pingu@w@half+.66mm,\pingu@w@half+\pingu@one)
-    to[bend left=32] ++(\pingu@w@half+.66mm,-\pingu@w@half-\pingu@one)
+    to[bend left=32] ++(\pingu@w@half+.66mm,\pingu@w@half+1.2\pingu@one)
+    to[bend left=32] ++(\pingu@w@half+.66mm,-\pingu@w@half-1.2\pingu@one)
     to[bend left=8] cycle;
 \endpingu@layer
 }
