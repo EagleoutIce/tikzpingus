@@ -1,0 +1,63 @@
+% Florian Sihler, 2022
+% Licensed under GNU Lesser General Public License version 3
+% https://opensource.org/licenses/lgpl-3.0.html
+\newif\if@pingu@shirt@above
+\pingu@create@extra{shirt}{%
+    shirt/.code              = \pingu@set@extra{shirt}{true}\pingu@color{shirt}{#1},
+    shirt/.default           = pingu@bronze,
+    shirt above/.is if       = @pingu@shirt@above,
+    shirt raise/.code        = \def\pingu@shirt@raise{#1},
+    shirt padding/.code      = \def\pingu@shirt@padding{#1},
+    shirt button top/.code   = \pingu@color{shirt@button@top}{#1},
+    shirt button middle/.code      = \pingu@color{shirt@button@middle}{#1},
+    shirt button bottom/.code      = \pingu@color{shirt@button@bottom}{#1},
+    shirt buttons/.style           = {/pingu/shirt button top={#1}, /pingu/shirt button middle={#1}, /pingu/shirt button bottom={#1}},
+    shirt button top shade/.code  = \pingu@color{shirt@button@top@shade}{#1},
+    shirt button middle shade/.code = \pingu@color{shirt@button@middle@shade}{#1},
+    shirt button bottom shade/.code = \pingu@color{shirt@button@bottom@shade}{#1},
+    shirt buttons shade/.style     = {/pingu/shirt button top shade={#1}, /pingu/shirt button middle shade={#1}},
+    shirt without buttons/.forward to=/pingu/shirt no buttons,
+    shirt no buttons/.style        = {/pingu/shirt buttons=\@pingu@none, /pingu/shirt buttons shade=\@pingu@none},
+}{shirt buttons=pingu@black,shirt padding=0mm,shirt button top shade=\pingu@color@shirt@button@top!70!\pingu@color@shirt!70!white,shirt button middle shade=\pingu@color@shirt@button@middle!70!\pingu@color@shirt!70!white,shirt button bottom shade=\pingu@color@shirt@button@bottom!70!\pingu@color@shirt!70!white,shirt raise=2.25mm,shirt above=false}
+\def\pingu@draw@cloth@shirt@behind{}
+
+\def\pingu@draw@cloth@shirt@middle{\if@pingu@shirt@above\else\pingu@draw@cloth@shirt@main\fi}
+
+\def\pingu@draw@cloth@shirt@main{%
+\coordinate (\pingu@name-shirt-low) at ([yshift=\pingu@shirt@raise]\pingu@name-belly-center);
+\pingu@block{\pingu@color@shirt} [rounded corners=.181mm] ([xshift=.2mm,yshift=.18mm]\pingu@name-head-back-con-right) -- (\pingu@name-shirt-low) -- ([xshift=-.1mm,yshift=.24mm]\pingu@name-head-back-con-left) to[bend left=12] (\pingu@name-waist-left) to[bend left=3] ([xshift=\pingu@shirt@padding]\pingu@name-bottom-center-|\pingu@name-waist-left) to[bend left=10] ([yshift=-1.1\pingu@one]\pingu@name-bottom-center) to[bend left=10] ([xshift=-\pingu@shirt@padding]\pingu@name-bottom-center-|\pingu@name-waist-right) to[bend left=3] (\pingu@name-waist-right) to[bend left=12] (\pingu@name-head-back-con-right) -- cycle;
+
+\coordinate (\pingu@name-shirt-bt) at ([yshift=-\pingu@one]\pingu@name-shirt-low);
+\pingu@block{\pingu@color@shirt@button@top}(\pingu@name-shirt-bt) circle[radius=.4mm];
+\pingu@block{\pingu@color@shirt@button@middle}(\pingu@name-shirt-bt)++(0,-1.35mm)circle[radius=.4mm];
+\pingu@block{\pingu@color@shirt@button@bottom}(\pingu@name-shirt-bt)++(0,2*-1.35mm)circle[radius=.4mm];
+\pingu@block[even odd rule]{\pingu@color@shirt@button@top@shade}(\pingu@name-shirt-bt) circle[radius=.4mm] circle[radius=.465mm];
+\pingu@block[even odd rule]{\pingu@color@shirt@button@middle@shade}(\pingu@name-shirt-bt)++(0,-1.35mm)circle[radius=.4mm] circle[radius=.465mm];
+\pingu@block[even odd rule]{\pingu@color@shirt@button@bottom@shade}(\pingu@name-shirt-bt)++(0,2*-1.35mm)circle[radius=.4mm] circle[radius=.465mm];
+\@for\i:={0,90,180,270}\do{
+    \pingu@block{\pingu@color@shirt@button@top@shade} (\pingu@name-shirt-bt)++(\i:.
+    25mm) circle[radius=.065mm];
+    \pingu@block{\pingu@color@shirt@button@middle@shade} (\pingu@name-shirt-bt)++(0,-1.35mm)++(\i:.25mm) circle[radius=.065mm];
+    \pingu@block{\pingu@color@shirt@button@bottom@shade} (\pingu@name-shirt-bt)++(0,2*-1.35mm)++(\i:.25mm) circle[radius=.065mm];
+}}
+
+% TODO: if flags to draw parts
+\def\pingu@draw@cloth@shirt{\if@pingu@shirt@above\pingu@draw@cloth@shirt@main\fi}
+
+\pingu@create@extra{secondshirt}{%
+    second shirt/.code        = \pingu@set@extra{secondshirt}{true}\pingu@color{secondshirt}{#1},
+    second shirt raise/.code  = \def\pingu@secondshirt@raise{#1},
+    second shirt neck/.code   = \pingu@color{secondshirt@neck}{#1},
+    second shirt/.default     = pingu@red,
+}{second shirt raise=3.35mm,second shirt neck=\pingu@color@secondshirt!32!pingu@white}
+\def\pingu@draw@cloth@secondshirt@behind{}
+
+\def\pingu@draw@cloth@secondshirt@middle{%
+\coordinate (\pingu@name-secondshirt-low) at ([yshift=\pingu@secondshirt@raise]\pingu@name-belly-center);
+\pingu@block{\pingu@color@secondshirt} [rounded corners=.181mm] ([xshift=.2mm,yshift=.05mm]\pingu@name-head-back-con-right) -- (\pingu@name-secondshirt-low) -- ([xshift=-.16mm,yshift=.09mm]\pingu@name-head-back-con-left) to[bend left=12] (\pingu@name-waist-left) to[bend left=3] ([xshift=-.22mm]\pingu@name-bottom-center-|\pingu@name-waist-left) to[bend left=10] ([yshift=-1\pingu@one]\pingu@name-bottom-center) to[bend left=10] ([xshift=.22mm]\pingu@name-bottom-center-|\pingu@name-waist-right) to[bend left=3] (\pingu@name-waist-right) to[bend left=12] (\pingu@name-head-back-con-right) -- cycle;
+\pingu@draw{\pingu@color@secondshirt@neck} [rounded corners=.181mm] ([xshift=-.025mm,yshift=-.09mm]\pingu@name-head-back-con-right) -- ([xshift=.2mm,yshift=.05mm]\pingu@name-head-back-con-right) -- (\pingu@name-secondshirt-low) -- ([xshift=-.19mm,yshift=.09mm]\pingu@name-head-back-con-left) -- ([xshift=-.02mm,yshift=-.02mm]\pingu@name-head-back-con-left);
+}
+
+% TODO: if flags to draw parts
+\def\pingu@draw@cloth@secondshirt{%
+}
