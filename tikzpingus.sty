@@ -1124,114 +1124,6 @@ to[bend left=8] cycle;
 }
 % #endregion
 
-% #region cake-hat
-\pingu@create@extra{cakehat}{%
-  cake-hat/.code          = \pingu@set@extra{cakehat}{true}\pingu@color{cakehat}{#1},
-  cake-hat/.default       = pingu@white!92!\pingu@color@cakehat@top,
-  cake-hat top/.code      = \pingu@color{cakehat@top}{#1},
-  cake-hat shade/.code    = \pingu@color{cakehat@shade}{#1},
-  cake-hat candle/.code   = \pingu@color{cakehat@candle}{#1},
-  cake-hat candle fire/.code   = \pingu@color{cakehat@candle@fire}{#1},
-  cake-hat candle fire 2/.code   = \pingu@color{cakehat@candle@fire@b}{#1},
-  cake-hat candle fire 3/.code   = \pingu@color{cakehat@candle@fire@c}{#1},
-  cake-hat candle wick/.code   = \pingu@color{cakehat@candle@wick}{#1},
-  cake-hat candle shade/.code   = \pingu@color{cakehat@candle@shade}{#1},
-  cake-hat candle back/.code = \pingu@color{cakehat@candle@back}{#1},
-  cake-hat outline/.code  = \pingu@color{cakehat@outline}{#1},
-  cake-hat outline width/.code  = \def\pingu@x@cakehat@outline@w{#1},
-  cake-hat position/.code args  = {#1:(#2,#3)#4}{\def\pingu@x@cakehat@angle{#1}\def\pingu@x@cakehat@xshift{#2}\def\pingu@x@cakehat@yshift{#3}\def\pingu@x@cakehat@scale{#4}}
-}{cake-hat position={-9:(1mm,0mm)1},cake-hat outline=pingu@black!80!\pingu@color@cakehat,cake-hat outline width=.25pt,cake-hat top=pingu@purple,cake-hat candle=pingu@purple!60!pingu@black,cake-hat candle back=\pingu@color@cakehat@candle!85!black,cake-hat candle wick=pingu@black,cake-hat candle fire=pingu@red,cake-hat candle fire 2=\pingu@color@cakehat@candle@fire!50!yellow,cake-hat candle fire 3=\pingu@color@cakehat@candle@fire@b!50!white,cake-hat shade=gray,cake-hat candle shade=gray!80!\pingu@color@cakehat@candle@back}
-
-\def\pingu@p@cake@outline{(-6.25mm,-.25cm) to[bend left=2] (\pingu@name-cake-tl) arc (180:0:1.375cm/2+.01mm and 1.41mm) to[bend left=2] ++(0,-3.125mm*.97) to[bend left=20] (-6mm,-.26cm) -- cycle}
-\def\pingu@draw@ea@cakehat{%
-\scope[rotate around={\pingu@x@cakehat@angle:(\pingu@name-head-top)},%
-shift={(\pingu@name-head-top)},
-shift={(\pingu@x@cakehat@xshift,\pingu@x@cakehat@yshift)},
-scale=\pingu@x@cakehat@scale]
-  \pingu@block{\pingu@color@cakehat} [rounded corners=.2mm](-6.25mm,-.25cm) to[bend left=2] coordinate[pos=.97] (\pingu@name-cake-tl) ++(0,3.125mm) to[bend right=20]
-    ++(1.375cm,0) to[bend left=2] coordinate[pos=.03] (\pingu@name-cake-tr) ++(0,-3.125mm) to[bend left=20] (-6mm,-.26cm) -- cycle;
-  \pingu@block[fill opacity=.1]{\pingu@color@cakehat@shade} [rounded corners=.2mm](-6.25mm,-.25cm) to[bend right=20]
-    ++(1.375cm,0) to[bend right=2] ++(0,3.125mm) [sharp corners] to[bend left=20] (-6.25mm,-.225cm) [rounded corners=.2mm] -- cycle;
-  \path (\pingu@name-cake-tl) -- (\pingu@name-cake-tr) coordinate[pos=.5] (\pingu@name-cake-tc);
-  % cake side
-  \scope
-  \clip\pingu@p@cake@outline;
-  \path (\pingu@name-cake-tl) arc (180:360:1.375cm/2+.01mm and 1.41mm) foreach[count=\i] \a in {0,.19,.295,.375,.485,.625,.72,.85,1} {coordinate[pos=\a] (\pingu@name-cake-\i)};
-  \pingu@block{\pingu@color@cakehat@top} (\pingu@name-cake-1) ellipse [x radius=.255mm,y radius=2mm];
-  \pingu@block{\pingu@color@cakehat@top} (\pingu@name-cake-9) ellipse [x radius=.265mm,y radius=1.45mm];
-  \foreach \i in {2,...,9} {
-    \pgfmathsetmacro\@tmprand{rand}
-    \pingu@draw[opacity=.5]{gray} (\pingu@name-cake-\i)++(-.02mm,0) to[bend left=1] ++(+.145mm,{-1.075mm-(\@tmprand+.15)*.5125mm}) arc(370:300:.145mm);
-    \pingu@block{\pingu@color@cakehat@top} (\pingu@name-cake-\i)++(0,.1mm) -- ++(-.125mm,0) to[bend left=1] ++(0,{-1.2mm-(\@tmprand+.15)*.5125mm}) arc(170:370:.145mm) to[bend right=1] cycle;
-  }
-  \foreach \i in {2,...,9} {
-      \ifnum\i=2\relax
-        \pingu@block{\pingu@color@cakehat@top} (\pingu@name-cake-\the\numexpr\i-1\relax)++(-.05mm,-.5mm) to[bend left=8] ([xshift=-.05mm,yshift=-.25mm]\pingu@name-cake-\i) -- ++(0,.33mm) to[bend right=30] (\pingu@name-cake-\the\numexpr\i-1\relax);
-      \else\ifnum\i=9\relax
-        \pingu@block{\pingu@color@cakehat@top} (\pingu@name-cake-\the\numexpr\i-1\relax)++(-.05mm,-.25mm) to[bend left=8] ([xshift=-.05mm,yshift=-.5mm]\pingu@name-cake-\i) -- ++(0,.33mm) to[bend right=30] (\pingu@name-cake-\the\numexpr\i-1\relax);
-      \else
-      \pingu@block{\pingu@color@cakehat@top} (\pingu@name-cake-\the\numexpr\i-1\relax)++(-.05mm,-.25mm) to[bend left=9.5+2*rand] ([xshift=-.05mm,yshift=-.25mm]\pingu@name-cake-\i) -- ++(0,.33mm) to[bend right=30] (\pingu@name-cake-\the\numexpr\i-1\relax);
-      \fi\fi
-  }
-  \endscope
-  \pingu@block{\pingu@color@cakehat@top} (\pingu@name-cake-tc) ellipse [x radius=1.375cm/2+.01mm, y radius=1.41mm];
-  % outline
-  \pingu@draw[line width=\pingu@x@cakehat@outline@w,rounded corners=.075mm]{\pingu@color@cakehat@outline} \pingu@p@cake@outline;
-% % 3d sides
-%   \pingu@block[rounded corners=.04mm]{\pingu@color@cakehat@top} ([xshift=.1mm,yshift=.125mm]\pingu@name-cake-tl) to[out=246,in=97] ++(-.11mm,-2.125mm) -- ++(.04mm,0) to[bend right=12] (\pingu@name-cake-ttl) -- cycle;
-%   \pingu@block[rounded corners=.09mm]{green} ([xshift=-.1mm]\pingu@name-cake-ttr) to[out=294,in=83] ++(.125mm,-2.125mm) to[bend left=12] ([xshift=-.11mm,yshift=.125mm]\pingu@name-cake-tr) -- cycle;
-  % candle
-  \pingu@block{\pingu@color@cakehat@candle@back} (\pingu@name-cake-tc)++(.8mm,2.66mm) to[bend right=7] ++(-1.1mm,-.1mm) to[bend right=30]++(1.1mm,0) -- cycle;
-  % wick
-  \pingu@draw[very thin]{\pingu@color@cakehat@candle@wick} (\pingu@name-cake-tc)++(.25mm,2mm) to[out=75,in=-95] coordinate[pos=.8] (\pingu@name-wick-1) ++(0,1mm) coordinate(\pingu@name-wick-top);
-  \pingu@block{\pingu@color@cakehat@candle@fire} (\pingu@name-wick-1)++(-.045mm,0) to[out=115,in=240] ++(0,1.5mm) to[out=300,in=65] ([xshift=.045mm]\pingu@name-wick-1) -- cycle;
-  \pingu@block{\pingu@color@cakehat@candle@fire@b} (\pingu@name-wick-1)++(-.045mm,0) to[out=105,in=240] ++(0,1.3mm) to[out=300,in=75] ([xshift=.045mm]\pingu@name-wick-1) -- cycle;
-  \pingu@block{\pingu@color@cakehat@candle@fire@c} (\pingu@name-wick-1)++(-.035mm,0) to[out=95,in=250] ++(0,1.1mm) to[out=290,in=85] ([xshift=.035mm]\pingu@name-wick-1) -- cycle;
-  % front
-  \pingu@block{\pingu@color@cakehat@candle} (\pingu@name-cake-tc)++(.25mm,0) ++(.55mm,0) to[bend left=0.5] ++(0,2.66mm) to[bend left=20] ++(-1.1mm,-.1mm) to[bend right=0.5] ++(0,-2.66mm) to[bend right=20] cycle;
-  \pingu@block[fill opacity=.125]{\pingu@color@cakehat@candle@shade} (\pingu@name-cake-tc)++(-.3mm,-.1mm) to[bend right=20] ++(1.1mm,0) to[bend left=.5] ++(0,2.66mm) to[bend left=15] ++(-1.1mm,-2.5mm) -- cycle;
-  \pingu@block[fill opacity=.225]{\pingu@color@cakehat@candle@shade} (\pingu@name-cake-tc)++(-.3mm,-.1mm) to[bend left=2] ++(1.1mm,-1.1mm) to[bend left=5] ++(1.1mm,0) to[bend left=2] ++(-1.1mm,1.2mm) to[bend left =15] cycle;
-  \pingu@block[fill opacity=.225]{\pingu@color@cakehat@candle@shade} (\pingu@name-cake-tc)++(1.35mm,-1.25mm) circle [radius=.1mm];
-\endscope
-}
-% #endregion
-
-% #region pumpkin-hat
-\pingu@create@extra{pumpkinhat}{%
-  pumpkin-hat/.code           = \pingu@set@extra{pumpkinhat}{true}\pingu@color{pumpkinhat}{#1},
-  pumpkin-hat/.default        = pingu@bronze!97!white,
-  pumpkin-hat stalk/.code     = \pingu@color{pumpkinhat@stalk}{#1},
-  pumpkin-hat stalk top/.code = \pingu@color{pumpkinhat@stalk@top}{#1},
-  pumpkin-hat stripe a/.code  = \pingu@color{pumpkinhat@stripe@a}{#1},
-  pumpkin-hat stripe b/.code  = \pingu@color{pumpkinhat@stripe@b}{#1},
-  pumpkin-hat stripe c/.code  = \pingu@color{pumpkinhat@stripe@c}{#1},
-  pumpkin-hat outline/.code   = \pingu@color{pumpkinhat@outline}{#1},
-  pumpkin-hat outline width/.code = \def\pingu@x@pumpkinhat@outline@w{#1},
-  % TODO: jack o lantern?
-  pumpkin-hat position/.code args  = {#1:(#2,#3)#4}{\def\pingu@x@pumpkinhat@angle{#1}\def\pingu@x@pumpkinhat@xshift{#2}\def\pingu@x@pumpkinhat@yshift{#3}\def\pingu@x@pumpkinhat@scale{#4}}
-}{pumpkin-hat position={-9:(1.65mm,.25mm)1.05},pumpkin-hat stalk=pingu@green!95!\pingu@color@pumpkinhat!45!pingu@black,pumpkin-hat stalk top=\pingu@color@pumpkinhat@stalk!95!pingu@black,pumpkin-hat stripe a=pingu@black,pumpkin-hat stripe b=\pingu@color@pumpkinhat@stripe@a,pumpkin-hat stripe c=\pingu@color@pumpkinhat@stripe@a,pumpkin-hat outline=pingu@black,pumpkin-hat outline width=1pt}
-
-\def\pingu@pumpkinhat@outerpath{(0,.125cm)++(-60:6.75mm and 5.5mm) arc(-60:86: 6.75mm and 5.5mm) to[bend left=3] ++(-1.75mm,0) arc(95:242:6.75mm and 5.5mm) to[bend left=5] cycle;}
-\def\pingu@draw@ea@pumpkinhat{%
-\scope[rotate around={\pingu@x@pumpkinhat@angle:(\pingu@name-head-top)},%
-shift={(\pingu@name-head-top)},
-shift={(\pingu@x@pumpkinhat@xshift,\pingu@x@pumpkinhat@yshift)},
-scale=\pingu@x@pumpkinhat@scale]
-  % give it a small cut
-  \pingu@block{\pingu@color@pumpkinhat} (0,.125cm)++(-60:6.75mm and 5.5mm) coordinate (@pkll) arc(-60:86: 6.75mm and 5.5mm) coordinate (@pkl) to[bend left=3] coordinate[pos=.5] (@pkuc) ++(-1.75mm,0) coordinate (@pkr) arc(95:242:6.75mm and 5.5mm) coordinate (@pklr) to[bend left=5] coordinate[pos=.5] (@pklc) cycle;
-  \pingu@block{\pingu@color@pumpkinhat@stalk} (@pkl) to[bend left=3] (@pkr) to[bend right=8] ++(.85mm,2mm) -- ++(.65mm,0) coordinate[pos=.5] (@pkc) to[bend right=3] cycle;
-  \pingu@block{\pingu@color@pumpkinhat@stalk@top} (@pkc) ellipse[x radius=.65mm/2, y radius=.085mm];
-\scope
-\clip (0,.125cm)++(-60:6.75mm and 5.5mm) coordinate (@pkll) arc(-60:86: 6.75mm and 5.5mm) coordinate (@pkl) to[bend left=3] ++(-1.75mm,0) coordinate (@pkr) arc(95:242:6.75mm and 5.5mm) coordinate (@pklr) to[bend left=5] cycle;
-  \pingu@draw[line cap=round,opacity=.3]{\pingu@color@pumpkinhat@stripe@a} (@pklr) to[bend left=55] (@pkr);
-  \pingu@draw[line cap=round,opacity=.3]{\pingu@color@pumpkinhat@stripe@b} (@pkll) to[bend right=55] (@pkl);
-  \pingu@draw[line cap=round,opacity=.3]{\pingu@color@pumpkinhat@stripe@c} (@pklc) to[bend right=5] (@pkuc);
-\endscope
-\pingu@draw[line join=round,line width=\pingu@x@pumpkinhat@outline@w]{\pingu@color@pumpkinhat@outline} \pingu@pumpkinhat@outerpath;
-\endscope
-}
-% #endregion
-
 % #region halo
 \newif\if@pingu@x@halo@glow
 \newif\if@pingu@x@halo@above
@@ -1681,6 +1573,7 @@ vr-controller \@lr\space second shade/.code = \pingu@color{vrcontroller\@lr @sec
 \pingu@dummy@lib{cloak}{cloak}
 \pingu@dummy@lib{christmas}{santa hat,santa beard}
 \pingu@dummy@lib{science fiction}{lightsaber left,lightsaber right}
+\pingu@dummy@lib{fun}{cake-hat,pumpkin-hat}
 
 \ifpengu@setup@bare@\else
 \pinguloadlibraries{shirts,glasses,medieval,cloak,christmas,science-fiction}
