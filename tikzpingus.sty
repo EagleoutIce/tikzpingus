@@ -19,6 +19,7 @@
 \pgfsetlayers{background,main,middle,foreground}
 \fi
 % #region whole setup
+\def\pingu@fi{\fi}
 % #region colors
 \def\@pingu@color@ #1#2(#3,#4,#5){\definecolor{pingu@#1}{#2}{#3,#4,#5}}
 \@pingu@color@{main}RGB(3,14,29)
@@ -796,18 +797,19 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 
 % #region extras
 %     #region extras below
+\def\pingu@xif@eb#1#2{\ifcsname if@pingu@x@#1@\endcsname\csname if@pingu@x@#1@\endcsname \csname pingu@draw@eb@#2\endcsname\pingu@fi\fi}
 \def\pingu@draw@extras@below{%
-    \if@pingu@x@glow@ \pingu@draw@eb@glow \fi
-    \if@pingu@x@tie@ \pingu@draw@eb@tie \fi
-    \if@pingu@x@pants@ \pingu@draw@eb@pants \fi
-    \if@pingu@x@medal@ \pingu@draw@eb@medal \fi
-    \if@pingu@x@bowtie@ \pingu@draw@eb@bowtie \fi
-    \if@pingu@x@cup@ \pingu@draw@eb@cup \fi
-    \if@pingu@x@blush@ \pingu@draw@eb@blush \fi
-    \if@pingu@x@eyepatchleft@ \pingu@draw@eb@eyepatch@l \fi
-    \if@pingu@x@eyepatchright@ \pingu@draw@eb@eyepatch@r \fi
-    \if@pingu@x@monocleleft@ \pingu@draw@eb@monocle@l \fi
-    \if@pingu@x@monocleright@ \pingu@draw@eb@monocle@r \fi
+    \pingu@xif@eb{glow}{glow}%
+    \pingu@xif@eb{tie}{tie}%
+    \pingu@xif@eb{pants}{pants}%
+    \pingu@xif@eb{medal}{medal}%
+    \pingu@xif@eb{bowtie}{bowtie}%
+    \pingu@xif@eb{cup}{cup}%
+    \pingu@xif@eb{blush}{blush}%
+    \pingu@xif@eb{eyepatchleft}{eyepatch@l}%
+    \pingu@xif@eb{eyepatchright}{eyepatch@r}%
+    \pingu@xif@eb{monocleleft}{monocle@l}%
+    \pingu@xif@eb{monocleright}{monocle@r}%
 }
 
 %       #region tie
@@ -1028,7 +1030,6 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 
 %     #region extras above
 % NOTE: No auto append to allow easy order change
-\def\pingu@fi{\fi}
 \def\pingu@xif@ea#1#2{\ifcsname if@pingu@x@#1@\endcsname\csname if@pingu@x@#1@\endcsname \csname pingu@draw@ea@#2\endcsname\pingu@fi\fi}
 \def\pingu@draw@extras@above{%
     \pingu@xif@ea{cap}{cap}%
@@ -1576,6 +1577,6 @@ vr-controller \@lr\space second shade/.code = \pingu@color{vrcontroller\@lr @sec
 \pingu@dummy@lib{fun}{cake-hat,pumpkin-hat}
 
 \ifpengu@setup@bare@\else
-\pinguloadlibraries{shirts,glasses,medieval,cloak,christmas,science-fiction}
+\pinguloadlibraries{shirts,glasses,medieval,cloak,christmas,science-fiction,fun}
 \fi
 \endinput
