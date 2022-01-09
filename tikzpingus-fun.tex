@@ -103,3 +103,19 @@ scale=\pingu@x@pumpkinhat@scale]
 \pingu@draw[line join=round,line width=\pingu@x@pumpkinhat@outline@w]{\pingu@color@pumpkinhat@outline} \pingu@pumpkinhat@outerpath;
 \endscope
 }
+
+\pingu@create@wing@extra{lollipop}{%
+  lollipop \@lr/.code         = {\pingu@set@extra{lollipop\@lr}{true}\pingu@color{lollipop\@lr}{##1}},
+  lollipop \@lr/.default      = pingu@green,
+  lollipop \@lr\space handle/.code = \pingu@color{lollipop\@lr @handle}{##1},%
+  lollipop \@lr\space second/.code = \pingu@color{lollipop\@lr @second}{##1}%
+}{lollipop \@lr\space handle=pingu@bronze,lollipop \@lr\space second={\csname pingu@color@lollipop\@lr\endcsname!86!white}}
+
+% #1 wing
+\def\pingu@draw@wi@lollipop#1{%
+    \pingu@setup@wing{lollipop}{#1}%
+    \pingu@draw[thick,rotate around={\@angle:(\pingu@name-wing-#1)}]{\csname pingu@color@lollipop#1@handle\endcsname}(\pingu@name-wing-#1)++(0,4.75mm) -- ++(0,-6.25mm);
+    \pingu@block[thick,rotate around={\@angle:(\pingu@name-wing-#1)}]{\@col}(\pingu@name-wing-#1)++(0,4.75mm) coordinate (\pingu@name-lollipop-#1-top) circle[radius=1.4mm];
+    \pingu@block[thick,rotate around={\@angle-1:(\pingu@name-lollipop-#1-top)}]{\csname pingu@color@lollipop#1@second\endcsname} (\pingu@name-lollipop-#1-top) ellipse [x radius=1.57mm, y radius=1.5\p@];
+    \pingu@block[thick,rotate around={\@angle-1:(\pingu@name-lollipop-#1-top)}]{\@col} (\pingu@name-lollipop-#1-top)++(0,.5\p@) ellipse [x radius=1.4mm, y radius=\p@];
+}
