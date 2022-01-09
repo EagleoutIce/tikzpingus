@@ -1031,25 +1031,25 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \def\pingu@fi{\fi}
 \def\pingu@xif@ea#1#2{\ifcsname if@pingu@x@#1@\endcsname\csname if@pingu@x@#1@\endcsname \csname pingu@draw@ea@#2\endcsname\pingu@fi\fi}
 \def\pingu@draw@extras@above{%
-    \if@pingu@x@cap@ \pingu@draw@ea@cap \fi % lowest forground
-    \if@pingu@x@eyeframe@ \pingu@draw@ea@eyeframe \fi
-    \if@pingu@x@glasses@ \pingu@draw@ea@glasses \fi
-    \if@pingu@x@glassesround@ \pingu@draw@ea@glassesround \fi
-    \if@pingu@x@devilhorns@ \pingu@draw@ea@devilhorns \fi
-    \if@pingu@x@headband@ \pingu@draw@ea@headband \fi
-    \if@pingu@x@strawhat@ \pingu@draw@ea@strawhat \fi
-    \if@pingu@x@hat@ \pingu@draw@ea@hat \fi
+    \pingu@xif@ea{cap}{cap}%
+    \pingu@xif@ea{eyeframe}{eyeframe}%
+    \pingu@xif@ea{glasses}{glasses}%
+    \pingu@xif@ea{glassesround}{glassesround}%
+    \pingu@xif@ea{devilhorns}{devilhorns}%
+    \pingu@xif@ea{headband}{headband}%
+    \pingu@xif@ea{strawhat}{strawhat}%
+    \pingu@xif@ea{hat}{hat}%
     \pingu@xif@ea{crown}{crown}%
-    \if@pingu@x@cakehat@ \pingu@draw@ea@cakehat \fi
-    \if@pingu@x@pumpkinhat@ \pingu@draw@ea@pumpkinhat \fi
+    \pingu@xif@ea{cakehat}{cakehat}%
+    \pingu@xif@ea{pumpkinhat}{pumpkinhat}%
     \pingu@xif@ea{princesscrown}{princesscrown}%
     \pingu@xif@ea{rook}{rook}%
-    \if@pingu@x@halo@ \pingu@draw@ea@halo \fi
-    \if@pingu@x@vrheadset@ \pingu@draw@ea@vrheadset \fi
-    \if@pingu@x@headphone@ \pingu@draw@ea@headphone \fi
-    \if@pingu@x@sheriffstar@ \pingu@draw@ea@sheriffstar \fi
-    \if@pingu@x@santahat@ \pingu@draw@ea@santahat \fi
-    \if@pingu@x@santabeard@ \pingu@draw@ea@santabeard \fi
+    \pingu@xif@ea{halo}{halo}%
+    \pingu@xif@ea{vrheadset}{vrheadset}%
+    \pingu@xif@ea{headphone}{headphone}%
+    \pingu@xif@ea{sheriffstar}{sheriffstar}%
+    \pingu@xif@ea{santahat}{santahat}%
+    \pingu@xif@ea{santabeard}{santabeard}%
 }
 
 % #region strawhat
@@ -1808,22 +1808,23 @@ vr-controller \@lr\space second shade/.code = \pingu@color{vrcontroller\@lr @sec
 % #endregion
 
 % #region clothes
+\def\pingu@xif@cloth#1#2{\ifcsname if@pingu@x@#1@\endcsname\csname if@pingu@x@#1@\endcsname \csname pingu@draw@cloth@#2\endcsname\pingu@fi\fi}
 \def\pingu@draw@clothing@behind{%
-    \if@pingu@x@secondshirt@ \pingu@draw@cloth@secondshirt@behind \fi
-    \if@pingu@x@shirt@ \pingu@draw@cloth@shirt@behind \fi
-    \if@pingu@x@cloak@ \pingu@draw@cloth@cloak@behind \fi
+    \pingu@xif@cloth{secondshirt}{secondshirt@behind}%
+    \pingu@xif@cloth{shirt}{shirt@behind}%
+    \pingu@xif@cloth{cloak}{cloak@behind}%
 }
 
 \def\pingu@draw@clothing@middle{%
-    \if@pingu@x@secondshirt@ \pingu@draw@cloth@secondshirt@middle \fi
-    \if@pingu@x@shirt@ \pingu@draw@cloth@shirt@middle \fi
-    \if@pingu@x@cloak@ \pingu@draw@cloth@cloak@middle \fi
+    \pingu@xif@cloth{secondshirt}{secondshirt@middle}%
+    \pingu@xif@cloth{shirt}{shirt@middle}%
+    \pingu@xif@cloth{cloak}{cloak@middle}%
 }
 
 \def\pingu@draw@clothing@main{%
-    \if@pingu@x@secondshirt@ \pingu@draw@cloth@secondshirt \fi
-    \if@pingu@x@shirt@ \pingu@draw@cloth@shirt \fi
-    \if@pingu@x@cloak@ \pingu@draw@cloth@cloak \fi
+    \pingu@xif@cloth{secondshirt}{secondshirt}%
+    \pingu@xif@cloth{shirt}{shirt}%
+    \pingu@xif@cloth{cloak}{cloak}%
 }
 
 %     #region cloak
