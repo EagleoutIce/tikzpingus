@@ -19,7 +19,6 @@
 \pgfsetlayers{background,main,middle,foreground}
 \fi
 % #region whole setup
-\def\pingu@fi{\fi}
 % #region colors
 \def\@pingu@color@ #1#2(#3,#4,#5){\definecolor{pingu@#1}{#2}{#3,#4,#5}}
 \@pingu@color@{main}RGB(3,14,29)
@@ -797,7 +796,8 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 
 % #region extras
 %     #region extras below
-\def\pingu@xif@eb#1#2{\ifcsname if@pingu@x@#1@\endcsname\csname if@pingu@x@#1@\endcsname \csname pingu@draw@eb@#2\endcsname\pingu@fi\fi}
+\def\pingu@@xif@eb#1#2{\csname if@pingu@x@#1@\endcsname\csname pingu@draw@eb@#2\endcsname\fi}
+\def\pingu@xif@eb#1#2{\ifcsname if@pingu@x@#1@\endcsname{\pingu@@xif@eb{#1}{#2}}\fi}
 \def\pingu@draw@extras@below{%
     \pingu@xif@eb{glow}{glow}%
     \pingu@xif@eb{tie}{tie}%
@@ -1030,7 +1030,8 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 
 %     #region extras above
 % NOTE: No auto append to allow easy order change
-\def\pingu@xif@ea#1#2{\ifcsname if@pingu@x@#1@\endcsname\csname if@pingu@x@#1@\endcsname \csname pingu@draw@ea@#2\endcsname\pingu@fi\fi}
+\def\pingu@@xif@ea#1#2{\csname if@pingu@x@#1@\endcsname\csname pingu@draw@ea@#2\endcsname\fi}
+\def\pingu@xif@ea#1#2{\ifcsname if@pingu@x@#1@\endcsname{\pingu@@xif@ea{#1}{#2}}\fi}
 \def\pingu@draw@extras@above{%
     \pingu@xif@ea{cap}{cap}%
     \pingu@xif@ea{eyeframe}{eyeframe}%
@@ -1371,7 +1372,8 @@ to[bend left=8] cycle;
 % #endregion
 
 % #region clothes
-\def\pingu@xif@cloth#1#2{\ifcsname if@pingu@x@#1@\endcsname\csname if@pingu@x@#1@\endcsname \csname pingu@draw@cloth@#2\endcsname\pingu@fi\fi}
+\def\pingu@@xif@cloth#1#2{\csname if@pingu@x@#1@\endcsname\csname pingu@draw@cloth@#2\endcsname\fi}
+\def\pingu@xif@cloth#1#2{\ifcsname if@pingu@x@#1@\endcsname{\pingu@@xif@cloth{#1}{#2}}\fi}
 \def\pingu@draw@clothing@behind{%
     \pingu@xif@cloth{secondshirt}{secondshirt@behind}%
     \pingu@xif@cloth{shirt}{shirt@behind}%
