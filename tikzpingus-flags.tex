@@ -1,0 +1,45 @@
+% Florian Sihler, 2022
+% Licensed under GNU Lesser General Public License version 3
+% https://opensource.org/licenses/lgpl-3.0.html
+\pingu@create@wing@extra{flag}{%
+    flag \@lr/.code         = {\pingu@set@extra{flag\@lr}{true}\pingu@color{flag\@lr}{##1}},
+    flag \@lr/.default      = pingu@purple,
+    flag \@lr\space pole/.code    = \pingu@color{flag\@lr @pole}{##1},
+    flag \@lr\space code/.code    = \expandafter\def\csname pingu@flag@\@lr @code\endcsname{##1},
+    flag \@lr\space bobble/.code  = {\pingu@color{flag\@lr @bobble}{##1}},
+    pride flag \@lr/.style  = {%
+        /pingu/flag \@lr\space code = {%
+            \noexpand\node[/pingu/@flag@first,/pingu/@flag={{rgb:yellow,1;red,5;magenta,2;black,1}}{1.9mm}] (a) at (0,0) {};
+            \noexpand\node[below,/pingu/@flag={{rgb:yellow,5;red,5;green,1;white,1}}{1.9mm}] (b) at (a.south) {};
+            \noexpand\node[below,/pingu/@flag={yellow}{1.9mm}] (c) at (b.south) {};
+            \noexpand\node[below,/pingu/@flag={{rgb:blue,1;cyan,1;green,4;black,2}}{1.9mm}] (d) at (c.south) {};
+            \noexpand\node[below,/pingu/@flag={{rgb:magenta,3;blue,5;cyan,4;black,3}}{1.9mm}] (e) at (d.south) {};
+            \noexpand\node[below,/pingu/@flag={{rgb:red,2;magenta,2;blue,5}}{1.9mm}] (f) at (e.south) {};
+        }, /pingu/flag \@lr, /pingu/flag \@lr\space pole={##1}%
+    },%
+    @flag/.style 2 args={tape bend height=.5mm,shape=tape,minimum height=##2, minimum width=15mm,outer sep=\z@,inner sep=\z@,fill=##1,draw=##1,rotate=\noexpand\@angle},
+    pride flag \@lr/.default = pingu@bronze,%
+    german flag \@lr/.style  = {%
+    /pingu/flag \@lr\space code = {%
+            \noexpand\node[/pingu/@flag@first,/pingu/@flag={black}{3.33mm}] (a) at (0,0) {};
+            \noexpand\node[below,/pingu/@flag={red}{3.33mm}] (b) at (a.south) {};
+            \noexpand\node[below,/pingu/@flag={yellow}{3.33mm}] (c) at (b.south) {};
+        }, /pingu/flag \@lr, /pingu/flag \@lr\space pole={##1}%
+    },%
+    german flag \@lr/.default = pingu@bronze%
+}{flag \@lr\space bobble=pingu@bronze, flag \@lr\space pole=pingu@bronze, flag \@lr\space code = {%
+    \noexpand\node[/pingu/@flag@first,/pingu/@flag={\noexpand\@col}{9.75mm}] (a) at (0,0) {};
+}}
+\def\pingu@draw@wi@flag#1{%
+    \pingu@setup@wing{flag}{#1}%
+\scope[rotate around={\@angle:(\pingu@name-wing-#1)}]
+    % NOTE: not full foreground if placed under the wing
+    \pingu@layer{foreground}[shift={(\pingu@name-wing-#1)},shift={(\@sidesign*.15mm,17.5mm-3.5\p@)}]
+        \if@pingu@wing@item@side@left@\pgfqkeys{/pingu}{@flag@first/.style={below right}}\else\pgfqkeys{/pingu}{@flag@first/.style={below left}}\fi
+        \csname pingu@flag@#1@code\endcsname
+        \pingu@block[thick]{\csname pingu@color@flag#1@pole\endcsname}(\pingu@name-wing-#1)++(\@sidesign*-.15mm,3mm) -- ++(0,13.65mm) -| ++(\@sidesign*.6mm,-13.65mm) -- cycle;
+    \endpingu@layer
+    \pingu@block[thick]{\csname pingu@color@flag#1@pole\endcsname}(\pingu@name-wing-#1)++(\@sidesign*-.15mm,-3mm) -- ++(0,20mm) arc(180:0:\@sidesign*.3mm and .375mm) -- ++(0,-20mm) arc(360:180:\@sidesign*.3mm and .375mm) -- cycle;
+    \pingu@block{\csname pingu@color@flag#1@bobble\endcsname} (\pingu@name-wing-#1)++(\@sidesign*.15mm,17.5mm) circle [radius=2.15\p@];
+\endscope
+}
