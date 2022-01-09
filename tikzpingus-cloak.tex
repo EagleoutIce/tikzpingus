@@ -1,0 +1,79 @@
+% Florian Sihler, 2022
+% Licensed under GNU Lesser General Public License version 3
+% https://opensource.org/licenses/lgpl-3.0.html
+\newif\if@pingu@x@cloak@wings
+\pingu@create@extra{cloak}{%
+    cloak/.code              = \pingu@set@extra{cloak}{true}\pingu@color{cloak}{#1},
+    cloak/.default           = pingu@bronze,
+    cloak cap/.code          = \pingu@color{cloak@cap}{#1},
+    cloak wings color/.code  = \pingu@color{cloak@wings}{#1},
+    cloak bottom color/.code = \pingu@color{cloak@bottom}{#1},
+    cloak front color/.code  = \pingu@color{cloak@front}{#1},
+    cloak padding/.code      = \def\pingu@x@cloak@padding{#1},
+    cloak wings/.is if       = @pingu@x@cloak@wings,
+    cape/.style              = {/pingu/cloak=#1, /pingu/cloak wings=false,/pingu/cloak front color=\@pingu@none, /pingu/cloak cap=\@pingu@none,/pingu/cloak front color=\@pingu@none},
+    cape/.default            = pingu@bronze,
+}{cloak padding=1.95mm,cloak bottom color=\pingu@color@cloak!90!black,cloak cap=\pingu@color@cloak!98!pingu@black,cloak front color=\pingu@color@cloak!90!white,cloak wings color=\pingu@color@cloak@front!94!pingu@black,cloak wings=true}
+\def\pingu@draw@cloth@cloak@behind{%
+    \pingu@block[bottom color=\pingu@color@cloak@bottom,top color=\pingu@color@cloak]{\pingu@color@cloak} (\pingu@name-bottom-center)++(-\pingu@x@cloak@padding-\pingu@w@half,-.5mm) arc (180:0:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend left=1] (\pingu@name-wings-side-left) arc(0:180:\pingu@w@half{} and .75mm) to[bend left=1] cycle;
+}
+
+\def\pingu@draw@cloth@cloak@middle{}
+
+% TODO: if flags to draw parts
+\def\pingu@draw@cloth@cloak{%
+\pingu@block[rounded corners=.7mm]{\pingu@color@cloak@front}
+(\pingu@name-bottom-center)++(-\pingu@x@cloak@padding-\pingu@w@half,-.5mm) arc (180:250:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend right=6]
+([xshift=1.3mm,yshift=.4mm]\pingu@name-wings-side-right) to[bend right=3] ([yshift=.65mm]\pingu@name-wings-side-right);
+\pingu@block[rounded corners=.7mm]{\pingu@color@cloak@front}
+(\pingu@name-bottom-center)++(\pingu@x@cloak@padding+\pingu@w@half,-.5mm) arc (0:-70:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend left=6]
+([xshift=-1.3mm,yshift=.4mm]\pingu@name-wings-side-left) to[bend left=3] ([yshift=.65mm]\pingu@name-wings-side-left);
+\scope[rounded corners=.6\p@]
+    % wings
+    \if@pingu@x@cloak@wings
+    \edef\@la{\csname @pingu@wingdown@\@pingu@select@leftwing@ @\endcsname}
+    \ifnum\@la>0 % wing is going inverted up or down / \ => left
+        \pingu@layer{foreground}[]
+        \ifnum\@la>70
+            \pingu@block[right color=\pingu@color@cloak@front,left color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} (\pingu@name-wing-left-start)++(.5mm,-3.5mm) to[bend left=10] (\pingu@name-wing-left-low) to[bend right=13] (\pingu@name-wing-left-up) to[bend left=3] (\pingu@name-wing-left-start-up) to[bend left] ([xshift=.35mm,yshift=1mm]\pingu@name-wing-left-start);
+            \else % down
+            \pingu@block[right color=\pingu@color@cloak@front,left color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} (\pingu@name-wing-left-start)++(.5mm,-3.5mm) to[bend left=10] (\pingu@name-wing-left-low) to[bend right=13] (\pingu@name-wing-left-up) to[bend left=3] ([xshift=1mm,yshift=1mm]\pingu@name-wing-left-start-up) to[bend left=4.5] ([xshift=.5mm,yshift=-3.5mm]\pingu@name-wing-left-start);
+        \fi
+        \endpingu@layer
+    \else
+        \ifnum\@la<-90% normal up \ / => left side
+            \pingu@block[upper right=\pingu@color@cloak@wings,lower right=\pingu@color@cloak@front,lower left=\pingu@color@cloak@front,upper left=\pingu@color@cloak@front]{\pingu@color@cloak@wings} ([xshift=.25mm]\pingu@name-wing-left-start-low) to[bend right=14] (\pingu@name-wing-left-low) to[bend left=8] ([yshift=-.5mm]\pingu@name-wing-left-up) to[bend right=17] ([yshift=1.6mm]\pingu@name-wing-left-start-up) to[bend right=13] ([xshift=-.15mm,yshift=.15mm]\pingu@name-waist-left) -- cycle;
+        \else % normal and hugging down => right
+            \pingu@block[top color=\pingu@color@cloak@front,middle color=\pingu@color@cloak,bottom color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} plot[smooth] coordinates {([xshift=-1.38mm]\pingu@name-wings-side-left) (\pingu@name-wing-left-start-low) ([yshift=.65mm,xshift=-.65mm]\pingu@name-wing-left-low) ([yshift=.65mm,xshift=-.65mm]\pingu@name-wing-left-up) ([xshift=.68mm]\pingu@name-wings-side-left) ([xshift=-1.38mm]\pingu@name-wings-side-left)};
+        \fi
+    \fi
+    \edef\@ra{\csname @pingu@wingdown@\@pingu@select@rightwing@ @\endcsname}
+    \ifnum\@ra>0 % wing is going inverted up or down => right
+        \pingu@layer{foreground}[]
+        \ifnum\@ra>70
+            \pingu@block[left color=\pingu@color@cloak@front,middle color=\pingu@color@cloak@front,right color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} (\pingu@name-wing-right-start-low) to[bend right=10] (\pingu@name-wing-right-low) to[bend left=13] (\pingu@name-wing-right-up) to[bend right=3] (\pingu@name-wing-right-start-up) -- ++(-.25mm,0mm) to[bend right=11] cycle;
+        \else
+            \pingu@block[left color=\pingu@color@cloak@front,middle color=\pingu@color@cloak@front,right color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings}  ([xshift=1mm,yshift=-1mm]\pingu@name-wing-right-start-low) to[bend right=10] (\pingu@name-wing-right-low) to[bend left=13] (\pingu@name-wing-right-up) to[bend right=3] ([xshift=-1mm,yshift=1mm]\pingu@name-wing-right-start-up) to[bend right=4.5] ([xshift=-.5mm,yshift=-3.5mm]\pingu@name-wing-right-start);
+        \fi
+        \endpingu@layer
+    \else
+        \ifnum\@ra<-90% normal up => right side
+            \pingu@block[upper left=\pingu@color@cloak@wings,lower left=\pingu@color@cloak@front,lower right=\pingu@color@cloak@front,upper right=\pingu@color@cloak@front]{\pingu@color@cloak@wings} ([xshift=.25mm]\pingu@name-wing-right-start-low) to[bend left=14] (\pingu@name-wing-right-low) to[bend right=8] ([yshift=-.5mm]\pingu@name-wing-right-up) to[bend left=17] ([yshift=1.6mm]\pingu@name-wing-right-start-up) to[bend left=13] ([xshift=.15mm,yshift=.15mm]\pingu@name-waist-right) -- cycle;
+        \else % normal and hugging down => left
+            \pingu@block[top color=\pingu@color@cloak@front,middle color=\pingu@color@cloak@front,bottom color=\pingu@color@cloak@wings]{\pingu@color@cloak@wings} plot[smooth] coordinates {([xshift=1.38mm]\pingu@name-wings-side-right) (\pingu@name-wing-right-start-low) ([yshift=.85mm,xshift=-.35mm]\pingu@name-wing-right-low) ([yshift=.85mm,xshift=.35mm]\pingu@name-wing-right-up) ([xshift=-.68mm]\pingu@name-wings-side-right) ([xshift=1.38mm]\pingu@name-wings-side-right)};
+        \fi
+    \fi
+\fi
+    % cape
+    \pingu@block[rounded corners=.8mm]{\pingu@color@cloak@cap} ([xshift=.85mm,yshift=-2.75mm]\pingu@name-wing-left-start) to[bend left=4] ([xshift=-.45mm,yshift=-.65mm]\pingu@name-wings-side-left) to[bend right=3]
+    (\pingu@name-head)
+    to[bend right=3]
+    ([xshift=.4mm,yshift=-.65mm]\pingu@name-wings-side-right) [rounded corners=.15mm] to[bend left=3] ([xshift=-.85mm,yshift=-2.75mm]\pingu@name-wing-right-start)
+    to[bend left=8]
+    ([xshift=-.66mm]\pingu@name-wings-side-right)
+    [rounded corners=.15mm]
+    to[bend left=32] ++(\pingu@w@half+.66mm,\pingu@w@half+1.2\pingu@one)
+    to[bend left=32] ++(\pingu@w@half+.66mm,-\pingu@w@half-1.2\pingu@one)
+    to[bend left=8] cycle;
+\endscope
+}
