@@ -1,0 +1,68 @@
+% Florian Sihler, 2022
+% Licensed under GNU Lesser General Public License version 3
+% https://opensource.org/licenses/lgpl-3.0.html
+\pingu@create@extra{strawhat}{%
+  % extra strawhat (tikzducks basis)
+  straw hat/.forward to         = /pingu/strawhat,
+  strawhat/.default             = brown!50!white,
+  strawhat/.code                = \pingu@set@extra{strawhat}{true}\pingu@color{strawhat}{#1},
+  straw hat ribbon/.forward to  = /pingu/strawhat ribbon,
+  strawhat ribbon/.code         = \pingu@color{strawhat@ribbon}{#1},
+  straw hat position/.forward to= /pingu/strawhat position,
+  strawhat position/.code args  = {#1:(#2,#3)#4}{\def\pingu@x@strawhat@angle{#1}\def\pingu@x@strawhat@xshift{#2}\def\pingu@x@strawhat@yshift{#3}\def\pingu@x@strawhat@scale{#4}},
+}{strawhat ribbon= gray!85!black,strawhat position={-26.5:(-.185cm,.14cm){1.375}}}
+
+\def\pingu@draw@ea@strawhat{%
+\scope[rotate around={\pingu@x@strawhat@angle:(\pingu@name-head)},shift={(\pingu@name-head)},shift={(\pingu@x@strawhat@xshift,\pingu@x@strawhat@yshift)},scale=\pingu@x@strawhat@scale]
+\pingu@block{\pingu@color@strawhat} (.34cm,0) ellipse[x radius=.75cm, y radius=\pingu@one];
+\pingu@block{\pingu@color@strawhat} (0,.5mm) rectangle (.68cm,5mm);
+\pingu@block{\pingu@color@strawhat} (.34cm,5mm) ellipse[x radius=.34cm, y radius=.8mm];
+\pingu@block{\pingu@color@strawhat} (-.3955cm,.2mm) -- (1.0755cm,.2mm) -- (.68cm,2mm) -- (0,2mm) -- cycle;
+\pingu@block{\pingu@color@strawhat@ribbon} (.34cm,2mm) ellipse[x radius=.34cm, y radius=.8mm];
+\pingu@block{\pingu@color@strawhat@ribbon} (0,2mm) rectangle (.68cm,3mm);
+\pingu@block{\pingu@color@strawhat} (.34cm,3mm) ellipse[x radius=.34cm, y radius=.8mm];
+\endscope}
+
+\pingu@create@extra{hat}{%
+  hat/.default   = pingu@black!90!black,
+  hat/.code      = \pingu@set@extra{hat}{true}\pingu@color{hat}{#1},
+  hat base/.code = \pingu@color{hat@base}{#1},
+  hat coronal/.code = \pingu@color{hat@coronal}{#1},
+  hat ribbon/.code = \pingu@color{hat@ribbon}{#1},
+  hat position/.code args  = {#1:(#2,#3)#4}{\def\pingu@x@hat@angle{#1}\def\pingu@x@hat@xshift{#2}\def\pingu@x@hat@yshift{#3}\def\pingu@x@hat@scale{#4}},
+}{hat position={-2:(.35mm,0)1},hat base=\pingu@color@hat,hat coronal=\pingu@color@hat!91!white,hat ribbon=\pingu@color@hat!87!white}
+
+\newdimen\pingu@hat@w@half \pingu@hat@w@half=.925cm
+\newdimen\pingu@hat@h \pingu@hat@h=.625cm
+\def\pingupathhatupper{[rounded corners=.25mm](-.65cm,-.25cm) to[out=90,in=200] ++(.35cm,\pingu@hat@h) to[bend left=11] ++(.25cm,0) to[bend right=2.5] ++(\pingu@one,0) to[bend left=11] ++(.25cm,0) to[out=-20,in=90] ++(.35cm,-\pingu@hat@h) to[bend left=12] (-.65cm,-.25cm) -- cycle}
+\def\pingu@draw@ea@hat{%
+\scope[rotate around={\pingu@x@hat@angle:(\pingu@name-head-top)},shift={(\pingu@name-head-top)},shift={(\pingu@x@hat@xshift,\pingu@x@hat@yshift)},scale=\pingu@x@hat@scale]
+\pingu@block[/pingu/@draw=\pingu@color@hat@coronal,thick]{\pingu@color@hat@base} (0,-.25cm)++(180:\pingu@hat@w@half{} and .15cm) arc (180:360:\pingu@hat@w@half{} and .15cm) arc (0:180:\pingu@hat@w@half{} and .115cm) -- cycle;
+\pingu@block{\pingu@color@hat} \pingupathhatupper;
+\scope
+\clip\pingupathhatupper;
+\pingu@block{\pingu@color@hat@ribbon} (\z@,.2mm) ellipse [x radius=.95\pingu@hat@w@half, y radius=.13cm];
+\pingu@block{\pingu@color@hat} (\z@,.134cm) ellipse [x radius=.95\pingu@hat@w@half, y radius=.13cm];
+\endscope\endscope}
+
+\pingu@create@extra{cap}{%
+  cap/.default      = pingu@bronze,
+  cap/.code         = \pingu@set@extra{cap}{true}\pingu@color{cap}{#1},
+  cap padding/.code = {\def\pingu@x@cap@padding{#1}},
+  cap extra height/.code = {\def\pingu@x@cap@height{#1}},
+}{cap padding=.8mm, cap extra height=0pt}
+
+\def\pingu@draw@ea@cap{%
+\pingu@layer{foreground}[]
+\pingu@block[rounded corners=.7mm]{\pingu@color@cap} ([xshift=.25mm]\pingu@name-wing-left-start) to[bend left=4] ([xshift=-\pingu@x@cap@padding]\pingu@name-wings-side-left) to[bend right=3]
+([yshift=\pingu@x@cap@height]\pingu@name-head)
+to[bend right=3]
+([xshift=\pingu@x@cap@padding]\pingu@name-wings-side-right) [rounded corners=.15mm] to[bend left=4] ([xshift=-.25mm]\pingu@name-wing-right-start)
+to[bend left=8]
+([xshift=-\pingu@x@cap@padding]\pingu@name-wings-side-right)
+[rounded corners=.15mm]
+to[bend left=32] ++(\pingu@w@half+\pingu@x@cap@padding,\pingu@w@half+\pingu@one)
+to[bend left=32] ++(\pingu@w@half+\pingu@x@cap@padding,-\pingu@w@half-\pingu@one)
+to[bend left=8] cycle;
+\endpingu@layer
+}
