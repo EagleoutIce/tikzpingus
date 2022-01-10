@@ -892,29 +892,6 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 }
 %       #endregion
 
-%       #region medal
-\pingu@create@extra{medal}{%
-    medal/.code    	  = {\pingu@set@extra{medal}{true}\pingu@color{medal}{#1}},
-    medal/.default    = pingu@yellow,%
-    gold medal/.style = {medal, medal text=#1}, gold medal/.default={1},
-    silver medal/.style = {medal=pingu@silver, medal text=#1}, silver medal/.default={2},
-    bronze medal/.style = {medal=pingu@bronze, medal text=#1}, bronze medal/.default={3},
-    medal band/.code  = \pingu@color{medal@band}{#1},%
-    medal shade/.code  = \pingu@color{medal@shade}{#1},%
-    medal shade width/.code  = \def\pingu@medal@shade@w{#1},%
-    medal text/.code  = \def\pingu@x@medal@text{#1},%
-    medal text style/.style = {\pingu@color@medal!65!pingu@white},
-}{medal band=pingu@red,medal text={},medal shade={\pingu@color@medal!65!pingu@white},medal shade width=.75\p@}
-
-\def\pingu@draw@eb@medal{%
-\coordinate (\pingu@name-medal-center) at ([yshift=1.25mm]\pingu@name-belly-center);
-\pingu@block{\pingu@color@medal@band} [rounded corners=.15mm] (\pingu@name-head-back-con-right) -- (\pingu@name-medal-center) -- (\pingu@name-head-back-con-left) to[bend left=11] ++(-1.35mm,-.5mm) -- ([yshift=.7mm]\pingu@name-medal-center) -- ([xshift=1.35mm,yshift=-.5mm]\pingu@name-head-back-con-right) to[bend left=11] (\pingu@name-head-back-con-right) -- cycle;
-\pingu@block{\pingu@color@medal} (\pingu@name-medal-center) circle [radius=2.35mm];
-\pingu@draw[line width=\pingu@medal@shade@w]{\pingu@color@medal@shade} (\pingu@name-medal-center) circle [radius=2.35mm];
-\node[/pingu/@text,/pingu/medal text style] at (\pingu@name-medal-center) {\pingu@x@medal@text};
-}
-%       #endregion
-
 %       #region eye patch
 %         #region eye patch left
 \pingu@create@extra{eyepatchleft}{%
@@ -1129,65 +1106,6 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     \pingu@block{\pingu@color@devilhorns@b} ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-right) to [bend left=38] (\pingu@name-devilhorns-right-goal) to[bend left=30] ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-right) -- cycle;
 }
 % #endregion
-
-% #region head-band
-\newif\if@pingu@x@headband@knot@
-\newif\if@pingu@x@headband@bands@
-\pingu@create@extra{headband}{%
-    headband/.forward to  = /pingu/head band,
-    head-band/.forward to = /pingu/head band,
-    head band/.code       = \pingu@set@extra{headband}{true}\pingu@color{headband}{#1},
-    head band/.default    = pingu@red,
-    headband bend/.forward to  = /pingu/head band bend,
-    head-band bend/.forward to = /pingu/head band bend,
-    head band bend/.code  = \def\pingu@x@headband@bend{#1},
-    headband angle/.forward to  = /pingu/head band angle,
-    head-band angle/.forward to = /pingu/head band angle,
-    head band angle/.code  = \def\pingu@x@headband@angle{#1},
-    headband upper angle/.forward to  = /pingu/head band upper angle,
-    head-band upper angle/.forward to = /pingu/head band upper angle,
-    head band upper angle/.code  = \def\pingu@x@headband@upangle{#1},
-    % knot
-    headband knot/.forward to  = /pingu/head band knot,
-    head-band knot/.forward to = /pingu/head band knot,
-    head band knot/.is if = @pingu@x@headband@knot@,
-    headband knot color/.forward to  = /pingu/head band knot color,
-    head-band knot color/.forward to = /pingu/head band knot color,
-    head band knot color/.code  = \pingu@color{headband@knot}{#1},
-    headband knot a color/.forward to  = /pingu/head band knot a color,
-    head-band knot a color/.forward to = /pingu/head band knot a color,
-    head band knot a color/.code  = \pingu@color{headband@knot@a}{#1},
-    headband knot b color/.forward to  = /pingu/head band knot b color,
-    head-band knot b color/.forward to = /pingu/head band knot b color,
-    head band knot b color/.code  = \pingu@color{headband@knot@b}{#1},
-    headband bands/.forward to  = /pingu/head band bands,
-    head-band bands/.forward to = /pingu/head band bands,
-    head band bands/.is if = @pingu@x@headband@bands@,
-    headband bands a color/.forward to  = /pingu/head band bands a color,
-    head-band bands a color/.forward to = /pingu/head band bands a color,
-    head band bands a color/.code  = \pingu@color{headband@bands@a}{#1},
-    headband bands b color/.forward to  = /pingu/head band bands b color,
-    head-band bands b color/.forward to = /pingu/head band bands b color,
-    head band bands b color/.code  = \pingu@color{headband@bands@b}{#1},
-}{head band bend=9, head band angle=16,head band upper angle=49, head band knot color=\pingu@color@headband!78!black,head band knot a color=\pingu@color@headband@knot!90!black,head band knot b color=\pingu@color@headband@knot@a,head band bands,head band bands a color=\pingu@color@headband!78!black,head band bands b color=\pingu@color@headband}
-
-\def\pingu@draw@ea@headband@wh{1.25mm}
-\def\pingu@draw@ea@headband{%
-    \path (\pingu@name-head-center)+(\pingu@x@headband@upangle-\pingu@x@headband@angle:\pingu@w@half{} and \pingu@head@h@half) coordinate (\pingu@name-head-band-lower);
-    \path (\pingu@name-head-center)+(\pingu@x@headband@upangle:\pingu@w@half{} and \pingu@head@h@half) coordinate (\pingu@name-head-band-upper);
-    \if@pingu@x@headband@bands@
-    \pingu@block{\pingu@color@headband@bands@a} (\pingu@name-head-band-lower) to[out=-50,in=75] ++(2.75mm,-4mm) to[bend right] ++(.6mm,0) to[out=80,in=-5] (\pingu@name-head-band-upper) -- cycle;
-    \pingu@block{\pingu@color@headband@bands@b} (\pingu@name-head-band-lower) to[out=-80,in=80] ++(1.75mm,-3.35mm) to[bend right] ++(.45mm,0) to[out=80,in=-8] (\pingu@name-head-band-upper) -- cycle;
-    \fi
-    \pingu@block{\pingu@color@headband} (\pingu@name-head-center)+(\pingu@x@headband@upangle:\pingu@w@half{} and \pingu@head@h@half) to[bend left=\pingu@x@headband@bend] coordinate[pos=.5] (\pingu@name-headband-center-a) +(180-\pingu@x@headband@upangle:\pingu@w@half{} and \pingu@head@h@half) arc(180-\pingu@x@headband@upangle:180-\pingu@x@headband@upangle+\pingu@x@headband@angle:\pingu@w@half{} and \pingu@head@h@half) to[bend right=\pingu@x@headband@bend] coordinate[pos=.5] (\pingu@name-headband-center-b) (\pingu@name-head-band-lower) arc(\pingu@x@headband@upangle-\pingu@x@headband@angle:\pingu@x@headband@upangle:\pingu@w@half{} and \pingu@head@h@half) -- cycle;
-    \path (\pingu@name-headband-center-a) -- (\pingu@name-headband-center-b) coordinate[pos=.5] (\pingu@name-headband-center);
-    \if@pingu@x@headband@knot@
-    \pingu@block[rounded corners=.25mm]{\pingu@color@headband@knot@a} (\pingu@name-headband-center-a)++(-.15mm,-.6mm) to[out=155,in=-5] ++(-3mm,\pingu@one) to[bend right=15] ([xshift=-3mm,yshift=-.2mm]\pingu@name-headband-center-b) to[in=-155,out=5] ++(.285cm,.8mm) -- cycle;
-    \pingu@block[rounded corners=.25mm]{\pingu@color@headband@knot@b} (\pingu@name-headband-center-a)++(.15mm,-.6mm) to[out=25,in=-175] ++(3mm,\pingu@one) to[bend left=15] ([xshift=3mm,yshift=-.2mm]\pingu@name-headband-center-b) to[in=-25,out=175] ++(-.285cm,.8mm) -- cycle;
-    \pingu@block[rounded corners=.25mm]{\pingu@color@headband@knot} (\pingu@name-headband-center-a)++(-\pingu@draw@ea@headband@wh,.12mm) to[bend right=9] ++(2*\pingu@draw@ea@headband@wh,0) -- ([xshift=\pingu@draw@ea@headband@wh,yshift=-.12mm]\pingu@name-headband-center-b) to[bend right=9] ++(-2*\pingu@draw@ea@headband@wh, 0) -- cycle;
-    \fi
-}
-% #endregion
 %     #endregion
 % #endregion
 
@@ -1355,8 +1273,9 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \pingu@dummy@lib{technology}{vr-headset,headphone,vr-controller left,vr-controller right}
 \pingu@dummy@lib{flags}{flag left,flag right}
 \pingu@dummy@lib{hats}{strawhat,hat,cap}
+\pingu@dummy@lib{sport}{head band,medal}
 
 \ifpengu@setup@bare@\else
-\pinguloadlibraries{shirts,glasses,medieval,cloak,christmas,science-fiction,fun,technology,flags}
+\pinguloadlibraries{shirts,glasses,medieval,cloak,christmas,science-fiction,fun,technology,flags,hats,sport}
 \fi
 \endinput
