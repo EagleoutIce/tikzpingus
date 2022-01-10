@@ -1,0 +1,100 @@
+% Florian Sihler, 2022
+% Licensed under GNU Lesser General Public License version 3
+% https://opensource.org/licenses/lgpl-3.0.html
+\pingu@create@extra{tie}{%
+    tie/.code         = \pingu@set@extra{tie}{true}\pingu@color{tie}{#1},
+    tie/.default      = pingu@green,
+    tie knot/.code    = \pingu@color{tie@knot}{#1},
+    tie length/.code  = \def\pingu@x@tie@length{#1},
+    tie offset/.code  = \def\pingu@x@tie@offset{#1},
+    tie width/.code   = \def\pingu@x@tie@width{#1},
+    tie pattern/.code = \def\pingu@x@tie@pattern{#1},
+    tie dots/.style   = {%
+        tie pattern={%
+            \pingu@block[postaction={pattern={Dots[angle=40,distance=1.5pt,radius=.35pt]},pattern color=#1}]{\pingu@color@tie} \pingupathxtie;
+            \pingu@block[postaction={pattern={Dots[angle=-30,distance=1.45pt,radius=.35pt@]},pattern color=#1}]{\pingu@color@tie@knot} \pingupathxtieknot;
+        }%
+    },
+    tie dots/.default={pingu@white}%
+}{% defaults
+    tie length=.625\pingu@side@h@half,  tie offset=.399cm,%
+    tie knot=\pingu@color@tie!92!black, tie width=.21cm,%
+    tie pattern={%
+        \pingu@block{\pingu@color@tie} \pingupathxtie;
+        \pingu@block{\pingu@color@tie@knot} \pingupathxtieknot;
+    }%
+}
+\def\pingupathxtie{[rounded corners=.15mm] (\pingu@name-tie-start)++(-.4mm,-.25mm) -- ++(-\pingu@x@tie@width/2, -\pingu@x@tie@length+.125cm) -- ++(\pingu@x@tie@width/2+.4mm,-.125cm) -- ++(\pingu@x@tie@width/2+.4mm,.125cm) -- +(-\pingu@x@tie@width/2, \pingu@x@tie@length-.125cm) -- cycle}
+\def\pingupathxtieknot{[rounded corners=.25mm] (\pingu@name-tie-start)++(-.095cm-.02*\pingu@x@tie@width,\z@) -- ++(.3mm,-.15cm-.01*\pingu@x@tie@width) -- ++(.13cm+.04*\pingu@x@tie@width,\z@) -- ++(.3mm,.15cm+.01*\pingu@x@tie@width) -- cycle}
+\def\pingu@draw@eb@tie{%
+    \path (\pingu@name-bill)++(0,-\pingu@x@tie@offset) coordinate(\pingu@name-tie-start);
+    \pingu@x@tie@pattern
+}
+
+\pingu@create@extra{bowtie}{%
+    bowtie/.forward to         = /pingu/bow tie,
+    bow-tie/.forward to        = /pingu/bow tie,
+    bow tie/.code              = \pingu@set@extra{bowtie}{true}\pingu@color{bowtie}{#1},
+    bow tie/.default           = pingu@blue,
+    bow tie b/.code            = \pingu@color{bowtie@b}{#1},
+    bowtie b/.forward to         = /pingu/bow tie b,
+    bow-tie b/.forward to        = /pingu/bow tie b,
+    bowtie offset/.forward to  = /pingu/bow tie offset,
+    bow-tie offset/.forward to = /pingu/bow tie offset,
+    bow tie offset/.code       = \def\pingu@x@bowtie@offset{#1},
+    bowtie knot/.forward to    = /pingu/bow tie knot,
+    bow-tie knot/.forward to   = /pingu/bow tie knot,
+    bow tie knot/.code         = \pingu@color{bowtie@knot}{#1},
+}{% defaults
+    bow tie knot=\pingu@color@bowtie!92!black,bow tie offset=.315cm,%
+    bow tie b=\pingu@color@bowtie%
+}
+
+\def\pingupathxbowtieknot{[rounded corners=.25mm] (\pingu@name-bow-tie-start)++(-.0625cm,-.35mm) to[bend right=10] ++(.125cm,0) -- ++(0,-.13cm) to[bend right=10] ++(-.125cm, 0) -- cycle}
+\def\pingupathxbowtieleft{[rounded corners=.25mm]  (\pingu@name-bow-tie-start)++(-.15mm,-.06cm) to[out=155,in=-5] ++(-.25cm,.065cm) to[bend right=15] ++(0,-.21cm) to[in=-155,out=5] ++(.25cm,.065cm) -- cycle}
+\def\pingupathxbowtieright{[rounded corners=.25mm]  (\pingu@name-bow-tie-start)++(.15mm,-.06cm) to[out=25,in=-175] ++(.25cm,.065cm) to[bend left=15] ++(0,-.21cm) to[in=-25,out=175] ++(-.25cm,.065cm) -- cycle}
+\def\pingu@draw@eb@bowtie{%
+    \path (\pingu@name-bill)++(0,-\pingu@x@bowtie@offset) coordinate(\pingu@name-bow-tie-start);
+    \pingu@block{\pingu@color@bowtie} \pingupathxbowtieleft;
+    \pingu@block{\pingu@color@bowtie@b} \pingupathxbowtieright;
+    \pingu@block{\pingu@color@bowtie@knot} \pingupathxbowtieknot;
+}
+
+\newif\if@pingu@x@pants@bands
+\pingu@create@extra{pants}{%
+    pants/.code    	               = \pingu@set@extra{pants}{true}\pingu@color{pants}{#1},
+    pants/.default                 = pingu@red,
+    pants bands/.is if             = @pingu@x@pants@bands,
+    pants button left/.code        = \pingu@color{pants@button@left}{#1},
+    pants button right/.code       = \pingu@color{pants@button@right}{#1},
+    pants buttons/.style           = {/pingu/pants button left={#1}, /pingu/pants button right={#1}},
+    pants button left shade/.code  = \pingu@color{pants@button@left@shade}{#1},
+    pants button right shade/.code = \pingu@color{pants@button@right@shade}{#1},
+    pants buttons shade/.style     = {/pingu/pants button left shade={#1}, /pingu/pants button right shade={#1}},
+    pants without buttons/.forward to=/pingu/pants no buttons,
+    pants no buttons/.style        = {/pingu/pants buttons=\@pingu@none, /pingu/pants buttons shade=\@pingu@none},
+    pants extra height/.code = \def\pingu@x@pants@extra@height{#1},
+}{pants extra height=1.5mm,pants buttons=pingu@black,pants button left shade=\pingu@color@pants@button@left!70!white,pants button right shade=\pingu@color@pants@button@right!70!white}
+
+\def\pingu@draw@eb@pants{%
+\pingu@block[rounded corners=\p@]{\pingu@color@pants} ([xshift=.85mm,yshift=\pingu@x@pants@extra@height]\pingu@name-waist-right) coordinate(@tmp) to[bend right=6] ([xshift=-.85mm,yshift=\pingu@x@pants@extra@height]\pingu@name-waist-left) coordinate(@tmpb) -- ++(0,-\pingu@x@pants@extra@height) arc(180:270:.85mm and 2.5mm) to[bend left=\pingu@bend] (\pingu@name-bottom-center-|\pingu@name-waist-left) to[bend left=15] ([yshift=-.15mm]\pingu@name-bottom-center) to[bend left=15] (\pingu@name-bottom-center-|\pingu@name-waist-right) to[bend left=6] ([yshift=-2.5mm]\pingu@name-waist-right) arc (-90:0:.85mm and 2.5mm) -- cycle;
+\if@pingu@x@pants@bands
+\pingu@layer{middle}[]
+% draw stripes
+\scope
+\clip \pingu@path@lowerpingu;
+\pingu@block{\pingu@color@pants} (@tmp)++(.55mm,-\pingu@one) to[bend right=3] ([yshift=1.65mm]\pingu@name-wings-side-right) -- ++(-.25mm,-.25mm) to[bend left=3] ([yshift=-\pingu@one]@tmp) -- cycle;
+\pingu@block{\pingu@color@pants} (@tmpb)++(-.55mm,-\pingu@one) to[bend left=3] ([yshift=1.65mm]\pingu@name-wings-side-left) -- ++(.25mm,-.25mm) to[bend right=3] ([yshift=-\pingu@one]@tmpb) -- cycle;
+\endscope
+\fi
+\pingu@block{\pingu@color@pants@button@right}(@tmp)++(.25mm,-.25mm)circle[radius=.7mm];
+\pingu@block{\pingu@color@pants@button@left}(@tmpb)++(-.25mm,-.25mm)circle[radius=.7mm];
+\pingu@block[even odd rule]{\pingu@color@pants@button@right@shade}(@tmp)++(.25mm,-.25mm)circle[radius=.7mm] circle[radius=.615mm];
+\pingu@block[even odd rule]{\pingu@color@pants@button@left@shade}(@tmpb)++(-.25mm,-.25mm)circle[radius=.7mm] circle[radius=.615mm];
+\@for\i:={0,90,180,270}\do{
+    \pingu@block{\pingu@color@pants@button@right@shade} (@tmp)++(.25mm,-.25mm)++(\i:.
+    35mm) circle[radius=.1mm];
+    \pingu@block{\pingu@color@pants@button@left@shade} (@tmpb)++(-.25mm,-.25mm)++(\i:.35mm) circle[radius=.1mm];
+}%
+\if@pingu@x@pants@bands \endpingu@layer \fi
+}
