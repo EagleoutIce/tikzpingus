@@ -924,6 +924,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     \pingu@xif@ea{sheriffstar}{sheriffstar}%
     \pingu@xif@ea{santahat}{santahat}%
     \pingu@xif@ea{santabeard}{santabeard}%
+    \pingu@xif@ea{banner}{banner}%
 }
 % #region halo
 \newif\if@pingu@x@halo@glow
@@ -1085,7 +1086,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \def\pingu@draw@wi@staff#1{%
     \pingu@setup@wing{staff}{#1}%
 \scope[rotate around={\@angle:(\pingu@name-wing-#1)}]
-    \pingu@block{\csname pingu@color@staff#1\endcsname}(\pingu@name-wing-#1)++(\@sidesign*-.2mm,-11mm) -- ++(0,\csname pingu@staff@#1@length\endcsname) arc(180:0:\@sidesign*.4mm and .3mm) coordinate[pos=.5] (\pingu@name-staff-top) -- ++(0,-\csname pingu@staff@#1@length\endcsname) arc(360:180:\@sidesign*.4mm and .3mm) -- cycle;
+    \pingu@block{\csname pingu@color@staff#1\endcsname}(\pingu@name-wing-#1)++(\@sidesign*-.2mm,-11mm) -- ++(0,\csname pingu@staff@#1@length\endcsname) arc(180:0:\@sidesign*.4mm and .3mm) coordinate[pos=.5] (\pingu@name-staff-#1-top) -- ++(0,-\csname pingu@staff@#1@length\endcsname) arc(360:180:\@sidesign*.4mm and .3mm) -- cycle;
 \endscope
 }
 %     #endregion
