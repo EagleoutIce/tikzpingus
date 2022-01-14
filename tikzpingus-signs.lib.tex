@@ -26,9 +26,12 @@
     banner text color/.code  = \pingu@color{banner@text@color}{#1},
     banner stick left/.code  = \pingu@color{banner@stick@left}{#1},
     banner stick right/.code = \pingu@color{banner@stick@right}{#1},
+    banner stick length/.style={/pingu/banner stick left length=#1,/pingu/banner stick right length=#1},
     banner stick left length/.code  = \@namedef{banner@stick@left@l}{#1},
-    banner stick right length/.code  = \@namedef{banner@stick@right@l}{#1}
-}{banner band=pingu@white!95!pingu@black,banner text color=pingu@black,banner stick left=pingu@bronze,banner stick right=\pingu@color@banner@stick@left,banner stick left length=20mm, banner stick right length=20mm}
+    banner stick right length/.code  = \@namedef{banner@stick@right@l}{#1},
+    banner raise/.code  = \@namedef{banner@raise}{#1},
+    banner bent/.code  = \@namedef{banner@bent}{#1}
+}{banner band=pingu@white!91!pingu@black,banner text color=pingu@black,banner stick left=pingu@bronze,banner stick right=\pingu@color@banner@stick@left,banner stick left length=20mm, banner stick right length=20mm,banner bent=30,banner raise=-1mm}
 
 \usetikzlibrary{decorations.text}
 \def\pingu@draw@ea@banner{%
@@ -42,6 +45,6 @@
     \pingu@block{\pingu@color@banner@stick@right}(\pingu@name-wing-right)++(\@sidesign*-.2mm,-7mm) -- ++(0,\banner@stick@right@l) arc(180:0:\@sidesign*.4mm and .3mm) coordinate[pos=.5] (\pingu@name-s-right) -- ++(0,-\banner@stick@right@l) arc(360:180:\@sidesign*.4mm and .3mm) -- cycle;
     \path (\pingu@name-s-right)++(-.5mm,4.1mm) coordinate (\pingu@name-s-right-top) ++(0,-8.2mm) coordinate (\pingu@name-s-right-bot);
 \endscope
-\pingu@block[rounded corners=.3mm]{\pingu@color@banner@band} (\pingu@name-s-left-top) to[bend right] (\pingu@name-s-right-top) -- (\pingu@name-s-right-bot) to[bend left] (\pingu@name-s-left-bot) -- cycle;
-\path[postaction={decorate},decoration={text color=\pingu@color@banner@text@color,text along path, raise=-1mm, text={|\bfseries|\pingu@banner},text align={center,left indent=1mm,right indent=1mm}}] (\pingu@name-s-right) to[bend left=32] (\pingu@name-s-left);
+\pingu@block[rounded corners=.3mm]{\pingu@color@banner@band} (\pingu@name-s-left-top) to[bend right=\banner@bent] (\pingu@name-s-right-top) -- (\pingu@name-s-right-bot) to[bend left=\banner@bent] (\pingu@name-s-left-bot) -- cycle;
+\path[postaction={decorate},decoration={text color=\pingu@color@banner@text@color,text along path, raise=\banner@raise, text={|\bfseries|\pingu@banner},text align={center,left indent=1mm,right indent=1mm}}] (\pingu@name-s-right) to[bend left=\banner@bent+3] (\pingu@name-s-left);
 }
