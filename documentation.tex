@@ -74,7 +74,7 @@
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
 	alsoletter={.-!:0123456789},%disable number
-	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,a,b,c,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob,pants,button,buttons,bands,no,without,extra,steps,function,solid,right,frame,eye-frame,eyeframe,glasses,fill,line,sun,horns,devilhorns,devil-horns,headband,head-band,bend, upper,rook,hatch,strawhat,hat,ribbon,position,base,coronal,3d,colors,ring,bobbles,bobble,cake-hat,candle,fire,wick,outline,top,handle,hand,cast,handcast,signpost,font,fontcolor,deco,ribbs,double,core,outer,disabled,factor,german,code,pole,pride,staff,cape,bottom,padding,pumpkin-hat,stalk,stripe,cap,type,vr-headset,headphone,vertical,above,santa,beard,blush,inner,headphones,shirt},
+	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,a,b,c,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob,pants,button,buttons,bands,no,without,extra,steps,function,solid,right,frame,eye-frame,eyeframe,glasses,fill,line,sun,horns,devilhorns,devil-horns,headband,head-band,bend, upper,rook,hatch,strawhat,hat,ribbon,position,base,coronal,3d,colors,ring,bobbles,bobble,cake-hat,candle,fire,wick,outline,top,handle,hand,cast,handcast,signpost,font,fontcolor,deco,ribbs,double,core,outer,disabled,factor,german,code,pole,pride,staff,cape,bottom,padding,pumpkin-hat,stalk,stripe,cap,type,vr-headset,headphone,vertical,above,santa,beard,blush,inner,headphones,shirt,banner,stick,sticks,bent},
 	moreemph=[4]{:line,:ghost,parts,:devil,:back,:hide},
 	deletetexcs={begin,end},
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend},
@@ -159,11 +159,10 @@
 	\texorpdfstring{Florian Sihler\\[.4em]
 		\url{https://github.com/EagleoutIce/tikzpingus}
 	}{Florian Sihler}}
-\date{Version v1.0 \textendash\ 2021/07/02}
+\date{Version v1.1 \textendash\ 2022/01/15}
 
 \begin{document}
 \maketitle
-
 \section{Motivation}
 
 For my slides at university, I started to use the famous \LaTeX-package \textsl{\href{https://github.com/samcarter/tikzducks}{tikzducks}} a few years ago.
@@ -2666,6 +2665,125 @@ Change the blush opacity:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[blush, blush opacity=.86]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\subsubsection{The banner}
+
+\begin{keyexplain}{banner}{text}{Bannertext}
+Give the penguin a banner to hold (it adapts to the wing positions):
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[left wing wave, banner=Hello]
+\end{tikzpicture}
+\end{tcblisting}
+\end{keyexplain}
+
+\begin{subkeyexplain}{banner}{banner band}{color}{\pingu@color@banner@band}
+Changes the banners main color:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[banner, banner band=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{banner}{banner text color}{color}{\pingu@color@banner@text@color}
+Changes the banners text color:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[wings wave, banner, banner text color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{banner}{banner stick left color}{color}{\pingu@color@banner@stick@left}
+Changes the banners left stick color:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[banner, banner stick left color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{banner}{banner stick right color}{color}{\pingu@color@banner@stick@right}
+Changes the banners right stick color:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[banner, banner stick right color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{banner}{banner sticks color}{color}{\pingu@color@banner@stick@left}
+Calls \keyref{baner stick left color} and \keyref{baner stick right color} with the same color:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[banner, banner sticks color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{banner}{banner stick left length}{length}{\pingu@banner@stick@left@l}
+Changes the banners left stick length:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[banner, banner stick left length=5mm]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{banner}{banner stick right length}{length}{\pingu@banner@stick@right@l}
+Changes the banners right stick length:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[banner, banner stick right length=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{banner}{banner sticks length}{color}{\pingu@banner@stick@left@l}
+Calls \keyref{baner stick left length} and \keyref{baner stick right length} with the same length:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[banner, banner sticks length=9mm]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{banner}{banner raise}{length}{\pingu@banner@raise}
+Change the raise of the banner text:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[banner, banner raise=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{banner}{banner height}{length}{\pingu@banner@height}
+Change the height of the banner (this modifies the half):
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[banner, banner height=6mm]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{banner}{banner font}{font}{<fat font>}
+Change the height of the banner:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[banner, banner font=\itshape]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{banner}{banner bent}{angle}{\pingu@banner@bent}
+Change the bending of the banner:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[banner, banner bent=0]
 \end{tikzpicture}
 \end{tcblisting}
 \end{subkeyexplain}

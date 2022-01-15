@@ -24,29 +24,30 @@
     banner/.default          = Bannertext,
     banner band/.code        = \pingu@color{banner@band}{#1},
     banner text color/.code  = \pingu@color{banner@text@color}{#1},
-    banner stick left/.code  = \pingu@color{banner@stick@left}{#1},
-    banner stick right/.code = \pingu@color{banner@stick@right}{#1},
-    banner stick length/.style={/pingu/banner stick left length=#1,/pingu/banner stick right length=#1},
-    banner stick left length/.code  = \@namedef{banner@stick@left@l}{#1},
-    banner stick right length/.code  = \@namedef{banner@stick@right@l}{#1},
-    banner raise/.code  = \@namedef{banner@raise}{#1},
-    banner height/.code  = \@namedef{banner@height}{#1},
-    banner font/.code  = \@namedef{banner@font}{#1},
-    banner bent/.code  = \@namedef{banner@bent}{#1}
-}{banner band=pingu@white!91!pingu@black,banner text color=pingu@black,banner stick left=pingu@bronze,banner stick right=\pingu@color@banner@stick@left,banner stick left length=20mm, banner stick right length=20mm,banner bent=30,banner raise=-1mm,banner height=4mm,banner font=\bfseries}
+    banner sticks color/.style={/pingu/banner stick left color=#1,/pingu/banner stick right color=#1},
+    banner stick left color/.code  = \pingu@color{banner@stick@left}{#1},
+    banner stick right color/.code = \pingu@color{banner@stick@right}{#1},
+    banner sticks length/.style={/pingu/banner stick left length=#1,/pingu/banner stick right length=#1},
+    banner stick left length/.code  = \@namedef{pingu@banner@stick@left@l}{#1},
+    banner stick right length/.code  = \@namedef{pingu@banner@stick@right@l}{#1},
+    banner raise/.code  = \@namedef{pingu@banner@raise}{#1},
+    banner height/.code  = \@namedef{pingu@banner@height}{#1},
+    banner font/.code  = \@namedef{pingu@banner@font}{#1},
+    banner bent/.code  = \@namedef{pingu@banner@bent}{#1}
+}{banner band=pingu@white!91!pingu@black,banner text color=pingu@black,banner sticks  color=pingu@bronze,banner stick left length=20mm, banner stick right length=20mm,banner bent=30,banner raise=-1mm,banner height=4mm,banner font=\bfseries}
 
 \usetikzlibrary{decorations.text}
 \def\pingu@draw@ea@banner{%
 \pingu@setup@wing{staff}{left}% we do not need the staff color, but we will use it
 \scope[rotate around={\@angle:(\pingu@name-wing-left)}]
-    \pingu@block{\pingu@color@banner@stick@left}(\pingu@name-wing-left)++(\@sidesign*-.2mm,-7mm) -- ++(0,\banner@stick@left@l) arc(180:0:\@sidesign*.4mm and .3mm) coordinate[pos=.5] (\pingu@name-s-left) -- ++(0,-\banner@stick@left@l) arc(360:180:\@sidesign*.4mm and .3mm) -- cycle;
-    \path (\pingu@name-s-left)++(.5mm,\banner@height) coordinate (\pingu@name-s-left-top) ++(0,-2*\banner@height) coordinate (\pingu@name-s-left-bot);
+    \pingu@block{\pingu@color@banner@stick@left}(\pingu@name-wing-left)++(\@sidesign*-.2mm,-7mm) -- ++(0,\pingu@banner@stick@left@l) arc(180:0:\@sidesign*.4mm and .3mm) coordinate[pos=.5] (\pingu@name-s-left) -- ++(0,-\pingu@banner@stick@left@l) arc(360:180:\@sidesign*.4mm and .3mm) -- cycle;
+    \path (\pingu@name-s-left)++(.5mm,\pingu@banner@height) coordinate (\pingu@name-s-left-top) ++(0,-2*\pingu@banner@height) coordinate (\pingu@name-s-left-bot);
 \endscope
 \pingu@setup@wing{staff}{right}% we do not need the staff color, but we will use it
 \scope[rotate around={\@angle:(\pingu@name-wing-right)}]
-    \pingu@block{\pingu@color@banner@stick@right}(\pingu@name-wing-right)++(\@sidesign*-.2mm,-7mm) -- ++(0,\banner@stick@right@l) arc(180:0:\@sidesign*.4mm and .3mm) coordinate[pos=.5] (\pingu@name-s-right) -- ++(0,-\banner@stick@right@l) arc(360:180:\@sidesign*.4mm and .3mm) -- cycle;
-    \path (\pingu@name-s-right)++(-.5mm,\banner@height) coordinate (\pingu@name-s-right-top) ++(0,-2*\banner@height) coordinate (\pingu@name-s-right-bot);
+    \pingu@block{\pingu@color@banner@stick@right}(\pingu@name-wing-right)++(\@sidesign*-.2mm,-7mm) -- ++(0,\pingu@banner@stick@right@l) arc(180:0:\@sidesign*.4mm and .3mm) coordinate[pos=.5] (\pingu@name-s-right) -- ++(0,-\pingu@banner@stick@right@l) arc(360:180:\@sidesign*.4mm and .3mm) -- cycle;
+    \path (\pingu@name-s-right)++(-.5mm,\pingu@banner@height) coordinate (\pingu@name-s-right-top) ++(0,-2*\pingu@banner@height) coordinate (\pingu@name-s-right-bot);
 \endscope
-\pingu@block[rounded corners=.3mm]{\pingu@color@banner@band} (\pingu@name-s-left-top) to[bend right=\banner@bent] (\pingu@name-s-right-top) -- (\pingu@name-s-right-bot) to[bend left=\banner@bent] (\pingu@name-s-left-bot) -- cycle;
-\path[postaction={decorate},decoration={text color=\pingu@color@banner@text@color,text along path, raise=\banner@raise, text={|\banner@font|\pingu@banner},text align={center,left indent=1mm,right indent=1mm}}] (\pingu@name-s-right) to[bend left=\banner@bent+3] (\pingu@name-s-left);
+\pingu@block[rounded corners=.3mm]{\pingu@color@banner@band} (\pingu@name-s-left-top) to[bend right=\pingu@banner@bent] (\pingu@name-s-right-top) -- (\pingu@name-s-right-bot) to[bend left=\pingu@banner@bent] (\pingu@name-s-left-bot) -- cycle;
+\path[postaction={decorate},decoration={text color=\pingu@color@banner@text@color,text along path, raise=\pingu@banner@raise, text={|\pingu@banner@font|\pingu@banner},text align={center,left indent=1mm,right indent=1mm}}] (\pingu@name-s-right) to[bend left=\pingu@banner@bent+3] (\pingu@name-s-left);
 }
