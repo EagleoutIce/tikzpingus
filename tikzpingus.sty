@@ -1115,8 +1115,8 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 % #endregion
 
 \def\pingu@@dummy@lib#1#2{\pgfqkeys{/pingu}{#1/.code={\PackageError{\tikzpingus@filename}{To use '#1' you need to load the '#2' library via '\string\pinguloadlibrary{#2}'}}}}
-\def\pingu@dummy@lib#1#2{\edef\tmp@list{#2}\@for\@current:=\tmp@list\do{\expandafter\pingu@@dummy@lib\expandafter{\@current}{#1}}}
-
+\def\pingu@dummy@lib#1#2{\edef\tmp@list{#2}\@for\@current:=\tmp@list\do{\expandafter\pingu@@dummy@lib\expandafter{\@current}{#1}}\xappto\pingu@defaultlibs{,{#1}/{#2}}\xappto\pingu@@defaultlibs{,#1}}
+\def\pingu@defaultlibs{}\def\pingu@@defaultlibs{}
 \def\pingu@load@library#1{%
 % store common catcodes
 \expandafter\edef\csname pingu@lib@#1@atcode\endcsname{\the\catcode`\@}%
@@ -1144,7 +1144,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \pingu@dummy@lib{medieval}{rook,crown,princess crown}
 \pingu@dummy@lib{cloak}{cloak}
 \pingu@dummy@lib{christmas}{santa hat,santa beard}
-\pingu@dummy@lib{science fiction}{lightsaber left,lightsaber right}
+\pingu@dummy@lib{science-fiction}{lightsaber left,lightsaber right}
 \pingu@dummy@lib{fun}{cake-hat,pumpkin-hat,lollipop left,lollipop right}
 \pingu@dummy@lib{technology}{vr-headset,headphone,vr-controller left,vr-controller right}
 \pingu@dummy@lib{flags}{flag left,flag right}
@@ -1154,6 +1154,6 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \pingu@dummy@lib{signs}{sign post left, sign post right}
 
 \ifpengu@setup@bare@\else
-\pinguloadlibraries{shirts,glasses,medieval,cloak,christmas,science-fiction,fun,technology,flags,hats,sport,formal,signs}
+\pinguloadlibraries{\pingu@@defaultlibs}
 \fi
 \endinput

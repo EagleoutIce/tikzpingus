@@ -10,6 +10,7 @@
 
 \usepackage[glows]{tikzpingus}
 \usepackage[linkcolor=pingu@purple,urlcolor=pingu@purple,colorlinks,breaklinks,pdfusetitle]{hyperref}
+\usetikzlibrary{shapes.misc}
 \urlstyle{same}
 \expandafter\def\expandafter\UrlBreaks\expandafter{\UrlBreaks\do-}
 
@@ -74,7 +75,7 @@
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
 	alsoletter={.-!:0123456789},%disable number
-	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,a,b,c,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob,pants,button,buttons,bands,no,without,extra,steps,function,solid,right,frame,eye-frame,eyeframe,glasses,fill,line,sun,horns,devilhorns,devil-horns,headband,head-band,bend, upper,rook,hatch,strawhat,hat,ribbon,position,base,coronal,3d,colors,ring,bobbles,bobble,cake-hat,candle,fire,wick,outline,top,handle,hand,cast,handcast,signpost,font,fontcolor,deco,ribbs,double,core,outer,disabled,factor,german,code,pole,pride,staff,cape,bottom,padding,pumpkin-hat,stalk,stripe,cap,type,vr-headset,headphone,vertical,above,santa,beard,blush,inner,headphones,shirt,banner,stick,sticks,bent},
+	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,a,b,c,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob,pants,button,buttons,bands,no,without,extra,steps,function,solid,right,frame,eye-frame,eyeframe,glasses,fill,line,sun,horns,devilhorns,devil-horns,headband,head-band,bend, upper,rook,hatch,strawhat,hat,ribbon,position,base,coronal,3d,colors,ring,bobbles,bobble,cake-hat,candle,fire,wick,outline,top,handle,hand,cast,handcast,signpost,font,fontcolor,deco,ribbs,double,core,outer,disabled,factor,german,code,pole,pride,staff,cape,bottom,padding,pumpkin-hat,stalk,stripe,cap,type,vr-headset,headphone,vertical,above,santa,beard,blush,inner,headphones,shirt,banner,stick,sticks,bent,vr-controller},
 	moreemph=[4]{:line,:ghost,parts,:devil,:back,:hide},
 	deletetexcs={begin,end},
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend},
@@ -129,6 +130,7 @@
 }\endgroup}
 
 \newcommand*\keyref[2][/pingu/]{\hyperref[pk:#1#2]{\lpingu{#1#2}}}
+\newcommand*\dkeyref[2][/pingu/]{\hyperref[pk:#1#2]{\lpingu{#2}}}
 \newenvironment{subkeyexplain}[5][/pingu/]{%
 \begingroup
 \def\explaincolor{gray!10!white}\def\keyexplainindent{0em}%
@@ -149,6 +151,8 @@
 \begin{keyexplain}[#1]{#2}{\csname pinguopt#3\endcsname}{\csname pingudefa#3\endcsname}%
 	\textcolor{gray}{\footnotesize This is an alias for \keyref[#1]{#3}.}%
 \end{keyexplain}\endgroup}
+
+\def\lib#1{\tikz[baseline=-.6ex]\node[draw=teal,fill=teal!3!white,very thick,rounded corners=2pt,inner ysep=0pt]{\sffamily\strut#1};}
 
 \def\TikZ{Ti\textit{k}Z}
 \def\tikzpingus{\TikZ pingus}
@@ -191,6 +195,20 @@ Furthermore, the following \TikZ-Libraries are in use:\footnote{A lot of the lib
 Copyright \textcopyright\ \texttt{Florian Sihler}. Permission is granted to copy, distribute and\slash or modify this software under the terms of the GNU General Public License, version 3.0 \url{https://opensource.org/licenses/lgpl-3.0.html}.
 
 The shown example penguins are purely fictional characters, any resemblance to real penguins or real persons is purely coincidental and no copyright infringement is intended.
+
+\subsection{Libraries}
+With Version $1.1$ I've split the penguin features into a set of libraries.
+To stay backwards compatible, all of them are loaded by default so nothing changes when using tikzpingus. However, the |bare| package-option disables the automatic loading of all libraries. They can be loaded (locally to the current group) using \lpingu{\\pinguloadlibrary} and |\pinguloadlibraries| passing on a comma separated list of desired libraries.
+At the moment, there are the following libraries:
+\begin{description}
+	\foreach \l/\xs in \pingu@defaultlibs {
+		\ifx\l\@empty\else
+		\item[\lib{\l}:] \foreach \s in \xs {
+			\expandafter\dkeyref\expandafter{\s}
+		}
+		\fi
+	}
+\end{description}
 
 \section{Usage}
 
