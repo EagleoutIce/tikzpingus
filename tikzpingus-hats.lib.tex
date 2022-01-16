@@ -66,3 +66,29 @@ to[bend left=32] ++(\pingu@w@half+\pingu@x@cap@padding,-\pingu@w@half-\pingu@one
 to[bend left=8] cycle;
 \endpingu@layer
 }
+
+\pingu@create@extra{constructionhat}{%
+  construction hat/.default      = pingu@yellow,
+  construction hat/.code         = \pingu@set@extra{constructionhat}{true}\pingu@color{constructionhat}{#1},
+  construction hat padding/.code = {\def\pingu@x@constructionhat@padding{#1}},
+  construction hat extra height/.code = {\def\pingu@x@constructionhat@height{#1}},
+  construction hat position/.code args  = {#1:(#2,#3)#4}{\def\pingu@x@constructionhat@angle{#1}\def\pingu@x@constructionhat@xshift{#2}\def\pingu@x@constructionhat@yshift{#3}\def\pingu@x@constructionhat@scale{#4}},
+}{construction hat padding=.8mm, construction hat extra height=0pt,construction hat position={-.5:(.05mm,-1.25mm)1}}
+
+\newdimen\pingu@constructionhat@w@half \pingu@constructionhat@w@half=.85cm
+\def\pingu@draw@ea@constructionhat{%
+\scope[rotate around={\pingu@x@constructionhat@angle:(\pingu@name-head-top)},shift={(\pingu@name-head-top)},shift={(\pingu@x@constructionhat@xshift,\pingu@x@constructionhat@yshift)},scale=\pingu@x@constructionhat@scale]
+\pingu@block{\pingu@color@constructionhat} (0,-.25cm)++(180:\pingu@constructionhat@w@half{} and .325cm) arc (180:360:\pingu@constructionhat@w@half{} and .325cm) arc (0:180:\pingu@constructionhat@w@half{} and .2cm) -- cycle;
+\scope
+\pingu@block{\pingu@color@constructionhat!93!pingu@black} (0,-.25cm)++(0:{.95\pingu@constructionhat@w@half} and .675cm) arc (0:180:{.95\pingu@constructionhat@w@half} and .675cm) coordinate[pos=.212] (@a) coordinate[pos=.256] (@aa) coordinate[pos=.788] (@b) coordinate[pos=.744] (@bb) arc (180:360:{.95\pingu@constructionhat@w@half} and .125cm) -- cycle;
+\clip  (0,-.25cm)++(0:{.95\pingu@constructionhat@w@half} and .675cm) arc (0:180:{.95\pingu@constructionhat@w@half} and .675cm) arc (180:360:{.95\pingu@constructionhat@w@half} and .125cm) -- cycle;
+\pingu@block{\pingu@color@constructionhat!99!pingu@black} (-.75mm,-.25cm-.125cm) to[bend left=1] ++ (0,.675cm+.125cm) -- ++(1.5mm,0) to[bend right=1] ++(0,-.675cm-.125cm) -- cycle;
+\pingu@block{\pingu@color@constructionhat!99!pingu@black} (-.95mm,-.25cm-.125cm) to[bend left=3] ++ (-8mm,.675cm+.125cm) -- ++(1.5mm,0) to[bend right=3] ++(8mm,-.675cm-.125cm) -- cycle;
+\pingu@block{\pingu@color@constructionhat!99!pingu@black} (-.55mm,-.25cm-.125cm) to[bend right=3] ++ (8mm,.675cm+.125cm) -- ++(1.5mm,0) to[bend left=3] ++(-8mm,-.675cm-.125cm) -- cycle;
+\endscope
+% get the 3d wobbles
+\pingu@block[rounded corners=.03mm]{\pingu@color@constructionhat!99!pingu@black} (-.75mm,-.25cm+.675cm-.25mm) -- ++(0,.3mm) -| ++(1.5mm,-.3mm) -- cycle;
+\pingu@block{\pingu@color@constructionhat!99!pingu@black} (@a) to[bend right=14] (@aa);
+\pingu@block{\pingu@color@constructionhat!99!pingu@black} (@bb) to[bend right=14] (@b);
+\endscope
+}
