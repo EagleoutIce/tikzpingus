@@ -201,6 +201,7 @@ With Version $1.1$ I've split the penguin features into a set of libraries.
 To stay backwards compatible, all of them are loaded by default so nothing changes when using tikzpingus. However, the |bare| package-option disables the automatic loading of all libraries. They can be loaded (locally to the current group) using \lpingu{\\pinguloadlibrary} and |\pinguloadlibraries| passing on a comma separated list of desired libraries.
 At the moment, there are the following libraries:
 \begin{description}
+	\itemsep6pt
 	\foreach \l/\xs in \pingu@defaultlibs {
 		\ifx\l\@empty\else
 		\item[\lib{\l}:] \foreach \s in \xs {
