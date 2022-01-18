@@ -51,7 +51,7 @@
 	texcsstyle=*\color{gray}\bfseries,
 	texcsstyle=*[2]\color{pingu@purple}\bfseries,
 	texcsstyle=*[3]\color{gray!60!white},
-	lineskip=2.75pt,
+	lineskip=2.5pt,
 	keepspaces=true,
 	moredelim=[s][\itshape]{<}{>},
 }
@@ -94,7 +94,7 @@
 	fonttitle=\bfseries,
 	sidebyside,
 	listing options={style=lstpingu,language=pingulang},
-	center lower,
+	center lower,segmentation at break=false,
 	righthand width=4.75cm,
 	bottom=0pt,top=0pt,boxsep=2.25pt,
 	before lower app={\parskip.5cm}
@@ -201,7 +201,7 @@ With Version $1.1$ I've split the penguin features into a set of libraries.
 To stay backwards compatible, all of them are loaded by default so nothing changes when using tikzpingus. However, the |bare| package-option disables the automatic loading of all libraries. They can be loaded (locally to the current group) using \lpingu{\\pinguloadlibrary} and |\pinguloadlibraries| passing on a comma separated list of desired libraries.
 At the moment, there are the following libraries:
 \begin{description}
-	\itemsep6pt
+	\itemsep1.5pt
 	\foreach \l/\xs in \pingu@defaultlibs {
 		\ifx\l\@empty\else
 		\item[\lib{\l}:] \foreach \s in \xs {
@@ -351,7 +351,7 @@ All selected wing-items will adapt to the wing-position (although not all wing-i
 Currently, there are the following wing-positions:
 \typesetselection{leftwing}. \say{none} is a special wing-position: it omits the drawing of wings (teaser: every selection has a none-option, which prohibits the part from being drawn)!
 
-For each valid wing-position you can use |wings <position>| to change both wings or |left wing <position>| and |right wing <position>| to change only one wing respectively. The default wing-position is \say{normal}. If you supply more than one option for a wing, only the last one will survive.\footnote{For the sake of completeness: \ipingu{wings <position>}, \ipingu{left wing <position>}, and \ipingu{right wing <position>} are just alternatives that i prefer over the underlying mechanism: \ipingu{wings=<position>}, \ipingu{left wing=<position>} and \ipingu{right wing=<position>}.}
+For each valid wing-position you can use |wings <position>| to change both wings or |left wing <position>| and |right wing <position>| to change only one wing respectively. The default wing-position is \say{normal}. If you supply multiple options for a wing, only the last one survives.\footnote{For the sake of completeness: \ipingu{wings <position>}, \ipingu{left wing <position>}, and \ipingu{right wing <position>} are just alternatives i prefer: \ipingu{wings=<position>}, \ipingu{left wing=<position>} and \ipingu{right wing=<position>}.}
 \begin{tcblisting}{sidebyside=false, title=Wing-Showcase}
 \begin{tikzpicture}
 	\pingu[left wing none, heart=green]
