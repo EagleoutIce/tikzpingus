@@ -1,0 +1,56 @@
+% Florian Sihler, 2022
+% Licensed under GNU Lesser General Public License version 3
+% https://opensource.org/licenses/lgpl-3.0.html
+\pingu@create@extra{devilhorns}{%
+    devilhorns/.forward to = /pingu/devil horns,
+    devil-horns/.forward to = /pingu/devil horns,
+    devil horns/.code    = \pingu@set@extra{devilhorns}{true}\pingu@color{devilhorns}{#1},
+    devil horns/.default = pingu@purple,
+    devil horns b/.code  = \pingu@color{devilhorns@b}{#1},
+    devilhorns b/.forward to = /pingu/devil horns b,
+    devil-horns b/.forward to = /pingu/devil horns b
+}{devil horns b=\pingu@color@devilhorns}
+
+\pgfmathsetmacro\pingu@devilhorns@baseang@l{90-360*(1-\pinguanglehl)}
+\pgfmathsetmacro\pingu@devilhorns@baseang@r{90-360*(1-\pinguanglehr)}
+\def\pingu@devilhorns@baseoff{12}
+\def\pingu@devilhorns@yshift{.65mm}
+\def\pingu@draw@ea@devilhorns{%
+    % 90 - 360*.06
+    \pingu@block{\pingu@color@devilhorns} ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-left) arc (\pingu@devilhorns@baseang@l:\pingu@devilhorns@baseang@l-\pingu@devilhorns@baseoff:\pingu@w@half{} and \pingu@head@h@half) coordinate (\pingu@name-devilhorns-left-goal) to[out=32,in=-32,looseness=.9] ++(.3mm,2.65mm) to[bend left=17] ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-left) -- cycle;
+    \pingu@block{\pingu@color@devilhorns} ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-left) to [bend right=38] (\pingu@name-devilhorns-left-goal) to[bend right=30] ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-left) -- cycle;
+    \pingu@block{\pingu@color@devilhorns@b} ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-right) arc (\pingu@devilhorns@baseang@r:\pingu@devilhorns@baseang@r+\pingu@devilhorns@baseoff:\pingu@w@half{} and \pingu@head@h@half) coordinate (\pingu@name-devilhorns-right-goal) to[out=148,in=-148,looseness=.9] ++(-.3mm,2.65mm) to[bend right=17] ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-right) -- cycle;
+    \pingu@block{\pingu@color@devilhorns@b} ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-right) to [bend left=38] (\pingu@name-devilhorns-right-goal) to[bend left=30] ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-right) -- cycle;
+}
+
+\@pingu@eyes@s{devil}{%
+    \pingu@block{pingu@black} ([yshift=.75mm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left) coordinate (\pingu@name-eye-left) ellipse [x radius=.1535cm, y radius=.1575cm];
+    \pingu@block{\pingu@color@eye@second@left} ([yshift=.75mm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left) coordinate (\pingu@name-eye-left) ellipse [x radius=.1325cm, y radius=.1375cm];
+    \fill[\pingu@color@eye@left,/pingu/@glow] (\pingu@name-eye-left) circle [radius=1.325mm];
+    \pingu@block[fill opacity=.66]{\pingu@color@eye@left} (\pingu@name-eye-left)++(0,.36) to[bend right=58] ++(.36,-.36) to[bend right=58] ++(-.36,-.36) to[bend right=58] ++(-.36,.36) to[bend right=58] cycle;
+    \fill[/pingu/@glow,fill=\pingu@color@eye@left!20!pingu@yellow!15!pingu@white] (\pingu@name-eye-left)++(0,.10) to[bend right=60] ++(.10,-.10) to[bend right=60] ++(-.10,-.10) to[bend right=60] ++(-.10,.10) to[bend right=60] cycle;
+    \fill[\pingu@color@eye@left!20!pingu@yellow!7!pingu@white] (\pingu@name-eye-left) circle [radius=.5pt]; %
+    \pingu@block{pingu@white} (\pingu@name-eye-left) circle [radius=.15pt];
+}{%
+    \pingu@block{pingu@black} ([yshift=.75mm,xshift=-\pingu@eye@shift]\pingu@name-eye-back-right) coordinate (\pingu@name-eye-right) ellipse [x radius=.1535cm, y radius=.1575cm];
+    \pingu@block{\pingu@color@eye@second@right} ([yshift=.75mm,xshift=-\pingu@eye@shift]\pingu@name-eye-back-right) coordinate (\pingu@name-eye-right) ellipse [x radius=.1325cm, y radius=.1375cm];
+    \fill[\pingu@color@eye@right,/pingu/@glow] (\pingu@name-eye-right) circle [radius=1.325mm];
+    \pingu@block[fill opacity=.66]{\pingu@color@eye@right} (\pingu@name-eye-right)++(0,.36) to[bend right=58] ++(.36,-.36) to[bend right=58] ++(-.36,-.36) to[bend right=58] ++(-.36,.36) to[bend right=58] cycle;
+    \fill[/pingu/@glow,fill=\pingu@color@eye@right!20!pingu@yellow!15!pingu@white] (\pingu@name-eye-right)++(0,.10) to[bend right=60] ++(.10,-.10) to[bend right=60] ++(-.10,-.10) to[bend right=60] ++(-.10,.10) to[bend right=60] cycle;
+    \fill[\pingu@color@eye@right!20!pingu@yellow!7!pingu@white] (\pingu@name-eye-right) circle [radius=.5pt]; %
+    \pingu@block{pingu@white} (\pingu@name-eye-right) circle [radius=.15pt];
+}[pingu@purple]
+
+\pingu@create@wing@extra{devilfork}{%
+    devil fork \@lr/.code         = {\pingu@set@extra{devilfork\@lr}{true}\pingu@color{devilfork\@lr}{##1}},
+    devil fork \@lr/.default      = pingu@red,
+    devil fork \@lr\space second/.code= \pingu@color{devilfork\@lr @second}{##1},
+    devil fork \@lr\space length/.code =\expandafter\def\csname pingu@devilfork@\@lr @length\endcsname{##1}
+}{devil fork \@lr\space length=20mm,devil fork \@lr\space second=pingu@bronze!10!black}
+\def\pingu@draw@wi@devilfork#1{%
+    \pingu@setup@wing{devilfork}{#1}%
+\scope[rotate around={\@angle:(\pingu@name-wing-#1)}]
+    \pingu@block{\csname pingu@color@devilfork#1@second\endcsname} (\pingu@name-wing-#1)++(\@sidesign*-.2mm,-7mm) -- ++(0,\csname pingu@devilfork@#1@length\endcsname) arc(180:0:\@sidesign*.4mm and .3mm) coordinate[pos=.5] (\pingu@name-devilfork-#1-top) -- ++(0,-\csname pingu@devilfork@#1@length\endcsname) arc(360:180:\@sidesign*.4mm and .3mm) -- cycle;
+    \pingu@block{\@col} ([yshift=4mm]\pingu@name-devilfork-#1-top) to[out=240,in=90] ++(-.65mm,-4mm) to[out=180,in=-60] ++(-1mm,5.5mm) to[out=240,in=90] ++(-.65mm,-5.9mm) to[bend right] ++(4.4mm,0) to[out=90,in=-60] ++(-.65mm,5.9mm) to[out=240,in=0] ++(-1mm,-5.5mm) to[out=90,in=-60] cycle;
+\endscope
+}
