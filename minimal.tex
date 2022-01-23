@@ -4,15 +4,43 @@
 \usepackage[glows, bare]{tikzpingus}
 \usepackage[active, tightpage]{preview}
 \usepackage{fontawesome}
+\usetikzlibrary{3d,decorations.text}
 
-\pinguloadlibraries{devil}
+\pinguloadlibraries{devil,cloak,formal}
 
 \colorlet{darkdevil}{pingu@red!80!pingu@black}
 
+\input Rothdn.fd
+\newcommand*\rotnfamily{\usefont{U}{Rothdn}{xl}{n}}
+
 \PreviewBorder0pt
+\pgfdeclarelayer{very-background}
+\pgfsetlayers{very-background,background,main,middle,foreground}
 
 \begin{document}
 \begin{preview}
-\colorbox{gray}{\tikz\pingu[right eye devil=darkdevil,left eye angry,devil horns=darkdevil,devil fork right];}
+\colorbox{gray}{\begin{tikzpicture}
+\pingu[body=pingu@black,right eye devil=darkdevil,left eye angry,devil horns=darkdevil,devil fork right,eye patch left,halo=darkdevil,halo raise=4mm,cape=darkdevil,cloak padding=4mm,bow tie=darkdevil,left wing raise,name=beate];
+
+\node[above,darkdevil,opacity=0.25,scale=1.96,yshift=-0.65pt] (w) at(beate-wing-left-tip) {\faWindows};
+\node[above,darkdevil,scale=1.8] (w) at(beate-wing-left-tip) {\faWindows};
+
+\begin{pgfonlayer}{very-background}
+   \scope[transparency group,opacity=.2]
+   \coordinate (low-heart) at ([yshift=-0.65cm]beate-belly-center);
+   \begin{scope}[canvas is zx plane at y=0]
+       \foreach[count=\i] \a in {0,72,...,359} {
+           \path (low-heart)++(\a-25:2.5cm) coordinate (pent-\i);
+       }
+       \draw[darkdevil,ultra thick,opacity=0.2] (pent-1) -- (pent-3) -- (pent-5) -- (pent-2) -- (pent-4) -- (pent-1);
+       \draw[darkdevil,ultra thick,opacity=0.2] (low-heart) circle[radius=2.65cm];
+       \draw[darkdevil,thick] (pent-1) -- (pent-3) -- (pent-5) -- (pent-2) -- (pent-4) -- (pent-1);
+       \draw[darkdevil,thick] (low-heart) circle[radius=2.65cm];
+       \draw[darkdevil,decoration={text along path,text={|\rotnfamily\tiny|THIS IS SO GOOD, WE HAVE SOOO MUCH FUN, DON'T WE? LOVE XOXO THIS IS FLO HATIN EVERYTHING AGAIN I AM DOING THIS THE SECOND TIME BUT WHO IS COUNTING I GUESS?},text color={darkdevil},reverse path=true},decorate] (low-heart) circle[radius=2.7cm];
+   \end{scope}
+   \endscope
+\end{pgfonlayer}
+
+\end{tikzpicture}}
 \end{preview}
 \end{document}
