@@ -1044,14 +1044,11 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     staff \@lr/.code         = {\pingu@set@extra{staff\@lr}{true}\pingu@color{staff\@lr}{##1}},
     staff \@lr/.default      = pingu@bronze,
     staff \@lr\space length/.code =\expandafter\def\csname pingu@staff@\@lr @length\endcsname{##1},
-    staff \@lr\space head/.code = \pingu@color{staff@\@lr @head@color}{##1},%
-    staff \@lr\space core/.code = \pingu@color{staff@\@lr @head@core@color}{##1},%
-}{staff \@lr\space length=28mm,staff \@lr\space head=\@pingu@none}
+}{staff \@lr\space length=28mm}
 \def\pingu@draw@wi@staff#1{%
     \pingu@setup@wing{staff}{#1}%
 \scope[rotate around={\@angle:(\pingu@name-wing-#1)}]
     \pingu@block{\csname pingu@color@staff#1\endcsname}(\pingu@name-wing-#1)++(\@sidesign*-.2mm,-11mm) -- ++(0,\csname pingu@staff@#1@length\endcsname) arc(180:0:\@sidesign*.4mm and .3mm) coordinate[pos=.5] (\pingu@name-staff-#1-top) -- ++(0,-\csname pingu@staff@#1@length\endcsname) arc(360:180:\@sidesign*.4mm and .3mm) -- cycle;
-    \pingu@block{\csname pingu@color@staff@#1@head@core@color\endcsname} (\pingu@name-staff-#1-top) -- ++(-.5mm,1mm) -- ++(0,2mm) -- ++(.5mm,1mm) -- ++(.5mm,-1mm) -- ++(0,-2mm) -- cycle;
 \endscope
 }
 %     #endregion

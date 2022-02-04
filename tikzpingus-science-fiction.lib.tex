@@ -34,7 +34,7 @@
     \pingu@block{\csname pingu@color@lightsaber#1@deco\endcsname}(\pingu@name-wing-#1)++(-.4mm,2.65mm+\csname pingu@x@lightsaber@yshift@#1\endcsname) -- ++(0,-5mm) -- ++(.8mm,0) |- cycle;
     \if@pingu@wing@item@side@left@
     % ribbs; single path saves memory :D
-    \pingu@block{\csname pingu@color@lightsaber#1@ribbs\endcsname}(\pingu@name-wing-#1)++(-.45mm,2.225mm+\csname pingu@x@lightsaber@yshift@#1\endcsname)
+    \pingu@block{\csname pingu@color@lightsaber#1@ribbs\endcsname}(\pingu@name-wing-#1)++(-.40mm,2.225mm+\csname pingu@x@lightsaber@yshift@#1\endcsname)
     arc(90:270:.075mm) -| ++(.8mm,-.165mm) -- ++(-.8mm,0)
     arc(90:270:.075mm) -| ++(.8mm,-.165mm) -- ++(-.8mm,0)
     arc(90:270:.075mm) -| ++(.8mm,-.165mm) -- ++(-.8mm,0)
@@ -56,7 +56,7 @@
     \pingu@block{\csname pingu@color@lightsaber#1@handle\endcsname}(\pingu@name-wing-#1)++(-.5mm,2.65mm+\csname pingu@x@lightsaber@yshift@#1\endcsname) arc(180:90:.15mm) -- ++(.7mm,0) arc(90:0:.16mm) -- ++(0,-5mm) arc(360:270:.15mm) -- ++(-.7mm,0) arc (270:180:.15mm) -- ++(0,.25mm) arc(270:360:.33mm and .2mm) -- ++(0,4.1mm) arc(0:90:.33mm and .2mm) -- ++(0,.25mm) -- cycle;
     \else
     % ribbs; single path saves memory :D (the second)
-    \pingu@block{\csname pingu@color@lightsaber#1@ribbs\endcsname}(\pingu@name-wing-#1)++(.45mm,2.225mm+\csname pingu@x@lightsaber@yshift@#1\endcsname)
+    \pingu@block{\csname pingu@color@lightsaber#1@ribbs\endcsname}(\pingu@name-wing-#1)++(.40mm,2.225mm+\csname pingu@x@lightsaber@yshift@#1\endcsname)
         arc(90:-90:.075mm) -| ++(-.8mm,-.165mm) -- ++(.8mm,0)
         arc(90:-90:.075mm) -| ++(-.8mm,-.165mm) -- ++(.8mm,0)
         arc(90:-90:.075mm) -| ++(-.8mm,-.165mm) -- ++(.8mm,0)
@@ -130,4 +130,59 @@
     \pingu@draw@wi@lightsaber@post{#1}{2.65mm-\csname pingu@x@lightsaber@yshift@#1\endcsname}{180}{\csname pingu@x@lightsaber@length@b@#1\endcsname}{\csname pingu@color@lightsaber#1@color@b\endcsname}
     \fi
     \endscope
+}
+
+
+\newif\if@pingu@x@lightstaff@glow@left
+\newif\if@pingu@x@lightstaff@glow@right
+\pingu@create@wing@extra{lightstaff}{%
+    light-staff \@lr/.code         = {\pingu@set@extra{lightstaff\@lr}{true}\pingu@color{lightstaff\@lr}{##1}},
+    light-staff \@lr/.default      = pingu@bronze,
+    light-staff \@lr\space length/.code =\expandafter\def\csname pingu@lightstaff@\@lr @length\endcsname{##1},
+    light-staff \@lr\space glow length/.code =\expandafter\def\csname pingu@lightstaff@\@lr @glow@length\endcsname{##1},
+    light-staff \@lr\space head/.code = \pingu@color{lightstaff@\@lr @head@color}{##1},%
+    light-staff \@lr\space core/.code = \pingu@color{lightstaff@\@lr @head@core}{##1},%
+    light-staff \@lr\space glow/.is if    = @pingu@x@lightstaff@glow@\@lr,%
+    light-staff \@lr\space outer glow factor/.code  = {\@namedef{pingu@x@lightstaff@ogf@\@lr}{##1}},%
+}{light-staff \@lr\space length=28mm,light-staff \@lr\space head=pingu@green,light-staff \@lr\space core=pingu@white,light-staff \@lr\space glow=\ifpengu@setup@glows@ true\else false\fi,light-staff \@lr\space outer glow factor=.082,light-staff \@lr\space glow length=13mm}
+\def\pingu@draw@wi@lightstaff#1{%
+    \pingu@setup@wing{lightstaff}{#1}%
+\scope[rotate around={\@angle:(\pingu@name-wing-#1)}]
+    \pingu@block{\csname pingu@color@lightstaff#1\endcsname}(\pingu@name-wing-#1)++(\@sidesign*-.2mm,-11mm) -- ++(0,\csname pingu@lightstaff@#1@length\endcsname) arc(180:0:\@sidesign*.4mm and .3mm) coordinate[pos=.5] (\pingu@name-lightstaff-#1-top) -- ++(0,-\csname pingu@lightstaff@#1@length\endcsname) arc(360:180:\@sidesign*.4mm and .3mm) -- cycle;
+    \pingu@draw@wi@lightstaff@pre{#1}{[yshift=-1.1mm]\pingu@name-lightstaff-#1-top}{\csname pingu@color@lightstaff@#1@head@color\endcsname}
+    \pingu@block{\csname pingu@color@lightstaff@#1@head@core\endcsname} ([yshift=-1.1mm]\pingu@name-lightstaff-#1-top) -- ++(-.40mm,1mm) -- ++(0,2mm) -- ++(.40mm,1mm) -- ++(.40mm,-1mm) -- ++(0,-2mm) -- cycle;
+    \pingu@draw@wi@lightstaff@post{#1}{[yshift=-1.1mm]\pingu@name-lightstaff-#1-top}{\csname pingu@color@lightstaff@#1@head@color\endcsname}
+\endscope
+}
+
+% #1 wing, #2 start, #3 color
+\def\pingu@draw@wi@lightstaff@pre#1#2#3{
+\csname if@pingu@x@lightstaff@glow@#1\endcsname
+\@for\i:={0,1,2,4,6,7,8,9,10,14}\do{
+    \pingu@block[fill opacity=\ifnum\i>14 .225\else.1\fi*\i/20]{#3} (#2)++(0,-\i mm/15) -- ++(-.40mm-\i mm/30,1mm+\i mm/30) -- ++(0,2mm+\i mm/15) -- ++(.40mm+\i mm/30,1mm+\i mm/30) -- ++(.40mm+\i mm/30,-1mm-\i mm/30) -- ++(0,-2mm-\i mm/15) -- cycle;
+    %  -- ++(.05mm,#4) arc(180:0:\pingu@x@saberglow@w@half-.05mm-\i*\i mm/440 and \ifnum\i>14 .85mm\else\pingu@one\fi-\i mm/30) -- ++(.05mm,-#4) arc (0:-180:\pingu@x@saberglow@w@half-\i*\i mm/440 and .35mm);
+}
+\else % draw solid
+    \pingu@block{#3} (#2) -- ++(-.55mm,1mm) -- ++(0,2mm) -- ++(.55mm,1mm) -- ++(.55mm,-1mm) -- ++(0,-2mm) -- cycle;
+\fi
+}
+
+\def\pingu@draw@wi@lightstaff@post#1#2#3{
+\csname if@pingu@x@lightstaff@glow@#1\endcsname
+\ifdim\csname pingu@x@lightstaff@ogf@#1\endcsname pt>\z@
+\pingu@layer{foreground}[]
+\pgfinterruptboundingbox
+\@for\i:={1,1.05,1.1,1.2,1.3,1.315,1.4,1.5}\do{
+    \pingu@block[/pingu/@glow,fill opacity=\csname pingu@x@lightstaff@ogf@#1\endcsname/\i]{#3} (#2)++(0,2mm) circle[radius=\i*\csname pingu@lightstaff@#1@glow@length\endcsname];
+}
+\endpgfinterruptboundingbox
+\pingu@block[opacity=.65]{\csname pingu@color@lightstaff@#1@head@core\endcsname} (#2)++(0,.5mm) -- ++(-.20mm,.75mm) -- ++(0,1.5mm) -- ++(.20mm,.75mm) -- ++(.20mm,-.75mm) -- ++(0,-1.5mm) -- cycle;
+\endpingu@layer
+\fi
+% fadings hat a rotation angle bug
+\@for\i:={1,2}\do{
+    \pingu@block[fill opacity=.125*\i/10]{#3} (#2)++(0,-\i mm/15+2mm) -- ++(-.40mm-\i mm/30,1mm+\i mm/30) -- ++(0,2mm+\i mm/15) -- ++(.40mm+\i mm/30,1mm+\i mm/30) -- ++(.40mm+\i mm/30,-1mm-\i mm/30) -- ++(0,-2mm-\i mm/15) -- cycle;
+}
+\pingu@block{\csname pingu@color@lightstaff@#1@head@core\endcsname} (#2) -- ++(-.40mm,1mm) -- ++(0,2mm) -- ++(.40mm,1mm) -- ++(.40mm,-1mm) -- ++(0,-2mm) -- cycle;
+\fi
 }
