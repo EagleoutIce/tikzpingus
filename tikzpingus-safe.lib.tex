@@ -2,10 +2,12 @@
 % Licensed under GNU Lesser General Public License version 3
 % https://opensource.org/licenses/lgpl-3.0.html
 \pingu@create@extra{mask}{%
-    mask/.code    	= {\pingu@set@extra{mask}{true}\pingu@color{mask}{#1}},
-    mask/.default    = pingu@white!65!gray,%
-    mask band/.code  = \pingu@color{mask@band}{#1},%
-}{mask band=\pingu@color@body@main}
+    mask/.code    	       = {\pingu@set@extra{mask}{true}\pingu@color{mask}{#1}},
+    mask/.default          = pingu@white!65!gray,%
+    mask band/.code        = \pingu@color{mask@band}{#1},%
+    mask band inner/.code  = \pingu@color{mask@band@inner}{#1},%
+    mask band outer/.code  = \pingu@color{mask@band@outer}{#1}%
+}{mask band=\pingu@color@body@main, mask band inner=\pingu@color@mask@band!75!\pingu@color@mask, mask band outer=\pingu@color@mask@band!95!\pingu@color@mask}
 
 \def\pingu@draw@ea@mask{%
 \pingu@block{\pingu@color@mask} [rounded corners=.8mm] ([xshift=-5mm,yshift=.75mm]\pingu@name-bill) coordinate (@ul) [rounded corners=.1mm]-- ++(3.5mm,.55mm) to[bend left=3] ++(3mm,0) -- ++(3.5mm,-.55mm) coordinate (@ur) -- ++(0,-4.25mm)[rounded corners=.8mm] coordinate (@lr)  -- ++(-3.5mm,-.45mm) to[bend left=3] ++(-3mm,0) [rounded corners=.1mm] -- ++(-3.5mm,.45mm) coordinate (@ll) -- cycle;
@@ -20,8 +22,8 @@
 \endscope
 % TODO: fix this sloppy overwrite
 \pingu@block{\pingu@color@mask} [rounded corners=.8mm] ([xshift=-5mm,yshift=.75mm]\pingu@name-bill) coordinate (@ul) [rounded corners=.1mm]-- ++(3.5mm,.55mm) to[bend left=3] ++(3mm,0) -- ++(3.5mm,-.55mm) coordinate (@ur) -- ++(0,-4.25mm)[rounded corners=.8mm] coordinate (@lr)  -- ++(-3.5mm,-.45mm) to[bend left=3] ++(-3mm,0) [rounded corners=.1mm] -- ++(-3.5mm,.45mm) coordinate (@ll) -- cycle;
-\foreach \i/\b in {0mm/,.8mm/very thin,1.6mm/very thin} {
-\pingu@draw[\b]{\pingu@color@mask@band} [rounded corners=.8mm] ([xshift=-5mm,yshift=.75mm-\i]\pingu@name-bill) [rounded corners=.1mm]-- ++(3.5mm,.55mm) to[bend left=3] ++(3mm,0) -- ++(3.5mm,-.55mm) -- ++(0,-4.25mm+2*\i)[rounded corners=.8mm]  -- ++(-3.5mm,-.45mm) to[bend left=3] ++(-3mm,0) [rounded corners=.1mm] -- ++(-3.5mm,.45mm) -- cycle;
+\pingu@draw[very thin]{\pingu@color@mask@band@inner} ([xshift=-5mm,yshift=.75mm-4.25mm/2]\pingu@name-bill) to[bend right=1] ++(10mm,0);
+\foreach \i/\b/\c in {1.6mm/very thin/\pingu@color@mask@band@inner,.8mm/very thin/\pingu@color@mask@band@inner,0mm//\pingu@color@mask@band@outer} {
+\pingu@draw[\b]{\c} [rounded corners=.8mm] ([xshift=-5mm,yshift=.75mm-\i]\pingu@name-bill) [rounded corners=.1mm]-- ++(3.5mm,.55mm) to[bend left=3] ++(3mm,0) -- ++(3.5mm,-.55mm) -- ++(0,-4.25mm+2*\i)[rounded corners=.8mm]  -- ++(-3.5mm,-.45mm) to[bend left=3] ++(-3mm,0) [rounded corners=.1mm] -- ++(-3.5mm,.45mm) -- cycle;
 }
-\pingu@draw[very thin]{\pingu@color@mask@band} ([xshift=-5mm,yshift=.75mm-4.25mm/2]\pingu@name-bill) to[bend right=1] ++(10mm,0);
 }
