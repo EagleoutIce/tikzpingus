@@ -12,15 +12,18 @@
     glasses opacity/.style      = {/pingu/glasses left opacity=#1, /pingu/glasses right opacity=#1},
     glasses line width/.code    = \def\pingu@x@glasses@lw{#1},
     sunglasses/.forward to      = /pingu/sun glasses,
+    glasses bend left/.code     = \def\pingu@x@glasses@bend@l{#1},
+    glasses bend right/.code    = \def\pingu@x@glasses@bend@r{#1},
+    glasses bend/.style         = {/pingu/glasses bend left=#1,/pingu/glasses bend right=#1},
     sun glasses/.style          = {/pingu/glasses, /pingu/glasses fill=#1},
     sun glasses/.default        = pingu@black,
-}{glasses line width=1.125\p@,glasses fill=\@pingu@none,glasses opacity=.825}
+}{glasses line width=1.125\p@,glasses fill=\@pingu@none,glasses opacity=.825,glasses bend left=32.5,glasses bend right=32.5}
 
 \def\pingu@draw@ea@glasses{% fact: 1.33; modified first shift and ht
-    \pingu@block[opacity=\pingu@x@glasses@op@l]{\pingu@color@glasses@fill@l} (\pingu@name-eye-left)++(-2.66mm,1.75mm) to[bend left=8] ++(5.586mm,0) to[out=-80,in=70] ++(-.266mm,-3.6mm) to[bend left=32.5] ++(-4.8545mm,\z@) to[out=135,in=-90] ++(-1.064mm,3.5mm) -- cycle;
-    \pingu@block[opacity=\pingu@x@glasses@op@r]{\pingu@color@glasses@fill@r} (\pingu@name-eye-right)++(2.66mm,1.75mm) to[bend right=8] ++(-5.586mm,0) to[out=-100,in=110] ++(.266mm,-3.6mm) to[bend right=32.5] ++(4.8545mm,\z@) to[out=45,in=-90] ++(1.064mm,3.5mm) -- cycle;
-    \pingu@draw[line width=\pingu@x@glasses@lw]{\pingu@color@glasses} [rounded corners=.25mm](\pingu@name-eye-left)++(-2.66mm,1.75mm) coordinate (\pingu@name-glasses-left-mid) to[bend left=8] ++(5.586mm,0) coordinate (\pingu@name-glasses-left-outer) to[out=-80,in=70] ++(-.266mm,-3.6mm) to[bend left=32.5] ++(-4.8545mm,\z@) to[out=135,in=-90] coordinate[pos=.9] (\pingu@name-glasses-left-mid-b) ++(-1.064mm,3.5mm) -- cycle;
-    \pingu@draw[line width=\pingu@x@glasses@lw]{\pingu@color@glasses} [rounded corners=.25mm] (\pingu@name-eye-right)++(2.66mm,1.75mm) coordinate (\pingu@name-glasses-right-mid) to[bend right=8] ++(-5.586mm,0) coordinate (\pingu@name-glasses-right-outer) to[out=-100,in=110] ++(.266mm,-3.6mm) to[bend right=32.5] ++(4.8545mm,\z@) to[out=45,in=-90] coordinate[pos=.9] (\pingu@name-glasses-right-mid-b) ++(1.064mm,3.5mm) -- cycle;
+    \pingu@block[opacity=\pingu@x@glasses@op@l]{\pingu@color@glasses@fill@l} (\pingu@name-eye-left)++(-2.66mm,1.75mm) to[bend left=8] ++(5.586mm,0) to[out=-80,in=70] ++(-.266mm,-3.6mm) to[bend left=\pingu@x@glasses@bend@l] ++(-4.8545mm,\z@) to[out=135,in=-90] ++(-1.064mm,3.5mm) -- cycle;
+    \pingu@block[opacity=\pingu@x@glasses@op@r]{\pingu@color@glasses@fill@r} (\pingu@name-eye-right)++(2.66mm,1.75mm) to[bend right=8] ++(-5.586mm,0) to[out=-100,in=110] ++(.266mm,-3.6mm) to[bend right=\pingu@x@glasses@bend@r] ++(4.8545mm,\z@) to[out=45,in=-90] ++(1.064mm,3.5mm) -- cycle;
+    \pingu@draw[line width=\pingu@x@glasses@lw]{\pingu@color@glasses} [rounded corners=.25mm](\pingu@name-eye-left)++(-2.66mm,1.75mm) coordinate (\pingu@name-glasses-left-mid) to[bend left=8] ++(5.586mm,0) coordinate (\pingu@name-glasses-left-outer) to[out=-80,in=70] ++(-.266mm,-3.6mm) to[bend left=\pingu@x@glasses@bend@l] ++(-4.8545mm,\z@) to[out=135,in=-90] coordinate[pos=.9] (\pingu@name-glasses-left-mid-b) ++(-1.064mm,3.5mm) -- cycle;
+    \pingu@draw[line width=\pingu@x@glasses@lw]{\pingu@color@glasses} [rounded corners=.25mm] (\pingu@name-eye-right)++(2.66mm,1.75mm) coordinate (\pingu@name-glasses-right-mid) to[bend right=8] ++(-5.586mm,0) coordinate (\pingu@name-glasses-right-outer) to[out=-100,in=110] ++(.266mm,-3.6mm) to[bend right=\pingu@x@glasses@bend@r] ++(4.8545mm,\z@) to[out=45,in=-90] coordinate[pos=.9] (\pingu@name-glasses-right-mid-b) ++(1.064mm,3.5mm) -- cycle;
     \pingu@draw[line width=\pingu@x@glasses@lw]{\pingu@color@glasses} (\pingu@name-glasses-right-mid) to[bend right=10] (\pingu@name-glasses-left-mid);
     \pingu@draw[line width=\pingu@x@glasses@lw]{\pingu@color@glasses} (\pingu@name-glasses-right-mid-b) to[bend left=20] (\pingu@name-glasses-left-mid-b);
     \scope
