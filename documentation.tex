@@ -85,14 +85,38 @@
 		{\{tikzpicture\}}{{\textcolor{gray!60!white}{\{tikzpicture\}}}}{13}
 }
 
-\def\@CreateCodeHyperLink#1#2#3{\typeout{#2[#1] => #3}\lstset{add to literate={#2}{{\hyperref[#3]{\optstyle#2}}}{#1}}}
-% #1 Keys
-\def\CreateCodeHyperLink#1{%
-	\@for\@elem:=#1\do{\StrLen{\@elem}[\@cclen]\ifnum\@cclen>0\edef\@tmp{\noexpand\@CreateCodeHyperLink{\@cclen}{\@elem}{pk:/pingu/\@elem}}\@tmp\fi}%
+\def\@CreateCodeHyperLink#1#2#3{\lstset{add to literate={#2}{{\hyperref[#3]{\optstyle#2}}}{#1}}}
+% #1 Keys | #2 length (optimized)
+\def\CreateCodeHyperLink#1#2{% \StrLen{\@elem}[\@cclen]
+	\@for\@elem:=#1\do{\ifx\@elem\@empty\else
+	% space to space cmd
+	\StrSubstitute{\@elem}{ }{\noexpand\ }[\@sub]\relax
+	\edef\@tmp{\noexpand\@CreateCodeHyperLink{#2}{\@sub}{pk:/pingu/\@elem}}\@tmp\fi}%
 }
-\providecommand\allcmds{XXXXDUMMY}% TODO: remove <void>
-\AtBeginDocument{\expandafter\CreateCodeHyperLink\expandafter{\allcmds}\let\allcmds\@empty} % last to stop infinite
-\AtEndDocument{\immediate\write\@auxout{\noexpand\gdef\noexpand\allcmds{\allcmds}}}
+% store all. we use their precalculated length to ensure prefixes we go from small to large on set
+\def\cmdsstore#1#2{\csxdef{allcmds@#1}{#2}}
+\def\allcmdsmin{3}% think
+\def\allcmdsmax{3}%
+\AtEndDocument{\foreach \i in {\allcmdsmin,...,\allcmdsmax} {%
+	\immediate\write\@auxout{\noexpand\cmdsstore{\i}{\csuse{allcmds@\i}}}%
+	}%
+	\immediate\write\@auxout{\noexpand\gdef\noexpand\allcmdsmin{\allcmdsmin}}%
+	\immediate\write\@auxout{\noexpand\gdef\noexpand\allcmdsmax{\allcmdsmax}}%
+}
+
+\AtBeginDocument{%
+% we do not use foreach to avoid groups
+\count@=\allcmdsmin
+\edef\@cntmax@{\the\numexpr\allcmdsmax+1\relax}%
+\@whilenum\count@<\@cntmax@\do{
+	\edef\i{\number\count@}\relax
+	\ifcsname allcmds@\i\endcsname
+		\edef\allcmds{\csname allcmds@\i\endcsname}% if undefined => emptyy
+		\expandafter\CreateCodeHyperLink\expandafter{\allcmds}{\i}\csxdef{allcmds@\i}{}%
+	\fi% csx kill to stop infinite
+	\global\advance\count@\@ne
+}%
+}
 
 \RedeclareSectionCommand[runin=false,afterskip=-2mm]{section}
 
@@ -115,7 +139,11 @@
 \newenvironment{keyexplain}[4][/pingu/]{\begin{minipage}{\linewidth}%
 	\parskip\medskipamount
 	\phantomsection\label{pk:#1#2}\index{\cursub#2?\hyperref[pk:#1#2]{\protect\lpingu{#2}}}%
-	\gappto\allcmds{,#2}%
+	% get its length:
+	\StrLen{#2}[\@cclen]\relax
+	\csgappto{allcmds@\@cclen}{#2,}%
+	\ifnum\@cclen>\allcmdsmax\relax \xdef\allcmdsmax{\@cclen}\fi
+	\ifnum\@cclen<\allcmdsmin\relax \xdef\allcmdsmin{\@cclen}\fi
 	\expandafter\gdef\csname pinguopt#2\endcsname{#3}%
 	\expandafter\gdef\csname pingudefa#2\endcsname{#4}%
 	\begingroup\pgfkeys{/pingu/.cd,defaults}\protected@edef\@tmp{#4}%
@@ -609,7 +637,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 
 
 \begin{keyexplain}{body type}{body type}{default}
-	Change the active body type:
+	Change the active body type. All valid values are listed in \autoref{mrk:pengu-change-comps}:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[body type=chubby]
@@ -960,7 +988,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 
 \begin{keyexplain}{:back}{}{}
 	Mirror the penguin, this swaps left and right, the rotation and more.
-	Yet, at least at the time of writing, this does not swap the drawing order in each layer, but just the layers:\typeout{KTWKKS}
+	Yet, at least at the time of writing, this does not swap the drawing order in each layer, but just the layers:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[:back, left wing wave,
