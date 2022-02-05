@@ -113,7 +113,7 @@
 }
 \pingu@create@selection{leftfoot}{}
 \pingu@create@selection{rightfoot}{}
-\pingu@create@selection{bodytype}{}
+\pingu@create@selection{bodytype}{\pingu@x@bodytype@none}
 % #endregion
 
 % #region key setup
@@ -392,7 +392,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 }
 % #endregion
 % #region none
-\pingu@bodytype@add{none}{%
+\def\pingu@x@bodytype@none{%
 \path[save path=\pingu@lowerpingu] (0,\pingu@outer@off)
 % left side
 to[bend right=\pingu@bend] coordinate[pos=.775] (\pingu@name-waist-right) ++(0,-\pingu@side@h@half-\pingu@outer@off)
