@@ -136,7 +136,7 @@
 \def\cursub{}
 \def\keyexplainindent{2em}%
 \newenvironment{keyexplain}[4][/pingu/]{\minipage\linewidth
-	\parskip\medskipamount
+	\parskip\smallskipamount
 	\phantomsection\label{pk:#1#2}\index{\cursub#2?\hyperref[pk:#1#2]{\protect\lpingu{#2}}}%
 	% get its length:
 	\StrLen{#2}[\@cclen]\relax
@@ -147,12 +147,12 @@
 	\expandafter\gdef\csname pingudefa#2\endcsname{#4}%
 	\begingroup\pgfkeys{/pingu/.cd,defaults}\protected@edef\@tmp{#4}%
 	\protected@edef\@tmpb{#3}%
-	\hspace*{-\keyexplainindent}\colorbox\explaincolor{%
+	\hspace*{-\keyexplainindent}\colorbox{\explaincolor}{%
 		\parbox{\dimexpr\linewidth-2\fboxsep+\keyexplainindent}{\small
 		\ifx\@tmpb\@empty\lpingu{#1#2}\else\lpingu{#1#2 =\ }\texttt{<\textit{\@tmpb}>}\fi\hfill
 				\ifx\@tmp\@empty\else{\@declaredcolor{gray}(}#4{\@declaredcolor{gray})}\fi
 		}
-	}\\*[\smallskipamount]\endgroup}
+	}\par\endgroup}
 {\endminipage\smallskip\par}
 
 \def\singleshortcut#1#2#3#4{\def\cursub{#2?\hyperref[pk:#1#2]{\protect\lpingu{#2}}!}\keyexplain[#1]{#2 #3}{\csname pinguopt#4\endcsname}{\csname pingudefa#4\endcsname}%
@@ -587,7 +587,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \endkeyexplain
 
 \keyexplain{feet color}{color}{}
-	Sets the color of both feet by calling \keyref{left foot color} and \keyref{right foot color} with the same value.
+	Sets the color of both feet (using \keyref{left foot color} and \keyref{right foot color}).
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[feet color=green]
