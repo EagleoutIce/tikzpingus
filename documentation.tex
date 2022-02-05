@@ -702,7 +702,6 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \endkeyexplain
 
 \keyexplain{left eye color}{color}{\pingu@color@eye@left}
-	Change the main color of the left eye.
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[left eye color=green]
@@ -732,7 +731,6 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \endkeyexplain
 
 \keyexplain{right eye color}{color}{\pingu@color@eye@right}
-	Change the main color of the right eye.
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[right eye color=green]
@@ -794,7 +792,6 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \endkeyexplain
 
 \keyexplain{left wing color}{color}{\pingu@color@left@wing}
-	Change the main color of the left wing.
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[left wing color=green]
@@ -814,7 +811,6 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \endkeyexplain
 
 \keyexplain{right wing color}{color}{\pingu@color@right@wing}
-	Change the main color of the right wing.
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[right wing color=green]
@@ -925,7 +921,6 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \endkeyexplain
 
 \keyexplain{bill color}{color}{\pingu@color@bill}
-	Change the color of the bill
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[bill color=green]
@@ -1010,7 +1005,6 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 
 \subsubsection{The tie}
 \keyexplain{tie}{color}{pingu@green}
-	Enable the tie extra:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[tie]
@@ -1020,7 +1014,6 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 
 {\def\pingu@color@tie{<tie-color>}
 \begin{subkeyexplain}{tie}{tie knot}{color}{\pingu@color@tie@knot}
-	Change the tie knot:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[tie, tie knot=orange]
@@ -1030,7 +1023,6 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 }
 
 \begin{subkeyexplain}{tie}{tie length}{length}{\expandafter\detokenize\expandafter{\pingu@x@tie@length}}
-	Change the length of the tie:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[tie, tie length=1.25cm]
@@ -1048,7 +1040,6 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \end{subkeyexplain}
 
 \begin{subkeyexplain}{tie}{tie width}{length}{\pingu@x@tie@width}
-	Change the width of the tie:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[tie, tie width=.5cm]
@@ -1072,7 +1063,6 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \subsubsection{The bowtie}
 
 \keyexplain{bow tie}{color}{pingu@blue}
-	Enable the bow tie extra:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[bow tie]
@@ -1084,7 +1074,6 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \keyalias{bow-tie}{bow tie}
 
 \begin{subkeyexplain}{bow tie}{bow tie b}{color}{<bowtie-color>}
-Change the color of the other bow-tie-wing:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[bow tie, bow tie b=green]
@@ -1097,7 +1086,6 @@ Change the color of the other bow-tie-wing:
 
 {\def\pingu@color@bowtie{<bowtie-color>}
 \begin{subkeyexplain}{bow tie}{bow tie knot}{color}{\pingu@color@bowtie@knot}
-change the color of the knot:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[bow tie, bow tie knot=green]
@@ -1110,7 +1098,6 @@ change the color of the knot:
 }
 
 \begin{subkeyexplain}{bow tie}{bow tie offset}{length}{\pingu@x@bowtie@offset}
-Change the vertical offset of the bow tie:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[bow tie, bow tie offset=8mm]
@@ -1123,7 +1110,6 @@ Change the vertical offset of the bow tie:
 
 \subsubsection{The cup}
 \keyexplain{cup}{color}{pingu@green}
-	Change the color of the cup:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[cup]
@@ -1133,7 +1119,6 @@ Change the vertical offset of the bow tie:
 
 {\def\pingu@color@cup{<cup-color>}
 \begin{subkeyexplain}{cup}{cup straw}{color}{\pingu@color@cup@straw}
-Change the color of the cup straw
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[cup, cup straw=!hide]
@@ -1143,7 +1128,6 @@ Change the color of the cup straw
 
 \subsubsection{The medal}
 \keyexplain{medal}{color}{pingu@yellow}
-	Change the color of the medal:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[medal]
@@ -1152,7 +1136,6 @@ Change the color of the cup straw
 \endkeyexplain
 
 \begin{subkeyexplain}{medal}{medal band}{color}{\pingu@color@medal@band}
-Change the color of the medal band:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[medal, medal band=green]
@@ -1221,7 +1204,6 @@ Basically the same as the normal medal, but with a bronze color. This will activ
 \subsubsection{The eye patches}
 
 \keyexplain{eye patch left}{color}{<pingu-main-color>}
-Sets the color of the left eye patch:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[eye patch left]
@@ -1233,7 +1215,6 @@ Sets the color of the left eye patch:
 \keyalias{eye-patch left}{eye patch left}
 
 \keyexplain{eye patch right}{color}{<pingu-main-color>}
-Sets the color of the right eye patch:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[eye patch right]
@@ -1247,7 +1228,6 @@ Sets the color of the right eye patch:
 \subsubsection{The monocle}
 
 \keyexplain{monocle left}{color}{pingu@black}
-Sets the color of the right monocle:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[monocle left]
@@ -1292,7 +1272,6 @@ Set the color of the string of the left monocle:
 \end{subkeyexplain}}
 
 \begin{subkeyexplain}{monocle left}{monocle left string length}{length}{\pingu@x@monocleleft@string@l}
-Set the length of the left monocle string:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[monocle left,
@@ -1313,7 +1292,6 @@ Set the color of the blob at the end of the string of the left monocle:
 \end{subkeyexplain}}
 
 \keyexplain{monocle right}{color}{pingu@black}
-Sets the color of the right monocle:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[monocle right]
@@ -1347,7 +1325,6 @@ Set the opacity of the glass color of the right monocle (set by \keyref{monocle 
 
 {\def\pingu@color@monocleright{<right-monocle-color>}
 \begin{subkeyexplain}{monocle right}{monocle right string}{color}{\pingu@color@monocleright@string}
-Set the color of the string of the right monocle:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[monocle right,
