@@ -1585,7 +1585,6 @@ Display glasses for the penguin:
 \end{subkeyexplain}
 
 \begin{subkeyexplain}{glasses}{glasses left opacity}{factor}{\pingu@x@glasses@op@l}
-	Sets the fill opacity of the left glass:
 \begin{tcblisting}{listing options={style=lstpingu,language=pingulang,deleteemph={[2]{1}}}}
 \begin{tikzpicture}
 	\pingu[glasses,
@@ -1618,7 +1617,6 @@ Display glasses for the penguin:
 \end{subkeyexplain}
 
 \begin{subkeyexplain}{glasses}{glasses line width}{length}{1.125pt}
-	Change the thickness of the lines:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[glasses, glasses line width=1mm]
@@ -1678,7 +1676,6 @@ Behaves equivalent to \keyref{glasses} but produces a round counterpart:
 \end{subkeyexplain}
 
 \begin{subkeyexplain}{glasses round}{glasses round left opacity}{factor}{\pingu@x@glassesround@op@l}
-	Sets the fill opacity of the left glass:
 \begin{tcblisting}{listing options={style=lstpingu,language=pingulang,deleteemph={[2]{1}}}}
 \begin{tikzpicture}
 	\pingu[glasses round,
@@ -1711,7 +1708,6 @@ Behaves equivalent to \keyref{glasses} but produces a round counterpart:
 \end{subkeyexplain}
 
 \begin{subkeyexplain}{glasses round}{glasses round line width}{length}{1.125pt}
-	Change the thickness of the lines:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[glasses round, glasses round line width=1mm]
@@ -1733,7 +1729,6 @@ Configure the \keyref{glasses round} to display sunglasses round. The color is p
 \subsubsection{The devil horns}
 
 \begin{keyexplain}{devil horns}{color}{pingu@black}
-Displays the devil horns on the penguins head:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[devil horns=green]
@@ -1747,7 +1742,6 @@ Displays the devil horns on the penguins head:
 \subsubsection{The head band}
 
 \begin{keyexplain}{head band}{color}{pingu@red}
-Places a head band with the specified color:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[head band=green]
@@ -1760,7 +1754,6 @@ Places a head band with the specified color:
 
 
 \begin{subkeyexplain}{head band}{head band bend}{angle}{\pingu@x@headband@bend}
-Defines the bending angle of the head band:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[head band, head band bend=25]
@@ -1772,7 +1765,6 @@ Defines the bending angle of the head band:
 \subkeyalias{head-band bend}{head band bend}{head band}
 
 \begin{subkeyexplain}{head band}{head band angle}{angle}{\pingu@x@headband@angle}
-Defines the lower start-angle of the head band:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[head band, head band angle=25]
@@ -1784,7 +1776,6 @@ Defines the lower start-angle of the head band:
 \subkeyalias{head-band angle}{head band angle}{head band}
 
 \begin{subkeyexplain}{head band}{head band upper angle}{angle}{\pingu@x@headband@angle}
-Defines the upper start-angle of the head band:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[head band, head band upper angle=25]
@@ -1796,7 +1787,6 @@ Defines the upper start-angle of the head band:
 \subkeyalias{head-band upper angle}{head band upper angle}{head band}
 
 \begin{subkeyexplain}{head band}{head band knot}{true/false}{\if@pingu@x@headband@knot@ true\else false\fi}
-En- and disable the head band knot:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[head band, head band knot]
@@ -1851,7 +1841,6 @@ If \keyref{head band knot} is enabled, this setting changes the color of the lef
 \subkeyalias{head-band knot b color}{head band knot b color}{head band}}
 
 \begin{subkeyexplain}{head band}{head band bands}{true/false}{\if@pingu@x@headband@bands@ true\else false\fi}
-En- and disable the head band bands:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[head band, head band bands=false]
@@ -1894,7 +1883,6 @@ If \keyref{head band bands} is enabled, this setting changes the color of the le
 \subsubsection{The rook}
 
 \begin{keyexplain}{rook}{color}{pingu@silver}
-Covers the penguin in a rook-costume with the given color:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[rook=green]
@@ -1923,7 +1911,6 @@ Toggles the opening in the rook costume:
 
 {\def\pingu@color@rook{<rook-color>}
 \begin{subkeyexplain}{rook}{rook shade}{color}{\pingu@color@rook@shade}
-Change the color of the costume shading:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[rook, rook shade=green]
@@ -1933,7 +1920,6 @@ Change the color of the costume shading:
 
 \subsubsection{The halo}
 \begin{keyexplain}{halo}{color}{pingu@lightblue}
-Enable the halo with a specific color:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[halo=green]
@@ -1970,7 +1956,6 @@ Draws the halo above, which is useful in case of other gadgets:
 
 \subsubsection{The strawhat}
 \begin{keyexplain}{strawhat}{color}{brown!50!white}
-Enable the strawhat with a specific color:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[strawhat=green]
@@ -1981,7 +1966,6 @@ Enable the strawhat with a specific color:
 \keyalias{straw hat}{strawhat}
 
 \begin{subkeyexplain}{strawhat}{strawhat ribbon}{color}{\pingu@color@strawhat@ribbon}
-Change the color of the strawhat ribbon:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[strawhat, strawhat ribbon=green]
@@ -2005,7 +1989,6 @@ Currently, this is a very cumbersome command to change various strawhat paramete
 
 \subsubsection{The hat}
 \begin{keyexplain}{hat}{color}{brown!50!white}
-Enable the hat with a specific color:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[hat=green]
@@ -2015,7 +1998,6 @@ Enable the hat with a specific color:
 
 {\def\pingu@color@hat{<hat-color>}
 \begin{subkeyexplain}{hat}{hat ribbon}{color}{\pingu@color@hat@ribbon}
-Change the color of the hat ribbon:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[hat, hat ribbon=green]
@@ -2025,7 +2007,6 @@ Change the color of the hat ribbon:
 
 {\def\pingu@color@hat{<hat-color>}
 \begin{subkeyexplain}{hat}{hat base}{color}{\pingu@color@hat@base}
-Change the color of the hat base:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[hat, hat base=green]
@@ -2035,7 +2016,6 @@ Change the color of the hat base:
 
 {\def\pingu@color@hat{<hat-color>}
 \begin{subkeyexplain}{hat}{hat coronal}{color}{\pingu@color@hat@coronal}
-Change the color of the hat coronal:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[hat, hat coronal=green]
@@ -2054,7 +2034,6 @@ Currently, this is a very cumbersome command to change various hat parameters at
 
 \subsubsection{The cap}
 \begin{keyexplain}{cap}{color}{pingu@bronze}
-Enable the cap with a specific color:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[cap=green]
@@ -2063,7 +2042,6 @@ Enable the cap with a specific color:
 \end{keyexplain}
 
 \begin{subkeyexplain}{cap padding}{cap padding}{length}{\pingu@x@cap@padding}
-Outer cap padding:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[cap, cap padding=4mm]
@@ -2073,7 +2051,6 @@ Outer cap padding:
 
 
 \begin{subkeyexplain}{cap extra height}{cap extra height}{length}{\pingu@x@cap@height}
-Inner cap height:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[cap, cap extra height=2mm]
@@ -2083,7 +2060,6 @@ Inner cap height:
 
 \subsubsection{The crown}
 \begin{keyexplain}{crown}{color}{pingu@yellow}
-Enable the crown with a specific color:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[crown=green]
@@ -2315,7 +2291,6 @@ Change the color of the heavily transparent cake hat shading:
 \end{subkeyexplain}
 
 \begin{subkeyexplain}{cake-hat}{cake-hat candle}{color}{\pingu@color@cakehat@candle}
-Change the color of the cake hats' candle:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[cake-hat, cake-hat candle=green]
@@ -2353,7 +2328,6 @@ Change the color of the cake hats' candle inner fire:
 \end{subkeyexplain}}
 
 \begin{subkeyexplain}{cake-hat}{cake-hat candle wick}{color}{\pingu@color@cakehat@candle@wick}
-Change the color of the cake hats' candle wick:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[cake-hat, cake-hat candle wick=green]
@@ -2362,7 +2336,6 @@ Change the color of the cake hats' candle wick:
 \end{subkeyexplain}
 
 \begin{subkeyexplain}{cake-hat}{cake-hat candle shade}{color}{\pingu@color@cakehat@candle@shade}
-Change the color of the cake hats' candle shade:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[cake-hat, cake-hat candle shade=green]
@@ -2371,7 +2344,6 @@ Change the color of the cake hats' candle shade:
 \end{subkeyexplain}
 
 \begin{subkeyexplain}{cake-hat}{cake-hat candle back}{color}{\pingu@color@cakehat@candle@back}
-Change the color of the cake hats' candle back:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[cake-hat, cake-hat candle back=green]
@@ -2421,7 +2393,6 @@ Enable a pumpkin hat with a specific color:
 
 {\def\pingu@color@pumpkinhat{<pumpkinhat-color>}
 \begin{subkeyexplain}{pumpkin-hat}{pumpkin-hat stalk}{color}{\pingu@color@pumpkinhat@stalk}
-Change the stalks color of the pumpkin hat:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[pumpkin-hat,pumpkin-hat stalk=teal]
@@ -2430,7 +2401,6 @@ Change the stalks color of the pumpkin hat:
 \end{subkeyexplain}}
 
 {\begin{subkeyexplain}{pumpkin-hat}{pumpkin-hat stalk top}{color}{<pumpkinhat-stalk-color>!95!pingu@black}
-Change the stalks top color of the pumpkin hat:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[pumpkin-hat,pumpkin-hat stalk top=teal]
@@ -2466,7 +2436,6 @@ Change the color of the third stripe:
 \end{subkeyexplain}
 
 \begin{subkeyexplain}{pumpkin-hat}{pumpkin-hat outline}{color}{\pingu@color@pumpkinhat@outline}
-Exchange the outline color of the pumpkin hat:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[pumpkin-hat,pumpkin-hat outline=green]
@@ -2475,7 +2444,6 @@ Exchange the outline color of the pumpkin hat:
 \end{subkeyexplain}
 
 \begin{subkeyexplain}{pumpkin-hat}{pumpkin-hat outline width}{color}{\pingu@x@pumpkinhat@outline@w}
-Exchange the outline width of the pumpkin hat:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[pumpkin-hat,pumpkin-hat outline width=3pt]
@@ -2496,7 +2464,6 @@ Currently, this is a very cumbersome command to change various pumpkin hat param
 \subsubsection{The vr headset}
 
 \begin{keyexplain}{vr-headset}{color}{pingu@black!92!gray}
-Enable a vr headset hat with a specific color:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[vr-headset=green]
@@ -2506,7 +2473,6 @@ Enable a vr headset hat with a specific color:
 
 {\def\pingu@color@vrheadset{<vr-headset>}
 \begin{subkeyexplain}{vr-headset}{vr-headset band}{color}{\pingu@color@vrheadset@band}
-Change the color of the horizontal headset band:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[vr-headset, vr-headset band=purple]
@@ -2516,7 +2482,6 @@ Change the color of the horizontal headset band:
 
 {\def\pingu@color@vrheadset{<vr-headset>}
 \begin{subkeyexplain}{vr-headset}{vr-headset band top}{color}{\pingu@color@vrheadset@band@top}
-Change the color of the vertical headset band:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[vr-headset, vr-headset band top=purple]
@@ -2534,7 +2499,6 @@ Change the hair to support the headset:
 \end{subkeyexplain}
 
 \begin{subkeyexplain}{vr-headset}{vr-headset text}{text}{omitted}
-Change the text on the headset:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[vr-headset, vr-headset text={ABCD}]
@@ -2543,7 +2507,6 @@ Change the text on the headset:
 \end{subkeyexplain}
 
 \begin{subkeyexplain}{vr-headset}{vr-headset text color}{color}{\pingu@color@vrheadset@text@color}
-Change the text color of the headset text:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[vr-headset, vr-headset text color=green]
@@ -2554,7 +2517,6 @@ Change the text color of the headset text:
 \subsubsection{The headphones}
 
 \begin{keyexplain}{headphone}{color}{pingu@blue!80!pingu@black}
-Enable a headphones hat with a specific color:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[headphone=green]
