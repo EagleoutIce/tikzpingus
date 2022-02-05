@@ -2,11 +2,11 @@
 % Licensed under GNU Lesser General Public License version 3
 % https://opensource.org/licenses/lgpl-3.0.html
 \errorcontextlines9999
-\documentclass[parskip=half,english,noenddot,numbers=noenddot,footnotes=nomultiple,oneside]{scrartcl}
+\documentclass[parskip=half,english,numbers=noenddot,footnotes=nomultiple,oneside]{scrartcl}
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage[english]{babel}
+\usepackage{babel}
 
 \usepackage[glows]{tikzpingus}
 \usepackage[linkcolor=pingu@purple,urlcolor=pingu@purple,colorlinks,breaklinks,pdfusetitle]{hyperref}
@@ -16,7 +16,7 @@
 
 \usepackage[tex,hyper]{listings}
 \usepackage[most]{tcolorbox}
-\usepackage{imakeidx,tikz,fontawesome,csquotes,enumitem,microtype,tikzducks,datatool,relsize,multicol,footnotebackref,adjustbox}
+\usepackage{imakeidx,tikz,fontawesome,csquotes,enumitem,microtype,tikzducks,datatool,relsize,multicol,footnotebackref,adjustbox,xstring}
 \makeindex[title={Key Overview},columns=2,columnsep=.75cm,noautomatic=true]
 \deffootnote{1.5em}{1em}{\textsuperscript{\hyperref[\BackrefFootnoteTag]{\thefootnotemark}}\thinspace}
 \def\thefootnote{$\langle$\arabic{footnote}$\rangle$}
@@ -75,7 +75,7 @@
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
 	alsoletter={.-!:0123456789},%disable number
-	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,height,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,a,b,c,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob,pants,button,buttons,bands,no,without,extra,steps,function,solid,right,frame,eye-frame,eyeframe,glasses,fill,line,sun,horns,devilhorns,devil-horns,headband,head-band,bend, upper,rook,hatch,strawhat,hat,ribbon,position,base,coronal,3d,colors,ring,bobbles,bobble,cake-hat,candle,fire,wick,outline,top,handle,hand,cast,handcast,signpost,font,fontcolor,deco,ribbs,double,core,outer,disabled,factor,german,code,pole,pride,staff,cape,bottom,padding,pumpkin-hat,stalk,stripe,cap,type,vr-headset,headphone,vertical,above,santa,beard,blush,inner,headphones,shirt,banner,stick,sticks,bent,vr-controller,fork,mask},
+	moreemph=[2]{left,right,wing,eye,wings,tie,bow,none,eyes,shiny,wink,wave,grab,hug,wave,cup,straw,xshift,yshift,meta,dots,name,heart,shock,bill,hair,hairstyle,feet,foot,simple,flat,angry,back,devil,normal,princess,crown,silver,medal,patch,halo,glow,thick,2d,sunglasses,gem,shade,round,lollipop,lightsaber,item,angle,raise,cane,flip,flag,sign,post,cloak,scale,meta-dots,color,body,head,main,front,second,small,size,large,style,hairs,1,2,3,4,5,knot,length,offset,width,pattern,bowtie,bow-tie,a,b,c,text,gold,bronze,band,eyepatch,eye-patch,monocle,glass,opacity,string,blob,pants,button,buttons,bands,no,without,extra,steps,function,solid,right,frame,eye-frame,eyeframe,glasses,fill,line,sun,horns,devilhorns,devil-horns,headband,head-band,bend, upper,rook,hatch,strawhat,hat,ribbon,position,base,coronal,3d,colors,ring,bobbles,bobble,cake-hat,candle,fire,wick,outline,top,handle,hand,cast,handcast,signpost,font,fontcolor,deco,ribbs,double,core,outer,disabled,factor,german,code,pole,pride,staff,cape,bottom,padding,pumpkin-hat,stalk,stripe,cap,type,vr-headset,headphone,vertical,above,santa,beard,blush,inner,headphones,shirt,banner,stick,sticks,bent,vr-controller,fork,mask},
 	moreemph=[4]{:line,:ghost,parts,:devil,:back,:hide},
 	deletetexcs={begin,end},
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend,pinguloadlibrary,pinguloadlibraries},
@@ -84,7 +84,14 @@
 	add to literate={/pingu/}{{\textcolor{gray}{/pingu/}}}7
 		{\{tikzpicture\}}{{\textcolor{gray!60!white}{\{tikzpicture\}}}}{13}
 }
-\NewEnviron{scaleme}[1]{\scalebox{#1}{\BODY}}
+
+\def\@CreateCodeHyperLink#1#2#3{\lstset{add to literate={#2}{{\hyperref[#3]{\optstyle#2}}}{#1}}}
+% #1 Keys
+\def\CreateCodeHyperLink#1{%
+	\@for\@elem:=#1\do{\StrLen{\@elem}[\@cclen]\edef\@tmp{\noexpand\@CreateCodeHyperLink{\@cclen}{\@elem}{pk:/pingu/\@elem}}\@tmp}%
+}
+\CreateCodeHyperLink{height}
+
 
 \RedeclareSectionCommand[runin=false,afterskip=-2mm]{section}
 
@@ -618,6 +625,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \end{tikzpicture}
 \end{tcblisting}
 \end{keyexplain}
+\iffalse
 
 \begin{keyexplain}{small size}{}{}
 	Will use \keyref{height} to create a small pingu:
@@ -3680,5 +3688,6 @@ The \say{normal} eyes could be defined as follows:
 	\pingu@block{\pingu@color@eye@right} ([yshift=.75mm,xshift=-\pingu@eye@shift]\pingu@name-eye-back-right) coordinate(\pingu@name-eye-right) ellipse [x radius=.1225cm, y radius=.1275cm];
 }
 \end{lstlisting}
+\fi
 \printindex
 \end{document}
