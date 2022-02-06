@@ -77,7 +77,7 @@
 	moreemph={tikzpicture},
 	alsoletter={.-!:0123456789},%disable number
 	moreemph=[4]{:line,:ghost,parts,:devil,:back,:hide},
-	deletetexcs={begin,end},
+	deletetexcs={begin,end}, % -> lift 3
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend,pinguloadlibrary,pinguloadlibraries},
 	moretexcs=[3]{begin,end},
 	moreemph=[3]{!hide,.style},
@@ -157,7 +157,7 @@
 {\endminipage\smallskip\par}
 
 \def\singleshortcut#1#2#3#4{\def\cursub{#2?\hyperref[pk:#1#2]{\protect\lpingu{#2}}!}\keyexplain[#1]{#2 #3}{\csname pinguopt#4\endcsname}{\csname pingudefa#4\endcsname}%
-	\textcolor{gray}{\footnotesize This is a shortcut for: \texttt{\keyref[#1]{#2} = {\optstyle#3}}. The \enquote{\texttt{\textit{\csname pinguopt#4\endcsname}}} argument is passed to \keyref[#1]{#4}.}
+	\textcolor{gray}{\footnotesize This is a shortcut for: \texttt{\keyref[#1]{#2}\relsize{-1}{\ =\ {\optstyle#3}}}. The \enquote{\texttt{\textit{\csname pinguopt#4\endcsname}}} argument is passed to \keyref[#1]{#4}.}
 \endkeyexplain}
 \newcommand*\shortcuts[4][/pingu/]{\begingroup
 \protected@edef\@tmp{#3}%
@@ -981,7 +981,6 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \end{tcblisting}
 \endkeyexplain
 
-\iffalse
 \keyexplain{:back}{}{}
 	Mirror the penguin, this swaps left and right, the rotation and more.
 	Yet, at least at the time of writing, this does not swap the drawing order in each layer, but just the layers:
@@ -3665,6 +3664,5 @@ The \say{normal} eyes could be defined as follows:
 	\pingu@block{\pingu@color@eye@right} ([yshift=.75mm,xshift=-\pingu@eye@shift]\pingu@name-eye-back-right) coordinate(\pingu@name-eye-right) ellipse [x radius=.1225cm, y radius=.1275cm];
 }
 \end{lstlisting}
-\fi
 \printindex
 \end{document}
