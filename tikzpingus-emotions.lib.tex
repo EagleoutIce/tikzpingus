@@ -1,28 +1,14 @@
 % Florian Sihler, 2022
 % Licensed under GNU Lesser General Public License version 3
 % https://opensource.org/licenses/lgpl-3.0.html
-\@pingu@eyes@s{cry}{%
-\pingu@layer{foreground}[]
-    \pingu@block{pingu@black} ([yshift=.75mm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left) coordinate (\pingu@name-eye-left) ellipse [x radius=.1535cm, y radius=.1575cm];
-    \pingu@block{\pingu@color@eye@second@left} ([yshift=.75mm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left) coordinate (\pingu@name-eye-left) ellipse [x radius=.1325cm, y radius=.1375cm];
-    \fill[\pingu@color@eye@left,/pingu/@glow] (\pingu@name-eye-left) circle [radius=1.325mm];
-    \pingu@block[fill opacity=.75]{\pingu@color@eye@left} (\pingu@name-eye-left)++(0,.36) to[bend right=58] ++(.36,-.36) to[bend right=58] ++(-.36,-.36) to[bend right=58] ++(-.36,.36) to[bend right=58] cycle;
-    \fill[/pingu/@glow,fill=\pingu@color@eye@left!20!pingu@yellow!15!pingu@white] (\pingu@name-eye-left)++(0,.10) to[bend right=60] ++(.10,-.10) to[bend right=60] ++(-.10,-.10) to[bend right=60] ++(-.10,.10) to[bend right=60] cycle;
-    \fill[\pingu@color@eye@left!20!pingu@yellow!7!pingu@white] (\pingu@name-eye-left) circle [radius=.5pt]; %
-    \pingu@block{pingu@white} (\pingu@name-eye-left) circle [radius=.15pt];
-\endpingu@layer
-}{%
-\pingu@layer{foreground}[]
-    \pingu@block{pingu@black} ([yshift=.75mm,xshift=-\pingu@eye@shift]\pingu@name-eye-back-right) coordinate (\pingu@name-eye-right) ellipse [x radius=.1535cm, y radius=.1575cm];
-    \pingu@block{\pingu@color@eye@second@right} ([yshift=.75mm,xshift=-\pingu@eye@shift]\pingu@name-eye-back-right) coordinate (\pingu@name-eye-right) ellipse [x radius=.1325cm, y radius=.1375cm];
-    \fill[\pingu@color@eye@right,/pingu/@glow] (\pingu@name-eye-right) circle [radius=1.325mm];
-    \pingu@block[fill opacity=.75]{\pingu@color@eye@right} (\pingu@name-eye-right)++(0,.36) to[bend right=58] ++(.36,-.36) to[bend right=58] ++(-.36,-.36) to[bend right=58] ++(-.36,.36) to[bend right=58] cycle;
-    \fill[/pingu/@glow,fill=\pingu@color@eye@right!20!pingu@yellow!15!pingu@white] (\pingu@name-eye-right)++(0,.10) to[bend right=60] ++(.10,-.10) to[bend right=60] ++(-.10,-.10) to[bend right=60] ++(-.10,.10) to[bend right=60] cycle;
-    \fill[\pingu@color@eye@right!20!pingu@yellow!7!pingu@white] (\pingu@name-eye-right) circle [radius=.5pt]; %
-    \pingu@block{pingu@white} (\pingu@name-eye-right) circle [radius=.15pt];
-\endpingu@layer
-}[pingu@purple]
 
+\@pingu@eyes@s{sad}{%
+    \path (\pingu@name-eye-back-left)++(\pingu@eye@shift,.75mm) coordinate (\pingu@name-eye-left);
+    \pingu@block{\pingu@color@eye@left} (\pingu@name-eye-left)++(15:.1225cm and .1275cm) arc (15:-245:.1225cm and .1275cm) to[out=-40,in=180] cycle;
+}{%
+    \path (\pingu@name-eye-back-right)++(-\pingu@eye@shift,.75mm) coordinate (\pingu@name-eye-right);
+    \pingu@block{\pingu@color@eye@right} (\pingu@name-eye-right)++(165:.1225cm and .1275cm) arc (165:425:.1225cm and .1275cm) to[out=220,in=0] cycle;
+}
 
 \@pingu@eyes@s{angry}{%
     \path (\pingu@name-eye-back-left)++(\pingu@eye@shift,.75mm) coordinate (\pingu@name-eye-left);
