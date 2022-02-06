@@ -517,16 +517,6 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     \pingu@block{\pingu@color@eye@second@right} ([yshift=.75mm,xshift=-\pingu@eye@shift]\pingu@name-eye-back-right) coordinate(\pingu@name-eye-right) ellipse [x radius=.1325cm, y radius=.1375cm];
 }
 
-\@pingu@eyes@s{angry}{%
-    \path (\pingu@name-eye-back-left)++(\pingu@eye@shift,.75mm) coordinate (\pingu@name-eye-left);
-    \pingu@block{\pingu@color@eye@left} (\pingu@name-eye-left) ellipse [x radius=.1225cm, y radius=.1275cm];
-    \pingu@block{\pingu@color@body@front} (\pingu@name-eye-left) ++(120:.1225cm and .1275cm) ellipse [x radius=1.5mm,y radius=.5mm];
-}{%
-    \path (\pingu@name-eye-back-right)++(-\pingu@eye@shift,.75mm) coordinate (\pingu@name-eye-right);
-    \pingu@block{\pingu@color@eye@right} (\pingu@name-eye-right) ellipse [x radius=.1225cm, y radius=.1275cm];
-    \pingu@block{\pingu@color@body@front} (\pingu@name-eye-right) ++(60:.1225cm and .1275cm) ellipse [x radius=1.5mm,y radius=.5mm];
-}
-
 % \let\@pingu@eyes@s\relax
 % #endregion
 
@@ -746,12 +736,6 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     -- cycle;
 }
 
-\@pingu@bill@s{angry}{%
-\pingu@block{\pingu@color@bill} (\pingu@name-bill)++(-.19cm,0)
-    to[out=-90,in=170] ++(1.9mm,-2.25mm) coordinate (\pingu@name-bill-bottom)
-    to[out=10,in=-90] ++(1.9mm,2.25mm)
-    to[bend right=.25cm] cycle;
-}
 % #endregion
 % #endregion
 
@@ -1116,6 +1100,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \pingu@dummy@lib{signs}{sign post left, sign post right}
 \pingu@dummy@lib{devil}{devil horns,devil fork}
 \pingu@dummy@lib{safe}{mask}
+\pingu@dummy@lib{emotions}{}% eyes and bill: TODO
 
 \ifpengu@setup@bare@\else
 \pinguloadlibraries{\pingu@@defaultlibs}
