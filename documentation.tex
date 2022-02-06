@@ -173,7 +173,7 @@
 \def\explaincolor{gray!10!white}\def\keyexplainindent{0em}%
 \def\cursub{#2?\hyperref[pk:#1#2]{\protect\lpingu{#2}}!}%
 \keyexplain[#1]{#3}{#4}{#5}%
-	{\@declaredcolor{gray}\footnotesize This command is only in effect if \keyref[#1]{#2} is active.}\newline
+	{\@declaredcolor{gray}\footnotesize This command is only in effect if \keyref[#1]{#2} is active.}\par
 }{\endkeyexplain\endgroup}
 
 \newcommand\keyalias[3][/pingu/]{\begingroup
@@ -2986,7 +2986,6 @@ Change the bending of the banner:
 \subsubsection{The sign post}
 
 \keyexplain{sign post left}{text}{}
-	Give the penguin a small sign post:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[sign post left=ABC]
@@ -3020,7 +3019,6 @@ Change the bending of the banner:
 \subkeyalias{signpost left fontcolor}{sign post left font color}{sign post left}
 
 \keyexplain{sign post right}{text}{}
-	Give the penguin a small sign post:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[sign post right=ABC]
@@ -3056,7 +3054,6 @@ Change the bending of the banner:
 \subsubsection{The lightsaber}
 
 \keyexplain{lightsaber left}{color}{pingu@blue}
-	Give the penguin a lightsaber:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber left=green]
@@ -3137,7 +3134,6 @@ Toggle the visibility of the second lightsaber:
 \end{subkeyexplain}}
 
 \begin{subkeyexplain}{lightsaber left}{lightsaber left length}{length}{\pingu@x@lightsaber@length@left}
-	Change the length of the penguins lightsaber:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber left, lightsaber left length=6mm]
@@ -3215,7 +3211,6 @@ Disables the lightsaber so only the handle is visible:
 
 
 \keyexplain{lightsaber right}{color}{pingu@blue}
-	Give the penguin a lightsaber:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber right=green]
@@ -3296,7 +3291,6 @@ Toggle the visibility of the second lightsaber:
 \end{subkeyexplain}}
 
 \begin{subkeyexplain}{lightsaber right}{lightsaber right length}{length}{\pingu@x@lightsaber@length@right}
-	Change the length of the penguins lightsaber:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber right,
@@ -3381,7 +3375,6 @@ Disables the lightsaber so only the handle is visible:
 The flag is special in that it is meant to be customized by commands so that the visible insignia is to the users liking.
 
 \keyexplain{flag left}{color}{pingu@purple}
-	Give the penguin a small flag:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[flag left=green]
@@ -3445,7 +3438,6 @@ Note that \lpingu{/pingu/@flag} expects two arguments: the color of the flag seg
 
 
 \keyexplain{flag right}{color}{pingu@purple}
-	Give the penguin a small flag:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[flag right=green]
@@ -3510,7 +3502,6 @@ Note that \lpingu{/pingu/@flag} expects two arguments: the color of the flag seg
 \subsubsection{The staff}
 
 \keyexplain{staff left}{color}{pingu@bronze}
-	Give the penguin a staff:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[staff left=green, left item angle=70]
@@ -3528,7 +3519,6 @@ Change the staff length:
 \end{subkeyexplain}
 
 \keyexplain{staff right}{color}{pingu@bronze}
-	Give the penguin a staff:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[staff right=green, right item angle=70]
@@ -3555,7 +3545,6 @@ Currently there is only one cloth type that may be heavily edited in the course 
 Originally developed just as a cape, the cloak is no a whole extension.
 
 \keyexplain{cloak}{color}{pingu@bronze}
-	Display a cloak in a given color:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[cloak=green]
@@ -3574,7 +3563,6 @@ Originally developed just as a cape, the cloak is no a whole extension.
 
 {\def\pingu@color@cloak{<cloak-color>}
 \begin{subkeyexplain}{cloak}{cloak cap}{color}{\pingu@color@cloak@cap}
-	Change the cloaks cap color:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[cloak, cloak cap=green]
@@ -3584,7 +3572,6 @@ Originally developed just as a cape, the cloak is no a whole extension.
 
 {\def\pingu@color@cloak{<cloak-color>}
 \begin{subkeyexplain}{cloak}{cloak wings color}{color}{\pingu@color@cloak@wings}
-	Change the cloaks wing colors:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[cloak, cloak wings color=green]
@@ -3613,7 +3600,6 @@ Originally developed just as a cape, the cloak is no a whole extension.
 \end{subkeyexplain}}
 
 \begin{subkeyexplain}{cloak}{cloak padding}{length}{\pingu@x@cloak@padding}
-	Change the cloaks padding parameter:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[cloak, cloak padding=13mm]
@@ -3633,7 +3619,6 @@ Originally developed just as a cape, the cloak is no a whole extension.
 \subsubsection{The shirt}
 
 \keyexplain{shirt}{color}{pingu@bronze}
-	Display a shirt in a given color:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[shirt=green]
