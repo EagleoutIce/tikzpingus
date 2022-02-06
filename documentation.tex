@@ -70,6 +70,7 @@
 
 \def\t@lst@addToLiterate#1{\protected@edef\lst@literate{\unexpanded\expandafter{\lst@literate}\unexpanded{#1}}}
 \lst@Key{add to literate}{}{\t@lst@addToLiterate{#1}}
+\let\lst@ifxliterate\iftrue % make literate a star literate
 
 \lstdefinelanguage{pingulang}{
 	language={[LaTeX]TeX},
@@ -130,7 +131,7 @@
 	bottom=0pt,top=0pt,boxsep=2.25pt,
 	before lower app={}
 }
-\lstMakeShortInline[style=lstpingu,language=pingulang,basicstyle=\relsize{-1}\ttfamily\color{black!90!white}]{|}
+\lstMakeShortInline[style=lstpingu,language=pingulang,basicstyle=\relsize{-1}\ttfamily\color{black!90!white},moredelim={[s][\itshape]{<}{>}}]{|}
 
 \def\explaincolor{pingu@purple!8!white}
 \def\cursub{}
@@ -980,6 +981,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \end{tcblisting}
 \endkeyexplain
 
+\iffalse
 \keyexplain{:back}{}{}
 	Mirror the penguin, this swaps left and right, the rotation and more.
 	Yet, at least at the time of writing, this does not swap the drawing order in each layer, but just the layers:
@@ -3663,5 +3665,6 @@ The \say{normal} eyes could be defined as follows:
 	\pingu@block{\pingu@color@eye@right} ([yshift=.75mm,xshift=-\pingu@eye@shift]\pingu@name-eye-back-right) coordinate(\pingu@name-eye-right) ellipse [x radius=.1225cm, y radius=.1275cm];
 }
 \end{lstlisting}
+\fi
 \printindex
 \end{document}
