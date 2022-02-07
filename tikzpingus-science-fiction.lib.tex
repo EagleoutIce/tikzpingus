@@ -137,22 +137,23 @@
 \newif\if@pingu@x@lightstaff@glow@right
 \pingu@create@wing@extra{lightstaff}{%
     light-staff \@lr/.code         = {\pingu@set@extra{lightstaff\@lr}{true}\pingu@color{lightstaff\@lr}{##1}},
-    light-staff \@lr/.default      = pingu@bronze,
+    light-staff \@lr/.default      = pingu@green,
     light-staff \@lr\space length/.code =\expandafter\def\csname pingu@lightstaff@\@lr @length\endcsname{##1},
     light-staff \@lr\space glow length/.code =\expandafter\def\csname pingu@lightstaff@\@lr @glow@length\endcsname{##1},
-    light-staff \@lr\space head/.code = \pingu@color{lightstaff@\@lr @head@color}{##1},%
+    light-staff \@lr\space head/.code = \pingu@color{lightstaff\@lr}{##1},%
+    light-staff \@lr\space staff/.code = \pingu@color{lightstaff@\@lr @staff}{##1},%
     light-staff \@lr\space core/.code = \pingu@color{lightstaff@\@lr @head@core}{##1},%
     light-staff \@lr\space core width/.code = \expandafter\def\csname pingu@lightstaff@\@lr @core@width\endcsname{##1},%
     light-staff \@lr\space glow/.is if    = @pingu@x@lightstaff@glow@\@lr,%
     light-staff \@lr\space outer glow factor/.code  = {\@namedef{pingu@x@lightstaff@ogf@\@lr}{##1}},%
-}{light-staff \@lr\space length=28mm,light-staff \@lr\space head=pingu@green,light-staff \@lr\space core=pingu@white,light-staff \@lr\space glow=\ifpengu@setup@glows@ true\else false\fi,light-staff \@lr\space outer glow factor=.082,light-staff \@lr\space glow length=13mm,light-staff \@lr\space core width=.44mm}
+}{light-staff \@lr\space length=28mm,light-staff \@lr\space staff=pingu@bronze,light-staff \@lr\space head=pingu@green,light-staff \@lr\space core=pingu@white,light-staff \@lr\space glow=\ifpengu@setup@glows@ true\else false\fi,light-staff \@lr\space outer glow factor=.082,light-staff \@lr\space glow length=13mm,light-staff \@lr\space core width=.44mm}
 \def\pingu@draw@wi@lightstaff#1{%
     \pingu@setup@wing{lightstaff}{#1}%
 \scope[rotate around={\@angle:(\pingu@name-wing-#1)}]
-    \pingu@block{\csname pingu@color@lightstaff#1\endcsname}(\pingu@name-wing-#1)++(\@sidesign*-.2mm,-11mm) -- ++(0,\csname pingu@lightstaff@#1@length\endcsname) arc(180:0:\@sidesign*.4mm and .3mm) coordinate[pos=.5] (\pingu@name-lightstaff-#1-top) -- ++(0,-\csname pingu@lightstaff@#1@length\endcsname) arc(360:180:\@sidesign*.4mm and .3mm) -- cycle;
-    \pingu@draw@wi@lightstaff@pre{#1}{[yshift=-1.1mm]\pingu@name-lightstaff-#1-top}{\csname pingu@color@lightstaff@#1@head@color\endcsname}
+    \pingu@block{\csname pingu@color@lightstaff@#1@staff\endcsname}(\pingu@name-wing-#1)++(\@sidesign*-.2mm,-11mm) -- ++(0,\csname pingu@lightstaff@#1@length\endcsname) arc(180:0:\@sidesign*.4mm and .3mm) coordinate[pos=.5] (\pingu@name-lightstaff-#1-top) -- ++(0,-\csname pingu@lightstaff@#1@length\endcsname) arc(360:180:\@sidesign*.4mm and .3mm) -- cycle;
+    \pingu@draw@wi@lightstaff@pre{#1}{[yshift=-1.1mm]\pingu@name-lightstaff-#1-top}{\@col}
     \pingu@block{\csname pingu@color@lightstaff@#1@head@core\endcsname} ([yshift=-1.1mm]\pingu@name-lightstaff-#1-top) -- ++(-\csname pingu@lightstaff@#1@core@width\endcsname,1mm) -- ++(0,2mm) -- ++(\csname pingu@lightstaff@#1@core@width\endcsname,1mm) -- ++(\csname pingu@lightstaff@#1@core@width\endcsname,-1mm) -- ++(0,-2mm) -- cycle;
-    \pingu@draw@wi@lightstaff@post{#1}{[yshift=-1.1mm]\pingu@name-lightstaff-#1-top}{\csname pingu@color@lightstaff@#1@head@color\endcsname}
+    \pingu@draw@wi@lightstaff@post{#1}{[yshift=-1.1mm]\pingu@name-lightstaff-#1-top}{\@col}
 \endscope
 }
 
