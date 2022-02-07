@@ -5,20 +5,21 @@
     mask/.code    	       = {\pingu@set@extra{mask}{true}\pingu@color{mask}{#1}},
     mask/.default          = pingu@white!65!gray,%
     mask band/.code        = \pingu@color{mask@band}{#1},%
+    mask line width/.code  = \def\pingu@x@mask@line@width{#1},%
     mask band inner/.code  = \pingu@color{mask@band@inner}{#1},%
     mask band outer/.code  = \pingu@color{mask@band@outer}{#1}%
-}{mask band=\pingu@color@body@main, mask band inner=\pingu@color@mask@band!75!\pingu@color@mask, mask band outer=\pingu@color@mask@band!95!\pingu@color@mask}
+}{mask band=\pingu@color@body@main, mask band inner=\pingu@color@mask@band!75!\pingu@color@mask, mask band outer=\pingu@color@mask@band!95!\pingu@color@mask,mask line width=.565pt}
 
 \def\pingu@draw@ea@mask{%
 \pingu@block{\pingu@color@mask} [rounded corners=.8mm] ([xshift=-5mm,yshift=.75mm]\pingu@name-bill) coordinate (@ul) [rounded corners=.1mm]-- ++(3.5mm,.55mm) to[bend left=3] ++(3mm,0) -- ++(3.5mm,-.55mm) coordinate (@ur) -- ++(0,-4.25mm)[rounded corners=.8mm] coordinate (@lr)  -- ++(-3.5mm,-.45mm) to[bend left=3] ++(-3mm,0) [rounded corners=.1mm] -- ++(-3.5mm,.45mm) coordinate (@ll) -- cycle;
 \scope
 \clip[use path=\pingu@upperpingu];
-\pingu@draw[line width=.7pt]{\pingu@color@mask@band} ([yshift=-.1mm,xshift=.2mm]@ul) to[bend right=1] ([yshift=-1.1mm]\pingu@name-wings-side-right);
-\pingu@draw[line width=.7pt]{\pingu@color@mask@band} ([yshift=-.1mm,xshift=-.2mm]@ur) to[bend left=1]  ([yshift=-1.1mm]\pingu@name-wings-side-left);
+\pingu@draw[line width=\pingu@x@mask@line@width]{\pingu@color@mask@band} ([yshift=-.1mm,xshift=.2mm]@ul) to[bend right=1] ([yshift=-1.1mm]\pingu@name-wings-side-right);
+\pingu@draw[line width=\pingu@x@mask@line@width]{\pingu@color@mask@band} ([yshift=-.1mm,xshift=-.2mm]@ur) to[bend left=1]  ([yshift=-1.1mm]\pingu@name-wings-side-left);
 \endscope\scope
 \clip[use path=\pingu@lowerpingu];
-\pingu@draw[line width=.7pt]{\pingu@color@mask@band} ([yshift=.1mm,xshift=.2mm]@ll) to[bend left=1]  ([yshift=.15mm]\pingu@name-wing-right-start);
-\pingu@draw[line width=.7pt]{\pingu@color@mask@band} ([yshift=.1mm,xshift=-.2mm]@lr) to[bend right=1] ([yshift=.15mm]\pingu@name-wing-left-start);
+\pingu@draw[line width=\pingu@x@mask@line@width]{\pingu@color@mask@band} ([yshift=.1mm,xshift=.2mm]@ll) to[bend left=1]  ([yshift=.15mm]\pingu@name-wing-right-start);
+\pingu@draw[line width=\pingu@x@mask@line@width]{\pingu@color@mask@band} ([yshift=.1mm,xshift=-.2mm]@lr) to[bend right=1] ([yshift=.15mm]\pingu@name-wing-left-start);
 \endscope
 % TODO: fix this sloppy overwrite
 \pingu@block{\pingu@color@mask} [rounded corners=.8mm] ([xshift=-5mm,yshift=.75mm]\pingu@name-bill) coordinate (@ul) [rounded corners=.1mm]-- ++(3.5mm,.55mm) to[bend left=3] ++(3mm,0) -- ++(3.5mm,-.55mm) coordinate (@ur) -- ++(0,-4.25mm)[rounded corners=.8mm] coordinate (@lr)  -- ++(-3.5mm,-.45mm) to[bend left=3] ++(-3mm,0) [rounded corners=.1mm] -- ++(-3.5mm,.45mm) coordinate (@ll) -- cycle;
