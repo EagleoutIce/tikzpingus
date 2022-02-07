@@ -82,7 +82,7 @@ scale=\pingu@x@cakehat@scale]
   pumpkin-hat outline width/.code = \def\pingu@x@pumpkinhat@outline@w{#1},
   % TODO: jack o lantern?
   pumpkin-hat position/.code args  = {#1:(#2,#3)#4}{\def\pingu@x@pumpkinhat@angle{#1}\def\pingu@x@pumpkinhat@xshift{#2}\def\pingu@x@pumpkinhat@yshift{#3}\def\pingu@x@pumpkinhat@scale{#4}}
-}{pumpkin-hat position={-9:(1.65mm,.25mm)1.05},pumpkin-hat stalk=pingu@green!95!\pingu@color@pumpkinhat!45!pingu@black,pumpkin-hat stalk top=\pingu@color@pumpkinhat@stalk!95!pingu@black,pumpkin-hat stripe a=pingu@black,pumpkin-hat stripe b=\pingu@color@pumpkinhat@stripe@a,pumpkin-hat stripe c=\pingu@color@pumpkinhat@stripe@a,pumpkin-hat outline=pingu@black,pumpkin-hat outline width=1pt}
+}{pumpkin-hat position={-9:(1.65mm,.25mm)1.05},pumpkin-hat stalk=pingu@green!95!\pingu@color@pumpkinhat!45!pingu@black,pumpkin-hat stalk top=\pingu@color@pumpkinhat@stalk!95!pingu@black,pumpkin-hat stripe a=pingu@black,pumpkin-hat stripe b=\pingu@color@pumpkinhat@stripe@a,pumpkin-hat stripe c=\pingu@color@pumpkinhat@stripe@b,pumpkin-hat outline=pingu@black,pumpkin-hat outline width=1pt}
 
 \def\pingu@pumpkinhat@outerpath{(0,.125cm)++(-60:6.75mm and 5.5mm) arc(-60:86: 6.75mm and 5.5mm) to[bend left=3] ++(-1.75mm,0) arc(95:242:6.75mm and 5.5mm) to[bend left=5] cycle;}
 \def\pingu@draw@ea@pumpkinhat{%
@@ -97,8 +97,8 @@ scale=\pingu@x@pumpkinhat@scale]
 \scope
 \clip (0,.125cm)++(-60:6.75mm and 5.5mm) coordinate (@pkll) arc(-60:86: 6.75mm and 5.5mm) coordinate (@pkl) to[bend left=3] ++(-1.75mm,0) coordinate (@pkr) arc(95:242:6.75mm and 5.5mm) coordinate (@pklr) to[bend left=5] cycle;
   \pingu@draw[line cap=round,opacity=.3]{\pingu@color@pumpkinhat@stripe@a} (@pklr) to[bend left=55] (@pkr);
-  \pingu@draw[line cap=round,opacity=.3]{\pingu@color@pumpkinhat@stripe@b} (@pkll) to[bend right=55] (@pkl);
-  \pingu@draw[line cap=round,opacity=.3]{\pingu@color@pumpkinhat@stripe@c} (@pklc) to[bend right=5] (@pkuc);
+  \pingu@draw[line cap=round,opacity=.3]{\pingu@color@pumpkinhat@stripe@c} (@pkll) to[bend right=55] (@pkl);
+  \pingu@draw[line cap=round,opacity=.3]{\pingu@color@pumpkinhat@stripe@b} (@pklc) to[bend right=5] (@pkuc);
 \endscope
 \pingu@draw[line join=round,line width=\pingu@x@pumpkinhat@outline@w]{\pingu@color@pumpkinhat@outline} \pingu@pumpkinhat@outerpath;
 \endscope

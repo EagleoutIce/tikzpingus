@@ -246,9 +246,12 @@ At the moment, there are the following libraries:
 		\item[\lib{\l}:] \foreach \s in \xs {
 			\expandafter\dkeyref\expandafter{\s}
 		}
-		\fi
+		\fi\par
 	}
 \end{description}
+\begin{center}
+	\textit{options which are not marked in blue and which are no hyperlinks are currently undocumented. Currently, only added extras are shown. Packages like \lib{emotions} do add eyes and such. They will be listed soon.}
+\end{center}
 
 \section{Usage}
 
@@ -2408,7 +2411,7 @@ Change the color of the first stripe. By default the other stripes share this on
 Change the color of the second stripe. By default the third stripe share this ones color:
 \begin{tcblisting}{}
 \begin{tikzpicture}
-	\pingu[pumpkin-hat,pumpkin-hat stripe c=green]
+	\pingu[pumpkin-hat,pumpkin-hat stripe b=green]
 \end{tikzpicture}
 \end{tcblisting}
 \end{subkeyexplain}
@@ -2525,7 +2528,6 @@ Change the color of the left headphone (automatically sets the color of \keyref{
 
 {\def\pingu@color@headphone{<headphone>}
 \begin{subkeyexplain}{headphone}{headphone right}{color}{\pingu@color@headphone@right}
-Change the color of the right headphone:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[headphone, headphone right=green]
@@ -2534,7 +2536,6 @@ Change the color of the right headphone:
 \end{subkeyexplain}}
 
 \begin{subkeyexplain}{headphone}{headphone left outer}{color}{pingu@black}
-Change the color of the left outer headphone padding:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[headphone, headphone left outer=green]
@@ -2543,7 +2544,6 @@ Change the color of the left outer headphone padding:
 \end{subkeyexplain}
 
 \begin{subkeyexplain}{headphone}{headphone right outer}{color}{pingu@black}
-Change the color of the right outer headphone padding:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[headphone, headphone right outer=green]
@@ -2563,7 +2563,6 @@ Set \keyref{headphone left outer} and \keyref{headphone right outer} with the sa
 \subkeyalias{headphones outer}{headphone outer}{headphone}
 
 \begin{subkeyexplain}{headphone}{headphone left inner}{color}{pingu@black}
-Change the color of the left inner headphone padding:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[headphone, headphone left inner=green]
@@ -2572,7 +2571,6 @@ Change the color of the left inner headphone padding:
 \end{subkeyexplain}
 
 \begin{subkeyexplain}{headphone}{headphone right inner}{color}{pingu@black}
-Change the color of the right inner headphone padding:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[headphone, headphone right inner=green]
@@ -2614,7 +2612,6 @@ Change the wool color:
 
 {
 \begin{subkeyexplain}{santa hat}{santa hat bobble}{color}{<santa hat second>}
-Change the wool color of the bobble:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[santa hat,santa hat bobble=green]
@@ -2625,7 +2622,6 @@ Change the wool color of the bobble:
 \subsubsection{The santa beard}
 
 \keyexplain{santa beard}{color}{pingu@white!96!pingu@red!98!pingu@black!92!gray}
-Show the merry christmas beard:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[santa beard=brown!20!white]
@@ -2635,7 +2631,6 @@ Show the merry christmas beard:
 
 {\def\pingu@color@body@main{<body main>}
 \begin{subkeyexplain}{santa beard}{santa beard second}{color}{\pingu@color@santabeard@string}
-Change the string color:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[santa beard,santa beard string=green]
@@ -2655,7 +2650,6 @@ Make it cute:
 \endkeyexplain
 
 \begin{subkeyexplain}{blush}{blush second}{color}{<blush>}
-Change the left blush color:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[blush, blush second=green]
@@ -2664,7 +2658,6 @@ Change the left blush color:
 \end{subkeyexplain}
 
 \begin{subkeyexplain}{blush}{blush opacity}{factor}{\pingu@x@blush@opacity}
-Change the blush opacity:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[blush, blush opacity=.86]
@@ -2684,7 +2677,6 @@ Give the penguin a banner to hold (it adapts to the wing positions):
 \endkeyexplain
 
 \begin{subkeyexplain}{banner}{banner band}{color}{\pingu@color@banner@band}
-Changes the banners main color:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[banner, banner band=green]
@@ -2693,7 +2685,6 @@ Changes the banners main color:
 \end{subkeyexplain}
 
 \begin{subkeyexplain}{banner}{banner text color}{color}{\pingu@color@banner@text@color}
-Changes the banners text color:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[wings wave, banner, banner text color=green]
@@ -2702,7 +2693,6 @@ Changes the banners text color:
 \end{subkeyexplain}
 
 \begin{subkeyexplain}{banner}{banner stick left color}{color}{\pingu@color@banner@stick@left}
-Changes the banners left stick color:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[banner, banner stick left color=green]
@@ -2711,7 +2701,6 @@ Changes the banners left stick color:
 \end{subkeyexplain}
 
 \begin{subkeyexplain}{banner}{banner stick right color}{color}{\pingu@color@banner@stick@right}
-Changes the banners right stick color:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[banner, banner stick right color=green]
