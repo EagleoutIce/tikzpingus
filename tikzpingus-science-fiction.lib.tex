@@ -142,15 +142,16 @@
     light-staff \@lr\space glow length/.code =\expandafter\def\csname pingu@lightstaff@\@lr @glow@length\endcsname{##1},
     light-staff \@lr\space head/.code = \pingu@color{lightstaff@\@lr @head@color}{##1},%
     light-staff \@lr\space core/.code = \pingu@color{lightstaff@\@lr @head@core}{##1},%
+    light-staff \@lr\space core width/.code = \expandafter\def\csname pingu@lightstaff@\@lr @core@width\endcsname{##1},%
     light-staff \@lr\space glow/.is if    = @pingu@x@lightstaff@glow@\@lr,%
     light-staff \@lr\space outer glow factor/.code  = {\@namedef{pingu@x@lightstaff@ogf@\@lr}{##1}},%
-}{light-staff \@lr\space length=28mm,light-staff \@lr\space head=pingu@green,light-staff \@lr\space core=pingu@white,light-staff \@lr\space glow=\ifpengu@setup@glows@ true\else false\fi,light-staff \@lr\space outer glow factor=.082,light-staff \@lr\space glow length=13mm}
+}{light-staff \@lr\space length=28mm,light-staff \@lr\space head=pingu@green,light-staff \@lr\space core=pingu@white,light-staff \@lr\space glow=\ifpengu@setup@glows@ true\else false\fi,light-staff \@lr\space outer glow factor=.082,light-staff \@lr\space glow length=13mm,light-staff \@lr\space core width=.44mm}
 \def\pingu@draw@wi@lightstaff#1{%
     \pingu@setup@wing{lightstaff}{#1}%
 \scope[rotate around={\@angle:(\pingu@name-wing-#1)}]
     \pingu@block{\csname pingu@color@lightstaff#1\endcsname}(\pingu@name-wing-#1)++(\@sidesign*-.2mm,-11mm) -- ++(0,\csname pingu@lightstaff@#1@length\endcsname) arc(180:0:\@sidesign*.4mm and .3mm) coordinate[pos=.5] (\pingu@name-lightstaff-#1-top) -- ++(0,-\csname pingu@lightstaff@#1@length\endcsname) arc(360:180:\@sidesign*.4mm and .3mm) -- cycle;
     \pingu@draw@wi@lightstaff@pre{#1}{[yshift=-1.1mm]\pingu@name-lightstaff-#1-top}{\csname pingu@color@lightstaff@#1@head@color\endcsname}
-    \pingu@block{\csname pingu@color@lightstaff@#1@head@core\endcsname} ([yshift=-1.1mm]\pingu@name-lightstaff-#1-top) -- ++(-.40mm,1mm) -- ++(0,2mm) -- ++(.40mm,1mm) -- ++(.40mm,-1mm) -- ++(0,-2mm) -- cycle;
+    \pingu@block{\csname pingu@color@lightstaff@#1@head@core\endcsname} ([yshift=-1.1mm]\pingu@name-lightstaff-#1-top) -- ++(-\csname pingu@lightstaff@#1@core@width\endcsname,1mm) -- ++(0,2mm) -- ++(\csname pingu@lightstaff@#1@core@width\endcsname,1mm) -- ++(\csname pingu@lightstaff@#1@core@width\endcsname,-1mm) -- ++(0,-2mm) -- cycle;
     \pingu@draw@wi@lightstaff@post{#1}{[yshift=-1.1mm]\pingu@name-lightstaff-#1-top}{\csname pingu@color@lightstaff@#1@head@color\endcsname}
 \endscope
 }
@@ -159,7 +160,7 @@
 \def\pingu@draw@wi@lightstaff@pre#1#2#3{
 \csname if@pingu@x@lightstaff@glow@#1\endcsname
 \@for\i:={0,1,2,4,6,7,8,9,10,14}\do{
-    \pingu@block[fill opacity=\ifnum\i>14 .225\else.1\fi*\i/20]{#3} (#2)++(0,-\i mm/15) -- ++(-.40mm-\i mm/30,1mm+\i mm/30) -- ++(0,2mm+\i mm/15) -- ++(.40mm+\i mm/30,1mm+\i mm/30) -- ++(.40mm+\i mm/30,-1mm-\i mm/30) -- ++(0,-2mm-\i mm/15) -- cycle;
+    \pingu@block[fill opacity=\ifnum\i>14 .225\else.1\fi*\i/20]{#3} (#2)++(0,-\i mm/15) -- ++(-\csname pingu@lightstaff@#1@core@width\endcsname-\i mm/30,1mm+\i mm/30) -- ++(0,2mm+\i mm/15) -- ++(\csname pingu@lightstaff@#1@core@width\endcsname+\i mm/30,1mm+\i mm/30) -- ++(\csname pingu@lightstaff@#1@core@width\endcsname+\i mm/30,-1mm-\i mm/30) -- ++(0,-2mm-\i mm/15) -- cycle;
     %  -- ++(.05mm,#4) arc(180:0:\pingu@x@saberglow@w@half-.05mm-\i*\i mm/440 and \ifnum\i>14 .85mm\else\pingu@one\fi-\i mm/30) -- ++(.05mm,-#4) arc (0:-180:\pingu@x@saberglow@w@half-\i*\i mm/440 and .35mm);
 }
 \else % draw solid
@@ -181,8 +182,8 @@
 \fi
 % fadings hat a rotation angle bug
 \@for\i:={1,2}\do{
-    \pingu@block[fill opacity=.125*\i/10]{#3} (#2)++(0,-\i mm/15+2mm) -- ++(-.40mm-\i mm/30,1mm+\i mm/30) -- ++(0,2mm+\i mm/15) -- ++(.40mm+\i mm/30,1mm+\i mm/30) -- ++(.40mm+\i mm/30,-1mm-\i mm/30) -- ++(0,-2mm-\i mm/15) -- cycle;
+    \pingu@block[fill opacity=.125*\i/10]{#3} (#2)++(0,-\i mm/15+2mm) -- ++(-\csname pingu@lightstaff@#1@core@width\endcsname-\i mm/30,1mm+\i mm/30) -- ++(0,2mm+\i mm/15) -- ++(\csname pingu@lightstaff@#1@core@width\endcsname+\i mm/30,1mm+\i mm/30) -- ++(\csname pingu@lightstaff@#1@core@width\endcsname+\i mm/30,-1mm-\i mm/30) -- ++(0,-2mm-\i mm/15) -- cycle;
 }
-\pingu@block{\csname pingu@color@lightstaff@#1@head@core\endcsname} (#2) -- ++(-.40mm,1mm) -- ++(0,2mm) -- ++(.40mm,1mm) -- ++(.40mm,-1mm) -- ++(0,-2mm) -- cycle;
+\pingu@block{\csname pingu@color@lightstaff@#1@head@core\endcsname} (#2) -- ++(-\csname pingu@lightstaff@#1@core@width\endcsname,1mm) -- ++(0,2mm) -- ++(\csname pingu@lightstaff@#1@core@width\endcsname,1mm) -- ++(\csname pingu@lightstaff@#1@core@width\endcsname,-1mm) -- ++(0,-2mm) -- cycle;
 \fi
 }
