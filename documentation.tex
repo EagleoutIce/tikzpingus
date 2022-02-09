@@ -76,7 +76,7 @@
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
 	alsoletter={.-!:0123456789},%disable number
-	moreemph=[4]{:line,:ghost,parts,:devil,:back,:hide},
+	% moreemph=[4]{:line,:ghost,parts,:devil,:back,:hide},
 	deletetexcs={begin,end}, % -> lift 3
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend,pinguloadlibrary,pinguloadlibraries},
 	moretexcs=[3]{begin,end},
@@ -3369,25 +3369,25 @@ Color similar to \keyref{light-staff left head}:
 \end{tcblisting}
 \endkeyexplain
 
-\keyexplain{light-staff left length}{length}{\pingu@lightstaff@left@length}
+\subkeyexplain{light-staff left}{light-staff left length}{length}{\pingu@lightstaff@left@length}
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[light-staff left,
 			light-staff left length=18mm]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endsubkeyexplain
 
-\keyexplain{light-staff left glow length}{length}{\pingu@lightstaff@left@glow@length}
+\subkeyexplain{light-staff left}{light-staff left glow length}{length}{\pingu@lightstaff@left@glow@length}
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[light-staff left,
 			light-staff left glow length=16mm]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endsubkeyexplain
 
-\keyexplain{light-staff left head}{color}{pingu@green}
+\subkeyexplain{light-staff left}{light-staff left head}{color}{pingu@green}
 Same as assigning the color to \keyref{light-staff left}:
 \begin{tcblisting}{}
 \begin{tikzpicture}
@@ -3395,36 +3395,36 @@ Same as assigning the color to \keyref{light-staff left}:
 			light-staff left head=pingu@purple]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endsubkeyexplain
 
-\keyexplain{light-staff left staff}{color}{\pingu@color@lightstaff@left@staff}
+\subkeyexplain{light-staff left}{light-staff left staff}{color}{\pingu@color@lightstaff@left@staff}
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[light-staff left,
 			light-staff left staff=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endsubkeyexplain
 
-\keyexplain{light-staff left core}{color}{\pingu@color@lightstaff@left@head@core}
+\subkeyexplain{light-staff left}{light-staff left core}{color}{\pingu@color@lightstaff@left@head@core}
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[light-staff left,
 			light-staff left core=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endsubkeyexplain
 
-\keyexplain{light-staff left core width}{length}{\pingu@lightstaff@left@core@width}
+\subkeyexplain{light-staff left}{light-staff left core width}{length}{\pingu@lightstaff@left@core@width}
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[light-staff left,
 			light-staff left core width=2mm]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endsubkeyexplain
 
-\keyexplain{light-staff left outer glow factor}{factor}{\pingu@x@lightstaff@ogf@left}
+\subkeyexplain{light-staff left}{light-staff left outer glow factor}{factor}{\pingu@x@lightstaff@ogf@left}
 Similar to \keyref{lightsaber left outer glow factor}:
 \begin{tcblisting}{}
 \begin{tikzpicture}
@@ -3432,15 +3432,81 @@ Similar to \keyref{lightsaber left outer glow factor}:
 			light-staff left outer glow factor=.5]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endsubkeyexplain
 
 \keyexplain{light-staff right}{color}{pingu@green}
+Color similar to \keyref{light-staff right head}:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[light-staff right=green]
 \end{tikzpicture}
 \end{tcblisting}
 \endkeyexplain
+
+\subkeyexplain{light-staff right}{light-staff right length}{length}{\pingu@lightstaff@right@length}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[light-staff right,
+			light-staff right length=18mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{light-staff right}{light-staff right glow length}{length}{\pingu@lightstaff@right@glow@length}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[light-staff right,
+			light-staff right glow length=16mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{light-staff right}{light-staff right head}{color}{pingu@green}
+Same as assigning the color to \keyref{light-staff right}:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[light-staff right,
+			light-staff right head=pingu@purple]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{light-staff right}{light-staff right staff}{color}{\pingu@color@lightstaff@right@staff}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[light-staff right,
+			light-staff right staff=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{light-staff right}{light-staff right core}{color}{\pingu@color@lightstaff@right@head@core}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[light-staff right,
+			light-staff right core=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{light-staff right}{light-staff right core width}{length}{\pingu@lightstaff@right@core@width}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[light-staff right,
+			light-staff right core width=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{light-staff right}{light-staff right outer glow factor}{factor}{\pingu@x@lightstaff@ogf@right}
+Similar to \keyref{lightsaber right outer glow factor}:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[light-staff right,
+			light-staff right outer glow factor=.5]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
 
 \subsubsection{The flag}
 
