@@ -3361,6 +3361,7 @@ Disables the lightsaber so only the handle is visible:
 \subsubsection{The lightstaff}
 
 \keyexplain{light-staff left}{color}{pingu@green}
+Color similar to \keyref{light-staff left head}:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[light-staff left=green]
@@ -3368,11 +3369,67 @@ Disables the lightsaber so only the handle is visible:
 \end{tcblisting}
 \endkeyexplain
 
-\keyexplain{light-staff left length}{color}{\pingu@lightstaff@left@length}
+\keyexplain{light-staff left length}{length}{\pingu@lightstaff@left@length}
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[light-staff left,
 			light-staff left length=18mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
+
+\keyexplain{light-staff left glow length}{length}{\pingu@lightstaff@left@glow@length}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[light-staff left,
+			light-staff left glow length=16mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
+
+\keyexplain{light-staff left head}{color}{pingu@green}
+Same as assigning the color to \keyref{light-staff left}:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[light-staff left,
+			light-staff left head=pingu@purple]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
+
+\keyexplain{light-staff left staff}{color}{\pingu@color@lightstaff@left@staff}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[light-staff left,
+			light-staff left staff=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
+
+\keyexplain{light-staff left core}{color}{\pingu@color@lightstaff@left@head@core}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[light-staff left,
+			light-staff left core=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
+
+\keyexplain{light-staff left core width}{length}{\pingu@lightstaff@left@core@width}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[light-staff left,
+			light-staff left core width=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
+
+\keyexplain{light-staff left outer glow factor}{factor}{\pingu@x@lightstaff@ogf@left}
+Similar to \keyref{lightsaber left outer glow factor}:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[light-staff left,
+			light-staff left outer glow factor=.5]
 \end{tikzpicture}
 \end{tcblisting}
 \endkeyexplain
