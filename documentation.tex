@@ -243,14 +243,17 @@ At the moment, there are the following libraries:
 	\itemsep1.5pt
 	\foreach \l/\xs in \pingu@defaultlibs {
 		\ifx\l\@empty\else
-		\item[\lib{\l}:] \foreach \s in \xs {
+		\item[\lib{\l}:] \null\foreach \s in \xs {
 			\expandafter\dkeyref\expandafter{\s}
-		}
-		\fi\par
+		}\par
+		\fi
 	}
 \end{description}
+
+All keys that do not appear in this list are always available.
+
 \begin{center}
-	\textit{options which are not marked in blue and which are no hyperlinks are currently undocumented. Currently, only added extras are shown. Packages like \lib{emotions} do add eyes and such. They will be listed soon.}
+	\textit{Options which are not marked in blue and which are no hyperlinks are currently undocumented. Currently, only added extras are shown. Packages like \lib{emotions} do add eyes and such. They will be listed soon.}
 \end{center}
 
 \section{Usage}
@@ -3510,8 +3513,51 @@ Similar to \keyref{lightsaber right outer glow factor}:
 \end{tcblisting}
 \endsubkeyexplain
 
-\subsubsection{The flag}
+\subsubsection{The mask}
+\keyexplain{mask}{color}{pingu@white!61!gray}
+Keep the penguin safe:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[mask=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
 
+\subkeyexplain{mask}{mask band}{color}{\pingu@color@mask@band}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[mask,mask band=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{mask}{mask line width}{length}{\pingu@x@mask@line@width}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[mask,mask line width=1.5pt]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+{\def\pingu@color@mask{<mask-color>}
+\subkeyexplain{mask}{mask band inner}{color}{\pingu@color@mask@band@inner}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[mask,mask band inner=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@mask{<mask-color>}
+\subkeyexplain{mask}{mask band outer}{color}{\pingu@color@mask@band@outer}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[mask,mask band outer=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+\subsubsection{The flag}
 The flag is special in that it is meant to be customized by commands so that the visible insignia is to the users liking.
 
 \keyexplain{flag left}{color}{pingu@purple}
