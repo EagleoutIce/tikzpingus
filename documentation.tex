@@ -3527,8 +3527,33 @@ Keep the penguin safe:
 \end{tcblisting}
 \endsubkeyexplain
 
-\subsubsection{The flag}
+\subkeyexplain{mask}{mask line width}{length}{\pingu@x@mask@line@width}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[mask,mask line width=1.5pt]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
 
+{\def\pingu@color@mask{<mask-color>}
+\subkeyexplain{mask}{mask band inner}{color}{\pingu@color@mask@band@inner}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[mask,mask band inner=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@mask{<mask-color>}
+\subkeyexplain{mask}{mask band outer}{color}{\pingu@color@mask@band@outer}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[mask,mask band outer=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+\subsubsection{The flag}
 The flag is special in that it is meant to be customized by commands so that the visible insignia is to the users liking.
 
 \keyexplain{flag left}{color}{pingu@purple}
