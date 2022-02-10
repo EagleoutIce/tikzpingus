@@ -243,12 +243,13 @@ At the moment, there are the following libraries:
 		\ifx\l\@empty\else
 		\item[\lib{\l}:] \foreach \s in \xs {
 			\expandafter\dkeyref\expandafter{\s}
-		}
-		\fi\par
+		}\par
+		\fi
 	}
 \end{description}
+
 \begin{center}
-	\textit{options which are not marked in blue and which are no hyperlinks are currently undocumented. Currently, only added extras are shown. Packages like \lib{emotions} do add eyes and such. They will be listed soon.}
+	\textit{Options which are not marked in blue and which are no hyperlinks are currently undocumented. Currently, only added extras are shown. Packages like \lib{emotions} do add eyes and such. They will be listed soon.}
 \end{center}
 
 \section{Usage}
@@ -3504,6 +3505,24 @@ Similar to \keyref{lightsaber right outer glow factor}:
 \begin{tikzpicture}
 	\pingu[light-staff right,
 			light-staff right outer glow factor=.5]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subsubsection{The mask}
+\keyexplain{mask}{color}{pingu@white!61!gray}
+Keep the penguin safe:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[mask=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
+
+\subkeyexplain{mask}{mask band}{color}{\pingu@color@mask@band}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[mask,mask band=green]
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain
