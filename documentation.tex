@@ -241,12 +241,14 @@ At the moment, there are the following libraries:
 	\itemsep1.5pt
 	\foreach \l/\xs in \pingu@defaultlibs {
 		\ifx\l\@empty\else
-		\item[\lib{\l}:] \foreach \s in \xs {
+		\item[\lib{\l}:] \null\foreach \s in \xs {
 			\expandafter\dkeyref\expandafter{\s}
 		}\par
 		\fi
 	}
 \end{description}
+
+All keys that do not appear in this list are always available.
 
 \begin{center}
 	\textit{Options which are not marked in blue and which are no hyperlinks are currently undocumented. Currently, only added extras are shown. Packages like \lib{emotions} do add eyes and such. They will be listed soon.}
