@@ -237,16 +237,16 @@ The shown example penguins are purely fictional characters, any resemblance to r
 With Version $1.1$ I've split the penguin features into a set of libraries.
 To stay backwards compatible, all of them are loaded by default so nothing changes when using tikzpingus. However, the |bare| package-option disables the automatic loading of all libraries. They can be loaded (locally to the current group) using |\pinguloadlibrary| and |\pinguloadlibraries| passing on a comma separated list of desired libraries.
 At the moment, there are the following libraries:
-\begin{description}
+{\newif\iffirstss\begin{description}
 	\itemsep1.5pt
 	\foreach \l/\xs in \pingu@defaultlibs {
 		\ifx\l\@empty\else
-		\item[\lib{\l}:] \null\foreach \s in \xs {
-			\expandafter\dkeyref\expandafter{\s}
+		\item[\lib{\l}:] \firstsstrue\null\foreach \s in \xs {%
+			\iffirstss\global\firstssfalse\else~~{\color{gray}\textbullet}~~\fi\expandafter\dkeyref\expandafter{\s}%
 		}\par
 		\fi
 	}
-\end{description}
+\end{description}}
 
 All keys that do not appear in this list are always available.
 
