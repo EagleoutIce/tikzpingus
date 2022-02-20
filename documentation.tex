@@ -243,7 +243,7 @@ At the moment, there are the following libraries:
 		\ifx\l\@empty\else
 		\item[\lib{\l}:] \firstsstrue\null\foreach \s in \xs {%
 			\iffirstss\global\firstssfalse\else~~{\color{gray}\textbullet}~~\fi\expandafter\dkeyref\expandafter{\s}%
-		}\par
+		}%
 		\fi
 	}
 \end{description}}
@@ -3729,10 +3729,47 @@ Change the staff length:
 \end{tcblisting}
 \endkeyexplain
 
+\keyexplain{devil fork left second}{color}{\pingu@color@devilforkleft@second}
+Staff color of the \keyref{devil fork left}:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[devil fork left,
+			 devil fork left second=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
+
+\keyexplain{devil fork left length}{color}{\pingu@devilfork@left@length}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[devil fork left, devil fork left length=7mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
+
 \keyexplain{devil fork right}{color}{pingu@red}
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[devil fork right=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
+
+\keyexplain{devil fork right second}{color}{\pingu@color@devilforkright@second}
+Staff color of the \keyref{devil fork right}:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[devil fork right,
+			 devil fork right second=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
+
+\keyexplain{devil fork right length}{color}{\pingu@devilfork@right@length}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[devil fork right,
+		    devil fork right length=7mm]
 \end{tikzpicture}
 \end{tcblisting}
 \endkeyexplain
