@@ -240,22 +240,20 @@ With Version $1.1$ I've split the penguin features into a set of libraries.
 To stay backwards compatible, all of them are loaded by default so nothing changes when using tikzpingus. However, the |bare| package-option disables the automatic loading of all libraries. They can be loaded (locally to the current group) using |\pinguloadlibrary| and |\pinguloadlibraries| passing on a comma separated list of desired libraries.
 At the moment, there are the following libraries:
 {\newif\iffirstss\begin{description}
-	\itemsep1.5pt
+	\itemsep0pt
 	\foreach \l/\xs in \pingu@defaultlibs {
 		\ifx\l\@empty\else
-		\item[\lib{\l}:] \firstsstrue\null\foreach \s in \xs {%
+		\item[\lib{\l}:] \firstsstrue\foreach \s in \xs {%
 			\iffirstss\global\firstssfalse\else~~{\color{gray}\textbullet}~~\fi\expandafter\dkeyref\expandafter{\s}%
-		}%
+		}\relax
 		\fi
 	}
-\end{description}}
-
-All keys that do not appear in this list are always available.
+\end{description}
+All keys that do not appear in this list are always available.}
 
 \begin{center}
 	\textit{Options which are not marked in blue and which are no hyperlinks are currently undocumented. Currently, only added extras are shown. Packages like \lib{emotions} do add eyes and such. They will be listed soon.}
 \end{center}
-
 \section{Usage}
 
 If you just want a penguin, use the following syntax:
@@ -648,7 +646,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 	Change the active body type. All valid values are listed in \autoref{mrk:pengu-change-comps}:
 \begin{tcblisting}{}
 \begin{tikzpicture}
-	\pingu[body type=chubby]
+	\pingu[body type=legacy]
 \end{tikzpicture}
 \end{tcblisting}
 \endkeyexplain

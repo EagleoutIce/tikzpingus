@@ -462,6 +462,43 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \pingu@block{\pingu@color@body@front} (\pingu@name-eye-back-left)++(0,-.5mm) ellipse [x radius=.525cm,y radius=.6cm];
 }
 % #endregion
+% #region legacy
+\pingu@bodytype@add{legacy}{%
+\pingu@block[save path=\pingu@lowerpingu]{\pingu@color@body@main} (0,\pingu@outer@off)
+% left side
+to[bend right=1.25*\pingu@bend] coordinate[pos=.77] (\pingu@name-waist-right) ++(0,-.95\pingu@side@h@half-\pingu@outer@off+.65\pingu@one) coordinate (@b) % for bottom clip
+% feety stuff
+to[out=270,in=270]
+    coordinate[pos=.25] (\pingu@name-foot-right)
+    coordinate[pos=.5,yshift=.875\pingu@one] (\pingu@name-bottom-center)
+    coordinate[pos=.75] (\pingu@name-foot-left)
+++(2*\pingu@w@half,0)
+% right side
+to[bend right=1.25*\pingu@bend] coordinate[pos=.225] (\pingu@name-waist-left) ++(0,.95\pingu@side@h@half+\pingu@outer@off-.65\pingu@one)
+% coordinate
+coordinate (\pingu@name-wings-side-left)
+-- (0,\pingu@outer@off) coordinate (\pingu@name-wings-side-right) coordinate[pos=.5] (\pingu@name-head-center) -- cycle;
+
+\pingu@block[save path=\pingu@upperpingu]{\pingu@color@body@head} (\pingu@name-head-center)
+++(0,\pingu@head@h@half) coordinate (\pingu@name-head-top)
+arc(90:450:\pingu@w@half{} and \pingu@head@h@half)
+coordinate[pos=\pinguanglehr] (\pingu@name-head-right)
+coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
+
+\coordinate (\pingu@name-belly-back) at (\pingu@w@half,-.97cm);
+\coordinate (\pingu@name-belly-center) at (\pingu@w@half,-.625\pingu@side@h@half+.325\pingu@one);
+\pingu@block[save path=\pingu@whitepingu]{\pingu@color@body@front} (\pingu@name-head-center)++(-\pingu@w@half+2.5\pingu@one,-4.25mm) coordinate (@) to[bend right=14] ([xshift=-1.25mm,yshift=.33\pingu@one]@|-@b) to[out=272,in=268] ++(2*\pingu@w@half-2.5\pingu@one,0) to[bend right=14] ([xshift=\pingu@w@half-2.5\pingu@one,yshift=-4.25mm]\pingu@name-head-center) ;
+
+\coordinate (\pingu@name-eye-back-right) at ([xshift=-.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-head-center);
+\coordinate (\pingu@name-eye-back-left) at ([xshift=.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-head-center);
+
+\coordinate (\pingu@name-head-back-con-right) at ([xshift=-\pingu@headcon@x,yshift=-\pingu@headcon@y]\pingu@name-eye-back-right);
+\coordinate (\pingu@name-head-back-con-left) at ([xshift=\pingu@headcon@x,yshift=-\pingu@headcon@y]\pingu@name-eye-back-left);
+
+\pingu@block{\pingu@color@body@front} (\pingu@name-eye-back-right)++(0,-.5mm) ellipse [x radius=.525cm,y radius=.6cm];
+\pingu@block{\pingu@color@body@front} (\pingu@name-eye-back-left)++(0,-.5mm) ellipse [x radius=.525cm,y radius=.6cm];
+}
+% #endregion
 % #endregion
 % #region eyes
 % name core | left | right
