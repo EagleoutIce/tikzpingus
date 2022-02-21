@@ -77,7 +77,7 @@
 }{pants extra height=1.5mm,pants buttons=pingu@black,pants button left shade=\pingu@color@pants@button@left!70!white,pants button right shade=\pingu@color@pants@button@right!70!white}
 
 \def\pingu@draw@eb@pants{%
-\pingu@block[rounded corners=\p@]{\pingu@color@pants} ([xshift=.85mm,yshift=\pingu@x@pants@extra@height]\pingu@name-waist-right) coordinate(@tmp) to[bend right=6] ([xshift=-.85mm,yshift=\pingu@x@pants@extra@height]\pingu@name-waist-left) coordinate(@tmpb) -- ++(0,-\pingu@x@pants@extra@height) arc(180:270:.85mm and 2.5mm) to[bend left=\pingu@bend] (\pingu@name-bottom-center-|\pingu@name-waist-left) to[bend left=15] ([yshift=-.15mm]\pingu@name-bottom-center) to[bend left=15] (\pingu@name-bottom-center-|\pingu@name-waist-right) to[bend left=6] ([yshift=-2.5mm]\pingu@name-waist-right) arc (-90:0:.85mm and 2.5mm) -- cycle;
+\pingu@block[rounded corners=\p@]{\pingu@color@pants} ([xshift=.85mm,yshift=\pingu@x@pants@extra@height]\pingu@name-waist-right) coordinate(@tmp) to[bend right=6] ([xshift=-.85mm,yshift=\pingu@x@pants@extra@height]\pingu@name-waist-left) coordinate(@tmpb) -- ++(0,-\pingu@x@pants@extra@height) arc(180:270:.85mm and 2.25mm) to[bend left=\pingu@bend] (\pingu@name-bottom-center-|\pingu@name-waist-left) to[bend left=15] ([yshift=-.15mm]\pingu@name-bottom-center) to[bend left=15] (\pingu@name-bottom-center-|\pingu@name-waist-right) to[bend left=6] ([yshift=-2.5mm]\pingu@name-waist-right) arc (-90:0:.85mm and 2.25mm) -- cycle;
 \if@pingu@x@pants@bands
 \pingu@layer{middle}[]
 % draw stripes
