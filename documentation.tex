@@ -119,6 +119,7 @@
 }
 
 \RedeclareSectionCommand[runin=false,afterskip=-2mm]{section}
+\RedeclareSectionCommand[runin=false,afterskip=-2mm]{subsection}
 
 \tcbset{%
 	colframe=gray,enhanced,breakable,
@@ -332,18 +333,19 @@ Lets look at those coordinates in more detail (all labels are to be prefixed by 
 \end{tikzpicture}%
 }
 
+\def\PinguCoords#1{\begin{tikzpicture}
+	\pingu[@block/.append style={fill=##1!35!white}, wings wave,eyes shiny,heart=gray!30!white,#1]
+	\pgfonlayer{foreground}
+	\foreach \c/\a in {belly-center/above,head/below,head-top/above,foot-left/right,foot-right/left,eye-right/above left,eye-left/above right,bill/right,bill-bottom/below,wings-side-left/right,wings-side-right/left,wing-left-start/below right,wing-left-tip/right,wing-right-start/below left,wing-right-tip/left,head-right/left,head-left/right,head-center/below,head-back-con-left/above right,head-back-con-right/above left,bottom-center/above,waist-left/right,waist-right/left} {
+		\path[fill=green] (pingu-\c) circle [radius=1.125pt];
+		\node[\a=.5mm,font=\ttfamily,scale=.35,inner sep=1.5pt] (expl-\c) at (pingu-\c) {\c};
+		\draw[green,thin] (expl-\c) -- (pingu-\c);
+	}
+	\endpgfonlayer
+\end{tikzpicture}}%
 \begin{center}
-	\resizebox{.9\linewidth}!{
-		\begin{tikzpicture}
-			\pingu[@block/.append style={fill=#1!35!white}, wings wave,eyes shiny,heart=gray!30!white]
-			\pgfonlayer{foreground}
-			\foreach \c/\a in {belly-center/above,head/below,head-top/above,foot-left/right,foot-right/left,eye-right/above left,eye-left/above right,bill/right,bill-bottom/below,wings-side-left/right,wings-side-right/left,wing-left-start/below right,wing-left-tip/right,wing-right-start/below left,wing-right-tip/left,head-right/left,head-left/right,head-center/below,head-back-con-left/above right,head-back-con-right/above left,bottom-center/above,waist-left/right,waist-right/left} {
-				\path[fill=green] (pingu-\c) circle [radius=1.125pt];
-				\node[\a=.5mm,font=\ttfamily,scale=.35,inner sep=1.5pt] (expl-\c) at (pingu-\c) {\c};
-				\draw[green,thin] (expl-\c) -- (pingu-\c);
-			}
-			\endpgfonlayer
-		\end{tikzpicture}
+	\resizebox{.85\linewidth}!{%
+		\PinguCoords{}%
 	}
 \end{center}
 
@@ -353,12 +355,21 @@ While there is more information stored for each wing, the following five coordin
 \begin{center}
 	\null\hfill\parbox[c]{2.5\wd\pinguwingright}{\scalebox{2.5}{\usebox\pinguwingright}}\hfill\parbox[c]{4cm}{\centering\small\color{gray}\sffamily And yes, the wings are deliberately placed asymmetrical.\endgraf}\hfill
 	\parbox[c]{2.5\wd\pinguwingleft}{\scalebox{2.5}{\usebox\pinguwingleft}}\hfill\null
+\end{center}\newpage
+
+\paragraph{The Body} Similarly to the wing position, different
+body types can change the coordinates (left the \keyref{body type} \textit{chubby} and right the \keyref{body type} \textit{legacy}):
+\begin{center}
+	\resizebox{.95\linewidth}!{%
+		\PinguCoords{body type=chubby,wings hug}\quad\PinguCoords{body type=legacy,wings hug}
+	}
 \end{center}
 
 \subsection{Colors}
 A lot of options allow for a color to passed. In general, you can provide any color that \TikZ\ is happy with! Yet, there are some predefined pingu-colors shipped with this package, and there is one special \say{color}:
 \begin{multicols}{4}
 \begin{itemize}
+	\itemsep0pt
 	\foreach \col in {main,black,silver,bronze,white,yellow,lightblue,blue,green,red,purple} {
 		\item[{\tikz[baseline=-.6ex]{\fill[pingu@\col,semithick,draw=black] circle (4pt);}}] \small\texttt{pingu@\col}
 	}
