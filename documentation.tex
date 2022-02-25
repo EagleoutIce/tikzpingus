@@ -3876,6 +3876,92 @@ Originally developed just as a cape, the cloak is no a whole extension.
 \end{tcblisting}
 \endkeyexplain
 
+% TODO: shirt above
+\begin{subkeyexplain}{shirt}{shirt raise}{length}{\pingu@shirt@raise}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[shirt, shirt raise=5mm]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{shirt}{shirt padding}{length}{\pingu@shirt@padding}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[shirt, shirt padding=4mm]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{shirt}{shirt button top}{color}{\pingu@color@shirt@button@top}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[shirt, shirt button top=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{shirt}{shirt button middle}{color}{\pingu@color@shirt@button@middle}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[shirt, shirt button middle=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{shirt}{shirt button bottom}{color}{\pingu@color@shirt@button@bottom}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[shirt, shirt button bottom=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{shirt}{shirt buttons}{color}{}
+Set \keyref{shirt button top}, \keyref{shirt button middle} and \keyref{shirt button bottom}, that is all the buttons, with the same color:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[shirt, shirt buttons=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+{\def\pingu@color@shirt@button@top{<shirt-button-top>}\def\pingu@color@shirt{<shirt-color>}
+\begin{subkeyexplain}{shirt}{shirt button top shade}{color}{\pingu@color@shirt@button@top@shade}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[shirt, shirt button top shade=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}}
+
+{\def\pingu@color@shirt@button@middle{<shirt-button-middle>}\def\pingu@color@shirt{<shirt-color>}
+\begin{subkeyexplain}{shirt}{shirt button middle shade}{color}{\pingu@color@shirt@button@middle@shade}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[shirt, shirt button middle shade=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}}
+
+{\def\pingu@color@shirt@button@top{<shirt-button-top>}\def\pingu@color@shirt{<shirt-color>}
+\begin{subkeyexplain}{shirt}{shirt button bottom shade}{color}{\pingu@color@shirt@button@bottom@shade}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[shirt, shirt button bottom shade=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}}
+
+\begin{subkeyexplain}{shirt}{shirt buttons}{color}{}
+Set all shadings of the buttons: \keyref{shirt button top shade}, \keyref{shirt button middle shade} and \keyref{shirt button bottom shade} with the same color:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[shirt, shirt buttons shade=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
 \subsubsection{The second shirt}
 \keyexplain{second shirt}{color}{pingu@red}
 	Display a shirt below the \keyref{shirt}:
