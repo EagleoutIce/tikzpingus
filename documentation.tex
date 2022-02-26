@@ -3953,11 +3953,30 @@ Set \keyref{shirt button top}, \keyref{shirt button middle} and \keyref{shirt bu
 \end{tcblisting}
 \end{subkeyexplain}}
 
-\begin{subkeyexplain}{shirt}{shirt buttons}{color}{}
+\begin{subkeyexplain}{shirt}{shirt buttons shade}{color}{}
 Set all shadings of the buttons: \keyref{shirt button top shade}, \keyref{shirt button middle shade} and \keyref{shirt button bottom shade} with the same color:
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[shirt, shirt buttons shade=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{shirt}{shirt no buttons}{}{}
+Disable all buttons (by setting their colors to \lpingu{!hide}):
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[shirt, shirt no buttons]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+\begin{subkeyexplain}{shirt}{shirt above}{}{}
+This is interesting in combination with other extras as it allows the \keyref{shirt} to be drawn above them.
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[shirt, tie, shirt above]
+	\pingu[shirt, tie, xshift=3cm]
 \end{tikzpicture}
 \end{tcblisting}
 \end{subkeyexplain}
