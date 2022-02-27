@@ -3874,7 +3874,6 @@ Originally developed just as a cape, the cloak is no a whole extension.
 \end{tcblisting}
 \endkeyexplain
 
-% TODO: shirt above
 \begin{subkeyexplain}{shirt}{shirt raise}{length}{\pingu@shirt@raise}
 \begin{tcblisting}{}
 \begin{tikzpicture}
@@ -3988,6 +3987,23 @@ This is interesting in combination with other extras as it allows the \keyref{sh
 \end{tikzpicture}
 \end{tcblisting}
 \endkeyexplain
+
+\begin{subkeyexplain}{second shirt}{second shirt raise}{length}{\pingu@secondshirt@raise}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[second shirt, second shirt raise=5mm]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}
+
+{\def\pingu@color@secondshirt{<second-shirt-color>}
+\begin{subkeyexplain}{second shirt}{second shirt neck}{color}{\pingu@color@secondshirt@neck}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[second shirt, second shirt neck=green]
+\end{tikzpicture}
+\end{tcblisting}
+\end{subkeyexplain}}
 
 \subsection{Internals}
 This subsection is not intended to explain every internal mechanism of tikzpingus as they are subject to change. It rather aims to be a guide to the extension of the package by new features for the little penguins.
