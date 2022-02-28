@@ -80,6 +80,7 @@
 	deletetexcs={begin,end}, % -> lift 3
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend,pinguloadlibrary,pinguloadlibraries},
 	moretexcs=[3]{begin,end},
+	moreemph=[1]{!random},
 	moreemph=[3]{!hide,.style},
 	add to literate={/pingu/}{{\@declaredcolor{gray}/pingu/}}7
 		{\{tikzpicture\}}{{\@declaredcolor{gray!60!white}\{tikzpicture\}}}{13}
@@ -467,6 +468,21 @@ Currently, only some of the styles do affect other items. As an example, conside
 \begin{tcblisting}{title={Line Penguin}}
 \begin{tikzpicture}
 	\pingu[:line, princess crown, silver medal]
+\end{tikzpicture}
+\end{tcblisting}
+
+\subsection{Randomness}
+Each selection (like the wings or the eyes) can receive a special command \lpingu{!random}. If given, the penguin will receive a randomly picked component.
+Please note, that \textit{none} (the component removing it) will never be picked.
+The first line in the example sets the seed:
+\begin{tcblisting}{title={Random Penguin}}
+\pgfmathsetseed{\number\pdfrandomseed}
+\begin{tikzpicture}
+	\pingu[wings=!random,eyes=!random,
+		   body type=!random,
+			left foot=!random,
+			bill=!random,
+			hairstyle=!random]
 \end{tikzpicture}
 \end{tcblisting}
 
