@@ -70,21 +70,35 @@
     \PackageError{\tikzpingus@filename}{There is no '#2' drawer for '#1'. Choose one of '\@nameuse{@pingu@#1@}'}{Or ask the package maintainer :D}%
 }
 
+\def\pingu@@select#1#2{\expandafter\let\csname @pingu@drawer@#2@\expandafter\endcsname\csname @pingu@drawer@#2@#1@\endcsname
+\expandafter\def\csname @pingu@select@#2@\expandafter\endcsname{#1}}
+
 % #1 name | none default
 \def\pingu@create@selection#1#2{%
+    \expandafter\newcount\csname pc@#1@max\endcsname
     \expandafter\let\csname @pingu@#1@\endcsname\@empty
     \expandafter\long\expandafter\def\csname pingu@#1@add\endcsname##1##2{%
-        \pingu@csappto{@pingu@#1@}{##1}%
+        \pingu@csappto{@pingu@#1@}{"##1"}%
+        \expandafter\global\expandafter\advance\csname pc@#1@max\endcsname1\relax
         \expandafter\long\expandafter\def\csname @pingu@drawer@#1@##1@\endcsname{##2}%
     }
     \expandafter\def\csname pingu@#1@select\endcsname##1{%
-        \ifcsname @pingu@drawer@#1@##1@\endcsname
-            \expandafter\let\csname @pingu@drawer@#1@\expandafter\endcsname\csname @pingu@drawer@#1@##1@\endcsname
-            \expandafter\def\csname @pingu@select@#1@\expandafter\endcsname{##1}%
-        \else\pingu@create@sel@err{#1}{##1}\fi
+        \def\@tmp{##1}\ifx\@pingu@random\@tmp% if random is selected, we choose random from pack in @pingu@#1@
+        % we could do this with pgfmathdeclarerandomlist, but this requires more,
+        % at the moment, i do not care about efficiency, and we do a foreach
+        % we do not pick none for random
+        \edef\@arr{{\csname @pingu@#1@\endcsname}}%
+        % we use 1 as minimum, because 0 is ALWAYS 'none' by definition
+        \pgfmathrandominteger{\@ars}{1}{\csname pc@#1@max\endcsname-1}%
+        \pgfmathsetmacro\@sel{\@arr[\@ars]}%
+        \expandafter\pingu@@select\expandafter{\@sel}{#1}% consolidate the choice in case of multiple
+        \else\ifcsname @pingu@drawer@#1@##1@\endcsname
+            \pingu@@select{##1}{#1}%
+        \else\pingu@create@sel@err{#1}{##1}\fi\fi
     }%
     \csname pingu@#1@add\endcsname{none}{#2}%
 }
+\def\@pingu@random{!random}
 
 \long\def\pingu@create@extra#1#2#3{\expandafter\newif\csname if@pingu@x@#1@\endcsname\pgfqkeys{/pingu}{#2,extra defaults/.append style={#3}}}
 \def\pingu@set@extra#1#2{\csname @pingu@x@#1@#2\endcsname}
