@@ -226,9 +226,10 @@
   normal size/.style            = {/pingu/height=1.275cm},
   large height/.forward to      = /pingu/large size, large/.forward to = /pingu/large size,
   large size/.style             = {/pingu/height=15mm},
+  random from/.code                  = {\pgfmathdeclarerandomlist{@tmp}{#1}\pgfmathrandomitem{\@tmp}{@tmp}\edef\tmp{\noexpand\@pingu@set{\@tmp}}\tmp},
   defaults/.style               = {%
     name=pingu, feet=normal, feet color=pingu@yellow, body=pingu@main,
-    body type=default,@post={},@body@app={},
+    body type=normal,@post={},@body@app={},
     body front=pingu@white,%
     eyes=normal, eyes color=pingu@black, eyes second color=pingu@white,
     bill=normal, bill color=pingu@yellow,
@@ -242,6 +243,7 @@
   % will be set individually
   extra defaults/.style = {}
 }
+\def\@pingu@set#1{\pgfqkeys{/pingu}{#1}}
 \def\pingudefaults#1{\pgfqkeys{/pingu}{user defaults/.style={#1}}}
 \def\pingudefaultsappend#1{\pgfqkeys{/pingu}{user defaults/.append style={#1}}}
 % #endregion
@@ -368,8 +370,8 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 
 % #region main body parts
 % #region body front
-% #region default
-\pingu@bodytype@add{default}{%
+% #region normal
+\pingu@bodytype@add{normal}{%
 \pingu@block[save path=\pingu@lowerpingu]{\pingu@color@body@main} (0,\pingu@outer@off)
 % left side
 to[bend right=\pingu@bend] coordinate[pos=.775] (\pingu@name-waist-right) ++(0,-\pingu@side@h@half-\pingu@outer@off)
