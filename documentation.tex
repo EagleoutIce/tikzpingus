@@ -85,7 +85,6 @@
 		{\{tikzpicture\}}{{\@declaredcolor{gray!60!white}\{tikzpicture\}}}{13}
 		% otherwise these would interfere with random
 		{!random}{{\@declaredcolor{darkgray}\itshape!random}}7
-		{\\pdfrandomseed}{{{\textbackslash pdfrandomseed}}}{14}
 }
 
 \def\@CreateCodeHyperLink#1#2#3{\lstset{add to literate={#2}{{\hyperref[#3]{\optstyle#2}}}{#1}}}
@@ -114,7 +113,7 @@
 \@whilenum\count@<\@cntmax@\do{
 	\edef\i{\number\count@}\relax
 	\ifcsname allcmds@\i\endcsname
-		\edef\allcmds{\csname allcmds@\i\endcsname}% if undefined => emptyy
+		\edef\allcmds{\csname allcmds@\i\endcsname}% if undefined => empty
 		\expandafter\CreateCodeHyperLink\expandafter{\allcmds}{\i}\csxdef{allcmds@\i}{}%
 	\fi% csx kill to stop infinite
 	\global\advance\count@\@ne
@@ -490,14 +489,14 @@ The first line in the example sets the seed:
 \end{tikzpicture}
 \end{tcblisting}
 
-In a more general nature, there is a \keyref{random} key for completely random penguins:
+In a more general fashion, there is a \keyref{random from} key for completely random penguins:
 
-\keyexplain{random}{list}{}
-	You can pass any list of penguin keys and exactly one of them will be selected. You can nest \keyref{random}-calls. Please note, that the items are not separated by comma but in braces. The first line in the example sets the seed:
+\keyexplain{random from}{list}{}
+	You can pass any list of penguin keys and exactly one of them will be selected. You can nest \keyref{random from}-calls. Please note, that the items are not separated by comma but in braces. The first line in the example sets the seed:
 \begin{tcblisting}{}
 \pgfmathsetseed{\number\pdfrandomseed}
 \begin{tikzpicture}
-	\pingu[random={{eye patch left}{eye patch right}{halo,halo raise=4mm}},random={{right eye color=green}{random={{bow tie}{gold medal}}}},random={{eyes=!random}{wings=!random}},body type=legacy]
+	\pingu[random from={{eye patch left}{eye patch right}{halo,halo raise=4mm}},random from={{right eye color=green}{random from={{bow tie}{gold medal}}}},random from={{eyes=!random}{wings=!random}},body type=legacy]
 \end{tikzpicture}
 \end{tcblisting}
 \endkeyexplain
