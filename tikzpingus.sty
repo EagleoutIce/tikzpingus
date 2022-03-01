@@ -226,7 +226,7 @@
   normal size/.style            = {/pingu/height=1.275cm},
   large height/.forward to      = /pingu/large size, large/.forward to = /pingu/large size,
   large size/.style             = {/pingu/height=15mm},
-  random/.code                  = {\pgfmathdeclarerandomlist{@tmp}{#1}\pgfmathrandomitem{\@tmp}{@tmp}\edef\tmp{\noexpand\@pingu@set{\@tmp}}\tmp},
+  random from/.code                  = {\pgfmathdeclarerandomlist{@tmp}{#1}\pgfmathrandomitem{\@tmp}{@tmp}\edef\tmp{\noexpand\@pingu@set{\@tmp}}\tmp},
   defaults/.style               = {%
     name=pingu, feet=normal, feet color=pingu@yellow, body=pingu@main,
     body type=normal,@post={},@body@app={},
