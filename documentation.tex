@@ -80,10 +80,12 @@
 	deletetexcs={begin,end}, % -> lift 3
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend,pinguloadlibrary,pinguloadlibraries},
 	moretexcs=[3]{begin,end},
-	moreemph=[1]{!random},
 	moreemph=[3]{!hide,.style},
 	add to literate={/pingu/}{{\@declaredcolor{gray}/pingu/}}7
 		{\{tikzpicture\}}{{\@declaredcolor{gray!60!white}\{tikzpicture\}}}{13}
+		% otherwise these would interfere with random
+		{!random}{{\@declaredcolor{darkgray}\itshape!random}}7
+		{\\pdfrandomseed}{{{\textbackslash pdfrandomseed}}}{14}
 }
 
 \def\@CreateCodeHyperLink#1#2#3{\lstset{add to literate={#2}{{\hyperref[#3]{\optstyle#2}}}{#1}}}
@@ -429,6 +431,7 @@ Furthermore, the convenient selectors |eyes <style>|, |left eye <style>|, and |r
 \subsection{Changing other components}
 \label{mrk:pengu-change-comps}Just like for the wings and the eyes, you can change the following body parts:
 \begin{itemize}
+	\itemsep0pt\relax
 	\item The \textit{body type} itself\\*
 		Select from: \typesetselection{bodytype}.
 	\item The \textit{feet} (again with separate left and right)\\*
@@ -453,6 +456,7 @@ While the penguin options offer the modification of basically every drawing rout
 So I have started to create some predefined styles, that do change some of the penguins appearance (and are completely new, so beware of bugs):
 \begin{multicols}{2}
 \begin{itemize}
+	\itemsep0pt
 	\foreach \tx/\s in {{draw everything with a line}/{:line}, {draw components with transparency}/{:ghost parts}, {draw all layers with transparency}/{:ghost}, {set main \say{devil}-components}/{:devil},{flip the penguin (swaps left \& right)}/{:back},{do not draw main pingu}/{:hide}} {
 		\item \parbox[t]{.8\linewidth}{\raggedright\texttt{\s}, \tx.} \hfill
 		\parbox[t]{.175\linewidth}{\scalebox{.4}{%
@@ -461,7 +465,7 @@ So I have started to create some predefined styles, that do change some of the p
 			\end{tikzpicture}%
 		}}
 	}
-	\item[] \parbox[t][2.4\baselineskip]{0pt}{}% buffer
+	\item[] \parbox[t][2.25\baselineskip]{0pt}{}% buffer
 \end{itemize}
 \end{multicols}
 Currently, only some of the styles do affect other items. As an example, consider |:line|, that changes the draw-style of wing-items and extras:
@@ -485,6 +489,19 @@ The first line in the example sets the seed:
 			hairstyle=!random]
 \end{tikzpicture}
 \end{tcblisting}
+
+In a more general nature, there is a \keyref{random} key for completely random penguins:
+
+\keyexplain{random}{list}{}
+	You can pass any list of penguin keys and exactly one of them will be selected. You can nest \keyref{random}-calls. Please note, that the items are not separated by comma but in braces. The first line in the example sets the seed:
+\begin{tcblisting}{}
+\pgfmathsetseed{\number\pdfrandomseed}
+\begin{tikzpicture}
+	\pingu[random={{eye patch left}{eye patch right}{halo,halo raise=4mm}},random={{right eye color=green}{random={{bow tie}{gold medal}}}},random={{eyes=!random}{wings=!random}},body type=legacy]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
+
 
 \subsection{Extras}
 An extra is considered everything, that is attached to the main penguin and not to the wings (as those items may be placed separately for both wings).
@@ -667,7 +684,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \endkeyexplain
 
 
-\keyexplain{body type}{body type}{default}
+\keyexplain{body type}{body type}{normal}
 	Change the active body type. All valid values are listed in \autoref{mrk:pengu-change-comps}:
 \begin{tcblisting}{}
 \begin{tikzpicture}
