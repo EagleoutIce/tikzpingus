@@ -756,11 +756,32 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     \pingu@block[rotate around={\basicfeetbend:(\pingu@name-foot-right)}]{\pingu@color@foot@right} (\pingu@name-foot-right) ellipse [x radius=2.66\pingu@foot@single@w,y radius=\pingu@foot@single@h];
 }
 
-
 \@pingu@feet@s{back}{%
     \pingu@block{\pingu@color@foot@left} ([yshift=.2\pingu@foot@single@h]\pingu@name-foot-left) ellipse [x radius=2.5\pingu@foot@single@w,y radius=.435\pingu@foot@single@h];
 }{%
     \pingu@block{\pingu@color@foot@right} ([yshift=.2\pingu@foot@single@h]\pingu@name-foot-right) ellipse [x radius=2.5\pingu@foot@single@w,y radius=.435\pingu@foot@single@h];
+}
+
+\@pingu@feet@s{chubby}{%
+\pingu@layer{foreground}[rotate around={-\basicfeetbend+45:(\pingu@name-foot-left)}]
+    \pingu@block\pingu@color@foot@left ([xshift=-3.75mm,yshift=-1.65mm]\pingu@name-foot-left) to[bend right=3] ++(5mm,0) -- ++(.05mm,.6mm) to[out=83,in=129,looseness=1.15] cycle;
+    \ifx\pingu@color@foot@left\@pingu@none\else
+        \colorlet{@}{\pingu@color@foot@left!80!\pingu@color@body@main}
+        \pingu@draw{@} ([xshift=-3.75mm,yshift=-1.65mm]\pingu@name-foot-left) to[bend right=5] coordinate[pos=.29] (@) coordinate[pos=.69] (@b) ++(5mm,0) -- ++(.05mm,.6mm) to[out=83,in=129,looseness=1.15] cycle;
+        \pingu@draw{@} (@) to[bend right=4] ++(.125mm,.75mm);
+        \pingu@draw{@} (@b) to[bend right=9] ++(.15mm,1.15mm);
+    \fi
+\endpingu@layer
+}{%
+\pingu@layer{foreground}[rotate around={-\basicfeetbend+45:(\pingu@name-foot-right)}]
+    \pingu@block\pingu@color@foot@right ([xshift=3.75mm,yshift=-1.65mm]\pingu@name-foot-right) to[bend left=3] ++(-5mm,0) -- ++(-.05mm,.6mm) to[out=97,in=81,looseness=1.15] cycle;
+    \ifx\pingu@color@foot@right\@pingu@none\else
+        \colorlet{@}{\pingu@color@foot@right!80!\pingu@color@body@main}
+        \pingu@draw{@} ([xshift=3.75mm,yshift=-1.65mm]\pingu@name-foot-right) to[bend left=5] coordinate[pos=.29] (@) coordinate[pos=.69] (@b)  ++(-5mm,0) -- ++(-.05mm,.475mm) to[out=97,in=81,looseness=1.15] cycle;
+        \pingu@draw{@} (@) to[bend left=4] ++(-.125mm,.75mm);
+        \pingu@draw{@} (@b) to[bend left=9] ++(-.15mm,1.15mm);
+    \fi
+\endpingu@layer
 }
 % #endregion
 
