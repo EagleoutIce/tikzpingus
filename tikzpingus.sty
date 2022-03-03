@@ -502,7 +502,7 @@ coordinate[pos=\pinguanglehr] (\pingu@name-head-right)
 coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 
 \coordinate (\pingu@name-belly-back) at (\pingu@w@half,-.97cm);
-\coordinate (\pingu@name-belly-center) at (\pingu@w@half,-.625\pingu@side@h@half+.325\pingu@one);
+\coordinate (\pingu@name-belly-center) at (\pingu@w@half,-.75\pingu@side@h@half+.325\pingu@one);
 \pingu@block[save path=\pingu@whitepingu]{\pingu@color@body@front} (\pingu@name-head-center)++(-\pingu@w@half+2.5\pingu@one,-4.25mm) coordinate (@) to[bend right=14] ([xshift=-1.25mm,yshift=.33\pingu@one]@|-@b) to[out=272,in=268] ++(2*\pingu@w@half-2.5\pingu@one,0) to[bend right=14] ([xshift=\pingu@w@half-2.5\pingu@one,yshift=-4.25mm]\pingu@name-head-center) ;
 
 \coordinate (\pingu@name-eye-back-right) at ([xshift=-.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-head-center);
@@ -756,11 +756,32 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     \pingu@block[rotate around={\basicfeetbend:(\pingu@name-foot-right)}]{\pingu@color@foot@right} (\pingu@name-foot-right) ellipse [x radius=2.66\pingu@foot@single@w,y radius=\pingu@foot@single@h];
 }
 
-
 \@pingu@feet@s{back}{%
     \pingu@block{\pingu@color@foot@left} ([yshift=.2\pingu@foot@single@h]\pingu@name-foot-left) ellipse [x radius=2.5\pingu@foot@single@w,y radius=.435\pingu@foot@single@h];
 }{%
     \pingu@block{\pingu@color@foot@right} ([yshift=.2\pingu@foot@single@h]\pingu@name-foot-right) ellipse [x radius=2.5\pingu@foot@single@w,y radius=.435\pingu@foot@single@h];
+}
+
+\@pingu@feet@s{chubby}{%
+\pingu@layer{foreground}[rotate around={-\basicfeetbend+45:(\pingu@name-foot-left)}]
+    \pingu@block\pingu@color@foot@left ([xshift=-3.75mm,yshift=-1.65mm]\pingu@name-foot-left) to[bend right=3] ++(5mm,0) -- ++(.05mm,.6mm) to[out=83,in=129,looseness=1.15] cycle;
+    \ifx\pingu@color@foot@left\@pingu@none\else
+        \colorlet{@}{\pingu@color@foot@left!80!\pingu@color@body@main}
+        \pingu@draw{@} ([xshift=-3.75mm,yshift=-1.65mm]\pingu@name-foot-left) to[bend right=5] coordinate[pos=.29] (@) coordinate[pos=.69] (@b) ++(5mm,0) -- ++(.05mm,.6mm) to[out=83,in=129,looseness=1.15] cycle;
+        \pingu@draw{@} (@) to[bend right=4] ++(.125mm,.75mm);
+        \pingu@draw{@} (@b) to[bend right=9] ++(.15mm,1.15mm);
+    \fi
+\endpingu@layer
+}{%
+\pingu@layer{foreground}[rotate around={-\basicfeetbend+45:(\pingu@name-foot-right)}]
+    \pingu@block\pingu@color@foot@right ([xshift=3.75mm,yshift=-1.65mm]\pingu@name-foot-right) to[bend left=3] ++(-5mm,0) -- ++(-.05mm,.6mm) to[out=97,in=81,looseness=1.15] cycle;
+    \ifx\pingu@color@foot@right\@pingu@none\else
+        \colorlet{@}{\pingu@color@foot@right!80!\pingu@color@body@main}
+        \pingu@draw{@} ([xshift=3.75mm,yshift=-1.65mm]\pingu@name-foot-right) to[bend left=5] coordinate[pos=.29] (@) coordinate[pos=.69] (@b)  ++(-5mm,0) -- ++(-.05mm,.475mm) to[out=97,in=81,looseness=1.15] cycle;
+        \pingu@draw{@} (@) to[bend left=4] ++(-.125mm,.75mm);
+        \pingu@draw{@} (@b) to[bend left=9] ++(-.15mm,1.15mm);
+    \fi
+\endpingu@layer
 }
 % #endregion
 
