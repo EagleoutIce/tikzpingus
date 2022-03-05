@@ -1,7 +1,7 @@
 \errorcontextlines99999
 \documentclass{article}
 
-\usepackage[glows]{tikzpingus}
+\usepackage[glows, bare]{tikzpingus}
 \usepackage[active, tightpage]{preview}
 \usepackage{fontawesome}
 \usetikzlibrary{3d,decorations.text}
@@ -9,42 +9,12 @@
 % randomize :D
 \pgfmathsetseed{\number\pdfrandomseed}
 
-\usetikzlibrary{arrows,arrows.meta,calc}
+\pinguloadlibraries{safe,technology,shirts,formal,glasses,cloak,fun,science-fiction,emotions,sport}
 
-\newsavebox\bebi\savebox\bebi{\tikz{\pingu[height=11mm,body type=legacy,wings shock,eyes shiny,blush,bow tie,feet=chubby,body=pingu@black]}}
-\newsavebox\papi\savebox\papi{\tikz{\pingu[body type=legacy,wings hug,eyes wink,headphones,name=papi]\node[below,scale=.5,yshift=12.25mm] (bebi) at (papi-belly-center) {\usebox\bebi}; \draw[-{Triangle[open, angle=80:2mm]}] (bebi.south) to[out=260,in=235,looseness=1.65] ([xshift=-10mm,yshift=-6mm]papi-belly-center);}}
-\newsavebox\darthpingu\savebox\darthpingu{\tikz\pingu[cape,cloak padding=4.75mm,lightsaber right=pingu@blue,lightsaber left=pingu@green,eyes angry,left item angle=-20,right item angle=-14,body=pingu@black,hair 1=pingu@blue,hair 2=pingu@blue,hair 3=pingu@green,hair 4=pingu@green,hair 5=pingu@green];}
-\newsavebox\elpingu\savebox\elpingu{\tikz\pingu[hat=pingu@green,tie=pingu@blue,eyes=shock,body type=legacy,feet=chubby];}
-\PreviewBorder0pt
-
-\colorlet{eyebase}{pingu@blue!80!pingu@black}
-\colorlet{eyebaseB}{pingu@blue!80!pingu@white}
-\def\topedge{(-2.95,0) .. controls (-2,1.89) and (2,1.99) .. (2.85,.3)}
-\def\bottomedge{(2.85,.3) .. controls (2,-1.69) and (-2,-1.29) .. (-2.95,0)}
-\def\eyepath{\topedge -- \bottomedge --cycle;}
-\newsavebox\eye\savebox\eye{\tikz{\begin{scope}[transform canvas={rotate=2.1}]
-   \clip\eyepath;
-     \filldraw[color=eyebase!35!black] (0,.2) circle  [radius=1.42];
-     \filldraw[color=eyebase!40!black] (0,-.1) circle [radius=1.12];
-     \foreach \a in {0,5,...,359}{
-       \pgfmathparse{25+28*rnd}
-       \fill[eyebase!\pgfmathresult!black, decoration={random steps, segment length=1pt, amplitude=0.3pt}, decorate, line width=0.3pt] (0,.2) -- ++($(\a+2*rnd:.85+0.3*rnd)$) -- ++(\a+90:3pt) -- cycle;
-     }
-     \foreach \a in {0,5,...,359}{
-         \pgfmathparse{25+28*rnd}
-         \fill[eyebaseB!\pgfmathresult!black!75!white, decoration={random steps, segment length=1pt, amplitude=0.3pt}, decorate, line width=0.3pt,fill opacity=0.5] (0,.2) -- ++($(\a+0.65*rnd:.6+0.3*rnd)$) -- ++(\a+90:1.25pt) -- cycle;
-     }
-     \fill[color=black!99!gray] (0,.2) coordinate (pupil) circle (0.502);
-     \draw[line width=2.5mm, draw opacity=0.1, line cap=round]\topedge;
-     \fill[pingu@black!70!white] (-2.8,-0.05) coordinate (lacrimal) ellipse [x radius=.28,y radius=0.225];
-     \draw[line width=1mm, pingu@black!86!white, line cap=round]\bottomedge;
-     \draw[line width=1.2mm, pingu@black, line cap=round]\topedge coordinate (right);
- \end{scope}}}
-\newsavebox\herzi\savebox\herzi{\tikz{\pingu[bill flat,body type=chubby,heart=pingu@purple,eyes shiny]}}
+\PreviewBorder2cm
 
 \begin{document}
 \begin{preview}
-\sffamily\tikz{\node (papi) {\usebox\papi}; \node[above right=-11mm] at(papi.north east) {\rotatebox{-45}{Papi Pingu}}; \node[above left=-13mm] at(papi.north west) {\rotatebox{45}{\scriptsize\color{gray}Kopfhöreredition}}; \node[below=4mm] (darth) at (papi.south) {\usebox\darthpingu};  \draw[-{Triangle[open, angle=80:2.75mm]}] (darth) -- ([yshift=3mm]papi.south); \draw[decoration={text along path,text={Darth Pingu}},decorate] ([xshift=1mm]darth.north) to[bend left] ++(16mm,-8mm);
-\node[right=3cm,yshift=5.5mm] (elpingu) at(papi.east) {\usebox\elpingu}; \node[below=-1.5mm] at (elpingu.south) {\Large El Pingu}; \node[below right=9mm,xshift=4mm,scale=.3,yshift=-2.5mm] (eye) at(elpingu.south) {\usebox\eye};\draw[-{Triangle[open, angle=60:2mm]}] (elpingu.220)--(darth); \node[left=19mm,yshift=2.5mm] (@) at(eye.west) {\Large\faHeart};\node[below=-1.66mm,align=center,font=\sffamily\tiny\color{gray}] at(@.south) {Keine Waffen.\\Nur Liebe!}; \node[right=5.75cm] (herzi) at(darth.east) {\usebox\herzi}; \draw[-{Triangle[open, angle=60:2.75mm]}] (herzi.north)--([xshift=-3mm,yshift=3mm]elpingu);\node[below=-1mm] at(herzi.south) {\Large Herz\rlap{\raisebox{.475\baselineskip}{\scalebox{.3}{\faHeart}}}\i\ Pingu}; \node[below left,xshift=5mm] (se) at(current bounding box.north east) {\Large\underline{Songe\rotatebox{7}{m}{\large p}\raisebox{1pt}{f}e\rotatebox{4}{h}\rotatebox{-1}{l}un\raisebox{.85\depth}{g}}};\node[below right] at (se.south west) {\large Che la luna};\pgfonlayer{background} \fill[white!99!pingu@black,rounded corners=9.75pt]([xshift=1.8cm,yshift=-1.8cm]current bounding box.south east) rectangle ([xshift=-1.8cm,yshift=1.8cm]current bounding box.north west);\endpgfonlayer}
+\tikz{\pingu[body=pingu@black,mask,left eye wink,heart=gray!70!white,headphones=pingu@purple,shirt=pingu@white!80!pingu@black,second shirt=pingu@red!70!pingu@white!50!white!80!pingu@black,tie=pingu@purple,shirt above,tie offset=.425cm,glasses,glasses bend=15,cape=pingu@purple,cloak padding=3.5mm,right wing hug,left wing=!random,lollipop left=pingu@purple,right item angle=30,staff right length=28mm,headphone outer=pingu@white!80!pingu@purple,lollipop left handle=pingu@bronze!80!pingu@black!90!pingu@purple,light-staff right=pingu@green!95!pingu@purple!90!pingu@white,light-staff right staff=pingu@bronze!80!pingu@black!90!pingu@purple]}
 \end{preview}
 \end{document}
