@@ -750,6 +750,21 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     \pingu@block[rotate around={25-\basicfeetbend:(@tmp)}]{\pingu@color@foot@right} (@tmp) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
 }
 
+
+\@pingu@feet@s{sit}{%
+\pingu@layer{foreground}[]
+    \coordinate (@tmp) at ([xshift=-.35\pingu@foot@single@h,yshift=-.4mm]\pingu@name-foot-left);
+    \pingu@block[rotate around={\basicfeetbend:(@tmp)}]{\pingu@color@foot@left} (@tmp)
+    arc(180:90:1.33mm and 4mm) arc (90:0:1.33mm and .9mm) to[bend left=50] ++(1.33mm,-1.3mm) to[bend left=66] ++(.7mm,-1.8mm) arc(0-50:-90-20:4.13mm and 4.2mm) to[bend left] cycle;
+\endpingu@layer
+}{%
+\pingu@layer{foreground}[xscale=-1]
+    \coordinate (@tmp) at ([xshift=-.35\pingu@foot@single@h,yshift=-.5mm]\pingu@name-foot-right);
+    \pingu@block[rotate around={\basicfeetbend:(@tmp)}]{\pingu@color@foot@right} (@tmp)
+    arc(180:90:1.33mm and 4mm) arc (90:0:1.33mm and .9mm) to[bend left=50] ++(1.33mm,-1.3mm) to[bend left=66] ++(.7mm,-1.8mm) arc(0-50:-90-20:4.13mm and 4.2mm) to[bend left] cycle;
+\endpingu@layer
+}
+
 \@pingu@feet@s{simple}{%
     \pingu@block[rotate around={-\basicfeetbend:(\pingu@name-foot-left)}]{\pingu@color@foot@left} (\pingu@name-foot-left) ellipse [x radius=2.66\pingu@foot@single@w,y radius=\pingu@foot@single@h];
 }{%
