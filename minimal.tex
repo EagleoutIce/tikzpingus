@@ -11,6 +11,8 @@
 
 \pinguloadlibraries{safe,technology,shirts,formal,glasses,cloak,fun,science-fiction,emotions,sport}
 
+\definecolor{@}{RGB}{245, 245, 219}
+
 \PreviewBorder.5cm
 
 \newsavebox\drawpeng \savebox\drawpeng{\tikz\pingu[eyes shiny,wings wave,tie];}
@@ -139,7 +141,7 @@
 \node[above left=-1.5mm,yshift=1.5mm,scale=.1] (@) at (@1.west) {\rotatebox{90}{\dopengu}};
 \endscope
 \pgfonlayer{background}
-\fill[rounded corners,white] ([xshift=5mm,yshift=-5mm]current bounding box.south east) rectangle ([xshift=-5mm,yshift=5mm]current bounding box.north west);
+\fill[rounded corners,@] ([xshift=5mm,yshift=-5mm]current bounding box.south east) rectangle ([xshift=-5mm,yshift=5mm]current bounding box.north west);
 \endpgfonlayer
 }
 \end{preview}
