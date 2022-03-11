@@ -1098,20 +1098,6 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 }
 %     #endregion
 
-%     #region handcast
-\pingu@create@wing@extra{handcast}{%
-  handcast \@lr/.forward to    = /pingu/hand cast \@lr,
-  hand cast \@lr/.code         = {\pingu@set@extra{handcast\@lr}{true}\@namedef{pingu@handcast@\@lr}{##1}},
-  hand cast \@lr/.default      = {X},
-  handcast \@lr\space color/.forward to    = /pingu/hand cast \@lr\space color,
-  hand cast \@lr\space color/.code = \pingu@color{handcast@\@lr @color}{##1},%
-}{hand cast \@lr\space color=pingu@purple}
-\def\pingu@draw@wi@handcast#1{%
-    \pingu@setup@wing{handcast}{#1}%
-    \path[rotate around={\@angle:(\pingu@name-wing-#1)}] (\pingu@name-wing-#1)++(0,5mm) node[\csname pingu@color@handcast@#1@color\endcsname] {\@nameuse{pingu@handcast@#1}};
-}
-%     #endregion
-
 %     #region staff
 \pingu@create@wing@extra{staff}{%
     staff \@lr/.code         = {\pingu@set@extra{staff\@lr}{true}\pingu@color{staff\@lr}{##1}},
@@ -1189,6 +1175,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \pingu@dummy@lib{signs}{sign post left, sign post right}
 \pingu@dummy@lib{devil}{devil horns,devil fork left,devil fork right}
 \pingu@dummy@lib{safe}{mask}
+\pingu@dummy@lib{safe}{handcast left, handcast right}
 \pingu@dummy@lib{emotions}{<TODO>}% eyes and bill: TODO
 
 \ifpengu@setup@bare@\else
