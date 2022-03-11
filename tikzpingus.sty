@@ -916,19 +916,6 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 %         #endregion
 %       #endregion
 
-%       #region blush
-\pingu@create@extra{blush}{%
-    blush/.code              = \pingu@set@extra{blush}{true}\pingu@color{blush}{#1},
-    blush/.default           = pingu@red,
-    blush second/.code       = \pingu@color{blush@second}{#1},
-    blush opacity/.code      = \def\pingu@x@blush@opacity{#1},
-}{blush opacity=.2525,blush second=\pingu@color@blush}
-\def\pingu@draw@eb@blush{%
-    \pingu@block[/pingu/@glow,opacity=\pingu@x@blush@opacity]{\pingu@color@blush} ([yshift=-2.7mm,xshift=-1.85mm]\pingu@name-eye-right) ellipse [x radius=2.66mm,y radius=2.25mm];
-    \pingu@block[/pingu/@glow,opacity=\pingu@x@blush@opacity]{\pingu@color@blush@second} ([yshift=-2.7mm,xshift=1.85mm]\pingu@name-eye-left) ellipse [x radius=2.66mm,y radius=2.25mm];
-}
-%       #endregion
-
 % #region glow
 \pingu@create@extra{glow}{%
     glow/.code       = \pingu@set@extra{glow}{true}\pingu@color{glow}{#1},
