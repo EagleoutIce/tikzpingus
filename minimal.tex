@@ -9,12 +9,12 @@
 % randomize :D
 \pgfmathsetseed{\number\pdfrandomseed}
 
-\pinguloadlibraries{safe,technology,shirts,formal,glasses,cloak,fun,science-fiction,emotions,sport}
+\pinguloadlibraries{movement,formal}
 
 \PreviewBorder2cm
 
 \begin{document}
 \begin{preview}
-\tikz{\pingu[body=pingu@black,mask,left eye wink,heart=gray!70!white,headphones=pingu@purple,shirt=pingu@white!80!pingu@black,second shirt=pingu@red!70!pingu@white!50!white!80!pingu@black,tie=pingu@purple,shirt above,tie offset=.425cm,glasses,glasses bend=15,cape=pingu@purple,cloak padding=3.5mm,right wing hug,left wing=!random,lollipop left=pingu@purple,right item angle=30,staff right length=28mm,headphone outer=pingu@white!80!pingu@purple,lollipop left handle=pingu@bronze!80!pingu@black!90!pingu@purple,light-staff right=pingu@green!95!pingu@purple!90!pingu@white,light-staff right staff=pingu@bronze!80!pingu@black!90!pingu@purple]}
+\rotatebox{-10}{\tikz{\pingu[body type=tilt-right,eyes wink,wings wave,bow tie=pingu@blue,halo,halo raise=1.25mm]\path (current bounding box.center) coordinate (@); \path[decoration={text along path,text={|\sffamily\small|THIS SUPPORTIVE MESSAGE IS OFFICIALLY SUPPORTED BY THE PENGUINS-FULL-OF-PEEP FOUNDATION {\textbullet}~},text color={pingu@purple},reverse path=true,text align={fit to path=true}},decorate] (@)++(96:2.7cm) arc(96:456:2.7cm);\pgfonlayer{very-background}\fill[pingu@white] (@)++(96:3.15cm) arc(96:456:3.15cm); \endpgfonlayer}}
 \end{preview}
 \end{document}

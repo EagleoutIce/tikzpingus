@@ -15,8 +15,9 @@
 \usetikzlibrary{intersections,shadings,patterns.meta,decorations.pathmorphing,shapes.symbols,shapes.geometric}
 
 \pgfdeclarelayer{background}\pgfdeclarelayer{foreground}\pgfdeclarelayer{middle}
+\pgfdeclarelayer{very-background}
 \ifpengu@setup@manual@layers@\else
-\pgfsetlayers{background,main,middle,foreground}
+\pgfsetlayers{very-background,background,main,middle,foreground}
 \fi
 % #region whole setup
 % #region colors
@@ -1163,6 +1164,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \pingu@dummy@lib{devil}{devil horns,devil fork left,devil fork right}
 \pingu@dummy@lib{safe}{mask}
 \pingu@dummy@lib{magic}{handcast left, handcast right}
+\pingu@dummy@lib{movement}{}
 \pingu@dummy@lib{emotions}{<TODO>}% eyes and bill: TODO
 
 \ifpengu@setup@bare@\else
