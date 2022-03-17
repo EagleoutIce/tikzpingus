@@ -64,9 +64,12 @@ to[bend right=7] ++(-.05,-.2) to[bend left=13] ++(-.2,-1.15) to[bend right=13] +
 \pingu@block{\csname pingu@color@horse#1@eyes\endcsname} [rounded corners=.25*\pingu@@horse@scale] ([xshift=3mm,yshift=-7.5mm]@ear) to[bend right=20] ++(.125,-.2) to[bend right=50] ++(.1,.125) to[bend left=15] cycle;
 }
 
+\newif\if@pingu@x@horse@left@flip@ \@pingu@x@horse@left@flip@false
+\newif\if@pingu@x@horse@right@flip@ \@pingu@x@horse@left@flip@true
 \pingu@create@wing@extra{horse}{%
     horse \@lr/.code             = {\pingu@set@extra{horse\@lr}{true}\pingu@color{horse\@lr}{##1}},
     horse \@lr/.default          = pingu@bronze!80!pingu@black,
+    horse \@lr\space flip/.is if   = @pingu@x@horse@\@lr @flip@,
     horse \@lr\space draw/.code  = \pingu@color{horse\@lr @draw}{##1},%
     horse \@lr\space mane/.code  = \pingu@color{horse\@lr @mane}{##1},%
     horse \@lr\space mane draw/.code  = \pingu@color{horse\@lr @mane@draw}{##1},%
@@ -78,15 +81,13 @@ to[bend right=7] ++(-.05,-.2) to[bend left=13] ++(-.2,-1.15) to[bend right=13] +
     horse \@lr\space eye/.forward to  = /pingu/horse \@lr\space eyes,%
     horse \@lr\space mouth/.code  = \pingu@color{horse\@lr @mouth}{##1},%
     horse \@lr\space nose/.code  = \pingu@color{horse\@lr @nose}{##1},%
-    horse \@lr\space ears/.code  = \pingu@color{horse\@lr @ears}{##1},% TODO: schweif
+    horse \@lr\space ears/.code  = \pingu@color{horse\@lr @ears}{##1}%
 }{horse \@lr\space draw=\csname pingu@color@horse\@lr\endcsname!80!pingu@black,horse \@lr\space mane=\csname pingu@color@horse\@lr\endcsname!86!pingu@white,horse \@lr\space mane draw=\csname pingu@color@horse\@lr @mane\endcsname!80!pingu@black,horse \@lr\space eyes=\csname pingu@color@horse\@lr @draw\endcsname,horse \@lr\space mouth=\csname pingu@color@horse\@lr @draw\endcsname,horse \@lr\space nose=\csname pingu@color@horse\@lr @draw\endcsname,horse \@lr\space ears=\csname pingu@color@horse\@lr\endcsname,horse \@lr\space thatch=\csname pingu@color@horse\@lr @mane\endcsname,horse \@lr\space thatch draw=\csname pingu@color@horse\@lr @thatch\endcsname!80!pingu@black,horse \@lr\space tail=\csname pingu@color@horse\@lr @mane\endcsname,horse \@lr\space tail draw=\csname pingu@color@horse\@lr @tail\endcsname!80!pingu@black}
 
 \def\pingu@draw@wi@horse#1{%
     \pingu@setup@wing{horse}{#1}%
-    % we do flip the horse, however, there could be a switch for that
-    % TODO: MAKE DA SWITCH DAMMIT
 \scope[scale=\pingu@@horse@scale,every path/.append style={line cap=round, line join=round},shift=(\pingu@name-wing-#1),rotate around={\@angle-5:(\pingu@name-wing-#1)}]
-    \if@pingu@wing@item@side@left@
+\csname if@pingu@x@horse@#1@flip@\endcsname
 \scope[xshift=-4cm,yshift=-42mm]
 \else
 \scope[xshift=4cm,yshift=-42mm,xscale=-1]
