@@ -35,7 +35,7 @@ to[bend right=7] ++(-.05,-.2) to[bend left=13] ++(-.2,-1.15) to[bend right=13] +
 \pingu@block[draw=\csname pingu@color@horse#1@draw\endcsname,line width=1.75pt*\pingu@@horse@scale]{\csname pingu@color@horse#1\endcsname} [rounded corners=1*\pingu@@horse@scale](@backleg) to[out=-115,in=130] ++(-.3,-3.65) -- ++(.2,-.3) to[bend left] ++(-.5,-.1)
 -- ++(-.05,.15) -- ++(0,.15) to[bend left=60] cycle;
 
-\pingu@block[draw=\csname pingu@color@horse#1@tail@draw\endcsname,line width=1.75pt*\pingu@@horse@scale]{\csname pingu@color@horse\@lr @tail\endcsname} [rounded corners=1*\pingu@@horse@scale](@back) to[out=215,in=90] ++(-.4,-2.5) to[out=270,in=92] ++(0,-2.8) [sharp corners] to[bend right=20] ++(.6,0) to[bend right=10] cycle;
+\pingu@block[draw=\csname pingu@color@horse#1@tail@draw\endcsname,line width=1.75pt*\pingu@@horse@scale]{\csname pingu@color@horse#1@tail\endcsname} [rounded corners=1*\pingu@@horse@scale](@back) to[out=215,in=90] ++(-.4,-2.5) to[out=270,in=92] ++(0,-2.8) [sharp corners] to[bend right=20] ++(.6,0) to[bend right=10] cycle;
 
 % back ear
 \pingu@block[draw=\csname pingu@color@horse#1@draw\endcsname,line width=1.35pt*\pingu@@horse@scale]{\csname pingu@color@horse#1@ears\endcsname} ([xshift=.2mm,yshift=-1.5mm]@ear) to[bend left=20] ++(.373,.565) coordinate(@) to[bend left=10] ++(-.15,-.75);
@@ -51,9 +51,9 @@ to[bend right=7] ++(-.05,-.2) to[bend left=13] ++(-.2,-1.15) to[bend right=13] +
 \pingu@draw[line width=1.75pt*\pingu@@horse@scale]{\csname pingu@color@horse#1@draw\endcsname} ([yshift=-.35mm]@frontleg) to[bend left=12] ++(.01,.325);
 \pingu@draw[line width=1.75pt*\pingu@@horse@scale]{\csname pingu@color@horse#1@draw\endcsname} ([yshift=-.2mm]@backleg) to[bend right=13] ++(.25,.425);
 
-\pingu@block[draw=\csname pingu@color@horse#1@mane@draw\endcsname,line width=1.75pt*\pingu@@horse@scale]{\csname pingu@color@horse\@lr @mane\endcsname} [rounded corners=1*\pingu@@horse@scale](@hair) to[out=34,in=185] ++(3,1.3) to[bend left=10] ++(.415,-.1) -- ++(-.1,-.4) to[out=194,in=30] ([yshift=-11.5mm,xshift=1.5mm]@hair) -- cycle;
+\pingu@block[draw=\csname pingu@color@horse#1@mane@draw\endcsname,line width=1.75pt*\pingu@@horse@scale]{\csname pingu@color@horse#1@mane\endcsname} [rounded corners=1*\pingu@@horse@scale](@hair) to[out=34,in=185] ++(3,1.3) to[bend left=10] ++(.415,-.1) -- ++(-.1,-.4) to[out=194,in=30] ([yshift=-11.5mm,xshift=1.5mm]@hair) -- cycle;
 
-\pingu@block[draw=\csname pingu@color@horse#1@thatch@draw\endcsname,line width=1.35pt*\pingu@@horse@scale]{\csname pingu@color@horse\@lr @thatch\endcsname} [rounded corners=1*\pingu@@horse@scale]([xshift=2mm,yshift=-1mm]@ear) -- ++(-.1,-.3275) to[bend left=4] ++(.455,-.175) to[bend right=9] cycle;
+\pingu@block[draw=\csname pingu@color@horse#1@thatch@draw\endcsname,line width=1.35pt*\pingu@@horse@scale]{\csname pingu@color@horse#1@thatch\endcsname} [rounded corners=1*\pingu@@horse@scale]([xshift=2mm,yshift=-1mm]@ear) -- ++(-.1,-.3275) to[bend left=4] ++(.455,-.175) to[bend right=9] cycle;
 
 % ear
 \pingu@block[draw=\csname pingu@color@horse#1@draw\endcsname,line width=1.35pt*\pingu@@horse@scale]{\csname pingu@color@horse#1@ears\endcsname} ([xshift=-.75mm,yshift=-1mm]@ear) to[bend left=20] ++(.393,.585) coordinate(@) to[bend right=10] ++(-.15,-.7);
