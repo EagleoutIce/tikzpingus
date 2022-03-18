@@ -2824,7 +2824,7 @@ Change the bending of the banner:
 \end{tcblisting}
 \endsubkeyexplain
 
-\subsection{Wing-Items}
+\subsection{Wing Items}
 \label{sub:wing-items}Most wing items created have a two variants: one for the left and one for the right wing. For consistency, both of them are represented in the documentation~--- many times, they are not just mirrored but two different shapes that appear to be mirrored with special care.
 
 \keyexplain{left wing item angle}{angle}{\pingu@wing@left@item@angle@user}
@@ -3813,6 +3813,33 @@ Staff color of the \keyref{devil fork right}:
 \begin{tikzpicture}
 	\pingu[devil fork right,
 		    devil fork right length=7mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
+
+\subsubsection{The Horse}
+
+\keyexplain{horse left}{color}{pingu@bronze!80!pingu@black}
+	Give it a horse:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse left=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
+
+\keyexplain{horse left flip}{true/false}{false}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse left,horse left flip]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
+
+\keyexplain{horse left has base}{true/false}{false}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse left,horse left has base]
 \end{tikzpicture}
 \end{tcblisting}
 \endkeyexplain
