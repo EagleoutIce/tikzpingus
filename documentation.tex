@@ -3828,82 +3828,180 @@ Staff color of the \keyref{devil fork right}:
 \end{tcblisting}
 \endkeyexplain
 
-\keyexplain{horse left flip}{true/false}{false}
+\subkeyexplain{horse left}{horse left flip}{true/false}{false}
 By default, the left horse will be flipped. The right horse won't.
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[horse left,horse left flip=false]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endsubkeyexplain
 
-\keyexplain{horse left has base}{true/false}{false}
+\subkeyexplain{horse left}{horse left has base}{true/false}{false}
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[horse left,horse left has base]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endsubkeyexplain
 
 {\def\pingu@color@horseleft{<horse-left-color>}
-\keyexplain{horse left draw}{color}{\pingu@color@horseleft@draw}
+\subkeyexplain{horse left}{horse left draw}{color}{\pingu@color@horseleft@draw}
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[horse left,horse left draw=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endsubkeyexplain
 
-\keyexplain{horse left mane}{color}{\pingu@color@horseleft@mane}
+\subkeyexplain{horse left}{horse left mane}{color}{\pingu@color@horseleft@mane}
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[horse left,horse left mane=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endsubkeyexplain
 
 \def\pingu@color@horseleft@mane{<horse-left-mane-color>}
-\keyexplain{horse left mane draw}{color}{\pingu@color@horseleft@mane@draw}
+\subkeyexplain{horse left}{horse left mane draw}{color}{\pingu@color@horseleft@mane@draw}
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[horse left,horse left mane draw=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endsubkeyexplain
 
-\keyexplain{horse left thatch}{color}{\pingu@color@horseleft@thatch}
+\subkeyexplain{horse left}{horse left thatch}{color}{\pingu@color@horseleft@thatch}
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[horse left,horse left thatch=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endsubkeyexplain
 
 \def\pingu@color@horseleft@thatch{<horse-left-thatch-color>}
-\keyexplain{horse left thatch draw}{color}{\pingu@color@horseleft@thatch@draw}
+\subkeyexplain{horse left}{horse left thatch draw}{color}{\pingu@color@horseleft@thatch@draw}
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[horse left,horse left thatch draw=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endsubkeyexplain
 
-\keyexplain{horse left tail}{color}{\pingu@color@horseleft@tail}
+\subkeyexplain{horse left}{horse left tail}{color}{\pingu@color@horseleft@tail}
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[horse left,horse left tail=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endsubkeyexplain
 
 \def\pingu@color@horseleft@tail{<horse-left-tail-color>}
-\keyexplain{horse left tail draw}{color}{\pingu@color@horseleft@tail@draw}
+\subkeyexplain{horse left}{horse left tail draw}{color}{\pingu@color@horseleft@tail@draw}
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[horse left,horse left tail draw=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endsubkeyexplain
+
+\subkeyexplain{horse left}{horse left eyes}{color}{\pingu@color@horseleft@eyes}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse left,horse left eyes=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+\subkeyalias{horse left eye}{horse left eyes}{horse left}
+
+\subkeyexplain{horse left}{horse left mouth}{color}{\pingu@color@horseleft@mouth}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse left,horse left mouth=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{horse left}{horse left nose}{color}{\pingu@color@horseleft@nose}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse left,horse left nose=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{horse left}{horse left ears}{color}{\pingu@color@horseleft@ears}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse left,horse left ears=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{horse left}{horse left base}{color}{\pingu@color@horseleft@base}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse left,horse left has base,
+			 horse left base=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\def\pingu@color@horseleft@base{<horse-left-base-color>}
+\subkeyexplain{horse left}{horse left base draw}{color}{\pingu@color@horseleft@base@draw}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse left,horse left has base,
+			 horse left base draw=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{horse left}{horse left base shade}{color}{\pingu@color@horseleft@base@shade}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse left,horse left has base,
+			 horse left base shade=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\def\pingu@color@horseleft@base@shade{<horse-left-base-shade-color>}
+\subkeyexplain{horse left}{horse left base shade draw}{color}{\pingu@color@horseleft@base@shade@draw}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse left,horse left has base,
+			 horse left base shade draw=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{horse left}{horse left xshift}{color}{\pingu@x@horseleft@xshift}
+This key reacts with the \keyref{horse left flip} option!
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse left,horse left xshift=1cm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{horse left}{horse left yshift}{color}{\pingu@x@horseleft@yshift}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse left,horse left yshift=1cm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{horse left}{horse left on base}{}{}
+Uses \keyref{horse left xshift} and \keyref{horse left yshift} to align a horse on a base to be set on the penguin-wing:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse left,horse left has base,
+	  		 horse left on base]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
 }
 
 
