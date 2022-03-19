@@ -4004,6 +4004,191 @@ Uses \keyref{horse left xshift} and \keyref{horse left yshift} to align a horse 
 \endsubkeyexplain
 }
 
+\keyexplain{horse right}{color}{pingu@bronze!80!pingu@black}
+	Give it a horse:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse right=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
+
+\subkeyexplain{horse right}{horse right flip}{true/false}{false}
+By default, the right horse will be flipped. The right horse won't.
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse right,horse right flip=false]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{horse right}{horse right has base}{true/false}{false}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse right,horse right has base]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+{\def\pingu@color@horseright{<horse-right-color>}
+\subkeyexplain{horse right}{horse right draw}{color}{\pingu@color@horseright@draw}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse right,horse right draw=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{horse right}{horse right mane}{color}{\pingu@color@horseright@mane}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse right,horse right mane=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\def\pingu@color@horseright@mane{<horse-right-mane-color>}
+\subkeyexplain{horse right}{horse right mane draw}{color}{\pingu@color@horseright@mane@draw}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse right,horse right mane draw=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{horse right}{horse right thatch}{color}{\pingu@color@horseright@thatch}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse right,horse right thatch=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\def\pingu@color@horseright@thatch{<horse-right-thatch-color>}
+\subkeyexplain{horse right}{horse right thatch draw}{color}{\pingu@color@horseright@thatch@draw}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse right,horse right thatch draw=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{horse right}{horse right tail}{color}{\pingu@color@horseright@tail}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse right,horse right tail=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\def\pingu@color@horseright@tail{<horse-right-tail-color>}
+\subkeyexplain{horse right}{horse right tail draw}{color}{\pingu@color@horseright@tail@draw}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse right,horse right tail draw=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{horse right}{horse right eyes}{color}{\pingu@color@horseright@eyes}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse right,horse right eyes=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+\subkeyalias{horse right eye}{horse right eyes}{horse right}
+
+\subkeyexplain{horse right}{horse right mouth}{color}{\pingu@color@horseright@mouth}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse right,horse right mouth=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{horse right}{horse right nose}{color}{\pingu@color@horseright@nose}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse right,horse right nose=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{horse right}{horse right ears}{color}{\pingu@color@horseright@ears}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse right,horse right ears=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{horse right}{horse right base}{color}{\pingu@color@horseright@base}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse right,horse right has base,
+			 horse right base=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\def\pingu@color@horseright@base{<horse-right-base-color>}
+\subkeyexplain{horse right}{horse right base draw}{color}{\pingu@color@horseright@base@draw}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse right,horse right has base,
+			 horse right base draw=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{horse right}{horse right base shade}{color}{\pingu@color@horseright@base@shade}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse right,horse right has base,
+			 horse right base shade=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\def\pingu@color@horseright@base@shade{<horse-right-base-shade-color>}
+\subkeyexplain{horse right}{horse right base shade draw}{color}{\pingu@color@horseright@base@shade@draw}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse right,horse right has base,
+			 horse right base shade draw=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{horse right}{horse right xshift}{color}{\pingu@x@horseright@xshift}
+This key reacts with the \keyref{horse right flip} option!
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse right,horse right xshift=1cm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{horse right}{horse right yshift}{color}{\pingu@x@horseright@yshift}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse right,horse right yshift=1cm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{horse right}{horse right on base}{}{}
+Uses \keyref{horse right xshift} and \keyref{horse right yshift} to align a horse on a base to be set on the penguin-wing:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[horse right,horse right has base,
+	  		 horse right on base]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+}
+
 
 \subsection{Clothes}
 
