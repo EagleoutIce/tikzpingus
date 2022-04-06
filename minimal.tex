@@ -9,31 +9,10 @@
 % randomize :D
 \pgfmathsetseed{\number\pdfrandomseed}
 
-\pinguloadlibraries{technology,formal}
-
-\colorlet{background}{purple!12!white}
-
-\newsavebox\pingubox
-\savebox\pingubox{\tikz\pingu[vr-headset,left wing wave,body type=legacy,heart=gray!20!white,body type=legacy,bow tie=background!80!black,vr-headset hair];}
-
-
-\colorlet{ballcolor}{cyan!80!background}% {cyan!60!black}
-\pgfdeclareradialshading{ballshading}{\pgfpoint{-10bp}{10bp}}
- {color(0bp)=(ballcolor!40!white);
- color(9bp)=(ballcolor!75!white);
- color(18bp)=(ballcolor!70!black);
- color(25bp)=(ballcolor!50!black);
- color(50bp)=(ballcolor!10!black)}
-
-\def\ang{76}
+\pinguloadlibraries{safe}
 
 \begin{document}
 \begin{preview}
-\begin{tikzpicture}
-\fill[background] (0,0) arc (-30+\ang:300+\ang:2cm) to[bend left=50] coordinate[pos=.4] (@) cycle;
-\node at(current bounding box.center) {\box\pingubox};
-
-\node[above right=1.33mm,circle,minimum size=7.5mm,shading=ballshading] at(@) {};
-\end{tikzpicture}
+\tikz\pingu[mask,eyes wink];
 \end{preview}
 \end{document}
