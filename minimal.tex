@@ -9,10 +9,28 @@
 % randomize :D
 \pgfmathsetseed{\number\pdfrandomseed}
 
-\pinguloadlibraries{safe}
+\pinguloadlibraries{perspective}
 
 \begin{document}
 \begin{preview}
-\tikz\pingu[mask,eyes wink];
+\begin{tikzpicture}
+   \pingu[meta-dots,name=@a]
+\scope[xshift=3.25cm]
+   \pingu[body type=side,meta-dots,name=@b,feet=none,eyes=none,hair=!hide,bill=none,wings=none]
+\endscope
+
+\begin{scope}[every path/.style={draw,gray,thin}]
+   \path ([xshift=-1.15cm]@a-eye-right) coordinate (l) -- ++(6,0);
+   \path (l|-@a-bill) -- ++(6,0);
+   \path (l|-@a-belly-center) -- ++(6,0);
+   \path (l|-@a-head) -- ++(6,0);
+   \path (l|-@a-head-top)   -- ++(6,0);
+   \path (l|-@a-foot-right) -- ++(6,0);
+   % \path (l|-@a-bill-bottom) -- (r|-@b-bill-bottom);
+   \path (l|-@a-head-back-con-right) -- ++(6,0);
+   \path (l|-@a-foot-right) -- ++(6,0);
+   \path ([yshift=.5cm]l|-@a-head) -- ++(6,0);
+   \end{scope}
+\end{tikzpicture}
 \end{preview}
 \end{document}
