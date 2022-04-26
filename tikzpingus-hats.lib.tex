@@ -73,12 +73,12 @@ to[bend left=8] cycle;
   construction helmet padding/.code = {\def\pingu@x@constructionhelmet@padding{#1}},
   construction helmet extra height/.code = {\def\pingu@x@constructionhelmet@height{#1}},
   construction helmet position/.code args  = {#1:(#2,#3)#4}{\def\pingu@x@constructionhelmet@angle{#1}\def\pingu@x@constructionhelmet@xshift{#2}\def\pingu@x@constructionhelmet@yshift{#3}\def\pingu@x@constructionhelmet@scale{#4}},
-}{construction helmet padding=.8mm, construction helmet extra height=0pt,construction helmet position={-.5:(.05mm,-1.25mm)1}}
+}{construction helmet padding=.325cm, construction helmet extra height=0pt,construction helmet position={-.5:(.05mm,-1.25mm)1}}
 
 \newdimen\pingu@constructionhelmet@w@half \pingu@constructionhelmet@w@half=.85cm
 \def\pingu@draw@ea@constructionhelmet{%
 \scope[rotate around={\pingu@x@constructionhelmet@angle:(\pingu@name-head-top)},shift={(\pingu@name-head-top)},shift={(\pingu@x@constructionhelmet@xshift,\pingu@x@constructionhelmet@yshift)},scale=\pingu@x@constructionhelmet@scale]
-\pingu@block{\pingu@color@constructionhelmet} (0,-.25cm)++(180:\pingu@constructionhelmet@w@half{} and .325cm) arc (180:360:\pingu@constructionhelmet@w@half{} and .325cm) arc (0:180:\pingu@constructionhelmet@w@half{} and .2cm) -- cycle;
+\pingu@block{\pingu@color@constructionhelmet} (0,-.25cm)++(180:\pingu@constructionhelmet@w@half{} and \pingu@x@constructionhelmet@padding) arc (180:360:\pingu@constructionhelmet@w@half{} and \pingu@x@constructionhelmet@padding) arc (0:180:\pingu@constructionhelmet@w@half{} and .2cm) -- cycle;
 \scope
 \pingu@block{\pingu@color@constructionhelmet!93!pingu@black} (0,-.25cm)++(0:{.95\pingu@constructionhelmet@w@half} and .675cm) arc (0:180:{.95\pingu@constructionhelmet@w@half} and .675cm) coordinate[pos=.212] (@a) coordinate[pos=.256] (@aa) coordinate[pos=.788] (@b) coordinate[pos=.744] (@bb) arc (180:360:{.95\pingu@constructionhelmet@w@half} and .125cm) -- cycle;
 \clip  (0,-.25cm)++(0:{.95\pingu@constructionhelmet@w@half} and .675cm) arc (0:180:{.95\pingu@constructionhelmet@w@half} and .675cm) arc (180:360:{.95\pingu@constructionhelmet@w@half} and .125cm) -- cycle;
