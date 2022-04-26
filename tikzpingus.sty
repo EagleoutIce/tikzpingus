@@ -819,6 +819,15 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     to[bend right=.25cm] cycle;
 }
 
+\@pingu@bill@s{foreground}{%
+\pingu@layer{foreground}[]
+\pingu@block{\pingu@color@bill} (\pingu@name-bill)++(-.19cm,0)
+    arc (180:360:.19cm and .225cm)
+    coordinate[pos=.5] (\pingu@name-bill-bottom)
+    to[bend right=.25cm] cycle;
+\endpingu@layer
+}
+
 \@pingu@bill@s{flat}{%
 \pingu@block{\pingu@color@bill} (\pingu@name-bill)++(-.19cm,0)
     arc (180:360:.19cm and .225cm)
