@@ -1020,16 +1020,20 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \pingu@create@extra{sheriffstar}{%
     sheriff star/.code             = \pingu@set@extra{sheriffstar}{true}\pingu@color{sheriffstar}{#1},
     sheriff star/.default          = pingu@yellow,
-}{}
+    sheriff star content/.code     = \def\pingu@x@sheriff@star@content{#1},
+    sheriff star lines/.code       = \pingu@color{sheriffstar@lines}{#1},
+}{sheriff star content={\resizebox{2.25mm}!{\textsf{\bfseries Sheriff}}},sheriff star lines=pingu@black!92!\pingu@color@sheriffstar}
+
 \def\pingu@draw@ea@sheriffstar{%
 \pingu@layer{middle}[]
 \path (\pingu@name-belly-center) -- (\pingu@name-head-back-con-left) node[pos=.6, star, star points=7, fill=\pingu@color@sheriffstar,minimum size=1.75mm,scale=.9,rotate=-5] (@) {};
 \foreach \i in {1,...,7} {
     \pingu@block{\pingu@color@sheriffstar!98!pingu@black} (@.outer point \i) circle [radius=.2mm];
 }
-\node[pingu@black!92!pingu@yellow,outer sep=0pt,inner xsep=0pt,inner ysep=.25mm] (@s) at (@) {\resizebox{2.25mm}!{\textsf{\bfseries Sheriff}}};
-\pingu@draw[line width=.002mm]{pingu@black!92!pingu@yellow} (@s.north east) -- (@s.north west);
-\pingu@draw[line width=.002mm]{pingu@black!92!pingu@yellow} (@s.south east) -- (@s.south west);
+
+\node[,outer sep=0pt,inner xsep=0pt,inner ysep=.25mm] (@s) at (@) {\ifx\pingu@color@sheriffstar@lines\@pingu@none\else\color{\pingu@color@sheriffstar@lines}\fi\pingu@x@sheriff@star@content};
+\pingu@draw[line width=.002mm]{\pingu@color@sheriffstar@lines} (@s.north east) -- (@s.north west);
+\pingu@draw[line width=.002mm]{\pingu@color@sheriffstar@lines} (@s.south east) -- (@s.south west);
 \endpingu@layer}
 % #endregion
 
