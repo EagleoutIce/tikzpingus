@@ -81,3 +81,45 @@ vr-controller \@lr\space second shade/.code = \pingu@color{vrcontroller\@lr @sec
     \pingu@block[opacity=.1]{black} (@l) to[bend left=14] (@c) -- ++(0,-2mm) -| cycle;
     \endscope
 }
+
+
+\pingu@create@wing@extra{laptop}{%
+  laptop \@lr/.code                  = {\pingu@set@extra{laptop\@lr}{true}\pingu@color{laptop\@lr}{##1}},
+  laptop \@lr/.default               = gray!80!pingu@white,
+  laptop \@lr\space bracket/.code    = \pingu@color{laptop\@lr @bracket}{##1},
+  laptop \@lr\space lower/.code      = \pingu@color{laptop\@lr @lower}{##1},
+  laptop \@lr\space key/.code        = \pingu@color{laptop\@lr @key}{##1},
+  laptop \@lr\space display/.code    = \pingu@color{laptop\@lr @display}{##1},
+  laptop \@lr\space content/.code    = \@namedef{laptop\@lr @content}{##1}, % tikz content
+}{laptop \@lr\space bracket=pingu@black!80!\csname pingu@color@laptop\@lr\endcsname,laptop \@lr\space lower=\csname pingu@color@laptop\@lr\endcsname!95!pingu@black,laptop \@lr\space key=\csname pingu@color@laptop\@lr\endcsname!92!pingu@white,laptop \@lr\space display=\csname pingu@color@laptop\@lr\endcsname!32!pingu@white,laptop \@lr\space content={}}
+
+% #1 wing
+\def\pingu@draw@wi@laptop#1{%
+    \pingu@setup@wing{laptop}{#1}%
+    \scope[rotate around={\@angle+5:(\pingu@name-wing-#1)},shift={(\pingu@name-wing-#1)}]
+        \pingu@block[rounded corners=1pt]{\csname pingu@color@laptop#1@lower\endcsname}(-6.9mm,0) -- ++(-.1mm,-4.75mm) -- ++(14mm,0) -- ++(-.1mm,4.75mm) -- cycle;
+        \pingu@block[rounded corners=1pt]{\@col}(-6.9mm,0) -- ++(0,7mm) -- ++(13.8mm,0) -- ++(0,-7mm) -- cycle;
+        \pingu@block[rounded corners=.125mm]{\csname pingu@color@laptop#1@bracket\endcsname}(-6.4mm,.125mm) -- ++(0,-.25mm) -- ++(12.8mm,0) -- ++(0,.25mm) -- cycle;
+        % keys
+        \foreach[count=\y from 0,evaluate=\y as \extpadding using 0.005*\y,evaluate=\y as \rextpadding using 0.05*\y] \row in {
+            % manually account for padding
+                {0,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                {.63,1.5,1,1,1,1,1,1,1,1,1,1,1},
+                {0,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                {0,1,1,1,1,1,4.62,1,1,1,1},
+            } {
+            \def\lengthincr{-\rextpadding mm}
+            \foreach[count=\i from 0,evaluate=\len as \l using 0.85*\len] \len in \row {
+                \ifnum\i=0 \else % first one is silent:
+                \pingu@block[rounded corners=.125mm]{\csname pingu@color@laptop#1@key\endcsname}(\lengthincr-6.4mm,-\y mm-.5mm) rectangle ++(\l mm,-.75mm) node[midway,centered,text=\@col,scale=.3] {\textbullet};
+                \fi
+                \xdef\lengthincr{\the\dimexpr\lengthincr+\l mm+.13mm+\extpadding mm}
+            }
+        }
+        % display, we modify the lower shift to adjust height offset
+        \pingu@block[rounded corners=1pt]{\csname pingu@color@laptop#1@display\endcsname}(-6.7mm,.25mm+.05mm) -- ++(0,6.45mm) -- ++(13.4mm,0) -- ++(0,-6.45mm) -- cycle;
+        \scope[shift={(-6.7mm,.25mm+.05mm)}]
+            \csname laptop\@lr @content\endcsname
+        \endscope
+    \endscope
+}
