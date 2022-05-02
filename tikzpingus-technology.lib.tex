@@ -91,7 +91,8 @@ vr-controller \@lr\space second shade/.code = \pingu@color{vrcontroller\@lr @sec
   laptop \@lr\space key/.code        = \pingu@color{laptop\@lr @key}{##1},
   laptop \@lr\space display/.code    = \pingu@color{laptop\@lr @display}{##1},
   laptop \@lr\space content/.code    = \@namedef{laptop\@lr @content}{##1}, % tikz content
-}{laptop \@lr\space bracket=pingu@black!80!\csname pingu@color@laptop\@lr\endcsname,laptop \@lr\space lower=\csname pingu@color@laptop\@lr\endcsname!95!pingu@black,laptop \@lr\space key=\csname pingu@color@laptop\@lr\endcsname!92!pingu@white,laptop \@lr\space display=\csname pingu@color@laptop\@lr\endcsname!32!pingu@white,laptop \@lr\space content={}}
+  laptop \@lr\space mid/.code    = \@namedef{laptop\@lr @mid}{##1}, % tikz content
+}{laptop \@lr\space bracket=pingu@black!80!\csname pingu@color@laptop\@lr\endcsname,laptop \@lr\space lower=\csname pingu@color@laptop\@lr\endcsname!95!pingu@black,laptop \@lr\space key=\csname pingu@color@laptop\@lr\endcsname!92!pingu@white,laptop \@lr\space display=\csname pingu@color@laptop\@lr\endcsname!32!pingu@white,laptop \@lr\space content={},laptop \@lr\space mid={}}
 
 % #1 wing
 \def\pingu@draw@wi@laptop#1{%
@@ -117,9 +118,9 @@ vr-controller \@lr\space second shade/.code = \pingu@color{vrcontroller\@lr @sec
             }
         }
         % display, we modify the lower shift to adjust height offset
-        \pingu@block[rounded corners=1pt]{\csname pingu@color@laptop#1@display\endcsname}(-6.7mm,.25mm+.05mm) -- ++(0,6.45mm) -- ++(13.4mm,0) -- ++(0,-6.45mm) -- cycle;
+        \pingu@block[rounded corners=1pt]{\csname pingu@color@laptop#1@display\endcsname}(-6.7mm,.25mm+.05mm) rectangle ++(13.4mm,6.45mm) node[midway,centered,rotate=\@angle+5,text width=13.2mm,align=center,minimum height=6.2mm] {\csname laptop#1@mid\endcsname};
         \scope[shift={(-6.7mm,.25mm+.05mm)}]
-            \csname laptop\@lr @content\endcsname
+            \csname laptop#1@content\endcsname
         \endscope
     \endscope
 }
