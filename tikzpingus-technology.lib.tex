@@ -118,9 +118,9 @@ vr-controller \@lr\space second shade/.code = \pingu@color{vrcontroller\@lr @sec
             }
         }
         % display, we modify the lower shift to adjust height offset
-        \pingu@block[rounded corners=1pt]{\csname pingu@color@laptop#1@display\endcsname}(-6.7mm,.25mm+.05mm) rectangle ++(13.4mm,6.45mm) node[midway,centered,rotate=\@angle+5,text width=13.2mm,align=center,minimum height=6.2mm] {\csname laptop\@lr @mid\endcsname};
+        \pingu@block[rounded corners=1pt]{\csname pingu@color@laptop#1@display\endcsname}(-6.7mm,.25mm+.05mm) rectangle ++(13.4mm,6.45mm) node[midway,centered,rotate=\@angle+5,text width=13.2mm,align=center,minimum height=6.2mm] {\csname laptop#1@mid\endcsname};
         \scope[shift={(-6.7mm,.25mm+.05mm)}]
-            \csname laptop\@lr @content\endcsname
+            \csname laptop#1@content\endcsname
         \endscope
     \endscope
 }
