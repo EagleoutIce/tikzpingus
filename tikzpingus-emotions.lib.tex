@@ -37,3 +37,14 @@
     \pingu@block[/pingu/@glow,opacity=\pingu@x@blush@opacity]{\pingu@color@blush} ([yshift=-2.7mm,xshift=-1.85mm]\pingu@name-eye-right) ellipse [x radius=2.66mm,y radius=2.25mm];
     \pingu@block[/pingu/@glow,opacity=\pingu@x@blush@opacity]{\pingu@color@blush@second} ([yshift=-2.7mm,xshift=1.85mm]\pingu@name-eye-left) ellipse [x radius=2.66mm,y radius=2.25mm];
 }
+
+
+\@pingu@eyes@s{hearts}{%
+    \path (\pingu@name-eye-back-left)++(\pingu@eye@shift,.75mm) coordinate (\pingu@name-eye-left);
+    \pingu@block[rounded corners=0pt]{\pingu@color@eye@left} ([yshift=.3mm]\pingu@name-eye-left) arc(0:180:.065cm)
+    to[out=270,in=110] ++(.13cm,-.2cm) to[out=70,in=270] ++(.13cm,.2cm) arc (0:180:.065cm) -- cycle;
+}{%
+    \path (\pingu@name-eye-back-right)++(-\pingu@eye@shift,.75mm) coordinate (\pingu@name-eye-right);
+    \pingu@block{\pingu@color@eye@right} ([yshift=.3mm]\pingu@name-eye-right) arc(0:180:.065cm)
+    to[out=270,in=110] ++(.13cm,-.2cm) to[out=70,in=270] ++(.13cm,.2cm) arc (0:180:.065cm) -- cycle;
+}
