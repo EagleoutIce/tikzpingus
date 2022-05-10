@@ -58,3 +58,29 @@
     \pingu@block{\@col} ([yshift=4mm]\pingu@name-devilfork-#1-top) to[out=240,in=90] ++(-.65mm,-4mm) to[out=180,in=-60] ++(-1mm,5.5mm) to[out=240,in=90] ++(-.65mm,-5.9mm) to[bend right] ++(4.4mm,0) to[out=90,in=-60] ++(-.65mm,5.9mm) to[out=240,in=0] ++(-1mm,-5.5mm) to[out=90,in=-60] cycle;
 \endscope
 }
+
+\pingu@create@extra{devilwings}{%
+    devilwings/.forward to    = /pingu/devil wings,
+    devil-wings/.forward to   = /pingu/devil wings,
+    devil wings/.code         = \pingu@set@extra{devilwings}{true}\pingu@color{devilwings}{#1},
+    devil wings/.default      = pingu@black,
+    devil wings b/.code       = \pingu@color{devilwings@b}{#1},
+    devilwings b/.forward to  = /pingu/devil wings b,
+    devil-wings b/.forward to = /pingu/devil wings b
+}{devil wings b=\pingu@color@devilwings}
+
+% taken over and adapted from the old penguins
+\def\@pingu@devilwings@lower@wing@code{(0,0.2) -- (0,1.4) -- (-2,1.4) .. controls (-4,0.8) .. (-4.3,0.2) .. controls (-4.48,0.08) .. (-4.5,-0.15) .. controls (-4.9,-0.5) and (-4.9,-0.7) .. (-4.7,-0.9) .. controls (-4.7,-1) .. (-4.6,-1.1) .. controls (-4.9,-1.8) .. (-4.2,-2) -- (-4,-2.4) .. controls (-4.1,-3) .. (-3.6,-3.1) -- (-3.25,-3.7) .. controls (-3.5,-4.5) .. (-4.1,-5.4) .. controls (-4.2,-5.9) and (-3.6,-5.9) .. (-3.5,-5.4) .. controls (-3.55,-5.1) and (-3.4,-4.8) .. (-3,-4.1) -- (-2.6,-4.1) .. controls (-2.35,-4.35) .. (-2,-4.2) .. controls (-1.75,-4.6) and (-1.25,-4.6) .. (-1.25,-3.90) .. controls (-0.9,-4) .. (-0.6,-2.8) -- (-0.3,-1) -- (0,0.2)}
+
+\def\pingu@draw@eb@devilwings{%
+\pgfonlayer{background}
+    \scope[scale=0.225,shift={(\pingu@name-head-back-con-right)}]
+       \pingu@block[thick,rounded corners=.75mm]{\pingu@color@devilwings} \@pingu@devilwings@lower@wing@code;
+       \pingu@block[thick]{\pingu@color@devilwings} (0,1) -- (0,2.2) [rounded corners=5mm] parabola[bend at end] (-6,6) -- (-5,1) -- (0,1);
+    \endscope
+    \scope[scale=0.225,shift={(\pingu@name-head-back-con-left)},xscale=-1]
+       \pingu@block[thick,rounded corners=0.75mm]{\pingu@color@devilwings@b} \@pingu@devilwings@lower@wing@code;
+       \pingu@block[thick]{\pingu@color@devilwings@b} (0,1) -- (0,2.2) [rounded corners=5mm] parabola[bend at end] (-6,6) -- (-5,1) -- (0,1);
+    \endscope
+\endpgfonlayer
+}

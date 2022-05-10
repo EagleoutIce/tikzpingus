@@ -864,6 +864,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \def\pingu@@xif@eb#1#2{\csname if@pingu@x@#1@\endcsname\csname pingu@draw@eb@#2\endcsname\fi}
 \def\pingu@xif@eb#1#2{\ifcsname if@pingu@x@#1@\endcsname{\pingu@@xif@eb{#1}{#2}}\fi}
 \def\pingu@draw@extras@below{%
+    \pingu@xif@eb{devilwings}{devilwings}%
     \pingu@xif@eb{glow}{glow}%
     \pingu@xif@eb{tie}{tie}%
     \pingu@xif@eb{pants}{pants}%
@@ -1174,7 +1175,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \pingu@dummy@lib{sport}{head band,medal}
 \pingu@dummy@lib{formal}{tie,bow tie,pants}
 \pingu@dummy@lib{signs}{sign post left, sign post right}
-\pingu@dummy@lib{devil}{devil horns,devil fork left,devil fork right}
+\pingu@dummy@lib{devil}{devil horns,devil wings,devil fork left,devil fork right}
 \pingu@dummy@lib{safe}{mask}
 \pingu@dummy@lib{magic}{handcast left, handcast right}
 \pingu@dummy@lib{movement}{<TODO>}
