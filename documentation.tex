@@ -901,7 +901,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \endkeyexplain
 
 \keyalias{hair style}{hairstyle}
-\shortcuts{hairstyle}{\@pingu@hairstyle@}{hair color}
+\shortcuts{hairstyle}{\@pingu@hairstyle@}{hairs color}
 
 \keyexplain{hair 1 color}{color}{\pingu@color@hair@a}
 	Set the color of the first hair (this may be used differently by other hairstyles):
@@ -3763,6 +3763,125 @@ Change the staff length:
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain
+
+\subsubsection{The laptop}
+
+\keyexplain{laptop left}{color}{gray!80!pingu@white}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[laptop left]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
+
+{\def\pingu@color@laptopleft{laptop-left-color}
+\subkeyexplain{laptop left}{laptop left bracket}{color}{\pingu@color@laptopleft@bracket}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[laptop left, laptop left bracket=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{laptop left}{laptop left lower}{color}{\pingu@color@laptopleft@lower}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[laptop left, laptop left lower=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{laptop left}{laptop left key}{color}{\pingu@color@laptopleft@key}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[laptop left, laptop left key=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{laptop left}{laptop left display}{color}{\pingu@color@laptopleft@display}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[laptop left, laptop left display=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{laptop left}{laptop left content}{tikz-code}{\pingu@x@laptopleft@content}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[laptop left, laptop left content={\draw circle[radius=2mm];}]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{laptop left}{laptop left mid}{code}{\pingu@x@laptopleft@mid}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[laptop left, laptop left mid={Hey}]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+}
+
+
+\keyexplain{laptop right}{color}{gray!80!pingu@white}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[laptop right]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
+
+{\def\pingu@color@laptopright{laptop-right-color}
+\subkeyexplain{laptop right}{laptop right bracket}{color}{\pingu@color@laptopright@bracket}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[laptop right, laptop right bracket=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{laptop right}{laptop right lower}{color}{\pingu@color@laptopright@lower}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[laptop right, laptop right lower=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{laptop right}{laptop right key}{color}{\pingu@color@laptopright@key}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[laptop right, laptop right key=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{laptop right}{laptop right display}{color}{\pingu@color@laptopright@display}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[laptop right, laptop right display=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{laptop right}{laptop right content}{tikz-code}{\pingu@x@laptopright@content}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[laptop right, laptop right content={\draw circle[radius=2mm];}]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{laptop right}{laptop right mid}{code}{\pingu@x@laptopright@mid}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[laptop right, laptop right mid={Hey}]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+}
 
 \subsubsection{The devil fork}
 
