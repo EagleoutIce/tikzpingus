@@ -891,17 +891,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \shortcuts{wings}{\@pingu@leftwing@}{wings color}
 
 \subsubsection{The Hair}
-\keyexplain{hairstyle}{hair-selector}{\@pingu@select@hairstyle@}
-	Change the hairstyle (\autoref{mrk:pengu-change-comps}):
-\begin{tcblisting}{}
-\begin{tikzpicture}
-	\pingu[hairstyle=none]
-\end{tikzpicture}
-\end{tcblisting}
-\endkeyexplain
 
-\keyalias{hair style}{hairstyle}
-\shortcuts{hairstyle}{\@pingu@hairstyle@}{hairs color}
 
 \keyexplain{hair 1 color}{color}{\pingu@color@hair@a}
 	Set the color of the first hair (this may be used differently by other hairstyles):
@@ -959,6 +949,19 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 
 \keyalias{hairs}{hairs color}
 \keyalias{hair}{hairs color}
+
+\keyexplain{hairstyle}{hair-selector}{\@pingu@select@hairstyle@}
+	Change the hairstyle (\autoref{mrk:pengu-change-comps}):
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[hairstyle=none]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
+
+\keyalias{hair style}{hairstyle}
+
+\shortcuts{hairstyle}{\@pingu@hairstyle@}{hairs color}
 
 \subsubsection{The Bill}
 \keyexplain{bill}{bill-selector}{\@pingu@select@bill@}
