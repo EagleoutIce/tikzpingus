@@ -92,3 +92,24 @@ to[bend left=8] cycle;
 \pingu@block{\pingu@color@constructionhelmet!99!pingu@black} (@bb) to[bend right=14] (@b);
 \endscope
 }
+
+\pingu@create@extra{conicalhat}{%
+  conical hat/.default      = pingu@bronze,
+  conical hat/.code         = \pingu@set@extra{conicalhat}{true}\pingu@color{conicalhat}{#1},
+  conical hat rounding/.code = {\def\pingu@x@conicalhat@rounding{#1}},
+  conical hat shade/.code = {\def\pingu@x@conicalhat@shade{#1}},
+  conical hat height/.code = {\def\pingu@x@conicalhat@height{#1}},
+  conical hat width/.code = {\def\pingu@x@conicalhat@width{#1}},
+  conical hat position/.code args  = {#1:(#2,#3)#4}{\def\pingu@x@conicalhat@angle{#1}\def\pingu@x@conicalhat@xshift{#2}\def\pingu@x@conicalhat@yshift{#3}\def\pingu@x@conicalhat@scale{#4}},
+}{conical hat position={-15:(2mm,-3mm)1}, conical hat height=8mm, conical hat width=2.25cm,conical hat shade=\pingu@color@conicalhat!80!pingu@black, conical hat rounding=.4pt}
+
+\def\pingu@draw@ea@conicalhat{%
+\scope[rotate around={\pingu@x@conicalhat@angle:(\pingu@name-head-top)},shift={(\pingu@name-head-top)},shift={(\pingu@x@conicalhat@xshift,\pingu@x@conicalhat@yshift)},scale=\pingu@x@conicalhat@scale]
+
+\pingu@layer{background}[]
+\pingu@block[rounded corners=\pingu@x@conicalhat@rounding]{\pingu@x@conicalhat@shade} (0,-.22cm)++(180:{\pingu@x@conicalhat@width/2+.05mm} and 1mm) coordinate (@) arc (180:360:{\pingu@x@conicalhat@width/2+.05mm} and 1mm) -- ++(.15mm,.3mm) to[bend right=5] ++(-\pingu@x@conicalhat@width/2, \pingu@x@conicalhat@height-.025cm) to[bend right=5] ([xshift=-.15mm,yshift=.3mm]@) -- cycle;
+\endpingu@layer
+
+\pingu@block[rounded corners=\pingu@x@conicalhat@rounding]{\pingu@color@conicalhat} (0,-.25cm)++(180:\pingu@x@conicalhat@width/2 and 1mm) coordinate (@) arc (180:0:\pingu@x@conicalhat@width/2 and 1mm) -- ++(.225mm,.6mm) to[bend right=5] ++(-\pingu@x@conicalhat@width/2, \pingu@x@conicalhat@height) to[bend right=5] ([xshift=-.225mm,yshift=.6mm]@) -- cycle;
+\endscope
+}
