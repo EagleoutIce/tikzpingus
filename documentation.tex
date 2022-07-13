@@ -2120,6 +2120,107 @@ Currently, this is a very cumbersome command to change various hat parameters at
 \end{tcblisting}
 \endsubkeyexplain
 
+\subsubsection{The construction helmet}
+\keyexplain{construction helmet}{color}{pingu@yellow}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[construction helmet=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
+
+\subkeyexplain{construction helmet}{construction helmet padding}{length}{\pingu@x@constructionhelmet@padding}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[construction helmet,
+	       construction helmet padding=4mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{construction helmet extra height}{construction helmet extra height}{length}{\pingu@x@constructionhelmet@height}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[construction helmet,
+	       construction helmet extra height=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{construction helmet}{construction helmet position}{angle>:(<x>,<y>)<scale}{\pingu@x@constructionhelmet@angle:(\pingu@x@constructionhelmet@xshift,\pingu@x@constructionhelmet@yshift)\{\pingu@x@constructionhelmet@scale\}}
+Currently, this is a very cumbersome command to change various construction helmet parameters at the same time:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[construction helmet,
+	       construction helmet position={1:(-.1cm,-.275cm){1.33}}]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subsubsection{The conical hat}
+\keyexplain{conical hat}{color}{pingu@yellow}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[conical hat=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
+
+\subkeyexplain{conical hat}{conical hat rounding}{length}{\pingu@x@conical@rounding}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[conical hat,
+	       conical hat rounding=.25pt]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+{
+\def\pingu@color@conicalhat{<canonical-hat-color>}
+\subkeyexplain{conical hat}{conical hat shade}{length}{\pingu@x@conical@shade}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[conical hat, conical hat shade=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+}
+
+\subkeyexplain{conical hat}{conical hat padding}{length}{\pingu@x@conical@padding}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[conical hat,
+	       conical hat padding=4mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{conical hat height}{conical hat height}{length}{\pingu@x@conicalhat@height}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[conical hat, conical hat height=6mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{conical hat width}{conical hat width}{length}{\pingu@x@conicalhat@width}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[conical hat, conical hat width=3cm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{conical hat}{conical hat position}{angle>:(<x>,<y>)<scale}{\pingu@x@conical@angle:(\pingu@x@conical@xshift,\pingu@x@conical@yshift)\{\pingu@x@conical@scale\}}
+Currently, this is a very cumbersome command to change various conical hat parameters at the same time:
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[conical hat,
+	       conical hat position={1:(-.1cm,-.275cm){1.33}}]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
 \subsubsection{The crown}
 \keyexplain{crown}{color}{pingu@yellow}
 \begin{tcblisting}{}
