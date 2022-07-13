@@ -9,7 +9,7 @@
 % randomize :D
 \pgfmathsetseed{\number\pdfrandomseed}
 
-\pinguloadlibraries{safe,technology,shirts,formal,glasses,cloak,fun,science-fiction,emotions,sport}
+\pinguloadlibraries{safe,technology,shirts,formal,glasses,cloak,fun,science-fiction,emotions,sport,hats}
 
 \definecolor{@}{RGB}{245, 245, 219}
 
@@ -23,7 +23,7 @@
 \def\dopengu{\pgfmathrandomitem{\tmp}{@@@}\usebox\tmp}
 \begin{document}
 \begin{preview}
-\tikz{\pingu[body type=legacy,name=pingu,right wing wave,eyes wink,left wing grab,height=10mm,blush,feet=sit];
+\tikz{\pingu[body type=legacy,name=pingu,right wing wave,eyes wink,left wing grab,height=10mm,blush,feet=sit,conical hat];
 \draw[line cap=round]([xshift=.15mm]pingu-wing-right) to[bend right] ++(.1mm,1.1mm) -- ++(4.5mm,8.5mm) coordinate(@);
 \scope[rotate around=-18:(@)]
 \fill[pingu@yellow!80!pingu@red,rounded corners=1.5pt] (@) --++(1mm,0mm) --++(-1mm,.33mm) arc(270:630:4.325mm and 4.7mm) -- ++(-1mm,-.33mm) -- cycle;
@@ -140,7 +140,7 @@
 \node[above right=-1.5mm,xshift=-.5mm,yshift=1mm,scale=.1] (@) at (@.north) {\rotatebox{-390}{\dopengu}};
 \node[above left=-1.5mm,yshift=1.5mm,scale=.1] (@) at (@1.west) {\rotatebox{90}{\dopengu}};
 \endscope
-\pgfonlayer{background}
+\pgfonlayer{very-background}
 \fill[rounded corners,@] ([xshift=5mm,yshift=-5mm]current bounding box.south east) rectangle ([xshift=-5mm,yshift=5mm]current bounding box.north west);
 \endpgfonlayer
 }
