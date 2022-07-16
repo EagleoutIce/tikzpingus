@@ -19,8 +19,6 @@
 \usepackage[skins,breakable,hooks,xparse,listingsutf8,external]{tcolorbox}
 \usepackage{lmodern}
 \usepackage{CrimsonPro}
-\tcbset{external/prefix=sub_}
-\tcbEXTERNALIZE % we do not need the other configurations in the externalized images :D
 
 \usepackage{imakeidx}
 \usepackage{tikz}
@@ -159,7 +157,8 @@
 \def\keyexplainindent{2em}%
 \newenvironment{keyexplain}[4][/pingu/]{\minipage\linewidth
 	\parskip\smallskipamount
-	\tcbset{@/.style={externalize listing=key-#2}}% set for externalize
+	\StrSubstitute{#2}{ }{-}[\keyexternalname]%
+	\tcbset{@/.style={externalize listing=key-\keyexternalname}}% set for externalize
 	\phantomsection\label{pk:#1#2}\index{\cursub#2?\hyperref[pk:#1#2]{\protect\lpingu{#2}}}%
 	% get its length:
 	\StrLen{#2}[\@cclen]\relax
@@ -217,6 +216,9 @@
 
 \def\TikZ{Ti\textit{k}Z}
 \def\tikzpingus{\TikZ pingus}
+
+\tcbset{external/prefix=sub_}
+\tcbEXTERNALIZE % we do not need the other configurations in the externalized images :D
 
 \title{The \texorpdfstring{\tikzpingus}{tikzpingus} package}
 \subtitle{penguins in \TikZ}
@@ -3228,7 +3230,7 @@ Change the bending of the banner:
 \subsubsection{The lightsaber}
 
 \keyexplain{lightsaber left}{color}{pingu@blue}
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber left=green]
 \end{tikzpicture}
@@ -3237,7 +3239,7 @@ Change the bending of the banner:
 
 \subkeyexplain{lightsaber left}{lightsaber left handle}{color}{\pingu@color@lightsaberleft@handle}
 	Change the color of the penguins lightsabers' handle:
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber left,
 		lightsaber left handle=green]
@@ -3247,7 +3249,7 @@ Change the bending of the banner:
 
 \subkeyexplain{lightsaber left}{lightsaber left deco}{color}{\pingu@color@lightsaberleft@deco}
 	Change the color of the penguins lightsabers' decoration elements:
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber left,
 		lightsaber left deco=green]
@@ -3257,7 +3259,7 @@ Change the bending of the banner:
 
 \subkeyexplain{lightsaber left}{lightsaber left ribbs}{color}{\pingu@color@lightsaberleft@ribbs}
 	Change the color of the penguins lightsabers' ribbs:
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber left,
 		lightsaber left ribbs=green]
@@ -3267,7 +3269,7 @@ Change the bending of the banner:
 
 \subkeyexplain{lightsaber left}{lightsaber left button}{color}{\pingu@color@lightsaberleft@button}
 	Change the color of the penguins lightsabers' first button:
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber left,
 		lightsaber left button=green]
@@ -3277,7 +3279,7 @@ Change the bending of the banner:
 
 \subkeyexplain{lightsaber left}{lightsaber left button b}{color}{\pingu@color@lightsaberleft@button@b}
 	Change the color of the penguins lightsabers' second button:
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber left,
 		lightsaber left button b=green]
@@ -3287,7 +3289,7 @@ Change the bending of the banner:
 
 \subkeyexplain{lightsaber left}{lightsaber left double}{true/false}{\if@pingu@x@lightsaber@double@left true\else false\fi}
 Toggle the visibility of the second lightsaber:
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber left, lightsaber left double,
 		left wing item angle=90]
@@ -3298,7 +3300,7 @@ Toggle the visibility of the second lightsaber:
 {\def\@col{<lightsaber-color>}
 \subkeyexplain{lightsaber left}{lightsaber left color b}{color}{\pingu@color@lightsaberleft@color@b}
 	Change the color of the penguins second lightsaber, which is only shown if \keyref{lightsaber left double} is enabled:
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber left, lightsaber left double,
 		lightsaber left color b=green,
@@ -3308,7 +3310,7 @@ Toggle the visibility of the second lightsaber:
 \endsubkeyexplain}
 
 \subkeyexplain{lightsaber left}{lightsaber left length}{length}{\pingu@x@lightsaber@length@left}
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber left, lightsaber left length=6mm]
 \end{tikzpicture}
@@ -3317,7 +3319,7 @@ Toggle the visibility of the second lightsaber:
 
 \subkeyexplain{lightsaber left}{lightsaber left length b}{length}{\pingu@x@lightsaber@length@b@left}
 	Change the length of the penguins second lightsaber (active with \keyref{lightsaber left double}):
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber left, lightsaber left double,
 		lightsaber left length b=6mm]
@@ -3328,7 +3330,7 @@ Toggle the visibility of the second lightsaber:
 
 \subkeyexplain{lightsaber left}{lightsaber left yshift}{length}{\pingu@x@lightsaber@yshift@left}
 	Shift the penguins lightsaber in the y direction:
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber left, lightsaber left yshift=12mm,
 	lightsaber left length=5mm]
@@ -3338,7 +3340,7 @@ Toggle the visibility of the second lightsaber:
 
 \subkeyexplain{lightsaber left}{lightsaber left glow}{true/false}{\if@pingu@x@lightsaber@glow@left true\else false\fi}
 Toggle the glow of the lightsaber. The default is controlled by the \texttt{glows}-package option.
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber left, lightsaber left glow=false]
 \end{tikzpicture}
@@ -3347,7 +3349,7 @@ Toggle the glow of the lightsaber. The default is controlled by the \texttt{glow
 
 \subkeyexplain{lightsaber left}{lightsaber left solid}{}{}
 Disables the \keyref{lightsaber left glow}:
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber left, lightsaber left solid]
 \end{tikzpicture}
@@ -3356,7 +3358,7 @@ Disables the \keyref{lightsaber left glow}:
 
 \subkeyexplain{lightsaber left}{lightsaber left glow core}{color}{\pingu@color@lightsaberleft@glow@core}
 Change the color of the lightsabers glow core:
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber left, lightsaber left glow=true,
 		lightsaber left glow core=cyan]
@@ -3366,7 +3368,7 @@ Change the color of the lightsabers glow core:
 
 \subkeyexplain{lightsaber left}{lightsaber left outer glow factor}{factor}{\pingu@x@lightsaber@ogf@left}
 Modify the glow factor of the left lightsaber:
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber left,
 		lightsaber left outer glow factor=.3]
@@ -3376,7 +3378,7 @@ Modify the glow factor of the left lightsaber:
 
 \subkeyexplain{lightsaber left}{lightsaber left disabled}{}{}
 Disables the lightsaber so only the handle is visible:
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber left, lightsaber left disabled]
 \end{tikzpicture}
@@ -3385,7 +3387,7 @@ Disables the lightsaber so only the handle is visible:
 
 
 \keyexplain{lightsaber right}{color}{pingu@blue}
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber right=green]
 \end{tikzpicture}
@@ -3394,7 +3396,7 @@ Disables the lightsaber so only the handle is visible:
 
 \subkeyexplain{lightsaber right}{lightsaber right handle}{color}{\pingu@color@lightsaberright@handle}
 	Change the color of the penguins lightsabers' handle:
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber right,
 		lightsaber right handle=green]
@@ -3404,7 +3406,7 @@ Disables the lightsaber so only the handle is visible:
 
 \subkeyexplain{lightsaber right}{lightsaber right deco}{color}{\pingu@color@lightsaberright@deco}
 	Change the color of the penguins lightsabers' decoration elements:
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber right,
 		lightsaber right deco=green]
@@ -3414,7 +3416,7 @@ Disables the lightsaber so only the handle is visible:
 
 \subkeyexplain{lightsaber right}{lightsaber right ribbs}{color}{\pingu@color@lightsaberright@ribbs}
 	Change the color of the penguins lightsabers' ribbs:
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber right,
 		lightsaber right ribbs=green]
@@ -3424,7 +3426,7 @@ Disables the lightsaber so only the handle is visible:
 
 \subkeyexplain{lightsaber right}{lightsaber right button}{color}{\pingu@color@lightsaberright@button}
 	Change the color of the penguins lightsabers' first button:
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber right,
 		lightsaber right button=green]
@@ -3434,7 +3436,7 @@ Disables the lightsaber so only the handle is visible:
 
 \subkeyexplain{lightsaber right}{lightsaber right button b}{color}{\pingu@color@lightsaberright@button@b}
 	Change the color of the penguins lightsabers' second button:
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber right,
 		lightsaber right button b=green]
@@ -3444,7 +3446,7 @@ Disables the lightsaber so only the handle is visible:
 
 \subkeyexplain{lightsaber right}{lightsaber right double}{true/false}{\if@pingu@x@lightsaber@double@right true\else false\fi}
 Toggle the visibility of the second lightsaber:
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber right, lightsaber right double,
 		right wing item angle=90]
@@ -3455,7 +3457,7 @@ Toggle the visibility of the second lightsaber:
 {\def\@col{<lightsaber-color>}
 \subkeyexplain{lightsaber right}{lightsaber right color b}{color}{\pingu@color@lightsaberright@color@b}
 	Change the color of the penguins second lightsaber, which is only shown if \keyref{lightsaber right double} is enabled:
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber right, lightsaber right double,
 		lightsaber right color b=green,
@@ -3465,7 +3467,7 @@ Toggle the visibility of the second lightsaber:
 \endsubkeyexplain}
 
 \subkeyexplain{lightsaber right}{lightsaber right length}{length}{\pingu@x@lightsaber@length@right}
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber right,
 		lightsaber right length=6mm]
@@ -3475,7 +3477,7 @@ Toggle the visibility of the second lightsaber:
 
 \subkeyexplain{lightsaber right}{lightsaber right length b}{length}{\pingu@x@lightsaber@length@b@right}
 	Change the length of the penguins second lightsaber (active with \keyref{lightsaber right double}):
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber right, lightsaber right double,
 		lightsaber right length b=6mm]
@@ -3486,7 +3488,7 @@ Toggle the visibility of the second lightsaber:
 
 \subkeyexplain{lightsaber right}{lightsaber right yshift}{length}{\pingu@x@lightsaber@yshift@right}
 	Shift the penguins lightsaber in the y direction:
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber right,
 		lightsaber right yshift=12mm,
@@ -3497,7 +3499,7 @@ Toggle the visibility of the second lightsaber:
 
 \subkeyexplain{lightsaber right}{lightsaber right glow}{true/false}{\if@pingu@x@lightsaber@glow@right true\else false\fi}
 Toggle the glow of the lightsaber. The default is controlled by the \texttt{glows}-package option.
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber right,
 		lightsaber right glow=false]
@@ -3507,7 +3509,7 @@ Toggle the glow of the lightsaber. The default is controlled by the \texttt{glow
 
 \subkeyexplain{lightsaber right}{lightsaber right solid}{}{}
 Disables the \keyref{lightsaber right glow}:
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber right, lightsaber right solid]
 \end{tikzpicture}
@@ -3516,7 +3518,7 @@ Disables the \keyref{lightsaber right glow}:
 
 \subkeyexplain{lightsaber right}{lightsaber right glow core}{color}{\pingu@color@lightsaberright@glow@core}
 Change the color of the lightsabers glow core:
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber right, lightsaber right glow=true,
 		lightsaber right glow core=cyan]
@@ -3526,7 +3528,7 @@ Change the color of the lightsabers glow core:
 
 \subkeyexplain{lightsaber right}{lightsaber right outer glow factor}{factor}{\pingu@x@lightsaber@ogf@right}
 Modify the glow factor of the right lightsaber:
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber right,
 		lightsaber right outer glow factor=.3]
@@ -3536,7 +3538,7 @@ Modify the glow factor of the right lightsaber:
 
 \subkeyexplain{lightsaber right}{lightsaber right disabled}{}{}
 Disables the lightsaber so only the handle is visible:
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber right, lightsaber right disabled]
 \end{tikzpicture}
@@ -3547,7 +3549,7 @@ Disables the lightsaber so only the handle is visible:
 
 \keyexplain{light-staff left}{color}{pingu@green}
 Color similar to \keyref{light-staff left head}:
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[light-staff left=green]
 \end{tikzpicture}
@@ -3555,7 +3557,7 @@ Color similar to \keyref{light-staff left head}:
 \endkeyexplain
 
 \subkeyexplain{light-staff left}{light-staff left length}{length}{\pingu@lightstaff@left@length}
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[light-staff left,
 			light-staff left length=18mm]
@@ -3564,7 +3566,7 @@ Color similar to \keyref{light-staff left head}:
 \endsubkeyexplain
 
 \subkeyexplain{light-staff left}{light-staff left glow length}{length}{\pingu@lightstaff@left@glow@length}
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[light-staff left,
 			light-staff left glow length=16mm]
@@ -3574,7 +3576,7 @@ Color similar to \keyref{light-staff left head}:
 
 \subkeyexplain{light-staff left}{light-staff left head}{color}{pingu@green}
 Same as assigning the color to \keyref{light-staff left}:
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[light-staff left,
 			light-staff left head=pingu@purple]
@@ -3583,7 +3585,7 @@ Same as assigning the color to \keyref{light-staff left}:
 \endsubkeyexplain
 
 \subkeyexplain{light-staff left}{light-staff left staff}{color}{\pingu@color@lightstaff@left@staff}
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[light-staff left,
 			light-staff left staff=green]
@@ -3592,7 +3594,7 @@ Same as assigning the color to \keyref{light-staff left}:
 \endsubkeyexplain
 
 \subkeyexplain{light-staff left}{light-staff left core}{color}{\pingu@color@lightstaff@left@head@core}
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[light-staff left,
 			light-staff left core=green]
@@ -3601,7 +3603,7 @@ Same as assigning the color to \keyref{light-staff left}:
 \endsubkeyexplain
 
 \subkeyexplain{light-staff left}{light-staff left core width}{length}{\pingu@lightstaff@left@core@width}
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[light-staff left,
 			light-staff left core width=2mm]
@@ -3611,7 +3613,7 @@ Same as assigning the color to \keyref{light-staff left}:
 
 \subkeyexplain{light-staff left}{light-staff left outer glow factor}{factor}{\pingu@x@lightstaff@ogf@left}
 Similar to \keyref{lightsaber left outer glow factor}:
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[light-staff left,
 			light-staff left outer glow factor=.5]
@@ -3621,7 +3623,7 @@ Similar to \keyref{lightsaber left outer glow factor}:
 
 \keyexplain{light-staff right}{color}{pingu@green}
 Color similar to \keyref{light-staff right head}:
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[light-staff right=green]
 \end{tikzpicture}
@@ -3629,7 +3631,7 @@ Color similar to \keyref{light-staff right head}:
 \endkeyexplain
 
 \subkeyexplain{light-staff right}{light-staff right length}{length}{\pingu@lightstaff@right@length}
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[light-staff right,
 			light-staff right length=18mm]
@@ -3638,7 +3640,7 @@ Color similar to \keyref{light-staff right head}:
 \endsubkeyexplain
 
 \subkeyexplain{light-staff right}{light-staff right glow length}{length}{\pingu@lightstaff@right@glow@length}
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[light-staff right,
 			light-staff right glow length=16mm]
@@ -3648,7 +3650,7 @@ Color similar to \keyref{light-staff right head}:
 
 \subkeyexplain{light-staff right}{light-staff right head}{color}{pingu@green}
 Same as assigning the color to \keyref{light-staff right}:
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[light-staff right,
 			light-staff right head=pingu@purple]
@@ -3657,7 +3659,7 @@ Same as assigning the color to \keyref{light-staff right}:
 \endsubkeyexplain
 
 \subkeyexplain{light-staff right}{light-staff right staff}{color}{\pingu@color@lightstaff@right@staff}
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[light-staff right,
 			light-staff right staff=green]
@@ -3666,7 +3668,7 @@ Same as assigning the color to \keyref{light-staff right}:
 \endsubkeyexplain
 
 \subkeyexplain{light-staff right}{light-staff right core}{color}{\pingu@color@lightstaff@right@head@core}
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[light-staff right,
 			light-staff right core=green]
@@ -3675,7 +3677,7 @@ Same as assigning the color to \keyref{light-staff right}:
 \endsubkeyexplain
 
 \subkeyexplain{light-staff right}{light-staff right core width}{length}{\pingu@lightstaff@right@core@width}
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[light-staff right,
 			light-staff right core width=2mm]
@@ -3685,7 +3687,7 @@ Same as assigning the color to \keyref{light-staff right}:
 
 \subkeyexplain{light-staff right}{light-staff right outer glow factor}{factor}{\pingu@x@lightstaff@ogf@right}
 Similar to \keyref{lightsaber right outer glow factor}:
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[light-staff right,
 			light-staff right outer glow factor=.5]
