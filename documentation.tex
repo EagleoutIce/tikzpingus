@@ -15,7 +15,7 @@
 \expandafter\def\expandafter\UrlBreaks\expandafter{\UrlBreaks\do-}
 
 \usepackage[tex,hyper]{listings}
-\usepackage[most]{tcolorbox}
+\usepackage[skins,breakable,hooks,xparse,listingsutf8]{tcolorbox}
 \usepackage{imakeidx}
 \usepackage{tikz}
 \usepackage{fontawesome}
@@ -46,25 +46,25 @@
 \usepackage{CrimsonPro}
 \makeatletter
 
-\addtokomafont{sectioning}{\color{gray}}
-\addtokomafont{title}{\color{pingu@purple}}
+\addtokomafont{sectioning}{\@declaredcolor{gray}}
+\addtokomafont{title}{\@declaredcolor{pingu@purple}}
 \addtokomafont{author}{\normalsize}
 \addtokomafont{date}{\normalsize}
 
-\def\optstyle{\color{pingu@blue!75!black}\slshape}
+\def\optstyle{\@declaredcolor{pingu@blue!75!black}\slshape}
 \def\lstfnsize{-.7}
 \lstdefinestyle{lstpingu}{%
 	tabsize=2, breaklines,
 	basicstyle=\relsize{\lstfnsize}\ttfamily,
-	commentstyle={\color{gray}\slshape},
+	commentstyle={\@declaredcolor{gray}\slshape},
 	columns=fullflexible,
 	emphstyle=\slshape,
 	emphstyle=[2]\optstyle,
-	emphstyle=[3]\color{gray!75!white},
-	emphstyle=[4]\color{pingu@blue!40!black},
-	texcsstyle=*\color{gray}\bfseries,
-	texcsstyle=*[2]\color{pingu@purple}\bfseries,
-	texcsstyle=*[3]\color{gray!60!white},
+	emphstyle=[3]\@declaredcolor{gray!75!white},
+	emphstyle=[4]\@declaredcolor{pingu@blue!40!black},
+	texcsstyle=*\@declaredcolor{gray}\bfseries,
+	texcsstyle=*[2]\@declaredcolor{pingu@purple}\bfseries,
+	texcsstyle=*[3]\@declaredcolor{gray!60!white},
 	lineskip=2.5pt,
 	keepspaces=true,
 	moredelim=[s][\itshape]{<}{>},
@@ -148,7 +148,7 @@
 	bottom=0pt,top=0pt,boxsep=2.25pt,
 	before lower app={}
 }
-\lstMakeShortInline[style=lstpingu,language=pingulang,basicstyle=\relsize{-1}\ttfamily\color{black!90!white},moredelim={[s][\itshape]{<}{>}}]{|}
+\lstMakeShortInline[style=lstpingu,language=pingulang,basicstyle=\relsize{-1}\ttfamily\@declaredcolor{black!90!white},moredelim={[s][\itshape]{<}{>}}]{|}
 
 \def\explaincolor{pingu@purple!8!white}
 \def\cursub{}
@@ -261,7 +261,7 @@ At the moment, there are the following libraries:
 	\foreach \l/\xs in \pingu@defaultlibs {
 		\ifx\l\@empty\else
 		\item[\lib{\l}:] \firstsstrue\foreach \s in \xs {%
-			\iffirstss\global\firstssfalse\else~~{\color{gray}\textbullet}~~\fi\expandafter\dkeyref\expandafter{\s}%
+			\iffirstss\global\firstssfalse\else~~{\@declaredcolor{gray}\textbullet}~~\fi\expandafter\dkeyref\expandafter{\s}%
 		}\relax
 		\fi
 	}
@@ -369,7 +369,7 @@ Lets look at those coordinates in more detail (all labels are to be prefixed by 
 This view excluded a lot of special data collected on the wings!
 While there is more information stored for each wing, the following five coordinates are the most important to place items into penguins hand:
 \begin{center}
-	\null\hfill\parbox[c]{2.5\wd\pinguwingright}{\scalebox{2.5}{\usebox\pinguwingright}}\hfill\parbox[c]{4cm}{\centering\small\color{gray}\sffamily And yes, the wings are deliberately placed asymmetrical.\endgraf}\hfill
+	\null\hfill\parbox[c]{2.5\wd\pinguwingright}{\scalebox{2.5}{\usebox\pinguwingright}}\hfill\parbox[c]{4cm}{\centering\small\@declaredcolor{gray}\sffamily And yes, the wings are deliberately placed asymmetrical.\endgraf}\hfill
 	\parbox[c]{2.5\wd\pinguwingleft}{\scalebox{2.5}{\usebox\pinguwingleft}}\hfill\null
 \end{center}\newpage
 
