@@ -16,7 +16,20 @@
 
 \usepackage[tex,hyper]{listings}
 \usepackage[most]{tcolorbox}
-\usepackage{imakeidx,tikz,fontawesome,csquotes,enumitem,microtype,tikzducks,datatool,relsize,multicol,footnotebackref,adjustbox,xstring}
+\usepackage{imakeidx}
+\usepackage{tikz}
+\usepackage{fontawesome}
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{tikzducks}
+\usepackage{datatool}
+\usepackage{relsize}
+\usepackage{multicol}
+\usepackage{footnotebackref}
+\usepackage{adjustbox}
+\usepackage{xstring}
+
 \makeindex[title={Key Overview},columns=2,columnsep=.75cm,noautomatic=true]
 \deffootnote{1.5em}{1em}{\textsuperscript{\hyperref[\BackrefFootnoteTag]{\thefootnotemark}}\thinspace}
 \def\thefootnote{$\langle$\arabic{footnote}$\rangle$}
@@ -29,7 +42,8 @@
 \def\DTLlistformatitem#1{\textit{#1}}
 \newcommand*\typesetselection[1][]{\begingroup\ifx!#1!\else\def\DTLlistformatitem##1{#1}\fi\dotypesetselection}
 \def\dotypesetselection#1{\expandafter\DTLformatlist\expandafter{\csname @pingu@#1@\endcsname}\endgroup}
-\usepackage{lmodern,CrimsonPro}
+\usepackage{lmodern}
+\usepackage{CrimsonPro}
 \makeatletter
 
 \addtokomafont{sectioning}{\color{gray}}
