@@ -11,7 +11,8 @@
 \DeclareOption{bare}{\pengu@setup@bare@true}\DeclareOption{nobare}{\pengu@setup@bare@false}
 \ProcessOptions*
 
-\RequirePackage{tikz,etoolbox}
+\RequirePackage{etoolbox}
+\RequirePackage{tikz}
 \usetikzlibrary{intersections,shadings,patterns.meta,decorations.pathmorphing,shapes.symbols,shapes.geometric}
 
 \pgfdeclarelayer{background}\pgfdeclarelayer{foreground}\pgfdeclarelayer{middle}
