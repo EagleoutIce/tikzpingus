@@ -15,15 +15,15 @@
 
 \PreviewBorder.5cm
 
-\newsavebox\drawpeng \savebox\drawpeng{\tikz\pingu[eyes shiny,wings wave,tie];}
-\newsavebox\drawpengb \savebox\drawpengb{\tikz\pingu[eyes shiny,wings wave,tie=pingu@purple];}
-\newsavebox\drawpengc \savebox\drawpengc{\tikz\pingu[eyes shiny,wings wave,tie=pingu@blue];}
-\newsavebox\drawpengd \savebox\drawpengd{\tikz\pingu[eyes shiny,wings wave,medal];}
+\newsavebox\drawpeng \savebox\drawpeng{\tikz{\pingu[eyes shiny,wings wave,tie]}}
+\newsavebox\drawpengb \savebox\drawpengb{\tikz{\pingu[eyes shiny,wings wave,tie=pingu@purple]}}
+\newsavebox\drawpengc \savebox\drawpengc{\tikz{\pingu[eyes shiny,wings wave,tie=pingu@blue]}}
+\newsavebox\drawpengd \savebox\drawpengd{\tikz{\pingu[eyes shiny,wings wave,medal]}}
 \pgfmathdeclarerandomlist{@@@}{{\drawpeng}{\drawpengb}{\drawpengc}{\drawpengd}}
 \def\dopengu{\pgfmathrandomitem{\tmp}{@@@}\usebox\tmp}
 \begin{document}
 \begin{preview}
-\tikz{\pingu[body type=legacy,name=pingu,right wing wave,eyes wink,left wing grab,height=10mm,blush,feet=sit,conical hat];
+\tikz{\pingu[body type=legacy,name=pingu,right wing wave,eyes wink,left wing grab,height=10mm,blush,feet=sit,conical hat]
 \draw[line cap=round]([xshift=.15mm]pingu-wing-right) to[bend right] ++(.1mm,1.1mm) -- ++(4.5mm,8.5mm) coordinate(@);
 \scope[rotate around=-18:(@)]
 \fill[pingu@yellow!80!pingu@red,rounded corners=1.5pt] (@) --++(1mm,0mm) --++(-1mm,.33mm) arc(270:630:4.325mm and 4.7mm) -- ++(-1mm,-.33mm) -- cycle;
