@@ -12,7 +12,7 @@
 
 \def\pingu@@horse@@main{(1.275,.55) -- ++(.1,.2) -- ++(-.25,.25) to[bend right=4] ++(-.425,1.75) to[bend left=15] ++(.05,.2) to[bend right=30] ++(-.1,1.9) to[bend left=30] ++(0,1.65) coordinate(@back) to[bend left=30] ++(2,.625) to[bend right=18,looseness=.8] ++(3.25,-.1) [rounded corners=2*\pingu@@horse@scale] coordinate(@hair) to[out=34,in=185] ++(3,1.3) to[bend left=19] coordinate[pos=.5](@ear) ++(.85,-.4) to[bend left=5] ++(.24,-.45) to[bend right=20] ++(0,-.7) to[bend left=2] ++(.1,-.55) to[out=-85,in=-60,looseness=.75] ++(-.475,-.35) coordinate(@mouth) to[out=-135,in=-120] ++(-.37,.25) -- ++(0,.1)
 to[out=125,in=-68] ++(-.58,.615) coordinate (@mouth-low)
-to[out=215,in=80] ++(-1.25,-2) to[bend left=24] ++(-.65,-1) to[out=258,in=86] ++(-.42,-1.25) to[bend left=3] ++(-.2,-.6) to[bend right=10] ++(-.14,-1.15) to[bend left=2] ++(.355,-.565) to[bend left=15] ++(-.4,-.075) to[bend left=10] ++(-.28,.1) to[bend left=9] ++(.06,.3) to[bend right=9] ++(-.2,.4) to[out=80,in=-80] ++(.138,1.4) to[out=70,in=-103] ++(.2,1.3) to[bend right=10] ++(-.225,.44) coordinate (@frontleg) to[out=196,in=-25] ++(-3.3,.575) coordinate (@backleg) to[bend right=10] ++(-.8,-1.5) to[bend right=20] ++(.1,-2.35) -- ++(.2,-.25) to[bend right=8] ++(.15,-.26) to[bend left=10] ++(-.55,-.05) -- cycle}
+to[out=215,in=80] ++(-1.25,-2) to[bend left=24] ++(-.65,-1) to[out=258,in=86] ++(-.42,-1.25)  to[bend left=3] ++(-.2,-.6) to[bend right=10] ++(-.14,-1.15) to[bend left=2] coordinate[pos=.35] (@hooffront) ++(.355,-.565) to[bend left=15] ++(-.4,-.075) to[bend left=10] ++(-.28,.1) to[bend left=9] ++(.06,.3) to[bend right=9] ++(-.2,.4) to[out=80,in=-80] ++(.138,1.4) to[out=70,in=-103] ++(.2,1.3) to[bend right=10] ++(-.225,.44) coordinate (@frontleg) to[out=196,in=-25] ++(-3.3,.575) coordinate (@backleg) to[bend right=10] ++(-.8,-1.5) to[bend right=20] ++(.1,-2.35) -- ++(.2,-.25) to[bend right=8] ++(.15,-.26) to[bend left=10] ++(-.55,-.05) -- cycle}
 
 % #1 is the wing for the color and key assignments
 \def\pingu@@drawer@horse#1{
@@ -105,6 +105,8 @@ to[bend right=7] ++(-.05,-.2) to[bend left=13] ++(-.2,-1.15) to[bend right=13] +
 \scope[xshift=4cm+\csname pingu@x@horse#1@xshift\endcsname,yshift=-42mm+\csname pingu@x@horse#1@yshift\endcsname,xscale=-1]
 \fi
     \pingu@@drawer@horse{#1}
+    % hoof
+    % \pingu@block[draw=\csname pingu@color@horse#1@base@shade@draw\endcsname,line width=2pt*\pingu@@horse@scale]{\csname pingu@color@horse#1@base@shade\endcsname} (@hooffront) to[bend left=2] ++(.355*.65,-.565*.65) to[bend left=15] ++(-.395,-.075) to[bend left=10] ++(-.293,.105) to[bend left=9] ++(.06,.3) to[bend left=5] cycle;
 \endscope\endscope
 }
 % todo: make statue extra

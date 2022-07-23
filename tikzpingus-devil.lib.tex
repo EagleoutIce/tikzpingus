@@ -23,12 +23,15 @@
     \pingu@block{\pingu@color@devilhorns@b} ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-right) to [bend left=38] (\pingu@name-devilhorns-right-goal) to[bend left=30] ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-right) -- cycle;
 }
 
+% wip hack
+\colorlet{pingu@devil@ring}{pingu@black}
+\def\pingu@devil@x@opacity{.75}
 \@pingu@eyes@s{devil}{%
 \pingu@layer{foreground}[]
-    \pingu@block{pingu@black} ([yshift=.75mm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left) coordinate (\pingu@name-eye-left) ellipse [x radius=.1535cm, y radius=.1575cm];
+    \pingu@block{pingu@devil@ring} ([yshift=.75mm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left) coordinate (\pingu@name-eye-left) ellipse [x radius=.1535cm, y radius=.1575cm];
     \pingu@block{\pingu@color@eye@second@left} ([yshift=.75mm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left) coordinate (\pingu@name-eye-left) ellipse [x radius=.1325cm, y radius=.1375cm];
     \fill[\pingu@color@eye@left,/pingu/@glow] (\pingu@name-eye-left) circle [radius=1.325mm];
-    \pingu@block[fill opacity=.75]{\pingu@color@eye@left} (\pingu@name-eye-left)++(0,.36) to[bend right=58] ++(.36,-.36) to[bend right=58] ++(-.36,-.36) to[bend right=58] ++(-.36,.36) to[bend right=58] cycle;
+    \pingu@block[fill opacity=\pingu@devil@x@opacity]{\pingu@color@eye@left} (\pingu@name-eye-left)++(0,.36) to[bend right=58] ++(.36,-.36) to[bend right=58] ++(-.36,-.36) to[bend right=58] ++(-.36,.36) to[bend right=58] cycle;
     \fill[/pingu/@glow,fill=\pingu@color@eye@left!20!pingu@yellow!15!pingu@white] (\pingu@name-eye-left)++(0,.10) to[bend right=60] ++(.10,-.10) to[bend right=60] ++(-.10,-.10) to[bend right=60] ++(-.10,.10) to[bend right=60] cycle;
     \fill[\pingu@color@eye@left!20!pingu@yellow!7!pingu@white] (\pingu@name-eye-left) circle [radius=.5pt]; %
     \pingu@block{pingu@white} (\pingu@name-eye-left) circle [radius=.15pt];
