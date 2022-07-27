@@ -92,7 +92,6 @@
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
 	alsoletter={.-!:0123456789},%disable number
-	% moreemph=[4]{:line,:ghost,parts,:devil,:back,:hide},
 	deletetexcs={begin,end}, % -> lift 3
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend,pinguloadlibrary,pinguloadlibraries},
 	moretexcs=[3]{begin,end},
@@ -480,7 +479,7 @@ So I have started to create some predefined styles, that do change some of the p
 \begin{multicols}{2}
 \begin{itemize}
 	\itemsep0pt
-	\foreach \tx/\s in {{draw everything with a line}/{:line}, {draw components with transparency}/{:ghost parts}, {draw all layers with transparency}/{:ghost}, {set main \say{devil}-components}/{:devil},{flip the penguin (swaps left \& right)}/{:back},{do not draw main pingu}/{:hide}} {
+	\foreach \tx/\s in {{draw everything with a line}/{:line}, {fill main penguin}/{:fill}, {draw components with transparency}/{:ghost parts}, {draw all layers with transparency}/{:ghost}, {set main \say{devil}-components}/{:devil},{flip the penguin (swaps left \& right)}/{:back},{do not draw main pingu}/{:hide}} {
 		\item \parbox[t]{.8\linewidth}{\raggedright\texttt{\s}, \tx.} \hfill
 		\parbox[t]{.175\linewidth}{\scalebox{.4}{%
 			\begin{tikzpicture}[baseline=.35\baselineskip]%
@@ -1013,6 +1012,15 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[:line]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
+
+\keyexplain{:fill}{}{}
+	Makes the whole penguin in one solid color (basically a shortcut for setting all main penguin colors to the same):
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[:fill]
 \end{tikzpicture}
 \end{tcblisting}
 \endkeyexplain
