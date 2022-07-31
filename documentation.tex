@@ -121,15 +121,25 @@
 	\immediate\write\@auxout{\noexpand\gdef\noexpand\allcmdsmax{\allcmdsmax}}%
 }
 
+\def\CreateOverview#1{%
+	\@for\@elem:=#1\do{\ifx\@elem\@empty\else
+		% we want to create a preview for that :D --lets see
+		%\edef\@tmp{\noexpand\@CreateCodeHyperLink{#2}{\@sub}{pk:/pingu/\@elem}}
+		\@elem
+	\fi}
+}
+
 \AtBeginDocument{%
 % we do not use foreach to avoid groups
 \count@=\allcmdsmin
 \edef\@cntmax@{\the\numexpr\allcmdsmax+1\relax}%
-\@whilenum\count@<\@cntmax@\do{
+\@whilenum\count@<\@cntmax@\do{%
 	\edef\i{\number\count@}\relax
 	\ifcsname allcmds@\i\endcsname
 		\edef\allcmds{\csname allcmds@\i\endcsname}% if undefined => empty
-		\expandafter\CreateCodeHyperLink\expandafter{\allcmds}{\i}\csxdef{allcmds@\i}{}%
+		\expandafter\CreateCodeHyperLink\expandafter{\allcmds}{\i}%
+		\expandafter\CreateOverview\expandafter{\allcmds}
+		\csxdef{allcmds@\i}{}%
 	\fi% csx kill to stop infinite
 	\global\advance\count@\@ne
 }%
@@ -230,6 +240,7 @@
 
 \begin{document}
 \maketitle
+
 \section{Motivation}
 
 For my slides at university, I started to use the famous \LaTeX-package \textsl{\href{https://github.com/samcarter/tikzducks}{tikzducks}} a few years ago.
