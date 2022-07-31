@@ -53,7 +53,11 @@
 \addtokomafont{author}{\normalsize}
 \addtokomafont{date}{\normalsize}
 
-\def\optstyle{\@declaredcolor{pingu@blue!75!black}\slshape}
+\colorlet{@opcolor}{pingu@blue!75!black}
+\def\optstyle{\@declaredcolor{@opcolor}\slshape}
+\colorlet{@softgray}{gray!60!white}
+\colorlet{@softgray@b}{gray!75!white}
+\colorlet{@darkerblue}{pingu@blue!40!black}
 \def\lstfnsize{-.7}
 \lstdefinestyle{lstpingu}{%
 	tabsize=2, breaklines,
@@ -62,11 +66,11 @@
 	columns=fullflexible,
 	emphstyle=\slshape,
 	emphstyle=[2]\optstyle,
-	emphstyle=[3]\@declaredcolor{gray!75!white},
-	emphstyle=[4]\@declaredcolor{pingu@blue!40!black},
+	emphstyle=[3]\@declaredcolor{@softgray@b},
+	emphstyle=[4]\@declaredcolor{@darkerblue},
 	texcsstyle=*\@declaredcolor{gray}\bfseries,
 	texcsstyle=*[2]\@declaredcolor{pingu@purple}\bfseries,
-	texcsstyle=*[3]\@declaredcolor{gray!60!white},
+	texcsstyle=*[3]\@declaredcolor{@softgray},
 	lineskip=2.5pt,
 	keepspaces=true,
 	moredelim=[s][\itshape]{<}{>},
@@ -94,10 +98,10 @@
 	alsoletter={.-!:0123456789},%disable number
 	deletetexcs={begin,end}, % -> lift 3
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend,pinguloadlibrary,pinguloadlibraries},
-	moretexcs=[3]{begin,end},
+	moretexcs=[3]{begin,end,pgfmathsetseed,pdfrandomseed},
 	moreemph=[3]{!hide,.style},
 	add to literate={/pingu/}{{\@declaredcolor{gray}/pingu/}}7
-		{\{tikzpicture\}}{{\@declaredcolor{gray!60!white}\{tikzpicture\}}}{13}
+		{\{tikzpicture\}}{{\@declaredcolor{@softgray}\{tikzpicture\}}}{13}
 		% otherwise these would interfere with random
 		{!random}{{\@declaredcolor{darkgray}\itshape!random}}7
 }
@@ -596,7 +600,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 	after lower={\end{adjustbox}},%
 	boxsep=1pt%
 }
-
+\iffalse
 \subsection{Penguin Keys}
 
 \keyexplain{name}{text}{\pingu@name}
@@ -4726,4 +4730,4 @@ The \say{normal} eyes could be defined as follows:
 }
 \end{lstlisting}
 \printindex
-\end{document}
+\fi\end{document}
