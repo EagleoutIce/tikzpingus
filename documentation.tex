@@ -130,9 +130,9 @@
 	}%
 }
 
-\def\ShowcasePengu#1{\tabular{c}\scalebox{.5}{\tikzpicture
-	\pingu[#1]
-\endtikzpicture}\\\textsf{\dkeyref[/pingu/]{#1}}\endtabular}
+\newcommand*\ShowcasePengu[2][]{{\hypersetup{linkcolor=.}\hyperref[pk:/pingu/#2]{\tabular{c}\scalebox{.75}{\tikzpicture
+	\pingu[body=pingu@main!30!white,bill color=pingu@yellow!30!white,feet color=pingu@yellow!30!white,eyes color=pingu@black!30!white,#2#1]
+\endtikzpicture}\\[-1mm]\textsf{\strut #2}\endtabular}}}
 
 \AtBeginDocument{%
 % we do not use foreach to avoid groups
@@ -245,7 +245,7 @@
 \date{Version v1.1 \textendash\ 2022/01/15}
 
 \begin{document}
-\ShowcasePengu{cup}
+\ShowcasePengu{cup}\ShowcasePengu{conical hat}\ShowcasePengu{santa beard}
 \maketitle
 
 \section{Motivation}
