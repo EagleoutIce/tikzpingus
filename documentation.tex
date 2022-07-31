@@ -130,6 +130,10 @@
 	}%
 }
 
+\def\ShowcasePengu#1{\tabular{c}\scalebox{.5}{\tikzpicture
+	\pingu[#1]
+\endtikzpicture}\\\textsf{\dkeyref[/pingu/]{#1}}\endtabular}
+
 \AtBeginDocument{%
 % we do not use foreach to avoid groups
 \count@=\allcmdsmin
@@ -241,6 +245,7 @@
 \date{Version v1.1 \textendash\ 2022/01/15}
 
 \begin{document}
+\ShowcasePengu{cup}
 \maketitle
 
 \section{Motivation}
@@ -601,7 +606,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 	after lower={\end{adjustbox}},%
 	boxsep=1pt%
 }
-\iffalse
+
 \subsection{Penguin Keys}
 
 \keyexplain{name}{text}{\pingu@name}
@@ -4731,4 +4736,4 @@ The \say{normal} eyes could be defined as follows:
 }
 \end{lstlisting}
 \printindex
-\fi\end{document}
+\end{document}
