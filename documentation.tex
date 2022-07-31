@@ -114,8 +114,10 @@
 \def\cmdsstore#1#2{\csxdef{allcmds@#1}{#2}}
 \def\allcmdsmin{3}% think
 \def\allcmdsmax{3}%
-\AtEndDocument{\foreach \i in {\allcmdsmin,...,\allcmdsmax} {%
-	\immediate\write\@auxout{\noexpand\cmdsstore{\i}{\csuse{allcmds@\i}}}%
+\AtEndDocument{%
+	\pgfkeys{/pingu/.cd,defaults}% this way we have active defaults
+	\foreach \i in {\allcmdsmin,...,\allcmdsmax} {%
+		\immediate\write\@auxout{\noexpand\cmdsstore{\i}{\csuse{allcmds@\i}}}%
 	}%
 	\immediate\write\@auxout{%
 		\noexpand\gdef\noexpand\allcmdsmin{\allcmdsmin}%
@@ -128,7 +130,7 @@
 	\@for\@elem:=#1\do{\ifx\@elem\@empty\else
 		% we want to create a preview for that :D --lets see
 		%\edef\@tmp{\noexpand\@CreateCodeHyperLink{#2}{\@sub}{pk:/pingu/\@elem}}
-		\@elem
+		\expandafter\tikz\expandafter{\expandafter\pingu\expandafter[\@elem]}%
 	\fi}
 }
 
@@ -179,7 +181,7 @@
 	\StrLen{#2}[\@cclen]\relax
 	\csgappto{allcmds@\@cclen}{#2,}%
 	\if@pingu@hidefrompreview@\global\@pingu@hidefrompreview@false\else
-		\gappto\allmain@cmds{#2,}%
+		\gappto\allmain@cmds{#2,}% appto, but do not expand
 	\fi
 	% update the range
 	\ifnum\@cclen>\allcmdsmax\relax \xdef\allcmdsmax{\@cclen}\fi
