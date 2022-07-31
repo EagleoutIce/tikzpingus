@@ -98,10 +98,11 @@
 	alsoletter={.-!:0123456789},%disable number
 	deletetexcs={begin,end}, % -> lift 3
 	moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend,pinguloadlibrary,pinguloadlibraries},
-	moretexcs=[3]{begin,end,pgfmathsetseed,pdfrandomseed},
+	moretexcs=[3]{begin,end,pgfmathsetseed},
 	moreemph=[3]{!hide,.style},
 	add to literate={/pingu/}{{\@declaredcolor{gray}/pingu/}}7
 		{\{tikzpicture\}}{{\@declaredcolor{@softgray}\{tikzpicture\}}}{13}
+		{\{\\number\\pdfrandomseed\}}{{\@declaredcolor{@softgray}\{\textbackslash number\textbackslash pdfrandomseed\}}}{23}
 		% otherwise these would interfere with random
 		{!random}{{\@declaredcolor{darkgray}\itshape!random}}7
 }
