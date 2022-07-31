@@ -122,19 +122,9 @@
 	\immediate\write\@auxout{%
 		\noexpand\gdef\noexpand\allcmdsmin{\allcmdsmin}%
 		\noexpand\gdef\noexpand\allcmdsmax{\allcmdsmax}%
-		\noexpand\gdef\noexpand\allmain@cmds{\allmain@cmds}%
 	}%
 }
 
-\def\CreateOverview#1{%
-	\@for\@elem:=#1\do{\ifx\@elem\@empty\else
-		% we want to create a preview for that :D --lets see
-		%\edef\@tmp{\noexpand\@CreateCodeHyperLink{#2}{\@sub}{pk:/pingu/\@elem}}
-		\expandafter\tikz\expandafter{\expandafter\pingu\expandafter[\@elem]}%
-	\fi}
-}
-
-\let\allmain@cmds\@empty
 \AtBeginDocument{%
 % we do not use foreach to avoid groups
 \count@=\allcmdsmin
@@ -148,8 +138,6 @@
 	\fi% csx kill to stop infinite
 	\global\advance\count@\@ne
 }%
-\expandafter\CreateOverview\expandafter{\allmain@cmds}%
-\let\allmain@cmds\@empty
 }
 
 \RedeclareSectionCommand[runin=false,afterskip=-2mm]{section}
@@ -180,9 +168,6 @@
 	% get its length:
 	\StrLen{#2}[\@cclen]\relax
 	\csgappto{allcmds@\@cclen}{#2,}%
-	\if@pingu@hidefrompreview@\global\@pingu@hidefrompreview@false\else
-		\gappto\allmain@cmds{#2,}% appto, but do not expand
-	\fi
 	% update the range
 	\ifnum\@cclen>\allcmdsmax\relax \xdef\allcmdsmax{\@cclen}\fi
 	\ifnum\@cclen<\allcmdsmin\relax \xdef\allcmdsmin{\@cclen}\fi
@@ -190,7 +175,7 @@
 	\expandafter\gdef\csname pingudefa#2\endcsname{#4}%
 	\begingroup\pgfkeys{/pingu/.cd,defaults}\protected@edef\@tmp{#4}%
 	\protected@edef\@tmpb{#3}%
-	\hspace*{-\keyexplainindent}\colorbox{\explaincolor}{%
+	\hspace*{-\keyexplainindent}\colorbox\explaincolor{%
 		\parbox{\dimexpr\linewidth-2\fboxsep+\keyexplainindent}{\small
 		\ifx\@tmpb\@empty\lpingu{#1#2}\else\lpingu{#1#2 =\ }\texttt{<\textit{\@tmpb}>}\fi\hfill
 				\ifx\@tmp\@empty\else{\@declaredcolor{gray}(}#4{\@declaredcolor{gray})}\fi
@@ -203,31 +188,30 @@
 \endkeyexplain}
 \newcommand*\shortcuts[4][/pingu/]{\begingroup
 \protected@edef\@tmp{#3}%
-\def\explaincolor{gray!10!white}%
+\def\explaincolor{@softexplaincolor}%
 \foreach \type in \@tmp {%
 \edef\tmp{\noexpand\singleshortcut{#1}{#2}\type{#4}}\tmp
 }\endgroup}
 
 \newcommand*\keyref[2][/pingu/]{\hyperref[pk:#1#2]{\lpingu{#1#2}}}
 \newcommand*\dkeyref[2][/pingu/]{\hyperref[pk:#1#2]{\lpingu{#2}}}
-\newif\if@pingu@hidefrompreview@
+\colorlet{@softexplaincolor}{gray!10!white}
 \newenvironment{subkeyexplain}[5][/pingu/]{%
 \begingroup
-\@pingu@hidefrompreview@true
-\def\explaincolor{gray!10!white}\def\keyexplainindent{0em}%
+\def\explaincolor{@softexplaincolor}\def\keyexplainindent{0em}%
 \def\cursub{#2?\hyperref[pk:#1#2]{\protect\lpingu{#2}}!}%
 \keyexplain[#1]{#3}{#4}{#5}%
 	{\@declaredcolor{gray}\footnotesize This command is only in effect if \keyref[#1]{#2} is active.}\par
 }{\endkeyexplain\endgroup}
 
 \newcommand\keyalias[3][/pingu/]{\begingroup
-\def\explaincolor{gray!10!white}\def\keyexplainindent{0em}%
+\def\explaincolor{@softexplaincolor}\def\keyexplainindent{0em}%
 \def\cursub{#3?\hyperref[pk:#1#3]{\protect\lpingu{#3}}!}%
 \keyexplain[#1]{#2}{\csname pinguopt#3\endcsname}{\csname pingudefa#3\endcsname}%
 	{\@declaredcolor{gray}\footnotesize This is an alias for \keyref[#1]{#3}.}%
 \endkeyexplain\endgroup}
 \newcommand\subkeyalias[4][/pingu/]{\begingroup
-\def\explaincolor{gray!10!white}\def\keyexplainindent{0em}%
+\def\explaincolor{@softexplaincolor}\def\keyexplainindent{0em}%
 \def\cursub{#4?\hyperref[pk:#1#4]{\protect\lpingu{#4}}!#3?\hyperref[pk:#1#3]{\protect\lpingu{#3}}!}%
 \keyexplain[#1]{#2}{\csname pinguopt#3\endcsname}{\csname pingudefa#3\endcsname}%
 	{\@declaredcolor{gray}\footnotesize This is an alias for \keyref[#1]{#3}.}%
@@ -538,7 +522,6 @@ The first line in the example sets the seed: % we do not externalize this one
 
 In a more general fashion, there is a \keyref{random from} key for completely random penguins:
 
-\@pingu@hidefrompreview@true
 \keyexplain{random from}{list}{}
 	You can pass any list of penguin keys and exactly one of them will be selected. You can nest \keyref{random from}-calls. Please note, that the items are not separated by comma but in braces. The first line in the example sets the seed:% do not externalize
 \begin{tcblisting}{}
@@ -615,7 +598,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 }
 
 \subsection{Penguin Keys}
-\@pingu@hidefrompreview@true
+
 \keyexplain{name}{text}{\pingu@name}
 	Sets the name of the penguin. This name is used for all the automatically generated coordinates (see \autoref{mrk:coordinates}).
 \endkeyexplain
@@ -627,7 +610,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 	Furthermore, this value can be used to make the penguin independent of the outer scaling.
 \endkeyexplain
 
-\@pingu@hidefrompreview@true
+
 \keyexplain{meta-dots}{true/false}{\if@pingu@draw@metadots true\else false\fi}
 	Can be used to enable and disable the meta dots (\autoref{mrk:coordinates}).
 	Passed true by default.
@@ -646,7 +629,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \end{tcblisting}
 \endkeyexplain
 
-\@pingu@hidefrompreview@true
+
 \keyexplain{left foot color}{color}{\pingu@color@foot@left}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
@@ -666,7 +649,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \end{tcblisting}
 \endkeyexplain
 
-\@pingu@hidefrompreview@true
+
 \keyexplain{right foot color}{color}{\pingu@color@foot@right}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
@@ -686,7 +669,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \end{tcblisting}
 \endkeyexplain
 
-\@pingu@hidefrompreview@true
+
 \keyexplain{feet color}{color}{}
 	Sets the color of both feet (using \keyref{left foot color} and \keyref{right foot color}).
 \begin{tcblisting}{@}
@@ -699,7 +682,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \shortcuts{feet}{\@pingu@leftfoot@}{feet color}
 
 \subsubsection{The Body}
-\@pingu@hidefrompreview@true
+
 \keyexplain{body main}{color}{\pingu@color@body@main}
 	Set the main color of the penguin. This will affect \keyref{hair} as well, as this chooses its default value from the main color.%
 \begin{tcblisting}{@}
@@ -709,7 +692,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \end{tcblisting}
 \endkeyexplain
 
-\@pingu@hidefrompreview@true
+
 \keyexplain{body head}{color}{\pingu@color@body@head}
 	Set the color of the penguin head.%
 \begin{tcblisting}{@}
@@ -719,7 +702,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \end{tcblisting}
 \endkeyexplain
 
-\@pingu@hidefrompreview@true
+
 \keyexplain{body}{color}{}
 	Sets the color of the main penguin and the head, by calling \keyref{body main} and \keyref{body head} with the same value.
 \begin{tcblisting}{@}
@@ -729,7 +712,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \end{tcblisting}
 \endkeyexplain
 
-\@pingu@hidefrompreview@true
+
 \keyexplain{body front}{color}{\pingu@color@body@front}
 	Sets the frontal color of the penguin.
 \begin{tcblisting}{@}
@@ -739,7 +722,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \end{tcblisting}
 \endkeyexplain
 
-\@pingu@hidefrompreview@true
+
 \keyexplain{body type}{body type}{normal}
 	Change the active body type. All valid values are listed in \autoref{mrk:pengu-change-comps}:
 \begin{tcblisting}{@}
@@ -751,7 +734,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 
 \subsubsection{The Size}
 
-\@pingu@hidefrompreview@true
+
 \keyexplain{height}{length}{\the\pingu@side@h@half}
 	Change the height of the penguin manually. You probably should not use this key directly and refer to \keyref{small size}, \keyref{normal size}, and \keyref{large size}:
 \begin{tcblisting}{listing options={style=lstpingu,language=pingulang}}
@@ -761,7 +744,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \end{tcblisting}
 \endkeyexplain
 
-\@pingu@hidefrompreview@true
+
 \keyexplain{small size}{}{}
 	Will use \keyref{height} to create a small pingu:
 \begin{tcblisting}{listing options={style=lstpingu,language=pingulang}}
@@ -774,7 +757,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \keyalias{small}{small size}
 \keyalias{small height}{small size}
 
-\@pingu@hidefrompreview@true
+
 \keyexplain{normal size}{}{}
 	Will use \keyref{height} to create a normal pingu:
 \begin{tcblisting}{listing options={style=lstpingu,language=pingulang}}
@@ -787,7 +770,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \keyalias{normal}{normal size}
 \keyalias{normal height}{normal size}
 
-\@pingu@hidefrompreview@true
+
 \keyexplain{large size}{}{}
 	Will use \keyref{height} to create a large pingu:
 \begin{tcblisting}{listing options={style=lstpingu,language=pingulang}}
@@ -810,7 +793,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \end{tcblisting}
 \endkeyexplain
 
-\@pingu@hidefrompreview@true
+
 \keyexplain{left eye color}{color}{\pingu@color@eye@left}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
@@ -819,7 +802,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \end{tcblisting}
 \endkeyexplain
 
-\@pingu@hidefrompreview@true
+
 \keyexplain{left eye second color}{color}{\pingu@color@eye@second@left}
 	Change the secondary color of the left eye. It will be used in some styles selected by \keyref{left eye} (e.g. \textit{shiny}):
 \begin{tcblisting}{listing options={style=lstpingu,language=pingulang,deleteemph={[2]{shiny}}}}
@@ -841,7 +824,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \end{tcblisting}
 \endkeyexplain
 
-\@pingu@hidefrompreview@true
+
 \keyexplain{right eye color}{color}{\pingu@color@eye@right}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
@@ -850,7 +833,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \end{tcblisting}
 \endkeyexplain
 
-\@pingu@hidefrompreview@true
+
 \keyexplain{right eye second color}{color}{\pingu@color@eye@second@right}
 	Change the secondary color of the right eye. It will be used in some styles selected by \keyref{right eye} (e.g. \textit{shiny}):
 \begin{tcblisting}{listing options={style=lstpingu,language=pingulang,deleteemph={[2]{shock}}}}
@@ -872,7 +855,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \end{tcblisting}
 \endkeyexplain
 
-\@pingu@hidefrompreview@true
+
 \keyexplain{eyes color}{color}{}
 	Change the main color of both eyes by calling \keyref{left eye color} and \keyref{right eye color} with the same value.
 \begin{tcblisting}{@}
@@ -882,7 +865,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \end{tcblisting}
 \endkeyexplain
 
-\@pingu@hidefrompreview@true
+
 \keyexplain{eyes second color}{color}{}
 	Change the secondary color of  both eyes by calling \keyref{left eye second color} and \keyref{right eye second  color} with the same value.
 \begin{tcblisting}{listing options={style=lstpingu,language=pingulang,deleteemph={[2]{shock,shiny}}}}
@@ -3021,7 +3004,7 @@ Change the bending of the banner:
 \subsection{Wing Items}
 \label{sub:wing-items}Most wing items created have a two variants: one for the left and one for the right wing. For consistency, both of them are represented in the documentation~--- many times, they are not just mirrored but two different shapes that appear to be mirrored with special care.
 
-\@pingu@hidefrompreview@true
+
 \keyexplain{left wing item angle}{angle}{\pingu@wing@left@item@angle@user}
 	Relative rotation of the \hyperref[sub:wing-items]{wing items} placed in the left wing:
 \begin{tcblisting}{@}
@@ -3034,7 +3017,7 @@ Change the bending of the banner:
 
 \keyalias{left item angle}{left wing item angle}
 
-\@pingu@hidefrompreview@true
+
 \keyexplain{left wing item flip}{true/false}{\if@pingu@wi@flip@left true\else false\fi}
 	Some \hyperref[sub:wing-items]{wing items} do have a different style, depending on the wing they are in (e.g. they are mirrored). This option toggles the stile for the left wing.
 \begin{tcblisting}{@}
@@ -3047,7 +3030,7 @@ Change the bending of the banner:
 
 \keyalias{left item flip}{left wing item flip}
 
-\@pingu@hidefrompreview@true
+
 \keyexplain{right wing item angle}{angle}{\pingu@wing@right@item@angle@user}
 	Relative rotation of the \hyperref[sub:wing-items]{wing items} placed in the right wing:
 \begin{tcblisting}{@}
@@ -3060,7 +3043,7 @@ Change the bending of the banner:
 
 \keyalias{right item angle}{right wing item angle}
 
-\@pingu@hidefrompreview@true
+
 \keyexplain{right wing item flip}{true/false}{\if@pingu@wi@flip@right true\else false\fi}
 	Some \hyperref[sub:wing-items]{wing items} do have a different style, depending on the wing they are in (e.g. they are mirrored). This option toggles the stile for the right wing.
 \begin{tcblisting}{@}
