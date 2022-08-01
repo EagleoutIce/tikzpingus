@@ -132,19 +132,20 @@
 }
 
 
-\def\RawShowcase#1#2{\clap{\tabular{c}\scalebox{.75}{\begin{tcbexternal}{showcase-#2#1}%
-\tikzpicture[baseline={(current bounding box.south)}]
-\pingu[body=pingu@main!30!white,bill color=pingu@yellow!30!white,feet color=pingu@yellow!30!white,eyes color=pingu@black!30!white,#2#1]
+\def\RawShowcase#1#2{\scalebox{.7}{%\begin{tcbexternal}{showcase-#2#1}%
+\tikzpicture[baseline={(pingu-bottom-center)}]
+\pingu[body=pingu@main!30!white,bill color=pingu@yellow!30!white,feet color=pingu@yellow!30!white,eyes color=pingu@black!30!white,name=pingu,#2#1]
+\node[below] at(current bounding box.south) {\clap{\textsf{\strut\smash{#2}}}};
 \endtikzpicture
-\end{tcbexternal}%
-}\\[-1mm]\textsf{\strut\smash{#2}}\endtabular}
+%\end{tcbexternal}%
+}}
 
-\setox0=\hbox{\RawShowcase{}{}}
+\setbox0=\hbox{\RawShowcase{}{}}
 \newdimen\pingu@showcase@height
 \pingu@showcase@height=\dimexpr\ht0+\dp0\relax
 
 \newcommand\ShowcasePengu[2][]{{\hypersetup{linkcolor=.}%
-\hyperref[pk:/pingu/#2]{\parbox[b][\pingu@showcase@height]{.2\linewidth}{\centering\RawShowcase{#1}{#2}}}}}}
+\hyperref[pk:/pingu/#2]{\parbox[b][\pingu@showcase@height]{.166\linewidth}{\centering\RawShowcase{#1}{#2}}}}}
 \def\pengu@all@showcases{}
 \def\ShowcaseThis#1{\appto\pengu@all@showcases{{#1},}}
 
@@ -190,13 +191,15 @@
 \def\explaincolor{pingu@purple!8!white}
 \def\cursub{}
 \def\keyexplainindent{2em}%
-\newenvironment{keyexplain}[4][/pingu/]{\minipage\linewidth
+\hfuzz=3pt % allow the oxes to have minor overlaps
+\overfullrule=1.75cm
+\newenvironment{keyexplain}[4][/pingu/]{\minipage{\linewidth}
 	\parskip\smallskipamount
 	\StrSubstitute{#2}{ }{-}[\keyexternalname]%
 	\tcbset{@/.style={externalize listing=key-\keyexternalname}}% set for externalize
 	\phantomsection\label{pk:#1#2}\index{\cursub#2?\hyperref[pk:#1#2]{\protect\lpingu{#2}}}%
 	% get its length:
-	\StrLen{#2}[\@cclen]\relax
+	\StrLen{#2}[\@cclen]%
 	\csgappto{allcmds@\@cclen}{#2,}%
 	% update the range
 	\ifnum\@cclen>\allcmdsmax\relax \xdef\allcmdsmax{\@cclen}\fi
@@ -205,6 +208,7 @@
 	\expandafter\gdef\csname pingudefa#2\endcsname{#4}%
 	\begingroup\pgfkeys{/pingu/.cd,defaults}\protected@edef\@tmp{#4}%
 	\protected@edef\@tmpb{#3}%
+	\hfuzz=2\keyexplainindent
 	\hspace*{-\keyexplainindent}\colorbox{\explaincolor}{%
 		\parbox{\dimexpr\linewidth-2\fboxsep+\keyexplainindent}{\small
 		\ifx\@tmpb\@empty\lpingu{#1#2}\else\lpingu{#1#2 =\ }\texttt{<\textit{\@tmpb}>}\fi\hfill
@@ -273,7 +277,8 @@
 \date{Version v1.1 \textendash\ 2022/01/15}
 
 \begin{document}
-\setox0=\hbox{\maketitle}\box0 % kill page break?
+%{\let\newpage\relax\maketitle} % kill page break?
+\maketitle
 
 \section{Motivation}
 
@@ -439,7 +444,7 @@ A lot of options allow for a color to passed. In general, you can provide any co
 \begin{itemize}
 	\itemsep0pt
 	\foreach \col in {main,black,silver,bronze,white,yellow,lightblue,blue,green,red,purple} {
-		\item[{\tikz[baseline=-.6ex]{\fill[pingu@\col,semithick,draw=black] circle (4pt);}}] \small\texttt{pingu@\col}
+		\item[{\tikz[baseline=-.6ex]{\fill[pingu@\col,semithick,draw=black] circle (4pt);}}] \small\null\texttt{pingu@\col}
 	}
 	\item[] % buffer
 \end{itemize}
