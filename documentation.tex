@@ -133,7 +133,7 @@
 
 \newcommand\ShowcasePengu[2][]{{\hypersetup{linkcolor=.}\hyperref[pk:/pingu/#2]{\tabular{c}\scalebox{.75}{\tikzpicture
 	\pingu[body=pingu@main!30!white,bill color=pingu@yellow!30!white,feet color=pingu@yellow!30!white,eyes color=pingu@black!30!white,#2#1]
-\endtikzpicture}\\[-1mm]\textsf{\strut #2}\endtabular}}}
+\endtikzpicture}\\[-1mm]\textsf{\strut\clap{#2}}\endtabular}}}
 \def\pengu@all@showcases{}
 \def\ShowcaseThis#1{\appto\pengu@all@showcases{{#1},}}
 
@@ -154,7 +154,7 @@
 \@for\@elem:=\pengu@all@showcases\do{%
 	\ifx\@elem\@empty\else
 	% space to space cmd
-	\edef\@tmp{\noexpand\ShowcasePengu\@elem}\@tmp
+	\edef\@tmp{\noexpand\ShowcasePengu{\@elem}}\hfill\@tmp\hfill
 \fi}%
 \global\let\pengu@all@showcases\@empty
 }
@@ -222,6 +222,11 @@
 \keyexplain[#1]{#3}{#4}{#5}%
 	{\@declaredcolor{gray}\footnotesize This command is only in effect if \keyref[#1]{#2} is active.}\par
 }{\endkeyexplain\endgroup}
+
+\newenvironment{showkeyexplain}[4][/pingu/]{%
+\ShowcaseThis{#2}%
+\keyexplain[#1]{#2}{#3}{#4}%
+}{\endkeyexplain}
 
 \newcommand\keyalias[3][/pingu/]{\begingroup
 \def\explaincolor{@softexplaincolor}\def\keyexplainindent{0em}%
@@ -1125,25 +1130,22 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 
 \subsection{Extras}
 \subsubsection{The heart}
-\ShowcaseThis{heart}
-\keyexplain{heart}{node-options}{}
+\showkeyexplain{heart}{node-options}{}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[heart=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 \subsubsection{The tie}
-\ShowcaseThis{tie}
-
-\keyexplain{tie}{color}{pingu@green}
+\showkeyexplain{tie}{color}{pingu@green}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[tie]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 {\def\pingu@color@tie{<tie-color>}
 \subkeyexplain{tie}{tie knot}{color}{\pingu@color@tie@knot}
@@ -1194,14 +1196,13 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \endsubkeyexplain
 
 \subsubsection{The bowtie}
-\ShowcaseThis{bow tie}
-\keyexplain{bow tie}{color}{pingu@blue}
+\showkeyexplain{bow tie}{color}{pingu@blue}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[bow tie]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 \keyalias{bowtie}{bow tie}
 \keyalias{bow-tie}{bow tie}
@@ -1242,14 +1243,14 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \subkeyalias{bow-tie offset}{bow tie offset}{bow tie}
 
 \subsubsection{The cup}
-\ShowcaseThis{cup}
-\keyexplain{cup}{color}{pingu@green}
+
+\showkeyexplain{cup}{color}{pingu@green}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[cup]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 {\def\pingu@color@cup{<cup-color>}
 \subkeyexplain{cup}{cup straw}{color}{\pingu@color@cup@straw}
@@ -1261,13 +1262,13 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 \endsubkeyexplain}
 
 \subsubsection{The medal}
-\keyexplain{medal}{color}{pingu@yellow}
+\showkeyexplain{medal}{color}{pingu@yellow}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[medal]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 \subkeyexplain{medal}{medal band}{color}{\pingu@color@medal@band}
 \begin{tcblisting}{@}
@@ -1337,37 +1338,37 @@ Basically the same as the normal medal, but with a bronze color. This will activ
 
 \subsubsection{The eye patches}
 
-\keyexplain{eye patch left}{color}{<pingu-main-color>}
+\showkeyexplain{eye patch left}{color}{<pingu-main-color>}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[eye patch left]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 \keyalias{eyepatch left}{eye patch left}
 \keyalias{eye-patch left}{eye patch left}
 
-\keyexplain{eye patch right}{color}{<pingu-main-color>}
+\showkeyexplain{eye patch right}{color}{<pingu-main-color>}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[eye patch right]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 \keyalias{eyepatch right}{eye patch right}
 \keyalias{eye-patch right}{eye patch right}
 
 \subsubsection{The monocle}
 
-\keyexplain{monocle left}{color}{pingu@black}
+\showkeyexplain{monocle left}{color}{pingu@black}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[monocle left]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 \subkeyexplain{monocle left}{monocle left glass}{color}{\pingu@color@monocleleft@glass}
 Set the color of the glass of the left monocle. The opacity of this color is set by \keyref{monocle left opacity}.
@@ -1425,13 +1426,13 @@ Set the color of the blob at the end of the string of the left monocle:
 \end{tcblisting}
 \endsubkeyexplain}
 
-\keyexplain{monocle right}{color}{pingu@black}
+\showkeyexplain{monocle right}{color}{pingu@black}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[monocle right]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 \subkeyexplain{monocle right}{monocle right glass}{color}{\pingu@color@monocleright@glass}
 Set the color of the glass of the right monocle. The opacity of this color is set by \keyref{monocle right opacity}.
@@ -1490,14 +1491,14 @@ Set the color of the blob at the end of the string of the right monocle:
 \endsubkeyexplain}
 
 \subsubsection{The pants}
-\keyexplain{pants}{color}{pingu@red}
+\showkeyexplain{pants}{color}{pingu@red}
 Sets the color of the pants:
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[pants=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 \subkeyexplain{pants}{pants bands}{true/false}{false}
 Switch the bands of the pants on and of:
@@ -1590,14 +1591,14 @@ Raise the pants:
 
 \subsubsection{The glow}
 
-\keyexplain{glow}{color}{pingu@white}
+\showkeyexplain{glow}{color}{pingu@white}
 	Active a glow around the penguin:
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[glow=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 \keyexplain{glow thick}{color}{}
 Will pass on the color to \keyref{glow} and use a \keyref{glow width function} width a thicker line width:
@@ -1664,14 +1665,14 @@ This is more of a test extra that adds a frame around both eyes:
 
 \subsubsection{The glasses}
 
-\keyexplain{glasses}{color}{pingu@black}
+\showkeyexplain{glasses}{color}{pingu@black}
 Display glasses for the penguin:
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[glasses=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 \subkeyexplain{glasses}{glasses left fill}{color}{\pingu@color@glasses@fill@l}
 	Sets the fill color of the left glass. The opacity is determined by \keyref{glasses left opacity}.
@@ -1742,27 +1743,27 @@ Display glasses for the penguin:
 \end{tcblisting}
 \endsubkeyexplain
 
-\keyexplain{sun glasses}{color}{pingu@black}
+\showkeyexplain{sun glasses}{color}{pingu@black}
 Configure the \keyref{glasses} to display sunglasses. The color is passed on to \keyref{glasses fill}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[sun glasses=orange]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 \keyalias{sunglasses}{sun glasses}
 
 \subsubsection{The rounded glasses}
 
-\keyexplain{glasses round}{color}{pingu@black}
+\showkeyexplain{glasses round}{color}{pingu@black}
 Behaves equivalent to \keyref{glasses} but produces a round counterpart:
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[glasses round=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 \subkeyexplain{glasses round}{glasses round left fill}{color}{\pingu@color@glassesround@fill@l}
 	Sets the fill color of the left glass. The opacity is determined by \keyref{glasses round left opacity}.
@@ -1833,39 +1834,39 @@ Behaves equivalent to \keyref{glasses} but produces a round counterpart:
 \end{tcblisting}
 \endsubkeyexplain
 
-\keyexplain{sun glasses round}{color}{pingu@black}
+\showkeyexplain{sun glasses round}{color}{pingu@black}
 Configure the \keyref{glasses round} to display sunglasses round. The color is passed on to \keyref{glasses round fill}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[sun glasses round=orange]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 \keyalias{sunglasses round}{sun glasses round}
 
 \subsubsection{The devil horns}
 
-\keyexplain{devil horns}{color}{pingu@black}
+\showkeyexplain{devil horns}{color}{pingu@black}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[devil horns=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 \keyalias{devilhorns}{devil horns}
 \keyalias{devil-horns}{devil horns}
 
 \subsubsection{The devil wings}
 
-\keyexplain{devil wings}{color}{pingu@black}
+\showkeyexplain{devil wings}{color}{pingu@black}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[devil wings=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 \keyalias{devilwings}{devil wings}
 \keyalias{devil-wings}{devil wings}
@@ -1883,13 +1884,13 @@ Configure the \keyref{glasses round} to display sunglasses round. The color is p
 
 \subsubsection{The head band}
 
-\keyexplain{head band}{color}{pingu@red}
+\showkeyexplain{head band}{color}{pingu@red}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[head band=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 \keyalias{headband}{head band}
 \keyalias{head-band}{head band}
@@ -2024,13 +2025,13 @@ If \keyref{head band bands} is enabled, this setting changes the color of the le
 
 \subsubsection{The rook}
 
-\keyexplain{rook}{color}{pingu@silver}
+\showkeyexplain{rook}{color}{pingu@silver}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[rook=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 {\def\pingu@color@rook{<rook-color>}
 \subkeyexplain{rook}{rook back}{color}{\pingu@color@rook@back}
@@ -2061,13 +2062,13 @@ Toggles the opening in the rook costume:
 \endsubkeyexplain}
 
 \subsubsection{The halo}
-\keyexplain{halo}{color}{pingu@lightblue}
+\showkeyexplain{halo}{color}{pingu@lightblue}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[halo=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 \subkeyexplain{halo}{halo raise}{length}{\pingu@x@halo@raise}
 Define the vertical raise of the halo above the penguins head:
@@ -2097,13 +2098,13 @@ Draws the halo above, which is useful in case of other gadgets:
 \endsubkeyexplain
 
 \subsubsection{The strawhat}
-\keyexplain{strawhat}{color}{brown!50!white}
+\showkeyexplain{strawhat}{color}{brown!50!white}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[strawhat=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 \keyalias{straw hat}{strawhat}
 
@@ -2130,13 +2131,13 @@ Currently, this is a very cumbersome command to change various strawhat paramete
 \subkeyalias{straw hat position}{strawhat position}{strawhat}
 
 \subsubsection{The hat}
-\keyexplain{hat}{color}{brown!50!white}
+\showkeyexplain{hat}{color}{brown!50!white}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[hat=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 {\def\pingu@color@hat{<hat-color>}
 \subkeyexplain{hat}{hat ribbon}{color}{\pingu@color@hat@ribbon}
@@ -2175,13 +2176,13 @@ Currently, this is a very cumbersome command to change various hat parameters at
 \endsubkeyexplain
 
 \subsubsection{The cap}
-\keyexplain{cap}{color}{pingu@bronze}
+\showkeyexplain{cap}{color}{pingu@bronze}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[cap=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 \subkeyexplain{cap padding}{cap padding}{length}{\pingu@x@cap@padding}
 \begin{tcblisting}{@}
@@ -2201,13 +2202,13 @@ Currently, this is a very cumbersome command to change various hat parameters at
 \endsubkeyexplain
 
 \subsubsection{The construction helmet}
-\keyexplain{construction helmet}{color}{pingu@yellow}
+\showkeyexplain{construction helmet}{color}{pingu@yellow}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[construction helmet=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 \subkeyexplain{construction helmet}{construction helmet padding}{length}{\pingu@x@constructionhelmet@padding}
 \begin{tcblisting}{@}
@@ -2238,13 +2239,13 @@ Currently, this is a very cumbersome command to change various construction helm
 \endsubkeyexplain
 
 \subsubsection{The conical hat}
-\keyexplain{conical hat}{color}{pingu@yellow}
+\showkeyexplain{conical hat}{color}{pingu@yellow}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[conical hat=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 \subkeyexplain{conical hat}{conical hat rounding}{length}{\pingu@x@conicalhat@rounding}
 \begin{tcblisting}{@}
@@ -2293,13 +2294,13 @@ Currently, this is a very cumbersome command to change various conical hat param
 \endsubkeyexplain
 
 \subsubsection{The crown}
-\keyexplain{crown}{color}{pingu@yellow}
+\showkeyexplain{crown}{color}{pingu@yellow}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[crown=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 \subkeyexplain{crown}{crown 3d}{true/false}{\if@pingu@x@crown@ddd@ true\else false\fi}
 Toggle the 3d-Design of the crown.
@@ -2377,26 +2378,26 @@ Currently, this is a very cumbersome command to change various crown parameters 
 \end{tcblisting}
 \endsubkeyexplain
 
-\keyexplain{crown 2d}{color}{pingu@yellow}
+\showkeyexplain{crown 2d}{color}{pingu@yellow}
 Enables the \keyref{crown} with the given color and disables \keyref{crown 3d}:
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[crown 2d=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 \subsubsection{The princess crown}
 Similar to \keyref{crown} but smaller.
 
-\keyexplain{princess crown}{color}{pingu@yellow}
+\showkeyexplain{princess crown}{color}{pingu@yellow}
 Enable the smaller crown with a specific color:
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[princess crown=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 \subkeyexplain{princess crown}{princess crown 3d}{true/false}{\if@pingu@x@princesscrown@ddd@ true\else false\fi}
 Toggle the 3d-Design of the smaller crown.
@@ -2486,25 +2487,25 @@ Currently, this is a very cumbersome command to change various princess crown pa
 \end{tcblisting}
 \endsubkeyexplain
 
-\keyexplain{princess crown 2d}{color}{pingu@yellow}
+\showkeyexplain{princess crown 2d}{color}{pingu@yellow}
 Enables the \keyref{princess crown} with the given color and disables \keyref{princess crown 3d}:
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[princess crown 2d=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 \subsubsection{The cake hat}
 
-\keyexplain{cake-hat}{color}{pingu@white!92!<pingu-cake-hat-top>}
+\showkeyexplain{cake-hat}{color}{pingu@white!92!<pingu-cake-hat-top>}
 Enable a cake hat with a specific color:
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[cake-hat=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 \subkeyexplain{cake-hat}{cake-hat top}{color}{\pingu@color@cakehat@top}
 Change the color of the cake hat top:
@@ -2616,14 +2617,14 @@ Currently, this is a very cumbersome command to change various cake hat paramete
 
 \subsubsection{The pumpkin hat}
 
-\keyexplain{pumpkin-hat}{color}{pingu@bronze!97!white}
+\showkeyexplain{pumpkin-hat}{color}{pingu@bronze!97!white}
 Enable a pumpkin hat with a specific color:
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[pumpkin-hat=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 {\def\pingu@color@pumpkinhat{<pumpkinhat-color>}
 \subkeyexplain{pumpkin-hat}{pumpkin-hat stalk}{color}{\pingu@color@pumpkinhat@stalk}
@@ -2697,13 +2698,13 @@ Currently, this is a very cumbersome command to change various pumpkin hat param
 
 \subsubsection{The vr headset}
 
-\keyexplain{vr-headset}{color}{pingu@black!92!gray}
+\showkeyexplain{vr-headset}{color}{pingu@black!92!gray}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[vr-headset=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 {\def\pingu@color@vrheadset{<vr-headset>}
 \subkeyexplain{vr-headset}{vr-headset band}{color}{\pingu@color@vrheadset@band}
@@ -2750,13 +2751,13 @@ Change the hair to support the headset:
 
 \subsubsection{The headphones}
 
-\keyexplain{headphone}{color}{pingu@blue!80!pingu@black}
+\showkeyexplain{headphone}{color}{pingu@blue!80!pingu@black}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[headphone=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 \keyalias{headphones}{headphone}
 
@@ -2835,14 +2836,14 @@ Set \keyref{headphone left inner} and \keyref{headphone right inner} with the sa
 
 \subsubsection{The santa hat}
 
-\keyexplain{santa hat}{color}{pingu@red!87!pingu@black}
+\showkeyexplain{santa hat}{color}{pingu@red!87!pingu@black}
 Show the merry christmas:
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[santa hat=pingu@red]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 {\def\pingu@color@santahat{<santa hat>}
 \subkeyexplain{santa hat}{santa hat second}{color}{\pingu@color@santahat@second}
@@ -2865,13 +2866,13 @@ Change the wool color:
 
 \subsubsection{The santa beard}
 
-\keyexplain{santa beard}{color}{pingu@white!96!pingu@red!98!pingu@black!92!gray}
+\showkeyexplain{santa beard}{color}{pingu@white!96!pingu@red!98!pingu@black!92!gray}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[santa beard=brown!20!white]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 {\def\pingu@color@body@main{<body main>}
 \subkeyexplain{santa beard}{santa beard string}{color}{\pingu@color@santabeard@string}
@@ -2884,14 +2885,14 @@ Change the wool color:
 
 \subsubsection{The blush}
 
-\keyexplain{blush}{color}{pingu@red}
+\showkeyexplain{blush}{color}{pingu@red}
 Make it cute:
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[eyes wink, blush=pingu@purple]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 \subkeyexplain{blush}{blush second}{color}{<blush>}
 \begin{tcblisting}{@}
@@ -2911,14 +2912,14 @@ Make it cute:
 
 \subsubsection{The banner}
 
-\keyexplain{banner}{text}{Bannertext}
+\showkeyexplain{banner}{text}{Bannertext}
 Give the penguin a banner to hold (it adapts to the wing positions):
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[left wing wave, banner=Hello]
 \end{tikzpicture}
 \end{tcblisting}
-\endkeyexplain
+\endshowkeyexplain
 
 \subkeyexplain{banner}{banner band}{color}{\pingu@color@banner@band}
 \begin{tcblisting}{@}
