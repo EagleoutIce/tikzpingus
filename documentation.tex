@@ -2175,6 +2175,61 @@ Currently, this is a very cumbersome command to change various hat parameters at
 \end{tcblisting}
 \endsubkeyexplain
 
+\subsubsection{The conical hat}
+\showkeyexplain{conical hat}{color}{pingu@yellow}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[conical hat=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endshowkeyexplain
+
+\subkeyexplain{conical hat}{conical hat rounding}{length}{\pingu@x@conicalhat@rounding}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[conical hat,
+	       conical hat rounding=.25pt]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+{
+\def\pingu@color@conicalhat{<canonical-hat-color>}
+\subkeyexplain{conical hat}{conical hat shade}{length}{\pingu@x@conicalhat@shade}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[conical hat, conical hat shade=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+}
+
+\subkeyexplain{conical hat height}{conical hat height}{length}{\pingu@x@conicalhat@height}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[conical hat, conical hat height=10mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{conical hat width}{conical hat width}{length}{\pingu@x@conicalhat@width}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[conical hat, conical hat width=3cm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{conical hat}{conical hat position}{angle>:(<x>,<y>)<scale}{\pingu@x@conicalhat@angle:(\pingu@x@conicalhat@xshift,\pingu@x@conicalhat@yshift)\{\pingu@x@conicalhat@scale\}}
+Currently, this is a very cumbersome command to change various conical hat parameters at the same time:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[conical hat,
+	       conical hat position={1:(-.1cm,-.275cm){1.33}}]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
 \subsubsection{The cap}
 \showkeyexplain{cap}{color}{pingu@bronze}
 \begin{tcblisting}{@}
@@ -2234,61 +2289,6 @@ Currently, this is a very cumbersome command to change various construction helm
 \begin{tikzpicture}
 	\pingu[construction helmet,
 	       construction helmet position={1:(-.1cm,-.275cm){1.33}}]
-\end{tikzpicture}
-\end{tcblisting}
-\endsubkeyexplain
-
-\subsubsection{The conical hat}
-\showkeyexplain{conical hat}{color}{pingu@yellow}
-\begin{tcblisting}{@}
-\begin{tikzpicture}
-	\pingu[conical hat=green]
-\end{tikzpicture}
-\end{tcblisting}
-\endshowkeyexplain
-
-\subkeyexplain{conical hat}{conical hat rounding}{length}{\pingu@x@conicalhat@rounding}
-\begin{tcblisting}{@}
-\begin{tikzpicture}
-	\pingu[conical hat,
-	       conical hat rounding=.25pt]
-\end{tikzpicture}
-\end{tcblisting}
-\endsubkeyexplain
-
-{
-\def\pingu@color@conicalhat{<canonical-hat-color>}
-\subkeyexplain{conical hat}{conical hat shade}{length}{\pingu@x@conicalhat@shade}
-\begin{tcblisting}{@}
-\begin{tikzpicture}
-	\pingu[conical hat, conical hat shade=green]
-\end{tikzpicture}
-\end{tcblisting}
-\endsubkeyexplain
-}
-
-\subkeyexplain{conical hat height}{conical hat height}{length}{\pingu@x@conicalhat@height}
-\begin{tcblisting}{@}
-\begin{tikzpicture}
-	\pingu[conical hat, conical hat height=10mm]
-\end{tikzpicture}
-\end{tcblisting}
-\endsubkeyexplain
-
-\subkeyexplain{conical hat width}{conical hat width}{length}{\pingu@x@conicalhat@width}
-\begin{tcblisting}{@}
-\begin{tikzpicture}
-	\pingu[conical hat, conical hat width=3cm]
-\end{tikzpicture}
-\end{tcblisting}
-\endsubkeyexplain
-
-\subkeyexplain{conical hat}{conical hat position}{angle>:(<x>,<y>)<scale}{\pingu@x@conicalhat@angle:(\pingu@x@conicalhat@xshift,\pingu@x@conicalhat@yshift)\{\pingu@x@conicalhat@scale\}}
-Currently, this is a very cumbersome command to change various conical hat parameters at the same time:
-\begin{tcblisting}{@}
-\begin{tikzpicture}
-	\pingu[conical hat,
-	       conical hat position={1:(-.1cm,-.275cm){1.33}}]
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain
@@ -2378,14 +2378,14 @@ Currently, this is a very cumbersome command to change various crown parameters 
 \end{tcblisting}
 \endsubkeyexplain
 
-\showkeyexplain{crown 2d}{color}{pingu@yellow}
+\keyexplain{crown 2d}{color}{pingu@yellow}
 Enables the \keyref{crown} with the given color and disables \keyref{crown 3d}:
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[crown 2d=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endshowkeyexplain
+\showkeyexplain
 
 \subsubsection{The princess crown}
 Similar to \keyref{crown} but smaller.
@@ -2487,14 +2487,14 @@ Currently, this is a very cumbersome command to change various princess crown pa
 \end{tcblisting}
 \endsubkeyexplain
 
-\showkeyexplain{princess crown 2d}{color}{pingu@yellow}
+\keyexplain{princess crown 2d}{color}{pingu@yellow}
 Enables the \keyref{princess crown} with the given color and disables \keyref{princess crown 3d}:
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[princess crown 2d=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endshowkeyexplain
+\endkeyexplain
 
 \subsubsection{The cake hat}
 
