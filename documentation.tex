@@ -131,10 +131,20 @@
 	}%
 }
 
-\newcommand\ShowcasePengu[2][]{{\hypersetup{linkcolor=.}%
-\hyperref[pk:/pingu/#2]{\parbox[b]{.2\linewidth}{\centering\tabular{c}\scalebox{.75}{\tikzpicture[baseline={(current bounding box.south)}]
+
+\def\RawShowcase#1#2{\clap{\tabular{c}\scalebox{.75}{\begin{tcbexternal}{showcase-#2#1}%
+\tikzpicture[baseline={(current bounding box.south)}]
 \pingu[body=pingu@main!30!white,bill color=pingu@yellow!30!white,feet color=pingu@yellow!30!white,eyes color=pingu@black!30!white,#2#1]
-\endtikzpicture}\\[-1mm]\textsf{\strut\clap{#2}}\endtabular}}}}
+\endtikzpicture
+\end{tcbexternal}%
+}\\[-1mm]\textsf{\strut\smash{#2}}\endtabular}
+
+\setox0=\hbox{\RawShowcase{}{}}
+\newdimen\pingu@showcase@height
+\pingu@showcase@height=\dimexpr\ht0+\dp0\relax
+
+\newcommand\ShowcasePengu[2][]{{\hypersetup{linkcolor=.}%
+\hyperref[pk:/pingu/#2]{\parbox[b][\pingu@showcase@height]{.2\linewidth}{\centering\RawShowcase{#1}{#2}}}}}}
 \def\pengu@all@showcases{}
 \def\ShowcaseThis#1{\appto\pengu@all@showcases{{#1},}}
 
@@ -249,7 +259,9 @@
 \def\TikZ{Ti\textit{k}Z}
 \def\tikzpingus{\TikZ pingus}
 
-\tcbset{external/prefix=sub_}
+\tcbset{external/prefix=sub_,external/input source on error=true,shield externalize=true}
+\usetikzlibrary{external}
+\tikzexternaldisable
 \tcbEXTERNALIZE % we do not need the other configurations in the externalized images :D
 
 \title{The \texorpdfstring{\tikzpingus}{tikzpingus} package}
@@ -261,7 +273,7 @@
 \date{Version v1.1 \textendash\ 2022/01/15}
 
 \begin{document}
-\maketitle
+\setox0=\hbox{\maketitle}\box0 % kill page break?
 
 \section{Motivation}
 
