@@ -39,7 +39,7 @@
 \def\thefootnote{$\langle$\arabic{footnote}$\rangle$}
 
 \newlist{inlist}{enumerate*}{1}
-\setlist[inlist]{itemjoin={{,\space}},itemjoin*={{, and }},label=$\roman*$),mode=boxed}
+\setlist[inlist]{itemjoin={{, }},itemjoin*={{, and }},label=$\roman*$),mode=boxed}
 \let\say\enquote
 \def\DTLlistformatoxford{,}
 \def\DTLandname{and}
@@ -111,7 +111,7 @@
 % #1 Keys | #2 length (optimized)
 \def\CreateCodeHyperLink#1#2{% \StrLen{\@elem}[\@cclen]
 	\@for\@elem:=#1\do{\ifx\@elem\@empty\else
-	% space to space cmd
+	% space to space cmd % TODO: do this on store and just keep store?
 	\StrSubstitute{\@elem}{ }{\noexpand\ }[\@sub]\relax
 	\edef\@tmp{\noexpand\@CreateCodeHyperLink{#2}{\@sub}{pk:/pingu/\@elem}}\@tmp\fi}%
 }
@@ -132,10 +132,10 @@
 }
 
 
-\def\RawShowcase#1#2{\scalebox{.7}{%\begin{tcbexternal}{showcase-#2#1}%
+\def\RawShowcase#1#2{\scalebox{.71}{%\begin{tcbexternal}{showcase-#2#1}%
 \tikzpicture[baseline={(pingu-bottom-center)}]
-\pingu[body=pingu@main!30!white,bill color=pingu@yellow!30!white,feet color=pingu@yellow!30!white,eyes color=pingu@black!30!white,name=pingu,#2#1]
-\node[below] at(current bounding box.south) {\clap{\textsf{\strut\smash{#2}}}};
+\pingu[body=pingu@main!30!white,bill color=pingu@yellow!30!white,feet color=pingu@yellow!30!white,eyes color=pingu@black!30!white,name=pingu,#1#2]
+\node[below] at(current bounding box.south) {\clap{\textsf{\strut\smash{#1}}}};
 \endtikzpicture
 %\end{tcbexternal}%
 }}
@@ -144,11 +144,12 @@
 \newdimen\pingu@showcase@height
 \pingu@showcase@height=\dimexpr\ht0+\dp0\relax
 
-\newcommand\ShowcasePengu[2][]{{\hypersetup{linkcolor=.}%
-\hyperref[pk:/pingu/#2]{\parbox[b][\pingu@showcase@height]{.166\linewidth}{\centering\RawShowcase{#1}{#2}}}}}
+\def\ShowcasePengu#1=#2;{{\hypersetup{linkcolor=.}%
+\hyperref[pk:/pingu/#1]{%
+	\parbox[b][\pingu@showcase@height]{.166\linewidth}{\centering\ifx!#2!\def\Arg{}\else\def\Arg{=#2}\fi\edef\MakeShowcase{\noexpand\RawShowcase{#1}{\Arg}}\MakeShowcase}%
+}}}
 \def\pengu@all@showcases{}
-\def\ShowcaseThis#1{\appto\pengu@all@showcases{{#1},}}
-
+\newcommand\ShowcaseThis[2][]{\gappto\pengu@all@showcases{{#2=#1},}}
 
 \AtBeginDocument{%
 % we do not use foreach to avoid groups
@@ -163,10 +164,12 @@
 	\fi% csx kill to stop infinite
 	\global\advance\count@\@ne
 }%
+\llap{\phantom{x}}% this is somewhat of a hack and i do not know why
+% it is needed to show penguins
 \@for\@elem:=\pengu@all@showcases\do{%
 	\ifx\@elem\@empty\else
 	% space to space cmd
-	\edef\@tmp{\noexpand\ShowcasePengu{\@elem}}\hfill\@tmp\hfill
+	\edef\@tmp{\noexpand\ShowcasePengu\@elem;}\hfill\@tmp\hfill
 \fi}%
 \global\let\pengu@all@showcases\@empty
 }
@@ -191,8 +194,7 @@
 \def\explaincolor{pingu@purple!8!white}
 \def\cursub{}
 \def\keyexplainindent{2em}%
-\hfuzz=3pt % allow the oxes to have minor overlaps
-\overfullrule=1.75cm
+% allow the oxes to have minor overlaps
 \newenvironment{keyexplain}[4][/pingu/]{\minipage{\linewidth}
 	\parskip\smallskipamount
 	\StrSubstitute{#2}{ }{-}[\keyexternalname]%
@@ -238,9 +240,10 @@
 	{\@declaredcolor{gray}\footnotesize This command is only in effect if \keyref[#1]{#2} is active.}\par
 }{\endkeyexplain\endgroup}
 
+\def\consumeshowkeyexplain#1(#2){\ShowcaseThis[#2]{#1}}
 \newenvironment{showkeyexplain}[4][/pingu/]{%
-\ShowcaseThis{#2}%
 \keyexplain[#1]{#2}{#3}{#4}%
+\@ifnextchar({\consumeshowkeyexplain{#2}}{\consumeshowkeyexplain{#2}()}
 }{\endkeyexplain}
 
 \newcommand\keyalias[3][/pingu/]{\begingroup
@@ -1147,7 +1150,7 @@ Aliases my set custom defaults. Those defaults are not listed as they may change
 
 \subsection{Extras}
 \subsubsection{The heart}
-\showkeyexplain{heart}{node-options}{}
+\showkeyexplain{heart}{node-options}{}(pingu@main)
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[heart=green]
@@ -1355,7 +1358,7 @@ Basically the same as the normal medal, but with a bronze color. This will activ
 
 \subsubsection{The eye patches}
 
-\showkeyexplain{eye patch left}{color}{<pingu-main-color>}
+\showkeyexplain{eye patch left}{color}{<pingu-main-color>}(pingu@main)
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[eye patch left]
@@ -1366,7 +1369,7 @@ Basically the same as the normal medal, but with a bronze color. This will activ
 \keyalias{eyepatch left}{eye patch left}
 \keyalias{eye-patch left}{eye patch left}
 
-\showkeyexplain{eye patch right}{color}{<pingu-main-color>}
+\showkeyexplain{eye patch right}{color}{<pingu-main-color>}(pingu@main)
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[eye patch right]
@@ -1379,7 +1382,7 @@ Basically the same as the normal medal, but with a bronze color. This will activ
 
 \subsubsection{The monocle}
 
-\showkeyexplain{monocle left}{color}{pingu@black}
+\showkeyexplain{monocle left}{color}{pingu@black}(pingu@black)
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[monocle left]
@@ -1443,7 +1446,7 @@ Set the color of the blob at the end of the string of the left monocle:
 \end{tcblisting}
 \endsubkeyexplain}
 
-\showkeyexplain{monocle right}{color}{pingu@black}
+\showkeyexplain{monocle right}{color}{pingu@black}(pingu@black)
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[monocle right]
@@ -1608,7 +1611,7 @@ Raise the pants:
 
 \subsubsection{The glow}
 
-\showkeyexplain{glow}{color}{pingu@white}
+\showkeyexplain{glow}{color}{pingu@white}(orange)
 	Active a glow around the penguin:
 \begin{tcblisting}{@}
 \begin{tikzpicture}
