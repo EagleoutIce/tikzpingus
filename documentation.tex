@@ -131,9 +131,10 @@
 	}%
 }
 
-\newcommand\ShowcasePengu[2][]{{\hypersetup{linkcolor=.}\hyperref[pk:/pingu/#2]{\tabular{c}\scalebox{.75}{\tikzpicture
-	\pingu[body=pingu@main!30!white,bill color=pingu@yellow!30!white,feet color=pingu@yellow!30!white,eyes color=pingu@black!30!white,#2#1]
-\endtikzpicture}\\[-1mm]\textsf{\strut\clap{#2}}\endtabular}}}
+\newcommand\ShowcasePengu[2][]{{\hypersetup{linkcolor=.}%
+\hyperref[pk:/pingu/#2]{\parbox[b]{.2\linewidth}{\centering\tabular{c}\scalebox{.75}{\tikzpicture[baseline={(current bounding box.south)}]
+\pingu[body=pingu@main!30!white,bill color=pingu@yellow!30!white,feet color=pingu@yellow!30!white,eyes color=pingu@black!30!white,#2#1]
+\endtikzpicture}\\[-1mm]\textsf{\strut\clap{#2}}\endtabular}}}}
 \def\pengu@all@showcases{}
 \def\ShowcaseThis#1{\appto\pengu@all@showcases{{#1},}}
 
@@ -2385,7 +2386,7 @@ Enables the \keyref{crown} with the given color and disables \keyref{crown 3d}:
 	\pingu[crown 2d=green]
 \end{tikzpicture}
 \end{tcblisting}
-\showkeyexplain
+\endkeyexplain
 
 \subsubsection{The princess crown}
 Similar to \keyref{crown} but smaller.
