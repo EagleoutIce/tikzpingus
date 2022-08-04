@@ -135,7 +135,12 @@
 \def\RawShowcase#1#2{\scalebox{.68}{%\begin{tcbexternal}{showcase-#2#1}%
 \tikzpicture[baseline={(pingu-bottom-center)}]
 \pingu[body=pingu@main!30!white,bill color=pingu@yellow!30!white,feet color=pingu@yellow!30!white,eyes color=pingu@black!30!white,name=pingu,#1#2]
-\node[below] at(current bounding box.south) {\clap{\textsf{\strut\smash{#1}}}};
+\pgfonlayer{foreground}
+\node[below=3mm] at(pingu-bottom-center) {\strut}; % buffer
+\pgfinterruptboundingbox
+\node[below=3mm,fill=white,fill opacity=.52,text opacity=1,rounded corners=1pt] at(pingu-bottom-center) {\textsf{\strut\smash{#1}}};
+\endpgfinterruptboundingbox
+\endpgfonlayer
 \endtikzpicture
 %\end{tcbexternal}%
 }}
