@@ -157,6 +157,7 @@
 % we mix them somewhat funny
 \def\@showcase@pre{pre}
 \let\@showcase@cur\@showcase@pre
+\def\@toggle@showcase{\ifx\@showcase@cur\@showcase@pre\global\let\@showcase@cur\@empty\else \global\let\@showcase@cur\@showcase@pre\fi}
 \newcommand\ShowcaseThis[2][]{\ifx\@showcase@cur\@showcase@pre \global\let\@showcase@cur\@empty\expandafter\gpreto\else \global\let\@showcase@cur\@showcase@pre\expandafter\gappto\fi\pengu@all@showcases{{#2=#1},}}
 
 \RedeclareSectionCommand[runin=false,afterskip=-2mm]{section}
@@ -3880,6 +3881,7 @@ You can use the styles \lpingu{/pingu/@flag@first} and \lpingu{/pingu/@flag} to 
 Note that \lpingu{/pingu/@flag} expects two arguments: the color of the flag segment and its thickness.
 \endsubkeyexplain
 
+\@toggle@showcase % just so that they are aligned on the same side
 \showkeyexplain{pride flag left}{color}{pingu@bronze}
 	Uses \keyref{flag left}, \keyref{flag left code}, and \keyref{flag left pole} to set a pride flag. The color argument is passed to \keyref{flag left pole}.
 \begin{tcblisting}{@}
@@ -3888,6 +3890,7 @@ Note that \lpingu{/pingu/@flag} expects two arguments: the color of the flag seg
 \end{tikzpicture}
 \end{tcblisting}
 \endshowkeyexplain
+\@toggle@showcase % and back
 
 
 \showkeyexplain{german flag left}{color}{pingu@bronze}
@@ -3943,6 +3946,7 @@ You can use the styles \lpingu{/pingu/@flag@first} and \lpingu{/pingu/@flag} to 
 Note that \lpingu{/pingu/@flag} expects two arguments: the color of the flag segment and its thickness.
 \endsubkeyexplain
 
+\@toggle@showcase % just so that they are aligned on the same side
 \showkeyexplain{pride flag right}{color}{pingu@bronze}
 	Uses \keyref{flag right}, \keyref{flag right code}, and \keyref{flag right pole} to set a pride flag. The color argument is passed to \keyref{flag right pole}.
 \begin{tcblisting}{@}
@@ -3951,7 +3955,7 @@ Note that \lpingu{/pingu/@flag} expects two arguments: the color of the flag seg
 \end{tikzpicture}
 \end{tcblisting}
 \endshowkeyexplain
-
+\@toggle@showcase
 
 \showkeyexplain{german flag right}{color}{pingu@bronze}
 	Uses \keyref{flag right}, \keyref{flag right code}, and \keyref{flag right pole} to set a german flag. The color argument is passed to \keyref{flag right pole}.
