@@ -159,34 +159,6 @@
 \let\@showcase@cur\@showcase@pre
 \newcommand\ShowcaseThis[2][]{\ifx\@showcase@cur\@showcase@pre \global\let\@showcase@cur\@empty\expandafter\gpreto\else \global\let\@showcase@cur\@showcase@pre\expandafter\gappto\fi\pengu@all@showcases{{#2=#1},}}
 
-\AtBeginDocument{%
-
-% we do not use foreach to avoid groups
-\count@=\allcmdsmin
-\edef\@cntmax@{\the\numexpr\allcmdsmax+1\relax}%
-\@whilenum\count@<\@cntmax@\do{%
-	\edef\i{\number\count@}\relax
-	\ifcsname allcmds@\i\endcsname
-		\edef\allcmds{\csname allcmds@\i\endcsname}% if undefined => empty
-		\expandafter\CreateCodeHyperLink\expandafter{\allcmds}{\i}%
-		\csxdef{allcmds@\i}{}%
-	\fi% csx kill to stop infinite
-	\global\advance\count@\@ne
-}%
-\llap{\phantom{x}}% this is somewhat of a hack and i do not know why
-% it is needed to show penguins
-\@tempcnta\z@
-\begingroup\parskip\z@ \parindent\z@
-\@for\@elem:=\pengu@all@showcases\do{%
-	\advance\@tempcnta\@ne
-	\ifnum\@tempcnta>5 \global\@tempcnta\@ne\par\fi
-	\ifx\@elem\@empty\else
-	% space to space cmd
-	\edef\@tmp{\noexpand\ShowcasePengu\@elem;}\hfill\@tmp\hfill
-\fi}%
-\endgroup\global\let\pengu@all@showcases\@empty
-}
-
 \RedeclareSectionCommand[runin=false,afterskip=-2mm]{section}
 \RedeclareSectionCommand[runin=false,afterskip=-2mm]{subsection}
 
@@ -281,6 +253,34 @@
 
 \tcbset{external/prefix=sub_}
 \tcbEXTERNALIZE % we do not need the other configurations in the externalized images :D
+
+% this should not happen in the external images
+\AtBeginDocument{%
+% we do not use foreach to avoid groups
+\count@=\allcmdsmin
+\edef\@cntmax@{\the\numexpr\allcmdsmax+1\relax}%
+\@whilenum\count@<\@cntmax@\do{%
+	\edef\i{\number\count@}\relax
+	\ifcsname allcmds@\i\endcsname
+		\edef\allcmds{\csname allcmds@\i\endcsname}% if undefined => empty
+		\expandafter\CreateCodeHyperLink\expandafter{\allcmds}{\i}%
+		\csxdef{allcmds@\i}{}%
+	\fi% csx kill to stop infinite
+	\global\advance\count@\@ne
+}%
+\llap{\phantom{x}}% this is somewhat of a hack and i do not know why
+% it is needed to show penguins
+\@tempcnta\z@
+\begingroup\parskip\z@ \parindent\z@
+\@for\@elem:=\pengu@all@showcases\do{%
+	\advance\@tempcnta\@ne
+	\ifnum\@tempcnta>5 \global\@tempcnta\@ne\par\fi
+	\ifx\@elem\@empty\else
+	% space to space cmd
+	\edef\@tmp{\noexpand\ShowcasePengu\@elem;}\hfill\@tmp\hfill
+\fi}%
+\endgroup\global\let\pengu@all@showcases\@empty
+}
 
 \title{The \texorpdfstring{\tikzpingus}{tikzpingus} package}
 \subtitle{penguins in \TikZ}
