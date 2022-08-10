@@ -4,16 +4,25 @@ name: generate showcase
     branches:
     - master
     - main
+    - 37-speed-up-ci
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout git repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         lfs: true
         submodules: true
+    - name: Caching
+      id: cache-documentation
+      uses: actions/cache@v3
+      with:
+        path: |
+          build
+          sub_*
+        key: ${{ runner.os }}-pengu-cache-documentation
     - name: Setup Python environment for sltx
       uses: actions/setup-python@v2
       with:
