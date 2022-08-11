@@ -44,7 +44,7 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add -f "showcase.pdf" "minimal.pdf" "documentation.pdf" "preview-1.png" "minimal-1.png"
+        git add -f "showcase.pdf" "minimal.pdf" "build/documentation.pdf" "preview-1.png" "minimal-1.png"
         git commit -m "Newly compiled data"
     - name: Push changes
       uses: ad-m/github-push-action@master
