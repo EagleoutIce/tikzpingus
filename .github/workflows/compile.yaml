@@ -4,11 +4,6 @@ name: generate showcase
     branches:
     - master
     - main
-  pull_request:
-    types:
-      - opened
-      - edited
-      - synchronize
 
 jobs:
   build:
