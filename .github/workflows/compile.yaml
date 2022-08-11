@@ -20,6 +20,7 @@ jobs:
       uses: actions/cache@v3
       with:
         path: |
+          /root/.sltx/
           build
           sub_*
         key: ${{ runner.os }}-pengu-cache-documentation
