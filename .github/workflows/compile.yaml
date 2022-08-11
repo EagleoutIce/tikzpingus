@@ -34,7 +34,7 @@ jobs:
         echo "tx-default" | sltx docker
     - uses: xu-cheng/latex-action@v2
       with:
-      root_file: documentation.tex
+        root_file: documentation.tex
     - name: 'Compile the documents and generate previews'
       run: |
         sltx compile --root --profile "tx-default" "showcase" "minimal"
