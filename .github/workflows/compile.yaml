@@ -27,7 +27,7 @@ jobs:
         restore-keys: ${{ runner.os }}-pengu-cache-doc-
     - name: Install PU for previews
       run: sudo apt install poppler-utils
-    - name: Compile the Documentation, the Showcase and the Minimal
+    - name: Compile the Documentation, showcase and minimal
       uses: xu-cheng/latex-action@v2
       with:
         root_file: |
