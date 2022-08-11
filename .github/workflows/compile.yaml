@@ -4,7 +4,6 @@ name: generate showcase
     branches:
     - master
     - main
-    - 37-speed-up-ci
 
 jobs:
   build:
