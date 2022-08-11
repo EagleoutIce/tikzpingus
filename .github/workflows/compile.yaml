@@ -15,6 +15,7 @@ jobs:
       with:
         lfs: true
         submodules: true
+# https://github.com/actions/cache/issues/342
     - name: Caching
       id: cache-documentation
       uses: actions/cache@v3
@@ -22,7 +23,8 @@ jobs:
         path: |
           build
           sub_*
-        key: ${{ runner.os }}-pengu-cache-documentation
+        key: ${{ runner.os }}-pengu-cache-doc-${{ github.run_id }}
+        restore-keys: ${{ runner.os }}-pengu-cache-doc-
     - name: Setup Python environment for sltx
       uses: actions/setup-python@v2
       with:
