@@ -1,4 +1,4 @@
-name: generate showcase
+name: generate the documentation (and the showcases)
 'on':
   push:
     branches:
