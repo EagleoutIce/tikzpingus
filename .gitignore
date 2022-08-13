@@ -1,3 +1,6 @@
+build-private*
+tikzpingus*.zip
+*.curlopt
 *.png
 sub_*
 sltx-log*.zip
