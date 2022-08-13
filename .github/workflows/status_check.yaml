@@ -44,3 +44,6 @@ jobs:
           build/documentation.pdf
           build/documentation.log
           build/documentation.aux
+          build/documentation.ilg
+          build/documentation.ind
+          build/documentation.idx
