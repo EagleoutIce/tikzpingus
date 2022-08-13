@@ -30,7 +30,7 @@ jobs:
       uses: xu-cheng/latex-action@v2
       with:
         root_file: |
-          documentation.tex
+          documentation/documentation.tex
           examples/showcase.tex
           examples/minimal.tex
     - name: 'Generate previews'
