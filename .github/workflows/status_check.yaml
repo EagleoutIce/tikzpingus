@@ -8,7 +8,6 @@ name: status check compile (does not push)
     types:
       - opened
       - edited
-      - synchronize
 
 jobs:
   build:
