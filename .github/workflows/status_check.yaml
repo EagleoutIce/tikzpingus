@@ -26,8 +26,8 @@ jobs:
         path: |
           build
           sub_*
-        key: ${{ runner.os }}-pengu-cache-doc-${{ github.run_id }}
-        restore-keys: ${{ runner.os }}-pengu-cache-doc-
+        key: ${{ runner.os }}-pengu-cache-doc-v2-${{ github.run_id }}
+        restore-keys: ${{ runner.os }}-pengu-cache-doc-v2-
     - name: Compile the Documentation, showcase and minimal
       uses: xu-cheng/latex-action@v2
       with:
