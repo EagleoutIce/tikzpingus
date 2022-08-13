@@ -18,16 +18,15 @@
     \pingu@block[bottom color=\pingu@color@cloak@bottom,top color=\pingu@color@cloak]{\pingu@color@cloak} (\pingu@name-bottom-center)++(-\pingu@x@cloak@padding-\pingu@w@half,-.5mm) arc (180:0:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend left=1] (\pingu@name-wings-side-left) arc(0:180:\pingu@w@half{} and .75mm) to[bend left=1] cycle;
 }
 
-\def\pingu@draw@cloth@cloak@middle{}
-
-% TODO: if flags to draw parts
-\def\pingu@draw@cloth@cloak{%
-\pingu@block[rounded corners=.7mm]{\pingu@color@cloak@front}
+\def\pingu@draw@cloth@cloak@middle{\pingu@block[rounded corners=.7mm]{\pingu@color@cloak@front}
 (\pingu@name-bottom-center)++(-\pingu@x@cloak@padding-\pingu@w@half,-.5mm) arc (180:250:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend right=6]
 ([xshift=1.3mm,yshift=.4mm]\pingu@name-wings-side-right) to[bend right=3] ([yshift=.65mm]\pingu@name-wings-side-right);
 \pingu@block[rounded corners=.7mm]{\pingu@color@cloak@front}
 (\pingu@name-bottom-center)++(\pingu@x@cloak@padding+\pingu@w@half,-.5mm) arc (0:-70:{\pingu@x@cloak@padding+\pingu@w@half} and \pingu@one) to[bend left=6]
-([xshift=-1.3mm,yshift=.4mm]\pingu@name-wings-side-left) to[bend left=3] ([yshift=.65mm]\pingu@name-wings-side-left);
+([xshift=-1.3mm,yshift=.4mm]\pingu@name-wings-side-left) to[bend left=3] ([yshift=.65mm]\pingu@name-wings-side-left);}
+
+% TODO: if flags to draw parts
+\def\pingu@draw@cloth@cloak{%
 \scope[rounded corners=.6\p@]
     % wings
     \if@pingu@x@cloak@wings
