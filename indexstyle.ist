@@ -1,0 +1,51 @@
+% comment - in case of need :D
+heading_prefix "\n% Header (guard)
+  \\ifcsname needspace\\endcsname \\needspace{3\\baselineskip}\\fi
+  \\ifcsname tikz\\endcsname
+  \\def\\ledx@head#1{\\tikz{\\node[text width=3cm,align=center] (hr)at(0,0){\\textbf{#1}};\\draw[rounded corners=3pt,thick,line cap=round]([yshift=-.125cm]hr.north west)|-(hr.north east)--++(0,-.125cm);\\draw[rounded corners=2.5pt,thick,line cap=round] ([yshift=.125cm]hr.south west)|-(hr.south east)--++(0,.125cm);}}
+  \\else\\let\\ledx@head\\textbf\\fi\\medskip\\par\\color{black}{\\centering\\ledx@head{"
+heading_suffix "}\\nopagebreak\\medskip\\par}\\nopagebreak "
+headings_flag 1
+preamble "\\begin{theindex}%
+  \\providecommand*\\indexgroup[1]{\\item\\textbf{#1}\\nopagebreak}~\\par\\providecommand\\idxfsize{\\normalsize}\\makeatletter
+\\ifcsname hyperpage\\endcsname
+\\LetLtxMacro\\ledx@h\\hyperpage
+\\newif\\ifledx@rc@
+\\def\\ledx@@s{%
+  \\def\\ledx@fs{Y}\\gdef\\ledx@@u{}\\gdef\\ledx@@b{}%
+  \\def\\hyperpage##1{\\g@addto@macro\\ledx@@u{##1}\\global\\let\\ledx@@b\\ledx@@u\\ledx@h{##1}}}%
+\\def\\ledx@@sl{%
+  \\def\\ledx@fs{Y}\\ledx@rc@true\\global\\let\\ledx@@u\\ledx@@b
+  \\def\\hyperpage##1{\\ifledx@rc@\\def\\ledx@@u{}\\ledx@rc@false\\fi\\g@addto@macro\\ledx@@u{##1}\\ledx@h{##1}}}%
+\\def\\ledx@@d{%
+  \\def\\ledx@fs{}%
+  \\def\\hyperpage##1{\\g@addto@macro\\ledx@cpb{##1}\\ledx@h{##1}}}%
+\\else\\def\\ledx@@s{}\\def\\ledx@@d{}\\fi
+\\def\\ledx@@msub{\\ifx\\ledx@fs\\@empty,\\space\\else\\subsubitem\\ledx@@d\\color{gray}\\footnotesize\\fi}%
+\\def\\ledx@lb@encap#1{\\gdef\\ledx@cpb{}\\sbox\\z@{#1}\\ifx\\ledx@@u\\ledx@cpb\\else\\textsuperscript{(#1)\\kern-.1em}\\fi}
+"
+postamble "\n\n\\end{theindex}\n"
+group_skip "%\n\\indexspace\n"
+numhead_positive "\\small Numbers"
+numhead_negative "\\small Numbers"
+symhead_positive "\\small Symbole"
+symhead_negative "\\small Symbole"
+delim_0 "\\thinspace\\dotfill\\thinspace {"
+delim_1 "\:~~{"
+delim_2 "\\ledx@lb@encap{\\relax "
+item_0 "\n\n \\item\\ledx@@s\\color{black}\\idxfsize "
+item_01 "\n    \\subitem\\ledx@@s\\color{black}\\small "
+item_x1 "\n    \\subitem\\ledx@@sl\\color{black}\\small "
+item_1 "\n    \\subitem\\ledx@@sl\\color{black}\\small "
+item_12 "\n        \\subsubitem\\ledx@@d\\color{gray}\\footnotesize "
+item_x2 "\n        \\subsubitem\\ledx@@d\\color{gray}\\footnotesize "
+item_2  "\\ledx@@msub "
+encap_prefix "\\"
+encap_infix "{"
+encap_suffix "}"
+quote '#'
+actual '?'
+delim_t "}\\relax "
+delim_n ", "
+indent_space "\t\t"
+indent_length 16

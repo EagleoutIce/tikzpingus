@@ -8,7 +8,6 @@ name: status check compile (does not push)
     types:
       - opened
       - edited
-      - synchronize
 
 jobs:
   build:
@@ -27,8 +26,8 @@ jobs:
         path: |
           build
           sub_*
-        key: ${{ runner.os }}-pengu-cache-doc-${{ github.run_id }}
-        restore-keys: ${{ runner.os }}-pengu-cache-doc-
+        key: ${{ runner.os }}-pengu-cache-doc-v2-${{ github.run_id }}
+        restore-keys: ${{ runner.os }}-pengu-cache-doc-v2-
     - name: Compile the Documentation, showcase and minimal
       uses: xu-cheng/latex-action@v2
       with:
@@ -43,3 +42,8 @@ jobs:
           build/minimal.pdf
           build/showcase.pdf
           build/documentation.pdf
+          build/documentation.log
+          build/documentation.aux
+          build/documentation.ilg
+          build/documentation.ind
+          build/documentation.idx
