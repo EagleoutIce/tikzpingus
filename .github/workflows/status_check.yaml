@@ -40,6 +40,4 @@ jobs:
       with:
         name: status-artifact
         path: |
-          build/minimal.pdf
-          build/showcase.pdf
-          build/documentation.pdf
+          build
