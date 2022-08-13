@@ -31,8 +31,8 @@ jobs:
       with:
         root_file: |
           documentation.tex
-          showcase.tex
-          minimal.tex
+          examples/showcase.tex
+          examples/minimal.tex
     - name: 'Generate previews'
       run: |
         pdftoppm -png -r 300 -f 1 -l 1 ./build/showcase.pdf preview
