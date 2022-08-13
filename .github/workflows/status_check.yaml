@@ -32,9 +32,9 @@ jobs:
       uses: xu-cheng/latex-action@v2
       with:
         root_file: |
-          documentation.tex
-          showcase.tex
-          minimal.tex
+          documentation/documentation.tex
+          examples/showcase.tex
+          examples/minimal.tex
     - uses: actions/upload-artifact@v3
       with:
         name: status-artifact
