@@ -8,26 +8,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout git repository
-        uses: actions/checkout@v3
-      # https://github.com/actions/cache/issues/342
-      - name: 💾 Caching
-        uses: actions/cache@v3
-        with:
-          path: |
-            build
-            sub_*
-          key: ${{ runner.os }}-pengu-cache-doc-${{ github.run_id }}
-          restore-keys: ${{ runner.os }}-pengu-cache-doc-
+      - name: Setup and Compile
+        uses: EagleoutIce/tikzpingus/.github/workflows/unify-doc-compile.yaml@main
       - name: Install PU for previews
         run: sudo apt install poppler-utils
-      - name: 📄 Compile the Documentation, showcase and minimal
-        uses: xu-cheng/latex-action@v2
-        with:
-          root_file: |
-            doc/tikzpingus-doc.tex
-            examples/showcase.tex
-            examples/minimal.tex
       - name: 🖼️ Generate previews
         run: |
           pdftoppm -png -r 300 -f 1 -l 1 ./build/showcase.pdf preview
