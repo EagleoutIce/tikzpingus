@@ -6,10 +6,16 @@ name: build
 
 jobs:
   build:
+    uses: EagleoutIce/tikzpingus/.github/workflows/unify-doc-compile.yaml@main
+  process:
     runs-on: ubuntu-latest
+    needs: build
     steps:
-      - name: Setup and Compile
-        uses: EagleoutIce/tikzpingus/.github/workflows/unify-doc-compile.yaml@main
+      - name: Get Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: build-output
+          path: build/
       - name: Install PU for previews
         run: sudo apt install poppler-utils
       - name: 🖼️ Generate previews
