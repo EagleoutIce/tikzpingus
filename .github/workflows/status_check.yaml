@@ -7,7 +7,7 @@ name: status check compile (does not push)
   workflow_call:
 
 jobs:
-  build:
+  build-pdfs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout git repository
