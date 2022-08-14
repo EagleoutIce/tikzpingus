@@ -27,7 +27,7 @@ jobs:
             doc/tikzpingus-doc.tex
             examples/showcase.tex
             examples/minimal.tex
-      - name: Upload artifacts
+      - name: ⬆️ Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: build-output

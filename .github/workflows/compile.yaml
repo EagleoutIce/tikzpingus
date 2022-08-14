@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Get Artifacts
+      - name: ⬇️ Get Artifacts
         uses: actions/download-artifact@v3
         with:
           name: build-output
