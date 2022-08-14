@@ -53,9 +53,13 @@ function update_tag(file, content, tagname, tagdate)
 end
 
 -- committing retagged file and tag the commit =======================
+require('build-private.lua')
+
 function tag_hook(tagname)
     git("add", "*.sty")
     git("add", "doc/*.tex")
+	 os.execute("github_changelog_generator --user EagleoutIce --project tikzpingus --token \""..token.."\"")
+	 git("add", "CHANGELOG.md")
     git("commit -m 'step version " .. packageversion .. "'")
     git("tag", packageversion)
 end
@@ -82,8 +86,6 @@ packtdszip = false
 -- Preserve structure for CTAN
 flatten = false
 -- configuring ctan upload ===========================================
-require('build-private.lua')
-
 uploadconfig = {
     author = uploadconfig.author,
     uploader = uploadconfig.uploader,
