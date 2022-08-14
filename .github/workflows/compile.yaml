@@ -2,11 +2,11 @@ name: build
 
 "on":
   push:
-    branches: [master, main]
+    branches: [master, main, fix-compile.yaml]
 
 jobs:
   build:
-    uses: EagleoutIce/tikzpingus/.github/workflows/unify-doc-compile.yaml@main
+    uses: EagleoutIce/tikzpingus/.github/workflows/status_check.yaml@main
   process:
     runs-on: ubuntu-latest
     needs: build
