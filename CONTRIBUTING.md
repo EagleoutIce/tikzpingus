@@ -1,4 +1,4 @@
-**Thank you for every contribution!**
+# Thank you for every contribution
 
 Just select and or create an issue, work on that in your own fork and open a pull-request!
 

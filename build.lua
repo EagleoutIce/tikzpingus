@@ -37,7 +37,7 @@ function git(...)
 end
 
 -- replace version tags in .sty and -doc.tex files ===================
-tagfiles = { "*.sty", "documentation/*.tex" }
+tagfiles = { "*.sty", "doc/*.tex" }
 function update_tag (file,content,tagname,tagdate)
 	tagdate = string.gsub (packagedate,"-", "/")
 	if string.match (file, "%.sty$" ) then
@@ -47,7 +47,7 @@ function update_tag (file,content,tagname,tagdate)
 			"\\ProvidesPackage{%1}[" .. tagdate.." version "..packageversion
 		)
 		return content
-	elseif string.match (file, "documentation/*.tex$" ) then
+	elseif string.match (file, "doc/*.tex$" ) then
 		content = string.gsub (
 			content,
 			"\\date{Version v%d%.%d+ \\textendash\\ %d%d%d%d%/%d%d%/%d%d",
@@ -61,20 +61,20 @@ end
 -- committing retagged file and tag the commit =======================
 function tag_hook(tagname)
 	git("add", "*.sty")
-	git("add", "documentation/*.tex")
+	git("add", "doc/*.tex")
 	git("commit -m 'step version " .. packageversion .. "'" )
 	git("tag", packageversion)
 end
 
 -- collecting files for ctan =========================================
-docfiledir    = "./documentation"
-sourcefiledir = "./lib"
+docfiledir    = "./doc"
+sourcefiledir = "./tex"
 
-docfiles = {"*"}
-indexstyle = {"documentation/documentation.ist"}
+docfiles = {"*","build/"..module.."-doc.pdf"}
+indexstyle = {"doc/indexstyle.ist"}
 
-textfiles= {"README_ctan.md"}
-ctanreadme= "README_ctan.md"
+textfiles= {"*.md"}
+ctanreadme= "README.md"
 
 installfiles = {"*.sty", "*.tex"}
 sourcefiles = installfiles
@@ -83,7 +83,7 @@ unpackfiles  = { }
 excludefiles = {"sub_*.pdf"}
 
 -- Release a TDS-style zip
-packtdszip = true
+packtdszip = false
 
 -- Preserve structure for CTAN
 flatten = false
