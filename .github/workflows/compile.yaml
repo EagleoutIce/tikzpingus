@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      # otherwise we cant commit
+      - name: Checkout git repository
+        uses: actions/checkout@v3
       - name: ⬇️ Get doc Artifacts
         uses: actions/download-artifact@v3
         with:
