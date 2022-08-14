@@ -25,7 +25,7 @@ jobs:
         run: sudo apt install poppler-utils
       - name: 🖼️ Generate previews
         run: |
-          pdftoppm -png -r 300 -f 1 -l 1 ./doc/build/showcase.pdf preview
+          pdftoppm -png -r 300 -f 1 -l 1 ./examples/build/showcase.pdf preview
           pdftoppm -png -r 300 -f 1 -l 1 ./examples/build/minimal.pdf minimal
       - name: Commit
         run: |
