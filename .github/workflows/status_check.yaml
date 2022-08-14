@@ -1,49 +1,39 @@
 name: status check compile (does not push)
-'on':
+"on":
   push:
-    branches-ignore:
-    - master
-    - main
+    branches-ignore: [master, main]
   pull_request:
-    types:
-      - opened
-      - edited
+    types: [opened, edited]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout git repository
-      uses: actions/checkout@v3
-      with:
-        lfs: true
-        submodules: true
-# https://github.com/actions/cache/issues/342
-    - name: Caching
-      id: cache-documentation
-      uses: actions/cache@v3
-      with:
-        path: |
-          build
-          sub_*
-        key: ${{ runner.os }}-pengu-cache-doc-v2-${{ github.run_id }}
-        restore-keys: ${{ runner.os }}-pengu-cache-doc-v2-
-    - name: Compile the Documentation, showcase and minimal
-      uses: xu-cheng/latex-action@v2
-      with:
-        root_file: |
-          doc/tikzpingus-doc.tex
-          examples/showcase.tex
-          examples/minimal.tex
-    - uses: actions/upload-artifact@v3
-      with:
-        name: status-artifact
-        path: |
-          build/minimal.pdf
-          build/showcase.pdf
-          build/documentation.pdf
-          build/documentation.log
-          build/documentation.aux
-          build/documentation.ilg
-          build/documentation.ind
-          build/documentation.idx
+      - name: Checkout git repository
+        uses: actions/checkout@v3
+      # https://github.com/actions/cache/issues/342
+      - name: Caching
+        uses: actions/cache@v3
+        with:
+          path: |
+            build
+            sub_*
+          key: ${{ runner.os }}-pengu-cache-doc-v2-${{ github.run_id }}
+          restore-keys: ${{ runner.os }}-pengu-cache-doc-v2-
+      - name: Compile the Documentation, showcase and minimal
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: |
+            doc/tikzpingus-doc.tex
+            examples/showcase.tex
+            examples/minimal.tex
+      - uses: actions/upload-artifact@v3
+        with:
+          name: status-artifact
+          path: |
+            build/*.pdf
+            build/documentation.log
+            build/documentation.aux
+            build/documentation.ilg
+            build/documentation.ind
+            build/documentation.idx
