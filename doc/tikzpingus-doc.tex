@@ -8,6 +8,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{babel}
 
+\makeatletter\def\input@path{{../tex/}}\makeatother
 \usepackage[glows]{tikzpingus}
 
 \usepackage[linkcolor=pingu@purple,urlcolor=pingu@purple,colorlinks,breaklinks,pdfusetitle]{hyperref}
@@ -34,7 +35,7 @@
 \usepackage{adjustbox}
 \usepackage{xstring}
 
-\makeindex[title={Key Overview},columns=2,columnsep=.75cm,noautomatic=true,options=-s documentation/indexstyle.ist]
+\makeindex[title={Key Overview},columns=2,columnsep=.75cm,noautomatic=true,options=-s indexstyle.ist]
 \deffootnote{1.5em}{1em}{\textsuperscript{\hyperref[\BackrefFootnoteTag]{\thefootnotemark}}\thinspace}
 \def\thefootnote{$\langle$\arabic{footnote}$\rangle$}
 
@@ -289,7 +290,7 @@
 	\texorpdfstring{Florian Sihler\\[.4em]
 		\url{https://github.com/EagleoutIce/tikzpingus}
 	}{Florian Sihler}}
-\date{Version v1.1 \textendash\ 2022/01/15}
+\date{Version v1.0 \textendash\ 2022/08/14}
 
 \begin{document}
 {\let\newpage\relax\maketitle} % kill page break?

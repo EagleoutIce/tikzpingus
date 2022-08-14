@@ -1,51 +1,45 @@
-name: generate the documentation (and the showcases)
-'on':
+name: build
+
+"on":
   push:
-    branches:
-    - master
-    - main
+    branches: [master, main]
 
 jobs:
   build:
+    uses: EagleoutIce/tikzpingus/.github/workflows/unify-doc-compile.yaml@main
+  process:
     runs-on: ubuntu-latest
+    needs: build
     steps:
-    - name: Checkout git repository
-      uses: actions/checkout@v3
-      with:
-        lfs: true
-        submodules: true
-# https://github.com/actions/cache/issues/342
-    - name: Caching
-      id: cache-documentation
-      uses: actions/cache@v3
-      with:
-        path: |
-          build
-          sub_*
-        key: ${{ runner.os }}-pengu-cache-doc-${{ github.run_id }}
-        restore-keys: ${{ runner.os }}-pengu-cache-doc-
-    - name: Install PU for previews
-      run: sudo apt install poppler-utils
-    - name: Compile the Documentation, showcase and minimal
-      uses: xu-cheng/latex-action@v2
-      with:
-        root_file: |
-          documentation/documentation.tex
-          examples/showcase.tex
-          examples/minimal.tex
-    - name: 'Generate previews'
-      run: |
-        pdftoppm -png -r 300 -f 1 -l 1 ./build/showcase.pdf preview
-        pdftoppm -png -r 300 -f 1 -l 1 ./build/minimal.pdf minimal
-    - name: Commit
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add -f "build/showcase.pdf" "build/minimal.pdf" "build/documentation.pdf" "preview-1.png" "minimal-1.png"
-        git commit -m "Newly compiled data"
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        branch: gh-pages
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        force: true
+      - name: ⬇️ Get doc Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: doc-output
+          path: doc/build/
+      - name: ⬇️ Get examples Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: examples-output
+          path: examples/build/
+      - name: Install PU for previews
+        run: sudo apt install poppler-utils
+      - name: 🖼️ Generate previews
+        run: |
+          pdftoppm -png -r 300 -f 1 -l 1 ./build/showcase.pdf preview
+          pdftoppm -png -r 300 -f 1 -l 1 ./build/minimal.pdf minimal
+      - name: Commit
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -f "build/showcase.pdf" "build/minimal.pdf" "build/documentation.pdf" "preview-1.png" "minimal-1.png"
+          git commit -m "Newly compiled data"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          branch: gh-pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          force: true
+      - name: verify-ctan
+        run: |
+          echo "uploadconfig={author=\"Dummy\",uploader= \"Dummy Action\",email=\"dummy@dummy.de\"}" > build-private.lua
+          l3build ctan

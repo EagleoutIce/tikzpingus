@@ -2,7 +2,7 @@
 % Licensed under GNU Lesser General Public License version 3
 % https://opensource.org/licenses/lgpl-3.0.html
 \def\tikzpingus@filename{tikzpingus}
-\ProvidesPackage{\tikzpingus@filename}[2022/01/09 version v1.1 Penguins in TikZ]
+\ProvidesPackage{\tikzpingus@filename}[2022/08/14 version v1.0 Penguins in TikZ]
 \newif\ifpengu@setup@glows@
 \DeclareOption{glows}{\pengu@setup@glows@true}\DeclareOption{noglows}{\pengu@setup@glows@false}
 \newif\ifpengu@setup@manual@layers@
@@ -1150,7 +1150,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \expandafter\edef\csname pingu@lib@#1@barcode\endcsname{\the\catcode`\|}%
 \expandafter\edef\csname pingu@lib@#1@dollarcode\endcsname{\the\catcode`\$}%
 \catcode`\@=11 \catcode`\|=12 \catcode`\$=3\relax
-\def\pingu@tmp{libs/tikzpingus-#1.lib.tex}\relax
+\def\pingu@tmp{tikzpingus-#1.lib.tex}\relax
 \InputIfFileExists{\pingu@tmp}{}{\PackageError{\tikzpingus@filename}{There is no '#1' library (searched: '\pingu@tmp')}}
 % restore catcodes
 \catcode`\@=\csname pingu@lib@#1@atcode\endcsname
