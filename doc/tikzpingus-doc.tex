@@ -644,18 +644,18 @@ I am working on the \textit{cloak}-Clothing at the moment:
 
 \section{Full Reference}\label{sec:full-ref}
 
-\begin{center}
-	\textit{Please note, that all preview-penguins have been reduced in scale by 40\,\% to save space and make the documentation more concise.}
-\end{center}
-
-Aliases may set custom defaults. Those defaults are not listed as they may change.
-
-\def\lstfnsize{-1.65}
+\def\percenttargetreductionpengus{75}\def\lstfnsize{-1.65}
 \tcbset{%
-	before lower={\begin{adjustbox}{scale=.75}},
+	before lower={\begin{adjustbox}{scale=.\percenttargetreductionpengus}},
 	after lower={\end{adjustbox}},%
 	boxsep=1pt%
 }
+
+\begin{center}
+	\textit{Please note, that all preview-penguins have been reduced in scale to \percenttargetreductionpengus\,\% to save space and make the documentation more concise.}
+\end{center}
+
+Aliases may set custom defaults. Those defaults are not listed as they may change.
 
 \subsection{Penguin Keys}
 
