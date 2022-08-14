@@ -42,7 +42,3 @@ jobs:
           branch: gh-pages
           github_token: ${{ secrets.GITHUB_TOKEN }}
           force: true
-      - name: verify-ctan
-        run: |
-          echo "uploadconfig={author=\"Dummy\",uploader= \"Dummy Action\",email=\"dummy@dummy.de\"}" > build-private.lua
-          l3build ctan
