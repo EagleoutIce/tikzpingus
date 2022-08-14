@@ -34,7 +34,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add -f "examples/build/showcase.pdf" "examples/build/minimal.pdf" "doc/build/documentation.pdf" "preview-1.png" "minimal-1.png"
+          git add -f "examples/build/showcase.pdf" "examples/build/minimal.pdf" "doc/build/tikzpingus-doc.pdf" "preview-1.png" "minimal-1.png"
           git commit -m "Newly compiled data"
       - name: Push changes
         uses: ad-m/github-push-action@master
