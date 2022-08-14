@@ -1,0 +1,36 @@
+name: status check compile (does not push)
+"on":
+  workflow_dispatch:
+  release:
+    types: [ published ]
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build-pdfs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout git repository
+        uses: actions/checkout@v3
+      # https://github.com/actions/cache/issues/342
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
+        with:
+          ruby-version: '3.1'
+      - name: Install changelog generator
+        run: gem install github_changelog_generator
+      - name: Bump Changelog
+        run: github_changelog_generator --user EagleoutIce --project tikzpingus --token "${{ secrets.CHANGELOG_GITHUB_TOKEN }}" --output CHANGELOG.md
+      - name: Commit
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -f "CHANGELOG.md"
+          git commit -m "Updated Changelog"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          branch: gh-pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          force: true
