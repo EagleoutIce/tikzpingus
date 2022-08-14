@@ -17,8 +17,8 @@ jobs:
         uses: actions/cache@v3
         with:
           path: |
-            build
-            sub_*
+            **/build
+            **/sub_*
           key: ${{ runner.os }}-pengu-cache-doc-${{ github.run_id }}
           restore-keys: ${{ runner.os }}-pengu-cache-doc-
       - name: 📄 Compile the Documentation
