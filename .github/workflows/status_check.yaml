@@ -4,6 +4,7 @@ name: status check compile (does not push)
     branches-ignore: [master, main]
   pull_request:
     types: [opened, edited]
+  workflow_call:
 
 jobs:
   build:
