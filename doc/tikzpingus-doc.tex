@@ -199,7 +199,9 @@
 		\ifx\@tmpb\@empty\lpingu{#1#2}\else\lpingu{#1#2 =\ }\texttt{<\textit{\@tmpb}>}\fi\hfill
 				\ifx\@tmp\@empty\else{\@declaredcolor{gray}(}#4{\@declaredcolor{gray})}\fi
 		}
-	}\par\endgroup}
+	}\par\endgroup
+	\ifcsname pingu@@lib@#2@\endcsname\llap{Library: \csname pingu@@lib@#2@\endcsname}\fi
+}
 {\endminipage\smallskip\par}
 
 \def\singleshortcut#1#2"#3"#4{\def\cursub{#2?\hyperref[pk:#1#2]{\protect\lpingu{#2}}!}\keyexplain[#1]{#2 #3}{\csname pinguopt#4\endcsname}{\csname pingudefa#4\endcsname}%
