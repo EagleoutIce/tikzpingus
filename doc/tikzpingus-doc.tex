@@ -152,7 +152,7 @@
 
 \def\ShowcasePengu#1=#2;{{\hypersetup{linkcolor=.}%
 \hyperref[pk:/pingu/#1]{%
-	\parbox[b][\pingu@showcase@height]{.166\linewidth}{\centering\ifx!#2!\def\Arg{}\else\def\Arg{=#2}\fi\edef\MakeShowcase{\noexpand\RawShowcase{#1}{\Arg}}\MakeShowcase}%
+	\parbox[b][\pingu@showcase@height]{.14\linewidth}{\centering\ifx!#2!\def\Arg{}\else\def\Arg{=#2}\fi\edef\MakeShowcase{\noexpand\RawShowcase{#1}{\Arg}}\MakeShowcase}%
 }}}
 \def\pengu@all@showcases{}
 % we mix them somewhat funny
@@ -270,30 +270,28 @@
 	\fi% csx kill to stop infinite
 	\global\advance\count@\@ne
 }%
-\llap{\phantom{x}}% this is somewhat of a hack and i do not know why
-% it is needed to show penguins
-\@tempcnta\z@
+}
+\def\TypesetShowcases{\@tempcnta\z@
 \begingroup\parskip\z@ \parindent\z@
 \@for\@elem:=\pengu@all@showcases\do{%
 	\advance\@tempcnta\@ne
-	\ifnum\@tempcnta>5 \global\@tempcnta\@ne\par\fi
+	\ifnum\@tempcnta>6 \global\@tempcnta\@ne\par\fi
 	\ifx\@elem\@empty\else
 	% space to space cmd
 	\edef\@tmp{\noexpand\ShowcasePengu\@elem;}\hfill\@tmp\hfill
 \fi}%
-\endgroup\global\let\pengu@all@showcases\@empty
-}
+\endgroup\global\let\pengu@all@showcases\@empty}
 
 \title{The \texorpdfstring{\tikzpingus}{tikzpingus} package}
-\subtitle{penguins in \TikZ}
+% \subtitle{Penguins with \TikZ}
 \author{%
-	\texorpdfstring{Florian Sihler\\[.4em]
-		\url{https://github.com/EagleoutIce/tikzpingus}
+	\texorpdfstring{Florian Sihler\\*
+		\hypersetup{colorlinks=false}\url{https://github.com/EagleoutIce/tikzpingus}
 	}{Florian Sihler}}
 \date{Version v1.0 \textendash\ 2022/08/14}
 
 \begin{document}
-{\let\newpage\relax\maketitle} % kill page break?
+\maketitle
 
 \section{Motivation}
 
@@ -324,7 +322,12 @@ Copyright \textcopyright\ \texttt{Florian Sihler}. Permission is granted to copy
 
 The shown example penguins are purely fictional characters, any resemblance to real penguins or real persons is purely coincidental and no copyright infringement is intended.
 
+\subsection{Overview of Gadgets}
+
+\TypesetShowcases
+
 \subsection{Libraries}
+
 With Version $1.1$, I've split the penguin features into a set of libraries.
 To stay backwards compatible, all of them are loaded by default so nothing changes when using tikzpingus. However, the |bare| package-option disables the automatic loading of all libraries. They can be loaded (locally to the current group) using |\pinguloadlibrary| and |\pinguloadlibraries| passing on a comma separated list of desired libraries.
 At the moment, there are the following libraries:
