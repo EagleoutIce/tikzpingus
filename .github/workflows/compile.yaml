@@ -2,7 +2,7 @@ name: build
 
 "on":
   push:
-    branches: [master, main, fix-compile.yaml]
+    branches: [master, main]
 
 jobs:
   build:
