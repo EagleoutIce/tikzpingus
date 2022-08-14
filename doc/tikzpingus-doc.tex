@@ -275,7 +275,7 @@
 \begingroup\parskip\z@ \parindent\z@
 \@for\@elem:=\pengu@all@showcases\do{%
 	\advance\@tempcnta\@ne
-	\ifnum\@tempcnta>6 \global\@tempcnta\@ne\par\fi
+	\ifnum\@tempcnta>5 \global\@tempcnta\@ne\par\fi
 	\ifx\@elem\@empty\else
 	% space to space cmd
 	\edef\@tmp{\noexpand\ShowcasePengu\@elem;}\hfill\@tmp\hfill
@@ -322,10 +322,6 @@ Copyright \textcopyright\ \texttt{Florian Sihler}. Permission is granted to copy
 
 The shown example penguins are purely fictional characters, any resemblance to real penguins or real persons is purely coincidental and no copyright infringement is intended.
 
-\subsection{Overview of Gadgets}
-
-\TypesetShowcases
-
 \subsection{Libraries}
 
 With Version $1.1$, I've split the penguin features into a set of libraries.
@@ -355,7 +351,7 @@ If you just want a penguin, use the following syntax:
 \end{tikzpicture}
 \end{tcblisting}
 
-There are \textit{a lot} of configuration-options which can be passed as an optional argument via the known |<key>=<value>|-style.
+There are \textit{a lot} of configuration-options which can be passed as an optional argument via the known |<key>=<value>|-style. See \autoref{Gadget-Overview} for an gadget overview.
 % TODO: click reference to full list; TODO: glow option
 \begin{tcblisting}{title={Happy penguin with cup!},externalize listing=happy-cup}
 \begin{tikzpicture}
@@ -639,9 +635,13 @@ I am working on the \textit{cloak}-Clothing at the moment:
 \end{tikzpicture}
 \end{tcblisting}
 
-\section{Examples}
+% \section{Examples}
 
 \appendix
+\section{Gadget Overview}\label{Gadget-Overview}
+
+\TypesetShowcases
+
 \section{Full Reference}\label{sec:full-ref}
 
 \begin{center}
