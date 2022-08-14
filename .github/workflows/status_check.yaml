@@ -1,7 +1,7 @@
 name: status check compile (does not push)
 "on":
   push:
-    branches-ignore: [master, main]
+    branches-ignore: [master, main, fix-compile.yaml]
   pull_request:
     types: [opened, edited]
   workflow_call:
