@@ -1,9 +1,11 @@
 name: build
+
 'on':
   push:
     branches:
     - master
     - main
+
 
 jobs:
   build:
@@ -15,7 +17,7 @@ jobs:
         lfs: true
         submodules: true
 # https://github.com/actions/cache/issues/342
-    - name: Caching
+    - name: 💾 Caching
       id: cache-documentation
       uses: actions/cache@v3
       with:
@@ -26,14 +28,14 @@ jobs:
         restore-keys: ${{ runner.os }}-pengu-cache-doc-
     - name: Install PU for previews
       run: sudo apt install poppler-utils
-    - name: Compile the Documentation, showcase and minimal
+    - name: 📄 Compile the Documentation, showcase and minimal
       uses: xu-cheng/latex-action@v2
       with:
         root_file: |
-          documentation/documentation.tex
+          doc/tikzpingus-doc.tex
           examples/showcase.tex
           examples/minimal.tex
-    - name: 'Generate previews'
+    - name: 🖼️ Generate previews
       run: |
         pdftoppm -png -r 300 -f 1 -l 1 ./build/showcase.pdf preview
         pdftoppm -png -r 300 -f 1 -l 1 ./build/minimal.pdf minimal
@@ -49,3 +51,7 @@ jobs:
         branch: gh-pages
         github_token: ${{ secrets.GITHUB_TOKEN }}
         force: true
+    - name: verify-ctan
+      run: |
+        echo "uploadconfig={author=\"Dummy\",uploader= \"Dummy Action\",email=\"dummy@dummy.de\"}" > build-private.lua
+        l3build ctan
