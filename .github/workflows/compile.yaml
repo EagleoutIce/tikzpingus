@@ -11,11 +11,16 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: ⬇️ Get Artifacts
+      - name: ⬇️ Get doc Artifacts
         uses: actions/download-artifact@v3
         with:
-          name: build-output
-          path: build/
+          name: doc-output
+          path: doc/build/
+      - name: ⬇️ Get examples Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: examples-output
+          path: examples/build/
       - name: Install PU for previews
         run: sudo apt install poppler-utils
       - name: 🖼️ Generate previews

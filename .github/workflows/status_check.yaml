@@ -20,15 +20,27 @@ jobs:
             sub_*
           key: ${{ runner.os }}-pengu-cache-doc-${{ github.run_id }}
           restore-keys: ${{ runner.os }}-pengu-cache-doc-
-      - name: 📄 Compile the Documentation, showcase and minimal
+      - name: 📄 Compile the Documentation
         uses: xu-cheng/latex-action@v2
         with:
+          working_directory: doc
+          root_file: tikzpingus-doc.tex
+      - name: 📄 Compile Examples
+        uses: xu-cheng/latex-action@v2
+        with:
+          working_directory: examples
           root_file: |
-            doc/tikzpingus-doc.tex
-            examples/showcase.tex
-            examples/minimal.tex
-      - name: ⬆️ Upload artifacts
+            showcase.tex
+            minimal.tex
+      - name: ⬆️ Upload doc artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: build-output
-          path: build/
+          name: doc-output
+          path: |
+            doc/build/*.pdf
+            doc/build/tikzpingus-doc.*
+      - name: ⬆️ Upload examples artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: examples-output
+          path: examples/build/*.pdf
