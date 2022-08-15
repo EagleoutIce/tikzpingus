@@ -195,7 +195,7 @@
 	\begingroup\pgfkeys{/pingu/.cd,defaults}\protected@edef\@tmp{#4}%
 	\protected@edef\@tmpb{#3}%
 	\hfuzz=2\keyexplainindent
-	\hspace*{-\keyexplainindent}\ifcsname pingu@@lib@#2@\endcsname\index{Library!\textit{\csname pingu@@lib@#2@\endcsname}!#2?\hyperref[pk:#1#2]{\protect\lpingu{#2}}}\llap{$\underset{\text{\tiny\textsf{Library}}}{\text{\textit{\footnotesize\strut\csname pingu@@lib@#2@\endcsname}}}$\quad~}\fi\colorbox{\explaincolor}{%
+	\hspace*{-\keyexplainindent}\ifcsname pingu@@lib@#2@\endcsname\index{Library!\textit{\csname pingu@@lib@#2@\endcsname}!#2?\hyperref[pk:#1#2]{\protect\lpingu{#2}}}\llap{$\underset{\text{\tiny\smash{\raisebox{3pt}{\textsf{\hyperref[Libraries]{\color{gray}Library}}}}}}{\text{\textit{\footnotesize\strut\csname pingu@@lib@#2@\endcsname}}}$\quad~}\fi\colorbox{\explaincolor}{%
 		\parbox{\dimexpr\linewidth-2\fboxsep+\keyexplainindent}{\small
 		\ifx\@tmpb\@empty\lpingu{#1#2}\else\lpingu{#1#2 =\ }\texttt{<\textit{\@tmpb}>}\fi\hfill
 				\ifx\@tmp\@empty\else{\@declaredcolor{gray}(}#4{\@declaredcolor{gray})}\fi
@@ -320,7 +320,7 @@ The shown example penguins are purely fictional characters, any resemblance to r
 
 \subsection{Libraries}
 
-\index{Library}I've split the penguin features into a set of libraries. While all of them are loaded by default, the |bare| package-option disables the automatic loading of all libraries. They can be loaded (locally to the current group) using |\pinguloadlibrary| and |\pinguloadlibraries| passing on a comma separated list of desired libraries.
+\label{Libraries}\index{Library}I've split the penguin features into a set of libraries. While all of them are loaded by default, the |bare| package-option disables the automatic loading of all libraries. They can be loaded (locally to the current group) using |\pinguloadlibrary| and |\pinguloadlibraries| passing on a comma separated list of desired libraries.
 See the full reference or the index to learn which key comes from which library.
 Please note that~--- at the moment~--- not all components of a library are labeled correctly.
 
