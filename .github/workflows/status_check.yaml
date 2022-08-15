@@ -1,9 +1,7 @@
 name: status check compile (does not push)
 "on":
-  push:
-    branches-ignore: [master, main]
   pull_request:
-    types: [opened, edited]
+    types: [opened, synchronize]
   workflow_call:
 
 jobs:
