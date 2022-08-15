@@ -278,6 +278,13 @@
 \fi}%
 \endgroup\global\let\pengu@all@showcases\@empty}
 
+\def\PenguinTitle{%
+\setbox0=\hbox{\tikz{\pingu[body type=tilt-right,eyes wink,conical hat,cane right,bow tie=pingu@purple,left wing grab,cup=pingu@purple!82!pingu@black]}}
+\begin{tikzpicture}[overlay,remember picture]
+	\node[below left=1.5cm,rotate=-10] at (current page.north east) {\box0};
+\end{tikzpicture}%
+}
+
 \title{The \texorpdfstring{\tikzpingus}{tikzpingus} package}
 % \subtitle{Penguins with \TikZ}
 \author{%
@@ -288,6 +295,7 @@
 
 \begin{document}
 \maketitle
+\PenguinTitle
 
 \section{Motivation}
 
