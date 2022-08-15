@@ -195,13 +195,12 @@
 	\begingroup\pgfkeys{/pingu/.cd,defaults}\protected@edef\@tmp{#4}%
 	\protected@edef\@tmpb{#3}%
 	\hfuzz=2\keyexplainindent
-	\hspace*{-\keyexplainindent}\colorbox{\explaincolor}{%
+	\hspace*{-\keyexplainindent}\ifcsname pingu@@lib@#2@\endcsname\llap{\textit{\footnotesize\csname pingu@@lib@#2@\endcsname~~}}\fi\colorbox{\explaincolor}{%
 		\parbox{\dimexpr\linewidth-2\fboxsep+\keyexplainindent}{\small
 		\ifx\@tmpb\@empty\lpingu{#1#2}\else\lpingu{#1#2 =\ }\texttt{<\textit{\@tmpb}>}\fi\hfill
 				\ifx\@tmp\@empty\else{\@declaredcolor{gray}(}#4{\@declaredcolor{gray})}\fi
 		}
 	}\par\endgroup
-	\ifcsname pingu@@lib@#2@\endcsname\llap{Library: \csname pingu@@lib@#2@\endcsname}\fi
 }
 {\endminipage\smallskip\par}
 
