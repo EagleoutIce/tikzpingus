@@ -1,6 +1,6 @@
 % Florian Sihler, 2022
-% Licensed under GNU Lesser General Public License version 3
-% https://opensource.org/licenses/lgpl-3.0.html
+% Licensed under GNU General Public License version 3
+% https://opensource.org/licenses/gpl-3.0.html
 \errorcontextlines9999
 \documentclass[parskip=half,english,numbers=noenddot,footnotes=nomultiple,oneside]{scrartcl}
 
@@ -250,7 +250,7 @@
 \def\tikzpingus{\TikZ pingus}
 
 \tcbset{external/prefix=sub_}
-\tcbEXTERNALIZE % we do not need the other configurations in the externalized images :D
+\tcbEXTERNALIZE % we do not need the other configurationshttps://www.freecodecamp.org/news/deploy-a-react-app-to-github-pages/ in the externalized images :D
 
 % this should not happen in the external images
 \AtBeginDocument{%
@@ -278,6 +278,13 @@
 \fi}%
 \endgroup\global\let\pengu@all@showcases\@empty}
 
+\def\PenguinTitle{%
+\setbox0=\hbox{\tikz{\pingu[body type=tilt-right,eyes wink,conical hat,cane right,bow tie=pingu@purple,left wing grab,cup=pingu@purple!82!pingu@black]}}
+\begin{tikzpicture}[overlay,remember picture]
+	\node[below left=1.5cm,rotate=-10] at (current page.north east) {\box0};
+\end{tikzpicture}%
+}
+
 \title{The \texorpdfstring{\tikzpingus}{tikzpingus} package}
 % \subtitle{Penguins with \TikZ}
 \author{%
@@ -288,6 +295,7 @@
 
 \begin{document}
 \maketitle
+\PenguinTitle
 
 \section{Motivation}
 
@@ -314,7 +322,7 @@ Furthermore, the following \TikZ-Libraries are in use:\footnote{A lot of the lib
 
 \subsection{Copyright}
 
-Copyright \textcopyright\ \texttt{Florian Sihler}. Permission is granted to copy, distribute and\slash or modify this software under the terms of the GNU General Public License, version 3.0 \url{https://opensource.org/licenses/lgpl-3.0.html}.
+Copyright \textcopyright\ \texttt{Florian Sihler}. Permission is granted to copy, distribute and\slash or modify this software under the terms of the GNU General Public License, version 3.0 \url{https://opensource.org/licenses/gpl-3.0.html}.
 
 The shown example penguins are purely fictional characters, any resemblance to real penguins or real persons is purely coincidental and no copyright infringement is intended.
 
