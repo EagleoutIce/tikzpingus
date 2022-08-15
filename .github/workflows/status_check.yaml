@@ -31,6 +31,8 @@ jobs:
           root_file: |
             showcase.tex
             minimal.tex
+            cloak.tex
+            spl.tex
       - name: ⬆️ Upload doc artifacts
         uses: actions/upload-artifact@v3
         with:

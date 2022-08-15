@@ -1,0 +1,114 @@
+\documentclass{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\makeatletter\def\input@path{{../tex/}}\makeatother
+\usepackage[glows]{tikzpingus}
+\usepackage[active, tightpage]{preview}
+
+\def\familydefault{\sfdefault}
+
+\definecolor{accent}{RGB}{93,45,108}
+
+\usetikzlibrary{arrows.meta}
+
+\def\pinguDoubleCut#1{\pingu[#1,/pingu/@block/.style={fill=##1!20!white},/pingu/@draw/.style={draw=##1!20!white,cap=round}]\pingu[:hide,#1]\pingu[/pingu/@block/.style={fill=##1!20!white},/pingu/@draw/.style={draw=##1!20!white,cap=round},:hide,eyes=wink,bill=normal]}% we overpaint the penguin again for front features
+\def\pinguCut#1{\pingu[eyes=wink,bill=normal,#1,/pingu/@block/.style={fill=##1!20!white},/pingu/@draw/.style={draw=##1!20!white,cap=round}]\pingu[:hide,#1]}
+\newsavebox\pingA \savebox\pingA{\tikz{\pinguDoubleCut{body type=normal}}}
+\newsavebox\pingB \savebox\pingB{\tikz{\pinguDoubleCut{body type=chubby}}}
+\newsavebox\pingC \savebox\pingC{\tikz{\pinguDoubleCut{body type=legacy}}}
+
+\newsavebox\pingD \savebox\pingD{\tikz{\pinguCut{feet=normal}}}
+\newsavebox\pingE \savebox\pingE{\tikz{\pinguCut{feet=simple}}}
+\newsavebox\pingF \savebox\pingF{\tikz{\pinguCut{feet=sit}}}
+
+\newsavebox\pingG \savebox\pingG{\tikz{\pinguCut{left wing=normal,left wing color=pingu@main!20!white,lightsaber left=accent}}}
+% \newsavebox\pingH \savebox\pingH{\tikz{\pinguCut{lollipop right=accent}}}
+\newsavebox\pingI \savebox\pingI{\tikz{\pinguCut{tie=accent}}}
+\newsavebox\pingIb \savebox\pingIb{\tikz{\pinguCut{cake-hat,cake-hat top=accent,cake-hat candle=accent}}}
+\newsavebox\pingIc \savebox\pingIc{\tikz{\pinguCut{tie=accent,tie dots}}}
+\newsavebox\pingId \savebox\pingId{\tikz{\pinguCut{bow tie=accent}}}
+
+
+\newsavebox\pingJ \savebox\pingJ{\tikz{\pinguCut{wings wave}}}
+\newsavebox\pingK \savebox\pingK{\tikz{\pinguCut{wings hug}}}
+\newsavebox\pingL \savebox\pingL{\tikz{\pinguCut{wings shock}}}
+
+\newsavebox\pingM \savebox\pingM{\tikz{\pinguCut{eyes shiny}}}
+\newsavebox\pingN \savebox\pingN{\tikz{\pinguCut{eyes normal}}}
+\newsavebox\pingO \savebox\pingO{\tikz{\pinguCut{eyes sad}}}
+
+\begin{document}
+\preview
+\begin{tikzpicture}[block/.append style={minimum height=\ht\strutbox,minimum width=1.25cm}]
+   \node[block,align=center] (0) at (0,0) {\strut Penguin\\[-.3mm]\footnotesize\itshape\color{gray}Product-Lines};
+   \node[block] (1) at (-6,-1.25) {\strut Body};
+   \node[block] (2) at (-3,-1.25) {\strut Feet};
+   \node[block] (3) at (0,-1.25) {\strut Items};
+   \node[block] (4) at (3,-1.25) {\strut Wings};
+   \node[block] (5) at (6,-1.25) {\strut Eyes};
+
+   \scope[every path/.append style={draw,-{Circle[length=3.33pt]}}]
+   \foreach\i in {1,...,5} {\path(0.south)--(\i.north);}
+\endscope
+
+   \node[scale=.35] (6) at(-7,-2.5) {\usebox\pingA};
+   \node[scale=.35] (7) at(-6,-2.5) {\usebox\pingB};
+   \node[scale=.35] (8) at(-5,-2.5) {\usebox\pingC};
+   \node[scale=.35] (9) at(-4,-2.5) {\usebox\pingD};
+   \node[scale=.35] (10) at(-3,-2.5) {\usebox\pingE};
+   \node[scale=.35] (11) at(-2,-2.5) {\usebox\pingF};
+
+   \node[scale=.35] (14) at(2,-2.5) {\usebox\pingJ};
+   \node[scale=.35] (15) at(3,-2.5) {\usebox\pingK};
+   \node[scale=.35] (16) at(4,-2.5) {\usebox\pingL};
+
+   \node[scale=.35] (17) at(5,-2.5) {\usebox\pingM};
+   \node[scale=.35] (18) at(6,-2.5) {\usebox\pingN};
+   \node[scale=.35] (19) at(7,-2.5) {\usebox\pingO};
+
+   \scope[every path/.append style={{draw}}]
+       \foreach\i in {6,7,8} {\path(1.south)to coordinate[pos=.25] (@\i) (\i.north);}
+       \foreach\i in {9,10,11} {\path(2.south)to coordinate[pos=.25] (@\i) (\i.north);}
+       \foreach\i in {14,15,16} {\path(4.south)to coordinate[pos=.25] (@\i) (\i.north);}
+       \foreach\i in {17,18,19} {\path(5.south)to coordinate[pos=.25] (@\i) (\i.north);}
+       \draw[fill=white] (@6) to[bend right=60] (@8) -- (1.south) -- cycle;
+       \draw[fill=white] (@9) to[bend right=60] (@11) -- (2.south) -- cycle;
+       \draw[fill=white] (@14) to[bend right=60] (@16) -- (4.south) -- cycle;
+       \draw[fill=white] (@17) to[bend right=60] (@19) -- (5.south) -- cycle;
+   \endscope
+
+   \node[block] (12) at(-.75,-2.5) {\strut Wings};
+   \node[block] (13) at(.75,-2.5) {\strut Static};
+
+
+
+   \node[scale=.35] (20) at(-.75,-3.75) {\usebox\pingG};
+   \node[scale=.35] (21) at(.25,-3.75) {\usebox\pingI};
+   \node[scale=.35] (22) at(1.25,-3.75) {\usebox\pingIb};
+   \node[scale=.35] (23) at(-.25,-5.35) {\usebox\pingIc};
+   \node[scale=.35] (24) at(.75,-5.35) {\usebox\pingId};
+
+   \scope[every path/.append style={draw,-{Circle[length=3.33pt,fill=white]}}]
+       \foreach\i in {12,13} {\path(3.south)--(\i.north);}
+       \path(12.south)--(20.north);
+   \endscope
+
+   \scope[every path/.append style={{draw}}]
+       \foreach\i in {6,7,8} {\path(1.south)to coordinate[pos=.25] (@\i) (\i.north);}
+       \foreach\i in {9,10,11} {\path(2.south)to coordinate[pos=.25] (@\i) (\i.north);}
+       \foreach\i in {14,15,16} {\path(4.south)to coordinate[pos=.25] (@\i) (\i.north);}
+       \foreach\i in {17,18,19} {\path(5.south)to coordinate[pos=.25] (@\i) (\i.north);}
+       \draw[fill=white] (@6) to[bend right=60] (@8) -- (1.south) -- cycle;
+       \draw[fill=white] (@9) to[bend right=60] (@11) -- (2.south) -- cycle;
+       \draw[fill=white] (@14) to[bend right=60] (@16) -- (4.south) -- cycle;
+       \draw[fill=white] (@17) to[bend right=60] (@19) -- (5.south) -- cycle;
+       \foreach\i in {21,22} {\path(13.south)to coordinate[pos=.25] (@\i) (\i.north);}
+       \draw[fill=white] (@21) to[bend right=60] (@22) -- (13.south) -- cycle;
+       \foreach\i in {23,24} {\path(21.south)to coordinate[pos=.25] (@\i) (\i.north);}
+       \draw[fill=white] (@23) to[bend right=60] (@24) -- (21.south) -- cycle;
+   \endscope
+\end{tikzpicture}
+\endpreview
+\end{document}
