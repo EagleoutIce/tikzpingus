@@ -1,4 +1,4 @@
-@default_files = ('cloak.tex','minimal.tex','showcase.tex');
+@default_files = ('cloak.tex','minimal.tex','showcase.tex','spl.tex');
 $pdf_mode = 1;
 $pdf_update_method = 1;
 $out_dir = 'build';
