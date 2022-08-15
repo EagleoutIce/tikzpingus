@@ -1,4 +1,4 @@
-name: status check compile (does not push)
+name: status check compile
 "on":
   pull_request:
     types: [opened, synchronize]
