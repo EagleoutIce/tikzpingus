@@ -12,5 +12,5 @@ These are some test files:\
 
 [<img src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/minimal-1.png?raw=true" width="300"/>](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/build/minimal.pdf)
 
-For the title image of a computer-science course on software-product-lines, i created a small and incomplete but really fun feature model:\
+For the title image of a computer-science course on software-product-lines, I created a small and incomplete but really fun feature model:\
 [<img src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/spl-1.png?raw=true" width="300"/>](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/build/spl.pdf)
