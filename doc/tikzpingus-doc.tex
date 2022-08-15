@@ -41,6 +41,7 @@
 
 \newlist{inlist}{enumerate*}{1}
 \setlist[inlist]{itemjoin={{, }},itemjoin*={{, and }},label=$\roman*$),mode=boxed}
+
 \let\say\enquote
 \def\DTLlistformatoxford{,}
 \def\DTLandname{and}
@@ -324,6 +325,15 @@ I've split the penguin features into a set of libraries. While all of them are l
 See the full reference to learn which key comes from which library.
 Please note that~--- at the moment~--- not all components of a library are labeled correctly.
 
+% TODO: already count that? % global let?
+\foreach[count=\i] \l/\xs in \pingu@defaultlibs{\xdef\pingu@defaultlibs@count{\i}}%
+Currently there are the following libraries:
+\foreach[count=\i] \l/\xs in \pingu@defaultlibs{%
+	\ifx\l\empty\else
+	\textit{\l}\ifnum\numexpr\pingu@defaultlibs@count-1>\i,\space\else
+	\ifnum\pingu@defaultlibs@count=\i\else,~and\space\fi\fi
+	\fi
+}.
 
 \section{Usage}
 
