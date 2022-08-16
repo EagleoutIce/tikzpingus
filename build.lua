@@ -8,7 +8,7 @@
 -- Settings ==========================================================
 bundle = ""
 module = "tikzpingus"
-ctanpkg = "tikzpingus"
+ctanpkg = module
 builddir = os.getenv("TMPDIR")
 
 -- Package version ===================================================
@@ -58,7 +58,7 @@ require('build-private.lua')
 function tag_hook(tagname)
     git("add", "*.sty")
     git("add", "doc/*.tex")
-    os.execute("github_changelog_generator --user EagleoutIce --project tikzpingus --token \"" .. token .. "\"")
+    os.execute("github_changelog_generator --user EagleoutIce --project \"" .. module .. "\" --token \"" .. token .. "\"")
     git("add", "CHANGELOG.md")
     git("commit -m 'step version " .. packageversion .. "'")
     git("tag", packageversion)
@@ -104,4 +104,4 @@ uploadconfig = {
 }
 
 -- cleanup ===========================================================
-cleanfiles = {"tikzpingus-ctan.curlopt", "tikzpingus-ctan.zip"}
+cleanfiles = { module .. "-ctan.curlopt", module .. "-ctan.zip"}
