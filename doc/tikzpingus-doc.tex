@@ -11,7 +11,9 @@
 \makeatletter\def\input@path{{../tex/}}\makeatother
 \usepackage[glows]{tikzpingus}
 
-\usepackage[linkcolor=pingu@purple,urlcolor=pingu@purple,colorlinks,breaklinks,pdfusetitle]{hyperref}
+\definecolor{doc-main}{RGB}{204,0,25}
+
+\usepackage[linkcolor=doc-main,urlcolor=doc-main,colorlinks,breaklinks,pdfusetitle]{hyperref}
 \usetikzlibrary{shapes.misc}
 \urlstyle{same}
 \expandafter\def\expandafter\UrlBreaks\expandafter{\UrlBreaks\do-}
@@ -59,7 +61,7 @@
 \makeatletter
 
 \addtokomafont{sectioning}{\@declaredcolor{gray}}
-\addtokomafont{title}{\@declaredcolor{pingu@purple}}
+\addtokomafont{title}{\@declaredcolor{doc-main}}
 \addtokomafont{author}{\normalsize}
 \addtokomafont{date}{\normalsize}
 
@@ -79,7 +81,7 @@
 	emphstyle=[3]\@declaredcolor{@softgray@b},
 	emphstyle=[4]\@declaredcolor{@darkerblue},
 	texcsstyle=*\@declaredcolor{gray}\bfseries,
-	texcsstyle=*[2]\@declaredcolor{pingu@purple}\bfseries,
+	texcsstyle=*[2]\@declaredcolor{doc-main}\bfseries,
 	texcsstyle=*[3]\@declaredcolor{@softgray},
 	lineskip=2.5pt,
 	keepspaces=true,
@@ -183,7 +185,7 @@
 }
 \lstMakeShortInline[style=lstpingu,language=pingulang,basicstyle=\relsize{-1}\ttfamily\@declaredcolor{black!90!white},moredelim={[s][\itshape]{<}{>}}]{|}
 
-\def\explaincolor{pingu@purple!8!white}
+\def\explaincolor{doc-main!8!white}
 \def\cursub{}
 \def\keyexplainindent{2em}%
 % allow the oxes to have minor overlaps
@@ -309,7 +311,7 @@
 \newsavebox\pinguboxA
 \savebox\pinguboxA{\tikz\pingu[wings raise,santa hat,eyes wink,bow tie=pingu@yellow];}
 \newsavebox\pinguboxB
-\savebox\pinguboxB{\tikz\pingu[wings raise,head band,eyes angry,sunglasses,bow tie=pingu@purple,body type=chubby];}
+\savebox\pinguboxB{\tikz\pingu[wings raise,head band,eyes angry,sunglasses,bow tie=doc-main,body type=chubby];}
 \begin{center}
 \begin{tikzpicture}
     \node[text width=13.5cm, inner sep=11pt] (m) {%
