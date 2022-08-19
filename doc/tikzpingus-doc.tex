@@ -38,13 +38,21 @@
 \makeindex[title={Key Overview},columns=2,columnsep=.75cm,noautomatic=true,options=-s indexstyle.ist]
 \deffootnote{1.5em}{1em}{\textsuperscript{\hyperref[\BackrefFootnoteTag]{\thefootnotemark}}\thinspace}
 \def\thefootnote{$\langle$\arabic{footnote}$\rangle$}
+% https://tex.stackexchange.com/questions/78423/how-to-use-the-footnotebackref-package-with-footnotemark-and-footnotetext
+\makeatletter
+\LetLtxMacro\BHFN@Old@footnotemark\@footnotemark
+\def\@footnotemark{%
+    \refstepcounter{BackrefHyperFootnoteCounter}%
+    \xdef\BackrefFootnoteTag{bhfn:\theBackrefHyperFootnoteCounter}%
+    \label{\BackrefFootnoteTag}%
+    \BHFN@Old@footnotemark
+}
 
 \newlist{inlist}{enumerate*}{1}
 \setlist[inlist]{itemjoin={{, }},itemjoin*={{, and }},label=$\roman*$),mode=boxed}
 
 \let\say\enquote
-\def\DTLlistformatoxford{,}
-\def\DTLandname{and}
+\def\DTLlistformatoxford{,}\def\DTLandname{and}
 \def\DTLlistformatitem#1{\textit{#1}}
 \newcommand*\typesetselection[1][]{\begingroup\ifx!#1!\else\def\DTLlistformatitem##1{#1}\fi\dotypesetselection}
 \def\dotypesetselection#1{\expandafter\DTLformatlist\expandafter{\csname @pingu@#1@\endcsname}\endgroup}
@@ -297,15 +305,32 @@
 \maketitle
 \PenguinTitle
 
+\begingroup
+\newsavebox\pinguboxA
+\savebox\pinguboxA{\tikz\pingu[wings raise,santa hat,eyes wink,bow tie=pingu@yellow];}
+\newsavebox\pinguboxB
+\savebox\pinguboxB{\tikz\pingu[wings raise,head band,eyes angry,sunglasses,bow tie=pingu@purple,body type=chubby];}
+\begin{center}
+\begin{tikzpicture}
+    \node[text width=13.5cm, inner sep=11pt] (m) {%
+	 For my slides at university, I started to use the famous \LaTeX-package \textsl{\href{https://github.com/samcarter/tikzducks}{tikzducks}} a few years ago.
+	 Yet, it seemed somewhat of a necessity to extend the range of available \say{cute} animals in \LaTeX.
+	 Therefore I started writing this package: \textsl{tikzpingus}.\footnotemark\medskip\\
+	 \textit{Please note:} While tikzpingus is certainly inspired by tikzducks, it does offer a different set of features (e.g., multiple wing positions,~\ldots).\medskip\\
+	 I would be happy for any feedback or issues on the \href{https://github.com/EagleoutIce/tikzpingus}{tikzpingus}-GitHub.
+    };
+\pgfonlayer{background}
+    \node[below,xshift=1.1cm,yshift=19.5pt,scale=.4] at(m.south west) {\usebox\pinguboxA};
+    \node[below,xshift=-1cm,yshift=19.5pt,scale=.4] at(m.south east) {\usebox\pinguboxB};
+    \draw[rounded corners,gray,fill=white] (m.north west) -- (m.north east) -- (m.south east) -- ++(-.45cm,0) to[bend right=40] ++(-1.2cm,0) -- ([xshift=1.65cm]m.south west) to[bend right=40] ++(-1.2cm,0) -- ++(-.45cm,0) -- cycle;
+\endpgfonlayer
+\end{tikzpicture}\vspace*{-\baselineskip}
+\end{center}
+\footnotetext{Why \say{pingu} and not \say{pengu}? Well, this is the third try on achieving cute penguins without using any templates or vector formats as a basis. As a german, the short form \say{pingu} was merely a typo that originated from the german word \say{pinguin} for \say{penguin}. It somewhat sticked\ldots}
+\endgroup
+
 \section{Motivation}
 
-For my slides at university, I started to use the famous \LaTeX-package \textsl{\href{https://github.com/samcarter/tikzducks}{tikzducks}} a few years ago.
-Yet, it seemed somewhat of a necessity to extend the range of available \say{cute} animals in \LaTeX.
-Therefore I started writing this package: \textsl{tikzpingus}.\footnote{Why \say{pingu} and not \say{pengu}? Well, this is the third try on achieving cute penguins without using any templates or vector formats as a basis. As a german, the short form \say{pingu} was merely a typo that originated from the german word \say{pinguin} for \say{penguin}. It somewhat sticked\ldots}
-
-\textit{Please note:} While tikzpingus is certainly inspired by tikzducks, it does offer a different set of features (e.g., multiple wing positions,~\ldots).
-
-I would be happy for any feedback or issues on the \href{https://github.com/EagleoutIce/tikzpingus}{tikzpingus}-GitHub.
 
 \subsection{Dependencies}
 
