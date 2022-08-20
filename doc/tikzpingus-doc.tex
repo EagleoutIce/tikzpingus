@@ -351,7 +351,7 @@
 \pgfonlayer{foreground}
    \node[scale=2] at([yshift=-3.45cm]current bounding box.south) {\copy\pinguB};
 \endpgfonlayer
-\end{tikzpicture}}
+\end{tikzpicture}}\hskip6em%
 % todo: regroup that
 \setbox\pinguA=\hbox{\tikz{%
    \pingu[wings wave,name=pingu,eyes wink,body type=legacy,eye patch right]
@@ -363,17 +363,17 @@
       \draw[line cap=round,-Kite,lightgray,line width=1.5pt] ([xshift=1mm,yshift=-1mm]pingu-wing-left-tip) to[bend left] ++(3mm,-1cm);
       \draw[line cap=round,Kite-Kite,lightgray,line width=1.5pt] ([xshift=4mm]pingu-foot-left) -- ++(1cm,0);
       \draw[line cap=round,Kite-Kite,lightgray,line width=1.5pt] ([yshift=-1.75cm]pingu-head-top)++(60:1.75cm and 2cm) arc(60:120:1.75cm and 2cm);
-}}
+}}%
 \newsavebox\whitepingu
 \setbox\whitepingu=\hbox{\tikz{\pingu[@block/.style={fill=pingu@white,draw=pingu@white},wings wave]}}
 \setbox\pinguB=\hbox{\rlap{\kern2.8pt\box\whitepingu}\tikz{
    \pingu[wings wave,:line,name=pingu]
    \path[line width=1.5pt] (pingu-wing-right-tip) circle[radius=2mm];
-}}
-\setbox\pinguC=\hbox{\tikz{\pingu[eyes shiny,hat, hat position={1:(0cm,-.09cm){1.33}}]}}
-\setbox\pinguD=\hbox{\tikz{\pingu[eyes shiny,lightsaber right=pingu@purple,hat, hat position={1:(0cm,-.09cm){1.33}},right item angle=-13,medal]}}
-\setbox\pinguE=\hbox{\tikz{\pingu[eyes shiny,hat,cane left, hat position={1:(0cm,-.09cm){1.33}},left item angle=-13,tie,tie dots]}}
-\setbox\pinguF=\hbox{\tikz{\pingu[eyes shiny,hat,cane left, hat position={1:(0cm,-.09cm){1.33}},left item angle=-13,shirt=gray,second shirt,bill=flat,tie,tie dots]}}
+}}%
+\setbox\pinguC=\hbox{\tikz{\pingu[eyes shiny,hat, hat position={1:(0cm,-.09cm){1.33}}]}}%
+\setbox\pinguD=\hbox{\tikz{\pingu[eyes shiny,lightsaber right=pingu@purple,hat, hat position={1:(0cm,-.09cm){1.33}},right item angle=-13,medal]}}%
+\setbox\pinguE=\hbox{\tikz{\pingu[eyes shiny,hat,cane left, hat position={1:(0cm,-.09cm){1.33}},left item angle=-13,tie,tie dots]}}%
+\setbox\pinguF=\hbox{\tikz{\pingu[eyes shiny,hat,cane left, hat position={1:(0cm,-.09cm){1.33}},left item angle=-13,shirt=gray,second shirt,bill=flat,tie,tie dots]}}%
 \setbox\pinguG=\hbox{\tikz{\pingu}}
 \resizebox*!{4.5cm}{\begin{tikzpicture}
    \node[scale=2] (a) at(0,0) {\copy\pinguA};
