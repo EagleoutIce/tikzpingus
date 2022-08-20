@@ -14,7 +14,7 @@
 \definecolor{doc-main}{RGB}{204,0,25}
 
 \usepackage[linkcolor=doc-main,urlcolor=doc-main,colorlinks,breaklinks,pdfusetitle]{hyperref}
-\usetikzlibrary{shapes.misc}
+\usetikzlibrary{shapes.misc,arrows.meta}
 \urlstyle{same}
 \expandafter\def\expandafter\UrlBreaks\expandafter{\UrlBreaks\do-}
 
@@ -333,11 +333,11 @@
 \endgroup
 
 \begin{center}
-	\newsavebox\pinguA \newsavebox\pinguB
+	\newsavebox\pinguA \newsavebox\pinguB \newsavebox\pinguC \newsavebox\pinguD \newsavebox\pinguE \newsavebox\pinguF \newsavebox\pinguG
 	\def\Table#1(#2)#3{\scope[shift={(#2)},xshift=1.75cm,yshift=1.75cm]\pingu[#1]\endscope\pgfonlayer{foreground}\draw[lightgray,line width=6pt,rounded corners=2pt,line cap=round](#2) |- ++(4.5,1.35) -- ++(0,-1.35);\fill[draw=lightgray,fill=white,line width=3pt,rounded corners=2pt] (#2)++(3pt-1.5pt,-3pt+1.5pt+2mm) rectangle ++(1.15,1.15) node[midway,centered]{\Large$\mathsf{#3}$};\endpgfonlayer}%
 	\setbox\pinguA=\hbox{\tikz{\pingu[santa hat,santa beard,eyes vertical,blush]}}%
 	\setbox\pinguB=\hbox{\tikz{\pingu[:back,right wing wave,rook=pingu@silver!80!white,rook hatch=false]}}%
-\resizebox*!{6cm}{\begin{tikzpicture}
+\resizebox*!{4.5cm}{\begin{tikzpicture}
 \Table{right wing wave,horse right,crown, eyes wink, crown position={1:(-.1cm,-.255cm){1.33}}}(2.5,3.5){\text{\sffamily f}(x)}
 \Table{right wing wave,eyes wink,shirt=gray,tie,blush}(0,0)+
 \Table{right wing wave,eyes vertical,cloak=gray,body type=legacy,cup,left wing grab,blush}(5,0)*
@@ -351,6 +351,45 @@
 \pgfonlayer{foreground}
    \node[scale=2] at([yshift=-3.45cm]current bounding box.south) {\copy\pinguB};
 \endpgfonlayer
+\end{tikzpicture}}
+% todo: regroup that
+\setbox\pinguA=\hbox{\tikz{%
+   \pingu[wings wave,name=pingu,eyes wink,body type=legacy,eye patch right]
+   \draw[line cap=round,lightgray,line width=1.5pt] (pingu-wing-right-tip) circle[radius=2mm];
+   \draw[line cap=round,lightgray,line width=1.5pt] (pingu-head-back-con-left) circle[radius=3mm];
+   \draw[line cap=round,lightgray,line width=1.5pt] (pingu-waist-right) circle[radius=4mm];
+   \draw[line cap=round,lightgray,line width=1.5pt] (pingu-foot-left) circle[radius=3.5mm];
+   \draw[line cap=round,lightgray,line width=1.5pt] (pingu-head) circle[radius=2.5mm];
+      \draw[line cap=round,-Kite,lightgray,line width=1.5pt] ([xshift=1mm,yshift=-1mm]pingu-wing-left-tip) to[bend left] ++(3mm,-1cm);
+      \draw[line cap=round,Kite-Kite,lightgray,line width=1.5pt] ([xshift=4mm]pingu-foot-left) -- ++(1cm,0);
+      \draw[line cap=round,Kite-Kite,lightgray,line width=1.5pt] ([yshift=-1.75cm]pingu-head-top)++(60:1.75cm and 2cm) arc(60:120:1.75cm and 2cm);
+}}
+\newsavebox\whitepingu
+\setbox\whitepingu=\hbox{\tikz{\pingu[@block/.style={fill=pingu@white,draw=pingu@white},wings wave]}}
+\setbox\pinguB=\hbox{\rlap{\kern2.8pt\box\whitepingu}\tikz{
+   \pingu[wings wave,:line,name=pingu]
+   \path[line width=1.5pt] (pingu-wing-right-tip) circle[radius=2mm];
+}}
+\setbox\pinguC=\hbox{\tikz{\pingu[eyes shiny,hat, hat position={1:(0cm,-.09cm){1.33}}]}}
+\setbox\pinguD=\hbox{\tikz{\pingu[eyes shiny,lightsaber right=pingu@purple,hat, hat position={1:(0cm,-.09cm){1.33}},right item angle=-13,medal]}}
+\setbox\pinguE=\hbox{\tikz{\pingu[eyes shiny,hat,cane left, hat position={1:(0cm,-.09cm){1.33}},left item angle=-13,tie,tie dots]}}
+\setbox\pinguF=\hbox{\tikz{\pingu[eyes shiny,hat,cane left, hat position={1:(0cm,-.09cm){1.33}},left item angle=-13,shirt=gray,second shirt,bill=flat,tie,tie dots]}}
+\setbox\pinguG=\hbox{\tikz{\pingu}}
+\resizebox*!{4.5cm}{\begin{tikzpicture}
+   \node[scale=2] (a) at(0,0) {\copy\pinguA};
+   \node[above=1.5cm,scale=2] at(a.north) {\small\copy\pinguB};
+
+   \node[right]  (x) at(7.5,8) {\copy\pinguC};
+   \node[below right=1cm](e) at(x.south) {\copy\pinguE};
+   \node[below left=1cm] (d)  at(x.south) {\copy\pinguD};
+   \node[below=1cm] (f) at(e.south) {\copy\pinguF};
+
+   \node[above left=1cm] (g) at(x.north) {\copy\pinguG};
+
+   \draw[lightgray,line width=3pt,{Triangle[round,open,fill=white,scale=1.42]}-] (g) -- (x);
+   \draw[lightgray,line width=3pt,{Triangle[round,open,fill=white,scale=1.42]}-] (x) -- (e);
+   \draw[lightgray,line width=3pt,{Triangle[round,open,fill=white,scale=1.42]}-] (x) -- (d);
+   \draw[lightgray,line width=3pt,{Triangle[round,open,fill=white,scale=1.42]}-] (e) -- (f);
 \end{tikzpicture}}
 \end{center}
 
