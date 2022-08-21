@@ -396,6 +396,8 @@
 
 \clearpage\section{Introduction}
 
+While Section~\ref{Usage} \say{\nameref*{Usage}} explains some basics on how to use the library, Appendix~\autoref{Gadget-Overview} (\nameref{Gadget-Overview}) presents a overview of interesting gadgets, and \autoref{sec:full-ref} (\nameref{sec:full-ref}) acts as a reference of all keys.
+
 \subsection{Dependencies}
 
 As this package is constantly work in progress, the concrete dependencies may change any time.
@@ -424,17 +426,16 @@ Currently there are the following libraries:
 	\fi
 }.
 
-\section{Usage}
+\section{Usage}\label{Usage}
 
-If you just want a penguin, use the following syntax:
+If you just want a penguin, import the package and start with the following:
 \begin{tcblisting}{title={One small penguin},externalize listing=small-pengu}
 \begin{tikzpicture}
 	\pingu
 \end{tikzpicture}
 \end{tcblisting}
 
-There are \textit{a lot} of configuration-options which can be passed as an optional argument via the known |<key>=<value>|-style. See \autoref{Gadget-Overview} for a gadget overview.
-% TODO: click reference to full list; TODO: glow option
+There are \textit{a lot} of configuration-options which can be passed as an optional argument via the known |<key>=<value>|-style. See \autoref{Gadget-Overview} for a complete gadget overview.
 \begin{tcblisting}{title={Happy penguin with cup!},externalize listing=happy-cup}
 \begin{tikzpicture}
 	\pingu[left wing wave, right wing grab,
