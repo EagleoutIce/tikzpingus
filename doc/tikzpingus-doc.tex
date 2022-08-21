@@ -289,7 +289,7 @@
 \endgroup\global\let\pengu@all@showcases\@empty}
 
 \def\PenguinTitle{%
-\setbox0=\hbox{\tikz{\pingu[body type=tilt-right,eyes wink,conical hat,cane right,bow tie=pingu@purple,left wing grab,cup=pingu@purple!82!pingu@black]}}%
+\setbox0=\hbox{\tikz{\pingu[body type=tilt-right,eyes wink,conical hat,cane right,bow tie=pingu@purple,left wing grab,cup=purple!72!pingu@black]}}%
 \begin{tikzpicture}[overlay,remember picture]
 	\node[below left=1.5cm,rotate=-10] at (current page.north east) {\box0};
 \end{tikzpicture}%
@@ -319,11 +319,11 @@
 	 Yet, it seemed somewhat of a necessity to extend the range of available \say{cute} animals in \LaTeX.
 	 Therefore I started writing this package: \textsl{tikzpingus}.\footnotemark\medskip\\
 	 \textit{Please note:} While tikzpingus is certainly inspired by tikzducks, it does offer a different set of features (e.g., multiple wing positions,~\ldots).\medskip\\
-	 I would be happy for any feedback or issues on the \href{https://github.com/EagleoutIce/tikzpingus}{tikzpingus}-GitHub. \textbf{TODO: move down the right penguin :C he looks so sad}
+	 I would be happy for any feedback or issues on the \href{https://github.com/EagleoutIce/tikzpingus}{tikzpingus}-GitHub.
     };
 \pgfonlayer{background}
     \node[below,xshift=1.1cm,yshift=19.5pt,scale=.4] at(m.south west) {\usebox\pinguboxA};
-    \node[below,xshift=-1cm,yshift=19.5pt,scale=.4] at(m.south east) {\usebox\pinguboxB};
+    \node[below,xshift=-1cm,yshift=13.5pt,scale=.4] at(m.south east) {\usebox\pinguboxB};
     \draw[rounded corners,gray,fill=white] (m.north west) -- (m.north east) -- (m.south east) -- ++(-.45cm,0) to[bend right=40] ++(-1.2cm,0) -- ([xshift=1.65cm]m.south west) to[bend right=40] ++(-1.2cm,0) -- ++(-.45cm,0) -- cycle;
 	 \endpgfonlayer
 	 \node[above=3mm,font=\bfseries\sffamily\Large] at(current bounding box.north) {Motivation};
@@ -399,7 +399,7 @@
 \subsection{Dependencies}
 
 As this package is constantly work in progress, the concrete dependencies may change any time.
-At the moment, it loads \href{https://www.ctan.org/pkg/pgf}{\TikZ}, which loads a lot of other packages (e.g. |xcolor|), and \href{https://www.ctan.org/pkg/etoolbox}{etoolbox}.
+At the moment, it loads \href{https://www.ctan.org/pkg/pgf}{\TikZ}, which loads a lot of other packages (e.g. \href{https://www.ctan.org/pkg/xcolor}{xcolor}), and \href{https://www.ctan.org/pkg/etoolbox}{etoolbox}.
 Furthermore, the following \TikZ-Libraries are in use:\footnote{A lot of the libraries loaded are important only for specific extras. I plan on cleaning them up.} \textit{intersections}, \textit{shadings}, \textit{patterns.meta}, \textit{decorations.pathmorphing}, and \textit{shapes.symbols}.
 
 \subsection{Copyright}
