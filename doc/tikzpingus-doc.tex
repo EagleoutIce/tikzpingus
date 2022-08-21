@@ -395,9 +395,6 @@
 \vfill\null
 
 \clearpage\section{Introduction}
-
-While Section~\ref{Usage} \say{\nameref*{Usage}} explains some basics on how to use the library, Appendix~\autoref{Gadget-Overview} (\nameref{Gadget-Overview}) presents a overview of interesting gadgets, and \autoref{sec:full-ref} (\nameref{sec:full-ref}) acts as a reference of all keys.
-
 \subsection{Dependencies}
 
 As this package is constantly work in progress, the concrete dependencies may change any time.
@@ -409,22 +406,6 @@ Furthermore, the following \TikZ-Libraries are in use:\footnote{A lot of the lib
 Copyright \textcopyright\ \textit{Florian Sihler}. Permission is granted to copy, distribute and\slash or modify this software under the terms of the GNU General Public License, version 3.0 (to be found online at: \url{https://opensource.org/licenses/gpl-3.0.html}).
 
 The shown example penguins are purely fictional characters, any resemblance to real penguins or real persons is purely coincidental and no copyright infringement is intended.
-
-\subsection{Libraries}
-
-\label{Libraries}\index{Libraries}I've split the penguin features into a set of libraries. While all of them are loaded by default, the |bare| package-option disables the automatic loading of all libraries. They can be loaded (locally to the current group) using |\pinguloadlibrary| and |\pinguloadlibraries| passing on a comma separated list of desired libraries.
-See the full reference or the index to learn which key comes from which library.
-Please note that~--- at the moment~--- not all components of a library are labeled correctly.
-
-% TODO: already count that? % global let?
-\foreach[count=\i] \l/\xs in \pingu@defaultlibs{\xdef\pingu@defaultlibs@count{\i}}%
-Currently there are the following libraries:
-\foreach[count=\i] \l/\xs in \pingu@defaultlibs{%
-	\ifx\l\empty\else
-	\index{Libraries!\textit{\l}}\textit{\l}\ifnum\numexpr\pingu@defaultlibs@count-1>\i,\space\else
-	\ifnum\pingu@defaultlibs@count=\i\else,~and\space\fi\fi
-	\fi
-}.
 
 \section{Usage}\label{Usage}
 
@@ -568,6 +549,21 @@ With the two macros \lstinline[language=pingulang]'\pingudefaults' and \lstinlin
 	\pingu[left wing shock, xshift=2.8cm]
 \end{tikzpicture}
 \end{tcblisting}
+
+\subsection{Libraries}
+\label{Libraries}\index{Libraries}I've split the penguin features into a set of libraries. While all of them are loaded by default, the |bare| package-option disables the automatic loading of all libraries. They can be loaded (locally to the current group) using |\pinguloadlibrary| and |\pinguloadlibraries| passing on a comma separated list of desired libraries.
+See the full reference or the index to learn which key comes from which library.
+Please note that~--- at the moment~--- not all components of a library are labeled correctly.
+
+% TODO: already count that? % global let?
+\foreach[count=\i] \l/\xs in \pingu@defaultlibs{\xdef\pingu@defaultlibs@count{\i}}%
+Currently there are the following libraries:
+\foreach[count=\i] \l/\xs in \pingu@defaultlibs{%
+	\ifx\l\empty\else
+	\index{Libraries!\textit{\l}}\textit{\l}\ifnum\numexpr\pingu@defaultlibs@count-1>\i,\space\else
+	\ifnum\pingu@defaultlibs@count=\i\else,~and\space\fi\fi
+	\fi
+}.
 
 \subsection{Changing the wings}
 \label{subsec:wings}As already demonstrated, it is possible to change the wing positions!
