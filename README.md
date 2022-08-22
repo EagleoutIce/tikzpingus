@@ -14,3 +14,11 @@ These are some test files:\
 
 For the title image of a computer-science course on software-product-lines, I created a small and incomplete but really fun feature model:\
 [<img src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/spl-1.png?raw=true" width="900"/>](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/spl.pdf)
+
+**Contributors**
+
+<a href="https://github.com/eagleoutice/tikzpingus/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=eagleoutice/tikzpingus" />
+</a>
+
+Made with [contrib.rocks](https://contrib.rocks).

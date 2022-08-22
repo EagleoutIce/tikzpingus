@@ -11,8 +11,11 @@
 \makeatletter\def\input@path{{../tex/}}\makeatother
 \usepackage[glows]{tikzpingus}
 
-\usepackage[linkcolor=pingu@purple,urlcolor=pingu@purple,colorlinks,breaklinks,pdfusetitle]{hyperref}
-\usetikzlibrary{shapes.misc}
+% \definecolor{doc-main}{RGB}{204,0,25}
+\colorlet{@opcolor}{pingu@blue!75!black}
+\colorlet{doc-main}{@opcolor!80!pingu@black}
+\usepackage[linkcolor=@opcolor,urlcolor=@opcolor,colorlinks,breaklinks,pdfusetitle]{hyperref}
+\usetikzlibrary{shapes.misc,arrows.meta}
 \urlstyle{same}
 \expandafter\def\expandafter\UrlBreaks\expandafter{\UrlBreaks\do-}
 
@@ -34,28 +37,36 @@
 \usepackage{footnotebackref}
 \usepackage{adjustbox}
 \usepackage{xstring}
+\usepackage{colorinfo}
 
 \makeindex[title={Key Overview},columns=2,columnsep=.75cm,noautomatic=true,options=-s indexstyle.ist]
 \deffootnote{1.5em}{1em}{\textsuperscript{\hyperref[\BackrefFootnoteTag]{\thefootnotemark}}\thinspace}
 \def\thefootnote{$\langle$\arabic{footnote}$\rangle$}
+% https://tex.stackexchange.com/questions/78423/how-to-use-the-footnotebackref-package-with-footnotemark-and-footnotetext
+\makeatletter
+\LetLtxMacro\BHFN@Old@footnotemark\@footnotemark
+\def\@footnotemark{%
+    \refstepcounter{BackrefHyperFootnoteCounter}%
+    \xdef\BackrefFootnoteTag{bhfn:\theBackrefHyperFootnoteCounter}%
+    \label{\BackrefFootnoteTag}%
+    \BHFN@Old@footnotemark
+}
 
 \newlist{inlist}{enumerate*}{1}
 \setlist[inlist]{itemjoin={{, }},itemjoin*={{, and }},label=$\roman*$),mode=boxed}
 
 \let\say\enquote
-\def\DTLlistformatoxford{,}
-\def\DTLandname{and}
+\def\DTLlistformatoxford{,}\def\DTLandname{and}
 \def\DTLlistformatitem#1{\textit{#1}}
 \newcommand*\typesetselection[1][]{\begingroup\ifx!#1!\else\def\DTLlistformatitem##1{#1}\fi\dotypesetselection}
 \def\dotypesetselection#1{\expandafter\DTLformatlist\expandafter{\csname @pingu@#1@\endcsname}\endgroup}
 \makeatletter
 
 \addtokomafont{sectioning}{\@declaredcolor{gray}}
-\addtokomafont{title}{\@declaredcolor{pingu@purple}}
+\addtokomafont{title}{\@declaredcolor{doc-main}}
 \addtokomafont{author}{\normalsize}
 \addtokomafont{date}{\normalsize}
 
-\colorlet{@opcolor}{pingu@blue!75!black}
 \def\optstyle{\@declaredcolor{@opcolor}\slshape}
 \colorlet{@softgray}{gray!60!white}
 \colorlet{@softgray@b}{gray!75!white}
@@ -71,7 +82,7 @@
 	emphstyle=[3]\@declaredcolor{@softgray@b},
 	emphstyle=[4]\@declaredcolor{@darkerblue},
 	texcsstyle=*\@declaredcolor{gray}\bfseries,
-	texcsstyle=*[2]\@declaredcolor{pingu@purple}\bfseries,
+	texcsstyle=*[2]\@declaredcolor{doc-main}\bfseries,
 	texcsstyle=*[3]\@declaredcolor{@softgray},
 	lineskip=2.5pt,
 	keepspaces=true,
@@ -87,7 +98,7 @@
 	moreemph={tikzpicture},
 	alsoletter={@},
 	moretexcs=[2]{pingu@block,pingu@draw},
-	moretexcs={pingu@eye@shift,pingu@color@eye@left,pingu@color@eye@right,pingu@name,@pingu@eyes@s}
+	moretexcs={pingu@eye@shift,pingu@color@eye@left,pingu@color@eye@right,pingu@name,@pingu@eyes@s,@pingu@none}
 }
 
 \def\t@lst@addToLiterate#1{\protected@edef\lst@literate{\unexpanded\expandafter{\lst@literate}\unexpanded{#1}}}
@@ -153,7 +164,7 @@
 
 \def\ShowcasePengu#1=#2;{{\hypersetup{linkcolor=.}%
 \hyperref[pk:/pingu/#1]{%
-	\parbox[b][\pingu@showcase@height]{.14\linewidth}{\centering\ifx!#2!\def\Arg{}\else\def\Arg{=#2}\fi\edef\MakeShowcase{\noexpand\RawShowcase{#1}{\Arg}}\MakeShowcase}%
+	\parbox[b][\pingu@showcase@height]{.14\linewidth}{\centering\ifx!#2!\def\Arg{}\else\def\Arg{=#2}\fi\edef\MakeShowcase{\noexpand\RawShowcase{#1}{\Arg}}~\clap{\MakeShowcase}~}%
 }}}
 \def\pengu@all@showcases{}
 % we mix them somewhat funny
@@ -166,16 +177,16 @@
 \RedeclareSectionCommand[runin=false,afterskip=-2mm]{subsection}
 
 \tcbset{%
-	colframe=gray,enhanced,breakable, arc=2mm, arc is angular,
+	colframe=gray,enhanced,breakable, arc=2mm,
 	fonttitle=\bfseries, sidebyside,
-	listing options={style=lstpingu,language=pingulang},
+	boxrule=.35mm,listing options={style=lstpingu,language=pingulang},
 	center lower,segmentation at break=false,
-	righthand width=4.75cm, bottom=0pt,top=0pt,boxsep=2.25pt,
+	righthand width=4.75cm, bottom=0pt, top=0pt,boxsep=2.25pt,
 	before lower app={}, colback=white
 }
 \lstMakeShortInline[style=lstpingu,language=pingulang,basicstyle=\relsize{-1}\ttfamily\@declaredcolor{black!90!white},moredelim={[s][\itshape]{<}{>}}]{|}
 
-\def\explaincolor{pingu@purple!8!white}
+\def\explaincolor{@opcolor!8!white}
 \def\cursub{}
 \def\keyexplainindent{2em}%
 % allow the oxes to have minor overlaps
@@ -194,8 +205,7 @@
 	\expandafter\gdef\csname pingudefa#2\endcsname{#4}%
 	\begingroup\pgfkeys{/pingu/.cd,defaults}\protected@edef\@tmp{#4}%
 	\protected@edef\@tmpb{#3}%
-	\hfuzz=2\keyexplainindent
-	\hspace*{-\keyexplainindent}\colorbox{\explaincolor}{%
+	\hspace*{-\keyexplainindent}\tcbox[left=3pt,right=3pt,top=3pt,bottom=3pt,colframe=white,colback=\explaincolor,on line]{%
 		\parbox{\dimexpr\linewidth-2\fboxsep+\keyexplainindent}{\small
 		\ifx\@tmpb\@empty\lpingu{#1#2}\else\lpingu{#1#2 =\ }\texttt{<\textit{\@tmpb}>}\fi\hfill
 				\ifx\@tmp\@empty\else{\@declaredcolor{gray}(}#4{\@declaredcolor{gray})}\fi
@@ -216,7 +226,7 @@
 
 \newcommand*\keyref[2][/pingu/]{\hyperref[pk:#1#2]{\lpingu{#1#2}}}
 \newcommand*\dkeyref[2][/pingu/]{\hyperref[pk:#1#2]{\lpingu{#2}}}
-\colorlet{@softexplaincolor}{gray!10!white}
+\colorlet{@softexplaincolor}{gray!8!white}
 \newenvironment{subkeyexplain}[5][/pingu/]{%
 \begingroup
 \def\explaincolor{@softexplaincolor}\def\keyexplainindent{0em}%
@@ -252,6 +262,8 @@
 \tcbset{external/prefix=sub_}
 \tcbEXTERNALIZE % we do not need the other configurationshttps://www.freecodecamp.org/news/deploy-a-react-app-to-github-pages/ in the externalized images :D
 
+\hfuzz=12pt
+
 % this should not happen in the external images
 \AtBeginDocument{%
 % we do not use foreach to avoid groups
@@ -279,7 +291,7 @@
 \endgroup\global\let\pengu@all@showcases\@empty}
 
 \def\PenguinTitle{%
-\setbox0=\hbox{\tikz{\pingu[body type=tilt-right,eyes wink,conical hat,cane right,bow tie=pingu@purple,left wing grab,cup=pingu@purple!82!pingu@black]}}
+\setbox0=\hbox{\tikz{\pingu[body type=tilt-right,eyes wink,conical hat,cane right,bow tie=pingu@purple,left wing grab,cup=doc-main]}}%
 \begin{tikzpicture}[overlay,remember picture]
 	\node[below left=1.5cm,rotate=-10] at (current page.north east) {\box0};
 \end{tikzpicture}%
@@ -289,7 +301,7 @@
 % \subtitle{Penguins with \TikZ}
 \author{%
 	\texorpdfstring{Florian Sihler\\*
-		\hypersetup{colorlinks=false}\url{https://github.com/EagleoutIce/tikzpingus}
+		\url{https://github.com/EagleoutIce/tikzpingus}
 	}{Florian Sihler}}
 \date{Version v1.0 \textendash\ 2022/08/14}
 
@@ -297,62 +309,117 @@
 \maketitle
 \PenguinTitle
 
-\section{Motivation}
+\begingroup
+\vspace*{-4em}\newsavebox\pinguboxA
+\savebox\pinguboxA{\tikz{\pingu[wings raise,santa hat,eyes wink,bow tie=pingu@yellow]}}
+\newsavebox\pinguboxB
+\savebox\pinguboxB{\tikz{\pingu[wings raise,head band,eyes angry,sunglasses,bow tie=doc-main,body type=chubby]}}
+\begin{center}
+\begin{tikzpicture}
+    \node[text width=.95\linewidth, inner sep=11pt] (m) {%
+	 For my slides at university, I started to use the famous \LaTeX-package \textsl{\href{https://github.com/samcarter/tikzducks}{tikzducks}} a few years ago.
+	 Yet, it seemed somewhat of a necessity to extend the range of available \say{cute} animals in \LaTeX.
+	 Therefore I started writing this package: \textsl{tikzpingus}.\footnotemark\medskip\\
+	 \textit{Please note:} While tikzpingus is certainly inspired by tikzducks, it does offer a different set of features (e.g., multiple wing positions,~\ldots).\medskip\\
+	 I would be happy for any feedback or issues on the \href{https://github.com/EagleoutIce/tikzpingus}{tikzpingus}-GitHub.
+    };
+\pgfonlayer{background}
+    \node[below,xshift=1.1cm,yshift=19.5pt,scale=.4] at(m.south west) {\usebox\pinguboxA};
+    \node[below,xshift=-1cm,yshift=13.5pt,scale=.4] at(m.south east) {\usebox\pinguboxB};
+    \draw[rounded corners,gray,fill=white] (m.north west) -- (m.north east) -- (m.south east) -- ++(-.45cm,0) to[bend right=40] ++(-1.2cm,0) -- ([xshift=1.65cm]m.south west) to[bend right=40] ++(-1.2cm,0) -- ++(-.45cm,0) -- cycle;
+	 \endpgfonlayer
+	 \node[above=3mm,font=\bfseries\sffamily\Large] at(current bounding box.north) {Motivation};
+\end{tikzpicture}\vspace*{-\baselineskip}
+\end{center}
+\footnotetext{Why \say{pingu} and not \say{pengu}? Well, this is the third try on achieving cute penguins without using any templates or vector formats as a basis. As a german, the short form \say{pingu} was merely a typo that originated from the german word \say{pinguin} for \say{penguin}. It somewhat sticked\ldots}
+\endgroup\vfill
 
-For my slides at university, I started to use the famous \LaTeX-package \textsl{\href{https://github.com/samcarter/tikzducks}{tikzducks}} a few years ago.
-Yet, it seemed somewhat of a necessity to extend the range of available \say{cute} animals in \LaTeX.
-Therefore I started writing this package: \textsl{tikzpingus}.\footnote{Why \say{pingu} and not \say{pengu}? Well, this is the third try on achieving cute penguins without using any templates or vector formats as a basis. As a german, the short form \say{pingu} was merely a typo that originated from the german word \say{pinguin} for \say{penguin}. It somewhat sticked\ldots}
+\begin{center}
+	\newsavebox\pinguA \newsavebox\pinguB \newsavebox\pinguC \newsavebox\pinguD \newsavebox\pinguE \newsavebox\pinguF \newsavebox\pinguG
+	\def\Table#1(#2)#3{\scope[shift={(#2)},xshift=1.75cm,yshift=1.75cm]\pingu[#1]\endscope\pgfonlayer{foreground}\draw[lightgray,line width=6pt,rounded corners=2pt,line cap=round](#2) |- ++(4.5,1.35) -- ++(0,-1.35);\fill[draw=lightgray,fill=white,line width=3pt,rounded corners=2pt] (#2)++(3pt-1.5pt,-3pt+1.5pt+2mm) rectangle ++(1.15,1.15) node[midway,centered]{\Large$\mathsf{#3}$};\endpgfonlayer}%
+	\setbox\pinguA=\hbox{\tikz{\pingu[santa hat,santa beard,eyes vertical,blush]}}%
+	\setbox\pinguB=\hbox{\tikz{\pingu[:back,right wing wave,rook=pingu@silver!80!white,rook hatch=false]}}%
+\resizebox*!{4.5cm}{\begin{tikzpicture}
+\Table{right wing wave,horse right,crown, eyes wink, crown position={1:(-.1cm,-.255cm){1.33}}}(2.5,3.5){\text{\sffamily f}(x)}
+\Table{right wing wave,eyes wink,shirt=gray,tie,blush}(0,0)+
+\Table{right wing wave,eyes vertical,cloak=gray,body type=legacy,cup,left wing grab,blush}(5,0)*
 
-\textit{Please note:} While tikzpingus is certainly inspired by tikzducks, it does offer a different set of features (e.g., multiple wing positions,~\ldots).
+\Table{right wing wave,left wing shock,eyes shock,halo,heart=gray!40!pingu@white}(-2.5,-4)\div
+\Table{right wing wave,cake-hat,eyes wink,flag right}(2.5,-4)\ln
+\pgfonlayer{foreground}
+\node[scale=.125,circle,fill=white] at (a) {\rotatebox{13}{\copy\pinguA}}; % a sets flag core
+\endpgfonlayer
+\Table{right wing wave,vr-headset,vr-headset hair}(7.5,-4)\bmod
+\pgfonlayer{foreground}
+   \node[scale=2] at([yshift=-3.45cm]current bounding box.south) {\copy\pinguB};
+\endpgfonlayer
+\end{tikzpicture}}\hskip6em%
+% todo: regroup that
+\setbox\pinguA=\hbox{\tikz{%
+   \pingu[wings wave,name=pingu,eyes wink,body type=legacy,eye patch right]
+   \draw[line cap=round,lightgray,line width=1.5pt] (pingu-wing-right-tip) circle[radius=2mm];
+   \draw[line cap=round,lightgray,line width=1.5pt] (pingu-head-back-con-left) circle[radius=3mm];
+   \draw[line cap=round,lightgray,line width=1.5pt] (pingu-waist-right) circle[radius=4mm];
+   \draw[line cap=round,lightgray,line width=1.5pt] (pingu-foot-left) circle[radius=3.5mm];
+   \draw[line cap=round,lightgray,line width=1.5pt] (pingu-head) circle[radius=2.5mm];
+      \draw[line cap=round,-Kite,lightgray,line width=1.5pt] ([xshift=1mm,yshift=-1mm]pingu-wing-left-tip) to[bend left] ++(3mm,-1cm);
+      \draw[line cap=round,Kite-Kite,lightgray,line width=1.5pt] ([xshift=4mm]pingu-foot-left) -- ++(1cm,0);
+      \draw[line cap=round,Kite-Kite,lightgray,line width=1.5pt] ([yshift=-1.75cm]pingu-head-top)++(60:1.75cm and 2cm) arc(60:120:1.75cm and 2cm);
+}}%
+\newsavebox\whitepingu
+\setbox\whitepingu=\hbox{\tikz{\pingu[@block/.style={fill=pingu@white,draw=pingu@white},wings wave]}}
+\setbox\pinguB=\hbox{\rlap{\kern2.8pt\box\whitepingu}\tikz{
+   \pingu[wings wave,:line,name=pingu]
+   \path[line width=1.5pt] (pingu-wing-right-tip) circle[radius=2mm];
+}}%
+\setbox\pinguC=\hbox{\tikz{\pingu[eyes shiny,hat, hat position={1:(0cm,-.09cm){1.33}}]}}%
+\setbox\pinguD=\hbox{\tikz{\pingu[eyes shiny,lightsaber right=pingu@purple,hat, hat position={1:(0cm,-.09cm){1.33}},right item angle=-13,medal]}}%
+\setbox\pinguE=\hbox{\tikz{\pingu[eyes shiny,hat,cane left, hat position={1:(0cm,-.09cm){1.33}},left item angle=-13,tie,tie dots]}}%
+\setbox\pinguF=\hbox{\tikz{\pingu[eyes shiny,hat,cane left, hat position={1:(0cm,-.09cm){1.33}},left item angle=-13,shirt=gray,second shirt,bill=flat,tie,tie dots]}}%
+\setbox\pinguG=\hbox{\tikz{\pingu}}
+\resizebox*!{4.5cm}{\begin{tikzpicture}
+   \node[scale=2] (a) at(0,0) {\copy\pinguA};
+   \node[above=1.5cm,scale=2] at(a.north) {\small\copy\pinguB};
 
-I would be happy for any feedback or issues on the \href{https://github.com/EagleoutIce/tikzpingus}{tikzpingus}-GitHub.
+   \node[right]  (x) at(7.5,8) {\copy\pinguC};
+   \node[below right=1cm](e) at(x.south) {\copy\pinguE};
+   \node[below left=1cm] (d)  at(x.south) {\copy\pinguD};
+   \node[below=1cm] (f) at(e.south) {\copy\pinguF};
 
+   \node[above left=1cm] (g) at(x.north) {\copy\pinguG};
+
+   \draw[lightgray,line width=3pt,{Triangle[round,open,fill=white,scale=1.42]}-] (g) -- (x);
+   \draw[lightgray,line width=3pt,{Triangle[round,open,fill=white,scale=1.42]}-] (x) -- (e);
+   \draw[lightgray,line width=3pt,{Triangle[round,open,fill=white,scale=1.42]}-] (x) -- (d);
+   \draw[lightgray,line width=3pt,{Triangle[round,open,fill=white,scale=1.42]}-] (e) -- (f);
+\end{tikzpicture}}
+\end{center}
+\vfill\null
+
+\clearpage\section{Introduction}
 \subsection{Dependencies}
 
 As this package is constantly work in progress, the concrete dependencies may change any time.
-At the moment, it only loads \TikZ, which loads a lot of other packages (e.g. |xcolor|).
-Furthermore, the following \TikZ-Libraries are in use:\footnote{A lot of the libraries loaded are important only for specific extras. I plan on cleaning them up.}
-\begin{inlist}
-	\item |intersections|
-	\item |shadings|
-	\item |patterns.meta|
-	\item |decorations.pathmorphing|
-	\item |shapes.symbols|
-\end{inlist}.
+At the moment, it loads \href{https://www.ctan.org/pkg/pgf}{\TikZ}, which loads a lot of other packages (e.g. \href{https://www.ctan.org/pkg/xcolor}{xcolor}), and \href{https://www.ctan.org/pkg/etoolbox}{etoolbox}.
+Furthermore, the following \TikZ-Libraries are in use:\footnote{A lot of the libraries loaded are important only for specific extras. I plan on cleaning them up.} \textit{intersections}, \textit{shadings}, \textit{patterns.meta}, \textit{decorations.pathmorphing}, and \textit{shapes.symbols}.
 
 \subsection{Copyright}
 
-Copyright \textcopyright\ \texttt{Florian Sihler}. Permission is granted to copy, distribute and\slash or modify this software under the terms of the GNU General Public License, version 3.0 \url{https://opensource.org/licenses/gpl-3.0.html}.
+Copyright \textcopyright\ \textit{Florian Sihler}. Permission is granted to copy, distribute and\slash or modify this software under the terms of the GNU General Public License, version~3.0 (to be found online at: \url{https://opensource.org/licenses/gpl-3.0.html}).
 
 The shown example penguins are purely fictional characters, any resemblance to real penguins or real persons is purely coincidental and no copyright infringement is intended.
 
-\subsection{Libraries}
+\vfill
+\section{Usage}\label{Usage}
 
-\label{Libraries}\index{Libraries}I've split the penguin features into a set of libraries. While all of them are loaded by default, the |bare| package-option disables the automatic loading of all libraries. They can be loaded (locally to the current group) using |\pinguloadlibrary| and |\pinguloadlibraries| passing on a comma separated list of desired libraries.
-See the full reference or the index to learn which key comes from which library.
-Please note that~--- at the moment~--- not all components of a library are labeled correctly.
-
-% TODO: already count that? % global let?
-\foreach[count=\i] \l/\xs in \pingu@defaultlibs{\xdef\pingu@defaultlibs@count{\i}}%
-Currently there are the following libraries:
-\foreach[count=\i] \l/\xs in \pingu@defaultlibs{%
-	\ifx\l\empty\else
-	\index{Libraries!\textit{\l}}\textit{\l}\ifnum\numexpr\pingu@defaultlibs@count-1>\i,\space\else
-	\ifnum\pingu@defaultlibs@count=\i\else,~and\space\fi\fi
-	\fi
-}.
-
-\section{Usage}
-
-If you just want a penguin, use the following syntax:
+If you just want a penguin, import the package and start with the following:
 \begin{tcblisting}{title={One small penguin},externalize listing=small-pengu}
 \begin{tikzpicture}
 	\pingu
 \end{tikzpicture}
 \end{tcblisting}
 
-There are \textit{a lot} of configuration-options which can be passed as an optional argument via the known |<key>=<value>|-style. See \autoref{Gadget-Overview} for a gadget overview.
-% TODO: click reference to full list; TODO: glow option
+There are \textit{a lot} of configuration-options which can be passed as an optional argument via the known |<key>=<value>|-style. See \autoref{Gadget-Overview} for a complete gadget overview.
 \begin{tcblisting}{title={Happy penguin with cup!},externalize listing=happy-cup}
 \begin{tikzpicture}
 	\pingu[left wing wave, right wing grab,
@@ -361,7 +428,7 @@ There are \textit{a lot} of configuration-options which can be passed as an opti
 \end{tcblisting}
 Please note, that \say{left} and \say{right} have been chosen from the penguin-perspective.
 
-Besides the keys defined by this package, you can use the keys of \TikZ\ and |pgf| as well (the duck was generated by the lovely \href{https://github.com/samcarter/tikzducks}{tikzducks} package):
+\clearpage Besides the keys defined by this package, you can use the keys of \TikZ\ and |pgf| as well (the duck was generated by the lovely \href{https://github.com/samcarter/tikzducks}{tikzducks} package):
 \begin{tcblisting}{title={The Reunion},externalize listing=pengu-duck}
 \begin{tikzpicture}
 	\duck
@@ -369,11 +436,12 @@ Besides the keys defined by this package, you can use the keys of \TikZ\ and |pg
 	       eyes wink]
 \end{tikzpicture}
 \end{tcblisting}
+
 \subsection{Using the Coordinates}
 \label{mrk:coordinates}While there are a lot of gadgets available already,
-every penguin is accompanied by \textit{a lot} of adaptive coordinates
+every penguin is accompanied by \textit{several} adaptive coordinates
 to place custom items, texts,~\ldots\ % TODO: links
-They can be placed by the meta-dots option and change their positions, angles,~\ldots\ depending on other options.
+They can be visualized by the \keyref{meta-dots} option.
 Furthermore, some extras create further coordinates themselves!
 All coordinates are available with |<pingu-name>-<coordinate>|.
 While the default name of a penguin is \say{pingu}, it can be
@@ -419,7 +487,7 @@ Lets look at those coordinates in more detail (all labels are to be prefixed by 
 	}
 \end{tikzpicture}%
 }
-
+\vfill
 \def\PinguCoords#1{\begin{tikzpicture}
 	\pingu[@block/.append style={fill=##1!35!white}, wings wave,eyes shiny,heart=gray!30!white,#1]
 	\pgfonlayer{foreground}
@@ -431,15 +499,17 @@ Lets look at those coordinates in more detail (all labels are to be prefixed by 
 	\endpgfonlayer
 \end{tikzpicture}}%
 \begin{center}
-	\resizebox{.85\linewidth}!{%
+	\edef\measurepage{\the\dimexpr\pagegoal-\pagetotal-2\baselineskip\relax}%
+	\typeout{measurepage: \measurepage}%
+	\ifdim\measurepage<4\baselineskip\clearpage\edef\measurepage{\the\dimexpr\pagegoal-\pagetotal-2\baselineskip\relax}\fi
+	\resizebox*!{\measurepage}{%
 		\PinguCoords{}%
 	}
 \end{center}
-\newpage
 
 \paragraph{The Wings}
 This view excluded a lot of special data collected on the wings!
-While there is more information stored for each wing, the following five coordinates are the most important to place items into penguins hand:
+While there is more information stored for each wing, the following five coordinates are the most important to place items into penguins hand:\vspace*{-1.5em}
 \begin{center}
 	\null\hfill\parbox[c]{2.5\wd\pinguwingright}{\scalebox{2.5}{\usebox\pinguwingright}}\hfill\parbox[c]{4cm}{\centering\small\@declaredcolor{gray}\sffamily And yes, the wings are deliberately placed asymmetrical.\endgraf}\hfill
 	\parbox[c]{2.5\wd\pinguwingleft}{\scalebox{2.5}{\usebox\pinguwingleft}}\hfill\null
@@ -448,23 +518,27 @@ While there is more information stored for each wing, the following five coordin
 \paragraph{The Body} Similarly to the wing position, different
 body types can change the coordinates (left the \keyref{body type} \textit{chubby} and right the \keyref{body type} \textit{legacy}):
 \begin{center}
-	\resizebox{.95\linewidth}!{%
+	\resizebox\linewidth!{%
 		\PinguCoords{body type=chubby,wings hug}\quad\PinguCoords{body type=legacy,wings hug}
 	}
 \end{center}
 
 \subsection{Colors}
-A lot of options allow for a color to be passed. In general, you can provide any color that \TikZ\ is happy with! Yet, there are some predefined pingu-colors shipped with this package, and there is one special \say{color}:
+A lot of options allow for a color to be passed. In general, you can provide any color that \TikZ\ is happy with! Yet, there are some predefined pingu-colors shipped with this package:
+\def\getCol#1{\pgfmathparse{int(round(#1*255))}\pgfmathresult}
+\def\parseRGB#1,#2,#3;{r:~\getCol{#1}, g:~\getCol{#2}, b:~\getCol{#3}}
 \begin{multicols}{4}
 \begin{itemize}
-	\itemsep0pt
 	\foreach \col in {main,black,silver,bronze,white,yellow,lightblue,blue,green,red,purple} {
-		\item[{\tikz[baseline=-.6ex]{\fill[pingu@\col,semithick,draw=black] circle (4pt);}}] \small\null\texttt{pingu@\col}
+		\item[{\tikz[baseline=-.6ex]{\fill[pingu@\col,semithick,draw=black] circle (4pt);}}] \footnotesize\strut
+		% somehow outputs, therefore box
+		\setbox0=\hbox{\colorInfoRGB{pingu@\col}\xdef\colorValue{\colorValue}}\rlap{\smash{\raisebox{-2.9mm}{\sffamily\color{gray}\tiny\expandafter\parseRGB\colorValue;}}}%
+		\texttt{pingu@\col}%
 	}
-	\item[] % buffer
+	\item[] \footnotesize\strut% buffer
 \end{itemize}
 \end{multicols}
-Furthermore, there is the color {\makeatletter\say{\expandafter\ipingu\expandafter{\@pingu@none}}} which is available for most\footnote{Why just \say{most}? Well, this package is work in progress and I have added the option late, so I may have forgotten to patch some keys.} extras and wing-items. This color prohibits the compartments from being drawn. To be more precise, the package defines the macro |\pingu@none|, which is matched against the selected color.
+Furthermore, there is the special color {\makeatletter\say{\expandafter\ipingu\expandafter{\@pingu@none}}} which is available for most\footnote{Why just \say{most}? Well, this package is work in progress and I have added the option late, so I may have forgotten to patch some keys.} extras and wing-items. This color prohibits the compartments from being drawn. To be more precise, the package defines the macro \ltex{\\@pingu@none}, which is matched against the selected color.
 
 As an example, lets take a look at the \keyref{cup}-extra, which provides an additional key \keyref{cup straw} to color the straw:
 \begin{tcblisting}{title={Cup without a straw},externalize listing=extra-options}
@@ -475,10 +549,11 @@ As an example, lets take a look at the \keyref{cup}-extra, which provides an add
 	       cup straw=!hide]
 \end{tikzpicture}
 \end{tcblisting}
+As you can see, using \lpingu{!hide}, the straw will not be drawn.
 
 \subsection{Setting the defaults}
-You do not have to state every key for every penguin.
-With the two macros \lstinline[language=pingulang]'\pingudefaults' and \lstinline[language=pingulang]'\pingudefaultsappend' (works the same, but will extend the current options) you can set default-options for all penguins to come:
+You do not have to re-state every key.
+With \lstinline[language=pingulang]'\pingudefaults' and \lstinline[language=pingulang]'\pingudefaultsappend' (similar, but extends the current options) you can set default-options for all penguins to come:
 \begin{tcblisting}{title={Change the mainstream},externalize listing=update-defaults}
 \begin{tikzpicture}
 	\pingudefaults{wings grab, eyes shiny}
@@ -487,6 +562,20 @@ With the two macros \lstinline[language=pingulang]'\pingudefaults' and \lstinlin
 \end{tikzpicture}
 \end{tcblisting}
 
+\subsection{Libraries}
+\label{Libraries}\index{Libraries}I've split the penguin features into a set of libraries. While all of them are loaded by default, the |bare| package-option disables the automatic loading of all libraries. They can be loaded (locally to the current group) using |\pinguloadlibrary| and |\pinguloadlibraries| passing on a comma separated list of desired libraries.
+See the full reference or the index to learn which key comes from which library.
+Please note that~--- at the moment~--- not all components of a library are labeled correctly.
+% TODO: already count that? % global let?
+\foreach[count=\i] \l/\xs in \pingu@defaultlibs{\xdef\pingu@defaultlibs@count{\i}}%
+Currently there are the following libraries:
+\foreach[count=\i] \l/\xs in \pingu@defaultlibs{%
+	\ifx\l\empty\else
+	\index{Libraries!\textit{\l}}\textit{\l}\ifnum\numexpr\pingu@defaultlibs@count-1>\i,\space\else
+	\ifnum\pingu@defaultlibs@count=\i\else,~and\space\fi\fi
+	\fi
+}.
+
 \subsection{Changing the wings}
 \label{subsec:wings}As already demonstrated, it is possible to change the wing positions!
 All selected wing-items will adapt to the wing-position (although not all wing-items will make sense with every wing-position).
@@ -494,7 +583,9 @@ Currently, there are the following wing-positions:
 \typesetselection{leftwing}. \say{none} is a special wing-position: it omits the drawing of wings (teaser: every selection has a none-option, which prohibits the part from being drawn)!
 
 For each valid wing-position you can use |wings <position>| to change both wings or |left wing <position>| and |right wing <position>| to change only one wing respectively. The default wing-position is \say{normal}. If you supply multiple options for a wing, only the last one survives.\footnote{For the sake of completeness: \ipingu{wings <position>}, \ipingu{left wing <position>}, and \ipingu{right wing <position>} are just alternatives i prefer: \ipingu{wings=<position>}, \ipingu{left wing=<position>} and \ipingu{right wing=<position>}.}
-\begin{tcblisting}{sidebyside=false, title=Wing-Showcase,,externalize listing=wings-showcase}
+This is shown in Box~\say{\nameref{wing-showcase}}.
+
+\begin{tcblisting}{sidebyside=false, title=Wing-Showcase,nameref=Wing-Showcase,externalize listing=wings-showcase,float,phantomlabel=wing-showcase}
 \begin{tikzpicture}
 	\pingu[left wing none, heart=green]
 	\pingu[wings wave, heart=teal, xshift=3.5cm]
@@ -504,9 +595,11 @@ For each valid wing-position you can use |wings <position>| to change both wings
 \end{tcblisting}
 
 \subsection{Changing the eyes}
-\label{mrk:pengu-eye}Just like the wings, there are a couple of different eye-styles to choose from: \typesetselection{lefteye}. Just like the wings, there is a \say{none} and a \say{normal}-option (which is the default).
-Furthermore, the convenient selectors |eyes <style>|, |left eye <style>|, and |right eye <style>| exist as well:
-\begin{tcblisting}{sidebyside=false, title=Eye-Showcase,externalize listing=eyes-showcase}
+\label{mrk:pengu-eye}Just like the wings, there are a couple of different eye-styles to choose from: \typesetselection{lefteye}.
+Similar to the wings, there is a \say{none} and a \say{normal}-option (which is the default).
+Furthermore, the convenient selectors |eyes <style>|, |left eye <style>|, and |right eye <style>| exist as well. All of this is showcased in~Box~\say{\nameref{eye-showcase}}.
+
+\begin{tcblisting}{sidebyside=false,title=Eye-Showcase,nameref=Eye-Showcase,externalize listing=eyes-showcase,float,phantomlabel=eye-showcase}
 \begin{tikzpicture}
 	\pingu[left eye none, heart=green]
 	\pingu[eyes wink, heart=teal, xshift=3.5cm]
@@ -528,8 +621,8 @@ Furthermore, the convenient selectors |eyes <style>|, |left eye <style>|, and |r
 	\item The \textit{hairstyle} (does not have left and right)\\*
 		Select from: \typesetselection{hairstyle}.
 \end{itemize}
-For each selection, \say{none} will prohibit the drawing, and \say{normal} is the default chosen.
-\begin{tcblisting}{sidebyside=false, title=Bodyparts-Showcase,externalize listing=bodyparts-showcase}
+For each selection, \say{none} will prohibit the drawing, and \say{normal} is the default chosen. See Box~\say{\nameref{bodyparts-showcase}} for a example.
+\begin{tcblisting}{sidebyside=false,title=Bodyparts-Showcase,nameref=Bodyparts-Showcase,externalize listing=bodyparts-showcase,float,phantomlabel=bodyparts-showcase}
 \begin{tikzpicture}
 	\pingu[bill angry, heart=green]
 	\pingu[feet back, hairstyle none, heart=teal, xshift=3.5cm]
@@ -565,8 +658,8 @@ Currently, only some of the styles do affect other items. As an example, conside
 \subsection{Randomness}
 Each selection (like the wings or the eyes) can receive a special command \lpingu{!random}. If given, the penguin will receive a randomly picked component.
 Please note, that \textit{none} (the component removing it) will never be picked.
-The first line in the example sets the seed: % we do not externalize this one
-\begin{tcblisting}{title={Random Penguin}}
+The first line in the example in Box~\say{\nameref{random-penguin}} sets the seed. % we do not externalize this one
+\begin{tcblisting}{title={Random Penguin},nameref={Random Penguin},label=random-penguin,float}
 \pgfmathsetseed{\number\pdfrandomseed}
 \begin{tikzpicture}
 	\pingu[wings=!random,eyes=!random,
@@ -577,7 +670,7 @@ The first line in the example sets the seed: % we do not externalize this one
 \end{tikzpicture}
 \end{tcblisting}
 
-In a more general fashion, there is a \keyref{random from} key for completely random penguins:
+In a more general fashion, there is a \keyref{random from} key for completely random penguins.
 
 \keyexplain{random from}{list}{}
 	You can pass any list of penguin keys and exactly one of them will be selected. You can nest \keyref{random from}-calls. Please note, that the items are not separated by comma but in braces. The first line in the example sets the seed:% do not externalize
@@ -596,8 +689,8 @@ Most extras are activated with the format |<extra>=<color>| (the |<color>| optio
 and try to adapt with other extras that have been placed (yet you can place multiple hats if you really like to).  A lot of the extras do offer more keys to customize their appearance.
 They are explained in the full reference (\autoref{sec:full-ref}).
 
-Consider the following, somewhat overkill-example:
-\begin{tcblisting}{title={Lord-Gadget, the penguin},externalize listing=lord-gadget}
+Consider the somewhat overkill-example of \say{\nameref{lord-gadget}}.
+\begin{tcblisting}{title={Lord-Gadget, the penguin},externalize listing=lord-gadget,nameref={Lord-Gadget, the penguin},label=lord-gadget,float}
 \begin{tikzpicture}
 	\pingu[crown 2d=pingu@bronze,
 	       medal=pingu@purple, tie,
@@ -614,7 +707,7 @@ Currently there are the following wing items:
 \typesetselection{wingitems}.
 They are selected using |<wing item> <left/right>|.
 
-Additionally, they can be customized by |<left/right> item angle=<angle>| and |<left/right> item flip=<true/false>|.
+Additionally, they can be customized by \keyref{left item angle} and \keyref{right item angle}, as well as \keyref{left item flip} and \keyref{right item flip}.
 Lets consider an example\ldots
 \begin{tcblisting}{title={Penguin with full wings!}}
 \begin{tikzpicture}[scale=.75]
@@ -661,7 +754,7 @@ Aliases may set custom defaults. Those defaults are not listed as they may chang
 \subsection{Penguin Keys}
 
 \keyexplain{name}{text}{\pingu@name}
-	Sets the name of the penguin. This name is used for all the automatically generated coordinates (see \autoref{mrk:coordinates}).
+	Sets the name of the penguin. This name is used for all the automatically generated coordinates (see~\autoref{mrk:coordinates}).
 \endkeyexplain
 
 \keyexplain{scale}{floating point}{active scale}
@@ -1628,7 +1721,7 @@ Raise the pants:
 
 \subsubsection{The glow}
 
-\showkeyexplain{glow}{color}{pingu@white}(orange)
+\showkeyexplain{glow}{color}{pingu@white}(orange,glow solid=orange)
 	Active a glow around the penguin:
 \begin{tcblisting}{@}
 \begin{tikzpicture}
@@ -2966,7 +3059,7 @@ Keep the penguin safe:
 
 \subsubsection{The blush}
 
-\showkeyexplain{blush}{color}{pingu@red}
+\showkeyexplain{blush}{color}{pingu@red}(pingu@red,blush opacity=.4)
 Make it cute:
 \begin{tcblisting}{@}
 \begin{tikzpicture}
