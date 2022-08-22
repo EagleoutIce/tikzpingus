@@ -210,7 +210,7 @@
 		\ifx\@tmpb\@empty\lpingu{#1#2}\else\lpingu{#1#2 =\ }\texttt{<\textit{\@tmpb}>}\fi\hfill
 				\ifx\@tmp\@empty\else{\@declaredcolor{gray}(}#4{\@declaredcolor{gray})}\fi
 		}
-	}\ifcsname pingu@@lib@#2@\endcsname\index{Libraries!\textit{\csname pingu@@lib@#2@\endcsname}!#2?\hyperref[pk:#1#2]{\protect\lpingu{#2}}}\rlap{~\quad$\underset{\text{\tiny\smash{\raisebox{3pt}{\textsf{\hyperref[Libraries]{\color{gray}Library}}}}}}{\text{\textit{\footnotesize\strut\csname pingu@@lib@#2@\endcsname}}}$}\fi\par\endgroup
+	}\ifcsname pingu@@lib@#2@\endcsname\typeout{Got: #2}\index{Libraries!\textit{\csname pingu@@lib@#2@\endcsname}!#2?\hyperref[pk:#1#2]{\protect\lpingu{#2}}}\rlap{~\quad$\underset{\text{\tiny\smash{\raisebox{3pt}{\textsf{\hyperref[Libraries]{\color{gray}Library}}}}}}{\text{\textit{\footnotesize\strut\csname pingu@@lib@#2@\endcsname}}}$}\else\typeout{Miss: #2}\fi\par\endgroup
 }
 {\endminipage\smallskip\par}
 
@@ -500,7 +500,6 @@ Lets look at those coordinates in more detail (all labels are to be prefixed by 
 \end{tikzpicture}}%
 \begin{center}
 	\edef\measurepage{\the\dimexpr\pagegoal-\pagetotal-2\baselineskip\relax}%
-	\typeout{measurepage: \measurepage}%
 	\ifdim\measurepage<4\baselineskip\clearpage\edef\measurepage{\the\dimexpr\pagegoal-\pagetotal-2\baselineskip\relax}\fi
 	\resizebox*!{\measurepage}{%
 		\PinguCoords{}%

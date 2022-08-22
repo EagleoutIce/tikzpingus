@@ -1144,6 +1144,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \def\pingu@@dummy@lib#1#2{%
     \pgfqkeys{/pingu}{#1/.code={\PackageError{\tikzpingus@filename}{To use '#1' you need to load the '#2' library via '\string\pinguloadlibrary{#2}'}}}%
     \expandafter\def\csname pingu@@lib@#1@\endcsname{#2}%
+    \typeout{Def: #1 => #2}%
 }
 \def\pingu@dummy@lib#1#2{\edef\tmp@list{#2}\@for\@current:=\tmp@list\do{\expandafter\pingu@@dummy@lib\expandafter{\@current}{#1}}\xappto\pingu@defaultlibs{,{#1}/{#2}}\xappto\pingu@@defaultlibs{,#1}}
 \def\pingu@defaultlibs{}\def\pingu@@defaultlibs{}
@@ -1181,13 +1182,13 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \pingu@dummy@lib{hats}{strawhat,hat,cap,construction helmet,conical hat}
 \pingu@dummy@lib{sport}{head band,medal}
 \pingu@dummy@lib{formal}{tie,bow tie,pants}
-\pingu@dummy@lib{signs}{sign post left, sign post right}
+\pingu@dummy@lib{signs}{sign post left,sign post right}
 \pingu@dummy@lib{devil}{devil horns,devil wings,devil fork left,devil fork right}
 \pingu@dummy@lib{safe}{mask}
-\pingu@dummy@lib{magic}{handcast left, handcast right}
+\pingu@dummy@lib{magic}{handcast left,handcast right}
 \pingu@dummy@lib{movement}{<TODO>}
-\pingu@dummy@lib{emotions}{<TODO>}% eyes and bill: TODO
-\pingu@dummy@lib{horse}{horse left, horse right}
+\pingu@dummy@lib{emotions}{eyes sad,left eye sad,right eye sad,eyes angry,left eye angry,right eye angry,eyes hearts,left eye heart,right eye hearts,bill angry,blush}% eyes and bill: TODO
+\pingu@dummy@lib{horse}{horse left,horse right}
 
 \ifpengu@setup@bare@\else
 \pinguloadlibraries{\pingu@@defaultlibs}
