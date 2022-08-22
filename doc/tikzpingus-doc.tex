@@ -98,7 +98,7 @@
 	moreemph={tikzpicture},
 	alsoletter={@},
 	moretexcs=[2]{pingu@block,pingu@draw},
-	moretexcs={pingu@eye@shift,pingu@color@eye@left,pingu@color@eye@right,pingu@name,@pingu@eyes@s}
+	moretexcs={pingu@eye@shift,pingu@color@eye@left,pingu@color@eye@right,pingu@name,@pingu@eyes@s,@pingu@none}
 }
 
 \def\t@lst@addToLiterate#1{\protected@edef\lst@literate{\unexpanded\expandafter{\lst@literate}\unexpanded{#1}}}
@@ -404,7 +404,7 @@ Furthermore, the following \TikZ-Libraries are in use:\footnote{A lot of the lib
 
 \subsection{Copyright}
 
-Copyright \textcopyright\ \textit{Florian Sihler}. Permission is granted to copy, distribute and\slash or modify this software under the terms of the GNU General Public License, version 3.0 (to be found online at: \url{https://opensource.org/licenses/gpl-3.0.html}).
+Copyright \textcopyright\ \textit{Florian Sihler}. Permission is granted to copy, distribute and\slash or modify this software under the terms of the GNU General Public License, version~3.0 (to be found online at: \url{https://opensource.org/licenses/gpl-3.0.html}).
 
 The shown example penguins are purely fictional characters, any resemblance to real penguins or real persons is purely coincidental and no copyright infringement is intended.
 
@@ -517,17 +517,17 @@ While there is more information stored for each wing, the following five coordin
 \paragraph{The Body} Similarly to the wing position, different
 body types can change the coordinates (left the \keyref{body type} \textit{chubby} and right the \keyref{body type} \textit{legacy}):
 \begin{center}
-	\resizebox{.95\linewidth}!{%
+	\resizebox\linewidth!{%
 		\PinguCoords{body type=chubby,wings hug}\quad\PinguCoords{body type=legacy,wings hug}
 	}
 \end{center}
 
 \subsection{Colors}
-A lot of options allow for a color to be passed. In general, you can provide any color that \TikZ\ is happy with! Yet, there are some predefined pingu-colors shipped with this package, and there is one special \say{color}:
+A lot of options allow for a color to be passed. In general, you can provide any color that \TikZ\ is happy with! Yet, there are some predefined pingu-colors shipped with this package:
 \def\getCol#1{\pgfmathparse{int(round(#1*255))}\pgfmathresult}
 \def\parseRGB#1,#2,#3;{r:~\getCol{#1}, g:~\getCol{#2}, b:~\getCol{#3}}
 \begin{multicols}{4}
-\begin{itemize}[itemsep=0pt]
+\begin{itemize}
 	\foreach \col in {main,black,silver,bronze,white,yellow,lightblue,blue,green,red,purple} {
 		\item[{\tikz[baseline=-.6ex]{\fill[pingu@\col,semithick,draw=black] circle (4pt);}}] \footnotesize\strut
 		% somehow outputs, therefore box
@@ -537,7 +537,7 @@ A lot of options allow for a color to be passed. In general, you can provide any
 	\item[] \footnotesize\strut% buffer
 \end{itemize}
 \end{multicols}
-Furthermore, there is the color {\makeatletter\say{\expandafter\ipingu\expandafter{\@pingu@none}}} which is available for most\footnote{Why just \say{most}? Well, this package is work in progress and I have added the option late, so I may have forgotten to patch some keys.} extras and wing-items. This color prohibits the compartments from being drawn. To be more precise, the package defines the macro |\pingu@none|, which is matched against the selected color.
+Furthermore, there is the special color {\makeatletter\say{\expandafter\ipingu\expandafter{\@pingu@none}}} which is available for most\footnote{Why just \say{most}? Well, this package is work in progress and I have added the option late, so I may have forgotten to patch some keys.} extras and wing-items. This color prohibits the compartments from being drawn. To be more precise, the package defines the macro \ltex{\\@pingu@none}, which is matched against the selected color.
 
 As an example, lets take a look at the \keyref{cup}-extra, which provides an additional key \keyref{cup straw} to color the straw:
 \begin{tcblisting}{title={Cup without a straw},externalize listing=extra-options}
@@ -548,10 +548,11 @@ As an example, lets take a look at the \keyref{cup}-extra, which provides an add
 	       cup straw=!hide]
 \end{tikzpicture}
 \end{tcblisting}
+As you can see, using \lpingu{!hide}, the straw will not be drawn.
 
 \subsection{Setting the defaults}
-You do not have to state every key for every penguin.
-With the two macros \lstinline[language=pingulang]'\pingudefaults' and \lstinline[language=pingulang]'\pingudefaultsappend' (works the same, but will extend the current options) you can set default-options for all penguins to come:
+You do not have to re-state every key.
+With \lstinline[language=pingulang]'\pingudefaults' and \lstinline[language=pingulang]'\pingudefaultsappend' (similar, but extends the current options) you can set default-options for all penguins to come:
 \begin{tcblisting}{title={Change the mainstream},externalize listing=update-defaults}
 \begin{tikzpicture}
 	\pingudefaults{wings grab, eyes shiny}
@@ -564,7 +565,6 @@ With the two macros \lstinline[language=pingulang]'\pingudefaults' and \lstinlin
 \label{Libraries}\index{Libraries}I've split the penguin features into a set of libraries. While all of them are loaded by default, the |bare| package-option disables the automatic loading of all libraries. They can be loaded (locally to the current group) using |\pinguloadlibrary| and |\pinguloadlibraries| passing on a comma separated list of desired libraries.
 See the full reference or the index to learn which key comes from which library.
 Please note that~--- at the moment~--- not all components of a library are labeled correctly.
-
 % TODO: already count that? % global let?
 \foreach[count=\i] \l/\xs in \pingu@defaultlibs{\xdef\pingu@defaultlibs@count{\i}}%
 Currently there are the following libraries:
@@ -582,7 +582,9 @@ Currently, there are the following wing-positions:
 \typesetselection{leftwing}. \say{none} is a special wing-position: it omits the drawing of wings (teaser: every selection has a none-option, which prohibits the part from being drawn)!
 
 For each valid wing-position you can use |wings <position>| to change both wings or |left wing <position>| and |right wing <position>| to change only one wing respectively. The default wing-position is \say{normal}. If you supply multiple options for a wing, only the last one survives.\footnote{For the sake of completeness: \ipingu{wings <position>}, \ipingu{left wing <position>}, and \ipingu{right wing <position>} are just alternatives i prefer: \ipingu{wings=<position>}, \ipingu{left wing=<position>} and \ipingu{right wing=<position>}.}
-\begin{tcblisting}{sidebyside=false, title=Wing-Showcase,,externalize listing=wings-showcase}
+See \autoref{wing-showcase}.
+
+\begin{tcblisting}{sidebyside=false, title=Wing-Showcase,externalize listing=wings-showcase,float,label=wing-showcase}
 \begin{tikzpicture}
 	\pingu[left wing none, heart=green]
 	\pingu[wings wave, heart=teal, xshift=3.5cm]
@@ -592,9 +594,11 @@ For each valid wing-position you can use |wings <position>| to change both wings
 \end{tcblisting}
 
 \subsection{Changing the eyes}
-\label{mrk:pengu-eye}Just like the wings, there are a couple of different eye-styles to choose from: \typesetselection{lefteye}. Just like the wings, there is a \say{none} and a \say{normal}-option (which is the default).
-Furthermore, the convenient selectors |eyes <style>|, |left eye <style>|, and |right eye <style>| exist as well:
-\begin{tcblisting}{sidebyside=false, title=Eye-Showcase,externalize listing=eyes-showcase}
+\label{mrk:pengu-eye}Just like the wings, there are a couple of different eye-styles to choose from: \typesetselection{lefteye}.
+Similar to the wings, there is a \say{none} and a \say{normal}-option (which is the default).
+Furthermore, the convenient selectors |eyes <style>|, |left eye <style>|, and |right eye <style>| exist as well. See \autoref{eye-showcase}.
+
+\begin{tcblisting}{sidebyside=false, title=Eye-Showcase,externalize listing=eyes-showcase,float,label=eye-showcase}
 \begin{tikzpicture}
 	\pingu[left eye none, heart=green]
 	\pingu[eyes wink, heart=teal, xshift=3.5cm]
@@ -616,8 +620,8 @@ Furthermore, the convenient selectors |eyes <style>|, |left eye <style>|, and |r
 	\item The \textit{hairstyle} (does not have left and right)\\*
 		Select from: \typesetselection{hairstyle}.
 \end{itemize}
-For each selection, \say{none} will prohibit the drawing, and \say{normal} is the default chosen.
-\begin{tcblisting}{sidebyside=false, title=Bodyparts-Showcase,externalize listing=bodyparts-showcase}
+For each selection, \say{none} will prohibit the drawing, and \say{normal} is the default chosen. See \autoref{bodyparts-showcase}.
+\begin{tcblisting}{sidebyside=false, title=Bodyparts-Showcase,externalize listing=bodyparts-showcase,float,label=bodyparts-showcase}
 \begin{tikzpicture}
 	\pingu[bill angry, heart=green]
 	\pingu[feet back, hairstyle none, heart=teal, xshift=3.5cm]
