@@ -11,9 +11,9 @@
 \makeatletter\def\input@path{{../tex/}}\makeatother
 \usepackage[glows]{tikzpingus}
 
-\definecolor{doc-main}{RGB}{204,0,25}
+% \definecolor{doc-main}{RGB}{204,0,25}
 \colorlet{@opcolor}{pingu@blue!75!black}
-
+\colorlet{doc-main}{@opcolor!80!pingu@black}
 \usepackage[linkcolor=@opcolor,urlcolor=@opcolor,colorlinks,breaklinks,pdfusetitle]{hyperref}
 \usetikzlibrary{shapes.misc,arrows.meta}
 \urlstyle{same}
@@ -291,7 +291,7 @@
 \endgroup\global\let\pengu@all@showcases\@empty}
 
 \def\PenguinTitle{%
-\setbox0=\hbox{\tikz{\pingu[body type=tilt-right,eyes wink,conical hat,cane right,bow tie=pingu@purple,left wing grab,cup=purple!72!pingu@black]}}%
+\setbox0=\hbox{\tikz{\pingu[body type=tilt-right,eyes wink,conical hat,cane right,bow tie=pingu@purple,left wing grab,cup=doc-main]}}%
 \begin{tikzpicture}[overlay,remember picture]
 	\node[below left=1.5cm,rotate=-10] at (current page.north east) {\box0};
 \end{tikzpicture}%
