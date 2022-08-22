@@ -164,7 +164,7 @@
 
 \def\ShowcasePengu#1=#2;{{\hypersetup{linkcolor=.}%
 \hyperref[pk:/pingu/#1]{%
-	\parbox[b][\pingu@showcase@height]{.14\linewidth}{\centering\ifx!#2!\def\Arg{}\else\def\Arg{=#2}\fi\edef\MakeShowcase{\noexpand\RawShowcase{#1}{\Arg}}\MakeShowcase}%
+	\parbox[b][\pingu@showcase@height]{.14\linewidth}{\centering\ifx!#2!\def\Arg{}\else\def\Arg{=#2}\fi\edef\MakeShowcase{\noexpand\RawShowcase{#1}{\Arg}}\clap{\MakeShowcase}}%
 }}}
 \def\pengu@all@showcases{}
 % we mix them somewhat funny
