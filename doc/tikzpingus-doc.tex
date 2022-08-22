@@ -12,8 +12,9 @@
 \usepackage[glows]{tikzpingus}
 
 \definecolor{doc-main}{RGB}{204,0,25}
+\colorlet{@opcolor}{pingu@blue!75!black}
 
-\usepackage[linkcolor=doc-main,urlcolor=doc-main,colorlinks,breaklinks,pdfusetitle]{hyperref}
+\usepackage[linkcolor=@opcolor,urlcolor=@opcolor,colorlinks,breaklinks,pdfusetitle]{hyperref}
 \usetikzlibrary{shapes.misc,arrows.meta}
 \urlstyle{same}
 \expandafter\def\expandafter\UrlBreaks\expandafter{\UrlBreaks\do-}
@@ -66,7 +67,6 @@
 \addtokomafont{author}{\normalsize}
 \addtokomafont{date}{\normalsize}
 
-\colorlet{@opcolor}{pingu@blue!75!black}
 \def\optstyle{\@declaredcolor{@opcolor}\slshape}
 \colorlet{@softgray}{gray!60!white}
 \colorlet{@softgray@b}{gray!75!white}
@@ -177,16 +177,16 @@
 \RedeclareSectionCommand[runin=false,afterskip=-2mm]{subsection}
 
 \tcbset{%
-	colframe=gray,enhanced,breakable, arc=2mm, arc is angular,
+	colframe=gray,enhanced,breakable, arc=2mm,
 	fonttitle=\bfseries, sidebyside,
-	listing options={style=lstpingu,language=pingulang},
+	boxrule=.35mm,listing options={style=lstpingu,language=pingulang},
 	center lower,segmentation at break=false,
 	righthand width=4.75cm, bottom=0pt, top=0pt,boxsep=2.25pt,
 	before lower app={}, colback=white
 }
 \lstMakeShortInline[style=lstpingu,language=pingulang,basicstyle=\relsize{-1}\ttfamily\@declaredcolor{black!90!white},moredelim={[s][\itshape]{<}{>}}]{|}
 
-\def\explaincolor{doc-main!8!white}
+\def\explaincolor{@opcolor!8!white}
 \def\cursub{}
 \def\keyexplainindent{2em}%
 % allow the oxes to have minor overlaps
@@ -205,8 +205,7 @@
 	\expandafter\gdef\csname pingudefa#2\endcsname{#4}%
 	\begingroup\pgfkeys{/pingu/.cd,defaults}\protected@edef\@tmp{#4}%
 	\protected@edef\@tmpb{#3}%
-	\hfuzz=2\keyexplainindent
-	\hspace*{-\keyexplainindent}\colorbox{\explaincolor}{%
+	\hspace*{-\keyexplainindent}\tcbox[left=3pt,right=3pt,top=3pt,bottom=3pt,colframe=white,colback=\explaincolor,on line]{%
 		\parbox{\dimexpr\linewidth-2\fboxsep+\keyexplainindent}{\small
 		\ifx\@tmpb\@empty\lpingu{#1#2}\else\lpingu{#1#2 =\ }\texttt{<\textit{\@tmpb}>}\fi\hfill
 				\ifx\@tmp\@empty\else{\@declaredcolor{gray}(}#4{\@declaredcolor{gray})}\fi
@@ -227,7 +226,7 @@
 
 \newcommand*\keyref[2][/pingu/]{\hyperref[pk:#1#2]{\lpingu{#1#2}}}
 \newcommand*\dkeyref[2][/pingu/]{\hyperref[pk:#1#2]{\lpingu{#2}}}
-\colorlet{@softexplaincolor}{gray!10!white}
+\colorlet{@softexplaincolor}{gray!8!white}
 \newenvironment{subkeyexplain}[5][/pingu/]{%
 \begingroup
 \def\explaincolor{@softexplaincolor}\def\keyexplainindent{0em}%
@@ -262,6 +261,8 @@
 
 \tcbset{external/prefix=sub_}
 \tcbEXTERNALIZE % we do not need the other configurationshttps://www.freecodecamp.org/news/deploy-a-react-app-to-github-pages/ in the externalized images :D
+
+\hfuzz=12pt
 
 % this should not happen in the external images
 \AtBeginDocument{%
@@ -300,7 +301,7 @@
 % \subtitle{Penguins with \TikZ}
 \author{%
 	\texorpdfstring{Florian Sihler\\*
-		\hypersetup{colorlinks=false}\url{https://github.com/EagleoutIce/tikzpingus}
+		\url{https://github.com/EagleoutIce/tikzpingus}
 	}{Florian Sihler}}
 \date{Version v1.0 \textendash\ 2022/08/14}
 
@@ -310,9 +311,9 @@
 
 \begingroup
 \vspace*{-4em}\newsavebox\pinguboxA
-\savebox\pinguboxA{\tikz\pingu[wings raise,santa hat,eyes wink,bow tie=pingu@yellow];}
+\savebox\pinguboxA{\tikz{\pingu[wings raise,santa hat,eyes wink,bow tie=pingu@yellow]}}
 \newsavebox\pinguboxB
-\savebox\pinguboxB{\tikz\pingu[wings raise,head band,eyes angry,sunglasses,bow tie=doc-main,body type=chubby];}
+\savebox\pinguboxB{\tikz{\pingu[wings raise,head band,eyes angry,sunglasses,bow tie=doc-main,body type=chubby]}}
 \begin{center}
 \begin{tikzpicture}
     \node[text width=.95\linewidth, inner sep=11pt] (m) {%
@@ -706,7 +707,7 @@ Currently there are the following wing items:
 \typesetselection{wingitems}.
 They are selected using |<wing item> <left/right>|.
 
-Additionally, they can be customized by |<left/right> item angle=<angle>| and |<left/right> item flip=<true/false>|.
+Additionally, they can be customized by \keyref{left item angle} and \keyref{right item angle}, as well as \keyref{left item flip} and \keyref{right item flip}.
 Lets consider an example\ldots
 \begin{tcblisting}{title={Penguin with full wings!}}
 \begin{tikzpicture}[scale=.75]
