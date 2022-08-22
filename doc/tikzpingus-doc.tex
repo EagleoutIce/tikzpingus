@@ -582,9 +582,9 @@ Currently, there are the following wing-positions:
 \typesetselection{leftwing}. \say{none} is a special wing-position: it omits the drawing of wings (teaser: every selection has a none-option, which prohibits the part from being drawn)!
 
 For each valid wing-position you can use |wings <position>| to change both wings or |left wing <position>| and |right wing <position>| to change only one wing respectively. The default wing-position is \say{normal}. If you supply multiple options for a wing, only the last one survives.\footnote{For the sake of completeness: \ipingu{wings <position>}, \ipingu{left wing <position>}, and \ipingu{right wing <position>} are just alternatives i prefer: \ipingu{wings=<position>}, \ipingu{left wing=<position>} and \ipingu{right wing=<position>}.}
-See \autoref{wing-showcase}.
+This is shown in Box~\say{\nameref{wing-showcase}}.
 
-\begin{tcblisting}{sidebyside=false, title=Wing-Showcase,externalize listing=wings-showcase,float,label=wing-showcase}
+\begin{tcblisting}{sidebyside=false, title=Wing-Showcase,nameref=Wing-Showcase,externalize listing=wings-showcase,float,phantomlabel=wing-showcase}
 \begin{tikzpicture}
 	\pingu[left wing none, heart=green]
 	\pingu[wings wave, heart=teal, xshift=3.5cm]
@@ -596,9 +596,9 @@ See \autoref{wing-showcase}.
 \subsection{Changing the eyes}
 \label{mrk:pengu-eye}Just like the wings, there are a couple of different eye-styles to choose from: \typesetselection{lefteye}.
 Similar to the wings, there is a \say{none} and a \say{normal}-option (which is the default).
-Furthermore, the convenient selectors |eyes <style>|, |left eye <style>|, and |right eye <style>| exist as well. See \autoref{eye-showcase}.
+Furthermore, the convenient selectors |eyes <style>|, |left eye <style>|, and |right eye <style>| exist as well. All of this is showcased in~Box~\say{\nameref{eye-showcase}}.
 
-\begin{tcblisting}{sidebyside=false, title=Eye-Showcase,externalize listing=eyes-showcase,float,label=eye-showcase}
+\begin{tcblisting}{sidebyside=false,title=Eye-Showcase,nameref=Eye-Showcase,externalize listing=eyes-showcase,float,phantomlabel=eye-showcase}
 \begin{tikzpicture}
 	\pingu[left eye none, heart=green]
 	\pingu[eyes wink, heart=teal, xshift=3.5cm]
@@ -620,8 +620,8 @@ Furthermore, the convenient selectors |eyes <style>|, |left eye <style>|, and |r
 	\item The \textit{hairstyle} (does not have left and right)\\*
 		Select from: \typesetselection{hairstyle}.
 \end{itemize}
-For each selection, \say{none} will prohibit the drawing, and \say{normal} is the default chosen. See \autoref{bodyparts-showcase}.
-\begin{tcblisting}{sidebyside=false, title=Bodyparts-Showcase,externalize listing=bodyparts-showcase,float,label=bodyparts-showcase}
+For each selection, \say{none} will prohibit the drawing, and \say{normal} is the default chosen. See Box~\say{\nameref{bodyparts-showcase}} for a example.
+\begin{tcblisting}{sidebyside=false,title=Bodyparts-Showcase,nameref=Bodyparts-Showcase,externalize listing=bodyparts-showcase,float,phantomlabel=bodyparts-showcase}
 \begin{tikzpicture}
 	\pingu[bill angry, heart=green]
 	\pingu[feet back, hairstyle none, heart=teal, xshift=3.5cm]
@@ -657,8 +657,8 @@ Currently, only some of the styles do affect other items. As an example, conside
 \subsection{Randomness}
 Each selection (like the wings or the eyes) can receive a special command \lpingu{!random}. If given, the penguin will receive a randomly picked component.
 Please note, that \textit{none} (the component removing it) will never be picked.
-The first line in the example sets the seed: % we do not externalize this one
-\begin{tcblisting}{title={Random Penguin}}
+The first line in the example in Box~\say{\nameref{random-penguin}} sets the seed. % we do not externalize this one
+\begin{tcblisting}{title={Random Penguin},nameref={Random Penguin},label=random-penguin,float}
 \pgfmathsetseed{\number\pdfrandomseed}
 \begin{tikzpicture}
 	\pingu[wings=!random,eyes=!random,
@@ -669,7 +669,7 @@ The first line in the example sets the seed: % we do not externalize this one
 \end{tikzpicture}
 \end{tcblisting}
 
-In a more general fashion, there is a \keyref{random from} key for completely random penguins:
+In a more general fashion, there is a \keyref{random from} key for completely random penguins.
 
 \keyexplain{random from}{list}{}
 	You can pass any list of penguin keys and exactly one of them will be selected. You can nest \keyref{random from}-calls. Please note, that the items are not separated by comma but in braces. The first line in the example sets the seed:% do not externalize
@@ -688,8 +688,8 @@ Most extras are activated with the format |<extra>=<color>| (the |<color>| optio
 and try to adapt with other extras that have been placed (yet you can place multiple hats if you really like to).  A lot of the extras do offer more keys to customize their appearance.
 They are explained in the full reference (\autoref{sec:full-ref}).
 
-Consider the following, somewhat overkill-example:
-\begin{tcblisting}{title={Lord-Gadget, the penguin},externalize listing=lord-gadget}
+Consider the somewhat overkill-example of \say{\nameref{lord-gadget}}.
+\begin{tcblisting}{title={Lord-Gadget, the penguin},externalize listing=lord-gadget,nameref={Lord-Gadget, the penguin},label=lord-gadget,float}
 \begin{tikzpicture}
 	\pingu[crown 2d=pingu@bronze,
 	       medal=pingu@purple, tie,
@@ -753,7 +753,7 @@ Aliases may set custom defaults. Those defaults are not listed as they may chang
 \subsection{Penguin Keys}
 
 \keyexplain{name}{text}{\pingu@name}
-	Sets the name of the penguin. This name is used for all the automatically generated coordinates (see \autoref{mrk:coordinates}).
+	Sets the name of the penguin. This name is used for all the automatically generated coordinates (see~\autoref{mrk:coordinates}).
 \endkeyexplain
 
 \keyexplain{scale}{floating point}{active scale}
