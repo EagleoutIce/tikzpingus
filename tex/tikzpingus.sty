@@ -1148,7 +1148,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 }
 \def\pingu@@dummy@selector#1#2#3{%
     \expandafter\csname pingu@#3@add\endcsname{#1}{\PackageError{\tikzpingus@filename}{To use '#1' with '#3' you need to load the '#2' library via '\string\pinguloadlibrary{#2}'}}%
-    \expandafter\def\csname pingu@@lib@#1@\endcsname{#2}%
+    \expandafter\def\csname pingu@@lib@#1@#3@\endcsname{#2}%
 }
 \def\pingu@dummy@lib#1#2{\edef\tmp@list{#2}\@for\@current:=\tmp@list\do{\expandafter\pingu@@dummy@lib\expandafter{\@current}{#1}}\xappto\pingu@defaultlibs{,{#1}/{#2}}\xappto\pingu@@defaultlibs{,#1}}%
 % library | selector | keys
@@ -1190,13 +1190,15 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \pingu@dummy@lib{formal}{tie,bow tie,pants}
 \pingu@dummy@lib{signs}{sign post left,sign post right}
 \pingu@dummy@lib{devil}{devil horns,devil wings,devil fork left,devil fork right,eyes devil,left eye devil,right eye devil}
-\pingu@dummy@selector{devil}{eyes}{devil}
+\pingu@dummy@selector{devil}{lefteye}{devil}
+\pingu@dummy@selector{devil}{righteye}{devil}
 \pingu@dummy@lib{safe}{mask}
 \pingu@dummy@lib{magic}{handcast left,handcast right}
 \pingu@dummy@lib{movement}{}% register the lib
 \pingu@dummy@selector{movement}{bodytype}{tilt-right,tilt-left}
 \pingu@dummy@lib{emotions}{eyes sad,left eye sad,right eye sad,eyes angry,left eye angry,right eye angry,eyes hearts,left eye heart,right eye hearts,bill angry,blush}
-\pingu@dummy@selector{emotions}{eyes}{sad,angry,hearts}
+\pingu@dummy@selector{emotions}{lefteye}{sad,angry,hearts}
+\pingu@dummy@selector{emotions}{righteye}{sad,angry,hearts}
 
 \pingu@dummy@lib{horse}{horse left,horse right}
 
