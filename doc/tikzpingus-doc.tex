@@ -55,13 +55,17 @@
 \newlist{inlist}{enumerate*}{1}
 \setlist[inlist]{itemjoin={{, }},itemjoin*={{, and }},label=$\roman*$),mode=boxed}
 
+\def\MapDTLList#1{\ifcsname ListnameOf#1\endcsname\csname ListnameOf#1\endcsname\else#1\fi}
+\def\ListnameOflefteye{eyes}
+\def\ListnameOfbodytype{body type}
+
 \let\say\enquote
 \def\DTLlistformatoxford{,}\def\DTLandname{and}
 % TODO: do guard against same keys for different selectors
-\long\def\ParseDTLListElement#1"#2"\@nil{\textsuperscript{\smash{\raisebox{2pt}{\ifcsname pingu@@lib@#2@\CurrentList @\endcsname\index{Libraries!\textit{\csname pingu@@lib@#2@\CurrentList @\endcsname}!#2?\hyperref[pk:/pingu/#2]{\protect\lpingu{#2}}}~$\underset{\text{\tiny\smash{\raisebox{3pt}{\textsf{\hyperref[Libraries]{\color{gray}Library}}}}}}{\text{\textit{\tiny\strut\csname pingu@@lib@#2@\CurrentList @\endcsname}}}$\fi}}}}
+\long\def\ParseDTLListElement#1"#2"\@nil{\textsuperscript{\smash{\raisebox{2pt}{\ifcsname pingu@@lib@#2@\CurrentList @\endcsname\index{Libraries!\textit{\csname pingu@@lib@#2@\CurrentList @\endcsname}!#2?\hyperref[expl-list:\CurrentList]{\protect\lpingu{#2} {\tiny\sffamily(\MapDTLList{\CurrentList})}}}~$\underset{\text{\tiny\smash{\raisebox{3pt}{\textsf{\hyperref[Libraries]{\color{gray}Library}}}}}}{\text{\textit{\tiny\strut\csname pingu@@lib@#2@\CurrentList @\endcsname}}}$\fi}}}}
 \def\DTLlistformatitem#1{\textit{#1\expandafter\ParseDTLListElement :#1\@nil}}
 \newcommand*\typesetselection[1][]{\begingroup\ifx!#1!\else\def\DTLlistformatitem##1{#1}\fi\dotypesetselection}
-\def\dotypesetselection#1{\def\CurrentList{#1}\expandafter\DTLformatlist\expandafter{\csname @pingu@#1@\endcsname}\endgroup}
+\def\dotypesetselection#1{\label{expl-list:#1}\def\CurrentList{#1}\expandafter\DTLformatlist\expandafter{\csname @pingu@#1@\endcsname}\endgroup}
 \makeatletter
 
 \addtokomafont{sectioning}{\@declaredcolor{gray}}
@@ -190,7 +194,7 @@
 
 \def\explaincolor{@opcolor!8!white}
 \def\cursub{}
-\def\keyexplainindent{2em}%
+\def\keyexplainindent{2.5em}%
 % allow the oxes to have minor overlaps
 \newenvironment{keyexplain}[4][/pingu/]{\minipage{\linewidth}
 	\parskip\smallskipamount
@@ -212,7 +216,7 @@
 		\ifx\@tmpb\@empty\lpingu{#1#2}\else\lpingu{#1#2 =\ }\texttt{<\textit{\@tmpb}>}\fi\hfill
 				\ifx\@tmp\@empty\else{\@declaredcolor{gray}(}#4{\@declaredcolor{gray})}\fi
 		}
-	}\ifcsname pingu@@lib@#2@\endcsname\index{Libraries!\textit{\csname pingu@@lib@#2@\endcsname}!#2?\hyperref[pk:#1#2]{\protect\lpingu{#2}}}\rlap{~\quad$\underset{\text{\tiny\smash{\raisebox{3pt}{\textsf{\hyperref[Libraries]{\color{gray}Library}}}}}}{\text{\textit{\footnotesize\strut\csname pingu@@lib@#2@\endcsname}}}$}\fi\par\endgroup
+	}\ifcsname pingu@@lib@#2@\endcsname\index{Libraries!\textit{\csname pingu@@lib@#2@\endcsname}!#2?\hyperref[pk:#1#2]{\protect\lpingu{#2}}}\rlap{~\quad\raisebox{2.75pt}{$\underset{\text{\tiny\smash{\raisebox{3pt}{\textsf{\hyperref[Libraries]{\color{gray}Library}}}}}}{\text{\textit{\footnotesize\strut\csname pingu@@lib@#2@\endcsname}}}$}}\fi\par\endgroup
 }
 {\endminipage\smallskip\par}
 
@@ -3130,7 +3134,7 @@ Give the penguin a banner to hold (it adapts to the wing positions):
 \endsubkeyexplain
 
 \subkeyexplain{banner}{banner sticks color}{color}{\pingu@color@banner@stick@left}
-Calls \keyref{baner stick left color} and \keyref{baner stick right color} with the same color:
+Calls \keyref{banner stick left color} and \keyref{banner stick right color} with the same color:
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[banner, banner sticks color=green]
@@ -3157,7 +3161,7 @@ Changes the banners right stick length:
 \endsubkeyexplain
 
 \subkeyexplain{banner}{banner sticks length}{color}{\pingu@banner@stick@left@l}
-Calls \keyref{baner stick left length} and \keyref{baner stick right length} with the same length:
+Calls \keyref{banner stick left length} and \keyref{banner stick right length} with the same length:
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[banner, banner sticks length=9mm]
@@ -4871,5 +4875,5 @@ This is interesting in combination with other extras as it allows the \keyref{sh
 \end{tcblisting}
 \endsubkeyexplain}
 
-\printindex
+\lstset{breakatwhitespace}\printindex
 \end{document}
