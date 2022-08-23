@@ -57,7 +57,9 @@
 
 \let\say\enquote
 \def\DTLlistformatoxford{,}\def\DTLandname{and}
-\def\DTLlistformatitem#1{\textit{#1}}
+% TODO: do guard against same keys for different selectors
+\long\def\ParseDTLListElement#1"#2"\@nil{\textsuperscript{\smash{\ifcsname pingu@@lib@#2@\endcsname\index{Libraries!\textit{\csname pingu@@lib@#2@\endcsname}!#2?\hyperref[pk:/pingu/#2]{\protect\lpingu{#2}}}~$\underset{\text{\tiny\smash{\raisebox{3pt}{\textsf{\hyperref[Libraries]{\color{gray}Library}}}}}}{\text{\textit{\scriptsize\strut\csname pingu@@lib@#2@\endcsname}}}$\!\fi}}}
+\def\DTLlistformatitem#1{\textit{#1\expandafter\ParseDTLListElement :#1\@nil}}
 \newcommand*\typesetselection[1][]{\begingroup\ifx!#1!\else\def\DTLlistformatitem##1{#1}\fi\dotypesetselection}
 \def\dotypesetselection#1{\expandafter\DTLformatlist\expandafter{\csname @pingu@#1@\endcsname}\endgroup}
 \makeatletter
@@ -703,7 +705,8 @@ Consider the somewhat overkill-example of \say{\nameref{lord-gadget}}.
 \subsection{Wing-Items}
 Wing items are basically just like extras, but they can be selected separately for the left and right wing. Furthermore, they adapt their \textit{default} appearance to the active wing positions (\autoref{subsec:wings}).
 Currently there are the following wing items:
-\typesetselection{wingitems}.
+% add a extra guard not present with the wing items
+\typesetselection[\textit{#1\expandafter\ParseDTLListElement :"#1"\@nil}]{wingitems}.
 They are selected using |<wing item> <left/right>|.
 
 Additionally, they can be customized by \keyref{left item angle} and \keyref{right item angle}, as well as \keyref{left item flip} and \keyref{right item flip}.
