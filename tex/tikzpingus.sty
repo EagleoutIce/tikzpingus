@@ -1144,7 +1144,6 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \def\pingu@@dummy@lib#1#2{%
     \pgfqkeys{/pingu}{#1/.code={\PackageError{\tikzpingus@filename}{To use '#1' you need to load the '#2' library via '\string\pinguloadlibrary{#2}'}}}%
     \expandafter\def\csname pingu@@lib@#1@\endcsname{#2}%
-    \typeout{Def: #1 => #2}%
 }
 \def\pingu@dummy@lib#1#2{\edef\tmp@list{#2}\@for\@current:=\tmp@list\do{\expandafter\pingu@@dummy@lib\expandafter{\@current}{#1}}\xappto\pingu@defaultlibs{,{#1}/{#2}}\xappto\pingu@@defaultlibs{,#1}}
 \def\pingu@defaultlibs{}\def\pingu@@defaultlibs{}

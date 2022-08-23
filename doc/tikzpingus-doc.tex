@@ -210,7 +210,7 @@
 		\ifx\@tmpb\@empty\lpingu{#1#2}\else\lpingu{#1#2 =\ }\texttt{<\textit{\@tmpb}>}\fi\hfill
 				\ifx\@tmp\@empty\else{\@declaredcolor{gray}(}#4{\@declaredcolor{gray})}\fi
 		}
-	}\ifcsname pingu@@lib@#2@\endcsname\typeout{Got: #2}\index{Libraries!\textit{\csname pingu@@lib@#2@\endcsname}!#2?\hyperref[pk:#1#2]{\protect\lpingu{#2}}}\rlap{~\quad$\underset{\text{\tiny\smash{\raisebox{3pt}{\textsf{\hyperref[Libraries]{\color{gray}Library}}}}}}{\text{\textit{\footnotesize\strut\csname pingu@@lib@#2@\endcsname}}}$}\else\typeout{Miss: #2}\fi\par\endgroup
+	}\ifcsname pingu@@lib@#2@\endcsname\index{Libraries!\textit{\csname pingu@@lib@#2@\endcsname}!#2?\hyperref[pk:#1#2]{\protect\lpingu{#2}}}\rlap{~\quad$\underset{\text{\tiny\smash{\raisebox{3pt}{\textsf{\hyperref[Libraries]{\color{gray}Library}}}}}}{\text{\textit{\footnotesize\strut\csname pingu@@lib@#2@\endcsname}}}$}\fi\par\endgroup
 }
 {\endminipage\smallskip\par}
 
@@ -676,7 +676,7 @@ In a more general fashion, there is a \keyref{random from} key for completely ra
 \begin{tcblisting}{}
 \pgfmathsetseed{\number\pdfrandomseed}
 \begin{tikzpicture}
-	\pingu[random from={{eye patch left}{eye patch right}{halo,halo raise=4mm}},random from={{right eye color=green}{random from={{bow tie}{gold medal}}}},random from={{eyes=!random}{wings=!random}},body type=legacy]
+	\pingu[random from={{eye patch left}{eye patch right}{halo,halo raise=4mm}},random from={{right eye color=pingu@blue}{random from={{bow tie}{gold medal}}}},random from={{eyes=!random}{wings=!random}},body type=legacy]
 \end{tikzpicture}
 \end{tcblisting}
 \endkeyexplain
