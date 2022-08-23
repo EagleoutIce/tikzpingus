@@ -80,8 +80,9 @@
     \expandafter\newcount\csname pc@#1@max\endcsname
     \expandafter\let\csname @pingu@#1@\endcsname\@empty
     \expandafter\long\expandafter\def\csname pingu@#1@add\endcsname##1##2{%
-        \pingu@csappto{@pingu@#1@}{"##1"}%
-        \expandafter\global\expandafter\advance\csname pc@#1@max\endcsname1\relax
+        \ifcsname @pingu@drawer@#1@##1@\endcsname\else% do not re-append!
+        \pingu@csappto{@pingu@#1@}{"##1"}
+        \expandafter\global\expandafter\advance\csname pc@#1@max\endcsname1\relax\fi
         \expandafter\long\expandafter\def\csname @pingu@drawer@#1@##1@\endcsname{##2}%
     }
     \expandafter\def\csname pingu@#1@select\endcsname##1{%
@@ -1145,7 +1146,13 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     \pgfqkeys{/pingu}{#1/.code={\PackageError{\tikzpingus@filename}{To use '#1' you need to load the '#2' library via '\string\pinguloadlibrary{#2}'}}}%
     \expandafter\def\csname pingu@@lib@#1@\endcsname{#2}%
 }
-\def\pingu@dummy@lib#1#2{\edef\tmp@list{#2}\@for\@current:=\tmp@list\do{\expandafter\pingu@@dummy@lib\expandafter{\@current}{#1}}\xappto\pingu@defaultlibs{,{#1}/{#2}}\xappto\pingu@@defaultlibs{,#1}}
+\def\pingu@@dummy@selector#1#2#3{%
+    \expandafter\csname pingu@#3@add\endcsname{#1}{\PackageError{\tikzpingus@filename}{To use '#1' with '#3' you need to load the '#2' library via '\string\pinguloadlibrary{#2}'}}%
+    \expandafter\def\csname pingu@@lib@#1@#3@\endcsname{#2}%
+}
+\def\pingu@dummy@lib#1#2{\edef\tmp@list{#2}\@for\@current:=\tmp@list\do{\expandafter\pingu@@dummy@lib\expandafter{\@current}{#1}}\xappto\pingu@defaultlibs{,{#1}/{#2}}\xappto\pingu@@defaultlibs{,#1}}%
+% library | selector | keys
+\def\pingu@dummy@selector#1#2#3{\edef\tmp@list{#3}\@for\@current:=\tmp@list\do{\expandafter\pingu@@dummy@selector\expandafter{\@current}{#1}{#2}}}
 \def\pingu@defaultlibs{}\def\pingu@@defaultlibs{}
 \def\pingu@load@library#1{%
 % store common catcodes
@@ -1181,13 +1188,19 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \pingu@dummy@lib{hats}{strawhat,hat,cap,construction helmet,conical hat}
 \pingu@dummy@lib{sport}{head band,medal}
 \pingu@dummy@lib{formal}{tie,bow tie,pants}
-\pingu@dummy@lib{signs}{sign post left, sign post right}
-\pingu@dummy@lib{devil}{devil horns,devil wings,devil fork left,devil fork right}
+\pingu@dummy@lib{signs}{sign post left,sign post right}
+\pingu@dummy@lib{devil}{devil horns,devil wings,devil fork left,devil fork right,eyes devil,left eye devil,right eye devil}
+\pingu@dummy@selector{devil}{lefteye}{devil}
+\pingu@dummy@selector{devil}{righteye}{devil}
 \pingu@dummy@lib{safe}{mask}
-\pingu@dummy@lib{magic}{handcast left, handcast right}
-\pingu@dummy@lib{movement}{<TODO>}
-\pingu@dummy@lib{emotions}{<TODO>}% eyes and bill: TODO
-\pingu@dummy@lib{horse}{horse left, horse right}
+\pingu@dummy@lib{magic}{handcast left,handcast right}
+\pingu@dummy@lib{movement}{}% register the lib
+\pingu@dummy@selector{movement}{bodytype}{tilt-right,tilt-left}
+\pingu@dummy@lib{emotions}{eyes sad,left eye sad,right eye sad,eyes angry,left eye angry,right eye angry,eyes hearts,left eye heart,right eye hearts,bill angry,blush}
+\pingu@dummy@selector{emotions}{lefteye}{sad,angry,hearts}
+\pingu@dummy@selector{emotions}{righteye}{sad,angry,hearts}
+
+\pingu@dummy@lib{horse}{horse left,horse right}
 
 \ifpengu@setup@bare@\else
 \pinguloadlibraries{\pingu@@defaultlibs}

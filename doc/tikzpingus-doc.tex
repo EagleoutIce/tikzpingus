@@ -57,9 +57,11 @@
 
 \let\say\enquote
 \def\DTLlistformatoxford{,}\def\DTLandname{and}
-\def\DTLlistformatitem#1{\textit{#1}}
+% TODO: do guard against same keys for different selectors
+\long\def\ParseDTLListElement#1"#2"\@nil{\textsuperscript{\smash{\raisebox{2pt}{\ifcsname pingu@@lib@#2@\CurrentList @\endcsname\index{Libraries!\textit{\csname pingu@@lib@#2@\CurrentList @\endcsname}!#2?\hyperref[pk:/pingu/#2]{\protect\lpingu{#2}}}~$\underset{\text{\tiny\smash{\raisebox{3pt}{\textsf{\hyperref[Libraries]{\color{gray}Library}}}}}}{\text{\textit{\tiny\strut\csname pingu@@lib@#2@\CurrentList @\endcsname}}}$\fi}}}}
+\def\DTLlistformatitem#1{\textit{#1\expandafter\ParseDTLListElement :#1\@nil}}
 \newcommand*\typesetselection[1][]{\begingroup\ifx!#1!\else\def\DTLlistformatitem##1{#1}\fi\dotypesetselection}
-\def\dotypesetselection#1{\expandafter\DTLformatlist\expandafter{\csname @pingu@#1@\endcsname}\endgroup}
+\def\dotypesetselection#1{\def\CurrentList{#1}\expandafter\DTLformatlist\expandafter{\csname @pingu@#1@\endcsname}\endgroup}
 \makeatletter
 
 \addtokomafont{sectioning}{\@declaredcolor{gray}}
@@ -500,7 +502,6 @@ Lets look at those coordinates in more detail (all labels are to be prefixed by 
 \end{tikzpicture}}%
 \begin{center}
 	\edef\measurepage{\the\dimexpr\pagegoal-\pagetotal-2\baselineskip\relax}%
-	\typeout{measurepage: \measurepage}%
 	\ifdim\measurepage<4\baselineskip\clearpage\edef\measurepage{\the\dimexpr\pagegoal-\pagetotal-2\baselineskip\relax}\fi
 	\resizebox*!{\measurepage}{%
 		\PinguCoords{}%
@@ -677,7 +678,7 @@ In a more general fashion, there is a \keyref{random from} key for completely ra
 \begin{tcblisting}{}
 \pgfmathsetseed{\number\pdfrandomseed}
 \begin{tikzpicture}
-	\pingu[random from={{eye patch left}{eye patch right}{halo,halo raise=4mm}},random from={{right eye color=green}{random from={{bow tie}{gold medal}}}},random from={{eyes=!random}{wings=!random}},body type=legacy]
+	\pingu[random from={{eye patch left}{eye patch right}{halo,halo raise=4mm}},random from={{right eye color=pingu@blue}{random from={{bow tie}{gold medal}}}},random from={{eyes=!random}{wings=!random}},body type=legacy]
 \end{tikzpicture}
 \end{tcblisting}
 \endkeyexplain
@@ -704,7 +705,8 @@ Consider the somewhat overkill-example of \say{\nameref{lord-gadget}}.
 \subsection{Wing-Items}
 Wing items are basically just like extras, but they can be selected separately for the left and right wing. Furthermore, they adapt their \textit{default} appearance to the active wing positions (\autoref{subsec:wings}).
 Currently there are the following wing items:
-\typesetselection{wingitems}.
+% add a extra guard not present with the wing items
+\typesetselection[\textit{#1\expandafter\ParseDTLListElement :"#1"\@nil}]{wingitems}.
 They are selected using |<wing item> <left/right>|.
 
 Additionally, they can be customized by \keyref{left item angle} and \keyref{right item angle}, as well as \keyref{left item flip} and \keyref{right item flip}.
