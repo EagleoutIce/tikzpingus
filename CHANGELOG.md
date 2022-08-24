@@ -1,17 +1,28 @@
 # Changelog
 
-## [1.1](https://github.com/EagleoutIce/tikzpingus/tree/1.1) (2022-08-24)
+## [Unreleased](https://github.com/EagleoutIce/tikzpingus/tree/HEAD)
 
-[Full Changelog](https://github.com/EagleoutIce/tikzpingus/compare/v1.0.0...1.1)
+[Full Changelog](https://github.com/EagleoutIce/tikzpingus/compare/v1.0...HEAD)
 
 **Implemented enhancements:**
 
+- Move to CTAN [\#29](https://github.com/EagleoutIce/tikzpingus/issues/29)
+
+## [v1.0](https://github.com/EagleoutIce/tikzpingus/tree/v1.0) (2022-08-24)
+
+[Full Changelog](https://github.com/EagleoutIce/tikzpingus/compare/8cc346f47fa5d99c225ef8b073cbf926bce626c3...v1.0)
+
+**Implemented enhancements:**
+
+- Increase line thickness on Readme preview [\#89](https://github.com/EagleoutIce/tikzpingus/issues/89)
+- Validate changelog generation [\#84](https://github.com/EagleoutIce/tikzpingus/issues/84)
 - Automatically check for broken links [\#78](https://github.com/EagleoutIce/tikzpingus/issues/78)
 - Documentation fix libraries doubled in index  [\#60](https://github.com/EagleoutIce/tikzpingus/issues/60)
 - Happy Greeting Penguin in the Documentation [\#58](https://github.com/EagleoutIce/tikzpingus/issues/58)
 - Allow a fresh build without cache [\#38](https://github.com/EagleoutIce/tikzpingus/issues/38)
 - Speed up CI [\#37](https://github.com/EagleoutIce/tikzpingus/issues/37)
 - Create a Pull-Request template [\#31](https://github.com/EagleoutIce/tikzpingus/issues/31)
+- Improve Preview of the Readme [\#18](https://github.com/EagleoutIce/tikzpingus/issues/18)
 - Add library to key explanation [\#10](https://github.com/EagleoutIce/tikzpingus/issues/10)
 - Filled Drawing Style [\#9](https://github.com/EagleoutIce/tikzpingus/issues/9)
 
@@ -36,12 +47,19 @@
 - Create .dtx, .ins files etc [\#48](https://github.com/EagleoutIce/tikzpingus/issues/48)
 - Add a script to upload to CTAN [\#47](https://github.com/EagleoutIce/tikzpingus/issues/47)
 - Clean up root directory  [\#35](https://github.com/EagleoutIce/tikzpingus/issues/35)
+- Mask in Overview has wrong black [\#21](https://github.com/EagleoutIce/tikzpingus/issues/21)
 - latexmk build scripts for documentation [\#12](https://github.com/EagleoutIce/tikzpingus/issues/12)
 - Quick-Overview of everything [\#6](https://github.com/EagleoutIce/tikzpingus/issues/6)
 - Clipping Issues in documentation [\#4](https://github.com/EagleoutIce/tikzpingus/issues/4)
+- Hello, Can I use these codes in my articles/packages? [\#1](https://github.com/EagleoutIce/tikzpingus/issues/1)
 
 **Merged pull requests:**
 
+- solidify version information [\#92](https://github.com/EagleoutIce/tikzpingus/pull/92) ([EagleoutIce](https://github.com/EagleoutIce))
+- increase line widths [\#91](https://github.com/EagleoutIce/tikzpingus/pull/91) ([EagleoutIce](https://github.com/EagleoutIce))
+- fix fadings on mask and santa [\#90](https://github.com/EagleoutIce/tikzpingus/pull/90) ([EagleoutIce](https://github.com/EagleoutIce))
+- 18 improve preview of the readme [\#88](https://github.com/EagleoutIce/tikzpingus/pull/88) ([EagleoutIce](https://github.com/EagleoutIce))
+- 84 validate changelog generation [\#86](https://github.com/EagleoutIce/tikzpingus/pull/86) ([EagleoutIce](https://github.com/EagleoutIce))
 - remove faulty links introduced by 82 [\#85](https://github.com/EagleoutIce/tikzpingus/pull/85) ([EagleoutIce](https://github.com/EagleoutIce))
 - selectors from packages [\#82](https://github.com/EagleoutIce/tikzpingus/pull/82) ([EagleoutIce](https://github.com/EagleoutIce))
 - fix layout of title pages [\#81](https://github.com/EagleoutIce/tikzpingus/pull/81) ([EagleoutIce](https://github.com/EagleoutIce))
@@ -77,14 +95,6 @@
 - ltexmk buildscript [\#13](https://github.com/EagleoutIce/tikzpingus/pull/13) ([EagleoutIce](https://github.com/EagleoutIce))
 - fill style [\#11](https://github.com/EagleoutIce/tikzpingus/pull/11) ([EagleoutIce](https://github.com/EagleoutIce))
 - Libraries [\#2](https://github.com/EagleoutIce/tikzpingus/pull/2) ([EagleoutIce](https://github.com/EagleoutIce))
-
-## [v1.0.0](https://github.com/EagleoutIce/tikzpingus/tree/v1.0.0) (2022-01-08)
-
-[Full Changelog](https://github.com/EagleoutIce/tikzpingus/compare/8cc346f47fa5d99c225ef8b073cbf926bce626c3...v1.0.0)
-
-**Closed issues:**
-
-- Hello, Can I use these codes in my articles/packages? [\#1](https://github.com/EagleoutIce/tikzpingus/issues/1)
 
 
 
