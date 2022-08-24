@@ -11,61 +11,45 @@ Ti*k*Zpingus is actively developed by *Florian Sihler* (contact me at: <florian.
 
 ----
 
-<style>
-td {
-  padding-top: 20px
-}
-</style>
-
 <table>
-<tr><td>
+<tr><td style="padding-top: 20px">
 
 [<img style="border-radius:12px;border:1pt solid gray;" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-1.png?raw=true" width="400" />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=1)
 
-</td>
-<td>
+</td><td style="padding-top: 20px">
 The Library can do a lot of things... TODO
 </td></tr>
-<tr><td>
+<tr><td style="padding-top: 20px">
 TODO
-</td><td>
+</td><td style="padding-top: 20px">
 
 [<img style="border-radius:12px;border:1pt solid gray;" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-2.png?raw=true" width="400" />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=2)
 
-</td>
-</tr>
-<tr><td>
+</td></tr><tr><td style="padding-top: 20px">
 
 [<img style="border-radius:12px;border:1pt solid gray;" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-3.png?raw=true" width="400" />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=3)
 
-</td>
-<td>
+</td><td style="padding-top: 20px">
 TODO
-</td></tr>
-<tr><td>
+</td></tr><tr><td style="padding-top: 20px">
 TODO
-</td><td>
+</td><td style="padding-top: 20px">
 
 [<img style="border-radius:12px;border:1pt solid gray;" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-4.png?raw=true" width="400" />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=4)
 
-</td>
-</tr>
-<tr><td>
+</td></tr><tr><td style="padding-top: 20px">
 
 [<img style="border-radius:12px;border:1pt solid gray;" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-5.png?raw=true" width="400" />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=5)
 
-</td>
-<td>
+</td><td style="padding-top: 20px">
 TODO
-</td></tr>
-<tr><td>
+</td></tr><tr><td style="padding-top: 20px">
 TODO
-</td><td>
+</td><td style="padding-top: 20px">
 
 [<img style="border-radius:12px;border:1pt solid gray;" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-6.png?raw=true" width="400" />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=6)
 
-</td>
-</tr>
+</td></tr>
 </table>
 
 ## Testing Files
