@@ -3,8 +3,8 @@ name: Build Documentation
 "on":
   workflow_run:
     workflows: ["check for broken links"]
-    types: [ completed ]
-    branches: [ master, main, 84-validate-changelog-generation]
+    types: [completed]
+    branches: [master, main, 84-validate-changelog-generation]
 
 jobs:
   build:
