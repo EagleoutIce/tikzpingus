@@ -13,6 +13,7 @@
 \usepackage[prefix=]{xcolor-material} % for the nice green
 \usetikzlibrary{tikzmark,arrows.meta} % for the arrows
 
+% TODO: automate a lot of this
 \lstset{language={[LaTeX]TeX},basicstyle=\ttfamily,moretexcs={tikz,pingu},breaklines,escapeinside={$}{$},morekeywords={[2]{legacy}},keywordstyle={[2]\itshape}}
 \colorlet{@}{Green}
 \def\K#1{\tikzmarknode{#1}{\color{@}\ttfamily#1}}
@@ -96,7 +97,7 @@
 ]}
 \end{lstlisting}};
 \scope[W]
-\path ([yshift=.15mm]body.south east) to[out=-6,in=170] ([xshift=-.25mm,yshift=2.33mm]pingu-wings-side-right);
+\path ([yshift=.15mm]body.south east) to[out=-6,in=170] ([xshift=.25mm,yshift=2.33mm]pingu-wings-side-right);
 \path ([yshift=.15mm,xshift=.5mm]santa hat.east) to[out=30,in=160] ([xshift=-4.66mm,yshift=2.85mm]pingu-head-top);
 
 \path ([yshift=.15mm,xshift=.5mm]santa beard.east) to[out=20,in=145] ([xshift=-4.5mm,yshift=.5mm]pingu-bill-bottom);
@@ -106,6 +107,34 @@
 \path ([yshift=.15mm,xshift=.5mm]cane right.east) to[bend right=10] ([xshift=-1.5mm,yshift=8.5mm]pingu-wing-right-tip);
 \endscope
 % tech penguin (blau, laptop, lightsaber, headset) und devil penguin (red)
+\end{tikzpicture}
+\endpreview
+
+\colorlet{@}{LightBlue}
+\preview
+\begin{tikzpicture}[remember picture]
+\pingu[vr-headset,headphone,laptop left,lightsaber right,tie=cyan,name=pingu]
+\node[left,text width=4.5cm] at(current bounding box.west) {\begin{lstlisting}
+\tikz{\pingu[
+   $\K{vr-headset}$,
+   $\K{headphone}$,
+   $\K{laptop left}$,
+   $\K{lightsaber right}$,
+   $\K{tie}$=cyan
+]}
+\end{lstlisting}};
+\scope[W]
+\path (vr-headset.east) to[bend left] ([xshift=5.65mm,yshift=4.75mm]pingu-wings-side-right);
+\path ([yshift=.15mm,xshift=.5mm]headphone.east) to[out=30,in=160] ([xshift=-3.66mm,yshift=1.25mm]pingu-head-top);
+
+\path ([yshift=.15mm,xshift=.5mm]lightsaber right.north east) to[out=20,in=242] ([xshift=-14.5mm,yshift=8mm]pingu-bill-bottom);
+
+\path ([yshift=.15mm,xshift=.5mm]laptop left.east) to[bend left=10] ([xshift=-1.5mm,yshift=9mm]pingu-wing-left-tip);
+
+\path ([yshift=.15mm,xshift=.5mm]tie.south east) to[bend right=10] ([yshift=-3.5mm,xshift=-1.75mm]pingu-belly-center);
+\endscope
+% tech penguin (blau, laptop, lightsaber, headset) und devil penguin (red)
+% one funny with cake hat? use pink it should sit or maybe tilt? showcase other feet?
 \end{tikzpicture}
 \endpreview
 \end{document}
