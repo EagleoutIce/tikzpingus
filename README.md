@@ -11,6 +11,12 @@ Ti*k*Zpingus is actively developed by *Florian Sihler* (contact me at: <florian.
 
 ----
 
+<style>
+td {
+  padding-top: 20px
+}
+</style>
+
 <table>
 <tr><td>
 
