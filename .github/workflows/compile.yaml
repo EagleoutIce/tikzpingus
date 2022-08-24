@@ -2,11 +2,11 @@ name: Build Documentation
 
 "on":
   push:
-    branches: [master, main, 18-improve-preview-of-the-readme]
+    branches: [master, main]
 
 jobs:
   build:
-    uses: EagleoutIce/tikzpingus/.github/workflows/status_check.yaml@18-improve-preview-of-the-readme
+    uses: EagleoutIce/tikzpingus/.github/workflows/status_check.yaml@main
   process-pdf:
     runs-on: ubuntu-latest
     needs: build
