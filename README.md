@@ -5,7 +5,14 @@
 This package is a work-in-progress package allowing you to typeset little penguins in LaTeX with PGF/Ti*k*z.
 The [documentation](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/doc/build/tikzpingus-doc.pdf) will constantly evolve.
 
+----
+
 Ti*k*Zpingus is actively developed by *Florian Sihler* (contact me at: <florian.sihler@uni-ulm.de>) under the [GPLv3 License](LICENSE). I am very happy about every contribution (see [CONTRIBUTING.md](CONTRIBUTING.md)).
+
+----
+
+[<img src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-1.png?raw=true" width="600"/>](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=1)
+
 
 These are some test files:\
 [<img src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/preview-1.png?raw=true" width="600"/>](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/showcase.pdf)
