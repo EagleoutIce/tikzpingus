@@ -106,7 +106,6 @@
 
 \path ([yshift=.15mm,xshift=.5mm]cane right.east) to[bend right=10] ([xshift=-1.5mm,yshift=8.5mm]pingu-wing-right-tip);
 \endscope
-% tech penguin (blau, laptop, lightsaber, headset) und devil penguin (red)
 \end{tikzpicture}
 \endpreview
 
@@ -131,10 +130,41 @@
 
 \path ([yshift=.15mm,xshift=.5mm]laptop left.east) to[bend left=10] ([xshift=-1.5mm,yshift=9mm]pingu-wing-left-tip);
 
-\path ([yshift=.15mm,xshift=.5mm]tie.south east) to[bend right=10] ([yshift=-3.5mm,xshift=-1.75mm]pingu-belly-center);
+\path ([yshift=-.15mm,xshift=.5mm]tie.south east) to[bend right=10] ([yshift=-3.5mm,xshift=-1.75mm]pingu-belly-center);
 \endscope
-% tech penguin (blau, laptop, lightsaber, headset) und devil penguin (red)
-% one funny with cake hat? use pink it should sit or maybe tilt? showcase other feet?
+\end{tikzpicture}
+\endpreview
+
+\colorlet{@}{Pink}
+\preview
+\begin{tikzpicture}[remember picture]
+\pingu[cake-hat,feet=sit,horse right=gray,mask,eyes shock,name=pingu]
+\node[left,text width=4.5cm] at(current bounding box.west) {\begin{lstlisting}
+\tikz{\pingu[
+   $\K{cake-hat}$,
+   $\K{eyes shock}$,
+   $\K{mask}$,
+   $\K{horse right}$=gray,
+   $\K{feet}$=sit
+]}
+\end{lstlisting}};
+\scope[W]
+\path ([xshift=1mm]cake-hat.east) to[bend left=10] ([xshift=3.65mm,yshift=9.75mm]pingu-wings-side-right);
+
+\path ([xshift=2mm]eyes shock.north east) to[bend left=10] ([xshift=-1mm,yshift=1mm]pingu-eye-right);
+\path ([xshift=2mm]eyes shock.north east) to[bend left=10] ([xshift=-1mm,yshift=1mm]pingu-eye-left);
+
+
+\path ([yshift=.15mm,xshift=.5mm]mask.east) to[bend left=10] ([yshift=-2.5mm,xshift=-6mm]pingu-head-center);
+
+\path ([yshift=.15mm,xshift=.5mm]horse right.south east) to[bend right=6] ([xshift=-6.5mm,yshift=4mm]pingu-wing-right-tip);
+
+\path ([yshift=.15mm,xshift=.5mm]feet.south east) to[bend right=6] ([yshift=-1mm]pingu-foot-right);
+\path ([yshift=-.05mm,xshift=.5mm]feet.south east) to[bend right=6] ([yshift=-1.5mm]pingu-foot-left);
+\endscope
 \end{tikzpicture}
 \endpreview
 \end{document}
+
+% tech penguin (blau, laptop, lightsaber, headset) und devil penguin (red)
+% one funny with cake hat? use pink it should sit or maybe tilt? showcase other feet?
