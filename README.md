@@ -11,46 +11,23 @@ Ti*k*Zpingus is actively developed by *Florian Sihler* (contact me at: <florian.
 
 ----
 
-<table>
-<tr><td style="padding-top: 20px">
+<div style="text-align:center">
 
-[<img style="border-radius:12px;border:1pt solid gray;" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-1.png?raw=true" width="400" />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=1)
+<img style="border-radius:8pt" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-1.png?raw=true" width="400" />
 
-</td><td style="padding-top: 20px">
+[<img src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-1.png?raw=true" width="400" />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=1)
+
+</div>
+
 The Library can do a lot of things... TODO
-</td></tr>
-<tr><td style="padding-top: 20px">
-TODO
-</td><td style="padding-top: 20px">
 
-[<img style="border-radius:12px;border:1pt solid gray;" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-2.png?raw=true" width="400" />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=2)
+<p align="center">
 
-</td></tr><tr><td style="padding-top: 20px">
+[<img src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-2.png?raw=true" width="400" />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=2)
 
-[<img style="border-radius:12px;border:1pt solid gray;" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-3.png?raw=true" width="400" />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=3)
+</p>
 
-</td><td style="padding-top: 20px">
-TODO
-</td></tr><tr><td style="padding-top: 20px">
-TODO
-</td><td style="padding-top: 20px">
 
-[<img style="border-radius:12px;border:1pt solid gray;" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-4.png?raw=true" width="400" />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=4)
-
-</td></tr><tr><td style="padding-top: 20px">
-
-[<img style="border-radius:12px;border:1pt solid gray;" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-5.png?raw=true" width="400" />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=5)
-
-</td><td style="padding-top: 20px">
-TODO
-</td></tr><tr><td style="padding-top: 20px">
-TODO
-</td><td style="padding-top: 20px">
-
-[<img style="border-radius:12px;border:1pt solid gray;" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-6.png?raw=true" width="400" />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=6)
-
-</td></tr>
-</table>
 
 ## Testing Files
 
