@@ -11,8 +11,58 @@ Ti*k*Zpingus is actively developed by *Florian Sihler* (contact me at: <florian.
 
 ----
 
-[<img src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-1.png?raw=true" width="600"/>](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=1)
+<table>
+<tr><td>
 
+[<img style="border-radius:12px;border:1pt solid gray;" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-1.png?raw=true" width="400" />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=1)
+
+</td>
+<td>
+The Library can do a lot of things... TODO
+</td></tr>
+<tr><td>
+TODO
+</td><td>
+
+[<img style="border-radius:12px;border:1pt solid gray;" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-2.png?raw=true" width="400" />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=2)
+
+</td>
+</tr>
+<tr><td>
+
+[<img style="border-radius:12px;border:1pt solid gray;" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-3.png?raw=true" width="400" />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=3)
+
+</td>
+<td>
+TODO
+</td></tr>
+<tr><td>
+TODO
+</td><td>
+
+[<img style="border-radius:12px;border:1pt solid gray;" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-4.png?raw=true" width="400" />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=4)
+
+</td>
+</tr>
+<tr><td>
+
+[<img style="border-radius:12px;border:1pt solid gray;" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-5.png?raw=true" width="400" />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=5)
+
+</td>
+<td>
+TODO
+</td></tr>
+<tr><td>
+TODO
+</td><td>
+
+[<img style="border-radius:12px;border:1pt solid gray;" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-6.png?raw=true" width="400" />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=6)
+
+</td>
+</tr>
+</table>
+
+## Testing Files
 
 These are some test files:\
 [<img src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/preview-1.png?raw=true" width="600"/>](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/showcase.pdf)
@@ -22,7 +72,7 @@ These are some test files:\
 For the title image of a computer-science course on software-product-lines, I created a small and incomplete but really fun feature model:\
 [<img src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/spl-1.png?raw=true" width="900"/>](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/spl.pdf)
 
-**Contributors**
+## Contributors
 
 <a href="https://github.com/eagleoutice/tikzpingus/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=eagleoutice/tikzpingus" />
