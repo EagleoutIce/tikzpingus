@@ -1,0 +1,82 @@
+\documentclass{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage[glows]{tikzpingus}
+\usepackage{FiraMono} % for the code font
+\usepackage{fontawesome} % for the penguin heart
+
+\usepackage[active,tightpage]{preview}
+
+\usepackage[tex]{listings} % for code highlighting
+\usepackage[prefix=]{xcolor-material} % for the nice green
+\usetikzlibrary{tikzmark,arrows.meta} % for the arrows
+
+\lstset{language={[LaTeX]TeX},basicstyle=\ttfamily,moretexcs={tikz,pingu},breaklines,escapeinside={$}{$},morekeywords={[2]{legacy}},keywordstyle={[2]\itshape}}
+\colorlet{@}{Green}
+\def\K#1{\tikzmarknode{#1}{\color{@}\ttfamily#1}}
+
+\begin{document}
+\preview
+\begin{tikzpicture}[remember picture]
+\pingu[eyes wink,right wing wave,blush,heart=lightgray,body type=legacy,name=pingu];
+\node[left,text width=4.5cm] at(current bounding box.west) {\begin{lstlisting}
+\tikz{\pingu[
+   $\K{eyes wink}$,
+   $\K{right wing wave}$,
+   $\K{blush}$,
+   $\K{heart}$,
+   $\K{body type}$=legacy
+];}
+\end{lstlisting}};
+\scope[every path/.append style={line cap=round,-Kite,draw,lightgray!90!@},transparency group,opacity=.5]
+\path ([xshift=2mm]eyes wink) to[bend left=10] ([xshift=-1mm,yshift=1mm]pingu-eye-right);
+\path ([xshift=2mm]eyes wink) to[bend left=10] ([xshift=-1mm,yshift=1mm]pingu-eye-left);
+
+\path ([xshift=1mm,yshift=1mm]right wing wave.east) to[bend left=5] ([xshift=-1mm,yshift=.25mm]pingu-wing-right-tip);
+\path ([xshift=1mm]blush.east) to[bend right=5] ([yshift=-3mm,xshift=-1.85mm]pingu-eye-right);
+\path ([xshift=1mm]blush.east) to[bend right=5] ([yshift=-3mm,xshift=1.85mm]pingu-eye-left);
+
+\path ([xshift=1mm]heart.east) to[bend right=5] ([xshift=-2.5mm,yshift=-.5mm]pingu-belly-center);
+\path ([xshift=.4mm,yshift=-1.6mm]body type.east) to[bend right=10] ([xshift=.5mm,yshift=-5mm]pingu-waist-right);
+\endscope
+\end{tikzpicture}
+\endpreview
+
+\colorlet{@}{DeepOrange}
+\preview
+\begin{tikzpicture}[remember picture]
+\pingu[eyes shiny,small,conical hat,wings grab,cup=orange,name=pingu];
+\node[left,text width=4.5cm] at(current bounding box.west) {\begin{lstlisting}
+\tikz{\pingu[
+   $\K{eyes shiny}$,
+   $\K{small}$,
+   $\K{conical hat}$,
+   $\K{wings grab}$,
+   $\K{cup}$=orange,
+];}
+\end{lstlisting}};
+\scope[every path/.append style={line cap=round,-Kite,draw,lightgray!90!@},transparency group,opacity=.5]
+\path ([xshift=2mm]eyes shiny) to[bend left=10] ([xshift=-1mm,yshift=1mm]pingu-eye-right);
+\path ([xshift=2mm]eyes shiny) to[bend left=10] ([xshift=-1mm,yshift=1mm]pingu-eye-left);
+
+\path[-] ([xshift=1mm]small.east) to[bend left=2] ++(24mm,0) coordinate(@);
+\path[|-|] (@|-pingu-head-top) -- ([yshift=-1.9mm]@|-pingu-foot-right);
+
+
+\path ([xshift=1mm]conical hat.north east) to[bend left=35] ([yshift=2.65mm]pingu-head-top);
+
+
+\path ([xshift=.4mm,yshift=-1.6mm]cup.east) to[bend right=10] ([xshift=-3.65mm,yshift=-4mm]pingu-belly-center);
+
+\pgfonlayer{foreground}
+\scope[every path/.append style={line cap=round,-Kite,draw,lightgray!90!@},transparency group,opacity=.5]
+\path ([xshift=1mm,yshift=1mm]wings grab.east) to[bend left=5] ([xshift=-2.5mm,yshift=2.5mm]pingu-wing-right-tip);
+\path ([xshift=1mm,yshift=1mm]wings grab.east) to[bend left=5] ([xshift=2.5mm,yshift=2.5mm]pingu-wing-left-tip);
+\endscope
+\endpgfonlayer
+\endscope
+\end{tikzpicture}
+\endpreview
+\end{document}
