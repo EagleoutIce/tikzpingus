@@ -58,10 +58,8 @@ require('build-private.lua')
 function tag_hook(tagname)
     git("add", "*.sty")
     git("add", "doc/*.tex")
-    os.execute("github_changelog_generator --user EagleoutIce --project \"" .. module .. "\" --token \"" .. token .. "\"")
-    git("add", "CHANGELOG.md")
     git("commit -m 'step version " .. packageversion .. "'")
-    git("tag", packageversion)
+    -- tag will be created by action
 end
 
 -- collecting files for ctan =========================================

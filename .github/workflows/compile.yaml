@@ -1,9 +1,7 @@
 name: Build Documentation
 
 "on":
-  workflow_run:
-    workflows: ["check for broken links"]
-    types: [completed]
+  push:
     branches: [master, main, 84-validate-changelog-generation]
 
 jobs:
@@ -45,3 +43,19 @@ jobs:
           branch: gh-pages
           github_token: ${{ secrets.GITHUB_TOKEN }}
           force: true
+      - name: Update Changelog
+        if: startsWith(github.event.head_commit.message, "step version ")
+        run: |
+          tag=$(echo ${{github.event.head_commit.message}} | cut -d' ' -f3)
+          docker run -it --rm -v "$(pwd)":/usr/local/src/your-app githubchangeloggenerator/github-changelog-generator --user EagleoutIce --project tikzpingus --token "${{ secrets.CHANGELOG_GITHUB_TOKEN }}" --future-release "$tag"
+          git add CHANGELOG.md
+          git commit -m "Release of $tag"
+          git tag $tag
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        if: startsWith(github.event.head_commit.message, "step version ")
+        with:
+          branch: main
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          force: false
+
