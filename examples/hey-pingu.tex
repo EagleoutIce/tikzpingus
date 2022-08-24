@@ -18,7 +18,7 @@
 \colorlet{@}{Green}
 \def\K#1{\tikzmarknode{#1}{\color{@}\ttfamily#1}}
 
-\tikzset{W/.style={every path/.append style={line cap=round,-Kite,draw,lightgray!90!@},transparency group,opacity=.6}}
+\tikzset{W/.style={every path/.append style={line cap=round,-Kite,draw,lightgray!87!@},transparency group,opacity=.6}}
 
 \begin{document}
 \preview
@@ -83,7 +83,7 @@
 \end{tikzpicture}
 \endpreview
 
-\colorlet{@}{Brown}
+\colorlet{@}{Red!50!Teal}
 \preview
 \begin{tikzpicture}[remember picture]
 \pingu[body=black,santa hat,santa beard,eye patch left,cane right,name=pingu]
@@ -161,6 +161,34 @@
 
 \path ([yshift=.15mm,xshift=.5mm]feet.south east) to[bend right=6] ([yshift=-1mm]pingu-foot-right);
 \path ([yshift=-.05mm,xshift=.5mm]feet.south east) to[bend right=6] ([yshift=-1.5mm]pingu-foot-left);
+\endscope
+\end{tikzpicture}
+\endpreview
+
+\colorlet{@}{Amber}
+\preview
+\begin{tikzpicture}[remember picture]
+\pingu[crown,sunglasses,glasses opacity=.95,medal,glow=yellow,name=pingu]
+\node[left,text width=5cm] at(current bounding box.west) {\begin{lstlisting}
+\tikz{\pingu[
+   $\K{crown}$,
+   $\K{sunglasses}$,
+   $\K{glasses opacity}$=.95,
+   $\K{medal}$,
+   $\K{glow}$=yellow
+]}
+\end{lstlisting}};
+\scope[W]
+\path ([xshift=1mm,yshift=.33mm]crown.east) to[bend left=10] ([xshift=3.35mm,yshift=9.75mm]pingu-wings-side-right);
+
+\path ([xshift=2mm]sunglasses.north east) to[bend left=15] ([xshift=-1.25mm,yshift=3mm]pingu-eye-right);
+
+
+\path[-Circle] ([yshift=.15mm,xshift=.5mm]glasses opacity.north east) to[bend left=10] ([xshift=.66mm]pingu-eye-right);
+
+\path ([yshift=.15mm,xshift=.5mm]medal.east) to[bend right=6] ([xshift=-3mm,yshift=1mm]pingu-belly-center);
+
+\path ([yshift=-.25mm,xshift=.5mm]feet.south east) to[bend right=6] ([yshift=.75mm,xshift=-4.33mm]pingu-foot-right);
 \endscope
 \end{tikzpicture}
 \endpreview
