@@ -2,7 +2,7 @@ name: Build Documentation
 
 "on":
   push:
-    branches: [master, main ]
+    branches: [master, main, 18-improve-preview-of-the-readme]
 
 jobs:
   build:
