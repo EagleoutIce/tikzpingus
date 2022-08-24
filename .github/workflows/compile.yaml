@@ -2,7 +2,7 @@ name: Build Documentation
 
 "on":
   push:
-    branches: [master, main]
+    branches: [master, main, 18-improve-preview-of-the-readme]
 
 jobs:
   build:
@@ -36,7 +36,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add -f "examples/build/showcase.pdf" "examples/build/minimal.pdf" "examples/build/cloak.pdf" "examples/build/spl.pdf" "doc/build/tikzpingus-doc.pdf" "preview-1.png" "minimal-1.png" "spl-1.png" "hey-pingu-*.png"
+          git add -f "examples/build/showcase.pdf" "examples/build/minimal.pdf" "examples/build/cloak.pdf" "examples/build/spl.pdf" "examples/build/hey-pingu.pdf" "doc/build/tikzpingus-doc.pdf" "preview-1.png" "minimal-1.png" "spl-1.png" "hey-pingu-*.png"
           git commit -m "Newly compiled data"
       - name: Push changes
         uses: ad-m/github-push-action@master
