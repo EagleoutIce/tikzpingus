@@ -12,3 +12,5 @@ jobs:
 
       - name: Markup Link Checker (mlc)
         uses: becheran/mlc@v0.15.3
+        with:
+          args: --ignore-path "CHANGELOG.md"
