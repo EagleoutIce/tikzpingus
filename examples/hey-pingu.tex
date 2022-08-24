@@ -1,0 +1,201 @@
+\documentclass{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\makeatletter\def\input@path{{../tex/}}\makeatother
+\usepackage[glows]{tikzpingus}
+\usepackage{FiraMono} % for the code font
+\usepackage{fontawesome} % for the penguin heart
+
+\usepackage[active,tightpage]{preview}
+
+\usepackage[tex]{listings} % for code highlighting
+\usepackage[prefix=]{xcolor-material} % for the nice green
+\usetikzlibrary{tikzmark,arrows.meta} % for the arrows
+
+\PreviewBorder.5cm
+
+% TODO: automate a lot of this
+\lstset{language={[LaTeX]TeX},basicstyle=\ttfamily,moretexcs={tikz,pingu},breaklines,escapeinside={$}{$},morekeywords={[2]{legacy}},keywordstyle={[2]\itshape}}
+\colorlet{@}{Green}
+\def\K#1{\tikzmarknode{#1}{\color{@}\ttfamily#1}}
+
+\tikzset{W/.style={every path/.append style={line cap=round,-Kite,draw,lightgray!87!@},transparency group,opacity=.6}}
+
+\begin{document}
+\preview
+\begin{tikzpicture}[remember picture]
+\pingu[eyes wink,right wing wave,blush,heart=lightgray,body type=legacy,name=pingu]
+\node[left,text width=4.5cm] at(current bounding box.west) {\begin{lstlisting}
+\tikz{\pingu[
+   $\K{eyes wink}$,
+   $\K{right wing wave}$,
+   $\K{blush}$,
+   $\K{heart}$,
+   $\K{body type}$=legacy
+]}
+\end{lstlisting}};
+\scope[W]
+\path ([xshift=2mm]eyes wink) to[bend left=10] ([xshift=-1mm,yshift=1mm]pingu-eye-right);
+\path ([xshift=2mm]eyes wink) to[bend left=10] ([xshift=-1mm,yshift=1mm]pingu-eye-left);
+
+\path ([xshift=1mm,yshift=1mm]right wing wave.east) to[bend left=5] ([xshift=-1mm,yshift=.25mm]pingu-wing-right-tip);
+\path ([xshift=1mm]blush.east) to[bend right=5] ([yshift=-3mm,xshift=-1.85mm]pingu-eye-right);
+\path ([xshift=1mm]blush.east) to[bend right=5] ([yshift=-3mm,xshift=1.85mm]pingu-eye-left);
+
+\path ([xshift=1mm]heart.east) to[bend right=5] ([xshift=-2.5mm,yshift=-.5mm]pingu-belly-center);
+\path ([xshift=.4mm,yshift=-1.6mm]body type.east) to[bend right=10] ([xshift=.5mm,yshift=-5mm]pingu-waist-right);
+\endscope
+\end{tikzpicture}
+\endpreview
+
+\colorlet{@}{DeepOrange}
+\preview
+\begin{tikzpicture}[remember picture]
+\pingu[eyes shiny,small,conical hat,wings grab,cup=orange,name=pingu]
+\node[left,text width=4.5cm] at(current bounding box.west) {\begin{lstlisting}
+\tikz{\pingu[
+   $\K{eyes shiny}$,
+   $\K{small}$,
+   $\K{conical hat}$,
+   $\K{wings grab}$,
+   $\K{cup}$=orange
+]}
+\end{lstlisting}};
+\scope[W]
+\path ([xshift=2mm]eyes shiny) to[bend left=10] ([xshift=-1mm,yshift=1mm]pingu-eye-right);
+\path ([xshift=2mm]eyes shiny) to[bend left=10] ([xshift=-1mm,yshift=1mm]pingu-eye-left);
+
+\path ([xshift=1mm]conical hat.north east) to[bend left=35] ([yshift=2.65mm]pingu-head-top);
+
+
+\path ([xshift=.4mm,yshift=-1.6mm]cup.east) to[bend right=10] ([xshift=-3.65mm,yshift=-4mm]pingu-belly-center);
+
+\pgfonlayer{foreground}
+\scope[every path/.append style={line cap=round,-Kite,draw,lightgray!90!@},transparency group,opacity=.5]
+\path ([xshift=1mm,yshift=1mm]wings grab.east) to[bend left=5] ([xshift=-2.5mm,yshift=2.5mm]pingu-wing-right-tip);
+\path ([xshift=1mm,yshift=1mm]wings grab.east) to[bend left=5] ([xshift=2.5mm,yshift=2.5mm]pingu-wing-left-tip);
+
+\path[-] ([xshift=1mm]small.east) to[bend right=8] ++(51.5mm,-2mm) coordinate(@);
+\path[|-|] (@|-pingu-head-top) -- ([yshift=-1.9mm]@|-pingu-foot-right);
+
+\endscope
+\endpgfonlayer
+\endscope
+\end{tikzpicture}
+\endpreview
+
+\colorlet{@}{Red!50!Teal}
+\preview
+\begin{tikzpicture}[remember picture]
+\pingu[body=black,santa hat,santa beard,eye patch left,cane right,name=pingu]
+\node[left,text width=4.5cm] at(current bounding box.west) {\begin{lstlisting}
+\tikz{\pingu[
+   $\K{body}$=black,
+   $\K{santa hat}$,
+   $\K{santa beard}$,
+   $\K{eye patch left}$,
+   $\K{cane right}$
+]}
+\end{lstlisting}};
+\scope[W]
+\path ([yshift=.15mm]body.south east) to[out=-6,in=170] ([xshift=-.25mm,yshift=2.55mm]pingu-wings-side-right);
+\path ([yshift=.15mm,xshift=.5mm]santa hat.east) to[out=30,in=160] ([xshift=-4.66mm,yshift=2.85mm]pingu-head-top);
+
+\path ([yshift=.15mm,xshift=.5mm]santa beard.east) to[out=20,in=145] ([xshift=-4.5mm,yshift=.5mm]pingu-bill-bottom);
+
+\path ([yshift=.15mm,xshift=.5mm]eye patch left.north east) to[out=20,in=160] ([xshift=-2.5mm,yshift=.5mm]pingu-eye-left);
+
+\path ([yshift=.15mm,xshift=.5mm]cane right.east) to[bend right=10] ([xshift=-1.5mm,yshift=8.5mm]pingu-wing-right-tip);
+\endscope
+\end{tikzpicture}
+\endpreview
+
+\colorlet{@}{LightBlue}
+\preview
+\begin{tikzpicture}[remember picture]
+\pingu[vr-headset,headphone,laptop left,lightsaber right,tie=cyan,name=pingu]
+\node[left,text width=4.5cm] at(current bounding box.west) {\begin{lstlisting}
+\tikz{\pingu[
+   $\K{vr-headset}$,
+   $\K{headphone}$,
+   $\K{laptop left}$,
+   $\K{lightsaber right}$,
+   $\K{tie}$=cyan
+]}
+\end{lstlisting}};
+\scope[W]
+\path (vr-headset.east) to[bend left] ([xshift=5.65mm,yshift=4.75mm]pingu-wings-side-right);
+\path ([yshift=.15mm,xshift=.5mm]headphone.east) to[out=30,in=160] ([xshift=-3.66mm,yshift=1.25mm]pingu-head-top);
+
+\path ([yshift=.15mm,xshift=.5mm]lightsaber right.north east) to[out=20,in=242] ([xshift=-14.5mm,yshift=8mm]pingu-bill-bottom);
+
+\path ([yshift=.15mm,xshift=.5mm]laptop left.east) to[bend left=10] ([xshift=-1.5mm,yshift=9mm]pingu-wing-left-tip);
+
+\path ([yshift=-.15mm,xshift=.5mm]tie.south east) to[bend right=10] ([yshift=-3.5mm,xshift=-1.75mm]pingu-belly-center);
+\endscope
+\end{tikzpicture}
+\endpreview
+
+\colorlet{@}{Pink}
+\preview
+\begin{tikzpicture}[remember picture]
+\pingu[cake-hat,feet=sit,horse right=gray,mask,eyes shock,name=pingu]
+\node[left,text width=4.5cm] at(current bounding box.west) {\begin{lstlisting}
+\tikz{\pingu[
+   $\K{cake-hat}$,
+   $\K{eyes shock}$,
+   $\K{mask}$,
+   $\K{horse right}$=gray,
+   $\K{feet}$=sit
+]}
+\end{lstlisting}};
+\scope[W]
+\path ([xshift=1mm]cake-hat.east) to[bend left=10] ([xshift=3.65mm,yshift=9.75mm]pingu-wings-side-right);
+
+\path ([xshift=2mm]eyes shock.north east) to[bend left=10] ([xshift=-1mm,yshift=1mm]pingu-eye-right);
+\path ([xshift=2mm]eyes shock.north east) to[bend left=10] ([xshift=-1mm,yshift=1mm]pingu-eye-left);
+
+
+\path ([yshift=.15mm,xshift=.5mm]mask.east) to[bend left=10] ([yshift=-2.5mm,xshift=-6mm]pingu-head-center);
+
+\path ([yshift=.15mm,xshift=.5mm]horse right.south east) to[bend right=6] ([xshift=-6.5mm,yshift=4mm]pingu-wing-right-tip);
+
+\path ([yshift=.15mm,xshift=.5mm]feet.south east) to[bend right=6] ([yshift=-1mm]pingu-foot-right);
+\path ([yshift=-.05mm,xshift=.5mm]feet.south east) to[bend right=6] ([yshift=-1.5mm]pingu-foot-left);
+\endscope
+\end{tikzpicture}
+\endpreview
+
+\colorlet{@}{Amber}
+\preview
+\begin{tikzpicture}[remember picture]
+\pingu[crown,sunglasses,glasses opacity=.95,medal,glow=yellow,name=pingu]
+\node[left,text width=5cm] at(current bounding box.west) {\begin{lstlisting}
+\tikz{\pingu[
+   $\K{crown}$,
+   $\K{sunglasses}$,
+   $\K{glasses opacity}$=.95,
+   $\K{medal}$,
+   $\K{glow}$=yellow
+]}
+\end{lstlisting}};
+\scope[W]
+\path ([xshift=1mm,yshift=.33mm]crown.east) to[bend left=10] ([xshift=3.35mm,yshift=9.75mm]pingu-wings-side-right);
+
+\path ([xshift=2mm]sunglasses.north east) to[bend left=15] ([xshift=-1.25mm,yshift=3mm]pingu-eye-right);
+
+
+\path[-Circle] ([yshift=.15mm,xshift=.5mm]glasses opacity.north east) to[bend left=10] ([xshift=.66mm]pingu-eye-right);
+
+\path ([yshift=.15mm,xshift=.5mm]medal.east) to[bend right=6] ([xshift=-3mm,yshift=1mm]pingu-belly-center);
+
+\path ([yshift=-.25mm,xshift=.5mm]feet.south east) to[bend right=6] ([yshift=.75mm,xshift=-4.33mm]pingu-foot-right);
+\endscope
+\end{tikzpicture}
+\endpreview
+\end{document}
+
+% tech penguin (blau, laptop, lightsaber, headset) und devil penguin (red)
+% one funny with cake hat? use pink it should sit or maybe tilt? showcase other feet?

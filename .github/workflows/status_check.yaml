@@ -33,6 +33,7 @@ jobs:
             minimal.tex
             cloak.tex
             spl.tex
+            hey-pingu.tex
       - name: ⬆️ Upload doc artifacts
         uses: actions/upload-artifact@v3
         with:
