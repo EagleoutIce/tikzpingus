@@ -1,25 +1,38 @@
 # Changelog
 
-## [Unreleased](https://github.com/EagleoutIce/tikzpingus/tree/HEAD)
+## [1.1](https://github.com/EagleoutIce/tikzpingus/tree/1.1) (2022-08-24)
 
-[Full Changelog](https://github.com/EagleoutIce/tikzpingus/compare/v1.0.0...HEAD)
+[Full Changelog](https://github.com/EagleoutIce/tikzpingus/compare/v1.0.0...1.1)
 
 **Implemented enhancements:**
 
+- Automatically check for broken links [\#78](https://github.com/EagleoutIce/tikzpingus/issues/78)
+- Documentation fix libraries doubled in index  [\#60](https://github.com/EagleoutIce/tikzpingus/issues/60)
+- Happy Greeting Penguin in the Documentation [\#58](https://github.com/EagleoutIce/tikzpingus/issues/58)
 - Allow a fresh build without cache [\#38](https://github.com/EagleoutIce/tikzpingus/issues/38)
 - Speed up CI [\#37](https://github.com/EagleoutIce/tikzpingus/issues/37)
 - Create a Pull-Request template [\#31](https://github.com/EagleoutIce/tikzpingus/issues/31)
+- Add library to key explanation [\#10](https://github.com/EagleoutIce/tikzpingus/issues/10)
 - Filled Drawing Style [\#9](https://github.com/EagleoutIce/tikzpingus/issues/9)
 
 **Fixed bugs:**
 
+- Remove faulty links introduced by \#82 [\#83](https://github.com/EagleoutIce/tikzpingus/issues/83)
+- Fix broken links [\#79](https://github.com/EagleoutIce/tikzpingus/issues/79)
+- Fix license link to why not lgpl [\#71](https://github.com/EagleoutIce/tikzpingus/issues/71)
 - Index is wrong with question marks and pagestyle. [\#45](https://github.com/EagleoutIce/tikzpingus/issues/45)
 - CI compile of documentation fails miserably [\#25](https://github.com/EagleoutIce/tikzpingus/issues/25)
+- Fix layout of title pages [\#23](https://github.com/EagleoutIce/tikzpingus/issues/23)
 - Devil Fork Subkeys [\#15](https://github.com/EagleoutIce/tikzpingus/issues/15)
+- Selectors from Packages [\#8](https://github.com/EagleoutIce/tikzpingus/issues/8)
 - Cloak wings layer [\#5](https://github.com/EagleoutIce/tikzpingus/issues/5)
 
 **Closed issues:**
 
+- Remove internal Section [\#62](https://github.com/EagleoutIce/tikzpingus/issues/62)
+- Make General bug Template [\#59](https://github.com/EagleoutIce/tikzpingus/issues/59)
+- Update documentation of libraries [\#53](https://github.com/EagleoutIce/tikzpingus/issues/53)
+- Add a changelog [\#49](https://github.com/EagleoutIce/tikzpingus/issues/49)
 - Create .dtx, .ins files etc [\#48](https://github.com/EagleoutIce/tikzpingus/issues/48)
 - Add a script to upload to CTAN [\#47](https://github.com/EagleoutIce/tikzpingus/issues/47)
 - Clean up root directory  [\#35](https://github.com/EagleoutIce/tikzpingus/issues/35)
@@ -29,6 +42,21 @@
 
 **Merged pull requests:**
 
+- remove faulty links introduced by 82 [\#85](https://github.com/EagleoutIce/tikzpingus/pull/85) ([EagleoutIce](https://github.com/EagleoutIce))
+- selectors from packages [\#82](https://github.com/EagleoutIce/tikzpingus/pull/82) ([EagleoutIce](https://github.com/EagleoutIce))
+- fix layout of title pages [\#81](https://github.com/EagleoutIce/tikzpingus/pull/81) ([EagleoutIce](https://github.com/EagleoutIce))
+- redirect links to examples [\#80](https://github.com/EagleoutIce/tikzpingus/pull/80) ([EagleoutIce](https://github.com/EagleoutIce))
+- fix link to the documentation in the readme [\#77](https://github.com/EagleoutIce/tikzpingus/pull/77) ([EagleoutIce](https://github.com/EagleoutIce))
+- typofix [\#76](https://github.com/EagleoutIce/tikzpingus/pull/76) ([EagleoutIce](https://github.com/EagleoutIce))
+- use module in build.lua to avoid repetition [\#73](https://github.com/EagleoutIce/tikzpingus/pull/73) ([EagleoutIce](https://github.com/EagleoutIce))
+- fix lgpl link in license [\#72](https://github.com/EagleoutIce/tikzpingus/pull/72) ([EagleoutIce](https://github.com/EagleoutIce))
+- happy greeting penguin in the documentation [\#70](https://github.com/EagleoutIce/tikzpingus/pull/70) ([EagleoutIce](https://github.com/EagleoutIce))
+- Software product line example [\#69](https://github.com/EagleoutIce/tikzpingus/pull/69) ([EagleoutIce](https://github.com/EagleoutIce))
+- clean up to avoid build/build... [\#68](https://github.com/EagleoutIce/tikzpingus/pull/68) ([EagleoutIce](https://github.com/EagleoutIce))
+- fixing build file [\#67](https://github.com/EagleoutIce/tikzpingus/pull/67) ([EagleoutIce](https://github.com/EagleoutIce))
+- remove internal section [\#63](https://github.com/EagleoutIce/tikzpingus/pull/63) ([EagleoutIce](https://github.com/EagleoutIce))
+- update documentation of libraries [\#61](https://github.com/EagleoutIce/tikzpingus/pull/61) ([EagleoutIce](https://github.com/EagleoutIce))
+- add a changelog [\#57](https://github.com/EagleoutIce/tikzpingus/pull/57) ([EagleoutIce](https://github.com/EagleoutIce))
 - Fix compile.yaml [\#56](https://github.com/EagleoutIce/tikzpingus/pull/56) ([EagleoutIce](https://github.com/EagleoutIce))
 - create dtx ins files etc [\#55](https://github.com/EagleoutIce/tikzpingus/pull/55) ([EagleoutIce](https://github.com/EagleoutIce))
 - adapt name to caps [\#52](https://github.com/EagleoutIce/tikzpingus/pull/52) ([EagleoutIce](https://github.com/EagleoutIce))
