@@ -1,8 +1,10 @@
 name: Build Documentation
 
 "on":
-  push:
-    branches: [master, main]
+  workflow_run:
+    workflows: ["check for broken links"]
+    types: [ completed ]
+    branches: [ master, main, 84-validate-changelog-generation]
 
 jobs:
   build:
