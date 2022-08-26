@@ -58,7 +58,8 @@ require('build-private.lua')
 function tag_hook(tagname)
     git("add", "*.sty")
     git("add", "doc/*.tex")
-    os.execute("github_changelog_generator --user EagleoutIce --project \"" .. module .. "\" --token \"" .. token .. "\" --future-release \"" .. packageversion .. "\"")
+    os.execute("github_changelog_generator --user EagleoutIce --project \"" .. module .. "\" --token \"" .. token ..
+                   "\" --future-release \"" .. packageversion .. "\"")
     git("add", "CHANGELOG.md")
     git("commit -m 'step version " .. packageversion .. "'")
     git("tag", packageversion)
@@ -68,11 +69,11 @@ end
 docfiledir = "./doc"
 sourcefiledir = "./tex"
 
-docfiles = { module .. "-doc.tex", "indexstyle.ist", "build/" .. module .. "-doc.pdf"}
+docfiles = {module .. "-doc.tex", "indexstyle.ist", "build/" .. module .. "-doc.pdf"}
 indexstyle = {"doc/indexstyle.ist"}
 
-textfiles = {"README.md"}
-ctanreadme = "README.md"
+textfiles = {"README-ctan.md"}
+ctanreadme = "README-ctan.md"
 
 installfiles = {"*.sty", "*.tex"}
 sourcefiles = installfiles
@@ -104,4 +105,4 @@ uploadconfig = {
 }
 
 -- cleanup ===========================================================
-cleanfiles = { module .. "-ctan.curlopt", module .. "-ctan.zip"}
+cleanfiles = {module .. "-ctan.curlopt", module .. "-ctan.zip"}
