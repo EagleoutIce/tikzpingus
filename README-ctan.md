@@ -24,22 +24,17 @@ If the penguin should be large, you write `large`. If you want the penguin to ho
 
 Currently, most options I have added arose from concrete situations and are not part of "sets". However, some sets do exist, like the `santa` or `devil` collection. If there are more sets in the future, I might add them as first-class components. For now, the [documentation](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/doc/build/tikzpingus-doc.pdf#appendix.A) contains an [Overview](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/doc/build/tikzpingus-doc.pdf#appendix.A) of the larger gadgets.
 
-
 [![Penguin Tech](https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-4.png?raw=true)](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=4)
-
 
 If you just load the library by `\usepackage{tikzpingus}` all options will work, and you might want to use the `glows`-option (`\usepackage[glows]{tikzpingus}`) so that lightsabers and other glowing elements look waaay nicer (but may produce artifacts in some pdf-viewers). However, if loading the library takes too long for you, using the `bare` option will drastically reduce the default options available while allowing you to load specific libraries with `\pinguloadlibraries{<list of libraries>}`.
 
-
 [![Penguin Cake](https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-5.png?raw=true)](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=5)
-
 
 Not all gadgets and wing positions work together. While I try to get as many of them working as possible, selecting two different styles of glasses or hats probably looks weird no matter what code I add.
 Nonetheless, there is code implemented to deal with a lot of interactions (e.g., items in different wings, multiple items on the hat, ...), and there are several options to cope with them yourself if the need arises.
 Oh, and by the way, when options are named with `left` and `right` they are always from the penguin-perspective.
 
 [![Penguin Crown](https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-6.png?raw=true)](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=6)
-
 
 Clothes are a work in progress for a long time now. While there are pants, shirts, a cape, and a cloak, they interfere with body types and other interaction codes. They work quite well for "not-too-fancy" and exotic combinations, but for more complex scenarios, I just had no time (for now). So feel free to wrap your head around that and open a PR! I would be happy to assist you!
 
