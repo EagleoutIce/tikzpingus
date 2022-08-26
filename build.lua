@@ -71,8 +71,8 @@ sourcefiledir = "./tex"
 docfiles = { module .. "-doc.tex", "indexstyle.ist", "build/" .. module .. "-doc.pdf"}
 indexstyle = {"doc/indexstyle.ist"}
 
-textfiles = {"README.md"}
-ctanreadme = "README.md"
+textfiles = {"README-ctan.md"}
+ctanreadme = "README-ctan.md"
 
 installfiles = {"*.sty", "*.tex"}
 sourcefiles = installfiles
