@@ -820,15 +820,15 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \pingu@block{\pingu@color@bill} [rounded corners=.1mm] (\pingu@name-bill)++(-.19cm,0)
     arc (180:360:.19cm and .225cm)
     coordinate[pos=.5] (\pingu@name-bill-bottom)
-    -- ++(-.2mm,.05mm) to[bend right=10] ([xshift=-.17cm,yshift=.05mm]\pingu@name-bill) --cycle;
+    -- ++(-.2mm,.05mm) to[bend right=10] ([xshift=-.17cm,yshift=.05mm]\pingu@name-bill)--cycle;
 }
 
 \@pingu@bill@s{foreground}{%
 \pingu@layer{foreground}[]
-\pingu@block{\pingu@color@bill} (\pingu@name-bill)++(-.19cm,0)
+\pingu@block{\pingu@color@bill} [rounded corners=.1mm] (\pingu@name-bill)++(-.19cm,0)
     arc (180:360:.19cm and .225cm)
     coordinate[pos=.5] (\pingu@name-bill-bottom)
-    to[bend right=.25cm] cycle;
+    -- ++(-.2mm,.05mm) to[bend right=10] ([xshift=-.17cm,yshift=.05mm]\pingu@name-bill)--cycle;
 \endpingu@layer
 }
 
@@ -838,7 +838,6 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     coordinate[pos=.5] (\pingu@name-bill-bottom)
     -- cycle;
 }
-
 % #endregion
 % #endregion
 
