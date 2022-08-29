@@ -643,7 +643,7 @@ So I have started to create some predefined styles, that do change some of the p
 \begin{itemize}
 	\itemsep0pt
 	\foreach \tx/\s in {{draw everything with a line}/{:line}, {fill main penguin}/{:fill}, {draw components with transparency}/{:ghost parts}, {draw all layers with transparency}/{:ghost}, {set main \say{devil}-components}/{:devil},{flip the penguin (swaps left \& right)}/{:back},{do not draw main pingu}/{:hide}} {
-		\item \parbox[t]{.8\linewidth}{\raggedright\texttt{\s}, \tx.} \hfill
+		\item \parbox[t]{.8\linewidth}{\raggedright\expandafter\dkeyref\expandafter{\s}, \tx.} \hfill
 		\parbox[t]{.175\linewidth}{\scalebox{.4}{%
 			\begin{tikzpicture}[baseline=.35\baselineskip]%
 				\pingu[\s]
