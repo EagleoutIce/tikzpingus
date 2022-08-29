@@ -301,6 +301,7 @@
 \ifpengu@setup@manual@layers@\pgfsetlayers{background,main,middle,foreground}\fi\begingroup
 \@pingu@do@back@false
 \pgfqkeys{/pingu}{defaults, #1}%
+\ifdim\pingu@side@h@half<10.33mm \PackageWarning{\tikzpingus@filename}{Penguins with a height below 10.33mm may have unwanted artifacts.}\fi
 \scope[/pingu/@pingu,/pingu/@pingu@main]
 \@pingu@drawer@bodytype@
 \pingu@body@app
