@@ -153,7 +153,7 @@
 
 \def\RawShowcase#1#2{\scalebox{.68}{%\begin{tcbexternal}{showcase-#2#1}%
 \tikzpicture[baseline={(pingu-bottom-center)}]
-\pingu[body=pingu@main!30!white,bill color=pingu@yellow!30!white,feet color=pingu@yellow!30!white,eyes color=pingu@black!30!white,name=pingu,#1#2]
+\pingu[:mix=30!white,name=pingu,#1#2]
 \pgfonlayer{foreground}
 \node[below=3mm] at(pingu-bottom-center) {\strut}; % buffer
 \pgfinterruptboundingbox
@@ -638,11 +638,11 @@ For each selection, \say{none} will prohibit the drawing, and \say{normal} is th
 
 \subsection{Predefined Styles}
 While the penguin options offer the modification of basically every drawing routine (through other styles like |@block|), it is tedious to change them every time.
-So I have started to create some predefined styles, that do change some of the penguins appearance (and are completely new, so beware of bugs):
+So I have started to create some predefined styles, that do change some of the penguins appearance (and are completely new, so beware of bugs). The following list presents an incomplete overview:
 \begin{multicols}{2}
 \begin{itemize}
 	\itemsep0pt
-	\foreach \tx/\s in {{draw everything with a line}/{:line}, {fill main penguin}/{:fill}, {draw components with transparency}/{:ghost parts}, {draw all layers with transparency}/{:ghost}, {set main \say{devil}-components}/{:devil},{flip the penguin (swaps left \& right)}/{:back},{do not draw main pingu}/{:hide}} {
+	\foreach \tx/\s in {{draw everything with a line}/{:line}, {fill main penguin}/{:fill}, {draw components with transparency}/{:ghost parts}, {draw all layers with transparency}/{:ghost}, {set main \say{devil}-components}/{:devil},{flip the penguin (swaps left \& right)}/{:back},{do not draw main pingu}/{:hide},{mix the main penguin with a given color}/{:mix},{mix the main penguin completely with a given color}/{:mix-all}} {
 		\item \parbox[t]{.8\linewidth}{\raggedright\expandafter\dkeyref\expandafter{\s}, \tx.} \hfill
 		\parbox[t]{.175\linewidth}{\scalebox{.4}{%
 			\begin{tikzpicture}[baseline=.35\baselineskip]%
@@ -1207,7 +1207,7 @@ Aliases may set custom defaults. Those defaults are not listed as they may chang
 	Makes the whole penguin in one solid color (basically a shortcut for setting all main penguin colors to the same):
 \begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[:fill]
+	\pingu[:fill,tie=white,eyes color=white]
 \end{tikzpicture}
 \end{tcblisting}
 \endkeyexplain
@@ -1262,8 +1262,37 @@ Aliases may set custom defaults. Those defaults are not listed as they may chang
 \end{tcblisting}
 \endkeyexplain
 
-\def\cursub{}
+\keyexplain{:pingu}{options}{}
+	Apply the given options to all penguin-keys:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[:pingu={/pingu/@block/.style={fill=green}}]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
 
+\keyexplain{:mix}{color-mix}{50!white}
+	Mix the main penguin with given colors, but leave all extras intact. This can be used (for example) to gray-out the penguin:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[mask,tie=red,lollipop left,:mix=50!green]
+\end{tikzpicture}
+\end{tcblisting}
+	In contrast to \dkeyref{:mix-all} this changes the active colors of the penguin.
+\endkeyexplain
+
+\keyexplain{:mix-all}{color-mix}{50!white}
+	Mix the main penguin with given colors, but leave all extras intact. This can be used (for example) to gray-out the penguin:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[mask,tie=red,:mix-all=50!green]
+\end{tikzpicture}
+\end{tcblisting}
+	In contrast to \dkeyref{:mix} this changes the drawing options.
+\endkeyexplain
+
+
+\def\cursub{}
 \subsection{Extras}
 \subsubsection{The heart}
 \showkeyexplain{heart}{node-options}{lightgray}(pingu@main)
@@ -1474,7 +1503,7 @@ Basically the same as the normal medal, but with a bronze color. This will activ
 
 \subsubsection{The eye patches}
 
-\showkeyexplain{eye patch left}{color}{<pingu-main-color>}(pingu@main)
+\showkeyexplain{eye patch left}{color}{<pingu-main-color>}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[eye patch left]
@@ -1485,7 +1514,7 @@ Basically the same as the normal medal, but with a bronze color. This will activ
 \keyalias{eyepatch left}{eye patch left}
 \keyalias{eye-patch left}{eye patch left}
 
-\showkeyexplain{eye patch right}{color}{<pingu-main-color>}(pingu@main)
+\showkeyexplain{eye patch right}{color}{<pingu-main-color>}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[eye patch right]
@@ -1498,7 +1527,7 @@ Basically the same as the normal medal, but with a bronze color. This will activ
 
 \subsubsection{The monocle}
 
-\showkeyexplain{monocle left}{color}{pingu@black}(pingu@black)
+\showkeyexplain{monocle left}{color}{pingu@black}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[monocle left]
@@ -1562,7 +1591,7 @@ Set the color of the blob at the end of the string of the left monocle:
 \end{tcblisting}
 \endsubkeyexplain}
 
-\showkeyexplain{monocle right}{color}{pingu@black}(pingu@black)
+\showkeyexplain{monocle right}{color}{pingu@black}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[monocle right]
@@ -3002,7 +3031,7 @@ Change the wool color:
 
 \subsubsection{The santa beard}
 
-\showkeyexplain{santa beard}{color}{pingu@white!96!pingu@red!98!pingu@black!92!gray}(pingu@white!96!pingu@red!98!pingu@black!92!gray,santa beard string=pingu@main)
+\showkeyexplain{santa beard}{color}{pingu@white!96!pingu@red!98!pingu@black!92!gray}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[santa beard=brown!20!white]
@@ -3020,7 +3049,7 @@ Change the wool color:
 \endsubkeyexplain}
 
 \subsubsection{The mask}
-\showkeyexplain{mask}{color}{pingu@white!61!gray}(pingu@white!61!gray,mask band=pingu@main)
+\showkeyexplain{mask}{color}{pingu@white!61!gray}
 Keep the penguin safe:
 \begin{tcblisting}{@}
 \begin{tikzpicture}
@@ -3473,7 +3502,7 @@ Change the bending of the banner:
 
 \subsubsection{The lightsaber}
 
-\showkeyexplain{lightsaber left}{color}{pingu@blue}(pingu@blue)
+\showkeyexplain{lightsaber left}{color}{pingu@blue}
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber left=green]
@@ -3630,7 +3659,7 @@ Disables the lightsaber so only the handle is visible:
 \endsubkeyexplain
 
 
-\showkeyexplain{lightsaber right}{color}{pingu@blue}(pingu@blue)
+\showkeyexplain{lightsaber right}{color}{pingu@blue}
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber right=green]
