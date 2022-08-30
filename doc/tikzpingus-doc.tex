@@ -642,7 +642,7 @@ So I have started to create some predefined styles, that do change some of the p
 \begin{multicols}{2}
 \begin{itemize}
 	\itemsep0pt
-	\foreach \tx/\s in {{draw everything with a line}/{:line}, {fill main penguin}/{:fill}, {draw components with transparency}/{:ghost parts}, {draw all layers with transparency}/{:ghost}, {set main \say{devil}-components}/{:devil},{flip the penguin (swaps left \& right)}/{:back},{do not draw main pingu}/{:hide}} {
+	\foreach \tx/\s in {{draw everything with a line}/{:line}, {fill main penguin}/{:fill}, {draw components with transparency}/{:ghost parts}, {draw all layers with transparency}/{:ghost}, {set main \say{devil}-components}/{:devil},{flip the penguin (swaps left \& right)}/{:back},{do not draw main pingu}/{:hide},{mix the main penguin with a given color}/{:mix}} {
 		\item \parbox[t]{.8\linewidth}{\raggedright\expandafter\dkeyref\expandafter{\s}, \tx.} \hfill
 		\parbox[t]{.175\linewidth}{\scalebox{.4}{%
 			\begin{tikzpicture}[baseline=.35\baselineskip]%
@@ -1262,8 +1262,17 @@ Aliases may set custom defaults. Those defaults are not listed as they may chang
 \end{tcblisting}
 \endkeyexplain
 
-\def\cursub{}
+\keyexplain{:mix}{color-mix}{50!white}
+	Mix the main penguin with given colors, but leave all extras intact. This can be used (for example) to gray-out the penguin:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[santa hat,tie,lollipop left,:mix=50!green]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
 
+
+\def\cursub{}
 \subsection{Extras}
 \subsubsection{The heart}
 \showkeyexplain{heart}{node-options}{lightgray}(pingu@main)
