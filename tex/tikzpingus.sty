@@ -179,7 +179,6 @@
   belly/.forward to             = /pingu/belly text,
   belly text/.style             = {/pingu/belly raw={\node[/pingu/@text,opacity=.2] {#1};}},
   belly raw/.code               = \def\pingu@belly@raw{#1},
-  heart/.style                  = {/pingu/belly raw={\node[/pingu/@text,#1] {\Large\faHeart};}},
   % eyes
   left eye/.code                = \pingu@lefteye@select{#1},
   left eye color/.code          = \pingu@color{eye@left}{#1},
@@ -868,6 +867,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \def\pingu@@xif@eb#1#2{\csname if@pingu@x@#1@\endcsname\csname pingu@draw@eb@#2\endcsname\fi}
 \def\pingu@xif@eb#1#2{\ifcsname if@pingu@x@#1@\endcsname{\pingu@@xif@eb{#1}{#2}}\fi}
 \def\pingu@draw@extras@below{%
+    \pingu@xif@eb{heart}{heart}%
     \pingu@xif@eb{devilwings}{devilwings}%
     \pingu@xif@eb{glow}{glow}%
     \pingu@xif@eb{tie}{tie}%
