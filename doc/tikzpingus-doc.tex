@@ -638,11 +638,11 @@ For each selection, \say{none} will prohibit the drawing, and \say{normal} is th
 
 \subsection{Predefined Styles}
 While the penguin options offer the modification of basically every drawing routine (through other styles like |@block|), it is tedious to change them every time.
-So I have started to create some predefined styles, that do change some of the penguins appearance (and are completely new, so beware of bugs):
+So I have started to create some predefined styles, that do change some of the penguins appearance (and are completely new, so beware of bugs). The following list presents an incomplete overview:
 \begin{multicols}{2}
 \begin{itemize}
 	\itemsep0pt
-	\foreach \tx/\s in {{draw everything with a line}/{:line}, {fill main penguin}/{:fill}, {draw components with transparency}/{:ghost parts}, {draw all layers with transparency}/{:ghost}, {set main \say{devil}-components}/{:devil},{flip the penguin (swaps left \& right)}/{:back},{do not draw main pingu}/{:hide},{mix the main penguin with a given color}/{:mix}} {
+	\foreach \tx/\s in {{draw everything with a line}/{:line}, {fill main penguin}/{:fill}, {draw components with transparency}/{:ghost parts}, {draw all layers with transparency}/{:ghost}, {set main \say{devil}-components}/{:devil},{flip the penguin (swaps left \& right)}/{:back},{do not draw main pingu}/{:hide},{mix the main penguin with a given color}/{:mix},{mix the main penguin completely with a given color}/{:mix-all}} {
 		\item \parbox[t]{.8\linewidth}{\raggedright\expandafter\dkeyref\expandafter{\s}, \tx.} \hfill
 		\parbox[t]{.175\linewidth}{\scalebox{.4}{%
 			\begin{tikzpicture}[baseline=.35\baselineskip]%
