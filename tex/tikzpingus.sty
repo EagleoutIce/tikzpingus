@@ -267,7 +267,7 @@
 % #endregion
 
 % colorname | mix with
-\def\@pingu@color@mixwith#1#2{\typeout{Try redef \string#1(#1) with #2}\protected@edef\@tmp{#1}\ifx\@tmp\@pingu@none\else\typeout{DO!}\expandafter\def\expandafter#1\expandafter{#1!#2}\fi}
+\def\@pingu@color@mixwith#1#2{\protected@edef\@tmp{#1}\ifx\@tmp\@pingu@none\else\expandafter\def\expandafter#1\expandafter{#1!#2}\fi}
 
 % #region complete sets and styles
 \newif\if@pingu@do@back@
