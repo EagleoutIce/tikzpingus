@@ -272,6 +272,16 @@
   :line/.style            = {/pingu/@block/.append style={fill=none,draw=##1!80!black,shade=none,path fading=none}},
   :fill/.style            = {/pingu/body=#1,/pingu/body front=#1,/pingu/feet color=#1, /pingu/bill color=#1, /pingu/eyes color=#1, /pingu/eyes second color=#1},
   :fill/.default          = pingu@main,
+  :mix/.style             = {
+    /pingu/@body/.style={/pingu/@block/.append style={/pingu/@pingu@all={####1!#1}, fill={####1!#1}}},
+    /pingu/@wings/.style={/pingu/@block/.append style={/pingu/@pingu@all={####1!#1}, fill={####1!#1}}},
+    /pingu/@eyes/.style={/pingu/@block/.append style={/pingu/@pingu@all={####1!#1}, fill={####1!#1}}},
+    /pingu/@bill/.style={/pingu/@block/.append style={/pingu/@pingu@all={####1!#1}, fill={####1!#1}}},
+    /pingu/@hair/.style={/pingu/@block/.append style={/pingu/@pingu@all={####1!#1}, fill={####1!#1}}},
+    /pingu/@feet/.style={/pingu/@block/.append style={/pingu/@pingu@all={####1!#1}, fill={####1!#1}}}
+   },
+  :mix/.default           = 50!white,
+  :fill/.default          = pingu@main,
   :ghost parts/.style     = {/pingu/@pingu@all/.append style={opacity={#1}}},
   :ghost parts/.default   = {.5},
   :ghost/.style           = {/pingu/@pingu/.append style={opacity=#1,transparency group}},
