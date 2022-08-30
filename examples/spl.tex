@@ -13,6 +13,7 @@
 
 \usetikzlibrary{arrows.meta}
 
+% created at a time before ':mix'
 \def\pinguDoubleCut#1{\pingu[#1,/pingu/@block/.style={fill=##1!20!white},/pingu/@draw/.style={draw=##1!20!white,cap=round}]\pingu[:hide,#1]\pingu[/pingu/@block/.style={fill=##1!20!white},/pingu/@draw/.style={draw=##1!20!white,cap=round},:hide,eyes=wink,bill=normal]}% we overpaint the penguin again for front features
 \def\pinguCut#1{\pingu[eyes=wink,bill=normal,#1,/pingu/@block/.style={fill=##1!20!white},/pingu/@draw/.style={draw=##1!20!white,cap=round}]\pingu[:hide,#1]}
 \newsavebox\pingA \savebox\pingA{\tikz{\pinguDoubleCut{body type=normal}}}
