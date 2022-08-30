@@ -1262,6 +1262,15 @@ Aliases may set custom defaults. Those defaults are not listed as they may chang
 \end{tcblisting}
 \endkeyexplain
 
+\keyexplain{:pingu}{options}{}
+	Apply the given options to all penguin-keys:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[:pingu={/pingu/@block/.style={fill=green}}]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
+
 \keyexplain{:mix}{color-mix}{50!white}
 	Mix the main penguin with given colors, but leave all extras intact. This can be used (for example) to gray-out the penguin:
 \begin{tcblisting}{@}
@@ -1269,6 +1278,17 @@ Aliases may set custom defaults. Those defaults are not listed as they may chang
 	\pingu[mask,tie=red,lollipop left,:mix=50!green]
 \end{tikzpicture}
 \end{tcblisting}
+	In contrast to \dkeyref{:mix-all} this changes the active colors of the penguin.
+\endkeyexplain
+
+\keyexplain{:mix-all}{color-mix}{50!white}
+	Mix the main penguin with given colors, but leave all extras intact. This can be used (for example) to gray-out the penguin:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[mask,tie=red,:mix-all=50!green]
+\end{tikzpicture}
+\end{tcblisting}
+	In contrast to \dkeyref{:mix} this changes the drawing options.
 \endkeyexplain
 
 
