@@ -119,3 +119,14 @@ scale=\pingu@x@pumpkinhat@scale]
     \pingu@block[thick,rotate around={\@angle-1:(\pingu@name-lollipop-#1-top)}]{\csname pingu@color@lollipop#1@second\endcsname} (\pingu@name-lollipop-#1-top) ellipse [x radius=1.57mm, y radius=1.5\p@];
     \pingu@block[thick,rotate around={\@angle-1:(\pingu@name-lollipop-#1-top)}]{\@col} (\pingu@name-lollipop-#1-top)++(0,.5\p@) ellipse [x radius=1.4mm, y radius=\p@];
 }
+
+\pingu@create@extra{heart}{%
+  heart/.code       = {\pingu@set@extra{heart}{true}\pingu@color{heart}{#1}},
+  heart/.default    = lightgray
+}{}
+
+\def\pingu@draw@eb@heart{%
+    \pingu@block[sharp corners]{\pingu@color@heart}
+    ([yshift=1mm]\pingu@name-belly-center) arc(0:180:.13cm)
+    to[out=270,in=110] ++(.26cm,-.36cm) to[out=70,in=270] ++(.26cm,.36cm) arc (0:180:.13cm) -- cycle;
+}
