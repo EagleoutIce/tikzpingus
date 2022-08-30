@@ -36,7 +36,7 @@ If the penguin should be large, you write `large`. If you want the penguin to ho
 [<img style="border-radius:8pt" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-3.png?raw=true" width="600" />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=3)
 </div>
 
-Currently, most options I have added arose from concrete situations and are not part of "sets". However, some sets do exist, like the `santa` or `devil` collection. If there are more sets in the future, I might add them as first-class components. For now, the [documentation](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/doc/build/tikzpingus-doc.pdf#appendix.A) contains an [Overview](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/doc/build/tikzpingus-doc.pdf#appendix.A) of the larger gadgets.
+Currently, most options I have added arose from concrete situations and are not part of "sets". However, some sets do exist, like the `santa` or `devil` collection. If there are more sets in the future, I might add them as first-class components. For now, the [documentation](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/doc/build/tikzpingus-doc.pdf#appendix.A) contains an [overview](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/doc/build/tikzpingus-doc.pdf#appendix.A) of the larger gadgets.
 <br />
 
 <div style="text-align:center">
