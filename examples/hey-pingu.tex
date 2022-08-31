@@ -15,6 +15,9 @@
 
 \PreviewBorder.5cm
 
+\newsavebox\showcasePengu
+\setbox\showcasePengu=\hbox{\tikz{\pingu[eyes wink,wings wave,body type=legacy,feet=sit,small,conical hat,heart,staff left,left item angle=-45]}}
+
 % TODO: automate a lot of this
 \lstset{language={[LaTeX]TeX},basicstyle=\ttfamily,moretexcs={tikz,pingu},breaklines,escapeinside={$}{$},morekeywords={[2]{legacy,sit}},keywordstyle={[2]\itshape}}
 \colorlet{@}{Green}
@@ -192,6 +195,41 @@
 
 \path ([yshift=-.25mm,xshift=.5mm]feet.south east) to[bend right=6] ([yshift=.75mm,xshift=-4.33mm]pingu-foot-right);
 \endscope
+\end{tikzpicture}
+\endpreview
+
+
+% this is to be the teaser image for ctan
+\colorlet{@}{Blue}
+\pagecolor{green}
+\preview
+\begin{tikzpicture}[remember picture]
+\pingu[vr-headset,headphone,laptop left,lightsaber right,tie=cyan,name=pingu]
+\node[left,text width=4.5cm] at(current bounding box.west) {\begin{lstlisting}
+\tikz{\pingu[
+   $\K{vr-headset}$,
+   $\K{headphone}$,
+   $\K{laptop left}$,
+   $\K{lightsaber right}$,
+   $\K{tie}$=cyan
+]}
+\end{lstlisting}};
+\scope[W]
+\path (vr-headset.east) to[bend left] ([xshift=5.65mm,yshift=4.75mm]pingu-wings-side-right);
+\path ([yshift=.15mm,xshift=.5mm]headphone.east) to[out=30,in=160] ([xshift=-3.66mm,yshift=1.25mm]pingu-head-top);
+
+\path ([yshift=.15mm,xshift=.5mm]lightsaber right.north east) to[out=20,in=242] ([xshift=-14.5mm,yshift=8mm]pingu-bill-bottom);
+
+\path ([yshift=.15mm,xshift=.5mm]laptop left.east) to[bend left=10] ([xshift=-1.5mm,yshift=9mm]pingu-wing-left-tip);
+
+\path ([yshift=-.15mm,xshift=.5mm]tie.south east) to[bend right=10] ([yshift=-3.5mm,xshift=-1.75mm]pingu-belly-center);
+\endscope
+\node[left=-6.5mm,yshift=-6.5mm,scale=.75] (tpingu) at(current bounding box.west) {\usebox\showcasePengu};
+\node[above=1.25mm,opacity=.5,xshift=-4mm] at(tpingu.north) {\Large\sffamily Ti\textit{k}Zpingus};
+
+\pgfonlayer{very-background}
+\draw[rounded corners,lightgray,fill=pingu@white](current bounding box.center)++(-6cm,-2cm) rectangle ++(12cm,4cm);
+\endpgfonlayer
 \end{tikzpicture}
 \endpreview
 \end{document}
