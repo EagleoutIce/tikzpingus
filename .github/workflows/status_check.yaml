@@ -27,6 +27,8 @@ jobs:
       - name: 📄 Compile Examples
         uses: xu-cheng/latex-action@v2
         with:
+# remove ctan package to insure local
+          pre_compile: "tlmgr remove --force tikzpingus"
           working_directory: examples
           root_file: |
             showcase.tex
