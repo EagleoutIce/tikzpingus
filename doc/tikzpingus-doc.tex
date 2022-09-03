@@ -262,9 +262,9 @@
 \newenvironment{commandexplain}[2]{%
 \begingroup
 \def\@labelhack{/pingu/}%
-\mand##1{\texttt{\{##1\}}}%
+\def\mand##1{\texttt{\{##1\}}}%
 % #2 is the default
-\opt##1##2{\texttt{\textit{[##1\ifx!##2!\else\textcolor{lightgray}{\smaller=##2}\fi]}}}%
+\def\opt##1##2{\texttt{\textit{[##1\ifx!##2!\else\textcolor{lightgray}{\smaller\sffamily=##2}\fi]}}}%
 \def\@explainsuff{#2}%
 \keyexplain[]{\\#1}{}{}%
 }{\endkeyexplain\endgroup}
@@ -4941,7 +4941,8 @@ This is interesting in combination with other extras as it allows the \keyref{sh
 The goal of this section is to explain the inner workings of the package to aid other people in helping me extending and mainting the penguins.
 
 \subsection{General commands}
-\begin{commandexplain}{pingu}{\opt{penguin keys}}
+% TODO: make the default argument of optionals a optional argument :D
+\begin{commandexplain}{pingu}{\opt{penguin keys}{}}
 	The command to draw the penguin!
 \end{commandexplain}
 
