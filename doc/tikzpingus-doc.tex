@@ -39,7 +39,10 @@
 \usepackage{xstring}
 \usepackage{colorinfo}
 
-\makeindex[title={Key Overview},columns=2,columnsep=.75cm,noautomatic=true,options=-s indexstyle.ist]
+\makeindex[title={Key Overview},name=\jobname,columns=2,columnsep=.75cm]
+\makeindex[title={Internals Overview},name=\jobname-internals,columns=2,columnsep=.75cm]
+\def\current@indexfile{\jobname}
+
 \deffootnote{1.5em}{1em}{\textsuperscript{\hyperref[\BackrefFootnoteTag]{\thefootnotemark}}\thinspace}
 \def\thefootnote{$\langle$\arabic{footnote}$\rangle$}
 % https://tex.stackexchange.com/questions/78423/how-to-use-the-footnotebackref-package-with-footnotemark-and-footnotetext
@@ -62,7 +65,7 @@
 \let\say\enquote
 \def\DTLlistformatoxford{,}\def\DTLandname{and}
 % TODO: do guard against same keys for different selectors
-\long\def\ParseDTLListElement#1"#2"\@nil{\textsuperscript{\smash{\raisebox{2pt}{\ifcsname pingu@@lib@#2@\CurrentList @\endcsname\index{Libraries!\textit{\csname pingu@@lib@#2@\CurrentList @\endcsname}!#2?\hyperref[expl-list:\CurrentList]{\protect\lpingu{#2} {\tiny\sffamily(\MapDTLList{\CurrentList})}}}~$\underset{\text{\tiny\smash{\raisebox{3pt}{\textsf{\hyperref[Libraries]{\color{gray}Library}}}}}}{\text{\textit{\tiny\strut\csname pingu@@lib@#2@\CurrentList @\endcsname}}}$\fi}}}}
+\long\def\ParseDTLListElement#1"#2"\@nil{\textsuperscript{\smash{\raisebox{2pt}{\ifcsname pingu@@lib@#2@\CurrentList @\endcsname\index[\current@indexfile]{Libraries!\textit{\csname pingu@@lib@#2@\CurrentList @\endcsname}!#2?\hyperref[expl-list:\CurrentList]{\protect\lpingu{#2} {\tiny\sffamily(\MapDTLList{\CurrentList})}}}~$\underset{\text{\tiny\smash{\raisebox{3pt}{\textsf{\hyperref[Libraries]{\color{gray}Library}}}}}}{\text{\textit{\tiny\strut\csname pingu@@lib@#2@\CurrentList @\endcsname}}}$\fi}}}}
 \def\DTLlistformatitem#1{\textit{#1\expandafter\ParseDTLListElement :#1\@nil}}
 \newcommand*\typesetselection[1][]{\begingroup\ifx!#1!\else\def\DTLlistformatitem##1{#1}\fi\dotypesetselection}
 \def\dotypesetselection#1{\label{expl-list:#1}\def\CurrentList{#1}\expandafter\DTLformatlist\expandafter{\csname @pingu@#1@\endcsname}\endgroup}
@@ -224,7 +227,7 @@
 	{\def\\{_}\protected@xdef\@key{#2}}%%
 	{\def\\{}\protected@xdef\@idxkey{#2}}%% backslash should not interfere with keys
 	\tcbset{@/.style={externalize listing=key-\keyexternalname}}% set for externalize
-	\phantomsection\label{pk:#1\@labelhack\@key}\index{\cursub\@idxkey?\hyperref[pk:#1\@key]{\protect\lpingu{#2}}}%
+	\phantomsection\label{pk:#1\@labelhack\@key}\index[\current@indexfile]{\cursub\@idxkey?\hyperref[pk:#1\@key]{\protect\lpingu{#2}}}%
 	% get its length:
 	\StrLen{#2}[\@cclen]%
 	\protected@csxappto{allcmds@\@cclen}{\@key,}%
@@ -240,7 +243,7 @@
 		\ifx\@tmpb\@empty\lpingu{#1#2}\@explainsuff\else\lpingu{#1#2 =\ }\texttt{<\textit{\@tmpb}>}\fi\hfill
 				\ifx\@tmp\@empty\else{\@declaredcolor{gray}(}#4{\@declaredcolor{gray})}\fi
 		}
-	}\ifcsname pingu@@lib@\@key @\endcsname\index{Libraries!\textit{\csname pingu@@lib@#2@\endcsname}!\@idxkey?\hyperref[pk:#1\@key]{\protect\lpingu{#2}}}\rlap{~\quad\raisebox{2.75pt}{$\underset{\text{\tiny\smash{\raisebox{3pt}{\textsf{\hyperref[Libraries]{\color{gray}Library}}}}}}{\text{\textit{\footnotesize\strut\csname pingu@@lib@#2@\endcsname}}}$}}\fi\kern-\linewidth\par\endgroup
+	}\ifcsname pingu@@lib@\@key @\endcsname\index[\current@indexfile]{Libraries!\textit{\csname pingu@@lib@#2@\endcsname}!\@idxkey?\hyperref[pk:#1\@key]{\protect\lpingu{#2}}}\rlap{~\quad\raisebox{2.75pt}{$\underset{\text{\tiny\smash{\raisebox{3pt}{\textsf{\hyperref[Libraries]{\color{gray}Library}}}}}}{\text{\textit{\footnotesize\strut\csname pingu@@lib@#2@\endcsname}}}$}}\fi\kern-\linewidth\par\endgroup
 }
 {\endminipage\smallskip\par}
 
@@ -510,7 +513,7 @@ changed with the name option:
 	\node at (paula-foot-left) {Foot};
 \end{tikzpicture}
 \end{tcblisting}
-Lets look at those coordinates in more detail (all labels are to be prefixed by |<pingu-name>-|):
+\phantomsection\label{pingu-coordinates}Lets look at those coordinates in more detail (all labels are to be prefixed by |<\keyref{name}>-|):
 \newsavebox\pinguwingright
 \savebox\pinguwingright{%
 \begin{tikzpicture}%
@@ -626,7 +629,7 @@ Please note that~--- at the moment~--- not all components of a library are label
 Currently there are the following libraries:
 \foreach[count=\i] \l/\xs in \pingu@defaultlibs{%
 	\ifx\l\empty\else
-	\index{Libraries!\textit{\l}}\textit{\l}\ifnum\numexpr\pingu@defaultlibs@count-1>\i,\space\else
+	\index[\current@indexfile]{Libraries!\textit{\l}}\textit{\l}\ifnum\numexpr\pingu@defaultlibs@count-1>\i,\space\else
 	\ifnum\pingu@defaultlibs@count=\i\else,~and\space\fi\fi
 	\fi
 }.
@@ -4958,6 +4961,7 @@ This is interesting in combination with other extras as it allows the \keyref{sh
 % set up for inclusion
 \lstset{includerangemarker=false,rangeprefix={\%\ <}, rangesuffix={>}}
 \newcommand\includecode[2][../tex/tikzpingus.sty]{\lstinputlisting[linerange=#2-@#2,style=lstpingu,language=pinguinternallang]{#1}}
+\def\current@indexfile{\jobname-internals}
 
 \section{The Internals}
 The goal of this section is to explain the inner workings of the package to aid other people in helping me extending and mainting the penguins.
@@ -4976,7 +4980,6 @@ TODO: explain selections
 	The \textit{none default} is used for the default member of the selection: \textit{none} which is active, whenever no other key is selected by \cmdref{pingu@<selection>@select}.
 	You can add keys by using \cmdref{pingu@<selection>@add} and execute the selection by \cmdref{@pingu@drawer@<selection>@}.
 \end{commandexplain}
-TODO: subcommandexplain and better cmdref
 
 \begin{subcommandexplain}{pingu@create@selection}{pingu@<selection>@select}{\mand{select}}
 
@@ -4996,7 +4999,7 @@ TODO: subcommandexplain and better cmdref
 	This dimension holds a hardcoded value to be used as the offset for eyes. Its default value is \the\pingu@eye@shift. It may be removed in the future (or replaced by a option).
 \end{commandexplain}
 
-The eyes of the penguin are controlled by two selections for the left, and the right eye:
+The eyes of the penguin are controlled by two selections for the left, and the right eye. As we still want the coordinates for the right and the left eye (as presented in \autoref{pingu-coordinates}), the \textit{none}-version of \cmdref{pingu@create@selection} creates those:
 \includecode{eyes\ selectors}
 
 
