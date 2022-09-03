@@ -74,6 +74,7 @@
 \addtokomafont{date}{\normalsize}
 
 \def\optstyle{\@declaredcolor{@opcolor}\slshape}
+\def\cmdstyle{\@declaredcolor{doc-main}}
 \colorlet{@softgray}{gray!60!white}
 \colorlet{@softgray@b}{gray!75!white}
 \colorlet{@darkerblue}{pingu@blue!40!black}
@@ -136,14 +137,18 @@
 		{\\pgfmathsetseed}{{\ghostcmd{pgfmathsetseed}}}{15}
 }
 
-\def\@CreateCodeHyperLink#1#2#3#4{\lstset{add to literate={#2}{{\hyperref[#3]{\optstyle#4}}}{#1}}}
+\def\@CreateCodeHyperLink#1#2#3#4{\lstset{add to literate={#2}{{\hyperref[#3]{\hyperstyle#4}}}{#1}}}
 % #1 Keys | #2 length (optimized)
 \def\CreateCodeHyperLink#1#2{% \StrLen{\@elem}[\@cclen]
 	\@for\@elem:=#1\do{\ifx\@elem\@empty\else
 	% space to space cmd % TODO: do this on store and just keep store?
 	\StrSubstitute{\@elem}{ }{\noexpand\ }[\@sub]\relax
-	\StrSubstitute{\@sub}{_}{\\}[\@sub]%
-	\StrSubstitute{\@sub}{\\}{\textbackslash}[\@subb]% deal with backslash
+	\let\hyperstyle\optstyle
+	\IfSubStr{\@sub}{_}{% update hypersyle
+		\let\hyperstyle\cmdstyle
+		\StrSubstitute{\@sub}{_}{\\}[\@sub]%
+		\StrSubstitute{\@sub}{\\}{\textbackslash}[\@subb]% deal with backslash
+	}{\let\@subb\@sub}
 	\edef\@tmp{\noexpand\@CreateCodeHyperLink{#2}{\@sub}{pk:/pingu/\@elem}{\@subb}}\@tmp\fi}%
 }
 % store all. we use their precalculated length to ensure prefixes we go from small to large on set
@@ -259,14 +264,17 @@
 	{\@declaredcolor{gray}\footnotesize This command is only in effect if \keyref[#1]{#2} is active.}\par
 }{\endkeyexplain\endgroup}
 
-\newenvironment{commandexplain}[2]{%
+\newenvironment{commandexplain}[3][]{%
 \begingroup
 \def\@labelhack{/pingu/}%
 \def\mand##1{\texttt{\{##1\}}}%
-% #2 is the default
-\def\opt##1##2{\texttt{\textit{[##1\ifx!##2!\else\textcolor{lightgray}{\smaller\sffamily=##2}\fi]}}}%
-\def\@explainsuff{#2}%
-\keyexplain[]{\\#1}{}{}%
+\def\@pingu@command@keypartner{#1}%
+% #1 is the default
+\newcommand\opt[2][]{\texttt{\textit{[##2\ifx!##1!\else\textcolor{lightgray}{\smaller\sffamily=##1}\fi]}}}%
+\def\@explainsuff{#3}%
+\keyexplain[]{\\#2}{}{}%
+\ifx\@pingu@command@keypartner\@empty\else
+{\@declaredcolor{gray}\footnotesize Do \textbf{not} redefine this command, it is controlled by \keyref{#1}.}\par\fi
 }{\endkeyexplain\endgroup}
 
 \def\consumeshowkeyexplain#1(#2){\ShowcaseThis[#2]{#1}}
@@ -4941,13 +4949,12 @@ This is interesting in combination with other extras as it allows the \keyref{sh
 The goal of this section is to explain the inner workings of the package to aid other people in helping me extending and mainting the penguins.
 
 \subsection{General commands}
-% TODO: make the default argument of optionals a optional argument :D
-\begin{commandexplain}{pingu}{\opt{penguin keys}{}}
+\begin{commandexplain}{pingu}{\opt{penguin keys}}
 	The command to draw the penguin!
 \end{commandexplain}
 
-\begin{commandexplain}{pingu@name}{}
-	Holds the name of the penguin. Do not redefine, but use \keyref{name}.
+\begin{commandexplain}[name]{pingu@name}{}
+	Holds the name of the penguin.
 \end{commandexplain}
 
 \subsection{Adding new Eyes}
