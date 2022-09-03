@@ -87,9 +87,6 @@
 	emphstyle=[2]\optstyle,
 	emphstyle=[3]\@declaredcolor{@softgray@b},
 	emphstyle=[4]\@declaredcolor{@darkerblue},
-	% texcsstyle=*\@declaredcolor{gray}\bfseries,
-	% texcsstyle=*[2]\@declaredcolor{doc-main}\bfseries,
-	% texcsstyle=*[3]\@declaredcolor{@softgray},
 	lineskip=2.5pt,
 	keepspaces=true,
 	moredelim=[s][\itshape]{<}{>},
@@ -98,13 +95,19 @@
 \def\ipingu#1{\lstinline'#1'}
 \def\lpingu#1{\lstinline[style=lstpingu,language=pingulang]'#1'}
 \def\ltex#1{\lstinline[style=lstpingu,language=pinguinternallang]'#1'}
+\def\doccmd#1{{\@declaredcolor{doc-main}\bfseries\textbackslash #1}}
+\def\graycmd#1{{\@declaredcolor{gray}\bfseries\textbackslash #1}}
+\def\ghostcmd#1{{\@declaredcolor{@softgray}\textbackslash #1}}
 
 \lstdefinelanguage{pinguinternallang}{
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
 	alsoletter={@},
-	% moretexcs=[2]{pingu@block,pingu@draw,},
-	% moretexcs={pingu@eye@shift,pingu@color@eye@left,pingu@color@eye@right,@pingu@eyes@s,@pingu@none,path}
+	add to literate=
+		{\\pingu@block}{{\doccmd{pingu@block}}}{12}
+		{\\pingu@draw}{{\doccmd{pingu@draw}}}{11}
+		{\\@pingu@non}{{\graycmd{path}}}{11}
+		{\\path}{{\graycmd{path}}}{5}
 }
 
 \def\t@lst@addToLiterate#1{\protected@edef\lst@literate{\unexpanded\expandafter{\lst@literate}\unexpanded{#1}}}
@@ -115,15 +118,22 @@
 	language={[LaTeX]TeX},
 	moreemph={tikzpicture},
 	alsoletter={.-!:0123456789},%disable number
-	% deletetexcs={begin,end}, % -> lift 3
-	% moretexcs=[2]{pingu,duck,node,pingudefaults,pingudefaultsappend,pinguloadlibrary,pinguloadlibraries},
-	% moretexcs=[3]{begin,end,pgfmathsetseed},
+	deletetexcs={begin,end}, % -> lift 3
 	moreemph=[3]{!hide,.style},
 	add to literate={/pingu/}{{\@declaredcolor{gray}/pingu/}}7
 		{\{tikzpicture\}}{{\@declaredcolor{@softgray}\{tikzpicture\}}}{13}
 		{\{\\number\\pdfrandomseed\}}{{\@declaredcolor{@softgray}\{\textbackslash number\textbackslash pdfrandomseed\}}}{23}
 		% otherwise these would interfere with random
 		{!random}{{\@declaredcolor{darkgray}\itshape!random}}7
+		{\\node}{{\doccmd{node}}}5
+		{\\duck}{{\doccmd{duck}}}5
+		{\\pingudefaults}{{\doccmd{pingudefaults}}}{14}
+		{\\pingudefaultsappend}{{\doccmd{pingudefaultsappend}}}{20}
+		{\\pinguloadlibrary}{{\doccmd{pinguloadlibrary}}}{17}
+		{\\pinguloadlibraries}{{\doccmd{pinguloadlibraries}}}{19}
+		{\\begin}{{\ghostcmd{begin}}}6
+		{\\end}{{\ghostcmd{end}}}4
+		{\\pgfmathsetseed}{{\ghostcmd{pgfmathsetseed}}}{15}
 }
 
 \def\@CreateCodeHyperLink#1#2#3#4{\typeout{Creating hyperlink #2 => #3}\lstset{add to literate={#2}{{\hyperref[#3]{\optstyle#4}}}{#1}}}
@@ -4922,10 +4932,13 @@ In a more general fashion, there is a \keyref{random from} key for completely ra
 \lstset{includerangemarker=false,rangeprefix={\%\ <}, rangesuffix={>}}
 \newcommand\includecode[2][../tex/tikzpingus.sty]{\lstinputlisting[linerange=#2-@#2,style=lstpingu,language=pinguinternallang]{#1}}
 
-\section{Describing the internals}
+\section{The Internals}
 The goal of this section is to explain the inner workings of the package to aid other people in helping me extending and mainting the penguins.
 
 \subsection{General commands}
+\begin{commandexplain}{pingu}
+	The command to draw the penguin! TODO: command args.
+\end{commandexplain}
 
 \begin{commandexplain}{pingu@name}
 	Holds the name of the penguin.
