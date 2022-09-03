@@ -222,13 +222,12 @@
 \let\@explainsuff\@empty
 \let\@labelhack\@empty
 % allow the oxes to have minor overlaps
-\newenvironment{keyexplain}[4][/pingu/]{\minipage{\linewidth}
-	\parskip\smallskipamount
+\newcommand\DefineKey[2][/pingu/]{%
 	\StrSubstitute{#2}{ }{-}[\keyexternalname]%
 	% only use _ to keep the length intact when replace with the backslash
 	\StrSubstitute{\keyexternalname}{\\}{_}[\keyexternalname]%
-	{\def\\{_}\protected@xdef\@key{#2}}%%
-	{\def\\{}\protected@xdef\@idxkey{#2}}%% backslash should not interfere with keys
+	{\def\\{_}\protected@xdef\@key{#2}}%
+	{\def\\{}\protected@xdef\@idxkey{#2}}% backslash should not interfere with keys
 	\tcbset{@/.style={externalize listing=key-\keyexternalname}}% set for externalize
 	\phantomsection\label{pk:#1\@labelhack\@key}\index[\current@indexfile]{\cursub\@idxkey?\hyperref[pk:#1\@key]{\protect\lpingu{#2}}}%
 	% get its length:
@@ -237,6 +236,11 @@
 	% update the range
 	\ifnum\@cclen>\allcmdsmax\relax \xdef\allcmdsmax{\@cclen}\fi
 	\ifnum\@cclen<\allcmdsmin\relax \xdef\allcmdsmin{\@cclen}\fi
+}
+
+\newenvironment{keyexplain}[4][/pingu/]{\minipage{\linewidth}
+	\parskip\smallskipamount
+	\DefineKey[#1]{#2}%
 	\expandafter\gdef\csname pinguopt\@key\endcsname{#3}%
 	\expandafter\gdef\csname pingudefa\@key\endcsname{#4}%
 	\begingroup\pgfkeys{/pingu/.cd,defaults}\protected@edef\@tmp{#4}%
@@ -5021,6 +5025,7 @@ TODO: explain selections
 
 The eyes of the penguin are controlled by two selections for the left, and the right eye. As we still want the coordinates for the right and the left eye (as presented in \autoref{pingu-coordinates}), the \textit{none}-version of \cmdref{pingu@create@selection} creates those:
 \includecode{eyes\ selectors}
+With this, we get \DefineKey{\\pingu@righteye@select}
 
 % \pgfqkeys{/pingu}{
 \includecode{eyes\ keys}
