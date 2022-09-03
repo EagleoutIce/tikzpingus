@@ -137,7 +137,7 @@
 		{\\pgfmathsetseed}{{\ghostcmd{pgfmathsetseed}}}{15}
 }
 
-\def\@CreateCodeHyperLink#1#2#3#4{\lstset{add to literate={#2}{{\hyperref[#3]{\hyperstyle#4}}}{#1}}}
+\def\@CreateCodeHyperLink#1#2#3#4{\lstset{add to literate={#2}{{\hyperref[#3]{#4}}}{#1}}}
 % #1 Keys | #2 length (optimized)
 \def\CreateCodeHyperLink#1#2{% \StrLen{\@elem}[\@cclen]
 	\@for\@elem:=#1\do{\ifx\@elem\@empty\else
@@ -149,7 +149,7 @@
 		\StrSubstitute{\@sub}{_}{\\}[\@sub]%
 		\StrSubstitute{\@sub}{\\}{\textbackslash}[\@subb]% deal with backslash
 	}{\let\@subb\@sub}
-	\edef\@tmp{\noexpand\@CreateCodeHyperLink{#2}{\@sub}{pk:/pingu/\@elem}{\@subb}}\@tmp\fi}%
+	\edef\@tmp{\noexpand\@CreateCodeHyperLink{#2}{\@sub}{pk:/pingu/\@elem}{\hyperstyle\@subb}}\@tmp\fi}%
 }
 % store all. we use their precalculated length to ensure prefixes we go from small to large on set
 \def\cmdsstore#1#2{\csxdef{allcmds@#1}{#2}}
