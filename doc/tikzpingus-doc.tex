@@ -207,11 +207,13 @@
 \def\explaincolor{@opcolor!8!white}
 \def\cursub{}
 \def\keyexplainindent{2.5em}%
+\let\@explainsuff\@empty
 \let\@labelhack\@empty
 % allow the oxes to have minor overlaps
 \newenvironment{keyexplain}[4][/pingu/]{\minipage{\linewidth}
 	\parskip\smallskipamount
 	\StrSubstitute{#2}{ }{-}[\keyexternalname]%
+	% only use _ to keep the length intact when replace with the backslash
 	\StrSubstitute{\keyexternalname}{\\}{_}[\keyexternalname]%
 	{\def\\{_}\protected@xdef\@key{#2}}%%
 	{\def\\{}\protected@xdef\@idxkey{#2}}%% backslash should not interfere with keys
@@ -229,7 +231,7 @@
 	\protected@edef\@tmpb{#3}%
 	\hspace*{-\keyexplainindent}\tcbox[left=3pt,right=3pt,top=3pt,bottom=3pt,colframe=white,colback=\explaincolor,on line]{%
 		\parbox{\dimexpr\linewidth-2\fboxsep+\keyexplainindent}{\small
-		\ifx\@tmpb\@empty\lpingu{#1#2}\else\lpingu{#1#2 =\ }\texttt{<\textit{\@tmpb}>}\fi\hfill
+		\ifx\@tmpb\@empty\lpingu{#1#2}\@explainsuff\else\lpingu{#1#2 =\ }\texttt{<\textit{\@tmpb}>}\fi\hfill
 				\ifx\@tmp\@empty\else{\@declaredcolor{gray}(}#4{\@declaredcolor{gray})}\fi
 		}
 	}\ifcsname pingu@@lib@\@key @\endcsname\index{Libraries!\textit{\csname pingu@@lib@#2@\endcsname}!\@idxkey?\hyperref[pk:#1\@key]{\protect\lpingu{#2}}}\rlap{~\quad\raisebox{2.75pt}{$\underset{\text{\tiny\smash{\raisebox{3pt}{\textsf{\hyperref[Libraries]{\color{gray}Library}}}}}}{\text{\textit{\footnotesize\strut\csname pingu@@lib@#2@\endcsname}}}$}}\fi\kern-\linewidth\par\endgroup
@@ -257,10 +259,13 @@
 	{\@declaredcolor{gray}\footnotesize This command is only in effect if \keyref[#1]{#2} is active.}\par
 }{\endkeyexplain\endgroup}
 
-\newenvironment{commandexplain}[1]{%
+\newenvironment{commandexplain}[2]{%
 \begingroup
 \def\@labelhack{/pingu/}%
-\def\explaincolor{@softexplaincolor}\def\keyexplainindent{0em}%
+\mand##1{\texttt{\{##1\}}}%
+% #2 is the default
+\opt##1##2{\texttt{\textit{[##1\ifx!##2!\else\textcolor{lightgray}{\smaller=##2}\fi]}}}%
+\def\@explainsuff{#2}%
 \keyexplain[]{\\#1}{}{}%
 }{\endkeyexplain\endgroup}
 
@@ -4936,12 +4941,12 @@ This is interesting in combination with other extras as it allows the \keyref{sh
 The goal of this section is to explain the inner workings of the package to aid other people in helping me extending and mainting the penguins.
 
 \subsection{General commands}
-\begin{commandexplain}{pingu}
-	The command to draw the penguin! TODO: command args.
+\begin{commandexplain}{pingu}{\opt{penguin keys}}
+	The command to draw the penguin!
 \end{commandexplain}
 
-\begin{commandexplain}{pingu@name}
-	Holds the name of the penguin.
+\begin{commandexplain}{pingu@name}{}
+	Holds the name of the penguin. Do not redefine, but use \keyref{name}.
 \end{commandexplain}
 
 \subsection{Adding new Eyes}
