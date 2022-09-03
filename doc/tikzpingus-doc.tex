@@ -280,6 +280,15 @@
 {\@declaredcolor{gray}\footnotesize Do \textbf{not} redefine this command, it is controlled by \keyref{#1}.}\par\fi
 }{\endkeyexplain\endgroup}
 
+\newenvironment{subcommandexplain}[4][]{%
+\begingroup
+\def\explaincolor{@softexplaincolor}\def\keyexplainindent{0em}%
+{\def\\{}\protected@xdef\@subidxkey{#2}}%% backslash should not interfere with keys
+\def\cursub{\@subidxkey?\hyperref[pk:_\@subidxkey]{\protect\lpingu{\\#2}}!}%
+\commandexplain[#1]{#3}{#4}%
+	{\@declaredcolor{gray}\footnotesize This command is only usable in combination with \cmdref{#2}.}\par
+}{\endcommandexplain\endgroup}
+
 \def\consumeshowkeyexplain#1(#2){\ShowcaseThis[#2]{#1}}
 \newenvironment{showkeyexplain}[4][/pingu/]{%
 \keyexplain[#1]{#2}{#3}{#4}%
@@ -4968,6 +4977,18 @@ TODO: explain selections
 	You can add keys by using \cmdref{pingu@<selection>@add} and execute the selection by \cmdref{@pingu@drawer@<selection>@}.
 \end{commandexplain}
 TODO: subcommandexplain and better cmdref
+
+\begin{subcommandexplain}{pingu@create@selection}{pingu@<selection>@select}{\mand{select}}
+
+\end{subcommandexplain}
+
+\begin{commandexplain}{pingu@<selection>@add}{\mand{select}}
+
+\end{commandexplain}
+
+\begin{commandexplain}{@pingu@drawer@<selection>@}{}
+
+\end{commandexplain}
 
 \subsection{Adding new Eyes}\label{internal:eyes}
 
