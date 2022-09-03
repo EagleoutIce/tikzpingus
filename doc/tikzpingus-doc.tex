@@ -136,7 +136,7 @@
 		{\\pgfmathsetseed}{{\ghostcmd{pgfmathsetseed}}}{15}
 }
 
-\def\@CreateCodeHyperLink#1#2#3#4{\typeout{Creating hyperlink #2 => #3}\lstset{add to literate={#2}{{\hyperref[#3]{\optstyle#4}}}{#1}}}
+\def\@CreateCodeHyperLink#1#2#3#4{\lstset{add to literate={#2}{{\hyperref[#3]{\optstyle#4}}}{#1}}}
 % #1 Keys | #2 length (optimized)
 \def\CreateCodeHyperLink#1#2{% \StrLen{\@elem}[\@cclen]
 	\@for\@elem:=#1\do{\ifx\@elem\@empty\else
