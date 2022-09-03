@@ -8,7 +8,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage{babel}
 
-\makeatletter\def\input@path{{../tex/}}\makeatother
+\makeatletter
+\def\input@path{{../tex/}}
 \usepackage[glows]{tikzpingus}
 
 % \definecolor{doc-main}{RGB}{204,0,25}
@@ -39,14 +40,14 @@
 \usepackage{xstring}
 \usepackage{colorinfo}
 
-\makeindex[title={Key Overview},name=\jobname,columns=2,columnsep=.75cm]
-\makeindex[title={Internals Overview},name=\jobname-internals,columns=2,columnsep=.75cm]
+\makeindex[title={Key Overview},name=\jobname,columns=2,columnsep=.75cm,noautomatic=true]
+\makeindex[title={Internals Overview},name=\jobname-internals,columns=2,columnsep=.75cm,noautomatic=true]
 \def\current@indexfile{\jobname}
 
 \deffootnote{1.5em}{1em}{\textsuperscript{\hyperref[\BackrefFootnoteTag]{\thefootnotemark}}\thinspace}
 \def\thefootnote{$\langle$\arabic{footnote}$\rangle$}
 % https://tex.stackexchange.com/questions/78423/how-to-use-the-footnotebackref-package-with-footnotemark-and-footnotetext
-\makeatletter
+
 \LetLtxMacro\BHFN@Old@footnotemark\@footnotemark
 \def\@footnotemark{%
     \refstepcounter{BackrefHyperFootnoteCounter}%
@@ -69,7 +70,6 @@
 \def\DTLlistformatitem#1{\textit{#1\expandafter\ParseDTLListElement :#1\@nil}}
 \newcommand*\typesetselection[1][]{\begingroup\ifx!#1!\else\def\DTLlistformatitem##1{#1}\fi\dotypesetselection}
 \def\dotypesetselection#1{\label{expl-list:#1}\def\CurrentList{#1}\expandafter\DTLformatlist\expandafter{\csname @pingu@#1@\endcsname}\endgroup}
-\makeatletter
 
 \addtokomafont{sectioning}{\@declaredcolor{gray}}
 \addtokomafont{title}{\@declaredcolor{doc-main}}
@@ -112,7 +112,10 @@
 		{\\pingu@block}{{\doccmd{pingu@block}}}{12}
 		{\\pingu@draw}{{\doccmd{pingu@draw}}}{11}
 		{\\@pingu@non}{{\graycmd{path}}}{11}
-		{\\path}{{\graycmd{path}}}{5}
+		{\\path}{{\graycmd{path}}}5
+		{\\csname}{{\graycmd{csname}}}6
+		{\\endcsname}{{\graycmd{endcsname}}}9
+		{/pingu/}{{\@declaredcolor{@softgray}/pingu/}}7
 }
 
 \def\t@lst@addToLiterate#1{\protected@edef\lst@literate{\unexpanded\expandafter{\lst@literate}\unexpanded{#1}}}
@@ -260,6 +263,7 @@
 \newcommand*\keyref[2][/pingu/]{\hyperref[pk:#1#2]{\lpingu{#1#2}}}
 \newcommand*\dkeyref[2][/pingu/]{\hyperref[pk:#1#2]{\lpingu{#2}}}
 \newcommand*\cmdref[1]{\hyperref[pk:/pingu/:bs:#1]{\lpingu{\\#1}}}
+\newcommand*\cmd[1]{\texttt{\doccmd{#1}}}
 
 \colorlet{@softexplaincolor}{gray!8!white}
 \newenvironment{subkeyexplain}[5][/pingu/]{%
@@ -529,7 +533,7 @@ changed with the name option:
 		\draw[teal,thin] (expl-\c) -- (pingu-\c);
 	}
 \end{tikzpicture}}
-\makeatletter
+
 \newsavebox\pinguwingleft
 \savebox\pinguwingleft{%
 \begin{tikzpicture}%
@@ -582,7 +586,7 @@ body types can change the coordinates (left the \keyref{body type} \textit{chubb
 \end{center}
 
 \subsection{Colors}
-A lot of options allow for a color to be passed. In general, you can provide any color that \TikZ\ is happy with! Yet, there are some predefined pingu-colors shipped with this package:
+\label{Colors}A lot of options allow for a color to be passed. In general, you can provide any color that \TikZ\ is happy with! Yet, there are some predefined pingu-colors shipped with this package:
 \def\getCol#1{\pgfmathparse{int(round(#1*255))}\pgfmathresult}
 \def\parseRGB#1,#2,#3;{r:~\getCol{#1}, g:~\getCol{#2}, b:~\getCol{#3}}
 \begin{multicols}{4}
@@ -596,7 +600,7 @@ A lot of options allow for a color to be passed. In general, you can provide any
 	\item[] \footnotesize\strut% buffer
 \end{itemize}
 \end{multicols}
-Furthermore, there is the special color {\makeatletter\say{\expandafter\ipingu\expandafter{\@pingu@none}}} which is available for most\footnote{Why just \say{most}? Well, this package is work in progress and I have added the option late, so I may have forgotten to patch some keys.} extras and wing-items. This color prohibits the compartments from being drawn. To be more precise, the package defines the macro \ltex{\\@pingu@none}, which is matched against the selected color.
+Furthermore, there is the special color \say{\expandafter\ipingu\expandafter{\@pingu@none}} (\cmdref{@pingu@none}) which is available for most\footnote{Why just \say{most}? Well, this package is work in progress and I have added the option late, so I may have forgotten to patch some keys.} extras and wing-items. This color prohibits the compartments from being drawn. To be more precise, the package defines the macro \ltex{\\@pingu@none}, which is matched against the selected color.
 
 As an example, lets take a look at the \keyref{cup}-extra, which provides an additional key \keyref{cup straw} to color the straw:
 \begin{tcblisting}{title={Cup without a straw},externalize listing=extra-options}
@@ -4960,7 +4964,7 @@ This is interesting in combination with other extras as it allows the \keyref{sh
 
 % set up for inclusion
 \lstset{includerangemarker=false,rangeprefix={\%\ <}, rangesuffix={>}}
-\newcommand\includecode[2][../tex/tikzpingus.sty]{\lstinputlisting[linerange=#2-@#2,style=lstpingu,language=pinguinternallang]{#1}}
+\newcommand\includecode[2][../tex/tikzpingus.sty]{\lstinputlisting[linerange=#2-@#2,style=lstpingu,language=pinguinternallang,numbers=left,numberstyle={\tiny\color{gray}\sffamily},numbersep=5pt]{#1}}
 \def\current@indexfile{\jobname-internals}
 
 \section{The Internals}
@@ -4970,6 +4974,18 @@ The goal of this section is to explain the inner workings of the package to aid 
 
 \begin{commandexplain}[name]{pingu@name}{}
 	Holds the name of the penguin.
+\end{commandexplain}
+
+\subsubsection{Color}
+\begin{commandexplain}{pingu@color}{\mand{name}\mand{color}}
+	Creates a macro \cmd{pingu@color@<name>} that links to the given color:
+	\includecode{pingu@color}
+	I decided against the usage of \cmd{colorlet}, to support \cmdref{@pingu@none}
+\end{commandexplain}
+
+\begin{commandexplain}{@pingu@none}{}
+	Holds the special color to hide the drawing of specific components as described within \autoref{Colors} (holds the value: \@pingu@none).
+	If you redefine this command, you redefine this hidden color. Hover, if done outside of the preamble, this may result in weird side effects due to expansions.
 \end{commandexplain}
 
 \subsubsection{Selections}
@@ -4995,13 +5011,25 @@ TODO: explain selections
 
 \subsection{Adding new Eyes}\label{internal:eyes}
 
+\subsubsection{Important Commands}
+
 \begin{commandexplain}{pingu@eye@shift}{}
 	This dimension holds a hardcoded value to be used as the offset for eyes. Its default value is \the\pingu@eye@shift. It may be removed in the future (or replaced by a option).
 \end{commandexplain}
 
+\subsubsection{The Code}
+
 The eyes of the penguin are controlled by two selections for the left, and the right eye. As we still want the coordinates for the right and the left eye (as presented in \autoref{pingu-coordinates}), the \textit{none}-version of \cmdref{pingu@create@selection} creates those:
 \includecode{eyes\ selectors}
 
+% \pgfqkeys{/pingu}{
+\includecode{eyes\ keys}
 
-\lstset{breakatwhitespace}\printindex
+
+
+\lstset{breakatwhitespace}
+\indexprologue{\label{normal-idx}This index shows all of the options and commands that a normal user of the package may use! See the \autoref{internal-idx} for an overview of keys and commands used behind the scenes.}
+\printindex[\jobname]
+\indexprologue{\label{internal-idx}}
+\printindex[\jobname-internals]
 \end{document}

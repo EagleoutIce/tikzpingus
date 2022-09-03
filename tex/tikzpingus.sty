@@ -139,7 +139,11 @@
 % #endregion
 
 % #region key setup
-\def\pingu@color#1#2{\expandafter\def\csname pingu@color@#1\endcsname{#2}}
+% <pingu@color>
+\def\pingu@color#1#2{%
+    \expandafter\def\csname pingu@color@#1\endcsname{#2}%
+}
+% <@pingu@color>
 
 % HACK: store scale
 \pgfqkeys{/tikz}{scale/.append code={\def\pingu@default@scale{#1}}}
@@ -195,16 +199,26 @@
   belly/.forward to             = /pingu/belly text,
   belly text/.style             = {/pingu/belly raw={\node[/pingu/@text,opacity=.2] {#1};}},
   belly raw/.code               = \def\pingu@belly@raw{#1},
-  % eyes
+  % <eyes keys>
   left eye/.code                = \pingu@lefteye@select{#1},
   left eye color/.code          = \pingu@color{eye@left}{#1},
   left eye second color/.code   = \pingu@color{eye@second@left}{#1},
   right eye/.code               = \pingu@righteye@select{#1},
   right eye color/.code         = \pingu@color{eye@right}{#1},
   right eye second color/.code  = \pingu@color{eye@second@right}{#1},
-  eyes/.style                   = {/pingu/left eye={#1}, /pingu/right eye={#1}},
-  eyes color/.style             = {/pingu/left eye color={#1}, /pingu/right eye color={#1}},
-  eyes second color/.style      = {/pingu/left eye second color={#1}, /pingu/right eye second color={#1}},
+  eyes/.style                   = {
+        /pingu/left eye  = {#1},
+        /pingu/right eye = {#1}
+  },
+  eyes color/.style             = {
+        /pingu/left eye color  = {#1},
+        /pingu/right eye color = {#1}
+  },
+  eyes second color/.style      = {
+        /pingu/left eye second color  = {#1},
+        /pingu/right eye second color = {#1}
+  },
+  % <@eyes keys>
   % wings
   left wing color/.code         = \pingu@color{left@wing}{#1},
   left wing/.code               = \pingu@leftwing@select{#1},
