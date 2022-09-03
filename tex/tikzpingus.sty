@@ -106,14 +106,14 @@
 \long\def\pingu@create@extra#1#2#3{\expandafter\newif\csname if@pingu@x@#1@\endcsname\pgfqkeys{/pingu}{#2,extra defaults/.append style={#3}}}
 \def\pingu@set@extra#1#2{\csname @pingu@x@#1@#2\endcsname}
 
-% <eyes-selectors>
+% <eyes selectors>
 \pingu@create@selection{lefteye}{%
     \path ([yshift=.75mm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left) coordinate (\pingu@name-eye-left);%
 }
 \pingu@create@selection{righteye}{%
     \path ([yshift=.75mm,xshift=-\pingu@eye@shift]\pingu@name-eye-back-right) coordinate (\pingu@name-eye-right);%
 }
-% <@eyes-selectors>
+% <@eyes selectors>
 
 \pingu@create@selection{leftwing}{%
     \path ([yshift=-6.5mm]\pingu@name-wings-side-left)
