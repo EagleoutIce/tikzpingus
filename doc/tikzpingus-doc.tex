@@ -524,7 +524,7 @@ changed with the name option:
 	\node at (paula-foot-left) {Foot};
 \end{tikzpicture}
 \end{tcblisting}
-\phantomsection\label{pingu-coordinates}Lets look at those coordinates in more detail (all labels are to be prefixed by |<\keyref{name}>-|):
+\phantomsection\label{pingu-coordinates}Lets look at those coordinates in more detail (all labels are to be prefixed by |<|\keyref{name}|>-|):
 \newsavebox\pinguwingright
 \savebox\pinguwingright{%
 \begin{tikzpicture}%
@@ -4993,6 +4993,8 @@ This is interesting in combination with other extras as it allows the \keyref{sh
 \def\current@indexfile{\jobname-internals}
 % gobble leading pingu for indexing
 \def\@gobblekey#1{\IfBeginWith{#1}{pingu@}{\StrDel[1]{#1}{pingu@}[#1]\protected@xdef#1{#1}}{}}
+\newsavebox\warningpengu
+\setbox\warningpengu=\hbox{\tikz{\pingu[wings shock,eyes shock,small,name=pingu]\node[above] at(pingu-head-top) {\faExclamation};}}
 
 \section{The Internals}
 The goal of this section is to explain the inner workings of the package to aid other people in helping me extending and mainting the penguins.
@@ -5063,7 +5065,7 @@ Both eyes have two colors to work with: \cmdcoldef{eye@left}, \cmdcoldef{eye@sec
 Now on how to add new eyes. While it is possible to use \cmdref{pingu@lefteye@add} and \cmdref{pingu@righteye@add}, setting up the corresponding \say{eye} and \say{eyes} comfort-methods is rather tedious.
 For this, i created the command \cmdref{pingu@eyes@s}\ldots
 
-\begin{commandexplain}{pingu@eyes@s}{\mand{name}\mand{left-eye}\mand{right-eye}\opt{default color}}
+\begin{commandexplain}{pingu@eyes@s}{\mand{name}\mand{left-eye}\mand{right-eye}\opt[pingu@black]{default color}}
 	Allows to easily add new eyes.
 	\textit{Important:}\space Your code for the eyes \textit{must} create the coordinates \lpingu{\\pingu@name-eye-left} and \lpingu{\\pingu@name-eye-right} respectively. This is not checked! It is recommended to use the coordinates \lpingu{\\pingu@name-eye-back-left} and \lpingu{\\pingu@name-eye-back-right} for reference.
 \end{commandexplain}
