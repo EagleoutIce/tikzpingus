@@ -140,8 +140,6 @@
 		{!random}{{\@declaredcolor{darkgray}\itshape!random}}7
 		{\\node}{{\doccmd{node}}}5
 		{\\duck}{{\doccmd{duck}}}5
-		{\\pinguloadlibrary}{{\doccmd{pinguloadlibrary}}}{17}
-		{\\pinguloadlibraries}{{\doccmd{pinguloadlibraries}}}{19}
 		{\\begin}{{\ghostcmd{begin}}}6
 		{\\end}{{\ghostcmd{end}}}4
 		{\\pgfmathsetseed}{{\ghostcmd{pgfmathsetseed}}}{15}
@@ -644,7 +642,7 @@ With \cmdref{pingudefaults} and \cmdref{pingudefaultsappend} (similar, but exten
 \end{commandexplain}
 
 \subsection{Libraries}
-\label{Libraries}\index{Libraries}I've split the penguin features into a set of libraries. While all of them are loaded by default, the |bare| package-option disables the automatic loading of all libraries. They can be loaded (locally to the current group) using |\pinguloadlibrary| and |\pinguloadlibraries| passing on a comma separated list of desired libraries.
+\label{Libraries}\index{Libraries}I've split the penguin features into a set of libraries. While all of them are loaded by default, the |bare| package-option disables the automatic loading of all libraries. They can be loaded (locally to the current group) using \cmdref{pinguloadlibrary} and \cmdref{pinguloadlibraries} passing on a comma separated list of desired libraries.
 See the full reference or the index to learn which key comes from which library.
 Please note that~--- at the moment~--- not all components of a library are labeled correctly.
 % TODO: already count that? % global let?
@@ -656,6 +654,14 @@ Currently there are the following libraries:
 	\ifnum\pingu@defaultlibs@count=\i\else,~and\space\fi\fi
 	\fi
 }.
+
+\begin{commandexplain}{pinguloadlibrary}{\mand{library}}
+	Load a penguin library (actually, due to the implementation, you can use this command just like \cmdref{pinguloadlibraries} and load multiple libraries).
+\end{commandexplain}
+
+\begin{commandexplain}{pinguloadlibraries}{\mand{libraries}}
+	Load multiple penguin libraries, separated by a comma. For example: \texttt{\cmdref{pinguloadlibraries}\{shirts, glasses\}}.
+\end{commandexplain}
 
 \subsection{Changing the wings}
 \label{subsec:wings}As already demonstrated, it is possible to change the wing positions!
