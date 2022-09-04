@@ -8,6 +8,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage{babel}
 
+\usepackage{marginnote}
+
 \makeatletter
 \def\input@path{{../tex/}}
 \usepackage[glows]{tikzpingus}
@@ -287,7 +289,7 @@
 \def\mand##1{\texttt{\{\textsf{\smaller##1}\}}}%
 \def\@pingu@command@keypartner{#1}%
 % #1 is the default
-\newcommand\opt[2][]{\texttt{\textit{[\textsf{\smaller##2\ifx!##1!\else\textcolor{lightgray}{\smaller\sffamily=##1}\fi}]}}}%
+\newcommand\opt[2][]{\texttt{\textit{[\textsf{\smaller##2\ifx!##1!\else\textcolor{gray}{\smaller\sffamily=##1}\fi}]}}}%
 \def\@explainsuff{#3}%
 \keyexplain[]{\\#2}{}{}%
 \ifx\@pingu@command@keypartner\@empty\else
@@ -4994,8 +4996,9 @@ This is interesting in combination with other extras as it allows the \keyref{sh
 % gobble leading pingu for indexing
 \def\@gobblekey#1{\IfBeginWith{#1}{pingu@}{\StrDel[1]{#1}{pingu@}[#1]\protected@xdef#1{#1}}{}}
 \newsavebox\warningpengu
-\setbox\warningpengu=\hbox{\tikz{\pingu[wings shock,eyes shock,small,name=pingu]\node[above] at(pingu-head-top) {\faExclamation};}}
-\def\important{\par\mbox{\textit{Important:}\marginpar{\usebox\warningpengu}}}
+\setbox0=\hbox{\tikz{\pingu[wings shock,eyes shock,small]}}
+\setbox\warningpengu=\hbox{\tikz{\node[scale=.35] (a) at(0,0) {\box0}; \node[above] at(a.north) {\faExclamation};}}
+\def\important{\par\mbox{\textit{Important:}\marginnote{\usebox\warningpengu}}}
 
 \section{The Internals}
 The goal of this section is to explain the inner workings of the package to aid other people in helping me extending and mainting the penguins.
