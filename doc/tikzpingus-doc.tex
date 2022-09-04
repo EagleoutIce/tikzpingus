@@ -272,8 +272,8 @@
 \newcommand*\keyref[2][/pingu/]{\hyperref[pk:#1#2]{\lpingu{#1#2}}}
 \newcommand*\dkeyref[2][/pingu/]{\hyperref[pk:#1#2]{\lpingu{#2}}}
 \newcommand*\cmdref[1]{\hyperref[pk:/pingu/:bs:#1]{\lpingu{\\#1}}}
-\newcommand*\cmddef[1]{\mbox{\DefineKey{\\#1}\cmdref{#1}}\nobreak}
-\newcommand*\cmdcoldef[1]{\mbox{\DefineKey{\\pingu@color@#1}\cmdref{pingu@color@#1}}\nobreak}
+\newcommand*\cmddef[1]{\DefineKey{\\#1}\cmdref{#1}\nobreak}
+\newcommand*\cmdcoldef[1]{\DefineKey{\\pingu@color@#1}\cmdref{pingu@color@#1}\nobreak}
 \newcommand*\cmd[1]{\texttt{\smaller\doccmd{#1}}}
 
 \colorlet{@softexplaincolor}{gray!8!white}
