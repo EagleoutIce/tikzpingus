@@ -291,7 +291,7 @@
 \def\mand##1{\texttt{\{\textsf{\smaller##1}\}}}%
 \def\@pingu@command@keypartner{#1}%
 % #1 is the default
-\newcommand\opt[2][]{\texttt{\textit{[\textsf{##2\ifx!##1!\else\textcolor{lightgray}{\smaller\sffamily=##1}\fi}]}}}%
+\newcommand\opt[2][]{\texttt{\textit{[\textsf{\smaller##2\ifx!##1!\else\textcolor{lightgray}{\smaller\sffamily=##1}\fi}]}}}%
 \def\@explainsuff{#3}%
 \keyexplain[]{\\#2}{}{}%
 \ifx\@pingu@command@keypartner\@empty\else
