@@ -140,8 +140,6 @@
 		{!random}{{\@declaredcolor{darkgray}\itshape!random}}7
 		{\\node}{{\doccmd{node}}}5
 		{\\duck}{{\doccmd{duck}}}5
-		{\\pingudefaults}{{\doccmd{pingudefaults}}}{14}
-		{\\pingudefaultsappend}{{\doccmd{pingudefaultsappend}}}{20}
 		{\\begin}{{\ghostcmd{begin}}}6
 		{\\end}{{\ghostcmd{end}}}4
 		{\\pgfmathsetseed}{{\ghostcmd{pgfmathsetseed}}}{15}
@@ -504,7 +502,7 @@ Please note, that \say{left} and \say{right} have been chosen from the penguin-p
 \begin{tcblisting}{title={The Reunion},externalize listing=pengu-duck}
 \begin{tikzpicture}
 	\duck
-	\pingu[xshift=2.8cm, yshift=14mm,
+	\pingu[xshift=2.7cm, yshift=14mm,
 	       eyes wink]
 \end{tikzpicture}
 \end{tcblisting}
@@ -616,7 +614,7 @@ As an example, lets take a look at the \keyref{cup}-extra, which provides an add
 \begin{tikzpicture}
 	\pingu[wings grab, cup=pingu@purple,
 	       cup straw=pingu@blue]
-	\pingu[wings grab, cup, xshift=2.8cm,
+	\pingu[wings grab, cup, xshift=2.7cm,
 	       cup straw=!hide]
 \end{tikzpicture}
 \end{tcblisting}
@@ -624,14 +622,24 @@ As you can see, using \lpingu{!hide}, the straw will not be drawn.
 
 \subsection{Setting the defaults}
 You do not have to re-state every key.
-With \lstinline[language=pingulang]'\pingudefaults' and \lstinline[language=pingulang]'\pingudefaultsappend' (similar, but extends the current options) you can set default-options for all penguins to come:
+With \cmdref{pingudefaults} and \cmdref{pingudefaultsappend} (similar, but extends the current options) you can set default-options for all penguins to come:
 \begin{tcblisting}{title={Change the mainstream},externalize listing=update-defaults}
 \begin{tikzpicture}
 	\pingudefaults{wings grab, eyes shiny}
 	\pingu
-	\pingu[left wing shock, xshift=2.8cm]
+	\pingu[left wing shock, xshift=2.7cm]
 \end{tikzpicture}
 \end{tcblisting}
+
+\begin{commandexplain}{pingudefaults}{\mand{penguin keys}}
+	Sets the given \textit{penguin keys} as defaults for the local group.
+	Overwrites any previews defaults (see \cmdref{pingudefaultsappend}).
+\end{commandexplain}
+
+\begin{commandexplain}{pingudefaultsappend}{\mand{penguin keys}}
+	Appends the given \textit{penguin keys} as defaults for the local group.
+	To overwrite these keys, see \cmdref{pingudefaults}.
+\end{commandexplain}
 
 \subsection{Libraries}
 \label{Libraries}\index{Libraries}I've split the penguin features into a set of libraries. While all of them are loaded by default, the |bare| package-option disables the automatic loading of all libraries. They can be loaded (locally to the current group) using \cmdref{pinguloadlibrary} and \cmdref{pinguloadlibraries} passing on a comma separated list of desired libraries.
