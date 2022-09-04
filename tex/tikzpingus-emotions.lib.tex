@@ -1,7 +1,7 @@
 % Florian Sihler, 2022
 % Licensed under GNU General Public License version 3
 % https://opensource.org/licenses/gpl-3.0.html
-\@pingu@eyes@s{sad}{%
+\pingu@eyes@s{sad}{%
     \path (\pingu@name-eye-back-left)++(\pingu@eye@shift,.75mm) coordinate (\pingu@name-eye-left);
     \pingu@block{\pingu@color@eye@left} (\pingu@name-eye-left)++(15:.1225cm and .1275cm) arc (15:-245:.1225cm and .1275cm) to[out=-45,in=175] cycle;
 }{%
@@ -9,7 +9,7 @@
     \pingu@block{\pingu@color@eye@right} (\pingu@name-eye-right)++(165:.1225cm and .1275cm) arc (165:425:.1225cm and .1275cm) to[out=225,in=5] cycle;
 }
 
-\@pingu@eyes@s{angry}{%
+\pingu@eyes@s{angry}{%
     \path (\pingu@name-eye-back-left)++(\pingu@eye@shift,.75mm) coordinate (\pingu@name-eye-left);
     \pingu@block{\pingu@color@eye@left} (\pingu@name-eye-left) ellipse [x radius=.1225cm, y radius=.1275cm];
     \pingu@block{\pingu@color@body@front} (\pingu@name-eye-left) ++(120:.1225cm and .1275cm) ellipse [x radius=1.5mm,y radius=.5mm];
@@ -37,7 +37,7 @@
     \pingu@block[/pingu/@glow,opacity=\pingu@x@blush@opacity]{\pingu@color@blush@second} ([yshift=-2.7mm,xshift=1.85mm]\pingu@name-eye-left) ellipse [x radius=2.66mm,y radius=2.25mm];
 }
 
-\@pingu@eyes@s{hearts}{%
+\pingu@eyes@s{hearts}{%
     \path (\pingu@name-eye-back-left)++(\pingu@eye@shift,.75mm) coordinate (\pingu@name-eye-left);
     \pingu@block[rounded corners=0pt]{\pingu@color@eye@left} ([yshift=.3mm]\pingu@name-eye-left) arc(0:180:.065cm)
     to[out=270,in=110] ++(.13cm,-.2cm) to[out=70,in=270] ++(.13cm,.2cm) arc (0:180:.065cm) -- cycle;
