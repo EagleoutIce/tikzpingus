@@ -199,7 +199,7 @@
   belly/.forward to             = /pingu/belly text,
   belly text/.style             = {/pingu/belly raw={\node[/pingu/@text,opacity=.2] {#1};}},
   belly raw/.code               = \def\pingu@belly@raw{#1},
-  % <eyes keys>
+% <eyes keys>
   left eye/.code                = \pingu@lefteye@select{#1},
   left eye color/.code          = \pingu@color{eye@left}{#1},
   left eye second color/.code   = \pingu@color{eye@second@left}{#1},
@@ -218,7 +218,7 @@
         /pingu/left eye second color  = {#1},
         /pingu/right eye second color = {#1}
   },
-  % <@eyes keys>
+% <@eyes keys>
   % wings
   left wing color/.code         = \pingu@color{left@wing}{#1},
   left wing/.code               = \pingu@leftwing@select{#1},
@@ -589,43 +589,77 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 % #endregion
 % #region eyes
 % name core | left | right
-\long\def\@pingu@eyes@s#1#2#3{\@ifnextchar[{\@pingu@eyes@s@{#1}{#2}{#3}}{\@pingu@eyes@s@{#1}{#2}{#3}[pingu@black]}}
-\long\def\@pingu@eyes@s@#1#2#3[#4]{%
+% <pingu@eyes@s>
+\long\def\pingu@eyes@s#1#2#3{%
+    \@ifnextchar[%
+        {\pingu@eyes@s@{#1}{#2}{#3}}%
+        {\pingu@eyes@s@{#1}{#2}{#3}[pingu@black]}%
+}
+\long\def\pingu@eyes@s@#1#2#3[#4]{%
     \pgfqkeys{/pingu}{%
-        left eye #1/.style = {/pingu/left eye={#1}, /pingu/left eye color={##1}},%
-        left eye #1/.default = {#4},%
-        right eye #1/.style = {/pingu/right eye={#1}, /pingu/right eye color={##1}},%
-        right eye #1/.default = {#4},%
-        eyes #1/.style = {/pingu/eyes={#1}, /pingu/eyes color={##1}},%
-        eyes #1/.default = {#4}%
+        left eye #1/.style    = {/pingu/left eye={#1}, /pingu/left eye color={##1}},
+        left eye #1/.default  = {#4},
+        right eye #1/.style   = {/pingu/right eye={#1}, /pingu/right eye color={##1}},
+        right eye #1/.default = {#4},
+        eyes #1/.style        = {/pingu/eyes={#1}, /pingu/eyes color={##1}},
+        eyes #1/.default      = {#4}
     }%
     \pingu@lefteye@add{#1}{#2}\pingu@righteye@add{#1}{#3}%
 }
-\pgfqkeys{/pingu}{eyes none/.style={eyes=none},left eye none/.style={left eye=none},right eye none/.style={right eye=none}} % adding the alias
+\pgfqkeys{/pingu}{%
+    eyes none/.style={eyes=none},
+    left eye none/.style={left eye=none},
+    right eye none/.style={right eye=none}
+} % adding the alias
+% <@pingu@eyes@s>
 
-\@pingu@eyes@s{normal}{%
-    \pingu@block{\pingu@color@eye@left} ([yshift=.75mm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left) coordinate (\pingu@name-eye-left) ellipse [x radius=.1225cm, y radius=.1365cm];
+% <eyes normal>
+\pingu@eyes@s{normal}{%
+    \pingu@block{\pingu@color@eye@left}
+        ([yshift=.75mm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left)
+            coordinate (\pingu@name-eye-left)
+        ellipse [x radius=.1225cm, y radius=.1365cm];
 }{%
-    \pingu@block{\pingu@color@eye@right} ([yshift=.75mm,xshift=-\pingu@eye@shift]\pingu@name-eye-back-right) coordinate(\pingu@name-eye-right) ellipse [x radius=.1225cm, y radius=.1365cm];
+    \pingu@block{\pingu@color@eye@right}
+        ([yshift=.75mm,xshift=-\pingu@eye@shift]\pingu@name-eye-back-right)
+            coordinate(\pingu@name-eye-right)
+        ellipse [x radius=.1225cm, y radius=.1365cm];
 }
+% <@eyes normal>
 
-\@pingu@eyes@s{vertical}{%
+\pingu@eyes@s{vertical}{%
     \pingu@block{\pingu@color@eye@left} ([yshift=.75mm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left) coordinate (\pingu@name-eye-left) ellipse [x radius=1.13mm, y radius=.145cm];
 }{%
     \pingu@block{\pingu@color@eye@right} ([yshift=.75mm,xshift=-\pingu@eye@shift]\pingu@name-eye-back-right) coordinate(\pingu@name-eye-right) ellipse [x radius=1.13mm, y radius=.145cm];
 }
 
-\@pingu@eyes@s{shiny}{%
-    \pingu@block{\pingu@color@eye@left} ([yshift=.75mm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left) coordinate(\pingu@name-eye-left) ellipse [x radius=.22cm, y radius=.26cm];
-    \pingu@block{\pingu@color@eye@second@left} (\pingu@name-eye-left)++(\eyebaseang:.85mm and \pingu@one) ellipse [x radius=.8mm, y radius=\pingu@one];
-    \pingu@block{\pingu@color@eye@second@left} (\pingu@name-eye-left)++(\eyebaseang+180:.12cm and .14cm) ellipse [x radius=.25mm, y radius=.35mm];
+% <eyes shiny>
+\pingu@eyes@s{shiny}{%
+    \pingu@block{\pingu@color@eye@left}
+        ([yshift=.75mm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left)
+            coordinate(\pingu@name-eye-left)
+        ellipse [x radius=.22cm, y radius=.26cm];
+    \pingu@block{\pingu@color@eye@second@left}
+            (\pingu@name-eye-left)++(\eyebaseang:.85mm and \pingu@one)
+        ellipse [x radius=.8mm, y radius=\pingu@one];
+    \pingu@block{\pingu@color@eye@second@left}
+            (\pingu@name-eye-left)++(\eyebaseang+180:.12cm and .14cm)
+        ellipse [x radius=.25mm, y radius=.35mm];
 }{%
-    \pingu@block{\pingu@color@eye@right} ([yshift=.75mm,xshift=-\pingu@eye@shift]\pingu@name-eye-back-right) coordinate(\pingu@name-eye-right) ellipse [x radius=.22cm, y radius=.26cm];
-    \pingu@block{\pingu@color@eye@second@right} (\pingu@name-eye-right)++(\eyebaseang:.85mm and \pingu@one) ellipse [x radius=.8mm, y radius=\pingu@one];
-    \pingu@block{\pingu@color@eye@second@right} (\pingu@name-eye-right)++(\eyebaseang+180:.12cm and .14cm) ellipse [x radius=.25mm, y radius=.35mm];
+    \pingu@block{\pingu@color@eye@right}
+        ([yshift=.75mm,xshift=-\pingu@eye@shift]\pingu@name-eye-back-right)
+            coordinate(\pingu@name-eye-right)
+        ellipse [x radius=.22cm, y radius=.26cm];
+    \pingu@block{\pingu@color@eye@second@right}
+            (\pingu@name-eye-right)++(\eyebaseang:.85mm and \pingu@one)
+        ellipse [x radius=.8mm, y radius=\pingu@one];
+    \pingu@block{\pingu@color@eye@second@right}
+            (\pingu@name-eye-right)++(\eyebaseang+180:.12cm and .14cm)
+        ellipse [x radius=.25mm, y radius=.35mm];
 }
+% <@eyes shiny>
 
-\@pingu@eyes@s{wink}{%
+\pingu@eyes@s{wink}{%
     \coordinate (\pingu@name-eye-left) at ([yshift=.75mm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left);
     \pingu@block[rounded corners=.002cm,rotate around={-4:(\pingu@name-eye-left)}]{\pingu@color@eye@left} (\pingu@name-eye-left)++(174:.14cm and .14cm)++(0,-.065cm) arc (174:6:.14cm and .14cm) arc (-6:-174:.1mm and .08mm) arc (6:174:.12cm and .065cm) arc (-6:-174:.1mm and .08mm) -- cycle;
 }{%
@@ -633,7 +667,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     \pingu@block[rounded corners=.002cm,rotate around={4:(\pingu@name-eye-right)}]{\pingu@color@eye@right} (\pingu@name-eye-right)++(174:.14cm and .14cm)++(0,-.065cm) arc (174:6:.14cm and .14cm) arc (-6:-174:.1mm and .08mm) arc (6:174:.12cm and .065cm) arc (-6:-174:.1mm and .08mm) -- cycle;
 }
 
-\@pingu@eyes@s{shock}{%
+\pingu@eyes@s{shock}{%
     \pingu@block{\pingu@color@eye@left} ([yshift=.75mm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left) coordinate (\pingu@name-eye-left) ellipse [x radius=.1535cm, y radius=.1575cm];
     \pingu@block{\pingu@color@eye@second@left} ([yshift=.75mm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left) coordinate (\pingu@name-eye-left) ellipse [x radius=.1325cm, y radius=.1375cm];
 }{%
@@ -641,7 +675,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     \pingu@block{\pingu@color@eye@second@right} ([yshift=.75mm,xshift=-\pingu@eye@shift]\pingu@name-eye-back-right) coordinate(\pingu@name-eye-right) ellipse [x radius=.1325cm, y radius=.1375cm];
 }
 
-% \let\@pingu@eyes@s\relax
+% \let\pingu@eyes@s\relax
 % #endregion
 
 % #region wings
