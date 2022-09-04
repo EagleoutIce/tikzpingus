@@ -41,7 +41,8 @@
 \usepackage{colorinfo}
 
 \makeindex[title={Key Overview},name=\jobname,columns=2,columnsep=.75cm,noautomatic=true]
-\makeindex[title={Internals Overview},name=\jobname-internals,columns=2,columnsep=.75cm,noautomatic=true]
+\def\indexinternalsoverviewname{Internals Overview}
+\makeindex[title={\indexinternalsoverviewname},name=\jobname-internals,columns=2,columnsep=.75cm,noautomatic=true]
 \def\current@indexfile{\jobname}
 
 \deffootnote{1.5em}{1em}{\textsuperscript{\hyperref[\BackrefFootnoteTag]{\thefootnotemark}}\thinspace}
@@ -5079,7 +5080,7 @@ The usage of \cmddef{eyebaseang} is outdated and will probably be removed in the
 
 
 \lstset{breakatwhitespace}
-\indexprologue{\label{normal-idx}This index shows all of the options and commands that a normal user of the package may use! See the \autoref{internal-idx} for an overview of keys and commands used behind the scenes.}
+\indexprologue{\label{normal-idx}This index shows all of the options and commands that a normal user of the package may use! See the \hyperref[internal-idx]{\indexinternalsoverviewname} for an overview of keys and commands used behind the scenes.}
 \printindex[\jobname]
 \indexprologue{\label{internal-idx}The initial \cmd{pingu@} is ignored for indexing.}
 \printindex[\jobname-internals]
