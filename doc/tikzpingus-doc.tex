@@ -5038,12 +5038,12 @@ TODO: explain selections
 
 The eyes of the penguin are controlled by two selections for the left, and the right eye. As we still want the coordinates for the right and the left eye (as presented in \autoref{pingu-coordinates}), the \textit{none}-version of \cmdref{pingu@create@selection} creates those:
 \includecode{eyes\ selectors}
-With this, we get the commands \cmddef{pingu@righteye@select}, \cmddef{pingu@righteye@add}, \cmddef{@pingu@drawer@righteye@}, \cmddef{pingu@lefteye@select}, \cmddef{pingu@lefteye@add}, and \cmddef{@pingu@drawer@lefteye@}.
+With this, we define \cmddef{pingu@righteye@select}, \cmddef{pingu@righteye@add}, \cmddef{@pingu@drawer@righteye@}, \cmddef{pingu@lefteye@select}, \cmddef{pingu@lefteye@add}, and \cmddef{@pingu@drawer@lefteye@}.
 
 Within the initialization of all penguin options, we use these keys. Furthermore, \keyref{eyes} acts as a comfort option which operates on both selectors:
 % \pgfqkeys{/pingu}{
 \includecode{eyes\ keys}
-With this we see, that both eyes have two colors to work with: \cmdcoldef{eye@left}, \cmdcoldef{eye@second@left}, \cmdcoldef{eye@right}, and \cmdcoldef{eye@second@right}.
+Both eyes have two colors to work with: \cmdcoldef{eye@left}, \cmdcoldef{eye@second@left}, \cmdcoldef{eye@right}, and \cmdcoldef{eye@second@right}.
 
 \subsection{Adding new Eyes}
 Now on how to add new eyes. While it is possible to use \cmdref{pingu@lefteye@add} and \cmdref{pingu@righteye@add}, setting up the corresponding \say{eye} and \say{eyes} comfort-methods is rather tedious.
