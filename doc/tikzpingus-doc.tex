@@ -4995,6 +4995,7 @@ This is interesting in combination with other extras as it allows the \keyref{sh
 \def\@gobblekey#1{\IfBeginWith{#1}{pingu@}{\StrDel[1]{#1}{pingu@}[#1]\protected@xdef#1{#1}}{}}
 \newsavebox\warningpengu
 \setbox\warningpengu=\hbox{\tikz{\pingu[wings shock,eyes shock,small,name=pingu]\node[above] at(pingu-head-top) {\faExclamation};}}
+\def\important{\par\mbox{\textit{Important:}\marginpar{\usebox\warningpengu}}}
 
 \section{The Internals}
 The goal of this section is to explain the inner workings of the package to aid other people in helping me extending and mainting the penguins.
@@ -5067,7 +5068,7 @@ For this, i created the command \cmdref{pingu@eyes@s}\ldots
 
 \begin{commandexplain}{pingu@eyes@s}{\mand{name}\mand{left-eye}\mand{right-eye}\opt[pingu@black]{default color}}
 	Allows to easily add new eyes.
-	\textit{Important:}\space Your code for the eyes \textit{must} create the coordinates \lpingu{\\pingu@name-eye-left} and \lpingu{\\pingu@name-eye-right} respectively. This is not checked! It is recommended to use the coordinates \lpingu{\\pingu@name-eye-back-left} and \lpingu{\\pingu@name-eye-back-right} for reference.
+	\important\space Your code for the eyes \textit{must} create the coordinates \lpingu{\\pingu@name-eye-left} and \lpingu{\\pingu@name-eye-right} respectively. This is not checked! It is recommended to use the coordinates \lpingu{\\pingu@name-eye-back-left} and \lpingu{\\pingu@name-eye-back-right} for reference.
 \end{commandexplain}
 The macro \cmdref{pingu@eyes@s} is defined like this:
 \includecode{pingu@eyes@s}
