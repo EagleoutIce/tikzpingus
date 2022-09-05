@@ -21,7 +21,8 @@
 \pgfsetlayers{very-background,background,main,middle,foreground}
 \fi
 % #region whole setup
-% #region colors
+
+% <color definitions>
 \def\@pingu@color@ #1#2(#3,#4,#5){\definecolor{pingu@#1}{#2}{#3,#4,#5}}
 \@pingu@color@{main}RGB(3,14,29)
 \@pingu@color@{black}RGB(23,19,19)
@@ -35,7 +36,7 @@
 \@pingu@color@{red}RGB(217, 40, 28)
 \@pingu@color@{purple}RGB(244,48,93)
 \def\@pingu@none{!hide}
-% #endregion
+% <@color definitions>
 
 % #region lengths and dimens
 \newdimen\pingu@one@eight     \pingu@one@eight=.125cm % constants to save tokens
@@ -607,9 +608,9 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     \pingu@lefteye@add{#1}{#2}\pingu@righteye@add{#1}{#3}%
 }
 \pgfqkeys{/pingu}{%
-    eyes none/.style={eyes=none},
-    left eye none/.style={left eye=none},
-    right eye none/.style={right eye=none}
+    eyes none/.style      = {eyes=none},
+    left eye none/.style  = {left eye=none},
+    right eye none/.style = {right eye=none}
 } % adding the alias
 % <@pingu@eyes@s>
 
@@ -685,8 +686,8 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 % name core | left | right | above: \iftrue | angle for items | wing down [left]
 \long\def\@pingu@wings@s#1#2#3#4#5#6{%
     \pgfqkeys{/pingu}{%
-        left wing #1/.style   = {/pingu/left wing={#1}, /pingu/left wing color={##1}},%
-        left wing #1/.default = \pingu@color@body@main,%
+        left wing #1/.style    = {/pingu/left wing={#1}, /pingu/left wing color={##1}},%
+        left wing #1/.default  = \pingu@color@body@main,%
         right wing #1/.style   = {/pingu/right wing={#1}, /pingu/right wing color={##1}},%
         right wing #1/.default = \pingu@color@body@main,%
         wings #1/.style   = {/pingu/wings={#1}, /pingu/wings color={##1}},%
@@ -1137,7 +1138,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     \pingu@block{\pingu@color@sheriffstar!98!pingu@black} (@.outer point \i) circle [radius=.2mm];
 }
 
-\node[,outer sep=0pt,inner xsep=0pt,inner ysep=.25mm] (@s) at (@) {\ifx\pingu@color@sheriffstar@lines\@pingu@none\else\color{\pingu@color@sheriffstar@lines}\fi\pingu@x@sheriff@star@content};
+\node[outer sep=0pt,inner xsep=0pt,inner ysep=.25mm] (@s) at (@) {\ifx\pingu@color@sheriffstar@lines\@pingu@none\else\color{\pingu@color@sheriffstar@lines}\fi\pingu@x@sheriff@star@content};
 \pingu@draw[line width=.002mm]{\pingu@color@sheriffstar@lines} (@s.north east) -- (@s.north west);
 \pingu@draw[line width=.002mm]{\pingu@color@sheriffstar@lines} (@s.south east) -- (@s.south west);
 \endpingu@layer}

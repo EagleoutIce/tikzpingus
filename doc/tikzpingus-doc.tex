@@ -119,6 +119,7 @@
 		{\\pingu@draw}{{\doccmd{pingu@draw}}}{11}
 		{\\@pingu@none}{{\graycmd{@pingu@none}}}{11}
 		{\\path}{{\graycmd{path}}}5
+		{\\definecolor}{{\doccmd{definecolor}}}{12}
 		{\\pgfqkeys}{{\graycmd{pgfqkeys}}}9
 		{\\@ifnextchar}{{\graycmd{@ifnextchar}}}9
 		{\\csname}{{\graycmd{csname}}}6
@@ -4995,7 +4996,14 @@ This is interesting in combination with other extras as it allows the \keyref{sh
 \newcommand\includecode[2][../tex/tikzpingus.sty]{\lstinputlisting[linerange=#2-@#2,style=lstpingu,language=pinguinternallang,numbers=left,numberstyle={\tiny\color{gray}\sffamily},numbersep=5pt]{#1}}
 \def\current@indexfile{\jobname-internals}
 % gobble leading pingu for indexing
-\def\@gobblekey#1{\IfBeginWith{#1}{pingu@}{\StrDel[1]{#1}{pingu@}[#1]\protected@xdef#1{#1}}{}}
+\def\@gobblekey#1{%
+	\IfBeginWith{#1}{pingu@}{%
+		\StrDel[1]{#1}{pingu@}[#1]\protected@xdef#1{#1}%
+	}{%
+	\IfBeginWith{#1}{@pingu@}{%
+		\StrDel[1]{#1}{@pingu@}[#1]\protected@xdef#1{#1}%
+	}{}%
+}}
 \newsavebox\warningpengu
 \setbox0=\hbox{\tikz{\pingu[wings shock,eyes shock,small]}}
 \setbox\warningpengu=\hbox{\tikz{\node[scale=.35] (a) at(0,0) {\box0}; \node[above] at(a.north) {\faExclamation};}}
@@ -5014,17 +5022,23 @@ The goal of this section is to explain the inner workings of the package to aid 
 	Do not change this dimension as it represents one milli meter as the base unit.
 \end{commandexplain}
 
-\subsubsection{Color}
+\subsubsection{Color Management}
+There is not a lot of magic in the color handling of this package.
+
 \begin{commandexplain}{pingu@color}{\mand{name}\mand{color}}
 	Creates a macro \cmd{pingu@color@<name>} that links to the given color:
 	\includecode{pingu@color}
-	I decided against the usage of \cmd{colorlet}, to support \cmdref{@pingu@none}
+	I decided against the usage of \cmd{colorlet}, to support \cmdref{@pingu@none} and dynamic redefinition of the colors.
 \end{commandexplain}
 
 \begin{commandexplain}{@pingu@none}{}
-	Holds the special color to hide the drawing of specific components as described within \autoref{Colors} (holds the value: \@pingu@none).
+	Holds the special color to hide the drawing of specific components as described within \autoref{Colors} (holds the value: \say{\@pingu@none}).
 	If you redefine this command, you redefine this hidden color. Hover, if done outside of the preamble, this may result in weird side effects due to expansions.
 \end{commandexplain}
+
+As shown in \autoref{Colors}, this is the definition of the colors, with the helper-macro \cmddef{@pingu@color@}, which i created solely for me editor to highlight the colors accordingly:
+\includecode{color\ definitions}
+
 
 \subsubsection{Selections}
 TODO: explain selections
@@ -5088,6 +5102,6 @@ The usage of \cmddef{eyebaseang} is outdated and will probably be removed in the
 \lstset{breakatwhitespace}
 \indexprologue{\label{normal-idx}This index shows all of the options and commands that a normal user of the package may use! See the \hyperref[internal-idx]{\indexinternalsoverviewname} for an overview of keys and commands used behind the scenes.}
 \printindex[\jobname]
-\indexprologue{\label{internal-idx}The initial \cmd{pingu@} is ignored for indexing.}
+\indexprologue{\label{internal-idx}The initial \cmd{pingu@} and \cmd{@pingu@} is ignored for indexing (as this would destroy the whole sense of the index).}
 \printindex[\jobname-internals]
 \end{document}
