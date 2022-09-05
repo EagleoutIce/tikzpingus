@@ -5015,14 +5015,16 @@ The goal of this section is to explain the inner workings of the package to aid 
 \end{commandexplain}
 
 \subsubsection{Color}
+There is not a lot of magic in the color handling of this package.
+
 \begin{commandexplain}{pingu@color}{\mand{name}\mand{color}}
 	Creates a macro \cmd{pingu@color@<name>} that links to the given color:
 	\includecode{pingu@color}
-	I decided against the usage of \cmd{colorlet}, to support \cmdref{@pingu@none}
+	I decided against the usage of \cmd{colorlet}, to support \cmdref{@pingu@none} and dynamic redefinition of the colors.
 \end{commandexplain}
 
 \begin{commandexplain}{@pingu@none}{}
-	Holds the special color to hide the drawing of specific components as described within \autoref{Colors} (holds the value: \@pingu@none).
+	Holds the special color to hide the drawing of specific components as described within \autoref{Colors} (holds the value: \say{\expandafter\ipingu\expandafter{\@pingu@none}}).
 	If you redefine this command, you redefine this hidden color. Hover, if done outside of the preamble, this may result in weird side effects due to expansions.
 \end{commandexplain}
 
