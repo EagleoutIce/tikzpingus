@@ -5014,7 +5014,7 @@ The goal of this section is to explain the inner workings of the package to aid 
 	Do not change this dimension as it represents one milli meter as the base unit.
 \end{commandexplain}
 
-\subsubsection{Color}
+\subsubsection{Color Management}
 There is not a lot of magic in the color handling of this package.
 
 \begin{commandexplain}{pingu@color}{\mand{name}\mand{color}}
@@ -5027,6 +5027,10 @@ There is not a lot of magic in the color handling of this package.
 	Holds the special color to hide the drawing of specific components as described within \autoref{Colors} (holds the value: \say{\expandafter\ipingu\expandafter{\@pingu@none}}).
 	If you redefine this command, you redefine this hidden color. Hover, if done outside of the preamble, this may result in weird side effects due to expansions.
 \end{commandexplain}
+
+As shown in \autoref{Colors}, this is the definition of the colors, with the helper-macro \cmddef{@pingu@color@} which i created solely for me editor to highlight the colors accordingly:
+\includecode{color\ definitions}
+
 
 \subsubsection{Selections}
 TODO: explain selections

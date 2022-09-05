@@ -21,7 +21,8 @@
 \pgfsetlayers{very-background,background,main,middle,foreground}
 \fi
 % #region whole setup
-% #region colors
+
+% <color definitions>
 \def\@pingu@color@ #1#2(#3,#4,#5){\definecolor{pingu@#1}{#2}{#3,#4,#5}}
 \@pingu@color@{main}RGB(3,14,29)
 \@pingu@color@{black}RGB(23,19,19)
@@ -35,7 +36,7 @@
 \@pingu@color@{red}RGB(217, 40, 28)
 \@pingu@color@{purple}RGB(244,48,93)
 \def\@pingu@none{!hide}
-% #endregion
+% <@color definitions>
 
 % #region lengths and dimens
 \newdimen\pingu@one@eight     \pingu@one@eight=.125cm % constants to save tokens
