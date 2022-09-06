@@ -1446,6 +1446,35 @@ Aliases may set custom defaults. Those defaults are not listed as they may chang
 	\end{tcblisting}
 \endsubkeyexplain
 
+\subsubsection{The sheriff star}
+\showkeyexplain{sheriff star}{color}{pingu@yellow}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[sheriff star=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endshowkeyexplain
+
+\subkeyexplain{sheriff star}{sheriff star content}{length}{\pingu@x@sheriff@star@content}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[sheriff star, sheriff star content=X]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+
+{\def\pingu@color@sheriffstar{<sheriff-star-color>}
+\subkeyexplain{sheriff star}{sheriff star lines}{color}{\pingu@color@sheriffstar@lines}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[sheriff star, sheriff star lines=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+}
+
+
 \subsubsection{The bowtie}
 \showkeyexplain{bow tie}{color}{pingu@blue}
 \begin{tcblisting}{@}
