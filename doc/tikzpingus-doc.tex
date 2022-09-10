@@ -88,6 +88,7 @@
 
 \def\optstyle{\@declaredcolor{@opcolor}\slshape}
 \def\cmdstyle{\@declaredcolor{@darkerblue}}
+\def\nostyle{\@declaredcolor{black}}
 \def\lstfnsize{-.7}
 \lstdefinestyle{lstpingu}{%
 	tabsize=2, breaklines,
@@ -119,6 +120,7 @@
 		{\\pingu@draw}{{\doccmd{pingu@draw}}}{11}
 		{\\@pingu@none}{{\graycmd{@pingu@none}}}{11}
 		{\\path}{{\graycmd{path}}}5
+		{\\coordinate}{{\graycmd{coordinate}}}5
 		{\\definecolor}{{\doccmd{definecolor}}}{12}
 		{\\pgfqkeys}{{\graycmd{pgfqkeys}}}9
 		{\\@ifnextchar}{{\graycmd{@ifnextchar}}}9
@@ -136,7 +138,7 @@
 	moreemph={tikzpicture},
 	alsoletter={.-!:0123456789},%disable number
 	deletetexcs={begin,end}, % -> lift 3
-	moreemph=[3]{!hide,.style},
+	moreemph=[3]{!hide,.style,xshift,yshift},
 	add to literate={/pingu/}{{\@declaredcolor{gray}/pingu/}}7
 		{\{tikzpicture\}}{{\@declaredcolor{@softgray}\{tikzpicture\}}}{13}
 		{\{\\number\\pdfrandomseed\}}{{\@declaredcolor{@softgray}\{\textbackslash number\textbackslash pdfrandomseed\}}}{23}
@@ -156,11 +158,17 @@
 	% space to space cmd % TODO: do this on store and just keep store?
 	\StrSubstitute{\@elem}{ }{\noexpand\ }[\@sub]\relax
 	\let\hyperstyle\optstyle
-	\IfSubStr{\@sub}{_}{% update hypersyle
+	\IfBeginWith{\@sub}{_}{% update hypersyle
 		\let\hyperstyle\cmdstyle
 		\StrSubstitute{\@sub}{_}{\\}[\@sub]%
 		\StrSubstitute{\@sub}{\\}{\textbackslash}[\@subb]% deal with backslash
-	}{\let\@subb\@sub}
+	}{%
+		\IfBeginWith{\@sub}{+}{% update blockstyle
+			\let\hyperstyle\nostyle
+			\StrDel{\@sub}{+}[\@sub]%
+		}{}%
+		\let\@subb\@sub
+	}%
 	\edef\@tmp{\noexpand\@CreateCodeHyperLink{#2}{\@sub}{pk:/pingu/\@elem}{\@subb}{\expandonce{\hyperstyle}}}\@tmp\fi}%
 }
 % store all. we use their precalculated length to ensure prefixes we go from small to large on set
@@ -210,6 +218,7 @@
 
 \RedeclareSectionCommand[runin=false,afterskip=-2mm]{section}
 \RedeclareSectionCommand[runin=false,afterskip=-2mm]{subsection}
+\RedeclareSectionCommand[runin=false,beforeskip=2mm,afterskip=-2mm]{subsubsection}
 
 \tcbset{%
 	colframe=gray,enhanced,breakable, arc=2mm,
@@ -226,6 +235,12 @@
 \def\keyexplainindent{2.5em}%
 \let\@explainsuff\@empty
 \let\@labelhack\@empty
+
+\def\@append@key{\protected@csxappto{allcmds@\@cclen}{\@key,}%
+% update the range
+\ifnum\@cclen>\allcmdsmax\relax \xdef\allcmdsmax{\@cclen}\fi
+\ifnum\@cclen<\allcmdsmin\relax \xdef\allcmdsmin{\@cclen}\fi}
+
 % allow the oxes to have minor overlaps
 \newcommand\DefineKey[2][/pingu/]{%
 	\StrSubstitute{#2}{ }{-}[\keyexternalname]%
@@ -237,10 +252,18 @@
 	\phantomsection\label{pk:#1\@labelhack\@key}\index[\current@indexfile]{\cursub\@idxkey?\hyperref[pk:#1\@key]{\protect\lpingu{#2}}}%
 	% get its length:
 	\StrLen{#2}[\@cclen]%
-	\protected@csxappto{allcmds@\@cclen}{\@key,}%
-	% update the range
-	\ifnum\@cclen>\allcmdsmax\relax \xdef\allcmdsmax{\@cclen}\fi
-	\ifnum\@cclen<\allcmdsmin\relax \xdef\allcmdsmin{\@cclen}\fi
+	\@append@key
+}
+% prevent something from get a highlight
+\newcommand\BlockString[2][/pingu/]{%
+	{\def\\{_}\protected@xdef\@key{+#2}}%
+	% no index
+	\phantomsection\label{pk:#1\@labelhack\@key}%
+	% get its length:
+	\StrLen{#2}[\@cclen]%
+	% now, remove prefix it with a char which marks block:
+	\edef\@cclen{\the\numexpr\@cclen-1\relax}
+	\@append@key
 }
 
 \newenvironment{keyexplain}[4][/pingu/]{\minipage{\linewidth}
@@ -273,6 +296,16 @@
 \newcommand*\dkeyref[2][/pingu/]{\hyperref[pk:#1#2]{\lpingu{#2}}}
 \newcommand*\cmdref[1]{\hyperref[pk:/pingu/:bs:#1]{\lpingu{\\#1}}}
 \newcommand*\cmddef[1]{\DefineKey{\\#1}\cmdref{#1}\nobreak}
+
+% master-cmd | cmd
+\newif\ifsubcmddefprint
+\newcommand*\subcmddef{\@ifstar{\subcmddefprintfalse\@subcmddef}{\subcmddefprinttrue\@subcmddef}}
+\def\@subcmddef#1#2{\begingroup
+	{\def\\{}\protected@xdef\@subidxkey{#1}\@gobblekey{\@subidxkey}}%% backslash should not interfere with keys
+	\def\cursub{\@subidxkey?\hyperref[pk:/pingu/_\@subidxkey]{\protect\lpingu{\\#1}}!}%
+	\ifsubcmddefprint\cmddef{#2}\else\DefineKey{\\#2}\fi%
+\endgroup}
+
 \newcommand*\cmdcoldef[1]{\cmddef{pingu@color@#1}}
 \newcommand*\cmd[1]{\texttt{\smaller\doccmd{#1}}}
 
@@ -926,6 +959,15 @@ Aliases may set custom defaults. Those defaults are not listed as they may chang
 \endkeyexplain
 
 \shortcuts{feet}{\@pingu@leftfoot@}{feet color}
+
+\keyexplain{feet front}{true/false}{\if@pingu@feet@front true\else false\fi}
+	If set to true, the feet will be drawn in front of the body:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[feet front]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
 
 \subsubsection{The Body}
 
@@ -5102,14 +5144,14 @@ TODO: explain selections
 
 The eyes of the penguin are controlled by two selections for the left, and the right eye. As we still want the coordinates for the right and the left eye (as presented in \autoref{pingu-coordinates}), the \textit{none}-version of \cmdref{pingu@create@selection} creates those:
 \includecode{eyes\ selectors}
-With this code, we define the six following commands: \cmddef{pingu@righteye@select}, \cmddef{pingu@righteye@add}, \cmddef{@pingu@drawer@righteye@}, \cmddef{pingu@lefteye@select}, \cmddef{pingu@lefteye@add}, and \cmddef{@pingu@drawer@lefteye@}.
+With this code, we define the six following commands: \cmddef{pingu@lefteye@select}, \cmddef{pingu@lefteye@add}, \cmddef{@pingu@drawer@lefteye@}, \cmddef{pingu@righteye@select}, \cmddef{pingu@righteye@add}, and \cmddef{@pingu@drawer@righteye@}.
 
 Within the initialization of all penguin options, we use these keys. Furthermore, \keyref{eyes} acts as a comfort option which operates on both selectors:
 % \pgfqkeys{/pingu}{
 \includecode{eyes\ keys}
 Both eyes have two colors to work with: \cmdcoldef{eye@left}, \cmdcoldef{eye@second@left} for the left as well as \cmdcoldef{eye@right} and \cmdcoldef{eye@second@right} for the right eye.
 
-\subsection{Adding new Eyes}
+\subsubsection{Adding new Eyes}
 Now on how to add new eyes. While it is possible to use \cmdref{pingu@lefteye@add} and \cmdref{pingu@righteye@add}, setting up the corresponding \say{eye} and \say{eyes} comfort-methods is rather tedious.
 For this, i created the command \cmdref{pingu@eyes@s}\ldots
 
@@ -5117,7 +5159,7 @@ For this, i created the command \cmdref{pingu@eyes@s}\ldots
 	Allows to easily add new eyes.
 	\important\space Your code for the eyes \textit{must} create the coordinates \lpingu{\\pingu@name-eye-left} and \lpingu{\\pingu@name-eye-right} respectively. This is not checked! It is recommended to use the coordinates \lpingu{\\pingu@name-eye-back-left} and \lpingu{\\pingu@name-eye-back-right} for reference.
 \end{commandexplain}
-The macro \cmdref{pingu@eyes@s} is defined like this:
+The macro \cmdref{pingu@eyes@s} is defined with the help of \cmddef{pingu@eyes@s@} like this:
 \includecode{pingu@eyes@s}
 
 
@@ -5128,8 +5170,59 @@ As another example, this is the definition of the \say{shiny eyes} (\keyref{eyes
 The usage of \cmddef{eyebaseang} is outdated and will probably be removed in the future.
 
 
+\subsection{The Feet}\label{internal:feet}
+
+\subsubsection{Important Commands}
+
+\begin{commandexplain}{basicfeetbend}{}
+	This macro holds a hardcoded value to be used as the angle of rotation of the feet. Its default value is~\basicfeetbend. The left foot uses the negative value. It may be removed in the future (or replaced by an option).
+
+	The only reason for the command being user accessible is, that it was the primary way to modify the penguin in a previous version of the package.
+\end{commandexplain}
+
+\begin{commandexplain}{pingu@foot@single@w}{}
+	This dimension holds a hardcoded value to be used as the base foot width. Its default value is~\the\pingu@foot@single@w. It may be removed in the future (or replaced by an option).
+\end{commandexplain}
+
+\begin{commandexplain}{pingu@foot@single@h}{}
+	This dimension holds a hardcoded value to be used as the base foot height. Its default value is~\the\pingu@foot@single@h. It may be removed in the future (or replaced by an option).
+\end{commandexplain}
+
+\subsubsection{The Code}
+
+Similary to the eyes, the feet of the penguin are controlled by two selections for the left, and the right foot. There are no extra coordinates necessary, therefore \cmdref{pingu@create@selection} receives no argument for the \textit{none}-version:
+\includecode{feet\ selectors}
+This defines the six commands: \cmddef{pingu@leftfoot@select}, \cmddef{pingu@leftfoot@add}, \cmddef{@pingu@drawer@leftfoot@}, \cmddef{pingu@rightfoot@select}, \cmddef{pingu@rightfoot@add}, and \cmddef{@pingu@drawer@rightfoot@}.
+
+Within the initialization of all penguin options, we use these keys. Furthermore, \keyref{feet} acts as a comfort option which operates on both selectors:
+% \pgfqkeys{/pingu}{
+\includecode{feet\ keys}
+
+\BlockString{@pingu@feet@front}\subcmddef*{if@pingu@feet@front}{@pingu@feet@fronttrue}\subcmddef*{if@pingu@feet@front}{@pingu@feet@frontfalse}%
+The conditional \cmddef{if@pingu@feet@front} is defined above and defaults to \textit{false}:
+\includecode{feet\ conditional}
+Each foot has one color to work with:
+\cmdcoldef{foot@left} for the left and \cmdcoldef{foot@right} for the right foot.
+
+\subsubsection{Adding new Feet}
+Now on how to add new feet. While it is possible to use \cmdref{pingu@leftfoot@add} and \cmdref{pingu@rightfoot@add}, setting up the corresponding \say{foot} and \say{feet} comfort-methods is rather tedious.
+For this, i created the command \cmdref{pingu@feet@s}\ldots
+
+\begin{commandexplain}{pingu@feet@s}{\mand{name}\mand{left-foot}\mand{right-foot}\opt[pingu@yellow]{default color}}
+	Allows to easily add new feet.
+\end{commandexplain}
+The macro \cmdref{pingu@feet@s} is defined with the help of \cmddef{pingu@feet@s@} like this:
+\includecode{pingu@feet@s}
+
+As an example, this is the definition of the \say{normal feet} (\keyref{feet normal}) in the code:
+\includecode{feet\ normal}
+As another example, this is the definition of the \say{simple feet} (\keyref{feet simple}):
+\includecode{feet\ simple}
+
+% TODO: macros
+
 \lstset{breakatwhitespace}
-\indexprologue{\label{normal-idx}This index shows all of the options and commands that a normal user of the package may use! See the \hyperref[internal-idx]{\indexinternalsoverviewname} for an overview of keys and commands used behind the scenes.}
+\indexprologue{\label{normal-idx}This index shows all of the options and commands that a normal user of the package may use! See the \hyperref[internal-idx]{\indexinternalsoverviewname} for an overview of keys and commands used behind the scenes. Page numbers on the lowest level are hidden, but they can still be used as clickable hyperlinks.}
 \printindex[\jobname]
 \indexprologue{\label{internal-idx}The initial \cmd{pingu@} and \cmd{@pingu@} is ignored for indexing (as this would destroy the whole sense of the index).}
 \printindex[\jobname-internals]

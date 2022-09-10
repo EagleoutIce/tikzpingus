@@ -134,8 +134,10 @@
 \pingu@create@selection{bill}{%
     \coordinate (\pingu@name-bill-bottom) at (\pingu@name-bill);%
 }
+% <feet selectors>
 \pingu@create@selection{leftfoot}{}
 \pingu@create@selection{rightfoot}{}
+% <@feet selectors>
 \pingu@create@selection{bodytype}{\pingu@x@bodytype@none}
 % #endregion
 
@@ -153,7 +155,9 @@
 \newif\if@pingu@draw@metadots
 \newif\if@pingu@wi@flip@left
 \newif\if@pingu@wi@flip@right
+% <feet conditional>
 \newif\if@pingu@feet@front
+% <@feet conditional>
 
 \pgfqkeys{/pingu}{
   /pingu/.search also={/tikz,/pgf},
@@ -182,14 +186,21 @@
   @clip even odd rule/.code     = {\pgfseteorule}, % Credit to Andrew Stacey
   @invclip/.style               = {clip,insert path=[/pingu/@clip even odd rule]{[reset cm](-\maxdimen,-\maxdimen)rectangle(\maxdimen,\maxdimen)}},
   @pingu/.style = {}, @pingu@main/.style = {},
-  % feet
+% <feet keys>
   left foot color/.code         = \pingu@color{foot@left}{#1},
   left foot/.code               = \pingu@leftfoot@select{#1},
   right foot color/.code        = \pingu@color{foot@right}{#1},
   right foot/.code              = \pingu@rightfoot@select{#1},
-  feet/.style                   = {/pingu/left foot={#1}, /pingu/right foot={#1}},
-  feet color/.style             = {/pingu/left foot color={#1}, /pingu/right foot color={#1}},
+  feet/.style                   = {
+        /pingu/left foot={#1},
+        /pingu/right foot={#1}
+  },
+  feet color/.style             = {
+        /pingu/left foot color={#1},
+        /pingu/right foot color={#1}
+  },
   feet front/.is if             = @pingu@feet@front,
+% <@feet keys>
   % body
   body type/.code               = \pingu@bodytype@select{#1},
   body main/.code               = \pingu@color{body@main}{#1},
@@ -607,12 +618,12 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     }%
     \pingu@lefteye@add{#1}{#2}\pingu@righteye@add{#1}{#3}%
 }
+% <@pingu@eyes@s>
 \pgfqkeys{/pingu}{%
     eyes none/.style      = {eyes=none},
     left eye none/.style  = {left eye=none},
     right eye none/.style = {right eye=none}
 } % adding the alias
-% <@pingu@eyes@s>
 
 % <eyes normal>
 \pingu@eyes@s{normal}{%
@@ -828,8 +839,13 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 % #endregion
 
 % #region feet
-\long\def\@pingu@feet@s#1#2#3{\@ifnextchar[{\@pingu@feet@s@{#1}{#2}{#3}}{\@pingu@feet@s@{#1}{#2}{#3}[pingu@yellow]}}
-\long\def\@pingu@feet@s@#1#2#3[#4]{%
+% <pingu@feet@s>
+\long\def\pingu@feet@s#1#2#3{%
+    \@ifnextchar[%
+        {\pingu@feet@s@{#1}{#2}{#3}}%
+        {\pingu@feet@s@{#1}{#2}{#3}[pingu@yellow]}%
+}
+\long\def\pingu@feet@s@#1#2#3[#4]{%
     \pgfqkeys{/pingu}{%
         left foot #1/.style    = {/pingu/left foot={#1}, /pingu/left foot color={##1}},%
         left foot #1/.default  = {#4},%
@@ -840,24 +856,56 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     }%
     \pingu@leftfoot@add{#1}{#2}\pingu@rightfoot@add{#1}{#3}%
 }
-\pgfqkeys{/pingu}{feet none/.style={/pingu/feet=none}, /left foot none/.style={/pingu/left foot=none}, right foot none/.style={/pingu/right foot=none}}
-
-\@pingu@feet@s{normal}{%
-    \coordinate (@tmp) at ([xshift=-.5\pingu@foot@single@h]\pingu@name-foot-left);
-    \pingu@block[rotate around={-25+\basicfeetbend:(@tmp)}]{\pingu@color@foot@left} (@tmp) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
-    \pingu@block[rotate around={\basicfeetbend:(\pingu@name-foot-left)}]{\pingu@color@foot@left} (\pingu@name-foot-left) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
-    \coordinate (@tmp) at ([xshift= .5\pingu@foot@single@h]\pingu@name-foot-left);
-    \pingu@block[rotate around={25+\basicfeetbend:(@tmp)}]{\pingu@color@foot@left} (@tmp) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
-}{%
-    \coordinate (@tmp) at ([xshift=-.5\pingu@foot@single@h]\pingu@name-foot-right);
-    \pingu@block[rotate around={-25-\basicfeetbend:(@tmp)}]{\pingu@color@foot@right} (@tmp) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
-    \pingu@block[rotate around={-\basicfeetbend:(\pingu@name-foot-right)}]{\pingu@color@foot@right} (\pingu@name-foot-right) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
-    \coordinate (@tmp) at ([xshift= .5\pingu@foot@single@h]\pingu@name-foot-right);
-    \pingu@block[rotate around={25-\basicfeetbend:(@tmp)}]{\pingu@color@foot@right} (@tmp) ellipse [x radius=\pingu@foot@single@w,y radius=\pingu@foot@single@h];
+% <@pingu@feet@s>
+\pgfqkeys{/pingu}{%
+    feet none/.style={/pingu/feet=none},
+    left foot none/.style={/pingu/left foot=none},
+    right foot none/.style={/pingu/right foot=none}
 }
 
+% <feet normal>
+\pingu@feet@s{normal}{%
+    \coordinate (@tmp) at ([xshift=-.5\pingu@foot@single@h]\pingu@name-foot-left);
+    \pingu@block[rotate around={-25+\basicfeetbend:(@tmp)}]{\pingu@color@foot@left}
+        (@tmp) ellipse [
+            x radius=\pingu@foot@single@w,
+            y radius=\pingu@foot@single@h
+        ];
+    \pingu@block[rotate around={\basicfeetbend:(\pingu@name-foot-left)}]
+        {\pingu@color@foot@left} (\pingu@name-foot-left) ellipse [
+            x radius=\pingu@foot@single@w,
+            y radius=\pingu@foot@single@h
+        ];
 
-\@pingu@feet@s{sit}{%
+    \coordinate (@tmp) at ([xshift= .5\pingu@foot@single@h]\pingu@name-foot-left);
+    \pingu@block[rotate around={25+\basicfeetbend:(@tmp)}]{\pingu@color@foot@left}
+        (@tmp) ellipse [
+            x radius=\pingu@foot@single@w,
+            y radius=\pingu@foot@single@h
+        ];
+}{%
+    \coordinate (@tmp) at ([xshift=-.5\pingu@foot@single@h]\pingu@name-foot-right);
+    \pingu@block[rotate around={-25-\basicfeetbend:(@tmp)}]{\pingu@color@foot@right}
+        (@tmp) ellipse [
+            x radius=\pingu@foot@single@w,
+            y radius=\pingu@foot@single@h
+        ];
+    \pingu@block[rotate around={-\basicfeetbend:(\pingu@name-foot-right)}]
+        {\pingu@color@foot@right} (\pingu@name-foot-right) ellipse [
+            x radius=\pingu@foot@single@w,
+            y radius=\pingu@foot@single@h
+        ];
+    \coordinate (@tmp) at ([xshift= .5\pingu@foot@single@h]\pingu@name-foot-right);
+    \pingu@block[rotate around={25-\basicfeetbend:(@tmp)}]{\pingu@color@foot@right}
+        (@tmp) ellipse [
+            x radius=\pingu@foot@single@w,
+            y radius=\pingu@foot@single@h
+        ];
+}
+% <@feet normal>
+
+
+\pingu@feet@s{sit}{%
 \pingu@layer{foreground}[]
     \coordinate (@tmp) at ([xshift=-.35\pingu@foot@single@h,yshift=-.4mm]\pingu@name-foot-left);
     \pingu@block[rotate around={\basicfeetbend:(@tmp)}]{\pingu@color@foot@left} (@tmp)
@@ -871,19 +919,29 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \endpingu@layer
 }
 
-\@pingu@feet@s{simple}{%
-    \pingu@block[rotate around={-\basicfeetbend:(\pingu@name-foot-left)}]{\pingu@color@foot@left} (\pingu@name-foot-left) ellipse [x radius=2.66\pingu@foot@single@w,y radius=\pingu@foot@single@h];
+% <feet simple>
+\pingu@feet@s{simple}{%
+    \pingu@block[rotate around={-\basicfeetbend:(\pingu@name-foot-left)}]
+        {\pingu@color@foot@left} (\pingu@name-foot-left) ellipse [
+            x radius=2.66\pingu@foot@single@w,
+            y radius=\pingu@foot@single@h
+        ];
 }{%
-    \pingu@block[rotate around={\basicfeetbend:(\pingu@name-foot-right)}]{\pingu@color@foot@right} (\pingu@name-foot-right) ellipse [x radius=2.66\pingu@foot@single@w,y radius=\pingu@foot@single@h];
+    \pingu@block[rotate around={\basicfeetbend:(\pingu@name-foot-right)}]
+        {\pingu@color@foot@right} (\pingu@name-foot-right) ellipse [
+            x radius=2.66\pingu@foot@single@w,
+            y radius=\pingu@foot@single@h
+        ];
 }
+% <@feet simple>
 
-\@pingu@feet@s{back}{%
+\pingu@feet@s{back}{%
     \pingu@block{\pingu@color@foot@left} ([yshift=.2\pingu@foot@single@h]\pingu@name-foot-left) ellipse [x radius=2.5\pingu@foot@single@w,y radius=.435\pingu@foot@single@h];
 }{%
     \pingu@block{\pingu@color@foot@right} ([yshift=.2\pingu@foot@single@h]\pingu@name-foot-right) ellipse [x radius=2.5\pingu@foot@single@w,y radius=.435\pingu@foot@single@h];
 }
 
-\@pingu@feet@s{chubby}{%
+\pingu@feet@s{chubby}{%
 \pingu@layer{foreground}[rotate around={-\basicfeetbend+45:(\pingu@name-foot-left)}]
     \pingu@block\pingu@color@foot@left ([xshift=-3mm,yshift=-1.65mm]\pingu@name-foot-left) to[bend right=3] ++(5mm,0) -- ++(.05mm,.6mm) to[out=83,in=129,looseness=1.125] cycle;
     \ifx\pingu@color@foot@left\@pingu@none\else
