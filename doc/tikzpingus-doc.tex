@@ -136,7 +136,7 @@
 	moreemph={tikzpicture},
 	alsoletter={.-!:0123456789},%disable number
 	deletetexcs={begin,end}, % -> lift 3
-	moreemph=[3]{!hide,.style},
+	moreemph=[3]{!hide,.style,xshift,yshift},
 	add to literate={/pingu/}{{\@declaredcolor{gray}/pingu/}}7
 		{\{tikzpicture\}}{{\@declaredcolor{@softgray}\{tikzpicture\}}}{13}
 		{\{\\number\\pdfrandomseed\}}{{\@declaredcolor{@softgray}\{\textbackslash number\textbackslash pdfrandomseed\}}}{23}
@@ -210,6 +210,7 @@
 
 \RedeclareSectionCommand[runin=false,afterskip=-2mm]{section}
 \RedeclareSectionCommand[runin=false,afterskip=-2mm]{subsection}
+\RedeclareSectionCommand[runin=false,beforeskip=2mm,afterskip=-2mm]{subsubsection}
 
 \tcbset{%
 	colframe=gray,enhanced,breakable, arc=2mm,
@@ -926,6 +927,15 @@ Aliases may set custom defaults. Those defaults are not listed as they may chang
 \endkeyexplain
 
 \shortcuts{feet}{\@pingu@leftfoot@}{feet color}
+
+\keyexplain{feet front}{true/false}{\if@pingu@feet@front true\else false\fi}
+	If set to true, the feet will be drawn in front of the body:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[feet front]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
 
 \subsubsection{The Body}
 
@@ -5091,6 +5101,8 @@ TODO: explain selections
 \end{subcommandexplain}
 
 \subsection{The Feet}\label{internal:feet}
+
+
 
 
 \subsection{The Eyes}\label{internal:eyes}
