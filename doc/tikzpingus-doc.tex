@@ -5127,7 +5127,7 @@ For this, i created the command \cmdref{pingu@eyes@s}\ldots
 	Allows to easily add new eyes.
 	\important\space Your code for the eyes \textit{must} create the coordinates \lpingu{\\pingu@name-eye-left} and \lpingu{\\pingu@name-eye-right} respectively. This is not checked! It is recommended to use the coordinates \lpingu{\\pingu@name-eye-back-left} and \lpingu{\\pingu@name-eye-back-right} for reference.
 \end{commandexplain}
-The macro \cmdref{pingu@eyes@s} is defined like this:
+The macro \cmdref{pingu@eyes@s} is defined with the help of \cmddef{pingu@eyes@s@} like this:
 \includecode{pingu@eyes@s}
 
 
@@ -5142,15 +5142,24 @@ The usage of \cmddef{eyebaseang} is outdated and will probably be removed in the
 
 Similary to the eyes, the feet of the penguin are controlled by two selections for the left, and the right foot. There are no extra coordinates necessary, therefore \cmdref{pingu@create@selection} receives no argument for the \textit{none}-version:
 \includecode{feet\ selectors}
-With this code, we define the six following commands: \cmddef{pingu@leftfoot@select}, \cmddef{pingu@leftfoot@add}, \cmddef{@pingu@drawer@leftfoot@}, \cmddef{pingu@rightfoot@select}, \cmddef{pingu@rightfoot@add}, and \cmddef{@pingu@drawer@rightfoot@}.
+With this code, we define these six commands: \cmddef{pingu@leftfoot@select}, \cmddef{pingu@leftfoot@add}, \cmddef{@pingu@drawer@leftfoot@}, \cmddef{pingu@rightfoot@select}, \cmddef{pingu@rightfoot@add}, and \cmddef{@pingu@drawer@rightfoot@}.
 
 Within the initialization of all penguin options, we use these keys. Furthermore, \keyref{feet} acts as a comfort option which operates on both selectors:
 % \pgfqkeys{/pingu}{
 \includecode{feet\ keys}
+
+\DefineKey{@pingu@feet@front}%
 The conditional \cmddef{if@pingu@feet@front} is defined above and defaults to \textit{false}:
 \includecode{feet\ conditional}
 Each foot has one color to work with:
 \cmddef{pingu@color@foot@left} for the left and \cmddef{pingu@color@foot@right} for the right foot.
+
+As an example, this is the definition of the \say{normal feet} (\keyref{feet normal}) in the code:
+\includecode{feet\ normal}
+As another example, this is the definition of the \say{simple feet} (\keyref{feet simple}):
+\includecode{feet\ simple}
+
+% TODO: macros
 
 \subsubsection{Adding new Feet}
 Now on how to add new feet. While it is possible to use \cmdref{pingu@leftfoot@add} and \cmdref{pingu@rightfoot@add}, setting up the corresponding \say{foot} and \say{feet} comfort-methods is rather tedious.
@@ -5159,7 +5168,7 @@ For this, i created the command \cmdref{pingu@feet@s}\ldots
 \begin{commandexplain}{pingu@feet@s}{\mand{name}\mand{left-foot}\mand{right-foot}\opt[pingu@yellow]{default color}}
 	Allows to easily add new feet.
 \end{commandexplain}
-The macro \cmdref{pingu@feet@s} is defined like this:
+The macro \cmdref{pingu@feet@s} is defined with the help of \cmddef{pingu@feet@s@} like this:
 \includecode{pingu@feet@s}
 
 \lstset{breakatwhitespace}
