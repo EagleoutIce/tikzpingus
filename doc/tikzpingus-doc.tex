@@ -295,6 +295,16 @@
 \newcommand*\dkeyref[2][/pingu/]{\hyperref[pk:#1#2]{\lpingu{#2}}}
 \newcommand*\cmdref[1]{\hyperref[pk:/pingu/:bs:#1]{\lpingu{\\#1}}}
 \newcommand*\cmddef[1]{\DefineKey{\\#1}\cmdref{#1}\nobreak}
+
+% master-cmd | cmd
+\newif\ifsubcmddefprint
+\newcommand*\subcmddef{\@ifstar{\subcmddefprintfalse\@subcmddef}{\subcmddefprinttrue\@subcmddef}}
+\def\@subcmddef#1#2{\begingroup
+	{\def\\{}\protected@xdef\@subidxkey{#1}\@gobblekey{\@subidxkey}}%% backslash should not interfere with keys
+	\def\cursub{\@subidxkey?\hyperref[pk:/pingu/_\@subidxkey]{\protect\lpingu{\\#1}}!}%
+	\ifsubcmddefprint\cmddef{#2}\else\DefineKey{\\#2}\fi%
+\endgroup}
+
 \newcommand*\cmdcoldef[1]{\cmddef{pingu@color@#1}}
 \newcommand*\cmd[1]{\texttt{\smaller\doccmd{#1}}}
 
@@ -5169,11 +5179,11 @@ Within the initialization of all penguin options, we use these keys. Furthermore
 % \pgfqkeys{/pingu}{
 \includecode{feet\ keys}
 
-\BlockString{@pingu@feet@front}%
+\BlockString{@pingu@feet@front}\subcmddef*{if@pingu@feet@front}{@pingu@feet@fronttrue}\subcmddef*{if@pingu@feet@front}{@pingu@feet@frontfalse}%
 The conditional \cmddef{if@pingu@feet@front} is defined above and defaults to \textit{false}:
 \includecode{feet\ conditional}
 Each foot has one color to work with:
-\cmddef{pingu@color@foot@left} for the left and \cmddef{pingu@color@foot@right} for the right foot.
+\cmdcoldef{foot@left} for the left and \cmdcoldef{foot@right} for the right foot.
 
 \subsubsection{Adding new Feet}
 Now on how to add new feet. While it is possible to use \cmdref{pingu@leftfoot@add} and \cmdref{pingu@rightfoot@add}, setting up the corresponding \say{foot} and \say{feet} comfort-methods is rather tedious.
