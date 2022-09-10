@@ -120,6 +120,7 @@
 		{\\pingu@draw}{{\doccmd{pingu@draw}}}{11}
 		{\\@pingu@none}{{\graycmd{@pingu@none}}}{11}
 		{\\path}{{\graycmd{path}}}5
+		{\\coordinate}{{\graycmd{coordinate}}}5
 		{\\definecolor}{{\doccmd{definecolor}}}{12}
 		{\\pgfqkeys}{{\graycmd{pgfqkeys}}}9
 		{\\@ifnextchar}{{\graycmd{@ifnextchar}}}9
@@ -5170,6 +5171,24 @@ The usage of \cmddef{eyebaseang} is outdated and will probably be removed in the
 
 
 \subsection{The Feet}\label{internal:feet}
+
+\subsubsection{Important Commands}
+
+\begin{commandexplain}{basicfeetbend}{}
+	This dimension holds a hardcoded value to be used as the rotation of the feet. Its default value is \the\basicfeetbend. The left foot uses the negative value. It may be removed in the future (or replaced by an option).
+
+	The only reason for the command being user accessible is, that it was the primary way to modify the penguin in a previous version of the package.
+\end{commandexplain}
+
+\begin{commandexplain}{pingu@foot@single@w}{}
+	This dimension holds a hardcoded value to be used as the base foot width. Its default value is \the\pingu@foot@single@w. It may be removed in the future (or replaced by an option).
+\end{commandexplain}
+
+\begin{commandexplain}{pingu@foot@single@h}{}
+	This dimension holds a hardcoded value to be used as the base foot height. Its default value is \the\pingu@foot@single@h. It may be removed in the future (or replaced by an option).
+\end{commandexplain}
+
+\subsubsection{The Code}
 
 Similary to the eyes, the feet of the penguin are controlled by two selections for the left, and the right foot. There are no extra coordinates necessary, therefore \cmdref{pingu@create@selection} receives no argument for the \textit{none}-version:
 \includecode{feet\ selectors}
