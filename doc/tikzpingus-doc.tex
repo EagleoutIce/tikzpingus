@@ -88,6 +88,7 @@
 
 \def\optstyle{\@declaredcolor{@opcolor}\slshape}
 \def\cmdstyle{\@declaredcolor{@darkerblue}}
+\def\nostyle{\@declaredcolor{black}}
 \def\lstfnsize{-.7}
 \lstdefinestyle{lstpingu}{%
 	tabsize=2, breaklines,
@@ -156,11 +157,17 @@
 	% space to space cmd % TODO: do this on store and just keep store?
 	\StrSubstitute{\@elem}{ }{\noexpand\ }[\@sub]\relax
 	\let\hyperstyle\optstyle
-	\IfSubStr{\@sub}{_}{% update hypersyle
+	\IfBeginWith{\@sub}{_}{% update hypersyle
 		\let\hyperstyle\cmdstyle
 		\StrSubstitute{\@sub}{_}{\\}[\@sub]%
 		\StrSubstitute{\@sub}{\\}{\textbackslash}[\@subb]% deal with backslash
-	}{\let\@subb\@sub}
+	}{%
+		\IfBeginWith{\@sub}{+}{% update blockstyle
+			\let\hyperstyle\nostyle
+			\StrDel{\@sub}{+}[\@sub]%
+		}{}%
+		\let\@subb\@sub
+	}%
 	\edef\@tmp{\noexpand\@CreateCodeHyperLink{#2}{\@sub}{pk:/pingu/\@elem}{\@subb}{\expandonce{\hyperstyle}}}\@tmp\fi}%
 }
 % store all. we use their precalculated length to ensure prefixes we go from small to large on set
@@ -227,6 +234,12 @@
 \def\keyexplainindent{2.5em}%
 \let\@explainsuff\@empty
 \let\@labelhack\@empty
+
+\def\@append@key{\protected@csxappto{allcmds@\@cclen}{\@key,}%
+% update the range
+\ifnum\@cclen>\allcmdsmax\relax \xdef\allcmdsmax{\@cclen}\fi
+\ifnum\@cclen<\allcmdsmin\relax \xdef\allcmdsmin{\@cclen}\fi}
+
 % allow the oxes to have minor overlaps
 \newcommand\DefineKey[2][/pingu/]{%
 	\StrSubstitute{#2}{ }{-}[\keyexternalname]%
@@ -238,10 +251,18 @@
 	\phantomsection\label{pk:#1\@labelhack\@key}\index[\current@indexfile]{\cursub\@idxkey?\hyperref[pk:#1\@key]{\protect\lpingu{#2}}}%
 	% get its length:
 	\StrLen{#2}[\@cclen]%
-	\protected@csxappto{allcmds@\@cclen}{\@key,}%
-	% update the range
-	\ifnum\@cclen>\allcmdsmax\relax \xdef\allcmdsmax{\@cclen}\fi
-	\ifnum\@cclen<\allcmdsmin\relax \xdef\allcmdsmin{\@cclen}\fi
+	\@append@key
+}
+% prevent something from get a highlight
+\newcommand\BlockString[2][/pingu/]{%
+	{\def\\{_}\protected@xdef\@key{+#2}}%
+	% no index
+	\phantomsection\label{pk:#1\@labelhack\@key}%
+	% get its length:
+	\StrLen{#2}[\@cclen]%
+	% now, remove prefix it with a char which marks block:
+	\edef\@cclen{\the\numexpr\@cclen-1\relax}
+	\@append@key
 }
 
 \newenvironment{keyexplain}[4][/pingu/]{\minipage{\linewidth}
@@ -5148,18 +5169,11 @@ Within the initialization of all penguin options, we use these keys. Furthermore
 % \pgfqkeys{/pingu}{
 \includecode{feet\ keys}
 
-\DefineKey{@pingu@feet@front}%
+\BlockString{@pingu@feet@front}%
 The conditional \cmddef{if@pingu@feet@front} is defined above and defaults to \textit{false}:
 \includecode{feet\ conditional}
 Each foot has one color to work with:
 \cmddef{pingu@color@foot@left} for the left and \cmddef{pingu@color@foot@right} for the right foot.
-
-As an example, this is the definition of the \say{normal feet} (\keyref{feet normal}) in the code:
-\includecode{feet\ normal}
-As another example, this is the definition of the \say{simple feet} (\keyref{feet simple}):
-\includecode{feet\ simple}
-
-% TODO: macros
 
 \subsubsection{Adding new Feet}
 Now on how to add new feet. While it is possible to use \cmdref{pingu@leftfoot@add} and \cmdref{pingu@rightfoot@add}, setting up the corresponding \say{foot} and \say{feet} comfort-methods is rather tedious.
@@ -5170,6 +5184,13 @@ For this, i created the command \cmdref{pingu@feet@s}\ldots
 \end{commandexplain}
 The macro \cmdref{pingu@feet@s} is defined with the help of \cmddef{pingu@feet@s@} like this:
 \includecode{pingu@feet@s}
+
+As an example, this is the definition of the \say{normal feet} (\keyref{feet normal}) in the code:
+\includecode{feet\ normal}
+As another example, this is the definition of the \say{simple feet} (\keyref{feet simple}):
+\includecode{feet\ simple}
+
+% TODO: macros
 
 \lstset{breakatwhitespace}
 \indexprologue{\label{normal-idx}This index shows all of the options and commands that a normal user of the package may use! See the \hyperref[internal-idx]{\indexinternalsoverviewname} for an overview of keys and commands used behind the scenes.}
