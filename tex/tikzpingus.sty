@@ -131,9 +131,11 @@
         coordinate (\pingu@name-wing-right);%
 }
 \pingu@create@selection{hairstyle}{}
+% <bill selector>
 \pingu@create@selection{bill}{%
     \coordinate (\pingu@name-bill-bottom) at (\pingu@name-bill);%
 }
+% <@bill selector>
 % <feet selectors>
 \pingu@create@selection{leftfoot}{}
 \pingu@create@selection{rightfoot}{}
@@ -247,9 +249,10 @@
   right item flip/.forward to   = /pingu/right wing item flip,
   right wing item angle/.code   = {\def\pingu@wing@right@item@angle@user{#1}},%
   right wing item flip/.is if   = @pingu@wi@flip@right,
-  % bill
+% <bill keys>
   bill/.code                    = \pingu@bill@select{#1},
   bill color/.code              = \pingu@color{bill}{#1},
+% <@bill keys>
   % hair color TODO: other colors
   hair/.forward to              = /pingu/hairs color,
   hairs/.forward to             = /pingu/hairs color,
@@ -966,7 +969,8 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 
 % #region bill
 % name core | main
-\long\def\@pingu@bill@s#1#2{%
+% <pingu@bill@s>
+\long\def\pingu@bill@s#1#2{%
     \pgfqkeys{/pingu}{%
         bill #1/.style   = {/pingu/bill={#1}, /pingu/bill color={##1}},%
         bill #1/.default = pingu@yellow% TODO: defaults
@@ -974,15 +978,19 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     \pingu@bill@add{#1}{#2}%
 }
 \pgfqkeys{/pingu}{bill none/.style={/pingu/bill=none}}
+% <@pingu@bill@s>
 
-\@pingu@bill@s{normal}{%
-\pingu@block{\pingu@color@bill} [rounded corners=.1mm] (\pingu@name-bill)++(-.19cm,0)
-    arc (180:360:.19cm and .225cm)
-    coordinate[pos=.5] (\pingu@name-bill-bottom)
-    -- ++(-.2mm,.05mm) to[bend right=10] ([xshift=-.17cm,yshift=.05mm]\pingu@name-bill)--cycle;
+% <bill normal>
+\pingu@bill@s{normal}{%
+    \pingu@block[rounded corners=.1mm]{\pingu@color@bill}
+        (\pingu@name-bill)++(-.19cm,0) arc (180:360:.19cm and .225cm)
+        coordinate[pos=.5] (\pingu@name-bill-bottom) -- ++(-.2mm,.05mm)
+        to[bend right=10] ([xshift=-.17cm,yshift=.05mm]\pingu@name-bill)
+    -- cycle;
 }
+% <@bill normal>
 
-\@pingu@bill@s{foreground}{%
+\pingu@bill@s{foreground}{%
 \pingu@layer{foreground}[]
 \pingu@block{\pingu@color@bill} [rounded corners=.1mm] (\pingu@name-bill)++(-.19cm,0)
     arc (180:360:.19cm and .225cm)
@@ -991,12 +999,14 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \endpingu@layer
 }
 
-\@pingu@bill@s{flat}{%
-\pingu@block{\pingu@color@bill} (\pingu@name-bill)++(-.19cm,0)
-    arc (180:360:.19cm and .225cm)
-    coordinate[pos=.5] (\pingu@name-bill-bottom)
+% <bill flat>
+\pingu@bill@s{flat}{%
+    \pingu@block{\pingu@color@bill} (\pingu@name-bill)++(-.19cm,0)
+        arc (180:360:.19cm and .225cm)
+        coordinate[pos=.5] (\pingu@name-bill-bottom)
     -- cycle;
 }
+% <@bill flat>
 % #endregion
 % #endregion
 
