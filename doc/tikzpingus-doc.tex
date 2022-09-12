@@ -5175,11 +5175,11 @@ The usage of \cmddef{eyebaseang} is outdated and will probably be removed in the
 
 The bill of the penguin is controlled by one selection. As we always want the coordinates for theoretical bill position (as presented in \autoref{pingu-coordinates}), the \textit{none}-version of \cmdref{pingu@create@selection} creates it:
 \includecode{bill\ selector}
-This code, defines three commands: \cmddef{pingu@bill@select}, \cmddef{pingu@bill@add}, \cmddef{@pingu@bill@lefteye@}.
+This code, defines three commands: \cmddef{pingu@bill@select}, \cmddef{pingu@bill@add}, \cmddef{@pingu@drawer@bill@}.
 
 Within the initialization of all penguin options, we use these commands:
 % \pgfqkeys{/pingu}{
-\includecode{eyes\ keys}
+\includecode{bill\ keys}
 With this, the bill has one color to work with: \cmdcoldef{bill}.
 
 \subsubsection{Adding new Bills}
@@ -5188,7 +5188,7 @@ For this, i created the command \cmdref{pingu@bill@s}\ldots
 
 \begin{commandexplain}{pingu@bill@s}{\mand{name}\mand{bill}}
 	Allows to easily add new bills.
-	\important\space Your code for the eyes \textit{must} create the coordinate \lpingu{\\pingu@name-bill-bottom}. This is not checked! It is recommended to use the coordinate \lpingu{\\pingu@name-bill} for reference.
+	\important\space Your code for the bill \textit{must} create the coordinate \lpingu{\\pingu@name-bill-bottom}. This is not checked! It is recommended to use the coordinate \lpingu{\\pingu@name-bill} for reference.
 \end{commandexplain}
 The macro \cmdref{pingu@bill@s} is defined like this:
 \includecode{pingu@bill@s}
