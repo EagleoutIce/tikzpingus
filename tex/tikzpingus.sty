@@ -57,7 +57,6 @@
 
 \newdimen\pingu@foot@inner@w  \pingu@foot@inner@w=.55cm
 \newdimen\pingu@foot@inner@h  \pingu@foot@inner@h=.115cm
-\newdimen\pingu@foot@offset@w \pingu@foot@offset@w=-.125cm
 \newdimen\pingu@foot@single@w \pingu@foot@single@w=.105cm
 \newdimen\pingu@foot@single@h \pingu@foot@single@h=2mm
 \def\eyebaseang{38.5}
@@ -205,12 +204,13 @@
   },
   feet front/.is if             = @pingu@feet@front,
 % <@feet keys>
-  % body
+% <bodytype keys>
   body type/.code               = \pingu@bodytype@select{#1},
   body main/.code               = \pingu@color{body@main}{#1},
   body head/.code               = \pingu@color{body@head}{#1},
   body/.style                   = {/pingu/body main={#1}, /pingu/body head={#1}},
   body front/.code              = \pingu@color{body@front}{#1},
+% <@bodytype keys>
   % belly
   belly/.forward to             = /pingu/belly text,
   belly text/.style             = {/pingu/belly raw={\node[/pingu/@text,opacity=.2] {#1};}},
