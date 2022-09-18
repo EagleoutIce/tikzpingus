@@ -5187,6 +5187,99 @@ Now on how to add new bills. While it is possible to use \cmdref{pingu@bill@add}
 For this, i created the command \cmdref{pingu@bill@s}\ldots
 
 \begin{commandexplain}{pingu@bill@s}{\mand{name}\mand{bill}}
+	Allows to easily add new bills.\BlockString{-bill-bottom}\BlockString{-bill}
+	\important\space Your code for the bill \textit{must} create the coordinate \lpingu{\\pingu@name-bill-bottom}. This is not checked! It is recommended to use the coordinate \lpingu{\\pingu@name-bill} for reference.
+\end{commandexplain}
+The macro \cmdref{pingu@bill@s} is defined like this:
+\includecode{pingu@bill@s}
+
+
+As an example, this is the definition of the \say{normal bill} (\keyref{bill normal}) in the code:
+\includecode{bill\ normal}
+As another example, this is the definition of the \say{flat bill} (\keyref{bill flat}):
+\includecode{bill\ flat}
+
+\subsection{The Body Type}\label{internal:body-type}
+
+\subsubsection{Important Commands}
+
+\begin{commandexplain}{pingu@w@half}{}
+	This dimension holds a hardcoded value defining the half width of the penguin. Its default value is \the\pingu@w@half.
+\end{commandexplain}
+
+\begin{commandexplain}{pingu@side@h@half}{}
+	This dimension holds a hardcoded value defining the half height of the lower part of the penguin. Its default value is \the\pingu@side@h@half. See \cmdref{pingu@head@h@half} for the additional head-height.
+\end{commandexplain}
+
+\begin{commandexplain}{pingu@head@h@half}{}
+	This dimension holds a hardcoded value defining the half height of the upper (head) part of the penguin. Its default value is \the\pingu@head@h@half.
+\end{commandexplain}
+
+\begin{commandexplain}{pingu@bend}{}
+	This dimension holds a hardcoded value used as a basis for bend lines. Its default value is \the\pingu@bend. It may be removed in the future (or replaced by an option).
+\end{commandexplain}
+
+\begin{commandexplain}{pingu@lower@off}{}
+	This dimension holds a hardcoded value used to offset the white inner parts of the penguin (for the bottom part). Its default value is \the\pingu@lower@off. It may be removed in the future (or replaced by an option).
+\end{commandexplain}
+
+\begin{commandexplain}{pingu@outer@off}{}
+	This dimension holds a hardcoded value used to offset the lower part of the basic penguin. Its default value is \the\pingu@outer@off. It may be removed in the future (or replaced by an option).
+\end{commandexplain}
+
+\begin{commandexplain}{pingu@foot@outer@w}{}
+	This dimension holds a hardcoded value defining the width of the outer feet. Its default value is \the\pingu@foot@outer@w. It may be removed in the future (or replaced by an option).
+\end{commandexplain}
+
+\begin{commandexplain}{pingu@foot@outer@h}{}
+	This dimension holds a hardcoded value defining the height of the outer feet. Its default value is \the\pingu@foot@outer@h. It may be removed in the future (or replaced by an option).
+\end{commandexplain}
+
+\begin{commandexplain}{pingu@foot@inner@w}{}
+	This dimension holds a hardcoded value defining the width of the inner feet. Its default value is \the\pingu@foot@inner@w. It may be removed in the future (or replaced by an option).
+\end{commandexplain}
+
+\begin{commandexplain}{pingu@foot@inner@h}{}
+	This dimension holds a hardcoded value defining the height of the inner feet. Its default value is \the\pingu@foot@inner@h. It may be removed in the future (or replaced by an option).
+\end{commandexplain}
+
+\begin{commandexplain}{pingu@foot@single@w}{}
+	This dimension holds a hardcoded value defining the width of a single foot. Its default value is \the\pingu@foot@single@w. It may be removed in the future (or replaced by an option).
+\end{commandexplain}
+
+\begin{commandexplain}{pingu@foot@single@h}{}
+	This dimension holds a hardcoded value defining the width of a single foot. Its default value is \the\pingu@foot@single@h. It may be removed in the future (or replaced by an option).
+\end{commandexplain}
+
+\begin{commandexplain}{pingu@headcon@x}{}
+	This dimension holds a hardcoded value defining the x-position offseting the connection point of the penguin head. Its default value is \the\pingu@headcon@x. It may be removed in the future (or replaced by an option).
+\end{commandexplain}
+
+\begin{commandexplain}{pingu@headcon@y}{}
+	This dimension holds a hardcoded value defining the y-position offseting the connection point of the penguin head. Its default value is \the\pingu@headcon@y. It may be removed in the future (or replaced by an option).
+\end{commandexplain}
+
+\subsubsection{The Code}
+
+The body of the penguin is controlled by one selection. There are a lot of coordinates to be created by this command (as presented in \autoref{pingu-coordinates}). Furthermore, it must save some paths (\cmddef{pingu@lowerpingu}, \cmddef{pingu@upperpingu} and \cmddef{pingu@whitepingu}). Therefore, it is recommended, that you create a new one by first copying an existing definition. Due to its length, the \textit{none}-version of \cmdref{pingu@create@selection} uses \cmdref{pingu@x@bodytype@none} as a helper:\BlockString{bodytype}\BlockString{wings-side-}
+\includecode{bodytype\ selector}
+
+This code, defines three commands: \cmddef{pingu@bodytype@select}, \cmddef{pingu@bodytype@add}, \cmddef{@pingu@drawer@bodytype@}.
+
+The macro \cmddef{pingu@x@bodytype@none} is defined as follows:
+\includecode{pingu@x@bodytype@none}
+\important\space Please note, that when writing the initial penguin, i did not intend to allow additional body shapes. Therefore, most of the defaults and \say{globals} are must be defined here (alongside a lot of hardcoding).
+
+Within the initialization of all penguin options, we defuine the main colors:
+% \pgfqkeys{/pingu}{
+\includecode{bodytype\ keys}
+With this, the body has three colors to work with: \cmdcoldef{body@main}, \cmdcoldef{body@head}, and \cmdcoldef{body@front}.
+
+\subsubsection{Adding new Bills}
+Now on how to add new bills. While it is possible to use \cmdref{pingu@bill@add}, setting up the \say{bill} comfort-methods is rather tedious.
+For this, i created the command \cmdref{pingu@bill@s}\ldots
+
+\begin{commandexplain}{pingu@bill@s}{\mand{name}\mand{bill}}
 	Allows to easily add new bills.
 	\important\space Your code for the bill \textit{must} create the coordinate \lpingu{\\pingu@name-bill-bottom}. This is not checked! It is recommended to use the coordinate \lpingu{\\pingu@name-bill} for reference.
 \end{commandexplain}
@@ -5198,6 +5291,9 @@ As an example, this is the definition of the \say{normal bill} (\keyref{bill nor
 \includecode{bill\ normal}
 As another example, this is the definition of the \say{flat bill} (\keyref{bill flat}):
 \includecode{bill\ flat}
+
+\important\space While i do have a one-line penguin definition somewhere (for my pen-plotter)
+which i might include someday.
 
 \subsection{The Feet}\label{internal:feet}
 
