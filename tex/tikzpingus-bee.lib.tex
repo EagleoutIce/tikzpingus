@@ -2,6 +2,7 @@
 % Licensed under GNU General Public License version 3
 % https://opensource.org/licenses/gpl-3.0.html
 % TODO: integrate?
+% TODO: allow to specify rotation anchor
 \@pingu@color@{bee@base}RGB(255, 224, 108)
 \pingu@create@extra{bee}{%
     bee/.code    	  = {\pingu@set@extra{bee}{true}\pingu@color{bee}{#1}},
@@ -9,15 +10,16 @@
     bee body/.code    = \pingu@color{bee@body}{#1},
     bee mouth/.code    = \pingu@color{bee@mouth}{#1},
     bee blush/.code    = \pingu@color{bee@blush}{#1},
-}{bee body=pingu@black!82!gray,bee mouth=pingu@black,bee blush=red!21!\pingu@color@bee}
+    bee position/.code args  = {#1:(#2,#3)#4}{\def\pingu@x@bee@angle{#1}\def\pingu@x@bee@xshift{#2}\def\pingu@x@bee@yshift{#3}\def\pingu@x@bee@scale{#4}},
+}{bee body=pingu@black!82!gray,bee mouth=pingu@black,bee blush=red!21!\pingu@color@bee,bee position={-27.5:(8mm,15mm){.875}}}
 
 \definecolor{wings}{RGB}{205, 245, 253}
 \colorlet{wings}{wings!70!white}
 
-\def\lbody{ (left) to[out=270,in=150] (0,-.725) to[out=30,in=270] (right)}
-\tikzset{very path/.append style={line join=round}}
+\def\pingu@bee@x@lbody{ (left) to[out=270,in=150] (0,-.725) to[out=30,in=270] (right)}
 
 \def\pingu@draw@ea@bee{%
+\scope[very path/.append style={line join=round},rotate around={\pingu@x@bee@angle:(\pingu@name-head)},shift={(\pingu@name-head)},shift={(\pingu@x@bee@xshift,\pingu@x@bee@yshift)},scale=\pingu@x@bee@scale]
 % wings
 \coordinate (wl) at(20:2.55mm);
 \coordinate (wr) at(160:2.55mm);
@@ -27,8 +29,9 @@
 \pingu@draw[fill=wings,rotate around=-19:(wr)]{\pingu@color@bee@body} (wr) ellipse [x radius=6.55mm, y radius=3.125mm];
 % body
 \path (-.375,0) coordinate (left) -- (.375,0) coordinate (right);
-\pingu@block[draw]{\pingu@color@bee@body} \lbody;
-\scope\clip\lbody;
+% TODO: block draw?
+\pingu@block[draw=\pingu@color@bee@body]{\pingu@color@bee@body} \pingu@bee@x@lbody;
+\scope\clip\pingu@bee@x@lbody;
 \foreach \angl in {30,1} {
 \pingu@block{\pingu@color@bee} (-\angl:.75) to[bend left=14] (180+\angl:.75) -- ++(0,-1.75mm)
                      to[bend right=14] (-\angl-14:.75) -- cycle;
@@ -57,5 +60,6 @@
 \pingu@block[rotate around=-41:(@)]{\pingu@color@bee@body} ([xshift=-.1mm,yshift=-.185mm]@) ellipse[x radius=.55mm,y radius=.35mm];
 \pingu@draw[line cap=round]{\pingu@color@bee@body} (57:4mm) to[out=70,in=180+41] ++(1mm,3mm) coordinate (@);
 \pingu@block[rotate around=41:(@)]{\pingu@color@bee@body} ([xshift=-.1mm,yshift=-.2mm]@) ellipse[x radius=.55mm,y radius=.35mm];
+\endscope
 \endscope
 }
