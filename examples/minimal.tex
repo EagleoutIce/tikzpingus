@@ -1,29 +1,13 @@
 \errorcontextlines99999
 \documentclass{article}
 \makeatletter\def\input@path{{../tex/}}\makeatother
-\usepackage[glows]{tikzpingus}
+\usepackage{tikzpingus}
 \usepackage[active, tightpage]{preview}
-\usetikzlibrary{3d,decorations.text}
-
-% randomize :D
-\pgfmathsetseed{\number\pdfrandomseed}
-
-\makeatletter
-\definecolor{tino-brown}{RGB}{66,53,47}
-\definecolor{tino-hair}{RGB}{32,31,36}
-\colorlet{patron}{black!20!white}
-\colorlet{pingu@devil@ring}{patron}
-\def\pingu@devil@x@opacity{.35}
 
 \PreviewBorder.5cm
 
 \begin{document}
 \begin{preview}
-\hbox{\setbox0=\hbox{\scalebox{1.55}{\begin{tikzpicture}
-   \pingu[body=patron,body front=patron,feet color=patron, bill color=patron,eyes color=patron,wings wave,devil wings=patron,left eye devil,left eye second color=patron]
-\end{tikzpicture}}}\copy0\kern\dimexpr-.5\wd0-6mm\relax%
-{\smash{\raisebox{3pt}{\clap{\begin{tikzpicture}
-   \pingu[body=pingu@black,horse right=tino-brown, horse right mane=tino-hair, devil horns=pingu@black!80!pingu@white,eyes shiny,left wing grab, blush,tie=pink, body type=legacy,feet sit,height=10.33mm,right wing hug,right item angle=25,:mix=95!pingu@red]
-\end{tikzpicture}}}}}\kern\dimexpr.5\wd0+6mm\relax}%
+   \tikz{\pingu[bee]}
 \end{preview}
 \end{document}

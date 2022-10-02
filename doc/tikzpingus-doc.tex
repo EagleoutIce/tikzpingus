@@ -3018,6 +3018,61 @@ Currently, this is a very cumbersome command to change various pumpkin hat param
 \end{tcblisting}
 \endsubkeyexplain
 
+\subsubsection{The bee}
+\showkeyexplain{bee}{color}{pingu@bee@base}
+Currently, there is a special color for the bee (this will change in the future):
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[bee=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endshowkeyexplain
+
+\subkeyexplain{bee}{bee body}{color}{\pingu@color@bee@body}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[bee, bee body=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{bee}{bee wings}{color}{\pingu@color@bee@wings}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[bee, bee wings=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+{
+\def\pingu@color@bee@body{<bee-body-color>}
+\subkeyexplain{bee}{bee mouth}{color}{\pingu@color@bee@mouth}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[bee, bee mouth=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\def\pingu@color@bee{<bee-color>}
+\subkeyexplain{bee}{bee blush}{color}{\pingu@color@bee@blush}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[bee, bee blush=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+}
+
+\subkeyexplain{bee}{bee position}{angle>:(<x>,<y>)<scale}{\pingu@x@bee@angle:(\pingu@x@bee@xshift,\pingu@x@bee@yshift)\{\pingu@x@bee@scale\}}
+Currently, this is a very cumbersome command to change various bee parameters at the same time:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[bee, bee position={1:(0cm,-.09cm){1.33}}]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
 \subsubsection{The VR-Headset}
 
 \showkeyexplain{vr-headset}{color}{pingu@black!92!gray}
