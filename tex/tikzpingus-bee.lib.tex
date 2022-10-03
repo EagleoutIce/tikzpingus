@@ -11,11 +11,12 @@
     bee/.code    	  = {\pingu@set@extra{bee}{true}\pingu@color{bee}{#1}},
     bee/.default      = pingu@bee@base,%
     bee body/.code    = \pingu@color{bee@body}{#1},
+    bee eyes/.code    = \pingu@color{bee@eyes}{#1},
     bee wings/.code    = \pingu@color{bee@wings}{#1},
     bee mouth/.code    = \pingu@color{bee@mouth}{#1},
     bee blush/.code    = \pingu@color{bee@blush}{#1},
     bee position/.code args  = {#1:(#2,#3)#4}{\def\pingu@x@bee@angle{#1}\def\pingu@x@bee@xshift{#2}\def\pingu@x@bee@yshift{#3}\def\pingu@x@bee@scale{#4}},
-}{bee body=pingu@black!82!gray,bee wings=bee@wings@base,bee mouth=\pingu@color@bee@body,bee blush=red!21!\pingu@color@bee,bee position={-27.5:(8mm,15mm){.875}}}
+}{bee body=pingu@black!82!gray,bee wings=bee@wings@base,bee mouth=\pingu@color@bee@body,bee eyes=\pingu@color@bee@body,bee blush=pingu@red!21!\pingu@color@bee,bee position={-27.5:(8mm,15mm){.875}}}
 
 \def\pingu@bee@x@lbody{ (left) to[out=270,in=150] (0,-.725) to[out=30,in=270] (right)}
 
@@ -47,10 +48,10 @@
 % head
 \pingu@draw[fill=\pingu@color@bee,rounded corners=1.5pt]{\pingu@color@bee@body} (.85mm,-.55mm) to[bend right=30,looseness=.9] ([xshift=1.45mm,yshift=1.35mm]right) arc(0:180:{(.75cm+2*1.45mm)/2} and {(.75cm+2*1.45mm)/2.05}) to[bend right=30,looseness=.9] (-.85mm,-.55mm) -- cycle;
 % eyes [intersect with left and right]
-\pingu@block{\pingu@color@bee@body} (left|-0,2.265mm)++(.6mm,0) coordinate (el) circle[radius=.6mm];
+\pingu@block{\pingu@color@bee@eyes} (left|-0,2.265mm)++(.6mm,0) coordinate (el) circle[radius=.6mm];
 \coordinate (ell) at ([yshift=-.8mm]el);
 \pingu@block[rotate around=3:(ell)]{\pingu@color@bee@blush} ([yshift=-.8mm]el) ellipse[x radius=.412mm, y radius=.165mm];
-\pingu@block{\pingu@color@bee@body} (right|-0,2.265mm)++(-.6mm,0) coordinate (er) circle[radius=.6mm];
+\pingu@block{\pingu@color@bee@eyes} (right|-0,2.265mm)++(-.6mm,0) coordinate (er) circle[radius=.6mm];
 \coordinate (err) at ([yshift=-.8mm]er);
 \pingu@block[rotate around=-1:(err)]{\pingu@color@bee@blush} ([yshift=-.8mm]er) ellipse[x radius=.4mm, y radius=.155mm];
 % mouth
