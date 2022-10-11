@@ -5145,6 +5145,25 @@ This is interesting in combination with other extras as it allows the \keyref{sh
 \setbox\warningpengu=\hbox{\tikz{\node[scale=.35] (a) at(0,0) {\box0}; \node[above] at(a.north) {\faExclamation};}}
 \def\important{\par\mbox{\textit{Important:}\marginnote{\usebox\warningpengu}}}
 
+\section{Larger Examples}
+
+\subsection{A chessboard}
+
+Let's assume, that we want to have a board of penguins playing chess. For starters, we need the individual pieces.
+\begin{tcblisting}{title={The pawns},externalize listing=chess-pawns}
+\begin{tikzpicture}
+	\pingu[body=pingu@black]
+	\pingu[:back]
+\end{tikzpicture}
+\end{tcblisting}
+
+\begin{tcblisting}{title={The rooks},externalize listing=chess-rooks}
+\begin{tikzpicture}
+	\pingu[body=pingu@black,rook]
+	\pingu[:back,rook]
+\end{tikzpicture}
+\end{tcblisting}
+
 \section{The Internals}
 The goal of this section is to explain the inner workings of the package to aid other people in helping me extending and mainting the penguins.
 
