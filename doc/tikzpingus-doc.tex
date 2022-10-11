@@ -148,6 +148,7 @@
 		{\\duck}{{\doccmd{duck}}}5
 		{\\begin}{{\ghostcmd{begin}}}6
 		{\\end}{{\ghostcmd{end}}}4
+		{\\tikz}{{\ghostcmd{tikz}}}5
 		{\\pgfmathsetseed}{{\ghostcmd{pgfmathsetseed}}}{15}
 }
 
@@ -5151,17 +5152,14 @@ This is interesting in combination with other extras as it allows the \keyref{sh
 
 Let's assume, that we want to have a board of penguins playing chess. For starters, we need the individual pieces.
 \begin{tcblisting}{title={The pawns},externalize listing=chess-pawns}
-\begin{tikzpicture}
-	\pingu[body=pingu@black]
-	\pingu[:back]
-\end{tikzpicture}
+\tikz{\pingu[body=pingu@black]}
+\tikz{\pingu[:back,xshift=3cm]}
 \end{tcblisting}
 
+% TODO: deal with problems: D when using two rooks front/back in same picture
 \begin{tcblisting}{title={The rooks},externalize listing=chess-rooks}
-\begin{tikzpicture}
-	\pingu[body=pingu@black,rook]
-	\pingu[:back,rook]
-\end{tikzpicture}
+\tikz{\pingu[body=pingu@black,rook]}
+\tikz{\pingu[:back,rook,rook hatch=false]}
 \end{tcblisting}
 
 \section{The Internals}
@@ -5359,25 +5357,26 @@ Within the initialization of all penguin options, we defuine the main colors:
 \includecode{bodytype\ keys}
 With this, the body has three colors to work with: \cmdcoldef{body@main}, \cmdcoldef{body@head}, and \cmdcoldef{body@front}.
 
-\subsubsection{Adding new Bills}
-Now on how to add new bills. While it is possible to use \cmdref{pingu@bill@add}, setting up the \say{bill} comfort-methods is rather tedious.
-For this, i created the command \cmdref{pingu@bill@s}\ldots
+% TODO:
+% \subsubsection{Adding new Body Types}
+% Now on how to add new bills. While it is possible to use \cmdref{pingu@bill@add}, setting up the \say{bill} comfort-methods is rather tedious.
+% For this, i created the command \cmdref{pingu@bill@s}\ldots
 
-\begin{commandexplain}{pingu@bill@s}{\mand{name}\mand{bill}}
-	Allows to easily add new bills.
-	\important\space Your code for the bill \textit{must} create the coordinate \lpingu{\\pingu@name-bill-bottom}. This is not checked! It is recommended to use the coordinate \lpingu{\\pingu@name-bill} for reference.
-\end{commandexplain}
-The macro \cmdref{pingu@bill@s} is defined like this:
-\includecode{pingu@bill@s}
+% \begin{commandexplain}{pingu@bill@s}{\mand{name}\mand{bill}}
+% 	Allows to easily add new bills.
+% 	\important\space Your code for the bill \textit{must} create the coordinate \lpingu{\\pingu@name-bill-bottom}. This is not checked! It is recommended to use the coordinate \lpingu{\\pingu@name-bill} for reference.
+% \end{commandexplain}
+% The macro \cmdref{pingu@bill@s} is defined like this:
+% \includecode{pingu@bill@s}
 
 
-As an example, this is the definition of the \say{normal bill} (\keyref{bill normal}) in the code:
-\includecode{bill\ normal}
-As another example, this is the definition of the \say{flat bill} (\keyref{bill flat}):
-\includecode{bill\ flat}
+% As an example, this is the definition of the \say{normal bill} (\keyref{bill normal}) in the code:
+% \includecode{bill\ normal}
+% As another example, this is the definition of the \say{flat bill} (\keyref{bill flat}):
+% \includecode{bill\ flat}
 
-\important\space While i do have a one-line penguin definition somewhere (for my pen-plotter)
-which i might include someday.
+% \important\space While i do have a one-line penguin definition somewhere (for my pen-plotter)
+% which i might include someday.
 
 \subsection{The Feet}\label{internal:feet}
 
