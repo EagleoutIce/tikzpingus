@@ -3084,6 +3084,199 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \end{tcblisting}
 \endsubkeyexplain
 
+\subsubsection{The horse}
+
+\showkeyexplain{on horse}{color}{pingu@bronze!80!pingu@black}
+	Place your penguin on a not-so-to-scale horse (see \keyref{horse left} and \keyref{horse right}):
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[on horse=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endshowkeyexplain
+
+\subkeyexplain{on horse}{on horse flip}{true/false}{false}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[on horse,on horse flip=true]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{on horse}{on horse has base}{true/false}{false}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[on horse,on horse has base]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+{\def\pingu@color@horseon{<on-horse-color>}
+\subkeyexplain{on horse}{on horse draw}{color}{\pingu@color@horseon@draw}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[on horse,on horse draw=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{on horse}{on horse mane}{color}{\pingu@color@horseon@mane}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[on horse,on horse mane=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\def\pingu@color@horseon@mane{<on-horse-mane-color>}
+\subkeyexplain{on horse}{on horse mane draw}{color}{\pingu@color@horseon@mane@draw}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[on horse,on horse mane draw=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{on horse}{on horse thatch}{color}{\pingu@color@horseon@thatch}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[on horse,on horse thatch=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\def\pingu@color@horseon@thatch{<on-horse-thatch-color>}
+\subkeyexplain{on horse}{on horse thatch draw}{color}{\pingu@color@horseon@thatch@draw}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[on horse,on horse thatch draw=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{on horse}{on horse tail}{color}{\pingu@color@horseon@tail}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[on horse,on horse tail=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\def\pingu@color@horseon@tail{<on-horse-tail-color>}
+\subkeyexplain{on horse}{on horse tail draw}{color}{\pingu@color@horseon@tail@draw}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[on horse,on horse tail draw=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{on horse}{on horse eyes}{color}{\pingu@color@horseon@eyes}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[on horse,on horse eyes=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+\subkeyalias{on horse eye}{on horse eyes}{on horse}
+
+\subkeyexplain{on horse}{on horse mouth}{color}{\pingu@color@horseon@mouth}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[on horse,on horse mouth=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{on horse}{on horse nose}{color}{\pingu@color@horseon@nose}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[on horse,on horse nose=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{on horse}{on horse ears}{color}{\pingu@color@horseon@ears}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[on horse,on horse ears=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{on horse}{on horse base}{color}{\pingu@color@horseon@base}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[on horse,on horse has base,
+			 on horse base=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\def\pingu@color@horseon@base{<on-horse-base-color>}
+\subkeyexplain{on horse}{on horse base draw}{color}{\pingu@color@horseon@base@draw}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[on horse,on horse has base,
+			 on horse base draw=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{on horse}{on horse base shade}{color}{\pingu@color@horseon@base@shade}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[on horse,on horse has base,
+			 on horse base shade=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\def\pingu@color@horseon@base@shade{<on-horse-base-shade-color>}
+\subkeyexplain{on horse}{on horse base shade draw}{color}{\pingu@color@horseon@base@shade@draw}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[on horse,on horse has base,
+			 on horse base shade draw=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{on horse}{on horse xshift}{length}{\pingu@x@horseon@xshift}
+This key reacts with the \keyref{on horse flip} option!
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[on horse,on horse xshift=1cm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{on horse}{on horse yshift}{length}{\pingu@x@horseon@yshift}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[on horse,on horse yshift=1cm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{on horse}{on horse scale}{length}{\pingu@x@horseon@scale}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[on horse,on horse scale=.25]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+}
+
+\showkeyexplain{horse behind}{color}{pingu@bronze!80!pingu@black}
+	Place your penguin in front of a horse (configures \keyref{on horse}):
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[horse behind=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endshowkeyexplain
+
 \subsubsection{The VR-headset}
 
 \showkeyexplain{vr-headset}{color}{pingu@black!92!gray}
@@ -5160,6 +5353,12 @@ Let's assume, that we want to have a board of penguins playing chess. For starte
 \begin{tcblisting}{title={The rooks},externalize listing=chess-rooks}
 \tikz{\pingu[body=pingu@black,rook]}
 \tikz{\pingu[:back,rook,rook hatch=false]}
+\end{tcblisting}
+
+For the knights we make use of the \keyref{horse behind} extra, which itself is based on the \keyref{horse left}/\keyref{horse right} wing item:
+\begin{tcblisting}{title={The knights},externalize listing=chess-knights}
+\tikz{\pingu[body=pingu@black,horse behind]}
+\tikz{\pingu[:back,horse behind=pingu@black,on horse flip]}
 \end{tcblisting}
 
 \section{The Internals}

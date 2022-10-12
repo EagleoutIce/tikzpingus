@@ -30,10 +30,10 @@ to[out=215,in=80] ++(-1.25,-2) to[bend left=24] ++(-.65,-1) to[out=258,in=86] ++
 \pingu@block[draw=\csname pingu@color@horse#1@base@shade@draw\endcsname,line width=2pt*\pingu@@horse@scale]{\csname pingu@color@horse#1@base@shade\endcsname} (4.35-\basew/2,.433) -- ++(0,-.5) arc(180:360:\basew/2 and 1) -- ++(0,.5) arc(360:180:\basew/2 and 1);
 \pingu@block[draw=\csname pingu@color@horse#1@base@draw\endcsname,line width=2pt*\pingu@@horse@scale]{\csname pingu@color@horse#1@base\endcsname} (4.35,.433) ellipse[x radius=\basew/2,y radius=1];
 \fi
-
+% background front leg
 \pingu@block[draw=\csname pingu@color@horse#1@draw\endcsname,line width=1.75pt*\pingu@@horse@scale]{\csname pingu@color@horse#1\endcsname} [rounded corners=1*\pingu@@horse@scale](@frontleg) to[out=266,in=85] ++(.09,-.5) to[bend left=10] ++(-.15,-.8)
-to[bend right=7] ++(-.05,-.2) to[bend left=13] ++(-.2,-1.15) to[bend right=13] ++(.15,-.2) to[bend left=10] ++(-.07,-.3) to[bend right=100] ++(.45,-.1) to[bend right=10] ([yshift=5mm]@frontleg) -- cycle;
-
+to[bend right=7] ++(-.05,-.2) to[bend left=13] ++(-.2,-1.15) to[bend right=13] ++(.15,-.2) to[bend left=10] ++(-.07,-.3) to[bend right=100] ++(.45,-.1) to[bend right=10] ([yshift=5mm,xshift=3mm]@frontleg) -- cycle;
+% background back leg
 \pingu@block[draw=\csname pingu@color@horse#1@draw\endcsname,line width=1.75pt*\pingu@@horse@scale]{\csname pingu@color@horse#1\endcsname} [rounded corners=1*\pingu@@horse@scale](@backleg) to[out=-115,in=130] ++(-.3,-3.65) -- ++(.2,-.3) to[bend left] ++(-.5,-.1)
 -- ++(-.05,.15) -- ++(0,.15) to[bend left=60] cycle;
 
@@ -111,3 +111,48 @@ to[bend right=7] ++(-.05,-.2) to[bend left=13] ++(-.2,-1.15) to[bend right=13] +
 }
 % todo: make statue extra
 % todo: make horse hat
+
+% to get on horse we create some kind of third wing item: 'on'
+% that will be used to initialize all of the colors and keys
+\newif\if@pingu@x@horse@on@flip@
+\newif\if@pingu@x@horse@on@base@
+% TODO: select keys
+\pingu@create@extra{horseon}{%
+    on horse/.code                       = {\pingu@set@extra{horseon}{true}\pingu@color{horseon}{#1}},
+    on horse/.default              = pingu@bronze!80!pingu@black,
+    horse behind/.style            = {on horse=#1, on horse scale=.325, on horse yshift=6.15cm},
+    horse behind/.default          = pingu@bronze!80!pingu@black,
+    on horse flip/.is if           = @pingu@x@horse@on@flip@,
+    on horse has base/.is if       = @pingu@x@horse@on@base@,
+    on horse draw/.code            = \pingu@color{horseon@draw}{#1},%
+    on horse mane/.code            = \pingu@color{horseon@mane}{#1},%
+    on horse mane draw/.code       = \pingu@color{horseon@mane@draw}{#1},%
+    on horse thatch/.code          = \pingu@color{horseon@thatch}{#1},%
+    on horse thatch draw/.code     = \pingu@color{horseon@thatch@draw}{#1},%
+    on horse tail/.code            = \pingu@color{horseon@tail}{#1},%
+    on horse tail draw/.code       = \pingu@color{horseon@tail@draw}{#1},%
+    on horse eyes/.code            = \pingu@color{horseon@eyes}{#1},%
+    on horse eye/.forward to       = /pingu/on horse eyes,%
+    on horse mouth/.code           = \pingu@color{horseon@mouth}{#1},%
+    on horse nose/.code            = \pingu@color{horseon@nose}{#1},%
+    on horse ears/.code            = \pingu@color{horseon@ears}{#1},%
+    on horse base/.code            = \pingu@color{horseon@base}{#1},%
+    on horse base draw/.code       = \pingu@color{horseon@base@draw}{#1},%
+    on horse base shade/.code      = \pingu@color{horseon@base@shade}{#1},%
+    on horse base shade draw/.code = \pingu@color{horseon@base@shade@draw}{#1},%
+    on horse xshift/.code          = \@namedef{pingu@x@horseon@xshift}{#1},
+    on horse yshift/.code          = \@namedef{pingu@x@horseon@yshift}{#1},
+    on horse scale/.code            = \@namedef{pingu@x@horseon@scale}{#1}
+}{on horse draw=\pingu@color@horseon!80!pingu@black,on horse mane=\pingu@color@horseon!86!pingu@white,on horse mane draw=\pingu@color@horseon@mane!80!pingu@black,on horse eyes=\pingu@color@horseon@draw,on horse mouth=\pingu@color@horseon@draw,on horse nose=\pingu@color@horseon@draw,on horse ears=\pingu@color@horseon,on horse thatch=\pingu@color@horseon@mane,on horse thatch draw=\pingu@color@horseon@thatch!80!pingu@black,on horse tail=\pingu@color@horseon@mane,on horse tail draw=\pingu@color@horseon@tail!80!pingu@black,on horse has base=false,on horse base=lightgray!90!black,on horse base draw=\pingu@color@horseon@base!91!pingu@black,on horse base shade=lightgray!80!black,on horse base shade draw=\pingu@color@horseon@base@shade!91!pingu@black,on horse xshift=0pt,on horse yshift=0pt,on horse flip=false,on horse scale=0.75}
+
+
+\def\pingu@draw@eb@horseon{%
+\pingu@layer{background}[scale=\pingu@x@horseon@scale,every path/.append style={line cap=round, line join=round},shift=(\pingu@name-bottom-center)]
+\if@pingu@x@horse@on@flip@
+ \scope[xshift=-45mm-\pingu@x@horseon@xshift,yshift=-67mm+\pingu@x@horseon@yshift]
+ \else
+ \scope[xshift=45mm+\pingu@x@horseon@xshift,yshift=-67mm+\pingu@x@horseon@yshift,xscale=-1]
+ \fi
+    \pingu@@drawer@horse{on}
+\endscope\endpingu@layer
+}
