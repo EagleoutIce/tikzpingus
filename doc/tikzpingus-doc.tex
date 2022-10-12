@@ -3258,7 +3258,25 @@ This key reacts with the \keyref{on horse flip} option!
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain
+
+\subkeyexplain{on horse}{on horse scale}{length}{\pingu@x@horseon@scale}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[on horse,on horse scale=.25]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
 }
+
+\showkeyexplain{horse behind}{color}{pingu@bronze!80!pingu@black}
+	Place your penguin in front of a horse (configures \keyref{on horse}):
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[horse behind=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endshowkeyexplain
+
 \subsubsection{The VR-headset}
 
 \showkeyexplain{vr-headset}{color}{pingu@black!92!gray}
@@ -5337,11 +5355,11 @@ Let's assume, that we want to have a board of penguins playing chess. For starte
 \tikz{\pingu[:back,rook,rook hatch=false]}
 \end{tcblisting}
 
-For the knights we make use of the \keyref{on horse} extra, which itself is based on the \keyref{horse left}/\keyref{horse right} wing item:
-% \begin{tcblisting}{title={The knights},externalize listing=chess-rooks}
-% \tikz{\pingu[body=pingu@black,rook]}
-% \tikz{\pingu[:back,rook,rook hatch=false]}
-% \end{tcblisting}
+For the knights we make use of the \keyref{horse behind} extra, which itself is based on the \keyref{horse left}/\keyref{horse right} wing item:
+\begin{tcblisting}{title={The knights},externalize listing=chess-knights}
+\tikz{\pingu[body=pingu@black,horse behind]}
+\tikz{\pingu[:back,horse behind=pingu@black,on horse flip]}
+\end{tcblisting}
 
 \section{The Internals}
 The goal of this section is to explain the inner workings of the package to aid other people in helping me extending and mainting the penguins.
