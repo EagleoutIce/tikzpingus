@@ -116,7 +116,7 @@ to[bend right=7] ++(-.05,-.2) to[bend left=13] ++(-.2,-1.15) to[bend right=13] +
 % that will be used to initialize all of the colors and keys
 \newif\if@pingu@x@horse@on@flip@
 \newif\if@pingu@x@horse@on@base@
-% TODO: keys
+% TODO: select keys
 \pingu@create@extra{horseon}{%
     on horse/.code                       = {\pingu@set@extra{horseon}{true}\pingu@color{horseon}{#1}},
     on horse/.default              = pingu@bronze!80!pingu@black,
@@ -140,18 +140,16 @@ to[bend right=7] ++(-.05,-.2) to[bend left=13] ++(-.2,-1.15) to[bend right=13] +
     on horse base shade draw/.code = \pingu@color{horseon@base@shade@draw}{#1},%
     on horse xshift/.code          = \@namedef{pingu@x@horseon@xshift}{#1},
     on horse yshift/.code          = \@namedef{pingu@x@horseon@yshift}{#1},
-    % on horse on base/.style        ={/pingu/on horse \space yshift=4cm},
 }{on horse draw=\pingu@color@horseon!80!pingu@black,on horse mane=\pingu@color@horseon!86!pingu@white,on horse mane draw=\pingu@color@horseon@mane!80!pingu@black,on horse eyes=\pingu@color@horseon@draw,on horse mouth=\pingu@color@horseon@draw,on horse nose=\pingu@color@horseon@draw,on horse ears=\pingu@color@horseon,on horse thatch=\pingu@color@horseon@mane,on horse thatch draw=\pingu@color@horseon@thatch!80!pingu@black,on horse tail=\pingu@color@horseon@mane,on horse tail draw=\pingu@color@horseon@tail!80!pingu@black,on horse has base=false,on horse base=lightgray!90!black,on horse base draw=\pingu@color@horseon@base!91!pingu@black,on horse base shade=lightgray!80!black,on horse base shade draw=\pingu@color@horseon@base@shade!91!pingu@black,on horse xshift=0pt,on horse yshift=0pt,on horse flip=false}
 
 
 \def\pingu@draw@eb@horseon{%
-% \pingu@setup@wing{horse}{#1}% TODO
-% \scope[scale=\pingu@@horse@scale,every path/.append style={line cap=round, line join=round},shift=(\pingu@name-wing-#1),rotate around={\@angle-5:(\pingu@name-wing-#1)}]
-% \csname if@pingu@x@horse@#1@flip@\endcsname
-% \scope[xshift=-4cm-\csname pingu@x@horse#1@xshift\endcsname,yshift=-42mm+\csname pingu@x@horse#1@yshift\endcsname]
-% \else
-% \scope[xshift=4cm+\csname pingu@x@horse#1@xshift\endcsname,yshift=-42mm+\csname pingu@x@horse#1@yshift\endcsname,xscale=-1]
-% \fi
+\pingu@layer{background}[scale=\pingu@@horse@scale+.65,every path/.append style={line cap=round, line join=round},shift=(\pingu@name-bottom-center)]
+\if@pingu@x@horse@on@flip@
+ \scope[xshift=-45mm-\pingu@x@horseon@xshift,yshift=-67mm+\pingu@x@horseon@yshift]
+ \else
+ \scope[xshift=45mm+\pingu@x@horseon@xshift,yshift=-67mm+\pingu@x@horseon@yshift,xscale=-1]
+ \fi
     \pingu@@drawer@horse{on}
-% \endscope\endscope
+\endscope\endpingu@layer
 }
