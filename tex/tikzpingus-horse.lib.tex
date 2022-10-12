@@ -17,7 +17,7 @@ to[out=215,in=80] ++(-1.25,-2) to[bend left=24] ++(-.65,-1) to[out=258,in=86] ++
 % #1 is the wing for the color and key assignments
 \def\pingu@@drawer@horse#1{
 % this ensures all coordinates are set in place
-% i know this i inefficient, but atm this is of no greater
+% i know this is inefficient, but atm this is of no greater
 % concern -- i can not use layers as they would clash with that
 % of the penguin and who wants that... no one does!
 % penguins deserve freedom!
@@ -70,31 +70,39 @@ to[bend right=7] ++(-.05,-.2) to[bend left=13] ++(-.2,-1.15) to[bend right=13] +
 \newif\if@pingu@x@horse@right@flip@
 \newif\if@pingu@x@horse@left@base@
 \newif\if@pingu@x@horse@right@base@
-\pingu@create@wing@extra{horse}{%
-    horse \@lr/.code                       = {\pingu@set@extra{horse\@lr}{true}\pingu@color{horse\@lr}{##1}},
-    horse \@lr/.default                    = pingu@bronze!80!pingu@black,
-    horse \@lr\space flip/.is if           = @pingu@x@horse@\@lr @flip@,
-    horse \@lr\space has base/.is if       = @pingu@x@horse@\@lr @base@,
-    horse \@lr\space draw/.code            = \pingu@color{horse\@lr @draw}{##1},%
-    horse \@lr\space mane/.code            = \pingu@color{horse\@lr @mane}{##1},%
-    horse \@lr\space mane draw/.code       = \pingu@color{horse\@lr @mane@draw}{##1},%
-    horse \@lr\space thatch/.code          = \pingu@color{horse\@lr @thatch}{##1},%
-    horse \@lr\space thatch draw/.code     = \pingu@color{horse\@lr @thatch@draw}{##1},%
-    horse \@lr\space tail/.code            = \pingu@color{horse\@lr @tail}{##1},%
-    horse \@lr\space tail draw/.code       = \pingu@color{horse\@lr @tail@draw}{##1},%
-    horse \@lr\space eyes/.code            = \pingu@color{horse\@lr @eyes}{##1},%
-    horse \@lr\space eye/.forward to       = /pingu/horse \@lr\space eyes,%
-    horse \@lr\space mouth/.code           = \pingu@color{horse\@lr @mouth}{##1},%
-    horse \@lr\space nose/.code            = \pingu@color{horse\@lr @nose}{##1},%
-    horse \@lr\space ears/.code            = \pingu@color{horse\@lr @ears}{##1},%
-    horse \@lr\space base/.code            = \pingu@color{horse\@lr @base}{##1},%
-    horse \@lr\space base draw/.code       = \pingu@color{horse\@lr @base@draw}{##1},%
-    horse \@lr\space base shade/.code      = \pingu@color{horse\@lr @base@shade}{##1},%
-    horse \@lr\space base shade draw/.code = \pingu@color{horse\@lr @base@shade@draw}{##1},%
-    horse \@lr\space xshift/.code          = \@namedef{pingu@x@horse\@lr @xshift}{##1},
-    horse \@lr\space yshift/.code          = \@namedef{pingu@x@horse\@lr @yshift}{##1},
-    horse \@lr\space on base/.style        ={/pingu/horse \@lr\space yshift=4cm},
-}{horse \@lr\space draw=\csname pingu@color@horse\@lr\endcsname!80!pingu@black,horse \@lr\space mane=\csname pingu@color@horse\@lr\endcsname!86!pingu@white,horse \@lr\space mane draw=\csname pingu@color@horse\@lr @mane\endcsname!80!pingu@black,horse \@lr\space eyes=\csname pingu@color@horse\@lr @draw\endcsname,horse \@lr\space mouth=\csname pingu@color@horse\@lr @draw\endcsname,horse \@lr\space nose=\csname pingu@color@horse\@lr @draw\endcsname,horse \@lr\space ears=\csname pingu@color@horse\@lr\endcsname,horse \@lr\space thatch=\csname pingu@color@horse\@lr @mane\endcsname,horse \@lr\space thatch draw=\csname pingu@color@horse\@lr @thatch\endcsname!80!pingu@black,horse \@lr\space tail=\csname pingu@color@horse\@lr @mane\endcsname,horse \@lr\space tail draw=\csname pingu@color@horse\@lr @tail\endcsname!80!pingu@black,horse \@lr\space has base=false,horse \@lr\space base=lightgray!90!black,horse \@lr\space base draw=\csname pingu@color@horse\@lr @base\endcsname!91!pingu@black,horse \@lr\space base shade=lightgray!80!black,horse \@lr\space base shade draw=\csname pingu@color@horse\@lr @base@shade\endcsname!91!pingu@black,horse \@lr\space xshift=0pt,horse \@lr\space yshift=0pt,horse \@lr\space flip=\ifx\@lr\pingu@str@wing@left true\else false\fi}
+% so that i can reuse them with the on-horse-extra
+\def\pingu@x@HorseKeys#1{% useless arg
+horse \@lr/.code                       = {\pingu@set@extra{horse\@lr}{true}\pingu@color{horse\@lr}{##1}},
+horse \@lr/.default                    = pingu@bronze!80!pingu@black,
+horse \@lr\space flip/.is if           = @pingu@x@horse@\@lr @flip@,
+horse \@lr\space has base/.is if       = @pingu@x@horse@\@lr @base@,
+horse \@lr\space draw/.code            = \pingu@color{horse\@lr @draw}{##1},%
+horse \@lr\space mane/.code            = \pingu@color{horse\@lr @mane}{##1},%
+horse \@lr\space mane draw/.code       = \pingu@color{horse\@lr @mane@draw}{##1},%
+horse \@lr\space thatch/.code          = \pingu@color{horse\@lr @thatch}{##1},%
+horse \@lr\space thatch draw/.code     = \pingu@color{horse\@lr @thatch@draw}{##1},%
+horse \@lr\space tail/.code            = \pingu@color{horse\@lr @tail}{##1},%
+horse \@lr\space tail draw/.code       = \pingu@color{horse\@lr @tail@draw}{##1},%
+horse \@lr\space eyes/.code            = \pingu@color{horse\@lr @eyes}{##1},%
+horse \@lr\space eye/.forward to       = /pingu/horse \@lr\space eyes,%
+horse \@lr\space mouth/.code           = \pingu@color{horse\@lr @mouth}{##1},%
+horse \@lr\space nose/.code            = \pingu@color{horse\@lr @nose}{##1},%
+horse \@lr\space ears/.code            = \pingu@color{horse\@lr @ears}{##1},%
+horse \@lr\space base/.code            = \pingu@color{horse\@lr @base}{##1},%
+horse \@lr\space base draw/.code       = \pingu@color{horse\@lr @base@draw}{##1},%
+horse \@lr\space base shade/.code      = \pingu@coitlor{horse\@lr @base@shade}{##1},%
+horse \@lr\space base shade draw/.code = \pingu@color{horse\@lr @base@shade@draw}{##1},%
+horse \@lr\space xshift/.code          = \@namedef{pingu@x@horse\@lr @xshift}{##1},
+horse \@lr\space yshift/.code          = \@namedef{pingu@x@horse\@lr @yshift}{##1},
+horse \@lr\space on base/.style        ={/pingu/horse \@lr\space yshift=4cm}}
+\def\pingu@x@HorseDefaults{%
+    horse \@lr\space draw=\csname pingu@color@horse\@lr\endcsname!80!pingu@black,horse \@lr\space mane=\csname pingu@color@horse\@lr\endcsname!86!pingu@white,horse \@lr\space mane draw=\csname pingu@color@horse\@lr @mane\endcsname!80!pingu@black,horse \@lr\space eyes=\csname pingu@color@horse\@lr @draw\endcsname,horse \@lr\space mouth=\csname pingu@color@horse\@lr @draw\endcsname,horse \@lr\space nose=\csname pingu@color@horse\@lr @draw\endcsname,horse \@lr\space ears=\csname pingu@color@horse\@lr\endcsname,horse \@lr\space thatch=\csname pingu@color@horse\@lr @mane\endcsname,horse \@lr\space thatch draw=\csname pingu@color@horse\@lr @thatch\endcsname!80!pingu@black,horse \@lr\space tail=\csname pingu@color@horse\@lr @mane\endcsname,horse \@lr\space tail draw=\csname pingu@color@horse\@lr @tail\endcsname!80!pingu@black,horse \@lr\space has base=false,horse \@lr\space base=lightgray!90!black,horse \@lr\space base draw=\csname pingu@color@horse\@lr @base\endcsname!91!pingu@black,horse \@lr\space base shade=lightgray!80!black,horse \@lr\space base shade draw=\csname pingu@color@horse\@lr @base@shade\endcsname!91!pingu@black,horse \@lr\space xshift=0pt,horse \@lr\space yshift=0pt%
+}
+
+\edef\@tmp{\noexpand\pingu@create@wing@extra{horse}{%
+    \expandonce{\pingu@x@HorseKeys{}}
+}{\expandonce{\pingu@x@HorseDefaults},horse \noexpand\@lr\noexpand\space flip=\noexpand\ifx\noexpand\@lr\noexpand\pingu@str@wing@left true\noexpand\else false\noexpand\fi}%
+}\@tmp
 
 \def\pingu@draw@wi@horse#1{%
     \pingu@setup@wing{horse}{#1}%
@@ -111,3 +119,30 @@ to[bend right=7] ++(-.05,-.2) to[bend left=13] ++(-.2,-1.15) to[bend right=13] +
 }
 % todo: make statue extra
 % todo: make horse hat
+
+% to get on horse we create some kind of third wing item: 'on'
+% that will be used to initialize all of the colors and keys
+\newif\if@pingu@x@horse@below@flip@
+\newif\if@pingu@x@horse@below@base@
+% now we manually inject the creation of a 'below' extra:
+
+\def\pingu@x@createBelowHorse#1#2#3{%
+\def\@lr{below}%
+\protected@edef\@tmp{\expandafter\expandafter\expandafter\expandafter\expandafter\unexpanded{{#1below}{#2}{#3}}}%
+\expandafter\pingu@create@extra\@tmp}
+
+% TODO: add to the extra drawers
+\pingu@x@createBelowHorse{horse}{\pingu@x@HorseKeys{}}{\pingu@x@HorseDefaults,horse \@lr\space flip=false}
+
+\def\pingu@draw@eb@horse{%
+    % \pingu@setup@wing{horse}{below}% TODO: kill wing stuff?
+% \scope[scale=\pingu@@horse@scale,every path/.append style={line cap=round, line join=round},shift=(\pingu@name-wing-#1)]
+\csname if@pingu@x@horse@below@flip@\endcsname
+\scope[xshift=-4cm-\csname pingu@x@horsebelow@xshift\endcsname,yshift=-42mm+\csname pingu@x@horsebelow@yshift\endcsname]
+\else
+\scope[xshift=4cm+\csname pingu@x@horsebelow@xshift\endcsname,yshift=-42mm+\csname pingu@x@horsebelow@yshift\endcsname,xscale=-1]
+\fi
+    \pingu@@drawer@horse{below}
+\endscope
+%\endscope
+}

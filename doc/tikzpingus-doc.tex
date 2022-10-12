@@ -5162,6 +5162,12 @@ Let's assume, that we want to have a board of penguins playing chess. For starte
 \tikz{\pingu[:back,rook,rook hatch=false]}
 \end{tcblisting}
 
+For the knights we make use of \keyref{:hide} and the \keyref{horse} wing item:
+\begin{tcblisting}{title={The knights},externalize listing=chess-rooks}
+\tikz{\pingu[body=pingu@black,rook]}
+\tikz{\pingu[:back,rook,rook hatch=false]}
+\end{tcblisting}
+
 \section{The Internals}
 The goal of this section is to explain the inner workings of the package to aid other people in helping me extending and mainting the penguins.
 
