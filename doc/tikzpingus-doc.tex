@@ -3085,7 +3085,7 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \endsubkeyexplain
 
 \subsubsection{The horse}
-
+	Although the horse does not have a bounding box by default (\keyref{on horse has bounding box}), we add it so you can see everything.
 \showkeyexplain{on horse}{color}{pingu@bronze!80!pingu@black}
 	Place your penguin on a not-so-to-scale horse (see \keyref{horse left} and \keyref{horse right}):
 \begin{tcblisting}{}
@@ -3096,7 +3096,7 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \endshowkeyexplain
 
 \subkeyexplain{on horse}{on horse flip}{true/false}{\if@pingu@x@horse@on@flip@ true\else false\fi}
-\begin{tcblisting}{}
+\begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[on horse,on horse flip=true]
 \end{tikzpicture}
@@ -3104,7 +3104,7 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \endsubkeyexplain
 
 \subkeyexplain{on horse}{on horse has base}{true/false}{\if@pingu@x@horse@on@base@ true\else false\fi}
-\begin{tcblisting}{}
+\begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[on horse,on horse has base]
 \end{tikzpicture}
@@ -3112,7 +3112,7 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \endsubkeyexplain
 
 \subkeyexplain{on horse}{on horse has bounding box}{true/false}{\if@pingu@x@horse@on@boundingbox@ true\else false\fi}
-\begin{tcblisting}{}
+\begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[on horse,on horse has bounding box]
 \end{tikzpicture}
@@ -3120,7 +3120,7 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \endsubkeyexplain
 {\def\pingu@color@horseon{<on-horse-color>}
 \subkeyexplain{on horse}{on horse draw}{color}{\pingu@color@horseon@draw}
-\begin{tcblisting}{}
+\begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[on horse,on horse draw=green]
 \end{tikzpicture}
@@ -3128,7 +3128,7 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \endsubkeyexplain
 
 \subkeyexplain{on horse}{on horse mane}{color}{\pingu@color@horseon@mane}
-\begin{tcblisting}{}
+\begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[on horse,on horse mane=green]
 \end{tikzpicture}
@@ -3137,7 +3137,7 @@ Currently, this is a very cumbersome command to change various bee parameters at
 
 \def\pingu@color@horseon@mane{<on-horse-mane-color>}
 \subkeyexplain{on horse}{on horse mane draw}{color}{\pingu@color@horseon@mane@draw}
-\begin{tcblisting}{}
+\begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[on horse,on horse mane draw=green]
 \end{tikzpicture}
@@ -3145,7 +3145,7 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \endsubkeyexplain
 
 \subkeyexplain{on horse}{on horse thatch}{color}{\pingu@color@horseon@thatch}
-\begin{tcblisting}{}
+\begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[on horse,on horse thatch=green]
 \end{tikzpicture}
@@ -3154,7 +3154,7 @@ Currently, this is a very cumbersome command to change various bee parameters at
 
 \def\pingu@color@horseon@thatch{<on-horse-thatch-color>}
 \subkeyexplain{on horse}{on horse thatch draw}{color}{\pingu@color@horseon@thatch@draw}
-\begin{tcblisting}{}
+\begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[on horse,on horse thatch draw=green]
 \end{tikzpicture}
@@ -3162,7 +3162,7 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \endsubkeyexplain
 
 \subkeyexplain{on horse}{on horse tail}{color}{\pingu@color@horseon@tail}
-\begin{tcblisting}{}
+\begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[on horse,on horse tail=green]
 \end{tikzpicture}
@@ -3171,7 +3171,7 @@ Currently, this is a very cumbersome command to change various bee parameters at
 
 \def\pingu@color@horseon@tail{<on-horse-tail-color>}
 \subkeyexplain{on horse}{on horse tail draw}{color}{\pingu@color@horseon@tail@draw}
-\begin{tcblisting}{}
+\begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[on horse,on horse tail draw=green]
 \end{tikzpicture}
@@ -3179,7 +3179,7 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \endsubkeyexplain
 
 \subkeyexplain{on horse}{on horse eyes}{color}{\pingu@color@horseon@eyes}
-\begin{tcblisting}{}
+\begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[on horse,on horse eyes=green]
 \end{tikzpicture}
@@ -3188,7 +3188,7 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \subkeyalias{on horse eye}{on horse eyes}{on horse}
 
 \subkeyexplain{on horse}{on horse mouth}{color}{\pingu@color@horseon@mouth}
-\begin{tcblisting}{}
+\begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[on horse,on horse mouth=green]
 \end{tikzpicture}
@@ -3196,7 +3196,7 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \endsubkeyexplain
 
 \subkeyexplain{on horse}{on horse nose}{color}{\pingu@color@horseon@nose}
-\begin{tcblisting}{}
+\begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[on horse,on horse nose=green]
 \end{tikzpicture}
@@ -3204,7 +3204,7 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \endsubkeyexplain
 
 \subkeyexplain{on horse}{on horse ears}{color}{\pingu@color@horseon@ears}
-\begin{tcblisting}{}
+\begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[on horse,on horse ears=green]
 \end{tikzpicture}
@@ -3212,7 +3212,7 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \endsubkeyexplain
 
 \subkeyexplain{on horse}{on horse base}{color}{\pingu@color@horseon@base}
-\begin{tcblisting}{}
+\begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[on horse,on horse has base,
 			 on horse base=green]
@@ -3222,7 +3222,7 @@ Currently, this is a very cumbersome command to change various bee parameters at
 
 \def\pingu@color@horseon@base{<on-horse-base-color>}
 \subkeyexplain{on horse}{on horse base draw}{color}{\pingu@color@horseon@base@draw}
-\begin{tcblisting}{}
+\begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[on horse,on horse has base,
 			 on horse base draw=green]
@@ -3231,7 +3231,7 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \endsubkeyexplain
 
 \subkeyexplain{on horse}{on horse base shade}{color}{\pingu@color@horseon@base@shade}
-\begin{tcblisting}{}
+\begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[on horse,on horse has base,
 			 on horse base shade=green]
@@ -3241,7 +3241,7 @@ Currently, this is a very cumbersome command to change various bee parameters at
 
 \def\pingu@color@horseon@base@shade{<on-horse-base-shade-color>}
 \subkeyexplain{on horse}{on horse base shade draw}{color}{\pingu@color@horseon@base@shade@draw}
-\begin{tcblisting}{}
+\begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[on horse,on horse has base,
 			 on horse base shade draw=green]
@@ -3251,7 +3251,7 @@ Currently, this is a very cumbersome command to change various bee parameters at
 
 \subkeyexplain{on horse}{on horse xshift}{length}{\pingu@x@horseon@xshift}
 This key reacts with the \keyref{on horse flip} option!
-\begin{tcblisting}{}
+\begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[on horse,on horse xshift=1cm]
 \end{tikzpicture}
@@ -3259,7 +3259,7 @@ This key reacts with the \keyref{on horse flip} option!
 \endsubkeyexplain
 
 \subkeyexplain{on horse}{on horse yshift}{length}{\pingu@x@horseon@yshift}
-\begin{tcblisting}{}
+\begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[on horse,on horse yshift=1cm]
 \end{tikzpicture}
@@ -3267,7 +3267,7 @@ This key reacts with the \keyref{on horse flip} option!
 \endsubkeyexplain
 
 \subkeyexplain{on horse}{on horse scale}{length}{\pingu@x@horseon@scale}
-\begin{tcblisting}{}
+\begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[on horse,on horse scale=.25]
 \end{tikzpicture}
@@ -3277,7 +3277,7 @@ This key reacts with the \keyref{on horse flip} option!
 
 \showkeyexplain{horse behind}{color}{pingu@bronze!80!pingu@black}
 	Place your penguin in front of a horse (configures \keyref{on horse}):
-\begin{tcblisting}{}
+\begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[horse behind=green]
 \end{tikzpicture}
