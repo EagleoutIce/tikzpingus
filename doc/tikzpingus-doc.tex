@@ -195,7 +195,7 @@
 \pgfonlayer{foreground}
 \node[below=3mm] at(pingu-bottom-center) {\strut}; % buffer
 \pgfinterruptboundingbox
-\node[below=3mm,fill=white,fill opacity=.52,text opacity=1,rounded corners=1pt] at(pingu-bottom-center) {\textsf{\strut\smash{#1}}};
+\node[below=3mm,fill=white,fill opacity=.52,text opacity=1,rounded corners=3pt] at(pingu-bottom-center) {\textsf{\strut\smash{#1}}};
 \endpgfinterruptboundingbox
 \endpgfonlayer
 \endtikzpicture
@@ -3085,17 +3085,17 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \endsubkeyexplain
 
 \subsubsection{The horse}
-
+	Although the horse does not have a bounding box by default (\keyref{on horse has bounding box}), we add it so you can see everything.
 \showkeyexplain{on horse}{color}{pingu@bronze!80!pingu@black}
 	Place your penguin on a not-so-to-scale horse (see \keyref{horse left} and \keyref{horse right}):
-\begin{tcblisting}{@}
+\begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[on horse=green]
 \end{tikzpicture}
 \end{tcblisting}
 \endshowkeyexplain
 
-\subkeyexplain{on horse}{on horse flip}{true/false}{false}
+\subkeyexplain{on horse}{on horse flip}{true/false}{\if@pingu@x@horse@on@flip@ true\else false\fi}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[on horse,on horse flip=true]
@@ -3103,7 +3103,7 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \end{tcblisting}
 \endsubkeyexplain
 
-\subkeyexplain{on horse}{on horse has base}{true/false}{false}
+\subkeyexplain{on horse}{on horse has base}{true/false}{\if@pingu@x@horse@on@base@ true\else false\fi}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[on horse,on horse has base]
@@ -3111,6 +3111,13 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \end{tcblisting}
 \endsubkeyexplain
 
+\subkeyexplain{on horse}{on horse has bounding box}{true/false}{\if@pingu@x@horse@on@boundingbox@ true\else false\fi}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[on horse,on horse has bounding box]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
 {\def\pingu@color@horseon{<on-horse-color>}
 \subkeyexplain{on horse}{on horse draw}{color}{\pingu@color@horseon@draw}
 \begin{tcblisting}{@}
@@ -5524,13 +5531,13 @@ As another example, this is the definition of the \say{flat bill} (\keyref{bill 
 	This dimension holds a hardcoded value defining the height of the inner feet. Its default value is \the\pingu@foot@inner@h. It may be removed in the future (or replaced by an option).
 \end{commandexplain}
 
-\begin{commandexplain}{pingu@foot@single@w}{}
-	This dimension holds a hardcoded value defining the width of a single foot. Its default value is \the\pingu@foot@single@w. It may be removed in the future (or replaced by an option).
-\end{commandexplain}
+% \begin{commandexplain}{pingu@foot@single@w}{}
+% 	This dimension holds a hardcoded value defining the width of a single foot. Its default value is \the\pingu@foot@single@w. It may be removed in the future (or replaced by an option).
+% \end{commandexplain}
 
-\begin{commandexplain}{pingu@foot@single@h}{}
-	This dimension holds a hardcoded value defining the width of a single foot. Its default value is \the\pingu@foot@single@h. It may be removed in the future (or replaced by an option).
-\end{commandexplain}
+% \begin{commandexplain}{pingu@foot@single@h}{}
+% 	This dimension holds a hardcoded value defining the width of a single foot. Its default value is \the\pingu@foot@single@h. It may be removed in the future (or replaced by an option).
+% \end{commandexplain}
 
 \begin{commandexplain}{pingu@headcon@x}{}
 	This dimension holds a hardcoded value defining the x-position offseting the connection point of the penguin head. Its default value is \the\pingu@headcon@x. It may be removed in the future (or replaced by an option).
