@@ -5368,9 +5368,15 @@ For the knights we make use of the \keyref{horse behind} extra, which itself is 
 \tikz{\pingu[:back,horse behind=pingu@black,on horse flip]}
 \end{tcblisting}
 
+\begin{tcblisting}{title={The queens},externalize listing=chess-queens}
+\tikz{\pingu[body=pingu@black,princess crown=pingu@bronze]}
+\tikz{\pingu[:back,princess crown=pingu@bronze]}
+\end{tcblisting}
+
+
 \begin{tcblisting}{title={The kings},externalize listing=chess-kings}
 \tikz{\pingu[body=pingu@black,crown]}
-\tikz{\pingu[:back,crown=pingu@bronze]}
+\tikz{\pingu[:back,crown]}
 \end{tcblisting}
 
 \section{The Internals}
