@@ -116,34 +116,37 @@ to[bend right=7] ++(-.05,-.2) to[bend left=13] ++(-.2,-1.15) to[bend right=13] +
 % that will be used to initialize all of the colors and keys
 \newif\if@pingu@x@horse@on@flip@
 \newif\if@pingu@x@horse@on@base@
+\newif\if@pingu@x@horse@on@boundingbox@
 % TODO: select keys
+% TODO: option so it does not affect the bounding box (default!)
 \pingu@create@extra{horseon}{%
     on horse/.code                       = {\pingu@set@extra{horseon}{true}\pingu@color{horseon}{#1}},
     on horse/.default              = pingu@bronze!80!pingu@black,
     horse behind/.style            = {on horse=#1, on horse scale=.325, on horse yshift=6.15cm},
-    horse behind/.default          = pingu@bronze!80!pingu@black,
-    on horse flip/.is if           = @pingu@x@horse@on@flip@,
-    on horse has base/.is if       = @pingu@x@horse@on@base@,
-    on horse draw/.code            = \pingu@color{horseon@draw}{#1},%
-    on horse mane/.code            = \pingu@color{horseon@mane}{#1},%
-    on horse mane draw/.code       = \pingu@color{horseon@mane@draw}{#1},%
-    on horse thatch/.code          = \pingu@color{horseon@thatch}{#1},%
-    on horse thatch draw/.code     = \pingu@color{horseon@thatch@draw}{#1},%
-    on horse tail/.code            = \pingu@color{horseon@tail}{#1},%
-    on horse tail draw/.code       = \pingu@color{horseon@tail@draw}{#1},%
-    on horse eyes/.code            = \pingu@color{horseon@eyes}{#1},%
-    on horse eye/.forward to       = /pingu/on horse eyes,%
-    on horse mouth/.code           = \pingu@color{horseon@mouth}{#1},%
-    on horse nose/.code            = \pingu@color{horseon@nose}{#1},%
-    on horse ears/.code            = \pingu@color{horseon@ears}{#1},%
-    on horse base/.code            = \pingu@color{horseon@base}{#1},%
-    on horse base draw/.code       = \pingu@color{horseon@base@draw}{#1},%
-    on horse base shade/.code      = \pingu@color{horseon@base@shade}{#1},%
-    on horse base shade draw/.code = \pingu@color{horseon@base@shade@draw}{#1},%
-    on horse xshift/.code          = \@namedef{pingu@x@horseon@xshift}{#1},
-    on horse yshift/.code          = \@namedef{pingu@x@horseon@yshift}{#1},
+    horse behind/.default           = pingu@bronze!80!pingu@black,
+    on horse flip/.is if            = @pingu@x@horse@on@flip@,
+    on horse has base/.is if        = @pingu@x@horse@on@base@,
+    on horse has bounding box/.is if = @pingu@x@horse@on@boundingbox@,
+    on horse draw/.code             = \pingu@color{horseon@draw}{#1},%
+    on horse mane/.code             = \pingu@color{horseon@mane}{#1},%
+    on horse mane draw/.code        = \pingu@color{horseon@mane@draw}{#1},%
+    on horse thatch/.code           = \pingu@color{horseon@thatch}{#1},%
+    on horse thatch draw/.code      = \pingu@color{horseon@thatch@draw}{#1},%
+    on horse tail/.code             = \pingu@color{horseon@tail}{#1},%
+    on horse tail draw/.code        = \pingu@color{horseon@tail@draw}{#1},%
+    on horse eyes/.code             = \pingu@color{horseon@eyes}{#1},%
+    on horse eye/.forward to        = /pingu/on horse eyes,%
+    on horse mouth/.code            = \pingu@color{horseon@mouth}{#1},%
+    on horse nose/.code             = \pingu@color{horseon@nose}{#1},%
+    on horse ears/.code             = \pingu@color{horseon@ears}{#1},%
+    on horse base/.code             = \pingu@color{horseon@base}{#1},%
+    on horse base draw/.code        = \pingu@color{horseon@base@draw}{#1},%
+    on horse base shade/.code       = \pingu@color{horseon@base@shade}{#1},%
+    on horse base shade draw/.code  = \pingu@color{horseon@base@shade@draw}{#1},%
+    on horse xshift/.code           = \@namedef{pingu@x@horseon@xshift}{#1},
+    on horse yshift/.code           = \@namedef{pingu@x@horseon@yshift}{#1},
     on horse scale/.code            = \@namedef{pingu@x@horseon@scale}{#1}
-}{on horse draw=\pingu@color@horseon!80!pingu@black,on horse mane=\pingu@color@horseon!86!pingu@white,on horse mane draw=\pingu@color@horseon@mane!80!pingu@black,on horse eyes=\pingu@color@horseon@draw,on horse mouth=\pingu@color@horseon@draw,on horse nose=\pingu@color@horseon@draw,on horse ears=\pingu@color@horseon,on horse thatch=\pingu@color@horseon@mane,on horse thatch draw=\pingu@color@horseon@thatch!80!pingu@black,on horse tail=\pingu@color@horseon@mane,on horse tail draw=\pingu@color@horseon@tail!80!pingu@black,on horse has base=false,on horse base=lightgray!90!black,on horse base draw=\pingu@color@horseon@base!91!pingu@black,on horse base shade=lightgray!80!black,on horse base shade draw=\pingu@color@horseon@base@shade!91!pingu@black,on horse xshift=0pt,on horse yshift=0pt,on horse flip=false,on horse scale=0.75}
+}{on horse draw=\pingu@color@horseon!80!pingu@black,on horse mane=\pingu@color@horseon!86!pingu@white,on horse mane draw=\pingu@color@horseon@mane!80!pingu@black,on horse eyes=\pingu@color@horseon@draw,on horse mouth=\pingu@color@horseon@draw,on horse nose=\pingu@color@horseon@draw,on horse ears=\pingu@color@horseon,on horse thatch=\pingu@color@horseon@mane,on horse thatch draw=\pingu@color@horseon@thatch!80!pingu@black,on horse tail=\pingu@color@horseon@mane,on horse tail draw=\pingu@color@horseon@tail!80!pingu@black,on horse has base=false,on horse base=lightgray!90!black,on horse base draw=\pingu@color@horseon@base!91!pingu@black,on horse base shade=lightgray!80!black,on horse base shade draw=\pingu@color@horseon@base@shade!91!pingu@black,on horse xshift=0pt,on horse yshift=0pt,on horse flip=false,on horse scale=0.75,on horse has bounding box=false}
 
 
 \def\pingu@draw@eb@horseon{%
@@ -153,6 +156,8 @@ to[bend right=7] ++(-.05,-.2) to[bend left=13] ++(-.2,-1.15) to[bend right=13] +
  \else
  \scope[xshift=45mm+\pingu@x@horseon@xshift,yshift=-67mm+\pingu@x@horseon@yshift,xscale=-1]
  \fi
+\if@pingu@x@horse@on@boundingbox@\else\pgfinterruptboundingbox\fi
     \pingu@@drawer@horse{on}
+\if@pingu@x@horse@on@boundingbox@\else\endpgfinterruptboundingbox\fi
 \endscope\endpingu@layer
 }
