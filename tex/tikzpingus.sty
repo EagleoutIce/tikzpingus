@@ -1069,6 +1069,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \def\pingu@@xif@eb#1#2{\csname if@pingu@x@#1@\endcsname\csname pingu@draw@eb@#2\endcsname\fi}
 \def\pingu@xif@eb#1#2{\ifcsname if@pingu@x@#1@\endcsname{\pingu@@xif@eb{#1}{#2}}\fi}
 \def\pingu@draw@extras@below{%
+    \pingu@xif@eb{vampireteeth}{vampireteeth}%
     \pingu@xif@eb{heart}{heart}%
     \pingu@xif@eb{devilwings}{devilwings}%
     \pingu@xif@eb{glow}{glow}%
@@ -1386,7 +1387,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \pingu@dummy@lib{cloak}{cloak,cape}
 \pingu@dummy@lib{christmas}{santa hat,santa beard}
 \pingu@dummy@lib{science-fiction}{lightsaber left,lightsaber right}
-\pingu@dummy@lib{fun}{cake-hat,pumpkin-hat,lollipop left,lollipop right}
+\pingu@dummy@lib{fun}{cake-hat,pumpkin-hat,lollipop left,lollipop right,vampire teeth}
 \pingu@dummy@lib{technology}{vr-headset,headphone,vr-controller left,vr-controller right,laptop left,laptop right}
 \pingu@dummy@lib{flags}{flag left,flag right}
 \pingu@dummy@lib{hats}{strawhat,hat,cap,construction helmet,conical hat}
