@@ -130,3 +130,14 @@ scale=\pingu@x@pumpkinhat@scale]
     ([yshift=1mm]\pingu@name-belly-center) arc(0:180:.13cm)
     to[out=270,in=110] ++(.26cm,-.36cm) to[out=70,in=270] ++(.26cm,.36cm) arc (0:180:.13cm) -- cycle;
 }
+
+\pingu@create@extra{vampireteeth}{%
+  vampire teeth/.code       = {\pingu@set@extra{vampireteeth}{true}\pingu@color{vampireteeth}{#1}},
+  vampire teeth/.default    = pingu@yellow!10!pingu@black!70!lightgray
+}{}
+
+\def\pingu@draw@eb@vampireteeth{%
+    \pingu@block{\pingu@color@vampireteeth} (\pingu@name-bill) ++(-1.35mm,-2.5mm)
+    arc(180:0:1.35mm and 2.5mm)
+    arc(0:180:1.35mm and .95mm);
+}
