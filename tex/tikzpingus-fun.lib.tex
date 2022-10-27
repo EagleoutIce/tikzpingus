@@ -141,3 +141,29 @@ scale=\pingu@x@pumpkinhat@scale]
     arc(180:0:1.35mm and 2.5mm)
     arc(0:180:1.35mm and .95mm);
 }
+
+\pingu@create@wing@extra{broom}{%
+    broom \@lr/.code                    = {\pingu@set@extra{broom\@lr}{true}\pingu@color{broom\@lr}{##1}},
+    broom \@lr/.default                 = pingu@bronze,
+    broom \@lr\space length/.code       = \expandafter\def\csname pingu@broom@\@lr @length\endcsname{##1},
+    broom \@lr\space shift/.code        = \expandafter\def\csname pingu@broom@\@lr @shift\endcsname{##1},
+    broom \@lr\space pad/.code          = \pingu@color{broom@\@lr @pad}{##1},
+    broom \@lr\space bristles a/.code   = \pingu@color{broom@\@lr @bristles@a}{##1},
+    broom \@lr\space bristles b/.code   = \pingu@color{broom@\@lr @bristles@b}{##1},
+    broom \@lr\space bristles c/.code   = \pingu@color{broom@\@lr @bristles@c}{##1},
+    broom \@lr\space bristles d/.code   = \pingu@color{broom@\@lr @bristles@d}{##1},
+}{broom \@lr\space length=22mm,broom \@lr\space shift=8mm, broom \@lr\space pad=\csname pingu@color@broom\@lr\endcsname!99!pingu@black, broom \@lr\space bristles a=pingu@bronze!13!pingu@yellow!31!pingu@white!95!\csname pingu@color@broom\@lr\endcsname, broom \@lr\space bristles b=\csname pingu@color@broom@\@lr @bristles@a\endcsname!94!pingu@black, broom \@lr\space bristles c=\csname pingu@color@broom@\@lr @bristles@b\endcsname!94!pingu@black, broom \@lr\space bristles d=\csname pingu@color@broom@\@lr @bristles@c\endcsname!94!pingu@black}
+\def\pingu@draw@wi@broom#1{%
+    \pingu@setup@wing{broom}{#1}%
+    % TODO: mirror on other wing?
+\scope[rotate around={\@angle:(\pingu@name-wing-#1)}]
+    \pingu@block{\csname pingu@color@broom#1\endcsname}(\pingu@name-wing-#1)++(\@sidesign*-.2mm,-\csname pingu@broom@\@lr @shift\endcsname) -- ++(0,\csname pingu@broom@#1@length\endcsname) arc(180:0:\@sidesign*.4mm and .3mm) coordinate[pos=.5] (\pingu@name-broom-#1-top) -- ++(0,-\csname pingu@broom@#1@length\endcsname) arc(360:180:\@sidesign*.4mm and .3mm) -- cycle;
+    % TODO: lighter
+    \pingu@block{\csname pingu@color@broom@#1@bristles@a\endcsname} (\pingu@name-broom-#1-top)++(-2.75mm,0) to[out=115,in=240] ++(3mm,9.5mm) to[out=300,in=65] ([xshift=2.75mm]\pingu@name-broom-#1-top) -- cycle;
+    \pingu@block{\csname pingu@color@broom@#1@bristles@b\endcsname} (\pingu@name-broom-#1-top)++(-2.5mm,0) to[out=115,in=240] ++(2.75mm,8.25mm) to[out=300,in=65] ([xshift=2.5mm]\pingu@name-broom-#1-top) -- cycle;
+    \pingu@block{\csname pingu@color@broom@#1@bristles@c\endcsname} (\pingu@name-broom-#1-top)++(-2.25mm,0) to[out=115,in=240] ++(2.5mm,7.25mm) to[out=300,in=65] ([xshift=2.25mm]\pingu@name-broom-#1-top) -- cycle;
+    \pingu@block{\csname pingu@color@broom@#1@bristles@d\endcsname} (\pingu@name-broom-#1-top)++(-.5mm,0) to[out=105,in=260] ++(.75mm,5.75mm) to[out=280,in=65] ([xshift=.3mm]\pingu@name-broom-#1-top) -- cycle;
+    % TODO: broom cap color etc
+    \pingu@block{\csname pingu@color@broom@#1@pad\endcsname}(\pingu@name-broom-#1-top) ellipse[x radius=3mm,y radius=.533mm];
+\endscope
+}
