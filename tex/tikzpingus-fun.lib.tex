@@ -167,27 +167,3 @@ scale=\pingu@x@pumpkinhat@scale]
     \pingu@block{\csname pingu@color@broom@#1@band\endcsname} (@r) to[bend right=10] (@l) -- (@l2) to[bend left=10] (@r2);
 \endscope
 }
-
-\pingu@create@extra{witchhat}{%
-  witch hat/.code      = \pingu@set@extra{witchhat}{true}\pingu@color{witchhat}{#1},
-  witch hat/.default   = pingu@purple!40!black,
-  witch hat base/.code = \pingu@color{witchhat@base}{#1},
-  witch hat coronal/.code = \pingu@color{witchhat@coronal}{#1},
-  witch hat ribbon/.code = \pingu@color{witchhat@ribbon}{#1},
-  witch hat band/.code = \pingu@color{witchhat@band}{#1},
-  witch hat position/.code args  = {#1:(#2,#3)#4}{\def\pingu@x@witchhat@angle{#1}\def\pingu@x@witchhat@xshift{#2}\def\pingu@x@witchhat@yshift{#3}\def\pingu@x@witchhat@scale{#4}},
-}{witch hat position={-7:(.625mm,.45mm){1.15}},witch hat base=\pingu@color@witchhat,witch hat coronal=\pingu@color@witchhat!91!white,witch hat ribbon=\pingu@color@witchhat!87!white,witch hat band=\pingu@color@witchhat}
-
-\newdimen\pingu@witchhat@w@half \pingu@witchhat@w@half=1.125cm
-\newdimen\pingu@witchhat@h \pingu@witchhat@h=1.3cm
-\def\pingupathwitchhatupper{[rounded corners=.65mm](-.625cm,-.25cm) -- ++(.8cm,\pingu@witchhat@h-4.5mm) -- ++(6.5mm,4.5mm) -- ++(-1.5mm,-4.5mm) -- ++(-1.25mm,-\pingu@witchhat@h+4.5mm)}
-\def\pingu@draw@ea@witchhat{%
-\scope[rotate around={\pingu@x@witchhat@angle:(\pingu@name-head-top)},shift={(\pingu@name-head-top)},shift={(\pingu@x@witchhat@xshift,\pingu@x@witchhat@yshift)},scale=\pingu@x@witchhat@scale]
-\pingu@draw[semithick]{\pingu@color@witchhat@band} (-.615cm,-.25cm) to[out=-100,in=180] ++(.5cm,-1.1cm) to[bend right=5] ++(3.5mm,.1mm) to[out=0,in=-78] ++(.433cm,1.1cm);
-\pingu@block[/pingu/@draw=\pingu@color@witchhat@coronal,thick]{\pingu@color@witchhat@base} (0,-.25cm)++(180:\pingu@witchhat@w@half{} and .15cm) arc (180:360:\pingu@witchhat@w@half{} and .15cm) arc (0:180:\pingu@witchhat@w@half{} and .115cm) -- cycle;
-\pingu@block{\pingu@color@witchhat} \pingupathwitchhatupper;
-\clip\pingupathwitchhatupper;
-\pingu@block{\pingu@color@witchhat@ribbon} (\z@,.2mm) ellipse [x radius=.95\pingu@witchhat@w@half, y radius=.12cm];
-\pingu@block{\pingu@color@witchhat} (\z@,.134cm) ellipse [x radius=.95\pingu@witchhat@w@half, y radius=.12cm];
-\endscope
-}
