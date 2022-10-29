@@ -2510,6 +2510,61 @@ Currently, this is a very cumbersome command to change various hat parameters at
 \end{tcblisting}
 \endsubkeyexplain
 
+\subsubsection{The witch hat}
+\showkeyexplain{witch hat}{color}{pingu@purple!40!black}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[witch hat=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endshowkeyexplain
+
+{\def\pingu@color@witchhat{<witch-hat-color>}
+\subkeyexplain{witch hat}{witch hat ribbon}{color}{\pingu@color@witchhat@ribbon}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[witch hat, witch hat ribbon=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@witchhat{<witch-hat-color>}
+\subkeyexplain{witch hat}{witch hat base}{color}{\pingu@color@witchhat@base}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[witch hat, witch hat base=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@witchhat{<witch-hat-color>}
+\subkeyexplain{witch hat}{witch hat coronal}{color}{\pingu@color@witchhat@coronal}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[witch hat, witch hat coronal=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@witchhat{<witch-hat-color>}
+\subkeyexplain{witch hat}{witch hat band}{color}{\pingu@color@witchhat@band}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[witch hat, witch hat band=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+\subkeyexplain{witchhat}{witch hat position}{angle>:(<x>,<y>)<scale}{\pingu@x@witchhat@angle:(\pingu@x@witchhat@xshift,\pingu@x@witchhat@yshift)\{\pingu@x@witchhat@scale\}}
+Currently, this is a very cumbersome command to change various witch hat parameters at the same time:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[witch hat, witch hat position={1:(0cm,-.09cm){1.33}}]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+
 \subsubsection{The conical hat}
 \showkeyexplain{conical hat}{color}{pingu@yellow}
 \begin{tcblisting}{@}
