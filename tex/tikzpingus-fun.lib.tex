@@ -80,9 +80,8 @@ scale=\pingu@x@cakehat@scale]
   pumpkin-hat stripe c/.code  = \pingu@color{pumpkinhat@stripe@c}{#1},
   pumpkin-hat outline/.code   = \pingu@color{pumpkinhat@outline}{#1},
   pumpkin-hat outline width/.code = \def\pingu@x@pumpkinhat@outline@w{#1},
-  % TODO: jack o lantern?
   pumpkin-hat position/.code args  = {#1:(#2,#3)#4}{\def\pingu@x@pumpkinhat@angle{#1}\def\pingu@x@pumpkinhat@xshift{#2}\def\pingu@x@pumpkinhat@yshift{#3}\def\pingu@x@pumpkinhat@scale{#4}}
-}{pumpkin-hat position={-9:(1.65mm,.25mm)1.05},pumpkin-hat stalk=pingu@green!95!\pingu@color@pumpkinhat!45!pingu@black,pumpkin-hat stalk top=\pingu@color@pumpkinhat@stalk!95!pingu@black,pumpkin-hat stripe a=pingu@black,pumpkin-hat stripe b=\pingu@color@pumpkinhat@stripe@a,pumpkin-hat stripe c=\pingu@color@pumpkinhat@stripe@b,pumpkin-hat outline=pingu@black,pumpkin-hat outline width=1pt}
+}{pumpkin-hat position={-9:(1.65mm,.25mm)1.05},pumpkin-hat stalk=pingu@green!95!\pingu@color@pumpkinhat!45!pingu@black,pumpkin-hat stalk top=\pingu@color@pumpkinhat@stalk!95!pingu@black,pumpkin-hat stripe a=pingu@black,pumpkin-hat stripe b=\pingu@color@pumpkinhat@stripe@a,pumpkin-hat stripe c=\pingu@color@pumpkinhat@stripe@b,pumpkin-hat outline=pingu@black,pumpkin-hat outline width=.7pt}
 
 \def\pingu@pumpkinhat@outerpath{(0,.125cm)++(-60:6.75mm and 5.5mm) arc(-60:86: 6.75mm and 5.5mm) to[bend left=3] ++(-1.75mm,0) arc(95:242:6.75mm and 5.5mm) to[bend left=5] cycle;}
 \def\pingu@draw@ea@pumpkinhat{%
@@ -92,15 +91,15 @@ shift={(\pingu@x@pumpkinhat@xshift,\pingu@x@pumpkinhat@yshift)},
 scale=\pingu@x@pumpkinhat@scale]
   % give it a small cut
   \pingu@block{\pingu@color@pumpkinhat} (0,.125cm)++(-60:6.75mm and 5.5mm) coordinate (@pkll) arc(-60:86: 6.75mm and 5.5mm) coordinate (@pkl) to[bend left=3] coordinate[pos=.5] (@pkuc) ++(-1.75mm,0) coordinate (@pkr) arc(95:242:6.75mm and 5.5mm) coordinate (@pklr) to[bend left=5] coordinate[pos=.5] (@pklc) cycle;
-  \pingu@block{\pingu@color@pumpkinhat@stalk} (@pkl) to[bend left=3] (@pkr) to[bend right=8] ++(.85mm,2mm) -- ++(.65mm,0) coordinate[pos=.5] (@pkc) to[bend right=3] cycle;
-  \pingu@block{\pingu@color@pumpkinhat@stalk@top} (@pkc) ellipse[x radius=.65mm/2, y radius=.085mm];
+  \pingu@draw[line join=round,line width=\pingu@x@pumpkinhat@outline@w]{\pingu@color@pumpkinhat@outline} \pingu@pumpkinhat@outerpath;
 \scope
 \clip (0,.125cm)++(-60:6.75mm and 5.5mm) coordinate (@pkll) arc(-60:86: 6.75mm and 5.5mm) coordinate (@pkl) to[bend left=3] ++(-1.75mm,0) coordinate (@pkr) arc(95:242:6.75mm and 5.5mm) coordinate (@pklr) to[bend left=5] cycle;
   \pingu@draw[line cap=round,opacity=.3]{\pingu@color@pumpkinhat@stripe@a} (@pklr) to[bend left=55] (@pkr);
   \pingu@draw[line cap=round,opacity=.3]{\pingu@color@pumpkinhat@stripe@c} (@pkll) to[bend right=55] (@pkl);
   \pingu@draw[line cap=round,opacity=.3]{\pingu@color@pumpkinhat@stripe@b} (@pklc) to[bend right=5] (@pkuc);
 \endscope
-\pingu@draw[line join=round,line width=\pingu@x@pumpkinhat@outline@w]{\pingu@color@pumpkinhat@outline} \pingu@pumpkinhat@outerpath;
+\pingu@block{\pingu@color@pumpkinhat@stalk} ([yshift=-.5*\pingu@x@pumpkinhat@outline@w]@pkl) to[bend left=3] ([yshift=-.5*\pingu@x@pumpkinhat@outline@w]@pkr) to[bend right=8] ++(.85mm,2mm) -- ++(.65mm,0) coordinate[pos=.5] (@pkc) to[bend right=3] cycle;
+\pingu@block{\pingu@color@pumpkinhat@stalk@top} (@pkc) ellipse[x radius=.65mm/2, y radius=.085mm];
 \endscope
 }
 
@@ -165,5 +164,76 @@ scale=\pingu@x@pumpkinhat@scale]
     \pingu@block{\csname pingu@color@broom@#1@bristles@c\endcsname} (\pingu@name-broom-#1-top)++(-.5mm,-1.5mm) to[out=115,in=240] ++(.5mm,9.5mm) to[out=300,in=65] ([xshift=.5mm,yshift=-1.5mm]\pingu@name-broom-#1-top) -- cycle;
     % TODO: broom cap color etc
     \pingu@block{\csname pingu@color@broom@#1@band\endcsname} (@r) to[bend right=10] (@l) -- (@l2) to[bend left=10] (@r2);
+\endscope
+}
+
+\tikzset{pingu@clip even odd rule/.code={\pgfseteorule}, % Credit to Andrew Stacey
+pingu@invclip/.style={
+    clip,insert path=
+        [pingu@clip even odd rule]{
+            [reset cm](-\maxdimen,-\maxdimen)rectangle(\maxdimen,\maxdimen)
+        }
+}}
+\pingu@create@extra{jackolantern}{%
+  jack o lantern/.code           = \pingu@set@extra{jackolantern}{true}\pingu@color{jackolantern}{#1},
+  jack o lantern/.default        = pingu@bronze!97!pingu@black,
+  jack o lantern helmet/.style   = {jack o lantern=#1,jack o lantern background=none,jack o lantern position={-2.15:(2.05mm,-11.35mm){1.5}},jack o lantern back stripe a=\@pingu@none, jack o lantern back stripe b=\@pingu@none,jack o lantern back stripe c=\@pingu@none,jack o lantern height=6.25mm,jack o lantern width=6.1mm,hair=\@pingu@none},
+  jack o lantern helmet/.default = pingu@bronze!97!pingu@black,
+  jack o lantern stalk/.code     = \pingu@color{jackolantern@stalk}{#1},
+  jack o lantern stalk top/.code = \pingu@color{jackolantern@stalk@top}{#1},
+  jack o lantern background/.code= \pingu@color{jackolantern@background}{#1},
+  jack o lantern stripe a/.code  = \pingu@color{jackolantern@stripe@a}{#1},
+  jack o lantern stripe b/.code  = \pingu@color{jackolantern@stripe@b}{#1},
+  jack o lantern stripe c/.code  = \pingu@color{jackolantern@stripe@c}{#1},
+  jack o lantern back stripe a/.code  = \pingu@color{jackolantern@backstripe@a}{#1},
+  jack o lantern back stripe b/.code  = \pingu@color{jackolantern@backstripe@b}{#1},
+  jack o lantern back stripe c/.code  = \pingu@color{jackolantern@backstripe@c}{#1},
+  jack o lantern outline/.code   = \pingu@color{jackolantern@outline}{#1},
+  jack o lantern outline width/.code = \def\pingu@x@jackolantern@outline@w{#1},
+  jack o lantern height/.code = \def\pingu@x@jackolantern@height{#1},
+  jack o lantern width/.code = \def\pingu@x@jackolantern@width{#1},
+  jack o lantern position/.code args  = {#1:(#2,#3)#4}{\def\pingu@x@jackolantern@angle{#1}\def\pingu@x@jackolantern@xshift{#2}\def\pingu@x@jackolantern@yshift{#3}\def\pingu@x@jackolantern@scale{#4}}
+}{jack o lantern position={-9:(3.15mm,.95mm){1.3}},jack o lantern stripe a=pingu@black,jack o lantern stripe b=\pingu@color@jackolantern@stripe@a,jack o lantern stripe c=\pingu@color@jackolantern@stripe@b,jack o lantern back stripe a=pingu@black,jack o lantern back stripe b=\pingu@color@jackolantern@stripe@a,jack o lantern back stripe c=\pingu@color@jackolantern@stripe@b,jack o lantern outline=pingu@black,jack o lantern outline width=.7pt,jack o lantern stalk=pingu@green!95!\pingu@color@jackolantern!45!pingu@black,jack o lantern stalk top=\pingu@color@jackolantern@stalk!95!pingu@black,jack o lantern background=\pingu@color@jackolantern!85!pingu@black,jack o lantern height=5.5mm,jack o lantern width=5.75mm}
+
+\def\pingu@jackolantern@outerpath{(0,.125cm)++(-60:{\pingu@x@jackolantern@width} and \pingu@x@jackolantern@height) arc(-60:86:{\pingu@x@jackolantern@width} and \pingu@x@jackolantern@height) to[bend right=3] ++(-3.75mm,0) arc(95:242:{\pingu@x@jackolantern@width} and \pingu@x@jackolantern@height) to[bend left=5] cycle;}
+\def\pingu@x@jackolantern{(-5.15mm,.6mm) to[bend right] ++(1.5mm,-.5mm) -- ++(.33mm,.33mm) to[bend right=10] ++(1.5mm,0) -- ++(.66mm,-.75mm) -- ++(.66mm,.75mm) to[bend right=10] ++(1.5mm,0) -- ++(.33mm,-.33mm) to[bend right] ++(1.5mm,.5mm) to[bend left] ++(-1.5mm,-2.15mm) to[bend left=10] ++(-.33mm,.33mm) to[bend left=10] ++(-1.5mm,0) -- ++(-.66mm,-.5mm) -- ++(-.66mm,.5mm) to[bend left=10] ++(-1.5mm,0) -- ++(-.33mm,-.33mm) to[bend left] cycle}
+
+\def\pingu@x@jackolantern@eye@left{(0.9mm,2mm) -- ++(2mm,-.15mm) to[bend right=40] ++(-.5mm,2mm) -- cycle}
+\def\pingu@x@jackolantern@eye@right{(-3mm,2mm) -- ++(-2mm,-.15mm) to[bend left=40] ++(.5mm,2mm) -- cycle}
+\def\pingu@x@jackolantern@nose{(0.965mm*0.5-3.225mm*0.5,1mm) -- ++(1mm,1.2mm) to[bend right=10] ++(-2mm,0) -- cycle}
+
+\def\pingu@draw@ea@jackolantern{%
+\scope[rotate around={\pingu@x@jackolantern@angle:(\pingu@name-head-top)},%
+shift={(\pingu@name-head-top)},
+shift={(\pingu@x@jackolantern@xshift,\pingu@x@jackolantern@yshift)},
+scale=\pingu@x@jackolantern@scale]
+\scope
+\pgfinterruptboundingbox
+\path[pingu@invclip]\pingu@x@jackolantern \pingu@x@jackolantern@eye@left \pingu@x@jackolantern@eye@right \pingu@x@jackolantern@nose;
+  % give it a small cut
+  \pingu@block{\pingu@color@jackolantern} (0,.125cm)++(-60:{\pingu@x@jackolantern@width} and \pingu@x@jackolantern@height) coordinate (@pkll) arc(-60:86: {\pingu@x@jackolantern@width} and \pingu@x@jackolantern@height) coordinate (@pkl) to[bend right=3] coordinate[pos=.5] (@pkuc) coordinate[pos=.225] (@pksl) coordinate[pos=.775] (@pksr) ++(-3.75mm,0) coordinate (@pkr) arc(95:242:{\pingu@x@jackolantern@width} and \pingu@x@jackolantern@height) coordinate (@pklr) to[bend left=5] coordinate[pos=.5] (@pklc) cycle;
+  \pingu@draw[line join=round,line width=\pingu@x@jackolantern@outline@w]{\pingu@color@jackolantern@outline} \pingu@jackolantern@outerpath;
+\endpgfinterruptboundingbox
+\scope
+\clip (0,.125cm)++(-60:{\pingu@x@jackolantern@width} and \pingu@x@jackolantern@height) arc(-60:86:{\pingu@x@jackolantern@width} and \pingu@x@jackolantern@height) to[bend right=3] ++(-3.75mm,0) arc(95:242:{\pingu@x@jackolantern@width} and \pingu@x@jackolantern@height) to[bend left=5] cycle;
+  \pingu@draw[line cap=round,opacity=.2]{\pingu@color@jackolantern@stripe@a} (@pklr) to[bend left=42] (@pkr);
+  \pingu@draw[line cap=round,opacity=.2]{\pingu@color@jackolantern@stripe@c} (@pkll) to[bend right=54] (@pkl);
+  \pingu@draw[line cap=round,opacity=.2]{\pingu@color@jackolantern@stripe@b} (@pklc) to[bend right=6] (@pkuc);
+\endscope
+\endscope
+  \pingu@draw[fill=\pingu@color@jackolantern@background,rounded corners=.25pt]{\pingu@color@jackolantern@outline} \pingu@x@jackolantern@eye@left;
+  \pingu@draw[fill=\pingu@color@jackolantern@background,rounded corners=.25pt]{\pingu@color@jackolantern@outline} \pingu@x@jackolantern@eye@right;
+
+  \pingu@draw[fill=\pingu@color@jackolantern@background,rounded corners=.25pt]{\pingu@color@jackolantern@outline} \pingu@x@jackolantern@nose;
+
+  \pingu@draw[fill=\pingu@color@jackolantern@background]{\pingu@color@jackolantern@outline} \pingu@x@jackolantern;
+  \scope
+  \clip\pingu@x@jackolantern \pingu@x@jackolantern@eye@left \pingu@x@jackolantern@eye@right \pingu@x@jackolantern@nose;
+  \pingu@draw[line cap=round,opacity=.2]{\pingu@color@jackolantern@backstripe@a} ([xshift=1.6mm]@pklr) to[bend left=18] (@pkr);
+  \pingu@draw[line cap=round,opacity=.2]{\pingu@color@jackolantern@backstripe@c} ([xshift=-1.6mm]@pkll) to[bend right=22] (@pkl);
+  \pingu@draw[line cap=round,opacity=.2]{\pingu@color@jackolantern@backstripe@b} (@pklc) to[bend right=1] (@pkuc);
+  \endscope
+  \pingu@block{\pingu@color@jackolantern@stalk} ([yshift=-.5*\pingu@x@jackolantern@outline@w]@pksl) to[bend left=3] ([yshift=-.5*\pingu@x@jackolantern@outline@w]@pksr) to[bend right=8] ++(.85mm,2mm) -- ++(.65mm,0) coordinate[pos=.5] (@pkc) to[bend right=3] cycle;
+\pingu@block{\pingu@color@jackolantern@stalk@top} (@pkc) ellipse[x radius=.65mm/2, y radius=.085mm];
 \endscope
 }

@@ -1,13 +1,15 @@
 \errorcontextlines99999
 \documentclass{article}
 \makeatletter\def\input@path{{../tex/}}\makeatother
-\usepackage{tikzpingus}
+\usepackage[glows]{tikzpingus}
 \usepackage[active, tightpage]{preview}
 
 \PreviewBorder.5cm
 
 \begin{document}
 \begin{preview}
-   \tikz{\pingu[witch hat]}
+   \tikz{\pingu[jack o lantern helmet,wings wave,body type=legacy,small]}\quad
+   \tikz{\pingu[witch hat,broom right,broom right shift=16mm,broom right length=26mm,right wing wave,body type=legacy,eyes shiny,heart=lightgray!40!pingu@white]}\qquad
+   \tikz{\pingu[body=pingu@black,jack o lantern,cup=pingu@purple!70!pingu@black,cup straw=!hide,vampire teeth,wings grab,eyes wink,blush]}
 \end{preview}
 \end{document}
