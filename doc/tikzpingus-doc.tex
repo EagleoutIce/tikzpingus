@@ -3086,6 +3086,147 @@ Currently, this is a very cumbersome command to change various pumpkin hat param
 \end{tcblisting}
 \endsubkeyexplain
 
+\subsubsection{The jack o lantern}
+
+\showkeyexplain{jack o lantern}{color}{pingu@bronze!97!pingu@black}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[jack o lantern=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endshowkeyexplain
+
+{\def\pingu@color@jackolantern{<jackolantern-color>}
+\subkeyexplain{jack o lantern}{jack o lantern stalk}{color}{\pingu@color@jackolantern@stalk}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[jack o lantern,jack o lantern stalk=teal]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\subkeyexplain{jack o lantern}{jack o lantern stalk top}{color}{<jackolantern-stalk-color>!95!pingu@black}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[jack o lantern,jack o lantern stalk top=teal]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+\subkeyexplain{jack o lantern}{jack o lantern stripe a}{color}{\pingu@color@jackolantern@stripe@a}
+Change the color of the first stripe. By default the other stripes share this ones color:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[jack o lantern,jack o lantern stripe a=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{jack o lantern}{jack o lantern stripe b}{color}{\pingu@color@jackolantern@stripe@b}
+Change the color of the second stripe. By default the third stripe share this ones color:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[jack o lantern,jack o lantern stripe b=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{jack o lantern}{jack o lantern stripe c}{color}{\pingu@color@jackolantern@stripe@c}
+Change the color of the third stripe:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[jack o lantern,jack o lantern stripe c=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{jack o lantern}{jack o lantern back stripe a}{color}{\pingu@color@jackolantern@backstripe@a}
+Change the color of the first stripe. By default the other stripes share this ones color:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[jack o lantern,jack o lantern back stripe a=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{jack o lantern}{jack o lantern back stripe b}{color}{\pingu@color@jackolantern@backstripe@b}
+Change the color of the second stripe. By default the third stripe share this ones color:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[jack o lantern,jack o lantern back stripe b=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{jack o lantern}{jack o lantern back stripe c}{color}{\pingu@color@jackolantern@backstripe@c}
+Change the color of the third stripe:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[jack o lantern,jack o lantern back stripe c=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+{\def\pingu@color@jackolantern{<jackolantern-color>}
+\subkeyexplain{jack o lantern}{jack o lantern background}{color}{\pingu@color@jackolantern@background}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[jack o lantern,jack o lantern background=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+\subkeyexplain{jack o lantern}{jack o lantern outline}{color}{\pingu@color@jackolantern@outline}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[jack o lantern,jack o lantern outline=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{jack o lantern}{jack o lantern outline width}{length}{\pingu@x@jackolantern@outline@w}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[jack o lantern,jack o lantern outline width=3pt]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{jack o lantern}{jack o lantern width}{length}{\pingu@x@jackolantern@width}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[jack o lantern,jack o lantern width=8mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{jack o lantern}{jack o lantern height}{length}{\pingu@x@jackolantern@height}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[jack o lantern,jack o lantern height=8mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{jack o lantern}{jack o lantern position}{angle>:(<x>,<y>)<scale}{\pingu@x@jackolantern@angle:(\pingu@x@jackolantern@xshift,\pingu@x@jackolantern@yshift)\{\pingu@x@jackolantern@scale\}}
+Currently, this is a very cumbersome command to change various pumpkin hat parameters at the same time:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[jack o lantern,
+		jack o lantern position={1:(-.085cm,-.15cm){1.275}}]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\showkeyexplain{jack o lantern helmet}{color}{pingu@bronze!97!pingu@black}
+Uses \keyref{jack o lantern} and some of its keys:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[jack o lantern helmet=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endshowkeyexplain
+
 \subsubsection{The bee}
 \showkeyexplain{bee}{color}{pingu@bee@base}
 \begin{tcblisting}{@}
