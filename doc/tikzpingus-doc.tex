@@ -279,7 +279,7 @@
 		\ifx\@tmpb\@empty\lpingu{#1#2}\@explainsuff\else\lpingu{#1#2 =\ }\texttt{<\textit{\@tmpb}>}\fi\hfill
 				\ifx\@tmp\@empty\else{\@declaredcolor{gray}(}#4{\@declaredcolor{gray})}\fi
 		}
-	}\ifcsname pingu@@lib@\@key @\endcsname\index[\current@indexfile]{Libraries!\textit{\csname pingu@@lib@#2@\endcsname}!\@idxkey?\hyperref[pk:#1\@key]{\protect\lpingu{#2}}}\rlap{~\quad\raisebox{2.75pt}{$\underset{\text{\tiny\smash{\raisebox{3pt}{\textsf{\hyperref[Libraries]{\color{gray}Library}}}}}}{\text{\textit{\footnotesize\strut\csname pingu@@lib@#2@\endcsname}}}$}}\fi\kern-\linewidth\par\endgroup
+	}\ifcsname pingu@@lib@\@key @\endcsname\index[\current@indexfile]{Libraries!\textit{\csname pingu@@lib@#2@\endcsname}!\@idxkey?\hyperref[pk:#1\@key]{\protect\lpingu{#2}}}\rlap{~\quad\raisebox{2.75pt}{$\underset{\text{\tiny\smash{\raisebox{3pt}{\textsf{\hyperref[Libraries]{\color{gray}Library}}}}}}{\text{\textit{\footnotesize\parbox{4em}{\null\hfill\strut\csname pingu@@lib@#2@\endcsname\hfill\null}}}}$}}\fi\kern-\linewidth\par\endgroup
 }
 {\endminipage\smallskip\par}
 

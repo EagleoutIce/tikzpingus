@@ -46,3 +46,11 @@
     \pingu@block{\pingu@color@eye@right} ([yshift=.3mm]\pingu@name-eye-right) arc(0:180:.065cm)
     to[out=270,in=110] ++(.13cm,-.2cm) to[out=70,in=270] ++(.13cm,.2cm) arc (0:180:.065cm) -- cycle;
 }
+
+\pingu@eyes@s{critical}{%
+    \pingu@block{\pingu@color@eye@left} ([yshift=.75mm,xshift=\pingu@eye@shift]\pingu@name-eye-back-left) coordinate (\pingu@name-eye-left) ellipse [x radius=1.13mm, y radius=.145cm];
+    \pingu@draw[thick]{\pingu@color@eye@left} (\pingu@name-eye-left)++(45:1.35mm and 1.85mm) arc(45:135:1.35mm and 1.85mm);
+}{%
+    \pingu@block{\pingu@color@eye@right} ([yshift=.75mm,xshift=-\pingu@eye@shift]\pingu@name-eye-back-right) coordinate(\pingu@name-eye-right) ellipse [x radius=1.13mm, y radius=.145cm];
+    \pingu@draw[thick]{\pingu@color@eye@right} (\pingu@name-eye-right)++(45:1.35mm and 1.85mm) arc(45:135:1.35mm and 1.85mm);
+}
