@@ -1361,13 +1361,15 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 % library | selector | keys
 \def\pingu@dummy@selector#1#2#3{\edef\tmp@list{#3}\@for\@current:=\tmp@list\do{\expandafter\pingu@@dummy@selector\expandafter{\@current}{#1}{#2}}}
 \def\pingu@defaultlibs{}\def\pingu@@defaultlibs{}
+\let\pingu@lib@pathprefix\@empty
+\def\pingulibpathprefix#1{\def\pingu@lib@pathprefix{#1}}
 \def\pingu@load@library#1{%
 % store common catcodes
 \expandafter\edef\csname pingu@lib@#1@atcode\endcsname{\the\catcode`\@}%
 \expandafter\edef\csname pingu@lib@#1@barcode\endcsname{\the\catcode`\|}%
 \expandafter\edef\csname pingu@lib@#1@dollarcode\endcsname{\the\catcode`\$}%
 \catcode`\@=11 \catcode`\|=12 \catcode`\$=3\relax
-\def\pingu@tmp{tikzpingus-#1.lib.tex}\relax
+\def\pingu@tmp{\pingu@load@library tikzpingus-#1.lib.tex}\relax
 \InputIfFileExists{\pingu@tmp}{}{\PackageError{\tikzpingus@filename}{There is no '#1' library (searched: '\pingu@tmp')}}
 % restore catcodes
 \catcode`\@=\csname pingu@lib@#1@atcode\endcsname
