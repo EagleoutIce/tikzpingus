@@ -237,3 +237,25 @@ scale=\pingu@x@jackolantern@scale]
 \pingu@block{\pingu@color@jackolantern@stalk@top} (@pkc) ellipse[x radius=.65mm/2, y radius=.085mm];
 \endscope
 }
+
+\pingu@create@wing@extra{hammer}{%
+    hammer \@lr/.code              = {\pingu@set@extra{hammer\@lr}{true}\pingu@color{hammer\@lr}{##1}},
+    hammer \@lr/.default           = pingu@silver,
+    hammer \@lr\space handle length/.code = \expandafter\def\csname pingu@hammer@\@lr @length\endcsname{##1},
+    hammer \@lr\space handle shift/.code  = \expandafter\def\csname pingu@hammer@\@lr @shift\endcsname{##1},
+    hammer \@lr\space width/.code  = \expandafter\def\csname pingu@hammer@\@lr @width\endcsname{##1},
+    hammer \@lr\space height/.code  = \expandafter\def\csname pingu@hammer@\@lr @height\endcsname{##1},
+    hammer \@lr\space xshift/.code  = \expandafter\def\csname pingu@hammer@\@lr @xshift\endcsname{##1},
+    hammer \@lr\space yshift/.code  = \expandafter\def\csname pingu@hammer@\@lr @yshift\endcsname{##1},
+    hammer \@lr\space handle/.code = \pingu@color{hammer@\@lr @handle}{##1},%
+    hammer \@lr\space with knob/.style  = {hammer \@lr=##1, hammer \@lr\space handle length=\dimexpr9mm+\csname pingu@hammer@\@lr @height\endcsname+.5mm,hammer \@lr\space yshift=\dimexpr-.5mm-\csname pingu@hammer@\@lr @height\endcsname},
+    hammer \@lr\space with knob/.default = pingu@silver
+}{hammer \@lr\space handle length=9mm, hammer \@lr\space handle=pingu@bronze, hammer \@lr\space handle shift=-4mm, hammer \@lr\space width=7mm,hammer \@lr\space height=3.5mm, hammer \@lr\space xshift=-0.5*\csname pingu@hammer@\@lr @width\endcsname,hammer \@lr\space yshift=-1mm}
+\def\pingu@draw@wi@hammer#1{%
+    \pingu@setup@wing{hammer}{#1}%
+\scope[rotate around={\@angle:(\pingu@name-wing-#1)}]
+% \csname pingu@color@hammer#1\endcsname
+    \pingu@block{\csname pingu@color@hammer@#1@handle\endcsname}(\pingu@name-wing-#1)++(\@sidesign*-.2mm,\csname pingu@hammer@#1@shift\endcsname) -- ++(0,\csname pingu@hammer@#1@length\endcsname) arc(180:0:\@sidesign*.4mm and .3mm) coordinate[pos=.5] (\pingu@name-hammer-#1-top) -- ++(0,-\csname pingu@hammer@#1@length\endcsname) arc(360:180:\@sidesign*.4mm and .3mm) -- cycle;
+    \pingu@block[rounded corners=2pt]{\csname pingu@color@hammer#1\endcsname} (\pingu@name-hammer-#1-top)++(\csname pingu@hammer@#1@xshift\endcsname,\csname pingu@hammer@#1@yshift\endcsname) rectangle ++(\csname pingu@hammer@#1@width\endcsname,\csname pingu@hammer@#1@height\endcsname);
+\endscope
+}
