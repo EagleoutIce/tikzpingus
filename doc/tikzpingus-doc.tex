@@ -2509,6 +2509,51 @@ Currently, this is a very cumbersome command to change various hat parameters at
 \end{tcblisting}
 \endsubkeyexplain
 
+\subsubsection{The mitra}
+\showkeyexplain{hat}{color}{brown!50!white}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[hat=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endshowkeyexplain
+
+{\def\pingu@color@hat{<hat-color>}
+\subkeyexplain{hat}{hat ribbon}{color}{\pingu@color@hat@ribbon}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[hat, hat ribbon=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@hat{<hat-color>}
+\subkeyexplain{hat}{hat base}{color}{\pingu@color@hat@base}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[hat, hat base=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@hat{<hat-color>}
+\subkeyexplain{hat}{hat coronal}{color}{\pingu@color@hat@coronal}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[hat, hat coronal=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+\subkeyexplain{hat}{hat position}{angle>:(<x>,<y>)<scale}{\pingu@x@hat@angle:(\pingu@x@hat@xshift,\pingu@x@hat@yshift)\{\pingu@x@hat@scale\}}
+Currently, this is a very cumbersome command to change various hat parameters at the same time:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[hat, hat position={1:(0cm,-.09cm){1.33}}]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
 \subsubsection{The witch hat}
 \showkeyexplain{witch hat}{color}{pingu@purple!40!black}
 \begin{tcblisting}{@}
