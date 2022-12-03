@@ -2510,46 +2510,112 @@ Currently, this is a very cumbersome command to change various hat parameters at
 \endsubkeyexplain
 
 \subsubsection{The mitra}
-\showkeyexplain{hat}{color}{brown!50!white}
+\showkeyexplain{mitra}{color}{pingu@red!67!pingu@black}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[hat=green]
+	\pingu[mitra=green]
 \end{tikzpicture}
 \end{tcblisting}
 \endshowkeyexplain
 
-{\def\pingu@color@hat{<hat-color>}
-\subkeyexplain{hat}{hat ribbon}{color}{\pingu@color@hat@ribbon}
+\subkeyexplain{hat}{mitra height}{length}{\pingu@x@mitra@height}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[hat, hat ribbon=green]
+	\pingu[mitra,mitra height=1.5cm]
 \end{tikzpicture}
 \end{tcblisting}
-\endsubkeyexplain}
+\endsubkeyexplain
 
-{\def\pingu@color@hat{<hat-color>}
-\subkeyexplain{hat}{hat base}{color}{\pingu@color@hat@base}
+{\def\pingu@color@mitra{<mitra-color>}
+\subkeyexplain{mitra}{mitra background}{color}{\pingu@color@mitra@background}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[hat, hat base=green]
+	\pingu[mitra, mitra background=green]
 \end{tikzpicture}
 \end{tcblisting}
-\endsubkeyexplain}
+\endsubkeyexplain
 
-{\def\pingu@color@hat{<hat-color>}
-\subkeyexplain{hat}{hat coronal}{color}{\pingu@color@hat@coronal}
+\subkeyexplain{mitra}{mitra overset}{lenght}{\pingu@x@mitra@overset}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[hat, hat coronal=green]
+	\pingu[mitra,mitra overset=2.5mm]
 \end{tikzpicture}
 \end{tcblisting}
-\endsubkeyexplain}
+\endsubkeyexplain
 
-\subkeyexplain{hat}{hat position}{angle>:(<x>,<y>)<scale}{\pingu@x@hat@angle:(\pingu@x@hat@xshift,\pingu@x@hat@yshift)\{\pingu@x@hat@scale\}}
-Currently, this is a very cumbersome command to change various hat parameters at the same time:
+\subkeyexplain{mitra}{mitra lower angle}{angle}{\pingu@x@mitra@lowerangle}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[hat, hat position={1:(0cm,-.09cm){1.33}}]
+	\pingu[mitra,mitra lower angle=140]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{mitra}{mitra upper angle}{angle}{\pingu@x@mitra@upperangle}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[mitra,mitra upper angle=-45]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{mitra}{mitra lower band}{color}{\pingu@color@mitra@lower@band}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[mitra,mitra lower band=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{mitra}{mitra lower band height}{factor}{\pingu@x@mitra@lowerband@height}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[mitra,mitra lower band height=.5]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\def\pingu@color@mitra@lower@band{<mitra-lower-band-color>}
+\def\pingu@x@mitra@lowerband@height{<mitra-lower-band-height>}
+\subkeyexplain{mitra}{mitra upper band}{color}{\pingu@color@mitra@upper@band}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[mitra,mitra upper band=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{mitra}{mitra upper band width}{factor}{\pingu@x@mitra@upperband@width}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[mitra,mitra upper band width=.5]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+
+\subkeyexplain{mitra}{mitra center band}{color}{\pingu@color@mitra@center@band}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[mitra,mitra center band=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{mitra}{mitra center band height}{factor}{\pingu@x@mitra@centerband@height}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[mitra,mitra center band height=.5]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+}
+
+\subkeyexplain{mitra}{mitra position}{angle>:(<x>,<y>)<scale}{\pingu@x@mitra@angle:(\pingu@x@mitra@xshift,\pingu@x@mitra@yshift)\{\pingu@x@mitra@scale\}}
+Currently, this is a very cumbersome command to change various mitra parameters at the same time:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[mitra, mitra position={1:(0cm,-.09cm){1.33}}]
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain
