@@ -137,3 +137,37 @@ to[bend left=8] cycle;
 \pingu@block{\pingu@color@witchhat} (\z@,.134cm) ellipse [x radius=.95\pingu@witchhat@w@half, y radius=.12cm];
 \endscope
 }
+
+
+\pingu@create@extra{mitra}{%
+  mitra/.default     = pingu@red!67!pingu@black,%pingu@black!90!black,
+  mitra/.code        = \pingu@set@extra{mitra}{true}\pingu@color{mitra}{#1},
+  mitra height/.code = {\def\pingu@x@mitra@height{#1}},
+  mitra background/.code = \pingu@color{mitra@background}{#1},
+  mitra overset/.code = {\def\pingu@x@mitra@overset{#1}},
+  mitra lower angle/.code = {\def\pingu@x@mitra@lowerangle{#1}},
+  mitra upper angle/.code = {\def\pingu@x@mitra@upperangle{#1}},
+  mitra lower band/.code = \pingu@color{mitra@lower@band}{#1},
+  mitra lower band height/.code = {\def\pingu@x@mitra@lowerband@height{#1}},
+  mitra upper band/.code = \pingu@color{mitra@upper@band}{#1},
+  mitra upper band height/.code = {\def\pingu@x@mitra@upperband@height{#1}},
+  mitra center band/.code = \pingu@color{mitra@center@band}{#1},
+  mitra center band width/.code = {\def\pingu@x@mitra@centerband@width{#1}},
+  mitra position/.code args  = {#1:(#2,#3)#4}{\def\pingu@x@mitra@angle{#1}\def\pingu@x@mitra@xshift{#2}\def\pingu@x@mitra@yshift{#3}\def\pingu@x@mitra@scale{#4}},
+}{mitra position={0:(0,0)1},mitra height=1.125cm,mitra overset=1.25mm,mitra lower angle=125,mitra upper angle=-35,mitra lower band=pingu@yellow!75!pingu@black,mitra center band=\pingu@color@mitra@lower@band,mitra lower band height=.2,mitra center band width={2*\pingu@x@mitra@lowerband@height},mitra upper band=\pingu@color@mitra@lower@band,mitra upper band height={1.5*\pingu@x@mitra@lowerband@height},mitra background=\pingu@color@mitra!80!pingu@black}
+
+\newdimen\pingu@mitra@w@half \pingu@mitra@w@half=.625cm
+\def\pingu@x@mitra@path{(0,-.2185cm)++(180:\pingu@mitra@w@half{} and .035cm) arc (180:360:\pingu@mitra@w@half{} and .035cm) [rounded corners=1pt] -- ++(\pingu@x@mitra@overset,.3*\pingu@x@mitra@height) to[out=\pingu@x@mitra@lowerangle,in=\pingu@x@mitra@upperangle] ++(-\pingu@x@mitra@overset-\pingu@mitra@w@half,.7*\pingu@x@mitra@height)
+to[out=180-\pingu@x@mitra@upperangle,in=180-\pingu@x@mitra@lowerangle] ++(-\pingu@x@mitra@overset-\pingu@mitra@w@half,-.7*\pingu@x@mitra@height) [sharp corners]  -- cycle}
+\def\pingu@draw@ea@mitra{%
+\scope[rotate around={\pingu@x@mitra@angle:(\pingu@name-head-top)},shift={(\pingu@name-head-top)},shift={(\pingu@x@mitra@xshift,\pingu@x@mitra@yshift)},scale=\pingu@x@mitra@scale]
+\pingu@block{\pingu@color@mitra@background} (0,-.2185cm)++(180:\pingu@mitra@w@half{} and .035cm) arc (180:360:\pingu@mitra@w@half{} and .035cm) [rounded corners=1pt] -- ++(\pingu@x@mitra@overset,.3*\pingu@x@mitra@height) to[out=\pingu@x@mitra@lowerangle,in=\pingu@x@mitra@upperangle] ++(-\pingu@x@mitra@overset-\pingu@mitra@w@half-.66mm,.7*\pingu@x@mitra@height-.1mm)
+to[out=180-\pingu@x@mitra@upperangle+2,in=180-\pingu@x@mitra@lowerangle-2] ++(-\pingu@x@mitra@overset-\pingu@mitra@w@half+.66mm,-.7*\pingu@x@mitra@height+.1mm) [sharp corners]  -- cycle;
+\pingu@block{\pingu@color@mitra} \pingu@x@mitra@path;
+% \pingu@block{\pingu@color@mitra} \pingupathmitraupper;
+\scope\clip\pingu@x@mitra@path;
+% TODO: switch to factors non relative to \pingu@x@mitra@overset
+\pingu@block{\pingu@color@mitra@lower@band} (0,-.2185cm)++(180:\pingu@mitra@w@half{} and .035cm) arc (180:360:\pingu@mitra@w@half{} and .035cm) -- ++(\pingu@x@mitra@lowerband@height*\pingu@x@mitra@overset,\pingu@x@mitra@lowerband@height*.3*\pingu@x@mitra@height) arc (0:-180:{\pingu@x@mitra@lowerband@height*\pingu@x@mitra@overset+\pingu@mitra@w@half} and .035cm)  -- cycle;
+\pingu@block{\pingu@color@mitra@center@band} (\pingu@x@mitra@centerband@width*\pingu@x@mitra@overset,-.2185cm) to[bend right=4] ++(0,\pingu@x@mitra@height) to[bend right] ++(-2*\pingu@x@mitra@centerband@width*\pingu@x@mitra@overset,0) to[bend left=4] ++(0,-\pingu@x@mitra@height) -- cycle;
+\pingu@block{\pingu@color@mitra@upper@band} (0,.3*\pingu@x@mitra@height-.2185cm-0.5*\pingu@x@mitra@upperband@height*.3*\pingu@x@mitra@height)++(180:{\pingu@x@mitra@overset+\pingu@mitra@w@half} and .035cm) arc (180:360:{\pingu@x@mitra@overset+\pingu@mitra@w@half} and .035cm) -- ++(0,\pingu@x@mitra@upperband@height*.3*\pingu@x@mitra@height) arc (0:-180:{\pingu@x@mitra@overset+\pingu@mitra@w@half} and .035cm)  -- cycle;
+\endscope\endscope}
