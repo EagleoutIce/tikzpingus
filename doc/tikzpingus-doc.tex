@@ -4994,6 +4994,15 @@ Similar to \keyref{staff left code} but does not override but (locally) append t
 Similar to \keyref{staff left code} but does not override but (locally) prepend to previous calls.
 \endsubkeyexplain
 
+\showkeyexplain{spear left}{}{}
+Example of \keyref{staff left code app} that renders a little (currently not configurable) spear-tip:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[spear left, staff raise=-6mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endshowkeyexplain
+
 \showkeyexplain{staff right}{color}{pingu@bronze}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
@@ -5034,6 +5043,15 @@ Similar to \keyref{staff right code} but does not override but (locally) append 
 \subkeyexplain{staff right}{staff right code pre}{tikz-code}{}
 Similar to \keyref{staff right code} but does not override but (locally) prepend to previous calls.
 \endsubkeyexplain
+
+\showkeyexplain{spear right}{}{}
+Example of \keyref{staff right code app} that renders a little (currently not configurable) spear-tip:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[spear right, staff raise=-6mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endshowkeyexplain
 
 \subsubsection{The hammer}
 

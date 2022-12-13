@@ -1315,14 +1315,18 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 
 %     #region staff
 \pingu@create@wing@extra{staff}{%
-    staff \@lr/.code         = {\pingu@set@extra{staff\@lr}{true}\pingu@color{staff\@lr}{##1}},
-    staff \@lr/.default      = pingu@bronze,
-    staff \@lr\space length/.code = \expandafter\def\csname pingu@staff@\@lr @length\endcsname{##1},
-    staff \@lr\space raise/.code = \expandafter\def\csname pingu@staff@\@lr @raise\endcsname{##1},
+    staff \@lr/.code                = {\pingu@set@extra{staff\@lr}{true}\pingu@color{staff\@lr}{##1}},
+    staff \@lr/.default             = pingu@bronze,
+    staff \@lr\space length/.code   = \expandafter\def\csname pingu@staff@\@lr @length\endcsname{##1},
+    staff \@lr\space raise/.code    = \expandafter\def\csname pingu@staff@\@lr @raise\endcsname{##1},
     staff \@lr\space code app/.code = \expandafter\appto\csname pingu@staff@\@lr @code\endcsname{##1},
     staff \@lr\space code pre/.code = \expandafter\preto\csname pingu@staff@\@lr @code\endcsname{##1},
-    staff \@lr\space code/.code = \expandafter\def\csname pingu@staff@\@lr @code\endcsname{##1},
-    % spear \@lr/.style        = {\pingu@set@extra{staff\@lr}{true}\pingu@color{staff\@lr}{##1}},
+    staff \@lr\space code/.code     = \expandafter\def\csname pingu@staff@\@lr @code\endcsname{##1},
+    spear \@lr/.style               = {staff \@lr, staff \@lr\space code app={
+        \noexpand\pgfonlayer{background}
+        \fill[gray,rounded corners=1pt] ([yshift=-1.5mm]\noexpand\pingu@name-staff-\@lr-top) -- ++(1mm,1.5mm) -- ++(-1mm,4mm) -- ++(-1mm,-4mm) -- cycle;
+        \noexpand\endpgfonlayer
+    }},
 }{staff \@lr\space length=28mm,staff \@lr\space raise=-11mm,staff \@lr\space code={}}
 \def\pingu@draw@wi@staff#1{%
     \pingu@setup@wing{staff}{#1}%
