@@ -4970,6 +4970,39 @@ Change the staff length:
 \end{tcblisting}
 \endsubkeyexplain
 
+\subkeyexplain{staff left}{staff left raise}{length}{\pingu@staff@left@raise}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[staff left, staff left raise=-2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{staff left}{staff left code}{tikz-code}{}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[staff left, staff left code={\fill circle[radius=2mm];}]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{staff left}{staff left code app}{tikz-code}{}
+Similar to \keyref{staff left code} but does not override but (locally) append to previous calls.
+\endsubkeyexplain
+
+\subkeyexplain{staff left}{staff left code pre}{tikz-code}{}
+Similar to \keyref{staff left code} but does not override but (locally) prepend to previous calls.
+\endsubkeyexplain
+
+\showkeyexplain{spear left}{}{}
+Example of \keyref{staff left code app} that renders a little (currently not configurable) spear-tip:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[spear left, staff left raise=-6mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endshowkeyexplain
+
 \showkeyexplain{staff right}{color}{pingu@bronze}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
@@ -4986,6 +5019,39 @@ Change the staff length:
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain
+
+\subkeyexplain{staff right}{staff right raise}{length}{\pingu@staff@right@raise}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[staff right, staff right raise=-2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{staff right}{staff right code}{tikz-code}{}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[staff right, staff right code={\fill circle[radius=2mm];}]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{staff right}{staff right code app}{tikz-code}{}
+Similar to \keyref{staff right code} but does not override but (locally) append to previous calls.
+\endsubkeyexplain
+
+\subkeyexplain{staff right}{staff right code pre}{tikz-code}{}
+Similar to \keyref{staff right code} but does not override but (locally) prepend to previous calls.
+\endsubkeyexplain
+
+\showkeyexplain{spear right}{}{}
+Example of \keyref{staff right code app} that renders a little (currently not configurable) spear-tip:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[spear right, staff right raise=-6mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endshowkeyexplain
 
 \subsubsection{The hammer}
 
