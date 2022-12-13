@@ -1318,11 +1318,14 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     staff \@lr/.code         = {\pingu@set@extra{staff\@lr}{true}\pingu@color{staff\@lr}{##1}},
     staff \@lr/.default      = pingu@bronze,
     staff \@lr\space length/.code =\expandafter\def\csname pingu@staff@\@lr @length\endcsname{##1},
-}{staff \@lr\space length=28mm}
+    staff \@lr\space raise/.code =\expandafter\def\csname pingu@staff@\@lr @raise\endcsname{##1},
+    % staff \@lr\space suffix code/.code =\expandafter\def\csname pingu@staff@\@lr @length\endcsname{##1},
+    % spear \@lr/.style        = {\pingu@set@extra{staff\@lr}{true}\pingu@color{staff\@lr}{##1}},
+}{staff \@lr\space length=28mm,staff \@lr\space raise=-11mm}
 \def\pingu@draw@wi@staff#1{%
     \pingu@setup@wing{staff}{#1}%
 \scope[rotate around={\@angle:(\pingu@name-wing-#1)}]
-    \pingu@block{\csname pingu@color@staff#1\endcsname}(\pingu@name-wing-#1)++(\@sidesign*-.2mm,-11mm) -- ++(0,\csname pingu@staff@#1@length\endcsname) arc(180:0:\@sidesign*.4mm and .3mm) coordinate[pos=.5] (\pingu@name-staff-#1-top) -- ++(0,-\csname pingu@staff@#1@length\endcsname) arc(360:180:\@sidesign*.4mm and .3mm) -- cycle;
+    \pingu@block{\csname pingu@color@staff#1\endcsname}(\pingu@name-wing-#1)++(\@sidesign*-.2mm,\csname pingu@staff@#1@raise\endcsname) -- ++(0,\csname pingu@staff@#1@length\endcsname) arc(180:0:\@sidesign*.4mm and .3mm) coordinate[pos=.5] (\pingu@name-staff-#1-top) -- ++(0,-\csname pingu@staff@#1@length\endcsname) arc(360:180:\@sidesign*.4mm and .3mm) -- cycle;
 \endscope
 }
 %     #endregion
