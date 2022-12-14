@@ -1595,6 +1595,23 @@ Aliases may set custom defaults. Those defaults are not listed as they may chang
 \end{tcblisting}
 \endsubkeyexplain}
 
+{\def\pingu@color@cup{<cup-color>}
+\subkeyexplain{cup}{cup steam}{color}{\pingu@color@cup@steam}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[cup, cup steam=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+\subkeyexplain{cup}{cup steam shift}{length}{\pingu@x@cup@steam@shift}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[cup, cup steam, cup steam shift=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
 \subsubsection{The medal}
 \showkeyexplain{medal}{color}{pingu@yellow}
 \begin{tcblisting}{@}
