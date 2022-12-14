@@ -1087,11 +1087,13 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 }
 %       #region cup
 \pingu@create@extra{cup}{%
-  % extra cup % TODO: as selection
   cup/.code       = {\pingu@set@extra{cup}{true}\pingu@color{cup}{#1}},
   cup/.default    = pingu@green,
+  cup steam/.code    = \pingu@color{cup@steam}{#1},%
+  cup steam/.default = lightgray,%
+  cup steam shift/.code = \def\pingu@x@cup@steam@shift{#1},%
   cup straw/.code = \pingu@color{cup@straw}{#1}%
-}{cup straw=\pingu@color@cup}
+}{cup straw=\pingu@color@cup,cup steam=\@pingu@none,cup steam shift=0mm}
 
 \def\pingu@draw@eb@cup{%
     \pingu@block[rounded corners=.25mm]{\pingu@color@cup} (\pingu@name-belly-center)++(-.325cm,.275cm) to[bend right=2] ++(.5mm,-.675cm) to[bend right=8] ++(.55cm,\z@) to[bend right=2] ++(.5mm,.675cm);
@@ -1099,6 +1101,13 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     \path (\pingu@name-belly-center)++(-.115cm,.275cm) coordinate (\pingu@name-straw-outer-start);
     \pingu@block[rounded corners=.15mm]{\pingu@color@cup@straw} (\pingu@name-straw-outer-start) -- (\pingu@name-cup-straw-outer-angle) -- (\pingu@name-bill) -- ++(.5mm,0) -- ([xshift=.5mm]\pingu@name-cup-straw-outer-angle) -- ([xshift=.5mm]\pingu@name-straw-outer-start) -- cycle;
     \pingu@block{\pingu@color@cup} (\pingu@name-belly-center)++(0,.275cm) ellipse [x radius=.325cm,y radius=.5mm];
+
+    % TODO: configure opacity
+    \pgfonlayer{foreground}
+    \pingu@block[rounded corners=.05mm,opacity=.55]{\pingu@color@cup@steam} (\pingu@name-belly-center)++(1.5mm+\pingu@x@cup@steam@shift,4mm) coordinate(@) to[out=100,in=260] ++(.3mm,3.75mm) -- ++(0.1mm,0) to[out=280,in=80] ([xshift=.1mm]@) -- cycle;
+    \pingu@block[rounded corners=.05mm,opacity=.55]{\pingu@color@cup@steam} (\pingu@name-belly-center)++(0mm+\pingu@x@cup@steam@shift,3.33mm) coordinate(@) to[out=100,in=260] ++(.2mm,2.75mm) -- ++(0.1mm,0) to[out=280,in=80] ([xshift=.1mm]@) -- cycle;
+    \pingu@block[rounded corners=.05mm,opacity=.55]{\pingu@color@cup@steam} (\pingu@name-belly-center)++(-1.25mm++\pingu@x@cup@steam@shift,3.65mm) coordinate(@) to[out=100,in=260] ++(.3mm,3.75mm) -- ++(0.1mm,0) to[out=280,in=80] ([xshift=.1mm]@) -- cycle;
+    \endpgfonlayer
 }
 %       #endregion
 
