@@ -1090,7 +1090,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
   cup/.code       = {\pingu@set@extra{cup}{true}\pingu@color{cup}{#1}},
   cup/.default    = pingu@green,
   cup steam/.code    = \pingu@color{cup@steam}{#1},%
-  cup steam/.default = lightgray,%
+  cup steam/.default = lightgray!90!orange,%
   cup steam shift/.code = \def\pingu@x@cup@steam@shift{#1},%
   cup straw/.code = \pingu@color{cup@straw}{#1}%
 }{cup straw=\pingu@color@cup,cup steam=\@pingu@none,cup steam shift=0mm}
@@ -1199,6 +1199,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     \pingu@xif@ea{headphone}{headphone}%
     \pingu@xif@ea{sheriffstar}{sheriffstar}%
     \pingu@xif@ea{santahat}{santahat}%
+    \pingu@xif@ea{woolhat}{woolhat}%
     \pingu@xif@ea{santabeard}{santabeard}%
     \pingu@xif@ea{banner}{banner}%
     \pingu@xif@ea{bee}{bee}%
