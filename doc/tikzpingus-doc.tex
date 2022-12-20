@@ -3757,7 +3757,7 @@ Set \keyref{headphone left inner} and \keyref{headphone right inner} with the sa
 \subsubsection{The santa hat}
 
 \showkeyexplain{santa hat}{color}{pingu@red!87!pingu@black}
-Show the merry christmas:
+Merry christmas:
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[santa hat=pingu@red]
@@ -3799,6 +3799,35 @@ Change the wool color:
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[santa beard,santa beard string=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+\subsubsection{The wool hat}
+
+\showkeyexplain{wool hat}{color}{pingu@blue!57!pingu@black}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[wool hat=pingu@red]
+\end{tikzpicture}
+\end{tcblisting}
+\endshowkeyexplain
+
+{\def\pingu@color@woolhat{<wool hat>}
+\subkeyexplain{wool hat}{wool hat second}{color}{\pingu@color@woolhat@second}
+Change the wool color:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[wool hat,wool hat second=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{
+\subkeyexplain{wool hat}{wool hat bobble}{color}{<wool hat second>}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[wool hat,wool hat bobble=green]
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain}
