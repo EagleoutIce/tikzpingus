@@ -40,3 +40,23 @@ to[out=135,in=47,looseness=1.025] coordinate[pos=.915] (\pingu@name-santa-ur) co
     \fi
 }}\fi
 }
+
+\pingu@create@extra{woolhat}{%
+    wool hat/.code             = \pingu@set@extra{woolhat}{true}\pingu@color{woolhat}{#1}\pgfqkeys{/pingu}{hair=\@pingu@none},
+    wool hat/.default          = pingu@blue!57!pingu@black,
+    wool hat second/.code      = \pingu@color{woolhat@second}{#1},
+    wool hat bobble/.code      = \pingu@color{woolhat@bobble}{#1}
+}{wool hat second={\pingu@color@woolhat!55!pingu@white},wool hat bobble={\pingu@color@woolhat@second}}
+\def\pingu@draw@ea@woolhat{%
+\path ([yshift=.5mm,xshift=.165mm]\pingu@name-head-center)+(165:\pingu@w@half{} and \pingu@head@h@half) coordinate (\pingu@name-wool-right);
+\path ([yshift=.5mm,xshift=-.045mm]\pingu@name-head-center)+(4:\pingu@w@half{} and \pingu@head@h@half) coordinate (\pingu@name-wool-left);
+\pingu@layer{middle}[]
+\pingu@block{\pingu@color@woolhat@second} (\pingu@name-wool-right) to[out=37,in=170] (\pingu@name-wool-left) to[out=50,in=-55] ++(0,1.52mm) coordinate (\pingu@name-wool-left-up)
+to[out=167,in=38] coordinate[pos=.915] (\pingu@name-wool-ur) coordinate[pos=.055] (\pingu@name-wool-ul) ([yshift=1.5mm]\pingu@name-wool-right) coordinate (\pingu@name-wool-right-up) to[out=240,in=140] cycle;
+\endpingu@layer
+\path (\pingu@name-wool-left-up) -- (\pingu@name-wool-right-up) coordinate[pos=.455,yshift=9.75mm] (@mid);
+\pingu@block{\pingu@color@woolhat} (\pingu@name-wool-right-up) to[out=71,in=203] [rounded corners=2pt] (@mid) to[out=-34,in=100]  [sharp corners]  (\pingu@name-wool-left-up) to[in=37,out=172] cycle;
+\pingu@layer{background}[]
+\pingu@block{\pingu@color@woolhat@bobble} (@mid) circle [radius=1.25mm];
+\endpingu@layer
+}
