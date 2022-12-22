@@ -1338,7 +1338,13 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
         \fill[##1,rounded corners=1pt] ([yshift=-1.5mm]\noexpand\pingu@name-staff-\@lr-top) -- ++(1mm,1.5mm) -- ++(-1mm,4mm) -- ++(-1mm,-4mm) -- cycle;
         \noexpand\endpgfonlayer
     }},
-    spear \@lr/.default=gray
+    spear \@lr/.default=gray,
+    cross \@lr/.style               = {staff \@lr=##1, staff \@lr\space code app={
+        \noexpand\pgfonlayer{foreground}
+        \fill[##1,rounded corners=1pt] ([yshift=-4.5mm,xshift=-4mm]\noexpand\pingu@name-staff-\@lr-top) rectangle ++(8mm,1mm);
+        \noexpand\endpgfonlayer
+    }},
+    cross \@lr/.default=pingu@bronze
 }{staff \@lr\space length=28mm,staff \@lr\space raise=-11mm,staff \@lr\space code={}}
 \def\pingu@draw@wi@staff#1{%
     \pingu@setup@wing{staff}{#1}%
