@@ -65,8 +65,9 @@ to[out=167,in=38] coordinate[pos=.915] (\pingu@name-wool-ur) coordinate[pos=.055
 \pingu@create@extra{deerhat}{%
     deer hat/.code             = \pingu@set@extra{deerhat}{true}\pingu@color{deerhat}{#1}\pgfqkeys{/pingu}{hair=\@pingu@none},
     deer hat/.default          = pingu@bronze!57!pingu@black,
-    deer hat band/.code      = \pingu@color{deerhat@band}{#1},
-}{deer hat band={\pingu@color@deerhat!75!pingu@black},deer hat bobble={\pingu@color@deerhat@band}}
+    deer hat b/.code           = \pingu@color{deerhat@b}{#1},
+    deer hat band/.code        = \pingu@color{deerhat@band}{#1},
+}{deer hat band={\pingu@color@deerhat!75!pingu@black},deer hat b=\pingu@color@deerhat}
 \pgfmathsetmacro\pingu@deerhat@baseang@l{90-360*(1-\pinguanglehl)}
 \pgfmathsetmacro\pingu@deerhat@baseang@r{90-360*(1-\pinguanglehr)}
 \def\pingu@deerhat@baseoff{32}
@@ -84,7 +85,7 @@ to[out=167,in=38] coordinate[pos=.915] (\pingu@name-wool-ur) coordinate[pos=.055
 \pgfonlayer{background}
 \pingu@draw[line width=\pingu@deerhat@linewidth,rounded corners=2pt,line cap=round]{\pingu@color@deerhat} (@left) to[bend right=4] ++(.85mm,1.5mm) coordinate (@a) -- ++(3.15mm,.5mm) coordinate (@b) -- ++(4.65mm,4.35mm) coordinate[pos=.5] (@c) to[bend right=10] ++(-.75mm,2.55mm);
 \pingu@draw[line width=\pingu@deerhat@linewidth,rounded corners=2pt,line cap=round]{\pingu@color@deerhat} ([xshift=-.135mm,yshift=-.45mm]@a) to[bend left=3] ++(1mm,4mm) ([xshift=-.4mm,yshift=-.05mm]@b) to[bend right=2] ++(3.75mm,.1mm) (@c) to[bend left=12] ++(-1mm,3.5mm);
-\pingu@draw[line width=\pingu@deerhat@linewidth,rounded corners=2pt,line cap=round]{\pingu@color@deerhat} (@right) to[bend left=4] ++(-.85mm,1.5mm) coordinate (@a) -- ++(-3.15mm,.5mm) coordinate (@b) -- ++(-4.65mm,4.35mm) coordinate[pos=.5] (@c) to[bend left=10] ++(.75mm,2.55mm);
-\pingu@draw[line width=\pingu@deerhat@linewidth,rounded corners=2pt,line cap=round]{\pingu@color@deerhat} ([yshift=-.45mm,xshift=.135mm]@a) to[bend right=3] ++(-1mm,4mm) ([xshift=.4mm,yshift=-.05mm]@b) to[bend right=2] ++(-3.75mm,.1mm) (@c) to[bend right=12] ++(1mm,3.5mm);
+\pingu@draw[line width=\pingu@deerhat@linewidth,rounded corners=2pt,line cap=round]{\pingu@color@deerhat@b} (@right) to[bend left=4] ++(-.85mm,1.5mm) coordinate (@a) -- ++(-3.15mm,.5mm) coordinate (@b) -- ++(-4.65mm,4.35mm) coordinate[pos=.5] (@c) to[bend left=10] ++(.75mm,2.55mm);
+\pingu@draw[line width=\pingu@deerhat@linewidth,rounded corners=2pt,line cap=round]{\pingu@color@deerhat@b} ([yshift=-.45mm,xshift=.135mm]@a) to[bend right=3] ++(-1mm,4mm) ([xshift=.4mm,yshift=-.05mm]@b) to[bend right=2] ++(-3.75mm,.1mm) (@c) to[bend right=12] ++(1mm,3.5mm);
 \endpgfonlayer
 }
