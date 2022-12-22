@@ -94,6 +94,8 @@ to[out=167,in=38] coordinate[pos=.915] (\pingu@name-wool-ur) coordinate[pos=.055
   present \@lr/.code              = {\pingu@set@extra{present\@lr}{true}\pingu@color{present\@lr}{##1}},
   present \@lr/.default           = pingu@red!50!pingu@black!60!red,
   present \@lr\space width/.code  = \@namedef{pingu@present@\@lr @width}{##1},
+  present \@lr\space ribbon/.code   = \pingu@color{present\@lr @ribbon}{##1},%
+  present \@lr\space band/.code   = \pingu@color{present\@lr @band}{##1},%
   present \@lr\space band width/.code  = \@namedef{pingu@present@\@lr @band@width}{##1},
   present \@lr\space height/.code = \@namedef{pingu@present@\@lr @height}{##1},
   present \@lr\space xshift/.code = \@namedef{pingu@present@\@lr @xshift}{##1},
@@ -103,20 +105,33 @@ to[out=167,in=38] coordinate[pos=.915] (\pingu@name-wool-ur) coordinate[pos=.055
   present \@lr\space lid/.code   = \pingu@color{present\@lr @lid}{##1},%
   present \@lr\space lid height/.code = \@namedef{pingu@present@\@lr @lid@height}{##1},
   present \@lr\space lid overhang/.code = \@namedef{pingu@present@\@lr @lid@overhang}{##1},
-  present \@lr\space band/.code   = \pingu@color{present\@lr @band}{##1},%
-  present \@lr\space second/.code = \pingu@color{present\@lr @second}{##1}%
-}{present \@lr\space band=pingu@green!70!pingu@black!90!pingu@white,present \@lr\space second={\csname pingu@color@present\@lr\endcsname!86!white},present \@lr\space width=7.75mm,present \@lr\space band width=1.75mm,present \@lr\space height=7mm,present \@lr\space yshift=-0.25*(\csname pingu@present@\@lr @height\endcsname),present \@lr\space band second height=\csname pingu@present@\@lr @band@width\endcsname, present \@lr\space band second yshift=0.5*(\csname pingu@present@\@lr @height\endcsname),present \@lr\space xshift=-0.25*(\csname pingu@present@\@lr @width\endcsname),present \@lr\space lid=\csname pingu@color@present\@lr\endcsname!92!pingu@black,present \@lr\space lid height=1.33mm,present \@lr\space lid overhang=.125mm}
+  present \@lr\space lid yshift/.code = \@namedef{pingu@present@\@lr @lid@yshift}{##1},
+  present \@lr\space lid band/.code   = \pingu@color{present\@lr @lid@band}{##1},%
+}{present \@lr\space band=pingu@green!70!pingu@black!90!pingu@white,present \@lr\space width=7.75mm,present \@lr\space band width=1.75mm,present \@lr\space height=7mm,present \@lr\space yshift=-0.25*(\csname pingu@present@\@lr @height\endcsname),present \@lr\space band second height=\csname pingu@present@\@lr @band@width\endcsname, present \@lr\space band second yshift=0.5*(\csname pingu@present@\@lr @height\endcsname),present \@lr\space xshift=-0.25*(\csname pingu@present@\@lr @width\endcsname),present \@lr\space lid=\csname pingu@color@present\@lr\endcsname!92!pingu@black,present \@lr\space lid height=1.33mm,present \@lr\space lid overhang=.125mm,present \@lr\space lid yshift=0,present \@lr\space lid band=\csname pingu@color@present\@lr @band\endcsname!98!pingu@black,present \@lr\space ribbon=\csname pingu@color@present\@lr @band\endcsname!97!pingu@black}
 
-% TODO: allow to control dimensions (width, height,...)
-% TODO: shift
+% TODO: more ribbon color control
 % #1 wing
 \def\pingu@draw@wi@present#1{%
     \pingu@setup@wing{present}{#1}%
     \scope[rotate around={\@angle:(\pingu@name-wing-#1)}]
         \pingu@block[rounded corners=2pt]{\@col}(\pingu@name-wing-#1)++(-{0.5*(\csname pingu@present@#1@width\endcsname)+\csname pingu@present@#1@xshift\endcsname},{\csname pingu@present@#1@yshift\endcsname}) coordinate (@ll) rectangle ++({\csname pingu@present@#1@width\endcsname},{\csname pingu@present@#1@height\endcsname}) coordinate (@ur);
+        % vert band
         \pingu@block{\csname pingu@color@present#1@band\endcsname}(@ll)++({0.5*(\csname pingu@present@#1@width\endcsname)-0.5*(\csname pingu@present@#1@band@width\endcsname)},0) rectangle ++({\csname pingu@present@#1@band@width\endcsname},{\csname pingu@present@#1@height\endcsname});
+        % horiz band
         \pingu@block{\csname pingu@color@present#1@band\endcsname}(@ll)++(0,{\csname pingu@present@#1@band@second@yshift\endcsname-0.5*(\csname pingu@present@#1@band@second@height\endcsname)}) rectangle ++({\csname pingu@present@#1@width\endcsname},{\csname pingu@present@#1@band@second@height\endcsname});
         % lid
-        \pingu@block[rounded corners=.75pt]{\csname pingu@color@present#1@lid\endcsname} ([yshift=-1mm,xshift=\csname pingu@present@\@lr @lid@overhang\endcsname]@ur) rectangle ++({-\csname pingu@present@#1@width\endcsname-2*(\csname pingu@present@\@lr @lid@overhang\endcsname)},\csname pingu@present@#1@lid@height\endcsname);
+        \pingu@block[rounded corners=.75pt]{\csname pingu@color@present#1@lid\endcsname} ([yshift={\csname pingu@present@\@lr @lid@yshift\endcsname},xshift=\csname pingu@present@\@lr @lid@overhang\endcsname]@ur) rectangle ++({-\csname pingu@present@#1@width\endcsname-2*(\csname pingu@present@\@lr @lid@overhang\endcsname)},-\csname pingu@present@#1@lid@height\endcsname) coordinate (@ll);
+        % upper lid band
+        \pingu@block{\csname pingu@color@present#1@lid@band\endcsname}(@ll)++({0.5*(\csname pingu@present@#1@width\endcsname)-0.5*(\csname pingu@present@#1@band@width\endcsname)+\csname pingu@present@\@lr @lid@overhang\endcsname},0) rectangle ++({\csname pingu@present@#1@band@width\endcsname},{\csname pingu@present@#1@lid@height\endcsname});
+        % ribbon
+        \path (@ll)++({0.5*(\csname pingu@present@#1@width\endcsname)+\csname pingu@present@\@lr @lid@overhang\endcsname+0.2*(\csname pingu@present@#1@band@width\endcsname)},{\csname pingu@present@#1@lid@height\endcsname+.25mm}) coordinate (@top);
+        \pingu@block[even odd rule]{\csname pingu@color@present#1@ribbon\endcsname} (@top) to[out=40,in=110] ++(4mm,1mm)
+        to[out=-70,in=-20] ++(-4mm,-1.5mm) to[bend left=55] cycle ([xshift=.5mm]@top) to[out=40,in=110] ++(2.55mm,.5mm)
+        to[out=-70,in=-20] [rounded corners=1pt] ++(-2.85mm,-.835mm) -- cycle;
+        \path (@ll)++({0.5*(\csname pingu@present@#1@width\endcsname)+\csname pingu@present@\@lr @lid@overhang\endcsname-0.2*(\csname pingu@present@#1@band@width\endcsname)},{\csname pingu@present@#1@lid@height\endcsname+.25mm}) coordinate (@top);
+        \pingu@block[even odd rule]{\csname pingu@color@present#1@ribbon\endcsname} (@top) to[out=180-40,in=180-110] ++(-3.6mm,1mm)
+        to[out=-110,in=-160] ++(3.6mm,-1.5mm) to[bend right=55] cycle ([xshift=-.5mm]@top) to[out=140,in=70] ++(-2.55mm,.5mm)
+        to[out=-110,in=-160] [rounded corners=1pt] ++(2.55mm,-.75mm) -- cycle;
+        \pingu@block[rounded corners=.5pt]{\csname pingu@color@present#1@ribbon\endcsname} (@top)++(-.3mm,-.65mm) rectangle ++(1.3mm,.65mm); % TODO: make that round?
     \endscope
 }
