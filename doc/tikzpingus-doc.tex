@@ -3832,6 +3832,25 @@ Change the wool color:
 \end{tcblisting}
 \endsubkeyexplain}
 
+\subsubsection{The deer hat}
+
+\showkeyexplain{deer hat}{color}{pingu@red!87!pingu@black}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[deer hat=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endshowkeyexplain
+
+{\def\pingu@color@santahat{<deer hat>}
+\subkeyexplain{deer hat}{deer hat band}{color}{\pingu@color@deerhat@band}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[deer hat, deer hat band=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
 \subsubsection{The mask}
 \showkeyexplain{mask}{color}{pingu@white!61!gray}
 Keep the penguin safe:
