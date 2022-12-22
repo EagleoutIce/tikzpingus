@@ -72,15 +72,20 @@ to[out=167,in=38] coordinate[pos=.915] (\pingu@name-wool-ur) coordinate[pos=.055
 \pgfmathsetmacro\pingu@deerhat@baseang@r{90-360*(1-\pinguanglehr)}
 \def\pingu@deerhat@baseoff{32}
 \def\pingu@deerhat@yshift{.15mm}
+\def\pingu@deerhat@linewidth{1.32mm}
+\def\pingu@deerhat@headoff@l{22}
+\def\pingu@deerhat@headoff@r{19}
 \def\pingu@draw@ea@deerhat{%
+\path ([yshift=-\pingu@deerhat@yshift]\pingu@name-head-left) arc (\pingu@deerhat@baseang@l:\pingu@deerhat@baseang@l-\pingu@deerhat@baseoff:\pingu@w@half{} and \pingu@head@h@half) coordinate[yshift=-.35mm] (@target);
+\pingu@draw[line width=1mm]{\pingu@color@deerhat@second} (@target) arc (\pingu@deerhat@baseang@l-\pingu@deerhat@baseoff:360+\pingu@deerhat@baseang@r+\pingu@deerhat@baseoff:\pingu@w@half{} and \pingu@head@h@half);
 
-\path ([yshift=-\pingu@deerhat@yshift]\pingu@name-head-left) arc (\pingu@deerhat@baseang@l:\pingu@deerhat@baseang@l-\pingu@deerhat@baseoff:\pingu@w@half{} and \pingu@head@h@half) coordinate (@target);
-
-\pingu@draw[line width=.65mm]{\pingu@color@deerhat@second} (@target) arc (\pingu@deerhat@baseang@l-\pingu@deerhat@baseoff:360+\pingu@deerhat@baseang@r+\pingu@deerhat@baseoff:\pingu@w@half{} and \pingu@head@h@half);
+\path ([yshift=-\pingu@deerhat@yshift]\pingu@name-head-top) arc (90:90-\pingu@deerhat@headoff@l:\pingu@w@half{} and \pingu@head@h@half) coordinate (@left);
+\path ([yshift=-\pingu@deerhat@yshift]\pingu@name-head-top) arc (90:90+\pingu@deerhat@headoff@r:\pingu@w@half{} and \pingu@head@h@half) coordinate (@right);
 
 \pgfonlayer{background}
-\pingu@draw[line width=1mm,rounded corners=4pt,line cap=round]{\pingu@color@deerhat} (\pingu@name-head-left) -- ++(.75mm,1.75mm) -- ++(6.25mm,1.5mm) -- ++(.5mm,1.75mm);
-\pingu@draw[line width=1mm,rounded corners=4pt,line cap=round]{\pingu@color@deerhat} (\pingu@name-head-left) -- ++(.75mm,1.75mm) -- ++(6.25mm,1.5mm) -- ++(.5mm,1.75mm);
-\pingu@draw[line width=1mm,rounded corners=4pt,line cap=round]{\pingu@color@deerhat} (\pingu@name-head-right) -- ++(-.75mm,1.75mm) -- ++(-6.25mm,1.5mm) -- ++(-.5mm,1.75mm);
+\pingu@draw[line width=\pingu@deerhat@linewidth,rounded corners=2pt,line cap=round]{\pingu@color@deerhat} (@left) to[bend right=4] ++(.85mm,1.5mm) coordinate (@a) -- ++(3.15mm,.5mm) coordinate (@b) -- ++(4.65mm,4.35mm) coordinate[pos=.5] (@c) to[bend right=10] ++(-.75mm,2.55mm);
+\pingu@draw[line width=\pingu@deerhat@linewidth,rounded corners=2pt,line cap=round]{\pingu@color@deerhat} ([xshift=-.135mm,yshift=-.45mm]@a) to[bend left=3] ++(1mm,4mm) ([xshift=-.4mm,yshift=-.05mm]@b) to[bend right=2] ++(3.75mm,.1mm) (@c) to[bend left=12] ++(-1mm,3.5mm);
+\pingu@draw[line width=\pingu@deerhat@linewidth,rounded corners=2pt,line cap=round]{\pingu@color@deerhat} (@right) to[bend left=4] ++(-.85mm,1.5mm) coordinate (@a) -- ++(-3.15mm,.5mm) coordinate (@b) -- ++(-4.65mm,4.35mm) coordinate[pos=.5] (@c) to[bend left=10] ++(.75mm,2.55mm);
+\pingu@draw[line width=\pingu@deerhat@linewidth,rounded corners=2pt,line cap=round]{\pingu@color@deerhat} ([yshift=-.45mm,xshift=.135mm]@a) to[bend right=3] ++(-1mm,4mm) ([xshift=.4mm,yshift=-.05mm]@b) to[bend right=2] ++(-3.75mm,.1mm) (@c) to[bend right=12] ++(1mm,3.5mm);
 \endpgfonlayer
 }
