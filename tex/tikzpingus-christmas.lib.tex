@@ -60,3 +60,27 @@ to[out=167,in=38] coordinate[pos=.915] (\pingu@name-wool-ur) coordinate[pos=.055
 \pingu@block{\pingu@color@woolhat@bobble} (@mid) circle [radius=1.25mm];
 \endpingu@layer
 }
+
+
+\pingu@create@extra{deerhat}{%
+    deer hat/.code             = \pingu@set@extra{deerhat}{true}\pingu@color{deerhat}{#1}\pgfqkeys{/pingu}{hair=\@pingu@none},
+    deer hat/.default          = pingu@bronze!57!pingu@black,
+    deer hat second/.code      = \pingu@color{deerhat@second}{#1},
+    deer hat bobble/.code      = \pingu@color{deerhat@bobble}{#1}
+}{deer hat second={\pingu@color@deerhat!75!pingu@black},deer hat bobble={\pingu@color@deerhat@second}}
+\pgfmathsetmacro\pingu@deerhat@baseang@l{90-360*(1-\pinguanglehl)}
+\pgfmathsetmacro\pingu@deerhat@baseang@r{90-360*(1-\pinguanglehr)}
+\def\pingu@deerhat@baseoff{32}
+\def\pingu@deerhat@yshift{.15mm}
+\def\pingu@draw@ea@deerhat{%
+
+\path ([yshift=-\pingu@deerhat@yshift]\pingu@name-head-left) arc (\pingu@deerhat@baseang@l:\pingu@deerhat@baseang@l-\pingu@deerhat@baseoff:\pingu@w@half{} and \pingu@head@h@half) coordinate (@target);
+
+\pingu@draw[line width=.65mm]{\pingu@color@deerhat@second} (@target) arc (\pingu@deerhat@baseang@l-\pingu@deerhat@baseoff:360+\pingu@deerhat@baseang@r+\pingu@deerhat@baseoff:\pingu@w@half{} and \pingu@head@h@half);
+
+\pgfonlayer{background}
+\pingu@draw[line width=1mm,rounded corners=4pt,line cap=round]{\pingu@color@deerhat} (\pingu@name-head-left) -- ++(.75mm,1.75mm) -- ++(6.25mm,1.5mm) -- ++(.5mm,1.75mm);
+\pingu@draw[line width=1mm,rounded corners=4pt,line cap=round]{\pingu@color@deerhat} (\pingu@name-head-left) -- ++(.75mm,1.75mm) -- ++(6.25mm,1.5mm) -- ++(.5mm,1.75mm);
+\pingu@draw[line width=1mm,rounded corners=4pt,line cap=round]{\pingu@color@deerhat} (\pingu@name-head-right) -- ++(-.75mm,1.75mm) -- ++(-6.25mm,1.5mm) -- ++(-.5mm,1.75mm);
+\endpgfonlayer
+}
