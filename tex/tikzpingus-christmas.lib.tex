@@ -89,3 +89,34 @@ to[out=167,in=38] coordinate[pos=.915] (\pingu@name-wool-ur) coordinate[pos=.055
 \pingu@draw[line width=\pingu@deerhat@linewidth,rounded corners=2pt,line cap=round]{\pingu@color@deerhat@b} ([yshift=-.45mm,xshift=.135mm]@a) to[bend right=3] ++(-1mm,4mm) ([xshift=.4mm,yshift=-.05mm]@b) to[bend right=2] ++(-3.75mm,.1mm) (@c) to[bend right=12] ++(1mm,3.5mm);
 \endpgfonlayer
 }
+
+\pingu@create@wing@extra{present}{%
+  present \@lr/.code              = {\pingu@set@extra{present\@lr}{true}\pingu@color{present\@lr}{##1}},
+  present \@lr/.default           = pingu@red!50!pingu@black!60!red,
+  present \@lr\space width/.code  = \@namedef{pingu@present@\@lr @width}{##1},
+  present \@lr\space band width/.code  = \@namedef{pingu@present@\@lr @band@width}{##1},
+  present \@lr\space height/.code = \@namedef{pingu@present@\@lr @height}{##1},
+  present \@lr\space xshift/.code = \@namedef{pingu@present@\@lr @xshift}{##1},
+  present \@lr\space yshift/.code = \@namedef{pingu@present@\@lr @yshift}{##1},
+  present \@lr\space band second height/.code = \@namedef{pingu@present@\@lr @band@second@height}{##1},
+  present \@lr\space band second yshift/.code = \@namedef{pingu@present@\@lr @band@second@yshift}{##1},
+  present \@lr\space lid/.code   = \pingu@color{present\@lr @lid}{##1},%
+  present \@lr\space lid height/.code = \@namedef{pingu@present@\@lr @lid@height}{##1},
+  present \@lr\space lid overhang/.code = \@namedef{pingu@present@\@lr @lid@overhang}{##1},
+  present \@lr\space band/.code   = \pingu@color{present\@lr @band}{##1},%
+  present \@lr\space second/.code = \pingu@color{present\@lr @second}{##1}%
+}{present \@lr\space band=pingu@green!70!pingu@black!90!pingu@white,present \@lr\space second={\csname pingu@color@present\@lr\endcsname!86!white},present \@lr\space width=7.75mm,present \@lr\space band width=1.75mm,present \@lr\space height=7mm,present \@lr\space yshift=-0.25*(\csname pingu@present@\@lr @height\endcsname),present \@lr\space band second height=\csname pingu@present@\@lr @band@width\endcsname, present \@lr\space band second yshift=0.5*(\csname pingu@present@\@lr @height\endcsname),present \@lr\space xshift=-0.25*(\csname pingu@present@\@lr @width\endcsname),present \@lr\space lid=\csname pingu@color@present\@lr\endcsname!92!pingu@black,present \@lr\space lid height=1.33mm,present \@lr\space lid overhang=.125mm}
+
+% TODO: allow to control dimensions (width, height,...)
+% TODO: shift
+% #1 wing
+\def\pingu@draw@wi@present#1{%
+    \pingu@setup@wing{present}{#1}%
+    \scope[rotate around={\@angle:(\pingu@name-wing-#1)}]
+        \pingu@block[rounded corners=2pt]{\@col}(\pingu@name-wing-#1)++(-{0.5*(\csname pingu@present@#1@width\endcsname)+\csname pingu@present@#1@xshift\endcsname},{\csname pingu@present@#1@yshift\endcsname}) coordinate (@ll) rectangle ++({\csname pingu@present@#1@width\endcsname},{\csname pingu@present@#1@height\endcsname}) coordinate (@ur);
+        \pingu@block{\csname pingu@color@present#1@band\endcsname}(@ll)++({0.5*(\csname pingu@present@#1@width\endcsname)-0.5*(\csname pingu@present@#1@band@width\endcsname)},0) rectangle ++({\csname pingu@present@#1@band@width\endcsname},{\csname pingu@present@#1@height\endcsname});
+        \pingu@block{\csname pingu@color@present#1@band\endcsname}(@ll)++(0,{\csname pingu@present@#1@band@second@yshift\endcsname-0.5*(\csname pingu@present@#1@band@second@height\endcsname)}) rectangle ++({\csname pingu@present@#1@width\endcsname},{\csname pingu@present@#1@band@second@height\endcsname});
+        % lid
+        \pingu@block[rounded corners=.75pt]{\csname pingu@color@present#1@lid\endcsname} ([yshift=-1mm,xshift=\csname pingu@present@\@lr @lid@overhang\endcsname]@ur) rectangle ++({-\csname pingu@present@#1@width\endcsname-2*(\csname pingu@present@\@lr @lid@overhang\endcsname)},\csname pingu@present@#1@lid@height\endcsname);
+    \endscope
+}
