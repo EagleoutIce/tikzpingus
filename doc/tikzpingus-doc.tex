@@ -4156,7 +4156,6 @@ Change the bending of the banner:
 \end{tcblisting}
 \endsubkeyexplain
 
-
 \subsubsection{The cane}
 
 \showkeyexplain{cane left}{color}{pingu@bronze}
@@ -5023,6 +5022,263 @@ Note that \lpingu{/pingu/@flag} expects two arguments: the color of the flag seg
 \end{tikzpicture}
 \end{tcblisting}
 \endshowkeyexplain
+
+\subsubsection{The lollipop}
+
+{
+\def\pingu@color@presentleft{<present left>}
+\showkeyexplain{present left}{color}{pingu@red!50!pingu@black!60!red}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[present left=blue]
+\end{tikzpicture}
+\end{tcblisting}
+\endshowkeyexplain
+\def\pingu@color@presentleft@lid{<present left lid>}
+
+\def\pingu@present@left@width{<present left width>}
+\subkeyexplain{present left}{present left width}{length}{\pingu@present@left@width}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[present left, present left width=12mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\def\pingu@present@left@height{<present left height>}
+\subkeyexplain{present left}{present left height}{length}{\pingu@present@left@height}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[present left, present left height=12mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\def\pingu@color@presentleft@band{<present left band>}
+\subkeyexplain{present left}{present left ribbon}{color}{\pingu@color@presentleft@ribbon}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[present left, present left ribbon=blue]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+\subkeyexplain{present left}{present left band}{color}{\pingu@color@presentleft@band}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[present left, present left band=blue]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\def\pingu@present@left@band@width{<present left band width>}
+\subkeyexplain{present left}{present left band width}{length}{\pingu@present@left@band@width}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[present left, present left band width=4mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{present left}{present left xshift}{length}{\pingu@present@left@xshift}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[present left, present left xshift=3mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{present left}{present left yshift}{length}{\pingu@present@left@yshift}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[present left, present left yshift=3mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{present left}{present left band second height}{length}{\pingu@present@left@band@second@height}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[present left, present left band second height=3mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{present left}{present left band second yshift}{length}{\pingu@present@left@band@second@yshift}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[present left, present left band second yshift=3mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{present left}{present left lid}{color}{\pingu@color@presentleft@lid}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[present left, present left lid=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{present left}{present left lid height}{length}{\pingu@present@left@lid@height}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[present left, present left lid height=3mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{present left}{present left lid overhang}{length}{\pingu@present@left@lid@overhang}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[present left, present left lid overhang=1mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{present left}{present left lid yshift}{length}{\pingu@present@left@lid@yshift}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[present left, present left lid yshift=8mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{present left}{present left lid band}{color}{\pingu@color@presentleft@lid@band}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[present left, present left lid band=blue]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+}
+
+
+{
+\def\pingu@color@presentright{<present right>}
+\showkeyexplain{present right}{color}{pingu@red!50!pingu@black!60!red}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[present right=blue]
+\end{tikzpicture}
+\end{tcblisting}
+\endshowkeyexplain
+\def\pingu@color@presentright@lid{<present right lid>}
+
+\def\pingu@present@right@width{<present right width>}
+\subkeyexplain{present right}{present right width}{length}{\pingu@present@right@width}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[present right, present right width=12mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\def\pingu@present@right@height{<present right height>}
+\subkeyexplain{present right}{present right height}{length}{\pingu@present@right@height}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[present right, present right height=12mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\def\pingu@color@presentright@band{<present right band>}
+\subkeyexplain{present right}{present right ribbon}{color}{\pingu@color@presentright@ribbon}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[present right, present right ribbon=blue]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+\subkeyexplain{present right}{present right band}{color}{\pingu@color@presentright@band}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[present right, present right band=blue]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\def\pingu@present@right@band@width{<present right band width>}
+\subkeyexplain{present right}{present right band width}{length}{\pingu@present@right@band@width}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[present right, present right band width=4mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{present right}{present right xshift}{length}{\pingu@present@right@xshift}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[present right, present right xshift=3mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{present right}{present right yshift}{length}{\pingu@present@right@yshift}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[present right, present right yshift=3mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{present right}{present right band second height}{length}{\pingu@present@right@band@second@height}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[present right, present right band second height=3mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{present right}{present right band second yshift}{length}{\pingu@present@right@band@second@yshift}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[present right, present right band second yshift=3mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{present right}{present right lid}{color}{\pingu@color@presentright@lid}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[present right, present right lid=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{present right}{present right lid height}{length}{\pingu@present@right@lid@height}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[present right, present right lid height=3mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{present right}{present right lid overhang}{length}{\pingu@present@right@lid@overhang}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[present right, present right lid overhang=1mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{present right}{present right lid yshift}{length}{\pingu@present@right@lid@yshift}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[present right, present right lid yshift=8mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{present right}{present right lid band}{color}{\pingu@color@presentright@lid@band}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[present right, present right lid band=blue]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+}
 
 \subsubsection{The staff}
 
