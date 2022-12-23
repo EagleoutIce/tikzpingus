@@ -135,3 +135,19 @@ to[out=167,in=38] coordinate[pos=.915] (\pingu@name-wool-ur) coordinate[pos=.055
         \pingu@block[rounded corners=.5pt]{\csname pingu@color@present#1@ribbon\endcsname} (@top)++(-.3mm,-.65mm) rectangle ++(1.3mm,.65mm); % TODO: make that round? (i.e., bend edges)
     \endscope
 }
+
+\pingu@create@wing@extra{snowball}{%
+  snowball \@lr/.code         = {\pingu@set@extra{snowball\@lr}{true}\pingu@color{snowball\@lr}{##1}},
+  snowball \@lr/.default      = pingu@white!90!pingu@black,
+  snowball \@lr\space size/.code  = \expandafter\def\csname pingu@snowball@\@lr @size\endcsname{##1},
+  snowball \@lr\space xshift/.code  = \expandafter\def\csname pingu@snowball@\@lr @xshift\endcsname{##1},
+  snowball \@lr\space yshift/.code  = \expandafter\def\csname pingu@snowball@\@lr @yshift\endcsname{##1}
+}{snowball \@lr\space size=2mm, snowball \@lr\space xshift=0pt, snowball \@lr\space yshift=0pt}
+
+% #1 wing
+% TODO: shifts
+\def\pingu@draw@wi@snowball#1{%
+\pingu@setup@wing{snowball}{#1}%
+    \pingu@draw[opacity=.35]{\@col} ([xshift=\csname pingu@snowball@#1@xshift\endcsname,yshift=\csname pingu@snowball@#1@yshift\endcsname]\pingu@name-wing-#1) coordinate (@) circle[radius=\csname pingu@snowball@#1@size\endcsname];
+    \pingu@block[rotate around={\@angle-1:(\pingu@name-wing-#1)},decoration={random steps,segment length=1pt,amplitude=.075pt},decorate,rounded corners=.35pt,save path=\snowball@outer]{\@col}(@) circle[radius=\csname pingu@snowball@#1@size\endcsname];
+}
