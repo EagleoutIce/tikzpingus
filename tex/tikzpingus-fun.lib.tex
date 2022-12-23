@@ -259,3 +259,19 @@ scale=\pingu@x@jackolantern@scale]
     \pingu@block[rounded corners=2pt]{\csname pingu@color@hammer#1\endcsname} (\pingu@name-hammer-#1-top)++(\csname pingu@hammer@#1@xshift\endcsname,\csname pingu@hammer@#1@yshift\endcsname) rectangle ++(\csname pingu@hammer@#1@width\endcsname,\csname pingu@hammer@#1@height\endcsname);
 \endscope
 }
+
+\pingu@create@wing@extra{plank}{%
+    plank \@lr/.code              = {\pingu@set@extra{plank\@lr}{true}\pingu@color{plank\@lr}{##1}},
+    plank \@lr/.default           = pingu@bronze!80!pingu@black,
+    plank \@lr\space width/.code  = \expandafter\def\csname pingu@plank@\@lr @width\endcsname{##1},
+    plank \@lr\space height/.code  = \expandafter\def\csname pingu@plank@\@lr @height\endcsname{##1},
+    plank \@lr\space xshift/.code  = \expandafter\def\csname pingu@plank@\@lr @xshift\endcsname{##1},
+    plank \@lr\space yshift/.code  = \expandafter\def\csname pingu@plank@\@lr @yshift\endcsname{##1},
+    plank \@lr\space handle/.code = \pingu@color{plank@\@lr @handle}{##1},%
+}{plank \@lr\space width=7mm,plank \@lr\space height=16.5mm, plank \@lr\space xshift=0mm,plank \@lr\space yshift=-1mm}
+\def\pingu@draw@wi@plank#1{%
+    \pingu@setup@wing{plank}{#1}%
+\scope[rotate around={\@angle:(\pingu@name-wing-#1)}]
+\pingu@block[rounded corners=2pt]{\@col}([xshift=\csname pingu@plank@#1@xshift\endcsname,yshift=\csname pingu@plank@#1@yshift\endcsname]\pingu@name-wing-#1)++({-.5*(\csname pingu@plank@#1@width\endcsname)},{-.5*(\csname pingu@plank@#1@height\endcsname)}) rectangle ++({\csname pingu@plank@#1@width\endcsname},{\csname pingu@plank@#1@height\endcsname});
+\endscope
+}
