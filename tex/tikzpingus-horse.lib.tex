@@ -120,9 +120,9 @@ to[bend right=7] ++(-.05,-.2) to[bend left=13] ++(-.2,-1.15) to[bend right=13] +
 % TODO: select keys
 % TODO: option so it does not affect the bounding box (default!)
 \pingu@create@extra{horseon}{%
-    on horse/.code                       = {\pingu@set@extra{horseon}{true}\pingu@color{horseon}{#1}},
-    on horse/.default              = pingu@bronze!80!pingu@black,
-    horse behind/.style            = {on horse=#1, on horse scale=.325, on horse yshift=6.15cm},
+    on horse/.code                  = {\pingu@set@extra{horseon}{true}\pingu@color{horseon}{#1}},
+    on horse/.default               = pingu@bronze!80!pingu@black,
+    horse behind/.style             = {on horse=#1, on horse scale=.325, on horse yshift=6.15cm},
     horse behind/.default           = pingu@bronze!80!pingu@black,
     on horse flip/.is if            = @pingu@x@horse@on@flip@,
     on horse has base/.is if        = @pingu@x@horse@on@base@,
