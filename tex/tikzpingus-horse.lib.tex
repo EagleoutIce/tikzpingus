@@ -47,7 +47,7 @@ to[bend right=7] ++(-.05,-.2) to[bend left=13] ++(-.2,-1.15) to[bend right=13] +
 
 % back ear
 \if@pingu@@horse@@donkey@
-\pingu@block[draw=\csname pingu@color@horse#1@draw\endcsname,line width=\@pingu@@horse@lw*\pingu@@horse@scale]{\csname pingu@color@horse#1@ears\endcsname} ([xshift=.2mm,yshift=-1.5mm]@ear) to[bend left=20] ++(.373,.965) coordinate(@) to[bend left=10] ++(-.15,-1.15);
+\pingu@block[draw=\csname pingu@color@horse#1@draw\endcsname,line width=\@pingu@@horse@lw*\pingu@@horse@scale]{\csname pingu@color@horse#1@ears\endcsname} ([xshift=.2mm,yshift=-1.5mm]@ear) to[bend left=20] ++(.373,1.465) coordinate(@) to[bend left=10] ++(-.15,-1.5);
 \else
 \pingu@block[draw=\csname pingu@color@horse#1@draw\endcsname,line width=\@pingu@@horse@lw*\pingu@@horse@scale]{\csname pingu@color@horse#1@ears\endcsname} ([xshift=.2mm,yshift=-1.5mm]@ear) to[bend left=20] ++(.373,.565) coordinate(@) to[bend left=10] ++(-.15,-.75);
 \fi
@@ -57,7 +57,7 @@ to[bend right=7] ++(-.05,-.2) to[bend left=13] ++(-.2,-1.15) to[bend right=13] +
 \pingu@draw[line width=\@pingu@@horse@lw*\pingu@@horse@scale]{\csname pingu@color@horse#1@draw\endcsname} ([yshift=-.1mm]@mouth-low) to[bend left=12] ++(.06,.65);
 \pingu@draw[line width=\@pingu@@horse@lw*\pingu@@horse@scale]{\csname pingu@color@horse#1@mouth\endcsname} ([yshift=-.115mm]@mouth) -- ++(-.035,.225);
 
-\pingu@draw[line width=\@pingu@@horse@lw*\pingu@@horse@scale,line join=round]{\csname pingu@color@horse#1@nose\endcsname} ([xshift=3.85mm,yshift=2.45mm]@mouth) to[out=140,in=10] ++(-.17,-.074) to[bend right=49] cycle;
+\pingu@draw[line width=\@pingu@@horse@lw*\pingu@@horse@scale,line join=round]{\csname pingu@color@horse#1@nose\endcsname} ([xshift=\if@pingu@@horse@@donkey@ 4.5mm\else3.85mm\fi,yshift=\if@pingu@@horse@@donkey@3.65mm\else2.45mm\fi]@mouth) to[out=140,in=10] ++(-.17,-.074) to[bend right=49] cycle;
 
 \pingu@draw[line width=\@pingu@@horse@lw*\pingu@@horse@scale]{\csname pingu@color@horse#1@draw\endcsname} ([yshift=-.35mm]@frontleg) to[bend left=12] ++(.01,.325);
 \pingu@draw[line width=\@pingu@@horse@lw*\pingu@@horse@scale]{\csname pingu@color@horse#1@draw\endcsname} ([yshift=-.2mm]@backleg) to[bend right=13] ++(.25,.425);
@@ -74,8 +74,8 @@ to[bend right=7] ++(-.05,-.2) to[bend left=13] ++(-.2,-1.15) to[bend right=13] +
 
 % ear
 \if@pingu@@horse@@donkey@
-\pingu@block[draw=\csname pingu@color@horse#1@draw\endcsname,line width=\@pingu@@horse@lw*\pingu@@horse@scale]{\csname pingu@color@horse#1@ears\endcsname} ([xshift=-.75mm,yshift=-1mm]@ear) to[bend left=15] ++(.393,1.085) coordinate(@) to[bend right=11] ++(-.15,-1.2);
-\pingu@block[draw=\csname pingu@color@horse#1@draw\endcsname,line width=\@pingu@@horse@lw*\pingu@@horse@scale]{\csname pingu@color@horse#1@ears\endcsname} (@) to[bend right=11] ++(-.15,-1.2) to[bend right=14] cycle;
+\pingu@block[draw=\csname pingu@color@horse#1@draw\endcsname,line width=\@pingu@@horse@lw*\pingu@@horse@scale]{\csname pingu@color@horse#1@ears\endcsname} ([xshift=-1mm,yshift=-1mm]@ear) to[bend left=15] ++(.393,1.685) coordinate(@) to[bend right=17] ++(-.15,-1.8);
+\pingu@block[draw=\csname pingu@color@horse#1@draw\endcsname,line width=\@pingu@@horse@lw*\pingu@@horse@scale]{\csname pingu@color@horse#1@ears\endcsname} (@) to[bend right=17] ++(-.15,-1.8) to[bend right=14] cycle;
 \else
 \pingu@block[draw=\csname pingu@color@horse#1@draw\endcsname,line width=\@pingu@@horse@lw*\pingu@@horse@scale]{\csname pingu@color@horse#1@ears\endcsname} ([xshift=-.75mm,yshift=-1mm]@ear) to[bend left=20] ++(.393,.585) coordinate(@) to[bend right=10] ++(-.15,-.7);
 \pingu@block[draw=\csname pingu@color@horse#1@draw\endcsname,line width=\@pingu@@horse@lw*\pingu@@horse@scale]{\csname pingu@color@horse#1@ears\endcsname} (@) to[bend right=7] ++(-.15,-.7) to[bend right=14] cycle;
