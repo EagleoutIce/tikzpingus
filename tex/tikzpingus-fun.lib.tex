@@ -297,13 +297,13 @@ scale=\pingu@x@jackolantern@scale]
   \path ([yshift=\csname pingu@magnifier@#1@yshift\endcsname+\csname pingu@magnifier@#1@size\endcsname,xshift=\csname pingu@magnifier@\@lr @xshift\endcsname]\pingu@name-wing-#1) coordinate (@);
 
   % \spy[draw=green] on (@) in node at (@);
-\pgfonlayer{foreground}
+% \pgfonlayer{foreground}
   \pingu@block[even odd rule]{\@col} (@) circle[radius=\csname pingu@magnifier@#1@size\endcsname] circle[radius=\csname pingu@magnifier@#1@size\endcsname-\csname pingu@magnifier@#1@thick\endcsname];
 
     \pingu@block[opacity=\csname pingu@magnifier@#1@opacity\endcsname]{\csname pingu@color@magnifier@#1@glass\endcsname} (@) circle[radius=\csname pingu@magnifier@#1@size\endcsname-\csname pingu@magnifier@#1@thick\endcsname];
 
     \pingu@block{\@col} % TODO: adapt
     (@) ([shift={(-70:2.5mm)}]@) to[out=230,in=90] ++(-.5mm,-\csname pingu@magnifier@#1@length\endcsname) arc(360:180:.33mm) to[out=90,in=-50] ++(-.5mm,\csname pingu@magnifier@#1@length\endcsname);%
-  \endpgfonlayer
+% \endpgfonlayer
 \endscope
 }
