@@ -40,7 +40,12 @@ to[bend right=7] ++(-.05,-.2) to[bend left=13] ++(-.2,-1.15) to[bend right=13] +
 \if@pingu@@horse@@donkey@
 \pingu@block[draw=\csname pingu@color@horse#1@tail@draw\endcsname,line width=\@pingu@@horse@lw*\pingu@@horse@scale]{\csname pingu@color@horse#1@tail\endcsname} [rounded corners=1*\pingu@@horse@scale](@back) to[out=215,in=95] ++(-.1,-2) to[out=270,in=92] ++(0,-.75) [sharp corners] to[bend right=20] coordinate[pos=.5] (@) ++(.15,0) to[bend right=10] cycle;
 % TODO: hide support
-\node[draw=\csname pingu@color@horse#1@tail@draw\endcsname,fill=\csname pingu@color@horse#1@tail\endcsname,cloud,cloud puffs=30,cloud ignores aspect,scale=1.33*\pingu@@horse@scale,yshift=16mm,rotate=-5,line width=\@pingu@@horse@lw*\pingu@@horse@scale] at (@) {\rotatebox{90}{\phantom{A}\hskip7.5em}};
+%\node[draw=\csname pingu@color@horse#1@tail@draw\endcsname,fill=\csname pingu@color@horse#1@tail\endcsname,cloud,cloud puffs=30,cloud ignores aspect,scale=1.33*\pingu@@horse@scale,yshift=16mm,rotate=-5,line width=\@pingu@@horse@lw*\pingu@@horse@scale] at (@) {\rotatebox{90}{\phantom{A}\hskip7.5em}};
+\scope[rotate around={180:(@)}] % adapted from the broom
+\pingu@block[rounded corners=.44pt,draw=\csname pingu@color@horse#1@tail@draw\endcsname]{\csname pingu@color@horse#1@tail\endcsname} (@)++(-1mm,-2mm) to[out=115,in=240] ++(3mm,12.5mm) to[out=300,in=65] ([xshift=.95mm,yshift=-2mm]@) to[bend right=4] ([xshift=-.75mm,yshift=-2mm]@) -- cycle;
+\pingu@block[rounded corners=.44pt,draw=\csname pingu@color@horse#1@tail@draw\endcsname]{\csname pingu@color@horse#1@tail\endcsname} (@)++(-1mm,-2mm) to[out=115,in=240] coordinate[pos=.17] (@r) coordinate[pos=.19] (@r2)  ++(-.75mm,10.5mm) to[out=300,in=65] ([xshift=.95mm,yshift=-2mm]@) to[bend right=4] ([xshift=-.75mm,yshift=-2mm]@) -- cycle;
+\pingu@block[rounded corners=.44pt,draw=\csname pingu@color@horse#1@tail@draw\endcsname]{\csname pingu@color@horse#1@tail\endcsname}(@)++(-.5mm,-1.5mm) to[out=115,in=240] ++(.5mm,12mm) to[out=300,in=65] ([xshift=.5mm,yshift=-1.5mm]@) -- cycle;
+\endscope
 \else
 \pingu@block[draw=\csname pingu@color@horse#1@tail@draw\endcsname,line width=\@pingu@@horse@lw*\pingu@@horse@scale]{\csname pingu@color@horse#1@tail\endcsname} [rounded corners=1*\pingu@@horse@scale](@back) to[out=215,in=90] ++(-.4,-2.5) to[out=270,in=92] ++(0,-2.8) [sharp corners] to[bend right=20] ++(.6,0) to[bend right=10] cycle;
 \fi
