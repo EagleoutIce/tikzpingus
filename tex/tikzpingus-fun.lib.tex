@@ -275,24 +275,37 @@ scale=\pingu@x@jackolantern@scale]
 \endscope
 }
 
+% \usetikzlibrary{spy}
+
 \pingu@create@wing@extra{magnifier}{%
-    magnifier \@lr/.code              = {\pingu@set@extra{magnifier\@lr}{true}\pingu@color{magnifier\@lr}{##1}},
+    magnifier \@lr/.code              = {\pingu@set@extra{magnifier\@lr}{true}\pingu@color{magnifier\@lr}{##1}}, % \noexpand\tikzset{/pingu/@pingu/.append style={spy scope={circle,draw,magnification=4,size=1cm}}}
     magnifier \@lr/.default           = pingu@silver,
     magnifier \@lr\space handle length/.code = \expandafter\def\csname pingu@magnifier@\@lr @length\endcsname{##1},
     magnifier \@lr\space handle shift/.code  = \expandafter\def\csname pingu@magnifier@\@lr @shift\endcsname{##1},
     magnifier \@lr\space width/.code  = \expandafter\def\csname pingu@magnifier@\@lr @width\endcsname{##1},
+    magnifier \@lr\space size/.code  = \expandafter\def\csname pingu@magnifier@\@lr @size\endcsname{##1},
+    magnifier \@lr\space glass/.code  = \pingu@color{magnifier@\@lr @glass}{##1},
+    magnifier \@lr\space opacity/.code  = \expandafter\def\csname pingu@magnifier@\@lr @opacity\endcsname{##1},
+    magnifier \@lr\space thick/.code  = \expandafter\def\csname pingu@magnifier@\@lr @thick\endcsname{##1},
     magnifier \@lr\space height/.code  = \expandafter\def\csname pingu@magnifier@\@lr @height\endcsname{##1},
     magnifier \@lr\space xshift/.code  = \expandafter\def\csname pingu@magnifier@\@lr @xshift\endcsname{##1},
     magnifier \@lr\space yshift/.code  = \expandafter\def\csname pingu@magnifier@\@lr @yshift\endcsname{##1},
     magnifier \@lr\space handle/.code = \pingu@color{magnifier@\@lr @handle}{##1}%
-}{magnifier \@lr\space handle length=9mm, magnifier \@lr\space handle=pingu@bronze, magnifier \@lr\space handle shift=-4mm, magnifier \@lr\space width=7mm,magnifier \@lr\space height=3.5mm, magnifier \@lr\space xshift=-0.5*\csname pingu@magnifier@\@lr @width\endcsname,magnifier \@lr\space yshift=-1mm}
+}{magnifier \@lr\space handle length=3.5mm, magnifier \@lr\space handle=pingu@bronze, magnifier \@lr\space handle shift=-4mm, magnifier \@lr\space width=7mm,magnifier \@lr\space height=3.5mm, magnifier \@lr\space xshift=0mm,magnifier \@lr\space yshift=1mm,magnifier \@lr\space size=2.5mm,magnifier \@lr\space thick=.5mm,magnifier \@lr\space glass=pingu@blue!90!pingu@yellow,magnifier \@lr\space opacity=0.24}
 \def\pingu@draw@wi@magnifier#1{%
     \pingu@setup@wing{magnifier}{#1}%
   \scope[rotate around={\@angle:(\pingu@name-wing-#1)}]
 % \csname pingu@color@magnifier#1\endcsname
-    \pingu@block{\csname pingu@color@magnifier@#1@handle\endcsname}([xshift=\if@pingu@wing@item@side@left@0mm\else-1.5mm\fi]\pingu@name-wing-#1)++(\@sidesign*-.2mm,\csname pingu@magnifier@#1@shift\endcsname+4mm) coordinate (@)
-    arc (250:-70:3mm) to[out=230,in=90] ++(-1mm,-3.5mm) arc(360:180:.5mm) to[out=90,in=-60] cycle ([x]@) circle[radius=2mm]; % arc (-70:-250:.33mm) arc (-70:250:3mm-.66mm);
-    % ++(0,-\csname pingu@magnifier@#1@length\endcsname) arc(360:180:\@sidesign*.4mm and .3mm) coordinate[pos=.5] (\pingu@name-magnifier-#1-top) -- ++(0,\csname pingu@magnifier@#1@length\endcsname); % arc(360:180:\@sidesign*.4mm and .3mm) -- cycle;
-    % \pingu@block[rounded corners=2pt]{\csname pingu@color@magnifier#1\endcsname} (\pingu@name-magnifier-#1-top)++(\csname pingu@magnifier@#1@xshift\endcsname,\csname pingu@magnifier@#1@yshift\endcsname) rectangle ++(\csname pingu@magnifier@#1@width\endcsname,\csname pingu@magnifier@#1@height\endcsname);
+  \path ([yshift=\csname pingu@magnifier@#1@yshift\endcsname+\csname pingu@magnifier@#1@size\endcsname,xshift=\csname pingu@magnifier@\@lr @xshift\endcsname]\pingu@name-wing-#1) coordinate (@);
+
+  % \spy[draw=green] on (@) in node at (@);
+\pgfonlayer{foreground}
+  \pingu@block[even odd rule]{\csname pingu@color@magnifier@#1@handle\endcsname} (@) circle[radius=\csname pingu@magnifier@#1@size\endcsname] circle[radius=\csname pingu@magnifier@#1@size\endcsname-\csname pingu@magnifier@#1@thick\endcsname];
+
+    \pingu@block[opacity=\csname pingu@magnifier@#1@opacity\endcsname]{\csname pingu@color@magnifier@#1@glass\endcsname} (@) circle[radius=\csname pingu@magnifier@#1@size\endcsname-\csname pingu@magnifier@#1@thick\endcsname];
+
+    \pingu@block{\csname pingu@color@magnifier@#1@handle\endcsname}
+    (@) ([shift={(-70:2.5mm)}]@) to[out=230,in=90] ++(-.5mm,-\csname pingu@magnifier@#1@length\endcsname) arc(360:180:.33mm) to[out=90,in=-50] ++(-.5mm,\csname pingu@magnifier@#1@length\endcsname);%
+  \endpgfonlayer
 \endscope
 }
