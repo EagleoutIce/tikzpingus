@@ -3418,6 +3418,7 @@ Currently, this is a very cumbersome command to change various bee parameters at
 
 \subsubsection{The horse}
 	Although the horse does not have a bounding box by default (\keyref{on horse has bounding box}), we add it so you can see everything.
+
 \showkeyexplain{on horse}{color}{pingu@bronze!80!pingu@black}
 	Place your penguin on a not-so-to-scale horse (see \keyref{horse left} and \keyref{horse right}):
 \begin{tcblisting}{}
@@ -3431,6 +3432,14 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[on horse,on horse flip=true]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{on horse}{on horse donkey}{true/false}{\if@pingu@x@horse@on@donkey@ true\else false\fi}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[on horse,on horse donkey=true]
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain
@@ -5895,6 +5904,15 @@ By default, the left horse will be flipped. The right horse won't.
 \end{tcblisting}
 \endsubkeyexplain
 
+\subkeyexplain{horse left}{horse left donkey}{true/false}{false}
+Draw the horse with modifications to look more like a donkey:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[horse left,horse left donkey=true]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
 \subkeyexplain{horse left}{horse left has base}{true/false}{false}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
@@ -6079,6 +6097,16 @@ By default, the right horse will be flipped. The right horse won't.
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain
+
+\subkeyexplain{horse right}{horse right donkey}{true/false}{false}
+Draw the horse with modifications to look more like a donkey:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[horse right,horse right donkey=true]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
 
 \subkeyexplain{horse right}{horse right has base}{true/false}{false}
 \begin{tcblisting}{@}
