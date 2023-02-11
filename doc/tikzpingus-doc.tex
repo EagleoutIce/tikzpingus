@@ -15,8 +15,8 @@
 \usepackage[glows]{tikzpingus}
 
 % \definecolor{doc-main}{RGB}{204,0,25}
-\colorlet{@opcolor}{pingu@blue!75!black}
-\colorlet{doc-main}{@opcolor!80!pingu@black}
+\colorlet{doc-main}{pingu@blue!65!pingu@black}
+\colorlet{@opcolor}{doc-main!70!pingu@black}
 \usepackage[linkcolor=@opcolor,urlcolor=@opcolor,colorlinks,breaklinks,pdfusetitle]{hyperref}
 \usetikzlibrary{shapes.misc,arrows.meta}
 \urlstyle{same}
@@ -78,7 +78,7 @@
 \let\@gobblekey\@gobble
 
 \addtokomafont{sectioning}{\@declaredcolor{black}}
-\addtokomafont{title}{\@declaredcolor{doc-main}}
+\addtokomafont{title}{\@declaredcolor{@opcolor}}
 \addtokomafont{author}{\normalsize}
 \addtokomafont{date}{\normalsize}
 
@@ -231,7 +231,7 @@
 }
 \lstMakeShortInline[style=lstpingu,language=pingulang,basicstyle=\relsize{-1}\ttfamily\@declaredcolor{black!90!white},moredelim={[s][\itshape]{<}{>}}]{|}
 
-\def\explaincolor{@opcolor!8!white}
+\def\explaincolor{@opcolor!9!white}
 \def\cursub{}
 \def\keyexplainindent{2.5em}%
 \let\@explainsuff\@empty
@@ -366,7 +366,7 @@
 \def\tikzpingus{\TikZ pingus}
 
 \tcbset{external/prefix=sub_}
-\tcbEXTERNALIZE % we do not need the other configurationshttps://www.freecodecamp.org/news/deploy-a-react-app-to-github-pages/ in the externalized images :D
+\tcbEXTERNALIZE % we do not need the other configurations in the externalized images :D
 
 \hfuzz=25pt
 
