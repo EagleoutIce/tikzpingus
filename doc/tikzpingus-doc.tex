@@ -15,8 +15,8 @@
 \usepackage[glows]{tikzpingus}
 
 % \definecolor{doc-main}{RGB}{204,0,25}
-\colorlet{@opcolor}{pingu@blue!75!black}
-\colorlet{doc-main}{@opcolor!80!pingu@black}
+\colorlet{doc-main}{pingu@blue!65!pingu@black}
+\colorlet{@opcolor}{doc-main!70!pingu@black}
 \usepackage[linkcolor=@opcolor,urlcolor=@opcolor,colorlinks,breaklinks,pdfusetitle]{hyperref}
 \usetikzlibrary{shapes.misc,arrows.meta}
 \urlstyle{same}
@@ -78,7 +78,7 @@
 \let\@gobblekey\@gobble
 
 \addtokomafont{sectioning}{\@declaredcolor{black}}
-\addtokomafont{title}{\@declaredcolor{doc-main}}
+\addtokomafont{title}{\@declaredcolor{@opcolor}}
 \addtokomafont{author}{\normalsize}
 \addtokomafont{date}{\normalsize}
 
@@ -231,7 +231,7 @@
 }
 \lstMakeShortInline[style=lstpingu,language=pingulang,basicstyle=\relsize{-1}\ttfamily\@declaredcolor{black!90!white},moredelim={[s][\itshape]{<}{>}}]{|}
 
-\def\explaincolor{@opcolor!8!white}
+\def\explaincolor{@opcolor!9!white}
 \def\cursub{}
 \def\keyexplainindent{2.5em}%
 \let\@explainsuff\@empty
@@ -366,7 +366,7 @@
 \def\tikzpingus{\TikZ pingus}
 
 \tcbset{external/prefix=sub_}
-\tcbEXTERNALIZE % we do not need the other configurationshttps://www.freecodecamp.org/news/deploy-a-react-app-to-github-pages/ in the externalized images :D
+\tcbEXTERNALIZE % we do not need the other configurations in the externalized images :D
 
 \hfuzz=25pt
 
@@ -3418,6 +3418,7 @@ Currently, this is a very cumbersome command to change various bee parameters at
 
 \subsubsection{The horse}
 	Although the horse does not have a bounding box by default (\keyref{on horse has bounding box}), we add it so you can see everything.
+
 \showkeyexplain{on horse}{color}{pingu@bronze!80!pingu@black}
 	Place your penguin on a not-so-to-scale horse (see \keyref{horse left} and \keyref{horse right}):
 \begin{tcblisting}{}
@@ -3431,6 +3432,14 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[on horse,on horse flip=true]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{on horse}{on horse donkey}{true/false}{\if@pingu@x@horse@on@donkey@ true\else false\fi}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[on horse,on horse donkey=true]
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain
@@ -6041,6 +6050,15 @@ By default, the left horse will be flipped. The right horse won't.
 \end{tcblisting}
 \endsubkeyexplain
 
+\subkeyexplain{horse left}{horse left donkey}{true/false}{false}
+Draw the horse with modifications to look more like a donkey:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[horse left,horse left donkey=true]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
 \subkeyexplain{horse left}{horse left has base}{true/false}{false}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
@@ -6225,6 +6243,16 @@ By default, the right horse will be flipped. The right horse won't.
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain
+
+\subkeyexplain{horse right}{horse right donkey}{true/false}{false}
+Draw the horse with modifications to look more like a donkey:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[horse right,horse right donkey=true]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
 
 \subkeyexplain{horse right}{horse right has base}{true/false}{false}
 \begin{tcblisting}{@}
