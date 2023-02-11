@@ -274,3 +274,36 @@ scale=\pingu@x@jackolantern@scale]
 \pingu@block[rounded corners=2pt]{\@col}([xshift=\csname pingu@plank@#1@xshift\endcsname,yshift=\csname pingu@plank@#1@yshift\endcsname]\pingu@name-wing-#1)++({-.5*(\csname pingu@plank@#1@width\endcsname)},{-.5*(\csname pingu@plank@#1@height\endcsname)}) rectangle ++({\csname pingu@plank@#1@width\endcsname},{\csname pingu@plank@#1@height\endcsname});
 \endscope
 }
+
+% \usetikzlibrary{spy}
+
+\pingu@create@wing@extra{magnifier}{%
+    magnifier \@lr/.code              = {\pingu@set@extra{magnifier\@lr}{true}\pingu@color{magnifier\@lr}{##1}}, % \noexpand\tikzset{/pingu/@pingu/.append style={spy scope={circle,draw,magnification=4,size=1cm}}}
+    magnifier \@lr/.default           = pingu@bronze,
+    magnifier \@lr\space handle length/.code = \expandafter\def\csname pingu@magnifier@\@lr @length\endcsname{##1},
+    magnifier \@lr\space handle shift/.code  = \expandafter\def\csname pingu@magnifier@\@lr @shift\endcsname{##1},
+    magnifier \@lr\space size/.code  = \expandafter\def\csname pingu@magnifier@\@lr @size\endcsname{##1},
+    magnifier \@lr\space glass/.code  = \pingu@color{magnifier@\@lr @glass}{##1},
+    magnifier \@lr\space opacity/.code  = \expandafter\def\csname pingu@magnifier@\@lr @opacity\endcsname{##1},
+    magnifier \@lr\space thick/.code  = \expandafter\def\csname pingu@magnifier@\@lr @thick\endcsname{##1},
+    magnifier \@lr\space xshift/.code  = \expandafter\def\csname pingu@magnifier@\@lr @xshift\endcsname{##1},
+    magnifier \@lr\space yshift/.code  = \expandafter\def\csname pingu@magnifier@\@lr @yshift\endcsname{##1},
+    magnifier \@lr\space handle/.code = \pingu@color{magnifier@\@lr @handle}{##1}%
+}{magnifier \@lr\space handle length=3.5mm, magnifier \@lr\space handle shift=-4mm, magnifier \@lr\space xshift=0mm,magnifier \@lr\space yshift=1mm,magnifier \@lr\space size=2.5mm,magnifier \@lr\space thick=.5mm,magnifier \@lr\space glass=pingu@blue!90!pingu@yellow,magnifier \@lr\space opacity=0.24}
+\def\pingu@draw@wi@magnifier#1{%
+    \pingu@setup@wing{magnifier}{#1}%
+  \scope[rotate around={\@angle:(\pingu@name-wing-#1)}]
+% \csname pingu@color@magnifier#1\endcsname
+  \path ([yshift=\csname pingu@magnifier@#1@yshift\endcsname+\csname pingu@magnifier@#1@size\endcsname,xshift=\csname pingu@magnifier@\@lr @xshift\endcsname]\pingu@name-wing-#1) coordinate (@);
+
+  % \spy[draw=green] on (@) in node at (@);
+% \pgfonlayer{foreground}
+  \pingu@block[even odd rule]{\@col} (@) circle[radius=\csname pingu@magnifier@#1@size\endcsname] circle[radius=\csname pingu@magnifier@#1@size\endcsname-\csname pingu@magnifier@#1@thick\endcsname];
+
+    \pingu@block[opacity=\csname pingu@magnifier@#1@opacity\endcsname]{\csname pingu@color@magnifier@#1@glass\endcsname} (@) circle[radius=\csname pingu@magnifier@#1@size\endcsname-\csname pingu@magnifier@#1@thick\endcsname];
+
+    \pingu@block{\@col} % TODO: adapt size
+    (@) ([shift={(-70:2.5mm)}]@) to[out=230,in=90] ++(-.5mm,-\csname pingu@magnifier@#1@length\endcsname) arc(360:180:.33mm) to[out=90,in=-50] ++(-.5mm,\csname pingu@magnifier@#1@length\endcsname);%
+% \endpgfonlayer
+\endscope
+}
