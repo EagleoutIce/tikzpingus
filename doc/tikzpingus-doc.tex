@@ -35,7 +35,6 @@
 \usepackage{microtype}
 \usepackage{tikzducks}
 \usepackage{datatool}
-\usepackage{relsize}
 \usepackage{multicol}
 \usepackage{footnotebackref}
 \usepackage{adjustbox}
@@ -69,7 +68,7 @@
 \let\say\enquote
 \def\DTLlistformatoxford{,}\def\DTLandname{and}
 % TODO: do guard against same keys for different selectors
-\long\def\ParseDTLListElement#1"#2"\@nil{\textsuperscript{\smash{\raisebox{2pt}{\ifcsname pingu@@lib@#2@\CurrentList @\endcsname\index[\current@indexfile]{Libraries!\textit{\csname pingu@@lib@#2@\CurrentList @\endcsname}!#2?\hyperref[expl-list:\CurrentList]{\protect\lpingu{#2} {\tiny\sffamily(\MapDTLList{\CurrentList})}}}~$\underset{\text{\tiny\smash{\raisebox{3pt}{\textsf{\hyperref[Libraries]{\color{gray}Library}}}}}}{\text{\textit{\tiny\strut\csname pingu@@lib@#2@\CurrentList @\endcsname}}}$\fi}}}}
+\long\def\ParseDTLListElement#1"#2"\@nil{\textsuperscript{\smash{\raisebox{2pt}{\ifcsname pingu@@lib@#2@\CurrentList @\endcsname\index[\current@indexfile]{Libraries!\textit{\csname pingu@@lib@#2@\CurrentList @\endcsname}!#2?\hyperref[expl-list:\CurrentList]{\protect\lpingu{#2} {\tiny\sffamily(\MapDTLList{\CurrentList})}}}~$\underset{\text{\tiny\smash{\raisebox{3pt}{\textsf{\hyperref[Libraries]{\@declaredcolor{gray}Library}}}}}}{\text{\textit{\tiny\strut\csname pingu@@lib@#2@\CurrentList @\endcsname}}}$\fi}}}}
 \def\DTLlistformatitem#1{\textit{#1\expandafter\ParseDTLListElement :#1\@nil}}
 \newcommand*\typesetselection[1][]{\begingroup\ifx!#1!\else\def\DTLlistformatitem##1{#1}\fi\dotypesetselection}
 \def\dotypesetselection#1{\label{expl-list:#1}\def\CurrentList{#1}\expandafter\DTLformatlist\expandafter{\csname @pingu@#1@\endcsname}\endgroup}
@@ -89,10 +88,10 @@
 \def\optstyle{\@declaredcolor{@opcolor}\slshape}
 \def\cmdstyle{\@declaredcolor{@darkerblue}}
 \def\nostyle{\@declaredcolor{black}}
-\def\lstfnsize{-.7}
+\let\lstfnsize\small
 \lstdefinestyle{lstpingu}{%
 	tabsize=2, breaklines,
-	basicstyle=\relsize{\lstfnsize}\ttfamily,
+	basicstyle=\lstfnsize\ttfamily,
 	commentstyle={\@declaredcolor{gray}\slshape},
 	columns=fullflexible,
 	emphstyle=\slshape,
@@ -229,7 +228,7 @@
 	righthand width=4.75cm, bottom=0pt, top=0pt,boxsep=2.25pt,
 	before lower app={}, colback=white
 }
-\lstMakeShortInline[style=lstpingu,language=pingulang,basicstyle=\relsize{-1}\ttfamily\@declaredcolor{black!90!white},moredelim={[s][\itshape]{<}{>}}]{|}
+\lstMakeShortInline[style=lstpingu,language=pingulang,basicstyle=\small\ttfamily\@declaredcolor{black!90!white},moredelim={[s][\itshape]{<}{>}}]{|}
 
 \def\explaincolor{@opcolor!9!white}
 \def\cursub{}
@@ -279,12 +278,12 @@
 		\ifx\@tmpb\@empty\lpingu{#1#2}\@explainsuff\else\lpingu{#1#2 =\ }\texttt{<\textit{\@tmpb}>}\fi\hfill
 				\ifx\@tmp\@empty\else{\@declaredcolor{gray}(}#4{\@declaredcolor{gray})}\fi
 		}
-	}\ifcsname pingu@@lib@\@key @\endcsname\index[\current@indexfile]{Libraries!\textit{\csname pingu@@lib@#2@\endcsname}!\@idxkey?\hyperref[pk:#1\@key]{\protect\lpingu{#2}}}\rlap{~\quad\raisebox{2.75pt}{$\underset{\text{\tiny\smash{\raisebox{3pt}{\textsf{\hyperref[Libraries]{\color{gray}Library}}}}}}{\text{\textit{\footnotesize\parbox{4em}{\null\hfill\strut\csname pingu@@lib@#2@\endcsname\hfill\null}}}}$}}\fi\kern-\linewidth\par\endgroup
+	}\ifcsname pingu@@lib@\@key @\endcsname\index[\current@indexfile]{Libraries!\textit{\csname pingu@@lib@#2@\endcsname}!\@idxkey?\hyperref[pk:#1\@key]{\protect\lpingu{#2}}}\rlap{~\quad\raisebox{2.75pt}{$\underset{\text{\tiny\smash{\raisebox{3pt}{\textsf{\hyperref[Libraries]{\@declaredcolor{gray}Library}}}}}}{\text{\textit{\footnotesize\parbox{4em}{\null\hfill\strut\csname pingu@@lib@#2@\endcsname\hfill\null}}}}$}}\fi\kern-\linewidth\par\endgroup
 }
 {\endminipage\smallskip\par}
 
 \def\singleshortcut#1#2"#3"#4{\def\cursub{#2?\hyperref[pk:#1#2]{\protect\lpingu{#2}}!}\keyexplain[#1]{#2 #3}{\csname pinguopt#4\endcsname}{\csname pingudefa#4\endcsname}%
-	\textcolor{gray}{\footnotesize This is a shortcut for: \texttt{\keyref[#1]{#2}\relsize{-1}{\ =\ {\optstyle#3}}}. The \enquote{\texttt{\textit{\csname pinguopt#4\endcsname}}} argument is passed to \keyref[#1]{#4}.}
+	\textcolor{gray}{\small This is a shortcut for: \texttt{\keyref[#1]{#2}{\small\ =\ {\optstyle#3}}}. The \enquote{\texttt{\textit{\csname pinguopt#4\endcsname}}} argument is passed to \keyref[#1]{#4}.}
 \endkeyexplain}
 \newcommand*\shortcuts[4][/pingu/]{\begingroup
 \protected@edef\@tmp{#3}%
@@ -308,12 +307,14 @@
 \endgroup}
 
 \newcommand*\cmdcoldef[1]{\cmddef{pingu@color@#1}}
-\newcommand*\cmd[1]{\texttt{\smaller\doccmd{#1}}}
+\newcommand*\cmd[1]{\texttt{\small\doccmd{#1}}}
 
 \colorlet{@softexplaincolor}{gray!8!white}
+\def\pingu@nokeyindent{0pt}
+\def\pingu@softexplaincolor{@softexplaincolor}
 \newenvironment{subkeyexplain}[5][/pingu/]{%
 \begingroup
-\def\explaincolor{@softexplaincolor}\def\keyexplainindent{0em}%
+\let\explaincolor\pingu@softexplaincolor\let\keyexplainindent\pingu@nokeyindent%
 \def\cursub{#2?\hyperref[pk:#1#2]{\protect\lpingu{#2}}!}%
 \keyexplain[#1]{#3}{#4}{#5}%
 	{\@declaredcolor{gray}\footnotesize This command is only in effect if \keyref[#1]{#2} is active.}\par
@@ -322,10 +323,10 @@
 \newenvironment{commandexplain}[3][]{%
 \begingroup
 \def\@labelhack{/pingu/}%
-\def\mand##1{\texttt{\{\textsf{\smaller##1}\}}}%
+\def\mand##1{\texttt{\{\textsf{\small##1}\}}}%
 \def\@pingu@command@keypartner{#1}%
 % #1 is the default
-\newcommand\opt[2][]{\texttt{\textit{[\textsf{\smaller##2\ifx!##1!\else\textcolor{gray}{\smaller\sffamily=##1}\fi}]}}}%
+\newcommand\opt[2][]{\texttt{\textit{[\textsf{\small##2\ifx!##1!\else\textcolor{gray}{\small\sffamily=##1}\fi}]}}}%
 \def\@explainsuff{#3}%
 \keyexplain[]{\\#2}{}{}%
 \ifx\@pingu@command@keypartner\@empty\else
@@ -351,13 +352,13 @@
 \def\explaincolor{@softexplaincolor}\def\keyexplainindent{0em}%
 \def\cursub{#3?\hyperref[pk:#1#3]{\protect\lpingu{#3}}!}%
 \keyexplain[#1]{#2}{\csname pinguopt#3\endcsname}{\csname pingudefa#3\endcsname}%
-	{\@declaredcolor{gray}\footnotesize This is an alias for \keyref[#1]{#3}.}%
+	{\@declaredcolor{gray}\small This is an alias for \keyref[#1]{#3}.}%
 \endkeyexplain\endgroup}
 \newcommand\subkeyalias[4][/pingu/]{\begingroup
 \def\explaincolor{@softexplaincolor}\def\keyexplainindent{0em}%
 \def\cursub{#4?\hyperref[pk:#1#4]{\protect\lpingu{#4}}!#3?\hyperref[pk:#1#3]{\protect\lpingu{#3}}!}%
 \keyexplain[#1]{#2}{\csname pinguopt#3\endcsname}{\csname pingudefa#3\endcsname}%
-	{\@declaredcolor{gray}\footnotesize This is an alias for \keyref[#1]{#3}.}%
+	{\@declaredcolor{gray}\small This is an alias for \keyref[#1]{#3}.}%
 \endkeyexplain\endgroup}
 
 \def\lib#1{\tikz[baseline=-.6ex]\node[draw=teal,fill=teal!3!white,very thick,rounded corners=2pt,inner ysep=0pt]{\sffamily\strut#1};}
@@ -642,7 +643,7 @@ body types can change the coordinates (left the \keyref{body type} \textit{chubb
 	\foreach \col in {main,black,silver,bronze,white,yellow,lightblue,blue,green,red,purple} {
 		\item[{\tikz[baseline=-.6ex]{\fill[pingu@\col,semithick,draw=black] circle (4pt);}}] \footnotesize\strut
 		% somehow outputs, therefore box
-		\setbox0=\hbox{\colorInfoRGB{pingu@\col}\xdef\colorValue{\colorValue}}\rlap{\smash{\raisebox{-2.9mm}{\sffamily\color{gray}\tiny\expandafter\parseRGB\colorValue;}}}%
+		\setbox0=\hbox{\colorInfoRGB{pingu@\col}\xdef\colorValue{\colorValue}}\rlap{\smash{\raisebox{-2.9mm}{\sffamily\@declaredcolor{gray}\tiny\expandafter\parseRGB\colorValue;}}}%
 		\texttt{pingu@\col}%
 	}
 	\item[] \footnotesize\strut% buffer
@@ -866,7 +867,7 @@ I am working on the \textit{cloak}-Clothing at the moment:
 
 \section{Full Reference}\label{sec:full-ref}
 
-\def\percenttargetreductionpengus{63}\def\lstfnsize{-1.65}
+\def\percenttargetreductionpengus{50}\let\lstfnsize\footnotesize
 \tcbset{%
 	before lower={\begin{adjustbox}{scale=.\percenttargetreductionpengus}},
 	after lower={\end{adjustbox}},%
@@ -3421,9 +3422,9 @@ Currently, this is a very cumbersome command to change various bee parameters at
 
 \showkeyexplain{on horse}{color}{pingu@bronze!80!pingu@black}
 	Place your penguin on a not-so-to-scale horse (see \keyref{horse left} and \keyref{horse right}):
-\begin{tcblisting}{}
+\begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[on horse=green]
+	\pingu[on horse=green, on horse has bounding box]
 \end{tikzpicture}
 \end{tcblisting}
 \endshowkeyexplain
@@ -3431,15 +3432,17 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \subkeyexplain{on horse}{on horse flip}{true/false}{\if@pingu@x@horse@on@flip@ true\else false\fi}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[on horse,on horse flip=true]
+	\pingu[on horse, on horse has bounding box,
+		on horse flip=true]
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain
 
 \subkeyexplain{on horse}{on horse donkey}{true/false}{\if@pingu@x@horse@on@donkey@ true\else false\fi}
-\begin{tcblisting}{}
+\begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[on horse,on horse donkey=true]
+	\pingu[on horse, on horse has bounding box,
+		on horse donkey=true]
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain
@@ -3447,7 +3450,8 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \subkeyexplain{on horse}{on horse has base}{true/false}{\if@pingu@x@horse@on@base@ true\else false\fi}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[on horse,on horse has base]
+	\pingu[on horse, on horse has bounding box,
+		on horse has base]
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain
@@ -3463,7 +3467,8 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \subkeyexplain{on horse}{on horse draw}{color}{\pingu@color@horseon@draw}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[on horse,on horse draw=green]
+	\pingu[on horse, on horse has bounding box,
+		on horse draw=green]
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain
@@ -3471,7 +3476,8 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \subkeyexplain{on horse}{on horse mane}{color}{\pingu@color@horseon@mane}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[on horse,on horse mane=green]
+	\pingu[on horse, on horse has bounding box,
+		on horse mane=green]
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain
@@ -3480,7 +3486,8 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \subkeyexplain{on horse}{on horse mane draw}{color}{\pingu@color@horseon@mane@draw}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[on horse,on horse mane draw=green]
+	\pingu[on horse, on horse has bounding box,
+		on horse mane draw=green]
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain
@@ -3488,7 +3495,8 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \subkeyexplain{on horse}{on horse thatch}{color}{\pingu@color@horseon@thatch}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[on horse,on horse thatch=green]
+	\pingu[on horse, on horse has bounding box,
+		on horse thatch=green]
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain
@@ -3497,7 +3505,8 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \subkeyexplain{on horse}{on horse thatch draw}{color}{\pingu@color@horseon@thatch@draw}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[on horse,on horse thatch draw=green]
+	\pingu[on horse, on horse has bounding box,
+		on horse thatch draw=green]
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain
@@ -3505,7 +3514,8 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \subkeyexplain{on horse}{on horse tail}{color}{\pingu@color@horseon@tail}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[on horse,on horse tail=green]
+	\pingu[on horse, on horse has bounding box,
+		on horse tail=green]
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain
@@ -3514,7 +3524,8 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \subkeyexplain{on horse}{on horse tail draw}{color}{\pingu@color@horseon@tail@draw}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[on horse,on horse tail draw=green]
+	\pingu[on horse, on horse has bounding box,
+		on horse tail draw=green]
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain
@@ -3522,7 +3533,8 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \subkeyexplain{on horse}{on horse eyes}{color}{\pingu@color@horseon@eyes}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[on horse,on horse eyes=green]
+	\pingu[on horse, on horse has bounding box,
+		on horse eyes=green]
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain
@@ -3531,7 +3543,8 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \subkeyexplain{on horse}{on horse mouth}{color}{\pingu@color@horseon@mouth}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[on horse,on horse mouth=green]
+	\pingu[on horse, on horse has bounding box,
+		on horse mouth=green]
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain
@@ -3539,7 +3552,8 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \subkeyexplain{on horse}{on horse nose}{color}{\pingu@color@horseon@nose}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[on horse,on horse nose=green]
+	\pingu[on horse, on horse has bounding box,
+		on horse nose=green]
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain
@@ -3547,7 +3561,8 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \subkeyexplain{on horse}{on horse ears}{color}{\pingu@color@horseon@ears}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[on horse,on horse ears=green]
+	\pingu[on horse, on horse has bounding box,
+		on horse ears=green]
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain
@@ -3556,6 +3571,7 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[on horse,on horse has base,
+			 on horse has bounding box,
 			 on horse base=green]
 \end{tikzpicture}
 \end{tcblisting}
@@ -3565,7 +3581,8 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \subkeyexplain{on horse}{on horse base draw}{color}{\pingu@color@horseon@base@draw}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[on horse,on horse has base,
+	\pingu[on horse, on horse has bounding box,
+		    on horse has base,
 			 on horse base draw=green]
 \end{tikzpicture}
 \end{tcblisting}
@@ -3574,7 +3591,8 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \subkeyexplain{on horse}{on horse base shade}{color}{\pingu@color@horseon@base@shade}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[on horse,on horse has base,
+	\pingu[on horse, on horse has bounding box,
+			 on horse has base,
 			 on horse base shade=green]
 \end{tikzpicture}
 \end{tcblisting}
@@ -3584,8 +3602,9 @@ Currently, this is a very cumbersome command to change various bee parameters at
 \subkeyexplain{on horse}{on horse base shade draw}{color}{\pingu@color@horseon@base@shade@draw}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[on horse,on horse has base,
-			 on horse base shade draw=green]
+	\pingu[on horse, on horse has base,
+		 	 on horse has bounding box,
+		    on horse base shade draw=green]
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain
@@ -3594,7 +3613,8 @@ Currently, this is a very cumbersome command to change various bee parameters at
 This key reacts with the \keyref{on horse flip} option!
 \begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[on horse,on horse xshift=1cm]
+	\pingu[on horse, on horse has bounding box,
+		on horse xshift=1cm]
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain
@@ -3602,7 +3622,8 @@ This key reacts with the \keyref{on horse flip} option!
 \subkeyexplain{on horse}{on horse yshift}{length}{\pingu@x@horseon@yshift}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[on horse,on horse yshift=1cm]
+	\pingu[on horse, on horse has bounding box,
+		on horse yshift=1cm]
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain
@@ -3610,7 +3631,8 @@ This key reacts with the \keyref{on horse flip} option!
 \subkeyexplain{on horse}{on horse scale}{length}{\pingu@x@horseon@scale}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[on horse,on horse scale=.25]
+	\pingu[on horse, on horse has bounding box,
+		on horse scale=.25]
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain
@@ -6647,7 +6669,7 @@ This is interesting in combination with other extras as it allows the \keyref{sh
 
 % set up for inclusion
 \lstset{includerangemarker=false,rangeprefix={\%\ <}, rangesuffix={>}}
-\newcommand\includecode[2][../tex/tikzpingus.sty]{\lstinputlisting[linerange=#2-@#2,style=lstpingu,language=pinguinternallang,numbers=left,numberstyle={\tiny\color{gray}\sffamily},numbersep=5pt]{#1}}
+\newcommand\includecode[2][../tex/tikzpingus.sty]{\lstinputlisting[linerange=#2-@#2,style=lstpingu,language=pinguinternallang,numbers=left,numberstyle={\tiny\@declaredcolor{gray}\sffamily},numbersep=5pt]{#1}}
 \def\current@indexfile{\jobname-internals}
 % gobble leading pingu for indexing
 \def\@gobblekey#1{%
