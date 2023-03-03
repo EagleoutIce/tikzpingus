@@ -88,6 +88,8 @@ to[bend right=7] ++(-.05,-.2) to[bend left=13] ++(-.2,-1.15) to[bend right=13] +
 
 % the eye; this is no error it has draw as fill
 \pingu@block{\csname pingu@color@horse#1@eyes\endcsname} [rounded corners=.25*\pingu@@horse@scale] ([xshift=3mm,yshift=-7.5mm]@ear) to[bend right=20] ++(.125,-.2) to[bend right=50] ++(.1,.125) to[bend left=15] cycle;
+
+\pingu@block[draw=\csname pingu@color@horse#1@base@shade@draw\endcsname,line width=2pt*\pingu@@horse@scale]{\csname pingu@color@horse#1@base@shade\endcsname} (@hooffront) to[bend left=2] ++(.355*.65,-.565*.65) to[bend left=15] ++(-.395,-.075) to[bend left=10] ++(-.293,.105) to[bend left=9] ++(.06,.3) to[bend left=5] cycle;
 }
 
 % universal switch for all three positions
@@ -140,8 +142,7 @@ to[bend right=7] ++(-.05,-.2) to[bend left=13] ++(-.2,-1.15) to[bend right=13] +
 \fi
     \edef\@pingu@@horse@lw{\csname pingu@horse#1@x@line@width\endcsname}
     \pingu@@drawer@horse{#1}
-    % hoof
-    % \pingu@block[draw=\csname pingu@color@horse#1@base@shade@draw\endcsname,line width=2pt*\pingu@@horse@scale]{\csname pingu@color@horse#1@base@shade\endcsname} (@hooffront) to[bend left=2] ++(.355*.65,-.565*.65) to[bend left=15] ++(-.395,-.075) to[bend left=10] ++(-.293,.105) to[bend left=9] ++(.06,.3) to[bend left=5] cycle;
+    % TODO-SET: hoof
 \endscope\endscope
 }
 % todo: make statue extra
