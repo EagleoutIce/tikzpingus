@@ -35,8 +35,9 @@ coordinate (@hoofback) to[bend right=\if@pingu@@horse@@donkey@9\else8\fi] ++(.15
 \pingu@block[draw=\csname pingu@color@horse#1@draw\endcsname,line width=\@pingu@@horse@lw*\pingu@@horse@scale]{\csname pingu@color@horse#1\endcsname} [rounded corners=1*\pingu@@horse@scale](@frontleg) to[out=266,in=85] ++(.09,-.5) to[bend left=10] ++(-.15,-.8)
 to[bend right=7] ++(-.05,-.2) to[bend left=13] ++(-.2,-1.15) to[bend right=13] ++(.15,-.2) to[bend left=10] ++(-.07,-.3) to[bend right=100] ++(.45,-.1) to[bend right=10] ([yshift=5mm,xshift=3mm]@frontleg) -- cycle;
 % background back leg
-\pingu@block[draw=\csname pingu@color@horse#1@draw\endcsname,line width=\@pingu@@horse@lw*\pingu@@horse@scale]{\csname pingu@color@horse#1\endcsname} [rounded corners=1*\pingu@@horse@scale](@backleg) to[out=-115,in=\if@pingu@@horse@@donkey@120\else130\fi] ++(-.3,-3.65) -- ++(.2,-.3) to[bend left] ++(-.5,-.1)
+\pingu@block[draw=\csname pingu@color@horse#1@draw\endcsname,line width=\@pingu@@horse@lw*\pingu@@horse@scale]{\csname pingu@color@horse#1\endcsname} [rounded corners=1*\pingu@@horse@scale](@backleg) to[out=-115,in=\if@pingu@@horse@@donkey@120\else130\fi] ++(-.3,-3.65) -- ++(.2,-.3) coordinate(@hoofback@) to[bend left] ++(-.5,-.1)
 -- ++(\if@pingu@@horse@@donkey@-.2\else-.05\fi,.15) -- ++(0,.15) to[bend left=\if@pingu@@horse@@donkey@45\else60\fi] cycle;
+\pingu@block[draw=\csname pingu@color@horse#1@base@shade@draw\endcsname,line width=2pt*\pingu@@horse@scale]{\csname pingu@color@horse#1@base@shade\endcsname} (@hoofback@) to[bend right=\if@pingu@@horse@@donkey@9\else8\fi] ++(.15,-.26) to[bend left=10] ++(\if@pingu@@horse@@donkey@-.66\else-.55\fi,\if@pingu@@horse@@donkey@-.15\else-.05\fi) -- ++(-1.73mm,2.42mm) to[bend right=6] cycle;
 
 \if@pingu@@horse@@donkey@
 \pingu@block[draw=\csname pingu@color@horse#1@tail@draw\endcsname,line width=\@pingu@@horse@lw*\pingu@@horse@scale]{\csname pingu@color@horse#1@tail\endcsname} [rounded corners=1*\pingu@@horse@scale](@back) to[out=215,in=95] ++(-.1,-2) to[out=270,in=92] ++(0,-.75) [sharp corners] to[bend right=20] coordinate[pos=.5] (@) ++(.15,0) to[bend right=10] cycle;
@@ -90,7 +91,7 @@ to[bend right=7] ++(-.05,-.2) to[bend left=13] ++(-.2,-1.15) to[bend right=13] +
 % the eye; this is no error it has draw as fill
 \pingu@block{\csname pingu@color@horse#1@eyes\endcsname} [rounded corners=.25*\pingu@@horse@scale] ([xshift=3mm,yshift=-7.5mm]@ear) to[bend right=20] ++(.125,-.2) to[bend right=50] ++(.1,.125) to[bend left=15] cycle;
 
-\pingu@block[draw=\csname pingu@color@horse#1@base@shade@draw\endcsname,line width=2pt*\pingu@@horse@scale]{\csname pingu@color@horse#1@base@shade\endcsname} (@hooffront) to[bend left=2] ++(.355*.65,-.565*.65) to[bend left=15] ++(-.395,-.075) to[bend left=10] ++(-.293,.105) to[bend left=9] ++(.06,.3) to[bend left=5] cycle;
+\pingu@block[draw=\csname pingu@color@horse#1@base@shade@draw\endcsname,line width=2pt*\pingu@@horse@scale]{\csname pingu@color@horse#1@base@shade\endcsname} (@hooffront) to[bend left=2] ++(.355*.65,-.565*.65) to[bend left=15] ++(-.395,-.075) to[bend left=10] ++(-.293,.105) to[bend left=9] ++(.06,.3) to[bend right=15] cycle;
 \pingu@block[draw=\csname pingu@color@horse#1@base@shade@draw\endcsname,line width=2pt*\pingu@@horse@scale]{\csname pingu@color@horse#1@base@shade\endcsname} (@hoofback) to[bend right=\if@pingu@@horse@@donkey@9\else8\fi] ++(.15,-.26) to[bend left=10] ++(\if@pingu@@horse@@donkey@-.66\else-.55\fi,\if@pingu@@horse@@donkey@-.15\else-.05\fi) -- ++(-1.73mm,2.42mm) to[bend right=6] cycle; %to[bend left=2] ++(.355*.65,-.565*.65) to[bend left=15] ++(-.395,-.075) to[bend left=10] ++(-.293,.105) to[bend left=9] ++(.06,.3) to[bend left=5] cycle;
 }
 
