@@ -34,11 +34,11 @@ coordinate (@hoofback) to[bend right=\if@pingu@@horse@@donkey@9\else8\fi] ++(.15
 % background front leg
 \pingu@block[draw=\csname pingu@color@horse#1@draw\endcsname,line width=\@pingu@@horse@lw*\pingu@@horse@scale]{\csname pingu@color@horse#1\endcsname} [rounded corners=1*\pingu@@horse@scale](@frontleg) to[out=266,in=85] ++(.09,-.5) to[bend left=10] ++(-.15,-.8)
 to[bend right=7] ++(-.05,-.2) to[bend left=13] ++(-.2,-1.15) to[bend right=13] ++(.15,-.2) to[bend left=10] ++(-.07,-.3)  to[bend right=100] ++(.45,-.1) to[bend right=10] coordinate[pos=0.08](@hooffront@) ([yshift=5mm,xshift=3mm]@frontleg) -- cycle;
-\pingu@block[draw=\csname pingu@color@horse#1@base@shade@draw\endcsname,line width=2pt*\pingu@@horse@scale,rounded corners=.12]{\csname pingu@color@horse#1@base@shade\endcsname} (@hooffront@) to[bend left=2] ++(0,-.565*.665) to[bend left=59] ++(-.225,-.08) -- ++(-.02,.03) to[bend left=20] ++(-.298,.11) to[bend right=6] ++(.092,.3) to[bend right=15] cycle;
+\pingu@block[draw=\csname pingu@color@horse#1@fr@hoof\endcsname!80!pingu@black,line width=2pt*\pingu@@horse@scale,rounded corners=.12]{\csname pingu@color@horse#1@fr@hoof\endcsname} (@hooffront@) to[bend left=2] ++(0,-.565*.665) to[bend left=59] ++(-.225,-.08) -- ++(-.02,.03) to[bend left=20] ++(-.298,.11) to[bend right=6] ++(.092,.3) to[bend right=15] cycle;
 % background back le0
 \pingu@block[draw=\csname pingu@color@horse#1@draw\endcsname,line width=\@pingu@@horse@lw*\pingu@@horse@scale]{\csname pingu@color@horse#1\endcsname} [rounded corners=1*\pingu@@horse@scale](@backleg) to[out=-115,in=\if@pingu@@horse@@donkey@120\else130\fi] ++(-.3,-3.5) -- ++(.2,-.3) coordinate(@hoofback@) to[bend left] ++(-.5,-.1)
 -- ++(\if@pingu@@horse@@donkey@-.2\else-.05\fi,.15) -- ++(0,.15) to[bend left=\if@pingu@@horse@@donkey@45\else60\fi] cycle;
-\pingu@block[draw=\csname pingu@color@horse#1@base@shade@draw\endcsname,line width=2pt*\pingu@@horse@scale]{\csname pingu@color@horse#1@base@shade\endcsname} (@hoofback@) to[bend right=\if@pingu@@horse@@donkey@9\else8\fi] ++(.15,-.26) to[bend left=10] ++(\if@pingu@@horse@@donkey@-.66\else-.55\fi,\if@pingu@@horse@@donkey@-.15\else-.05\fi) -- ++(-1.73mm,2.42mm) to[bend right=6] cycle;
+\pingu@block[draw=\csname pingu@color@horse#1@br@hoof\endcsname!80!pingu@black,line width=2pt*\pingu@@horse@scale]{\csname pingu@color@horse#1@br@hoof\endcsname} (@hoofback@) to[bend right=\if@pingu@@horse@@donkey@9\else9\fi] ++(.206,-.265) to[bend left=10] ++(\if@pingu@@horse@@donkey@-.66\else-.55\fi,\if@pingu@@horse@@donkey@-.15\else-.05\fi) -- ++(-1.73mm,2.42mm) to[bend right=6] cycle;
 
 \if@pingu@@horse@@donkey@
 \pingu@block[draw=\csname pingu@color@horse#1@tail@draw\endcsname,line width=\@pingu@@horse@lw*\pingu@@horse@scale]{\csname pingu@color@horse#1@tail\endcsname} [rounded corners=1*\pingu@@horse@scale](@back) to[out=215,in=95] ++(-.1,-2) to[out=270,in=92] ++(0,-.75) [sharp corners] to[bend right=20] coordinate[pos=.5] (@) ++(.15,0) to[bend right=10] cycle;
@@ -92,8 +92,8 @@ to[bend right=7] ++(-.05,-.2) to[bend left=13] ++(-.2,-1.15) to[bend right=13] +
 % the eye; this is no error it has draw as fill
 \pingu@block{\csname pingu@color@horse#1@eyes\endcsname} [rounded corners=.25*\pingu@@horse@scale] ([xshift=3mm,yshift=-7.5mm]@ear) to[bend right=20] ++(.125,-.2) to[bend right=50] ++(.1,.125) to[bend left=15] cycle;
 
-\pingu@block[draw=\csname pingu@color@horse#1@base@shade@draw\endcsname,line width=2pt*\pingu@@horse@scale]{\csname pingu@color@horse#1@base@shade\endcsname} (@hooffront) to[bend left=2] ++(.355*.65,-.565*.65) to[bend left=15] ++(-.395,-.075) to[bend left=10] ++(-.293,.105) to[bend left=9] ++(.06,.3) to[bend right=15] cycle;
-\pingu@block[draw=\csname pingu@color@horse#1@base@shade@draw\endcsname,line width=2pt*\pingu@@horse@scale]{\csname pingu@color@horse#1@base@shade\endcsname} (@hoofback) to[bend right=\if@pingu@@horse@@donkey@9\else8\fi] ++(.15,-.26) to[bend left=10] ++(\if@pingu@@horse@@donkey@-.66\else-.55\fi,\if@pingu@@horse@@donkey@-.15\else-.05\fi) -- ++(-1.73mm,2.42mm) to[bend right=6] cycle; %to[bend left=2] ++(.355*.65,-.565*.65) to[bend left=15] ++(-.395,-.075) to[bend left=10] ++(-.293,.105) to[bend left=9] ++(.06,.3) to[bend left=5] cycle;
+\pingu@block[draw=\csname pingu@color@horse#1@fl@hoof\endcsname!80!pingu@black,line width=2pt*\pingu@@horse@scale]{\csname pingu@color@horse#1@fl@hoof\endcsname} (@hooffront) to[bend left=2] ++(.355*.65,-.565*.65) to[bend left=15] ++(-.395,-.075) to[bend left=10] ++(-.293,.105) to[bend left=9] ++(.06,.3) to[bend right=15] cycle;
+\pingu@block[draw=\csname pingu@color@horse#1@bl@hoof\endcsname!80!pingu@black,line width=2pt*\pingu@@horse@scale]{\csname pingu@color@horse#1@bl@hoof\endcsname} (@hoofback) to[bend right=\if@pingu@@horse@@donkey@9\else8\fi] ++(.15,-.26) to[bend left=10] ++(\if@pingu@@horse@@donkey@-.66\else-.55\fi,\if@pingu@@horse@@donkey@-.15\else-.05\fi) -- ++(-1.73mm,2.42mm) to[bend right=6] cycle; %to[bend left=2] ++(.355*.65,-.565*.65) to[bend left=15] ++(-.395,-.075) to[bend left=10] ++(-.293,.105) to[bend left=9] ++(.06,.3) to[bend left=5] cycle;
 }
 
 % universal switch for all three positions
@@ -128,10 +128,18 @@ to[bend right=7] ++(-.05,-.2) to[bend left=13] ++(-.2,-1.15) to[bend right=13] +
     horse \@lr\space base draw/.code       = \pingu@color{horse\@lr @base@draw}{##1},%
     horse \@lr\space base shade/.code      = \pingu@color{horse\@lr @base@shade}{##1},%
     horse \@lr\space base shade draw/.code = \pingu@color{horse\@lr @base@shade@draw}{##1},%
+    horse \@lr\space front left hoof/.code = \pingu@color{horse\@lr @fl@hoof}{##1},%
+    horse \@lr\space front right hoof/.code= \pingu@color{horse\@lr @fr@hoof}{##1},%
+    horse \@lr\space back left hoof/.code  = \pingu@color{horse\@lr @bl@hoof}{##1},%
+    horse \@lr\space back right hoof/.code = \pingu@color{horse\@lr @br@hoof}{##1},%
+    horse \@lr\space front hoofs/.style    = {/pingu/horse \@lr\space front left hoof=##1,/pingu/horse \@lr\space front right hoof=##1},
+    horse \@lr\space back hoofs/.style     = {/pingu/horse \@lr\space back left hoof=##1,/pingu/horse \@lr\space back right hoof=##1},
+    horse \@lr\space hoofs/.style          = {/pingu/horse \@lr\space front hoofs=##1,/pingu/horse \@lr\space back hoofs=##1},
+    % TODO: allow colors to be styles?
     horse \@lr\space xshift/.code          = \@namedef{pingu@x@horse\@lr @xshift}{##1},
     horse \@lr\space yshift/.code          = \@namedef{pingu@x@horse\@lr @yshift}{##1},
     horse \@lr\space on base/.style        ={/pingu/horse \@lr\space yshift=4cm},
-}{horse \@lr\space draw=\csname pingu@color@horse\@lr\endcsname!80!pingu@black,horse \@lr\space mane=\csname pingu@color@horse\@lr\endcsname!86!pingu@white,horse \@lr\space mane draw=\csname pingu@color@horse\@lr @mane\endcsname!80!pingu@black,horse \@lr\space eyes=\csname pingu@color@horse\@lr @draw\endcsname,horse \@lr\space mouth=\csname pingu@color@horse\@lr @draw\endcsname,horse \@lr\space nose=\csname pingu@color@horse\@lr @draw\endcsname,horse \@lr\space ears=\csname pingu@color@horse\@lr\endcsname,horse \@lr\space thatch=\csname pingu@color@horse\@lr @mane\endcsname,horse \@lr\space thatch draw=\csname pingu@color@horse\@lr @thatch\endcsname!80!pingu@black,horse \@lr\space tail=\csname pingu@color@horse\@lr @mane\endcsname,horse \@lr\space tail draw=\csname pingu@color@horse\@lr @tail\endcsname!80!pingu@black,horse \@lr\space has base=false,horse \@lr\space base=lightgray!90!black,horse \@lr\space base draw=\csname pingu@color@horse\@lr @base\endcsname!91!pingu@black,horse \@lr\space base shade=lightgray!80!black,horse \@lr\space base shade draw=\csname pingu@color@horse\@lr @base@shade\endcsname!91!pingu@black,horse \@lr\space xshift=0pt,horse \@lr\space yshift=0pt,horse \@lr\space flip=\ifx\@lr\pingu@str@wing@left true\else false\fi,horse \@lr\space donkey=false,horse \@lr\space line width=1.75pt}
+}{horse \@lr\space draw=\csname pingu@color@horse\@lr\endcsname!80!pingu@black,horse \@lr\space mane=\csname pingu@color@horse\@lr\endcsname!86!pingu@white,horse \@lr\space mane draw=\csname pingu@color@horse\@lr @mane\endcsname!80!pingu@black,horse \@lr\space eyes=\csname pingu@color@horse\@lr @draw\endcsname,horse \@lr\space mouth=\csname pingu@color@horse\@lr @draw\endcsname,horse \@lr\space nose=\csname pingu@color@horse\@lr @draw\endcsname,horse \@lr\space ears=\csname pingu@color@horse\@lr\endcsname,horse \@lr\space thatch=\csname pingu@color@horse\@lr @mane\endcsname,horse \@lr\space thatch draw=\csname pingu@color@horse\@lr @thatch\endcsname!80!pingu@black,horse \@lr\space tail=\csname pingu@color@horse\@lr @mane\endcsname,horse \@lr\space tail draw=\csname pingu@color@horse\@lr @tail\endcsname!80!pingu@black,horse \@lr\space has base=false,horse \@lr\space base=lightgray!90!black,horse \@lr\space base draw=\csname pingu@color@horse\@lr @base\endcsname!91!pingu@black,horse \@lr\space base shade=lightgray!80!black,horse \@lr\space base shade draw=\csname pingu@color@horse\@lr @base@shade\endcsname!91!pingu@black,horse \@lr\space xshift=0pt,horse \@lr\space yshift=0pt,horse \@lr\space flip=\ifx\@lr\pingu@str@wing@left true\else false\fi,horse \@lr\space donkey=false,horse \@lr\space line width=1.75pt,horse \@lr\space hoofs=\@pingu@none}
 
 \def\pingu@draw@wi@horse#1{%
     \pingu@setup@wing{horse}{#1}%
@@ -186,10 +194,17 @@ to[bend right=7] ++(-.05,-.2) to[bend left=13] ++(-.2,-1.15) to[bend right=13] +
     on horse base draw/.code        = \pingu@color{horseon@base@draw}{#1},%
     on horse base shade/.code       = \pingu@color{horseon@base@shade}{#1},%
     on horse base shade draw/.code  = \pingu@color{horseon@base@shade@draw}{#1},%
+    on horse front left hoof/.code  = \pingu@color{horseon@fl@hoof}{#1},%
+    on horse front right hoof/.code = \pingu@color{horseon@fr@hoof}{#1},%
+    on horse back left hoof/.code   = \pingu@color{horseon@bl@hoof}{#1},%
+    on horse back right hoof/.code  = \pingu@color{horseon@br@hoof}{#1},%
+    on horse front hoofs/.style     = {/pingu/on horse front left hoof=#1,/pingu/on horse front right hoof=#1},
+    on horse back hoofs/.style      = {/pingu/on horse back left hoof=#1,/pingu/on horse back right hoof=#1},
+    on horse hoofs/.style           = {/pingu/on horse front hoofs=#1,/pingu/on horse back hoofs=#1},
     on horse xshift/.code           = \@namedef{pingu@x@horseon@xshift}{#1},
     on horse yshift/.code           = \@namedef{pingu@x@horseon@yshift}{#1},
     on horse scale/.code            = \@namedef{pingu@x@horseon@scale}{#1}
-}{on horse draw=\pingu@color@horseon!80!pingu@black,on horse mane=\pingu@color@horseon!86!pingu@white,on horse mane draw=\pingu@color@horseon@mane!80!pingu@black,on horse eyes=\pingu@color@horseon@draw,on horse mouth=\pingu@color@horseon@draw,on horse nose=\pingu@color@horseon@draw,on horse ears=\pingu@color@horseon,on horse thatch=\pingu@color@horseon@mane,on horse thatch draw=\pingu@color@horseon@thatch!80!pingu@black,on horse tail=\pingu@color@horseon@mane,on horse tail draw=\pingu@color@horseon@tail!80!pingu@black,on horse has base=false,on horse base=lightgray!90!black,on horse base draw=\pingu@color@horseon@base!91!pingu@black,on horse base shade=lightgray!80!black,on horse base shade draw=\pingu@color@horseon@base@shade!91!pingu@black,on horse xshift=0pt,on horse yshift=0pt,on horse flip=false,on horse scale=0.75,on horse has bounding box=false,on horse donkey=false,on horse line width=1.75pt}
+}{on horse draw=\pingu@color@horseon!80!pingu@black,on horse mane=\pingu@color@horseon!86!pingu@white,on horse mane draw=\pingu@color@horseon@mane!80!pingu@black,on horse eyes=\pingu@color@horseon@draw,on horse mouth=\pingu@color@horseon@draw,on horse nose=\pingu@color@horseon@draw,on horse ears=\pingu@color@horseon,on horse thatch=\pingu@color@horseon@mane,on horse thatch draw=\pingu@color@horseon@thatch!80!pingu@black,on horse tail=\pingu@color@horseon@mane,on horse tail draw=\pingu@color@horseon@tail!80!pingu@black,on horse has base=false,on horse base=lightgray!90!black,on horse base draw=\pingu@color@horseon@base!91!pingu@black,on horse base shade=lightgray!80!black,on horse base shade draw=\pingu@color@horseon@base@shade!91!pingu@black,on horse xshift=0pt,on horse yshift=0pt,on horse flip=false,on horse scale=0.75,on horse has bounding box=false,on horse donkey=false,on horse line width=1.75pt,on horse hoofs=\@pingu@none}
 
 
 \def\pingu@draw@eb@horseon{%
