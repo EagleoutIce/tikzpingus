@@ -5,15 +5,16 @@
 \usepackage[active, tightpage]{preview}
 
 \PreviewBorder.5cm
-\definecolor{donkey-gray}{RGB}{107, 109, 121}
 
 \begin{document}
 \begin{preview}
 \begin{tikzpicture}
-   \pingu[horse behind=donkey-gray!3!white,:hide,on horse donkey,on horse line width=4pt,on horse draw=black,on horse mane draw=black,on horse thatch draw=black,on horse tail draw=black,on horse flip]
-\end{tikzpicture}~~~~~~~~~~~~~~~~\begin{tikzpicture}
-   \pingu[horse behind=donkey-gray!3!white,:hide,on horse line width=4pt,on horse draw=black,on horse mane draw=black,on horse thatch draw=black,on horse tail draw=black,on horse flip]
-\end{tikzpicture}~~~~~~~~
+   % on horse flip,
+   \pingu[horse behind,:hide,on horse has bounding box, on horse hoofs, on horse flip]% =green, on horse flip, on horse front right hoof=teal
+\end{tikzpicture}~~%
+\begin{tikzpicture}
+   \pingu[horse behind=pingu@black!70!gray,:hide,on horse has bounding box, on horse hoofs=pingu@black!40!gray]
+\end{tikzpicture}
 \end{preview}
 \end{document}
 
