@@ -312,8 +312,8 @@
   :fill/.style            = {/pingu/body=#1,/pingu/body front=#1,/pingu/feet color=#1, /pingu/bill color=#1, /pingu/eyes color=#1, /pingu/eyes second color=#1},
   :fill/.default          = pingu@main,
   :pingu/.style           = {/pingu/@body/.style={#1},/pingu/@wings/.style={#1},/pingu/@eyes/.style={#1},/pingu/@bill/.style={#1},/pingu/@hair/.style={#1},/pingu/@feet/.style={#1}},
-  :mix-all/.style        = {:pingu={/pingu/@block/.append style={/pingu/@pingu@all={####1!#1}, fill={####1!#1}}}},
-  :mix-all/.default      = 50!white,
+  :mix-draw/.style        = {:pingu={/pingu/@block/.append style={/pingu/@pingu@all={####1!#1}, fill={####1!#1}}}},
+  :mix-draw/.default      = 50!white,
   :mix/.style             = {
     /pingu/@body/.code={\@pingu@color@mixwith\pingu@color@body@main{#1}\@pingu@color@mixwith\pingu@color@body@head{#1}},
     /pingu/@wings/.code={\@pingu@color@mixwith\pingu@color@left@wing{#1}\@pingu@color@mixwith\pingu@color@right@wing{#1}},
