@@ -314,6 +314,8 @@
   :pingu/.style           = {/pingu/@body/.style={#1},/pingu/@wings/.style={#1},/pingu/@eyes/.style={#1},/pingu/@bill/.style={#1},/pingu/@hair/.style={#1},/pingu/@feet/.style={#1}},
   :mix-draw/.style        = {:pingu={/pingu/@block/.append style={/pingu/@pingu@all={####1!#1}, fill={####1!#1}}}},
   :mix-draw/.default      = 50!white,
+  :mix-all/.style        = {/pingu/@block/.append style={/pingu/@pingu@all={####1!#1}, fill={####1!#1}},/pingu/@draw/.append style={/pingu/@pingu@all={####1!#1}, draw={####1!#1}}},
+  :mix-all/.default      = 50!white,
   :mix/.style             = {
     /pingu/@body/.code={\@pingu@color@mixwith\pingu@color@body@main{#1}\@pingu@color@mixwith\pingu@color@body@head{#1}},
     /pingu/@wings/.code={\@pingu@color@mixwith\pingu@color@left@wing{#1}\@pingu@color@mixwith\pingu@color@right@wing{#1}},
