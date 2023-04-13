@@ -766,7 +766,7 @@ So I have started to create some predefined styles, that do change some of the p
 \begin{multicols}{2}
 \begin{itemize}
 	\itemsep0pt
-	\foreach \tx/\s in {{draw everything with a line}/{:line}, {fill main penguin}/{:fill}, {draw components with transparency}/{:ghost parts}, {draw all layers with transparency}/{:ghost}, {set main \say{devil}-components}/{:devil},{flip the penguin (swaps left \& right)}/{:back},{do not draw main pingu}/{:hide},{mix the main penguin with a given color}/{:mix},{mix the main penguin completely with a given color}/{:mix-all}} {
+	\foreach \tx/\s in {{draw everything with a line}/{:line}, {fill main penguin}/{:fill}, {draw components with transparency}/{:ghost parts}, {draw all layers with transparency}/{:ghost}, {set main \say{devil}-components}/{:devil},{flip the penguin (swaps left \& right)}/{:back},{do not draw main pingu}/{:hide},{mix the main penguin with a given color}/{:mix},{mix the main penguin completely with a given color}/{:mix-draw},{mix everything with a given color}/{:mix-all}} {
 		\item \parbox[t]{.8\linewidth}{\raggedright\expandafter\dkeyref\expandafter{\s}, \tx.} \hfill
 		\parbox[t]{.175\linewidth}{\scalebox{.4}{%
 			\begin{tikzpicture}[baseline=.35\baselineskip]%
@@ -1395,7 +1395,7 @@ Aliases may set custom defaults. Those defaults are not listed as they may chang
 \endkeyexplain
 
 \keyexplain{:pingu}{options}{}
-	Apply the given options to all penguin-keys:
+	Apply the given options to all penguin-keys (for \keyref{body}, \keyref{wings color}, \keyref{eyes color}, \keyref{bill color}, \keyref{hair color}, and \keyref{feet color}) allowing to re-use the original color:
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[:pingu={/pingu/@block/.style={fill=green}}]
@@ -1410,19 +1410,27 @@ Aliases may set custom defaults. Those defaults are not listed as they may chang
 	\pingu[mask,tie=red,lollipop left,:mix=50!green]
 \end{tikzpicture}
 \end{tcblisting}
-	In contrast to \dkeyref{:mix-all} this changes the active colors of the penguin.
+	In contrast to \dkeyref{:mix-draw} this changes the active colors of the penguin.
+\endkeyexplain
+
+\keyexplain{:mix-draw}{color-mix}{50!white}
+	Mix the main penguin with given colors, but leave all extras intact. This can be used (for example) to gray-out the penguin:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[mask,tie=red,:mix-draw=50!green]
+\end{tikzpicture}
+\end{tcblisting}
+	In contrast to \dkeyref{:mix} this changes the drawing options (using \keyref{:pingu}).
 \endkeyexplain
 
 \keyexplain{:mix-all}{color-mix}{50!white}
-	Mix the main penguin with given colors, but leave all extras intact. This can be used (for example) to gray-out the penguin:
+	Mix everything of the penguin with given colors, including all extras intact. This can be used (for example) to gray-out the penguin:
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[mask,tie=red,:mix-all=50!green]
 \end{tikzpicture}
 \end{tcblisting}
-	In contrast to \dkeyref{:mix} this changes the drawing options.
 \endkeyexplain
-
 
 \def\cursub{}
 \subsection{Extras}
