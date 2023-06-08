@@ -108,8 +108,8 @@
     belt knot color  = pingu@silver
 }
 
-\def\pingu@draw@ea@belt@wh{1.25mm}
-\def\pingu@draw@ea@belt{%
+\def\pingu@draw@eb@belt@wh{1.25mm}
+\def\pingu@draw@eb@belt{%
     \path ([yshift=-1.66mm/2]\pingu@name-waist-left) -- ([yshift=-1.66mm/2]\pingu@name-waist-right) coordinate[pos=.5] (\pingu@name @belt@center);
     \pingu@block[rounded corners=.5pt]{\pingu@color@belt} (\pingu@name-waist-left) coordinate (@) to[bend left=5] (\pingu@name-waist-right) -- ++(0,-1.66mm) to[bend right=5] ([yshift=-1.66mm]@) -- cycle;
     \pingu@block[rounded corners=1.5pt]{\pingu@color@belt@knot} ([xshift=-1mm,yshift=-.7mm-1.66mm/2]\pingu@name @belt@center) rectangle ++(2mm,2mm);
