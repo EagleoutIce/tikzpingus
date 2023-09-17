@@ -342,10 +342,10 @@
 % #region glows
 \ifpengu@setup@glows@
 \usetikzlibrary{fadings}%
-\tikzfading[name=pingu@halo fade out,inner color=transparent!0,outer color=transparent!100]
+\tikzfading[name=pingu@halo fade out,inner color=transparent!39,outer color=transparent!100]
 \pgfqkeys{/pingu}{@glow/.style={path fading={pingu@halo fade out},#1}}
 \else
-\pgfqkeys{/pingu}{@glow/.style={},/pingu/@saber@glow/.style={}}
+\pgfqkeys{/pingu}{@glow/.style={}}
 \fi
 % #endregion
 % #endregion
