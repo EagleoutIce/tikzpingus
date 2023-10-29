@@ -171,3 +171,44 @@ to[out=180-\pingu@x@mitra@upperangle+2,in=180-\pingu@x@mitra@lowerangle-2] ++(-\
 \pingu@block{\pingu@color@mitra@center@band} (\pingu@x@mitra@centerband@width*\pingu@x@mitra@overset+.1mm,-.2185cm) to[bend right=4] ++(0,\pingu@x@mitra@height) to[bend right] ++(-2*\pingu@x@mitra@centerband@width*\pingu@x@mitra@overset-.1mm,0) to[bend left=4] ++(0,-\pingu@x@mitra@height) -- cycle;
 \pingu@block{\pingu@color@mitra@upper@band} (0,.3*\pingu@x@mitra@height-.2185cm-0.5*\pingu@x@mitra@upperband@height*.3*\pingu@x@mitra@height)++(180:{\pingu@x@mitra@overset+\pingu@mitra@w@half} and .035cm) arc (180:360:{\pingu@x@mitra@overset+\pingu@mitra@w@half} and .035cm) -- ++(0,\pingu@x@mitra@upperband@height*.3*\pingu@x@mitra@height) arc (0:-180:{\pingu@x@mitra@overset+\pingu@mitra@w@half} and .035cm)  -- cycle;
 \endscope\endscope}
+
+
+\pingu@create@extra{longhair}{%
+  long hair/.forward to  = /pingu/longhair,
+  longhair/.default      = pingu@black!90!black,
+  longhair/.code         = \pingu@set@extra{longhair}{true}\pingu@color{longhair}{#1},
+  long hair draw/.forward to  = /pingu/longhair draw,
+  longhair draw/.code    = \pingu@color{longhair@draw}{#1}
+  long hair length/.forward to  = /pingu/longhair length,
+  longhair length/.code  = {\def\pingu@x@longhair@length{#1}}
+}{longhair draw=,longhair length=1.25cm}
+
+\newdimen\pingu@longhair@w@half \pingu@longhair@w@half=.925cm
+\newdimen\pingu@longhair@h \pingu@longhair@h=.625cm
+\def\pingu@longhair@angle@modifier{55}
+\def\pingu@draw@ea@longhair{%
+\scope
+
+% start and end coordinate
+\path (\pingu@name-head-top) arc(90:90+\pingu@longhair@angle@modifier:\pingu@w@half{} and \pingu@head@h@half) coordinate (\pingu@name @longhair@start@right);
+\path (\pingu@name-head-top) arc(90:90-\pingu@longhair@angle@modifier:\pingu@w@half{} and \pingu@head@h@half) coordinate (\pingu@name @longhair@start@left);
+
+\coordinate (\pingu@name @longhair@lowerleft) at ([yshift=-\pingu@x@longhair@length,xshift=-1mm]\pingu@name @longhair@start@right);
+
+\draw[green,fill=orange,rounded corners=3pt*\pingu@scale] (\pingu@name @longhair@lowerleft) to[out=90-30,in=270-30] ++(2.5mm,\pingu@x@longhair@length) to[bend left=20] [rounded corners=.5pt*\pingu@scale] ++(\pingu@w@half-3.25mm,0) [rounded corners=3pt*\pingu@scale] to[bend left=20] ++(\pingu@w@half-3.25mm,0) % right lock
+  to[out=270+30,in=90+30] ++(1.5mm,-\pingu@x@longhair@length) coordinate (\pingu@name @longhair@end@right)
+  % [rounded corners=.5pt*\pingu@scale]
+  [sharp corners] -- ++(1.25mm,.5mm) coordinate[pos=.5] (@tmp)
+  to[bend left=25] +(-.85mm,1.5mm)
+  % (@tmp)
+  ++(.85mm)
+  to[out=-60,in=215] ++(3.72mm,-.55mm)
+  to[out=170,in=260] ++(-2mm,3mm) coordinate (@tmp)
+  to[out=80,in=0] ([yshift=2mm]\pingu@name-head-top)
+  % we mirror to the other side
+  to[out=180,in=100] ([xshift=-2*\pingu@w@half-1.15mm]@tmp)
+  to[out=280,in=-10] ++(-2mm,-3mm)
+  to[out=-25,in=240] ++(3.72mm,.55mm)
+  ;
+;
+\endscope}
