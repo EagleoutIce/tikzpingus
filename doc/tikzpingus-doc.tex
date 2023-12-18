@@ -7098,11 +7098,11 @@ As another example, this is the definition of the \say{flat bill} (\keyref{bill 
 % \end{commandexplain}
 
 \begin{commandexplain}{pingu@headcon@x}{}
-	This dimension holds a hardcoded value defining the x-position offseting the connection point of the penguin head. Its default value is \the\pingu@headcon@x. It may be removed in the future (or replaced by an option).
+	This dimension holds a hardcoded value defining the x-position offsetting the connection point of the penguin head. Its default value is \the\pingu@headcon@x. It may be removed in the future (or replaced by an option).
 \end{commandexplain}
 
 \begin{commandexplain}{pingu@headcon@y}{}
-	This dimension holds a hardcoded value defining the y-position offseting the connection point of the penguin head. Its default value is \the\pingu@headcon@y. It may be removed in the future (or replaced by an option).
+	This dimension holds a hardcoded value defining the y-position offsetting the connection point of the penguin head. Its default value is \the\pingu@headcon@y. It may be removed in the future (or replaced by an option).
 \end{commandexplain}
 
 \subsubsection{The Code}
@@ -7114,9 +7114,9 @@ This code, defines three commands: \cmddef{pingu@bodytype@select}, \cmddef{pingu
 
 The macro \cmddef{pingu@x@bodytype@none} is defined as follows:
 \includecode{pingu@x@bodytype@none}
-\important\space Please note, that when writing the initial penguin, i did not intend to allow additional body shapes. Therefore, most of the defaults and \say{globals} are must be defined here (alongside a lot of hardcoding).
+\important\space Please note, that when writing the initial penguin, I did not intend to allow additional body shapes. Therefore, most of the defaults and \say{globals} must be defined here (alongside a lot of hardcoding).
 
-Within the initialization of all penguin options, we defuine the main colors:
+Within the initialization of all penguin options, we define the main colors:
 % \pgfqkeys{/pingu}{
 \includecode{bodytype\ keys}
 With this, the body has three colors to work with: \cmdcoldef{body@main}, \cmdcoldef{body@head}, and \cmdcoldef{body@front}.
@@ -7181,7 +7181,7 @@ Now on how to add new feet. While it is possible to use \cmdref{pingu@leftfoot@a
 For this, i created the command \cmdref{pingu@feet@s}\ldots
 
 \begin{commandexplain}{pingu@feet@s}{\mand{name}\mand{left-foot}\mand{right-foot}\opt[pingu@yellow]{default color}}
-	Allows to easily add new feet.
+	Allows easily adding new feet.
 \end{commandexplain}
 The macro \cmdref{pingu@feet@s} is defined with the help of \cmddef{pingu@feet@s@} like this:
 \includecode{pingu@feet@s}
