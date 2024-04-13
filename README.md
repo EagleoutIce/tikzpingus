@@ -2,8 +2,8 @@
 
 [![made-with-latex](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://www.latex-project.org/) [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/GPL-3.0) [![PR's Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com)  [![CTAN](https://img.shields.io/ctan/v/tikzpingus.svg)](https://www.ctan.org/pkg/tikzpingus) [![build](https://github.com/EagleoutIce/tikzpingus/actions/workflows/compile.yaml/badge.svg)](https://github.com/EagleoutIce/tikzpingus/actions/workflows/compile.yaml)
 
-This package is a work-in-progress package allowing you to typeset little penguins in LaTeX with PGF/Ti*k*Z.
-The [documentation](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/doc/build/tikzpingus-doc.pdf) will constantly evolve.
+This package allows you to typeset (cute) little penguins in LaTeX with PGF/Ti*k*Z.
+The [documentation](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/doc/build/tikzpingus-doc.pdf) contains a reference for all currently available options. See the examples below for a quick overview.
 
 ----
 
@@ -54,7 +54,7 @@ If you just load the library by `\usepackage{tikzpingus}` all options will work,
 
 Not all gadgets and wing positions work together. While I try to get as many of them working as possible, selecting two different styles of glasses or hats probably looks weird, no matter what code I add.
 Nonetheless, there is code implemented to deal with a lot of interactions (e.g., items in different wings, multiple items on the hat, ...), and there are several options to cope with them yourself if the need arises.
-Oh, and by the way, when options are named with `left` and `right` they are always from the penguin-perspective.
+Oh, and by the way, when options are named with `left` and `right` they are always from the penguin perspective.
 <br />
 
 <div style="text-align:center">
@@ -72,7 +72,7 @@ These are some test files that showcase additional capabilities of the library:\
 
 [<img src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/minimal-1.png?raw=true" width="300"/>](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/minimal.pdf)
 
-For the title image of a computer-science course on software-product-lines, I created a small and incomplete but really fun feature model:\
+For the title image of a computer science course on software product lines, I created a small and incomplete but really fun feature model:\
 [<img src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/spl-1.png?raw=true" width="900"/>](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/spl.pdf)
 
 ## Contributors
