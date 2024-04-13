@@ -21,7 +21,6 @@ Ti*k*Zpingus is actively developed by *Florian Sihler* (contact me at: <florian.
 The purpose of this library is to produce one thing: cute penguins. Using the `\pingu`-macro, you can pass an arbitrary amount of options to endow the penguin with many extras or change its complete appearance. Furthermore, most options allow additional arguments, defining the color, text, ...
 <br />
 
-
 <div style="text-align:center">
 
 [<img style="border-radius:8pt" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-2.png?raw=true" width="600" />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=2)
