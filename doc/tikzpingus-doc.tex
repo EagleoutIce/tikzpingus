@@ -244,6 +244,9 @@
 % allow the oxes to have minor overlaps
 \newcommand\DefineKey[2][/pingu/]{%
 	\StrSubstitute{#2}{ }{-}[\keyexternalname]%
+	% create valid artifact path names for github
+	\StrSubstitute{\keyexternalname}{:}{_}[\keyexternalname]%
+	\StrSubstitute{\keyexternalname}{*}{_}[\keyexternalname]%
 	% only use _ to keep the length intact when replace with the backslash
 	\StrSubstitute{\keyexternalname}{\\}{_}[\keyexternalname]%
 	{\def\\{_}\protected@xdef\@key{#2}}%
@@ -768,7 +771,7 @@ So I have started to create some predefined styles, that do change some of the p
 	\itemsep0pt
 	\foreach \tx/\s in {{draw everything with a line}/{:line}, {fill main penguin}/{:fill}, {draw components with transparency}/{:ghost parts}, {draw all layers with transparency}/{:ghost}, {set main \say{devil}-components}/{:devil},{flip the penguin (swaps left \& right)}/{:back},{do not draw main pingu}/{:hide},{mix the main penguin with a given color}/{:mix},{mix the main penguin completely with a given color}/{:mix-draw},{mix everything with a given color}/{:mix-all}} {
 		\item \parbox[t]{.8\linewidth}{\raggedright\expandafter\dkeyref\expandafter{\s}, \tx.} \hfill
-		\parbox[t]{.175\linewidth}{\scalebox{.4}{%
+		\parbox[t]{.175\linewidth}{\scalebox{.4}{%git@github.com:EagleoutIce/tikzpingus.git
 			\begin{tikzpicture}[baseline=.35\baselineskip]%
 				\pingu[\s]
 			\end{tikzpicture}%
