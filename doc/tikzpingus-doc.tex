@@ -68,7 +68,7 @@
 \let\say\enquote
 \def\DTLlistformatoxford{,}\def\DTLandname{and}
 % TODO: do guard against same keys for different selectors
-\long\def\ParseDTLListElement#1"#2"\@nil{\textsuperscript{\smash{\raisebox{2pt}{\ifcsname pingu@@lib@#2@\CurrentList @\endcsname\index[\current@indexfile]{Libraries!\textit{\csname pingu@@lib@#2@\CurrentList @\endcsname}!#2?\hyperref[expl-list:\CurrentList]{\protect\lpingu{#2} {\tiny\sffamily(\MapDTLList{\CurrentList})}}}~$\underset{\text{\tiny\smash{\raisebox{3pt}{\textsf{\hyperref[Libraries]{\@declaredcolor{gray}Library}}}}}}{\text{\textit{\tiny\strut\csname pingu@@lib@#2@\CurrentList @\endcsname}}}$\fi}}}}
+\long\def\ParseDTLListElement#1"#2"\@nil{}
 \def\DTLlistformatitem#1{\textit{#1\expandafter\ParseDTLListElement :#1\@nil}}
 \newcommand*\typesetselection[1][]{\begingroup\ifx!#1!\else\def\DTLlistformatitem##1{#1}\fi\dotypesetselection}
 \def\dotypesetselection#1{\label{expl-list:#1}\def\CurrentList{#1}\expandafter\DTLformatlist\expandafter{\csname @pingu@#1@\endcsname}\endgroup}
@@ -281,7 +281,7 @@
 		\ifx\@tmpb\@empty\lpingu{#1#2}\@explainsuff\else\lpingu{#1#2 =\ }\texttt{<\textit{\@tmpb}>}\fi\hfill
 				\ifx\@tmp\@empty\else{\@declaredcolor{gray}(}#4{\@declaredcolor{gray})}\fi
 		}
-	}\ifcsname pingu@@lib@\@key @\endcsname\index[\current@indexfile]{Libraries!\textit{\csname pingu@@lib@#2@\endcsname}!\@idxkey?\hyperref[pk:#1\@key]{\protect\lpingu{#2}}}\rlap{~\quad\raisebox{2.75pt}{$\underset{\text{\tiny\smash{\raisebox{3pt}{\textsf{\hyperref[Libraries]{\@declaredcolor{gray}Library}}}}}}{\text{\textit{\footnotesize\parbox{4em}{\null\hfill\strut\csname pingu@@lib@#2@\endcsname\hfill\null}}}}$}}\fi\kern-\linewidth\par\endgroup
+	}\kern-\linewidth\par\endgroup
 }
 {\endminipage\smallskip\par}
 
@@ -363,8 +363,6 @@
 \keyexplain[#1]{#2}{\csname pinguopt#3\endcsname}{\csname pingudefa#3\endcsname}%
 	{\@declaredcolor{gray}\small This is an alias for \keyref[#1]{#3}.}%
 \endkeyexplain\endgroup}
-
-\def\lib#1{\tikz[baseline=-.6ex]\node[draw=teal,fill=teal!3!white,very thick,rounded corners=2pt,inner ysep=0pt]{\sffamily\strut#1};}
 
 \def\TikZ{Ti\textit{k}Z}
 \def\tikzpingus{\TikZ pingus}
@@ -684,28 +682,6 @@ With \cmdref{pingudefaults} and \cmdref{pingudefaultsappend} (similar, but exten
 \begin{commandexplain}{pingudefaultsappend}{\mand{penguin keys}}
 	Appends the given \textit{penguin keys} as defaults for the local group.
 	To overwrite these keys, see \cmdref{pingudefaults}.
-\end{commandexplain}
-
-\subsection{Libraries}
-\label{Libraries}\index{Libraries}I've split the penguin features into a set of libraries. While all of them are loaded by default, the |bare| package-option disables the automatic loading of all libraries. They can be loaded (locally to the current group) using \cmdref{pinguloadlibrary} and \cmdref{pinguloadlibraries} passing on a comma separated list of desired libraries.
-See the full reference or the index to learn which key comes from which library.
-Please note that~--- at the moment~--- not all components of a library are labeled correctly.
-% TODO: already count that? % global let?
-\foreach[count=\i] \l/\xs in \pingu@defaultlibs{\xdef\pingu@defaultlibs@count{\i}}%
-Currently there are the following libraries:
-\foreach[count=\i] \l/\xs in \pingu@defaultlibs{%
-	\ifx\l\empty\else
-	\index[\current@indexfile]{Libraries!\textit{\l}}\textit{\l}\ifnum\numexpr\pingu@defaultlibs@count-1>\i,\space\else
-	\ifnum\pingu@defaultlibs@count=\i\else,~and\space\fi\fi
-	\fi
-}.
-
-\begin{commandexplain}{pinguloadlibrary}{\mand{library}}
-	Load a penguin library (actually, due to the implementation, you can use this command just like \cmdref{pinguloadlibraries} and load multiple libraries).
-\end{commandexplain}
-
-\begin{commandexplain}{pinguloadlibraries}{\mand{libraries}}
-	Load multiple penguin libraries, separated by a comma. For example: \texttt{\cmdref{pinguloadlibraries}\{shirts, glasses\}}.
 \end{commandexplain}
 
 \subsection{Changing the wings}
