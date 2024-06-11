@@ -1187,6 +1187,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     \pingu@xif@ea{headband}{headband}%
     \pingu@xif@ea{strawhat}{strawhat}%
     \pingu@xif@ea{hat}{hat}%
+    \pingu@xif@ea{spacehelmet}{spacehelmet}%
     \pingu@xif@ea{mitra}{mitra}%
     \pingu@xif@ea{witchhat}{witchhat}%
     \pingu@xif@ea{constructionhelmet}{constructionhelmet}%
@@ -2508,6 +2509,26 @@ to[bend left=8] cycle;
 \pingu@block[rounded corners=\pingu@x@conicalhat@rounding]{\pingu@color@conicalhat} (0,-.25cm)++(180:\pingu@x@conicalhat@width/2 and 1mm) coordinate (@) arc (180:0:\pingu@x@conicalhat@width/2 and 1mm) -- ++(.225mm,.6mm) to[bend right=5] ++(-\pingu@x@conicalhat@width/2, \pingu@x@conicalhat@height) to[bend right=5] ([xshift=-.225mm,yshift=.6mm]@) -- cycle;
 \endscope
 }
+
+\pingu@create@extra{spacehelmet}{%
+  space helmet/.default   = pingu@black!45!white,
+  space helmet/.code      = \pingu@set@extra{spacehelmet}{true}\pingu@color{spacehelmet}{#1},
+  space helmet glass/.code= \pingu@color{spacehelmet@glass}{#1},
+  space helmet glass opacity/.code = \def\pingu@x@spacehelmet@glass@opacity{#1},
+  space helmet position/.code args  = {#1:(#2,#3)#4}{\def\pingu@x@spacehelmet@angle{#1}\def\pingu@x@spacehelmet@xshift{#2}\def\pingu@x@spacehelmet@yshift{#3}\def\pingu@x@spacehelmet@scale{#4}},
+}{space helmet position={-2:(.35mm,0)1},space helmet glass=pingu@blue!40!pingu@yellow!50!white,space helmet glass opacity=.33}
+
+\newdimen\pingu@spacehelmet@w@half \pingu@spacehelmet@w@half=.935cm
+\newdimen\pingu@spacehelmet@h \pingu@spacehelmet@h=1.125cm
+\def\pingu@draw@ea@spacehelmet{%
+\scope[rotate around={\pingu@x@spacehelmet@angle:(\pingu@name-head-top)},shift={(\pingu@name-head-top)},shift={(\pingu@x@spacehelmet@xshift,\pingu@x@spacehelmet@yshift)},scale=\pingu@x@spacehelmet@scale]
+\pingu@block[opacity=\pingu@x@spacehelmet@glass@opacity]{\pingu@color@spacehelmet@glass} (\pingu@name-head-center) ellipse [x radius=.9\pingu@spacehelmet@w@half, y radius=.45\pingu@spacehelmet@h];
+
+\pingu@block[/pingu/@draw=\pingu@color@spacehelmet,thick, even odd rule]{\pingu@color@spacehelmet} 
+    ([yshift=-1mm]\pingu@name-wings-side-right) to[bend right=57] ([yshift=-1mm]\pingu@name-wings-side-left)
+    arc (0:180:\pingu@spacehelmet@w@half{} and \pingu@spacehelmet@h) -- cycle
+    (\pingu@name-head-center) ellipse [x radius=.9\pingu@spacehelmet@w@half, y radius=.45\pingu@spacehelmet@h];
+\endscope}
 
 \pingu@create@extra{witchhat}{%
   witch hat/.code      = \pingu@set@extra{witchhat}{true}\pingu@color{witchhat}{#1},

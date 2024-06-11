@@ -2533,6 +2533,41 @@ Currently, this is a very cumbersome command to change various hat parameters at
 \end{tcblisting}
 \endsubkeyexplain
 
+\subsubsection{The space helmet}
+\showkeyexplain{space helmet}{color}{pingu@black!45!white}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[space helmet=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endshowkeyexplain
+
+\subkeyexplain{space helmet}{space helmet glass}{color}{\pingu@color@spacehelmet@glass}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[space helmet, space helmet glass=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{space helmet}{space helmet glass opacity}{factor}{\pingu@x@spacehelmet@glass@opacity}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[space helmet, space helmet glass opacity=1]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{space helmet}{space helmet position}{angle>:(<x>,<y>)<scale}{\pingu@x@spacehelmet@angle:(\pingu@x@spacehelmet@xshift,\pingu@x@spacehelmet@yshift)\{\pingu@x@spacehelmet@scale\}}
+Currently, this is a very cumbersome command to change various space helmet parameters at the same time:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[space helmet, space helmet position={1:(0cm,-.09cm){1.33}}]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+
 \subsubsection{The mitra}
 \showkeyexplain{mitra}{color}{pingu@red!67!pingu@black}
 \begin{tcblisting}{@}
