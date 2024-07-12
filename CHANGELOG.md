@@ -74,7 +74,7 @@
 - King [\#170](https://github.com/EagleoutIce/tikzpingus/issues/170)
 - Darken sections [\#157](https://github.com/EagleoutIce/tikzpingus/issues/157)
 - Document the sheriff star [\#150](https://github.com/EagleoutIce/tikzpingus/issues/150)
-- Describe the comands to load libraries [\#142](https://github.com/EagleoutIce/tikzpingus/issues/142)
+- Describe the commands to load libraries [\#142](https://github.com/EagleoutIce/tikzpingus/issues/142)
 - Describing the commands for setting defaults with the new commandexplain [\#141](https://github.com/EagleoutIce/tikzpingus/issues/141)
 - Link drawing styles [\#104](https://github.com/EagleoutIce/tikzpingus/issues/104)
 - Check if Caching caches really everything or if something \(potentially vital\) is missing [\#65](https://github.com/EagleoutIce/tikzpingus/issues/65)
