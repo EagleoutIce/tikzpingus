@@ -15,7 +15,7 @@ Ti*k*Zpingus is actively developed by *Florian Sihler* (contact me at: <florian.
 <div style="text-align:center">
 
 <!-- While GitHub will cleanse the border-radius, I keep it for the future. -->
-[<img style="border-radius:8pt" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-1.png?raw=true" width="600" />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=1)
+[<img style="border-radius:8pt" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-1.png?raw=true" width="600" alt="A happy penguin, waving its right wing." />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=1)
 </div>
 
 The purpose of this library is to produce one thing: cute penguins. Using the `\pingu`-macro, you can pass an arbitrary amount of options to endow the penguin with many extras or change its complete appearance. Furthermore, most options allow additional arguments, defining the color, text, ...
@@ -23,7 +23,7 @@ The purpose of this library is to produce one thing: cute penguins. Using the `\
 
 <div style="text-align:center">
 
-[<img style="border-radius:8pt" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-2.png?raw=true" width="600" />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=2)
+[<img style="border-radius:8pt" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-2.png?raw=true" width="600" alt="A small penguin with hat and cup" />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=2)
 </div>
 
 While the [documentation](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/doc/build/tikzpingus-doc.pdf) contains a reference of all options that are available (or at least, that is the plan), most extras should be named relatively intuitive. For example, if you want a small penguin, you add the option `small`.
@@ -32,7 +32,7 @@ If the penguin should be large, you write `large`. If you want the penguin to ho
 
 <div style="text-align:center">
 
-[<img style="border-radius:8pt" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-3.png?raw=true" width="600" />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=3)
+[<img style="border-radius:8pt" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-3.png?raw=true" width="600" alt="A santa-looking penguin with beard, eye patch, santa hat and cane." />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=3)
 </div>
 
 Currently, most options I have added arose from concrete situations and are not part of "sets". However, some sets do exist, like the `santa` or `devil` collection. If there are more sets in the future, I might add them as first-class components. For now, the [documentation](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/doc/build/tikzpingus-doc.pdf#appendix.A) contains an [overview](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/doc/build/tikzpingus-doc.pdf#appendix.A) of the larger gadgets.
@@ -40,15 +40,15 @@ Currently, most options I have added arose from concrete situations and are not 
 
 <div style="text-align:center">
 
-[<img style="border-radius:8pt" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-4.png?raw=true" width="600" />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=4)
+[<img style="border-radius:8pt" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-4.png?raw=true" width="600" alt="A technical penguin with lightsaber, laptop, vr headset, and headphones." />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=4)
 </div>
 
-If you just load the library by `\usepackage{tikzpingus}` all options will work, and you might want to use the `glows`-option (`\usepackage[glows]{tikzpingus}`) so that lightsabers and other glowing elements look waaay nicer (but may produce artifacts in some pdf-viewers). However, if loading the library takes too long for you, using the `bare` option will drastically reduce the default options available while allowing you to load specific libraries with `\pinguloadlibraries{<list of libraries>}`.
+If you just load the library by `\usepackage{tikzpingus}` all options will work, and you might want to use the `glows`-option (`\usepackage[glows]{tikzpingus}`) so that lightsabers and other glowing elements look waaay nicer (but may produce artifacts in some pdf-viewers).
 <br />
 
 <div style="text-align:center">
 
-[<img style="border-radius:8pt" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-5.png?raw=true" width="600" />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=5)
+[<img style="border-radius:8pt" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-5.png?raw=true" width="600" alt="A shocked penguin with a cake on the hat, mask, and a figurine horse in the right wing." />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=5)
 </div>
 
 Not all gadgets and wing positions work together. While I try to get as many of them working as possible, selecting two different styles of glasses or hats probably looks weird, no matter what code I add.
@@ -58,26 +58,25 @@ Oh, and by the way, when options are named with `left` and `right` they are alwa
 
 <div style="text-align:center">
 
-[<img style="border-radius:8pt" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-6.png?raw=true" width="600" />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=6)
+[<img style="border-radius:8pt" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-6.png?raw=true" width="600" alt="A crowned penguin with sunglasses, gold medal, and a golden glow." />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=6)
 </div>
 
 Clothes are a work in progress for a long time now. While there are pants, shirts, a cape, and a cloak, they interfere with body types and other interaction codes. They work quite well for "not-too-fancy" and exotic combinations, but for more complex scenarios, I just had no time (for now). So feel free to wrap your head around that and open a PR! I would be happy to assist you!
 
-
 ## Testing Files
 
 These are some test files that showcase additional capabilities of the library:\
-[<img src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/preview-1.png?raw=true" width="600"/>](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/showcase.pdf)
+[<img src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/preview-1.png?raw=true" width="600" alt="A test file of many penguins." />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/showcase.pdf)
 
-[<img src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/minimal-1.png?raw=true" width="300"/>](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/minimal.pdf)
+[<img src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/minimal-1.png?raw=true" width="300" alt="The current minimal penguin test."/>](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/minimal.pdf)
 
 For the title image of a computer science course on software product lines, I created a small and incomplete but really fun feature model:\
-[<img src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/spl-1.png?raw=true" width="900"/>](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/spl.pdf)
+[<img src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/spl-1.png?raw=true" width="900" alt="A Penguin Feature-Model" />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/spl.pdf)
 
 ## Contributors
 
 <a href="https://github.com/eagleoutice/tikzpingus/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=eagleoutice/tikzpingus" />
+  <img src="https://contrib.rocks/image?repo=eagleoutice/tikzpingus" alt="Contributor Information" />
 </a>
 
 Made with [contrib.rocks](https://contrib.rocks).
