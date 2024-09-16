@@ -2533,6 +2533,130 @@ Currently, this is a very cumbersome command to change various hat parameters at
 \end{tcblisting}
 \endsubkeyexplain
 
+\subsubsection{The graduate cap}
+\showkeyexplain{graduate}{color}{pingu@black!95!white}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[graduate=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endshowkeyexplain
+
+\keyalias{graduate cap}{graduate}
+
+{\def\pingu@color@graduate{<graduate-color>}
+\subkeyexplain{graduate}{graduate top}{color}{\pingu@color@graduate@top}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[graduate, graduate top=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+\subkeyalias{graduate cap top}{graduate top}{graduate}
+}
+
+{
+\subkeyexplain{graduate}{graduate tilt}{length}{\pingu@x@graduate@tilt}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[graduate, graduate tilt=5mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+\subkeyalias{graduate cap tilt}{graduate tilt}{graduate}
+}
+
+{\def\pingu@color@graduate{<graduate-color>}
+\def\pingu@color@graduate@tassel{<graduate-tassel-color>}
+\subkeyexplain{graduate}{graduate tassel}{color}{\pingu@color@graduate@tassel}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[graduate, graduate tassel=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+\subkeyalias{graduate cap tassel}{graduate tassel}{graduate}
+}
+
+{\def\pingu@color@graduate{<graduate-color>}
+\def\pingu@color@graduate@tassel{<graduate-tassel-color>}
+\subkeyexplain{graduate}{graduate tassel drop}{color}{\pingu@color@graduate@tassel@drop}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[graduate, graduate tassel,
+	       graduate tassel drop=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+\subkeyalias{graduate cap tassel drop}{graduate tassel drop}{graduate}
+}
+
+{\def\pingu@color@graduate{<graduate-color>}
+\def\pingu@color@graduate@tassel{<graduate-tassel-color>}
+\subkeyexplain{graduate}{graduate tassel start}{coordinate}{\pingu@x@tassel@start}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[graduate, graduate tassel, 
+	       graduate tassel start={(2mm,4mm)}]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+\subkeyalias{graduate cap tassel start}{graduate tassel start}{graduate}
+}
+
+{\def\pingu@color@graduate{<graduate-color>}
+\def\pingu@color@graduate@tassel{<graduate-tassel-color>}
+\subkeyexplain{graduate}{graduate tassel width}{length}{\pingu@x@tassel@width}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[graduate, graduate tassel, 
+	       graduate tassel width=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+\subkeyalias{graduate cap tassel width}{graduate tassel width}{graduate}
+}
+
+{\def\pingu@color@graduate{<graduate-color>}
+\def\pingu@color@graduate@tassel{<graduate-tassel-color>}
+\subkeyexplain{graduate}{graduate tassel length}{length}{\pingu@x@tassel@length}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[graduate, graduate tassel, 
+	       graduate tassel length=12mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+\subkeyalias{graduate cap tassel length}{graduate tassel length}{graduate}
+}
+
+{\def\pingu@color@graduate{<graduate-color>}
+\def\pingu@color@graduate@tassel{<graduate-tassel-color>}
+\def\pingu@x@tassel@width{<graduate-tassel-width>}
+\subkeyexplain{graduate}{graduate tassel drop size}{length}{\pingu@x@tassel@length}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[graduate, graduate tassel, 
+	       graduate tassel drop size=4mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+\subkeyalias{graduate cap tassel drop size}{graduate tassel drop size}{graduate}
+}
+
+\subkeyexplain{graduate}{graduate position}{angle>:(<x>,<y>)<scale}{\pingu@x@graduate@angle:(\pingu@x@graduate@xshift,\pingu@x@graduate@yshift)\{\pingu@x@graduate@scale\}}
+Currently, this is a very cumbersome command to change various graduate parameters at the same time:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[graduate, 
+	  graduate position={1:(0cm,-.09cm){1.33}}]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+\subkeyalias{graduate cap position}{graduate position}{graduate}
+
+
+
 \subsubsection{The space helmet}
 \showkeyexplain{space helmet}{color}{pingu@black!45!white}
 \begin{tcblisting}{@}

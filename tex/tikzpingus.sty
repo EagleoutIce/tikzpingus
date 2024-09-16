@@ -1187,6 +1187,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     \pingu@xif@ea{headband}{headband}%
     \pingu@xif@ea{vrheadset}{vrheadset}%
     \pingu@xif@ea{strawhat}{strawhat}%
+    \pingu@xif@ea{graduate}{graduate}%
     \pingu@xif@ea{hat}{hat}%
     \pingu@xif@ea{spacehelmet}{spacehelmet}%
     \pingu@xif@ea{mitra}{mitra}%
@@ -2440,6 +2441,46 @@ scale=\pingu@x@jackolantern@scale]
 \pingu@block{\pingu@color@hat@ribbon} (\z@,.2mm) ellipse [x radius=.95\pingu@hat@w@half, y radius=.13cm];
 \pingu@block{\pingu@color@hat} (\z@,.134cm) ellipse [x radius=.95\pingu@hat@w@half, y radius=.13cm];
 \endscope\endscope}
+
+% TODO: tassel
+\pingu@create@extra{graduate}{%
+  graduate cap/.forward to                  = /pingu/graduate,
+  graduate/.default                         = pingu@black!95!white,
+  graduate/.code                            = \pingu@set@extra{graduate}{true}\pingu@color{graduate}{#1},
+  graduate cap top/.forward to              = /pingu/graduate top,
+  graduate top/.code                        = \pingu@color{graduate@top}{#1},
+  graduate cap tilt/.forward to             = /pingu/graduate tilt,
+  graduate tilt/.code                       = \def\pingu@x@graduate@tilt{#1},
+  graduate cap tassel/.forward to           = /pingu/graduate tassel,
+  graduate tassel/.code                     = \pingu@color{graduate@tassel}{#1},
+  graduate tassel/.default                  = pingu@red!65!black,
+  graduate cap tassel drop/.forward to      = /pingu/graduate tassel drop,
+  graduate tassel drop/.code                = \pingu@color{graduate@tassel@drop}{#1},
+  graduate cap tassel start/.forward to     = /pingu/graduate tassel start,
+  graduate tassel start/.code               = \def\pingu@x@tassel@start{#1},
+  graduate cap tassel width/.forward to     = /pingu/graduate tassel width,
+  graduate tassel width/.code               = \def\pingu@x@tassel@width{#1},
+  graduate cap tassel length/.forward to    = /pingu/graduate length,
+  graduate tassel length/.code              = \def\pingu@x@tassel@length{#1},
+  graduate cap tassel drop size/.forward to = /pingu/graduate drop size,
+  graduate tassel drop size/.code           = \def\pingu@x@tassel@drop@size{#1},
+  graduate cap position/.forward to         = /pingu/graduate position,
+  graduate position/.code args              = {#1:(#2,#3)#4}{\def\pingu@x@graduate@angle{#1}\def\pingu@x@graduate@xshift{#2}\def\pingu@x@graduate@yshift{#3}\def\pingu@x@graduate@scale{#4}},
+}{graduate position={-27:(-.19cm,.14cm){1.375}}, graduate top=\pingu@color@graduate!95!white,graduate tilt=2.33mm,graduate tassel=\@pingu@none, graduate tassel width=.5mm, graduate tassel length=5.5mm,graduate tassel drop size=.75*\pingu@x@tassel@width,graduate tassel drop=\pingu@color@graduate@tassel,graduate cap tassel start={(.55cm,3.5mm-\pingu@x@graduate@tilt)}} % ; tassel color to hide
+
+\def\pingu@draw@ea@graduate{%
+\scope[rotate around={\pingu@x@graduate@angle:(\pingu@name-head)},shift={(\pingu@name-head)},shift={(\pingu@x@graduate@xshift,\pingu@x@graduate@yshift)},scale=\pingu@x@graduate@scale]
+\pingu@block{\pingu@color@graduate} (0,1mm) rectangle (.75cm,3.5mm);
+\pingu@block{\pingu@color@graduate} (.375cm,1mm) ellipse[x radius=.375cm, y radius=.8mm];
+\pingu@block[rounded corners=.33mm]{\pingu@color@graduate@top} (-3mm,3.5mm) 
+    % minor slant for visuals
+    -- ++(.675cm + .1mm,\pingu@x@graduate@tilt) -- (1.05cm,3.5mm) -- ++(-.675cm - .1mm,-\pingu@x@graduate@tilt) -- cycle;
+% counter rotation
+\scope[rotate around={-\pingu@x@graduate@angle:(\pingu@name-head)}]
+\pingu@draw[line width=\pingu@x@tassel@width]{\pingu@color@graduate@tassel} \pingu@x@tassel@start to[out=-45,in=90] ++(.2*\pingu@x@tassel@length,-\pingu@x@tassel@length) coordinate(@);
+\pingu@block{\pingu@color@graduate@tassel@drop} (@) circle[x radius=\pingu@x@tassel@drop@size, y radius=1.75*\pingu@x@tassel@drop@size];
+\endscope
+\endscope}
 
 \pingu@create@extra{cap}{%
   cap/.default      = pingu@bronze,
