@@ -1075,6 +1075,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     \pingu@xif@eb{devilwings}{devilwings}%
     \pingu@xif@eb{glow}{glow}%
     \pingu@xif@eb{belt}{belt}%
+    \pingu@xif@eb{santabeard}{santabeard}%
     \pingu@xif@eb{tie}{tie}%
     \pingu@xif@eb{pants}{pants}%
     \pingu@xif@eb{medal}{medal}%
@@ -1206,7 +1207,6 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     \pingu@xif@ea{santahat}{santahat}%
     \pingu@xif@ea{woolhat}{woolhat}%
     \pingu@xif@ea{deerhat}{deerhat}%
-    \pingu@xif@ea{santabeard}{santabeard}%
     \pingu@xif@ea{banner}{banner}%
     \pingu@xif@ea{bee}{bee}%
 }
@@ -1470,7 +1470,7 @@ to[out=135,in=47,looseness=1.025] coordinate[pos=.915] (\pingu@name-santa-ur) co
     santa beard/.default          = pingu@white!96!pingu@red!98!pingu@black!92!gray,
     santa beard string/.code      = \pingu@color{santabeard@string}{#1}
 }{santa beard string=\pingu@color@body@main!85!pingu@black}
-\def\pingu@draw@ea@santabeard{%
+\def\pingu@draw@eb@santabeard{%
 % \coordinate (\pingu@name-santa-beard-center) at ([yshift=1.25mm]\pingu@name-belly-center);
 \pingu@block{\pingu@color@santabeard@string} ([xshift=-.35mm,yshift=.575mm]\pingu@name-head-back-con-right) to[bend right=28,edge node={foreach[count=\i] \l in {0.03,0.085,...,0.992} {coordinate[pos=\l-rand*.015,yshift=-.85pt] (\pingu@name-santa-beard-\i)}}]
 ([yshift=.575mm,xshift=.35mm]\pingu@name-head-back-con-left) arc(20:110:.05mm and .15mm) to[bend left=26] ([yshift=.575mm+.15mm,xshift=-.35mm]\pingu@name-head-back-con-right) to[bend right] cycle;
