@@ -1443,6 +1443,38 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \endscope
 \endscope
 }
+
+\pingu@create@wing@extra{flower}{%
+  flower \@lr/.code         = {\pingu@set@extra{flower\@lr}{true}\pingu@color{flower\@lr}{##1}},
+  flower \@lr/.default      = pingu@purple!80!pingu@yellow,
+  flower \@lr\space center/.code   = \pingu@color{flower@\@lr @center}{##1},
+  flower \@lr\space center size/.code = \expandafter\def\csname pingu@flower@\@lr @center@size\endcsname{##1},
+  flower \@lr\space stem/.code   = \pingu@color{flower@\@lr @stem}{##1},
+  flower \@lr\space stem length/.code = \expandafter\def\csname pingu@flower@\@lr @stem@length\endcsname{##1},
+  flower \@lr\space stem width/.code = \expandafter\def\csname pingu@flower@\@lr @stem@width\endcsname{##1},
+  flower \@lr\space stem tilt/.code = \expandafter\def\csname pingu@flower@\@lr @stem@tilt\endcsname{##1},
+  flower \@lr\space size/.code  = \expandafter\def\csname pingu@flower@\@lr @size\endcsname{##1},
+  flower \@lr\space petal count/.code  = \expandafter\def\csname pingu@flower@\@lr @petals\endcsname{##1},
+  flower \@lr\space petal width/.code  = \expandafter\def\csname pingu@flower@\@lr @petals@width\endcsname{##1},
+  flower \@lr\space petal start angle/.code  = \expandafter\def\csname pingu@flower@\@lr @petals@start@angle\endcsname{##1},
+  flower \@lr\space petal peak/.code  = \expandafter\def\csname pingu@flower@\@lr @petals@peak\endcsname{##1},
+}{flower \@lr\space size=.3mm, flower \@lr\space center=brown!50!pingu@yellow, flower \@lr\space center size=.65mm, flower \@lr\space stem=green!90!pingu@yellow!70!pingu@black, flower \@lr\space stem length=6mm,flower \@lr\space stem width=.15mm,flower \@lr\space stem tilt=-.5mm, flower \@lr\space petal count=5, flower \@lr\space petal start angle=27, flower \@lr\space petal width=4.5pt, flower \@lr\space petal peak=2}
+
+% #1 wing
+\def\pingu@draw@wi@flower#1{%
+\pingu@setup@wing{flower}{#1}%
+    \pingu@draw[line width=\csname pingu@flower@#1@stem@width\endcsname]{\csname pingu@color@flower@#1@stem\endcsname} ([yshift=-.5mm]\pingu@name-wing-#1) to[out=80,in=-20] ++(\csname pingu@flower@#1@stem@tilt\endcsname,\csname pingu@flower@#1@stem@length\endcsname) coordinate (\pingu@name-flower-center-#1) coordinate (@);
+\pgfmathsetmacro\AnglePerPetal{360/\csname pingu@flower@#1@petals\endcsname}
+\edef\@currwidth{\csname pingu@flower@#1@petals@width\endcsname}%
+\foreach \i in {1,...,\csname pingu@flower@#1@petals\endcsname} {
+    \pgfmathsetmacro{\@currrot}{\i*\AnglePerPetal+\csname pingu@flower@#1@petals@start@angle\endcsname}%
+    \scope[rotate around={\@currrot:(@)}]
+\pingu@block{\@col} (@) to[bend right=4] ++(\@currwidth,.5*\csname pingu@flower@#1@size\endcsname) arc(-9:189:\@currwidth\space and \@currwidth*\csname pingu@flower@#1@petals@peak\endcsname) to[bend right=4] ++(\@currwidth,-.5*\csname pingu@flower@#1@size\endcsname) -- cycle;
+\endscope
+\pingu@block{\csname pingu@color@flower@#1@center\endcsname} (\pingu@name-flower-center-#1) circle[radius=\csname pingu@flower@#1@center@size\endcsname];
+}
+}
+% #endregion
 % #endregion
 
 % #region christmas-lib
