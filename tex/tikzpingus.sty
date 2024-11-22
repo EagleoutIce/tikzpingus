@@ -444,7 +444,7 @@
 
 %   #region lower-pingu
 % Note: to be used in clippies
-\def\pingu@path@lowerpingu{(0,\pingu@outer@off)
+\def\pingu@path@outerpingu{(0,\pingu@outer@off)
 % left side
 to[bend right=\pingu@bend] ++(0,-\pingu@side@h@half-\pingu@outer@off)
 % feety stuff
@@ -601,6 +601,19 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 % #endregion
 % #region legacy
 \pingu@bodytype@add{legacy}{%
+\gdef\pingu@path@outerpingu{%
+(0,\pingu@outer@off)
+% left side
+to[bend right=1.25*\pingu@bend] ++(0,-.95\pingu@side@h@half-\pingu@outer@off+.65\pingu@one)%
+% feety stuff
+to[out=270,in=270]
+++(2*\pingu@w@half,0)
+% right side
+to[bend right=1.25*\pingu@bend] ++(0,.95\pingu@side@h@half+\pingu@outer@off-.65\pingu@one)
+-- (0,\pingu@outer@off) -- cycle (\pingu@name-head-center)
+++(0,\pingu@head@h@half)
+arc(90:450:\pingu@w@half{} and \pingu@head@h@half);
+}
 \pingu@block[save path=\pingu@lowerpingu]{\pingu@color@body@main} (0,\pingu@outer@off)
 % left side
 to[bend right=1.25*\pingu@bend] coordinate[pos=.77] (\pingu@name-waist-right) ++(0,-.95\pingu@side@h@half-\pingu@outer@off+.65\pingu@one) coordinate (@b) % for bottom clip
@@ -753,19 +766,22 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \def\@pingu@wingangle@items@none@{90}
 \def\@pingu@wingdown@none@{90}
 
+% to hide it with the glow
+\def\pingu@wing@compensator#1{#1}
+
 %     #region wings-normal
 \@pingu@wings@s{normal}{%
     \coordinate (\pingu@name-wing-left-start) at ([yshift=-6.5mm]\pingu@name-wings-side-left);
 \scope[xshift=-\p@] % shift to avoid rounding errors in pdf viewers
     \pgfinterruptboundingbox
-    \path[/pingu/@invclip] \pingu@path@lowerpingu;
+    \path[/pingu/@invclip] \pingu@path@outerpingu;
     \endpgfinterruptboundingbox
     \pingu@block[rotate around={15:(\pingu@name-wing-left-start)}]{\pingu@color@left@wing} (\pingu@name-wing-left-start) ellipse [x radius=.195cm, y radius=9mm] +(-90:.195cm and 9mm) coordinate (\pingu@name-wing-left-tip) +(-90:.145cm and .75cm) coordinate (\pingu@name-wing-left);
 \endscope}{%
 \coordinate (\pingu@name-wing-right-start) at ([yshift=-6.5mm]\pingu@name-wings-side-right);
 \scope[xshift=\p@] % shift to avoid rounding errors in pdf viewers
     \pgfinterruptboundingbox
-    \path[/pingu/@invclip] \pingu@path@lowerpingu;
+    \path[/pingu/@invclip] \pingu@path@outerpingu;
     \endpgfinterruptboundingbox
     \pingu@block[rotate around={-15:(\pingu@name-wing-right-start)}]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.195cm, y radius=9mm] +(-90:.195cm and 9mm) coordinate (\pingu@name-wing-right-tip) +(-90:.145cm and .75cm) coordinate (\pingu@name-wing-right);
 \endscope}{\pingu@wi@above}{-5}{-70}
@@ -775,20 +791,20 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     \coordinate (\pingu@name-wing-left-start) at ([yshift=-5.85mm]\pingu@name-wings-side-left);
     \scope[xshift=-\p@] % shift to avoid rounding errors in pdf viewers
     \pgfinterruptboundingbox
-    \path[/pingu/@invclip] \pingu@path@lowerpingu;
+    \path[/pingu/@invclip] \pingu@path@outerpingu;
     \endpgfinterruptboundingbox
     \pingu@block[rotate around={-39:(\pingu@name-wing-left-start)}]{\pingu@color@left@wing} (\pingu@name-wing-left-start) ellipse [x radius=2.2mm, y radius=9.35mm] +(90:.22cm and .935cm) coordinate (\pingu@name-wing-left-tip) +(150:.22cm and .935cm) coordinate (\pingu@name-wing-left-cap-up) +(-3:.22cm and .935cm) coordinate (\pingu@name-wing-left-cap-down) +(90:.175cm and .75cm) coordinate (\pingu@name-wing-left);
-    \pingu@block{\pingu@color@left@wing} (\pingu@name-wing-left-start)++(.03mm,4.6mm) to[out=-80,in=220] (\pingu@name-wing-left-cap-up) -- (\pingu@name-wing-left-start) -- cycle;
-    \pingu@block{\pingu@color@left@wing} (\pingu@name-wing-left-start)++(.085mm,-4.4mm) to[out=80,in=-131] (\pingu@name-wing-left-cap-down) -- (\pingu@name-wing-left-start) -- cycle;
+    \pingu@wing@compensator{\pingu@block{\pingu@color@left@wing} (\pingu@name-wing-left-start)++(.03mm,4.6mm) to[out=-80,in=220] (\pingu@name-wing-left-cap-up) -- (\pingu@name-wing-left-start) -- cycle;
+    \pingu@block{\pingu@color@left@wing} (\pingu@name-wing-left-start)++(.085mm,-4.4mm) to[out=80,in=-131] (\pingu@name-wing-left-cap-down) -- (\pingu@name-wing-left-start) -- cycle;}
     \endscope}{%
     \coordinate (\pingu@name-wing-right-start) at ([yshift=-5.85mm]\pingu@name-wings-side-right);
 \scope[xshift=\p@] % shift to avoid rounding errors in pdf viewers
     \pgfinterruptboundingbox
-    \path[/pingu/@invclip] \pingu@path@lowerpingu;
+    \path[/pingu/@invclip] \pingu@path@outerpingu;
     \endpgfinterruptboundingbox
     \pingu@block[rotate around={39:(\pingu@name-wing-right-start)}]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.22cm, y radius=.935cm] +(90:.22cm and .935cm) coordinate (\pingu@name-wing-right-tip) +(30:.22cm and .935cm) coordinate (\pingu@name-wing-right-cap-up) +(177:.22cm and .935cm) coordinate (\pingu@name-wing-right-cap-down) +(90:.175cm and .775cm) coordinate (\pingu@name-wing-right);
-    \pingu@block{\pingu@color@right@wing} (\pingu@name-wing-right-start)++(-.03mm,4.6mm) to[out=-100,in=-45] (\pingu@name-wing-right-cap-up) -- (\pingu@name-wing-right-start) -- cycle;
-    \pingu@block{\pingu@color@right@wing} (\pingu@name-wing-right-start)++(-.1mm,-4.4mm) to[out=100,in=-50] (\pingu@name-wing-right-cap-down) -- (\pingu@name-wing-right-start) -- cycle;
+    \pingu@wing@compensator{\pingu@block{\pingu@color@right@wing} (\pingu@name-wing-right-start)++(-.03mm,4.6mm) to[out=-100,in=-45] (\pingu@name-wing-right-cap-up) -- (\pingu@name-wing-right-start) -- cycle;
+    \pingu@block{\pingu@color@right@wing} (\pingu@name-wing-right-start)++(-.1mm,-4.4mm) to[out=100,in=-50] (\pingu@name-wing-right-cap-down) -- (\pingu@name-wing-right-start) -- cycle;}
 \endscope}{\pingu@wi@above}{-10}{-110}
 %     #endregion
 %     #region wings-raise
@@ -796,13 +812,13 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \coordinate (\pingu@name-wing-left-start) at ([yshift=-6.25mm]\pingu@name-wings-side-left);
 \scope[xshift=-\p@] % shift to avoid rounding errors in pdf viewers
 \pgfinterruptboundingbox
-\path[/pingu/@invclip] \pingu@path@lowerpingu;
+\path[/pingu/@invclip] \pingu@path@outerpingu;
 \endpgfinterruptboundingbox
     \pingu@block[rotate around={-17:(\pingu@name-wing-left-start)}]{\pingu@color@left@wing} (\pingu@name-wing-left-start) ellipse [x radius=.195cm, y radius=.925cm] +(90:.195cm and .925cm) coordinate (\pingu@name-wing-left-tip) +(90:.145cm and .775cm) coordinate (\pingu@name-wing-left);
 \endscope}{%
 \scope[xshift=\p@] % shift to avoid rounding errors in pdf viewers
     \pgfinterruptboundingbox
-    \path[/pingu/@invclip] \pingu@path@lowerpingu;
+    \path[/pingu/@invclip] \pingu@path@outerpingu;
     \endpgfinterruptboundingbox
     \coordinate (\pingu@name-wing-right-start) at ([yshift=-6.25mm]\pingu@name-wings-side-right);
     \pingu@block[rotate around={17:(\pingu@name-wing-right-start)}]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.195cm, y radius=.925cm] +(90:.195cm and .925cm) coordinate (\pingu@name-wing-right-tip) +(90:.145cm and .775cm) coordinate (\pingu@name-wing-right);
@@ -842,20 +858,20 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \coordinate (\pingu@name-wing-left-start) at ([yshift=-6.25mm]\pingu@name-wings-side-left);
 \scope[xshift=-\p@] % shift to avoid rounding errors in pdf viewers
 \pgfinterruptboundingbox
-\path[/pingu/@invclip] \pingu@path@lowerpingu;
+\path[/pingu/@invclip] \pingu@path@outerpingu;
 \endpgfinterruptboundingbox
 \pingu@block[rotate around={-128:(\pingu@name-wing-left-start)}]{\pingu@color@left@wing} (\pingu@name-wing-left-start) ellipse [x radius=.235cm, y radius=.925cm] +(90:.235cm and .935cm) coordinate (\pingu@name-wing-left-tip) +(175:.235cm and .935cm) coordinate (\pingu@name-wing-left-cap-up) +(22:.235cm and .935cm) coordinate (\pingu@name-wing-left-cap-down) +(90:.175cm and .775cm) coordinate (\pingu@name-wing-left);
-\pingu@block{\pingu@color@left@wing} (\pingu@name-wing-left-start)++(.03mm,4.6mm) to[out=-80,in=140] (\pingu@name-wing-left-cap-up) -- (\pingu@name-wing-left-start) -- cycle;
-\pingu@block{\pingu@color@left@wing} (\pingu@name-wing-left-start)++(.085mm,-4.4mm) to[out=82,in=155] (\pingu@name-wing-left-cap-down) -- (\pingu@name-wing-left-start) -- cycle;
+\pingu@wing@compensator{\pingu@block{\pingu@color@left@wing} (\pingu@name-wing-left-start)++(.03mm,4.6mm) to[out=-80,in=140] (\pingu@name-wing-left-cap-up) -- (\pingu@name-wing-left-start) -- cycle;
+\pingu@block{\pingu@color@left@wing} (\pingu@name-wing-left-start)++(.085mm,-4.4mm) to[out=82,in=155] (\pingu@name-wing-left-cap-down) -- (\pingu@name-wing-left-start) -- cycle;}
 \endscope}{%
 \coordinate (\pingu@name-wing-right-start) at ([yshift=-6.25mm]\pingu@name-wings-side-right);
 \scope[xshift=\p@] % shift to avoid rounding errors in pdf viewers
 \pgfinterruptboundingbox
-\path[/pingu/@invclip] \pingu@path@lowerpingu;
+\path[/pingu/@invclip] \pingu@path@outerpingu;
 \endpgfinterruptboundingbox
 \pingu@block[rotate around={128:(\pingu@name-wing-right-start)}]{\pingu@color@right@wing} (\pingu@name-wing-right-start) ellipse [x radius=.235cm, y radius=.935cm] +(90:.235cm and .935cm) coordinate (\pingu@name-wing-right-tip) +(5:.235cm and .935cm) coordinate (\pingu@name-wing-right-cap-up) +(160:.235cm and .935cm) coordinate (\pingu@name-wing-right-cap-down) +(90:.175cm and .775cm) coordinate (\pingu@name-wing-right);
-\pingu@block{\pingu@color@right@wing} (\pingu@name-wing-right-start)++(-.03mm,4.6mm) to[out=-100,in=40] (\pingu@name-wing-right-cap-up) -- (\pingu@name-wing-right-start) -- cycle;
-\pingu@block{\pingu@color@right@wing} (\pingu@name-wing-right-start)++(-.085mm,-4.4mm) to[out=92,in=20] (\pingu@name-wing-right-cap-down) -- (\pingu@name-wing-right-start) -- cycle;
+\pingu@wing@compensator{\pingu@block{\pingu@color@right@wing} (\pingu@name-wing-right-start)++(-.03mm,4.6mm) to[out=-100,in=40] (\pingu@name-wing-right-cap-up) -- (\pingu@name-wing-right-start) -- cycle;
+\pingu@block{\pingu@color@right@wing} (\pingu@name-wing-right-start)++(-.085mm,-4.4mm) to[out=92,in=20] (\pingu@name-wing-right-cap-down) -- (\pingu@name-wing-right-start) -- cycle;}
 \endscope}{\pingu@wi@above}{-30}{-62}
 \let\@pingu@wings@s\relax
 %     #endregion
@@ -1162,9 +1178,10 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     \pingu@layer{background}[]
     \@for\i:={\pingu@x@extra@glow@steps}\do{
         \scope[/pingu/@block/.append style={draw=\pingu@color@glow,line width=\pingu@x@extra@glow@width@func},/pingu/@draw/.append style={draw=\pingu@color@glow,line width=\pingu@x@extra@glow@width@func},opacity=\pingu@x@extra@glow@func,transparency group]
-        \pingu@draw{\pingu@color@glow} \pingu@path@lowerpingu;
+        \pingu@draw[sharp corners]{\pingu@color@glow} \pingu@path@outerpingu;
         % todo: disable re set of coordinates
         % only draw, if not offset
+        \tikzset{rounded corners/.style={}}\def\pingu@wing@compensator##1{}%
         \csname @pingu@wingitem@\@pingu@select@leftwing@ @\endcsname\@pingu@drawer@leftwing@\fi
         \csname @pingu@wingitem@\@pingu@select@rightwing@ @\endcsname\@pingu@drawer@rightwing@\fi
         \endscope
@@ -1981,7 +1998,7 @@ to[out=167,in=38] coordinate[pos=.915] (\pingu@name-wool-ur) coordinate[pos=.055
 \pingu@layer{middle}[]
 % draw stripes
 \scope
-\clip \pingu@path@lowerpingu;
+\clip \pingu@path@outerpingu;
 \pingu@block{\pingu@color@pants} (@tmp)++(.55mm,-\pingu@one) to[bend right=3] ([yshift=1.65mm]\pingu@name-wings-side-right) -- ++(-.25mm,-.25mm) to[bend left=3] ([yshift=-\pingu@one]@tmp) -- cycle;
 \pingu@block{\pingu@color@pants} (@tmpb)++(-.55mm,-\pingu@one) to[bend left=3] ([yshift=1.65mm]\pingu@name-wings-side-left) -- ++(.25mm,-.25mm) to[bend right=3] ([yshift=-\pingu@one]@tmpb) -- cycle;
 \endscope
