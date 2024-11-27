@@ -1,5 +1,44 @@
 # Changelog
 
+## [v1.2](https://github.com/EagleoutIce/tikzpingus/tree/v1.2) (2024-11-27)
+
+[Full Changelog](https://github.com/EagleoutIce/tikzpingus/compare/v1.1...v1.2)
+
+**Implemented enhancements:**
+
+- Graduate cap request [\#273](https://github.com/EagleoutIce/tikzpingus/issues/273)
+- A Space Helmet! [\#268](https://github.com/EagleoutIce/tikzpingus/issues/268)
+- Drop Multi-File System Again [\#266](https://github.com/EagleoutIce/tikzpingus/issues/266)
+- Library Setup [\#119](https://github.com/EagleoutIce/tikzpingus/issues/119)
+
+**Fixed bugs:**
+
+- \[Bug\] headband has slight bleed [\#279](https://github.com/EagleoutIce/tikzpingus/issues/279)
+
+**Closed issues:**
+
+- Update Fonts Used and Presentation [\#274](https://github.com/EagleoutIce/tikzpingus/issues/274)
+- Remove mention of libraries from main readme [\#271](https://github.com/EagleoutIce/tikzpingus/issues/271)
+- /pingu/banner sticks length is not a color [\#263](https://github.com/EagleoutIce/tikzpingus/issues/263)
+- Rephrase Readme [\#261](https://github.com/EagleoutIce/tikzpingus/issues/261)
+- Reduce the size of the root directory [\#255](https://github.com/EagleoutIce/tikzpingus/issues/255)
+- More penguins overview png in readme \(some rects at top\) [\#217](https://github.com/EagleoutIce/tikzpingus/issues/217)
+- Improve Introduction with Showcases [\#74](https://github.com/EagleoutIce/tikzpingus/issues/74)
+
+**Merged pull requests:**
+
+- feat-fix\(headband\): remove head bleed below [\#280](https://github.com/EagleoutIce/tikzpingus/pull/280) ([EagleoutIce](https://github.com/EagleoutIce))
+- \[Doc\]: font and sizing update [\#277](https://github.com/EagleoutIce/tikzpingus/pull/277) ([EagleoutIce](https://github.com/EagleoutIce))
+- New Hat: Graduate Cap [\#276](https://github.com/EagleoutIce/tikzpingus/pull/276) ([EagleoutIce](https://github.com/EagleoutIce))
+- doc\(README.md\): remove library management, add alt-texts to images [\#272](https://github.com/EagleoutIce/tikzpingus/pull/272) ([EagleoutIce](https://github.com/EagleoutIce))
+- fix small typos [\#270](https://github.com/EagleoutIce/tikzpingus/pull/270) ([mbertucci47](https://github.com/mbertucci47))
+- A Space Helmet [\#269](https://github.com/EagleoutIce/tikzpingus/pull/269) ([EagleoutIce](https://github.com/EagleoutIce))
+- Reduce Library Files [\#267](https://github.com/EagleoutIce/tikzpingus/pull/267) ([EagleoutIce](https://github.com/EagleoutIce))
+- Remove Todo Markers From the Readme [\#265](https://github.com/EagleoutIce/tikzpingus/pull/265) ([EagleoutIce](https://github.com/EagleoutIce))
+- /pingu/banner sticks length is not a color [\#264](https://github.com/EagleoutIce/tikzpingus/pull/264) ([LukasPietzschmann](https://github.com/LukasPietzschmann))
+- Fix documentation typos [\#262](https://github.com/EagleoutIce/tikzpingus/pull/262) ([Chouhartem](https://github.com/Chouhartem))
+- Reduce the Size of the Root Directory [\#256](https://github.com/EagleoutIce/tikzpingus/pull/256) ([EagleoutIce](https://github.com/EagleoutIce))
+
 ## [v1.1](https://github.com/EagleoutIce/tikzpingus/tree/v1.1) (2023-09-17)
 
 [Full Changelog](https://github.com/EagleoutIce/tikzpingus/compare/v1.0...v1.1)
@@ -74,7 +113,7 @@
 - King [\#170](https://github.com/EagleoutIce/tikzpingus/issues/170)
 - Darken sections [\#157](https://github.com/EagleoutIce/tikzpingus/issues/157)
 - Document the sheriff star [\#150](https://github.com/EagleoutIce/tikzpingus/issues/150)
-- Describe the commands to load libraries [\#142](https://github.com/EagleoutIce/tikzpingus/issues/142)
+- Describe the comands to load libraries [\#142](https://github.com/EagleoutIce/tikzpingus/issues/142)
 - Describing the commands for setting defaults with the new commandexplain [\#141](https://github.com/EagleoutIce/tikzpingus/issues/141)
 - Link drawing styles [\#104](https://github.com/EagleoutIce/tikzpingus/issues/104)
 - Check if Caching caches really everything or if something \(potentially vital\) is missing [\#65](https://github.com/EagleoutIce/tikzpingus/issues/65)
