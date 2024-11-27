@@ -364,26 +364,23 @@
 \ifpengu@setup@manual@layers@\pgfsetlayers{background,main,middle,foreground}\fi\begingroup
 \@pingu@do@back@false
 \pgfqkeys{/pingu}{defaults, #1}%
+\let\pingu@path@lowerpingu\pingu@default@path@lowerpingu\relax
+\let\pingu@path@upperpingu\pingu@default@path@upperpingu\relax
 \ifdim\pingu@side@h@half<10.33mm \PackageWarning{\tikzpingus@filename}{Penguins with a height below 10.33mm may have unwanted artifacts.}\fi
 \scope[/pingu/@pingu,/pingu/@pingu@main]
 \scope[/pingu/@body]
 \@pingu@drawer@bodytype@
 \pingu@body@app
 \endscope
-
-\path (\pingu@name-head-center)++(0,-.05mm-\pingu@outer@off) coordinate (\pingu@name-bill);
-
+\path(\pingu@name-head-center)++(0,-.05mm-\pingu@outer@off) coordinate (\pingu@name-bill);
 \scope[shift=(\pingu@name-belly-center),/pingu/@belly]
 \clip[use path=\pingu@whitepingu]; \pingu@belly@raw
 \endscope
-\coordinate (\pingu@name-head) at (\pingu@w@half,.7375cm);
-
+\coordinate(\pingu@name-head) at (\pingu@w@half,.7375cm);
 \scope[/pingu/@eyes]
 \@pingu@drawer@lefteye@ \@pingu@drawer@righteye@
 \endscope
-
 \pingu@layer{background}[]\pingu@draw@clothing@behind\endpingu@layer
-
 \pingu@draw@clothing@middle
 \scope[/pingu/@extras,/pingu/@extras@below]
 \pingu@draw@extras@below
@@ -444,7 +441,7 @@
 
 %   #region lower-pingu
 % Note: to be used in clippies
-\def\pingu@path@lowerpingu{(0,\pingu@outer@off)
+\def\pingu@default@path@lowerpingu{(0,\pingu@outer@off)
 % left side
 to[bend right=\pingu@bend] ++(0,-\pingu@side@h@half-\pingu@outer@off)
 % feety stuff
@@ -453,8 +450,9 @@ arc (208:270:\pingu@foot@inner@w{} and \pingu@foot@inner@h) arc (270:360:\pingu@
 % right side
 to[bend right=\pingu@bend] ++(0,\pingu@side@h@half+\pingu@outer@off)
 arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure wings
-\def\pingu@path@upperpingu{(\pingu@name-head-center) ellipse [x radius=\pingu@w@half, y radius=\pingu@head@h@half]}
-
+\def\pingu@default@path@upperpingu{(\pingu@name-head-center) ellipse [x radius=\pingu@w@half, y radius=\pingu@head@h@half]}
+\let\pingu@path@lowerpingu\pingu@default@path@lowerpingu
+\let\pingu@path@upperpingu\pingu@default@path@upperpingu
 %   #endregion
 % #endregion
 
@@ -610,7 +608,8 @@ to[out=270,in=270]
 ++(2*\pingu@w@half,0)
 % right side
 to[bend right=1.25*\pingu@bend] ++(0,.95\pingu@side@h@half+\pingu@outer@off-.65\pingu@one)
--- (0,\pingu@outer@off) -- cycle}
+arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle
+}
 \gdef\pingu@path@upperpingu{(\pingu@name-head-center)
 ++(0,\pingu@head@h@half)
 arc(90:450:\pingu@w@half{} and \pingu@head@h@half);
