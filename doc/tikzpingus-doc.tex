@@ -2979,6 +2979,35 @@ Currently, this is a very cumbersome command to change various construction helm
 \end{tcblisting}
 \endsubkeyexplain
 
+
+\subsubsection{The detective cap}
+\showkeyexplain{detective cap}{color}{pingu@bronze!60!lightgray!95!green}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[detective cap=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endshowkeyexplain
+
+\subkeyexplain{detective cap}{detective cap padding}{length}{\pingu@x@detectivecap@padding}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[detective cap,
+	detective cap padding=4mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{detective cap}{detective cap position}{angle>:(<x>,<y>)<scale}{\pingu@x@detectivecap@angle:(\pingu@x@detectivecap@xshift,\pingu@x@detectivecap@yshift)\{\pingu@x@detectivecap@scale\}}
+Currently, this is a very cumbersome command to change various detective cap parameters at the same time:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[detective cap,
+		detectivecap position={1:(-.1cm,-.275cm){1.33}}]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
 \subsubsection{The crown}
 \showkeyexplain{crown}{color}{pingu@yellow}
 \begin{tcblisting}{@}

@@ -2603,29 +2603,56 @@ to[bend left=8] cycle;
 }
 
 \pingu@create@extra{detectivecap}{%
-  detective hat/.default      = pingu@bronze!60!lightgray!95!green,
-  detective hat/.code         = \pingu@set@extra{detectivecap}{true}\pingu@color{detectivecap}{#1},
-  detective hat padding/.code = {\def\pingu@x@detectivecap@padding{#1}},
-  detective hat extra height/.code = {\def\pingu@x@detectivecap@height{#1}},
-  detective hat position/.code args  = {#1:(#2,#3)#4}{\def\pingu@x@detectivecap@angle{#1}\def\pingu@x@detectivecap@xshift{#2}\def\pingu@x@detectivecap@yshift{#3}\def\pingu@x@detectivecap@scale{#4}},
-}{detective hat padding=.3cm, detective hat extra height=0pt,detective hat position={-.5:(.05mm,-1.25mm)1}}
+  detective cap/.default      = pingu@bronze!60!lightgray!95!green,
+  detective cap/.code         = \pingu@set@extra{detectivecap}{true}\pingu@color{detectivecap}{#1},
+  detective cap padding/.code = {\def\pingu@x@detectivecap@padding{#1}},
+  detective cap position/.code args  = {#1:(#2,#3)#4}{\def\pingu@x@detectivecap@angle{#1}\def\pingu@x@detectivecap@xshift{#2}\def\pingu@x@detectivecap@yshift{#3}\def\pingu@x@detectivecap@scale{#4}},
+}{detective cap padding=.3cm, detective cap position={-.5:(0mm,-1.25mm)1}}
 
 \newdimen\pingu@detectivecap@w@half \pingu@detectivecap@w@half=.85cm
 \def\pingu@draw@ea@detectivecap{%
+\pgfonlayer{foreground}
 \scope[rotate around={\pingu@x@detectivecap@angle:(\pingu@name-head-top)},shift={(\pingu@name-head-top)},shift={(\pingu@x@detectivecap@xshift,\pingu@x@detectivecap@yshift)},scale=\pingu@x@detectivecap@scale]
-\pingu@block{\pingu@color@detectivecap} (0,-.25cm)++(180:\pingu@detectivecap@w@half{} and \pingu@x@detectivecap@padding) 
-to[out=-110,in=-65,looseness=.75] ++(2*\pingu@detectivecap@w@half,0)
+\pingu@block[draw=\pingu@color@detectivecap!90!pingu@black]{\pingu@color@detectivecap} (0,-.25cm)++(180:\pingu@detectivecap@w@half{} and \pingu@x@detectivecap@padding) coordinate (@rs)
+to[out=-110,in=-65,looseness=.665] 
+++(2*\pingu@detectivecap@w@half,0)
 % arc (180:360:\pingu@detectivecap@w@half{} and \pingu@x@detectivecap@padding) 
 to[bend right=65,looseness=.5] cycle;
-\pingu@block{\pingu@color@detectivecap!93!pingu@black} (0,-.25cm)++(0:{.95\pingu@detectivecap@w@half} and .675cm) coordinate (@start) arc (0:180:{.95\pingu@detectivecap@w@half} and .675cm) foreach \i in {1,...,10} { coordinate[pos=1/10*\i] (@\i) } arc (180:360:{.95\pingu@detectivecap@w@half} and .125cm) -- cycle;
 \scope
-\clip  (0,-.25cm)++(0:{.95\pingu@constructionhelmet@w@half} and .675cm) arc (0:180:{.95\pingu@constructionhelmet@w@half} and .675cm) arc (180:360:{.95\pingu@constructionhelmet@w@half} and .125cm) -- cycle;
-\foreach \i in {2,...,8} {
-    \draw[line width=1mm] (@\i)++(0,3mm) to[out=-90,in=90] ++(0,-2cm);
+\clip (0,-.25cm)++(180:\pingu@detectivecap@w@half{} and \pingu@x@detectivecap@padding) to[out=-110,in=-65,looseness=.665] ++(2*\pingu@detectivecap@w@half,0) to[bend right=65,looseness=.5] cycle;
+\foreach \i in {1,3,...,100} {
+    \pingu@draw[thin]{\pingu@color@detectivecap!92!pingu@black} (@rs)++(\i*0.13mm-3mm,-\i*0.13mm) to[bend right=14] ++(1cm,1cm);
+    % 90°
+    \pingu@draw[thin]{\pingu@color@detectivecap!92!pingu@black} (@rs)++(\i*0.13mm-3mm,\i*0.13mm+2mm) to[bend right=14] ++(2cm,-2cm);
 }
-    
+\endscope
+\pingu@draw{\pingu@color@detectivecap!90!pingu@black} (0,-.25cm)++(180:\pingu@detectivecap@w@half{} and \pingu@x@detectivecap@padding) coordinate (@rs)
+to[out=-110,in=-65,looseness=.665] 
+++(2*\pingu@detectivecap@w@half,0)
+% arc (180:360:\pingu@detectivecap@w@half{} and \pingu@x@detectivecap@padding) 
+to[bend right=65,looseness=.5] cycle;
+\pingu@block{\pingu@color@detectivecap!93!pingu@black} (0,-.25cm)++(0:{.95\pingu@detectivecap@w@half} and .675cm) coordinate (@start) arc (0:180:{.95\pingu@detectivecap@w@half} and .675cm) foreach \i in {1,...,100} { coordinate[pos=1/100*\i] (@s\i) } coordinate[pos=.5] (@top) coordinate (@end) arc (180:360:{.95\pingu@detectivecap@w@half} and .125cm) -- cycle;
+\scope
+\clip (0,-.25cm)++(0:{.95\pingu@constructionhelmet@w@half} and .675cm) arc (0:180:{.95\pingu@constructionhelmet@w@half} and .675cm) arc (180:360:{.95\pingu@constructionhelmet@w@half} and .125cm) -- cycle;
+\path (@start)--(@end) foreach \i in {1,...,100} { coordinate[pos=1/100*\i] (@\i) };
+\foreach \i in {1,3,...,99} {
+    \pingu@draw{\pingu@color@detectivecap!85!pingu@black} (@\i)++(0,{-1.5mm-abs(\i-50)*1/1.5mm}) to[out=90,in=-90-(\i-50)] ++(0,1cm);
+}
+\foreach \i in {53,55,...,99} {
+    \pgfmathsetmacro\other{100-\i}
+    \pingu@draw{\pingu@color@detectivecap!85!pingu@black} (@s\i)++(-1mm,0) to[bend right=6+\i/20] ([xshift=1mm]@s\other);
+}
+\endscope
+\scope[transform canvas={yshift=.35mm}]
+\pingu@block[rounded corners=.5pt]{\pingu@color@detectivecap!85!pingu@black} (@top)++(-.3mm,-.85mm) rectangle ++(.6mm,.85mm);
+\pingu@block[even odd rule]{\pingu@color@detectivecap!82!pingu@black} (@top) to[out=40,in=110] ++(4mm,1mm)
+    to[out=-70,in=-20] ++(-4mm,-1.5mm) to[bend left=55] cycle ([xshift=.5mm]@top) to[out=40,in=110] ++(2.55mm,.5mm)
+    to[out=-70,in=-20] [rounded corners=1pt] ++(-2.85mm,-.835mm) -- cycle;
+\pingu@block[even odd rule]{\pingu@color@detectivecap!82!pingu@black} (@top) to[out=180-40,in=180-110] ++(-3.6mm,1mm)
+    to[out=-110,in=-160] ++(3.6mm,-1.5mm) to[bend right=55] cycle ([xshift=-.5mm]@top) to[out=140,in=70] ++(-2.55mm,.5mm) to[out=-110,in=-160] [rounded corners=1pt] ++(2.55mm,-.75mm) -- cycle;
 \endscope
 \endscope
+\endpgfonlayer
 }
 
 \pingu@create@extra{spacehelmet}{%
