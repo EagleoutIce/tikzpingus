@@ -2153,6 +2153,34 @@ scale=\pingu@x@pumpkinhat@scale]
     \pingu@block[thick,rotate around={\@angle-1:(\pingu@name-lollipop-#1-top)}]{\@col} (\pingu@name-lollipop-#1-top)++(0,.5\p@) ellipse [x radius=1.4mm, y radius=\p@];
 }
 
+
+\pingu@create@wing@extra{fish}{%
+  fish \@lr/.code         = {\pingu@set@extra{fish\@lr}{true}\pingu@color{fish\@lr}{##1}},
+  fish \@lr/.default      = pingu@blue!50!pingu@green!50!black!90!gray,
+  fish \@lr\space scales/.code = \pingu@color{fish\@lr @scales}{##1},
+  fish \@lr\space eye/.code    = \pingu@color{fish\@lr @eye}{##1},
+}{fish \@lr\space scales=white!90!pingu@blue!80!black, fish \@lr\space eye=pingu@white}
+
+% #1 wing
+\def\pingu@draw@wi@fish#1{%
+    \pingu@setup@wing{fish}{#1}%
+    \scope[rotate around={\@angle:(\pingu@name-wing-#1)}]
+    \def\fishpath{(\pingu@name-wing-#1)++(-5mm,0) to[bend left=38] ++(9mm,0) to[out=-40,in=180] ++(1.5mm,-1.5mm) to[bend left=25] ++(0,3mm) to[out=180,in=40] ++(-1.5mm,-1.5mm) to[bend left=38] cycle};
+    \pingu@block[draw=\csname pingu@color@fish#1@scales\endcsname, sharp corners, line join=round]{\@col} \fishpath;
+    
+    \clip\fishpath;
+    % TODO: allow to configure
+    \foreach \i in {0,...,11} {
+        \foreach \j in {1,...,30} {
+            \pgfmathsetmacro\upshift{mod(\j,2)*.2mm}
+            \pingu@draw[very thin]{\csname pingu@color@fish#1@scales\endcsname} (\pingu@name-wing-#1)++(-3.5mm+.35mm*\j,2mm+-.4 85mm*\i+\upshift) arc (75:-90:.35mm and .25mm);
+        }
+    }
+    \pingu@block[rounded corners=.1mm]{\csname pingu@color@fish#1@eye\endcsname} (\pingu@name-wing-#1)++(-3.8mm,.25mm) circle[radius=.2mm];
+    \endscope
+}
+
+
 \pingu@create@extra{heart}{%
   heart/.code       = {\pingu@set@extra{heart}{true}\pingu@color{heart}{#1}},
   heart/.default    = lightgray
