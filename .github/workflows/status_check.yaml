@@ -38,14 +38,14 @@ jobs:
             spl.tex
             hey-pingu.tex
       - name: ⬆️ Upload doc artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: doc-output
           path: |
             doc/build/*.pdf
             doc/build/tikzpingus-doc.*
       - name: ⬆️ Upload examples artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: examples-output
           path: examples/build/*.pdf
