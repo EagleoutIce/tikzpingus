@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout git repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       # https://github.com/actions/cache/issues/342
       - name: 💾 Caching
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             **/build
@@ -20,13 +20,13 @@ jobs:
           key: ${{ runner.os }}-pengu-cache-doc-${{ github.run_id }}
           restore-keys: ${{ runner.os }}-pengu-cache-doc-
       - name: 📄 Compile the Documentation
-        uses: xu-cheng/latex-action@v2
+        uses: xu-cheng/latex-action@v3
         with:
           pre_compile: "tlmgr remove --force tikzpingus"
           working_directory: doc
           root_file: tikzpingus-doc.tex
       - name: 📄 Compile Examples
-        uses: xu-cheng/latex-action@v2
+        uses: xu-cheng/latex-action@v3
         with:
 # remove ctan package to insure local
           pre_compile: "tlmgr remove --force tikzpingus"
