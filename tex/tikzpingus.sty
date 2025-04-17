@@ -39,28 +39,28 @@
 % <@color definitions>
 
 % #region lengths and dimens
-\newdimen\pingu@one@eight     \pingu@one@eight=.125cm % constants to save tokens
-\newdimen\pingu@one           \pingu@one=1mm
+\newdimen\pingu@one@eight     \pingu@one@eight.125cm % constants to save tokens
+\newdimen\pingu@one           \pingu@one1mm
 
-\newdimen\pingu@w@half        \pingu@w@half=.9375cm
-\newdimen\pingu@head@h@half   \pingu@head@h@half=.9\pingu@w@half
-\newdimen\pingu@side@h@half   \pingu@side@h@half=1.275cm
-\newdimen\pingu@bend          \pingu@bend=\pingu@one@eight
-\newdimen\pingu@lower@off     \pingu@lower@off=.25cm
-\newdimen\pingu@outer@off     \pingu@outer@off=.25cm
+\newdimen\pingu@w@half        \pingu@w@half.9375cm
+\newdimen\pingu@head@h@half   \pingu@head@h@half.9\pingu@w@half
+\newdimen\pingu@side@h@half   \pingu@side@h@half1.275cm
+\newdimen\pingu@bend          \pingu@bend\pingu@one@eight
+\newdimen\pingu@lower@off     \pingu@lower@off.25cm
+\newdimen\pingu@outer@off     \pingu@outer@off.25cm
 \def\basicfeetbend{45}
-\newdimen\pingu@foot@outer@w  \pingu@foot@outer@w=4.5mm
-\newdimen\pingu@foot@outer@h  \pingu@foot@outer@h=.25cm
+\newdimen\pingu@foot@outer@w  \pingu@foot@outer@w4.5mm
+\newdimen\pingu@foot@outer@h  \pingu@foot@outer@h.25cm
 
-\newdimen\pingu@headcon@x     \pingu@headcon@x=.39375cm% .75*.525cm
-\newdimen\pingu@headcon@y     \pingu@headcon@y=.46735cm%.719*.65cm
+\newdimen\pingu@headcon@x     \pingu@headcon@x.39375cm% .75*.525cm
+\newdimen\pingu@headcon@y     \pingu@headcon@y.46735cm%.719*.65cm
 
-\newdimen\pingu@foot@inner@w  \pingu@foot@inner@w=.55cm
-\newdimen\pingu@foot@inner@h  \pingu@foot@inner@h=.115cm
-\newdimen\pingu@foot@single@w \pingu@foot@single@w=.105cm
-\newdimen\pingu@foot@single@h \pingu@foot@single@h=2mm
+\newdimen\pingu@foot@inner@w  \pingu@foot@inner@w.55cm
+\newdimen\pingu@foot@inner@h  \pingu@foot@inner@h.115cm
+\newdimen\pingu@foot@single@w \pingu@foot@single@w.105cm
+\newdimen\pingu@foot@single@h \pingu@foot@single@h2mm
 \def\eyebaseang{38.5}
-\newdimen\pingu@eye@shift     \pingu@eye@shift=.8mm
+\newdimen\pingu@eye@shift     \pingu@eye@shift.8mm
 \def\pinguanglehl{.93}
 \def\pinguanglehr{.07}
 % #endregion
@@ -1124,9 +1124,9 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 
     % TODO: configure opacity
     \pgfonlayer{foreground}
-    \pingu@block[rounded corners=.05mm,opacity=.55]{\pingu@color@cup@steam} (\pingu@name-belly-center)++(1.5mm+\pingu@x@cup@steam@shift,4mm) coordinate(@) to[out=100,in=260] ++(.3mm,3.75mm) -- ++(0.1mm,0) to[out=280,in=80] ([xshift=.1mm]@) -- cycle;
-    \pingu@block[rounded corners=.05mm,opacity=.55]{\pingu@color@cup@steam} (\pingu@name-belly-center)++(0mm+\pingu@x@cup@steam@shift,3.33mm) coordinate(@) to[out=100,in=260] ++(.2mm,2.75mm) -- ++(0.1mm,0) to[out=280,in=80] ([xshift=.1mm]@) -- cycle;
-    \pingu@block[rounded corners=.05mm,opacity=.55]{\pingu@color@cup@steam} (\pingu@name-belly-center)++(-1.25mm++\pingu@x@cup@steam@shift,3.65mm) coordinate(@) to[out=100,in=260] ++(.3mm,3.75mm) -- ++(0.1mm,0) to[out=280,in=80] ([xshift=.1mm]@) -- cycle;
+    \pingu@block[rounded corners=.05mm,opacity=.55]{\pingu@color@cup@steam} (\pingu@name-belly-center)++(1.5mm+\pingu@x@cup@steam@shift,4mm) coordinate(@) to[out=100,in=260] ++(.3mm,3.75mm) -- ++(.1mm,0) to[out=280,in=80] ([xshift=.1mm]@) -- cycle;
+    \pingu@block[rounded corners=.05mm,opacity=.55]{\pingu@color@cup@steam} (\pingu@name-belly-center)++(0mm+\pingu@x@cup@steam@shift,3.33mm) coordinate(@) to[out=100,in=260] ++(.2mm,2.75mm) -- ++(.1mm,0) to[out=280,in=80] ([xshift=.1mm]@) -- cycle;
+    \pingu@block[rounded corners=.05mm,opacity=.55]{\pingu@color@cup@steam} (\pingu@name-belly-center)++(-1.25mm++\pingu@x@cup@steam@shift,3.65mm) coordinate(@) to[out=100,in=260] ++(.3mm,3.75mm) -- ++(.1mm,0) to[out=280,in=80] ([xshift=.1mm]@) -- cycle;
     \endpgfonlayer
 }
 %       #endregion
@@ -1203,6 +1203,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     \pingu@xif@ea{glasses}{glasses}%
     \pingu@xif@ea{glassesround}{glassesround}%
     \pingu@xif@ea{devilhorns}{devilhorns}%
+    \pingu@xif@ea{bunnyears}{bunnyears}%
     \pingu@xif@ea{headband}{headband}%
     \pingu@xif@ea{vrheadset}{vrheadset}%
     \pingu@xif@ea{strawhat}{strawhat}%
@@ -1603,7 +1604,7 @@ to[out=167,in=38] coordinate[pos=.915] (\pingu@name-wool-ur) coordinate[pos=.055
   present \@lr\space lid overhang/.code = \@namedef{pingu@present@\@lr @lid@overhang}{##1},
   present \@lr\space lid yshift/.code = \@namedef{pingu@present@\@lr @lid@yshift}{##1},
   present \@lr\space lid band/.code   = \pingu@color{present\@lr @lid@band}{##1},%
-}{present \@lr\space band=pingu@green!70!pingu@black!90!pingu@white,present \@lr\space width=7.75mm,present \@lr\space band width=1.75mm,present \@lr\space height=7mm,present \@lr\space yshift=-0.25*(\csname pingu@present@\@lr @height\endcsname),present \@lr\space band second height=\csname pingu@present@\@lr @band@width\endcsname, present \@lr\space band second yshift=0.5*(\csname pingu@present@\@lr @height\endcsname),present \@lr\space xshift=-0.25*(\csname pingu@present@\@lr @width\endcsname),present \@lr\space lid=\csname pingu@color@present\@lr\endcsname!92!pingu@black,present \@lr\space lid height=1.33mm,present \@lr\space lid overhang=.125mm,present \@lr\space lid yshift=0,present \@lr\space lid band=\csname pingu@color@present\@lr @band\endcsname!98!pingu@black,present \@lr\space ribbon=\csname pingu@color@present\@lr @band\endcsname!97!pingu@black}
+}{present \@lr\space band=pingu@green!70!pingu@black!90!pingu@white,present \@lr\space width=7.75mm,present \@lr\space band width=1.75mm,present \@lr\space height=7mm,present \@lr\space yshift=-.25*(\csname pingu@present@\@lr @height\endcsname),present \@lr\space band second height=\csname pingu@present@\@lr @band@width\endcsname, present \@lr\space band second yshift=.5*(\csname pingu@present@\@lr @height\endcsname),present \@lr\space xshift=-.25*(\csname pingu@present@\@lr @width\endcsname),present \@lr\space lid=\csname pingu@color@present\@lr\endcsname!92!pingu@black,present \@lr\space lid height=1.33mm,present \@lr\space lid overhang=.125mm,present \@lr\space lid yshift=0,present \@lr\space lid band=\csname pingu@color@present\@lr @band\endcsname!98!pingu@black,present \@lr\space ribbon=\csname pingu@color@present\@lr @band\endcsname!97!pingu@black}
 
 % TODO: more ribbon color control
 % #1 wing
@@ -1648,6 +1649,48 @@ to[out=167,in=38] coordinate[pos=.915] (\pingu@name-wool-ur) coordinate[pos=.055
     \pingu@block[rotate around={\@angle-1:(\pingu@name-wing-#1)},decoration={random steps,segment length=1pt,amplitude=.075pt},decorate,rounded corners=.35pt,save path=\snowball@outer]{\@col}(@) circle[radius=\csname pingu@snowball@#1@size\endcsname];
 }
 % #endregion
+
+
+\pingu@create@wing@extra{basket}{%
+  basket \@lr/.code         = {\pingu@set@extra{basket\@lr}{true}\pingu@color{basket\@lr}{##1}},
+  basket \@lr/.default      = brown!95!pingu@main!90!yellow!90!white,
+  basket \@lr\space egg a/.code = \pingu@color{basket\@lr @egg@a}{##1},
+  basket \@lr\space egg b/.code = \pingu@color{basket\@lr @egg@b}{##1},
+  basket \@lr\space egg c/.code = \pingu@color{basket\@lr @egg@c}{##1},
+  basket \@lr\space back/.code = \pingu@color{basket\@lr @back}{##1},
+  basket \@lr\space xshift/.code  = \expandafter\def\csname pingu@basket@\@lr @xshift\endcsname{##1},
+  basket \@lr\space yshift/.code  = \expandafter\def\csname pingu@basket@\@lr @yshift\endcsname{##1}
+}{basket \@lr\space xshift=0pt, basket \@lr\space yshift=0pt,basket \@lr\space egg a=pingu@basket@eggA,basket \@lr\space egg b=pingu@basket@eggB,basket \@lr\space egg c=pingu@basket@eggC!90!black,basket \@lr\space back=\csname pingu@color@basket\@lr\endcsname!90!pingu@black}
+\definecolor{pingu@basket@eggA}{HTML}{FDBD5F}
+\definecolor{pingu@basket@eggB}{HTML}{5FDCED}
+\definecolor{pingu@basket@eggC}{HTML}{B5D333}
+% #1 wing
+% TODO: shifts
+\def\pingu@basket@eggheight{1.5mm}
+\def\pingu@draw@wi@basket#1{%
+\pingu@setup@wing{basket}{#1}%
+\scope[rotate around={\@angle-1:(\pingu@name-wing-#1)}]
+    \path ([xshift=-4mm,yshift=-3.25mm,xshift=\csname pingu@basket@#1@xshift\endcsname,yshift=\csname pingu@basket@#1@yshift\endcsname]\pingu@name-wing-#1) coordinate (@l) -- ++(8mm,0) coordinate (@r);
+    % back
+    \pingu@block{\csname pingu@color@basket#1@back\endcsname} ([xshift=-.4mm]@l) to[bend left=6] coordinate[pos=.22] (@eggA) coordinate[pos=.5] (@eggB) coordinate[pos=.75] (@eggC) ([xshift=.4mm]@r) arc(0:-180:4.4mm and 3.25mm) -- cycle;
+    \pingu@draw[line width=.8mm]{\@col} (@l) to[bend left=83,looseness=1.65] (@r);
+    % egg a - based on https://tex.stackexchange.com/a/79398
+    \scope[shift=(@eggA),rotate around={30:(@eggA)}]
+    \pingu@block{\csname pingu@color@basket#1@egg@a\endcsname} plot[domain=-pi:pi,samples=100]
+    ({.78*\pingu@basket@eggheight*cos(\x/4 r)*sin(\x r)},{-\pingu@basket@eggheight*(cos(\x r))});
+    \endscope
+    \scope[shift=(@eggB),rotate around={10:(@eggB)},yshift=-.1mm]
+    \pingu@block{\csname pingu@color@basket#1@egg@b\endcsname} plot[domain=-pi:pi,samples=100]
+    ({.78*1.1*\pingu@basket@eggheight*cos(\x/4 r)*sin(\x r)},{-1.1*\pingu@basket@eggheight*(cos(\x r))});
+    \endscope
+    \scope[shift=(@eggC),rotate around={-20:(@eggC)},yshift=.3mm]
+    \pingu@block{\csname pingu@color@basket#1@egg@c\endcsname} plot[domain=-pi:pi,samples=100]
+    ({.78*\pingu@basket@eggheight*cos(\x/4 r)*sin(\x r)},{-\pingu@basket@eggheight*(cos(\x r))});
+    \endscope
+    % front
+    \pingu@block{\@col} ([xshift=-.4mm]@l) to[bend right=2]([xshift=.4mm]@r) arc(0:-180:4.4mm and 3.25mm) -- cycle;
+\endscope 
+}
 
 % #region cloak-lib
 \newif\if@pingu@x@cloak@wings
@@ -1727,6 +1770,38 @@ to[out=167,in=38] coordinate[pos=.915] (\pingu@name-wool-ur) coordinate[pos=.055
 }
 % #endregion
 
+\pingu@create@extra{bunnyears}{%
+    bunnyears/.forward to = /pingu/bunny ears,
+    bunny-ears/.forward to = /pingu/bunny ears,
+    bunny ears/.code    = \pingu@set@extra{bunnyears}{true}\pingu@color{bunnyears}{#1},
+    bunny ears/.default = brown!95!pingu@main,
+    bunnyears band/.forward to = /pingu/bunny ears band,
+    bunny-ears band/.forward to = /pingu/bunny ears band,
+    bunny ears band/.code    = \pingu@color{bunnyears@band}{#1},
+    bunny ears b/.code  = \pingu@color{bunnyears@b}{#1},
+    bunnyears b/.forward to = /pingu/bunny ears b,
+    bunny-ears b/.forward to = /pingu/bunny ears b
+}{bunny ears b=\pingu@color@bunnyears!90!yellow!90!white,bunny ears band=\pingu@color@bunnyears}
+
+\pgfmathsetmacro\pingu@bunnyears@baseang@l{90-360*(1-\pinguanglehl)}
+\pgfmathsetmacro\pingu@bunnyears@baseang@r{90-360*(1-\pinguanglehr)}
+\def\pingu@bunnyears@baseoff{12}
+\def\pingu@bunnyears@yshift{.65mm}
+\def\pingu@draw@ea@bunnyears{%
+    % 90 - 360*.06
+    \path ([yshift=-\pingu@bunnyears@yshift]\pingu@name-head-left) arc (\pingu@bunnyears@baseang@l:\pingu@bunnyears@baseang@l-\pingu@bunnyears@baseoff:\pingu@w@half{} and \pingu@head@h@half) coordinate[yshift=.05mm] (@target);
+    \pingu@draw[line width=.7mm]{\pingu@color@bunnyears@band} ([xshift=.733mm,yshift=-.65mm]@target) arc (\pingu@bunnyears@baseang@l-\pingu@bunnyears@baseoff-11:360+\pingu@bunnyears@baseang@r+\pingu@bunnyears@baseoff+10:\pingu@w@half{}-.8mm and \pingu@head@h@half);
+    \pingu@block{\pingu@color@bunnyears} ([yshift=-\pingu@bunnyears@yshift]\pingu@name-head-left) arc (\pingu@bunnyears@baseang@l:\pingu@bunnyears@baseang@l-\pingu@bunnyears@baseoff:\pingu@w@half{} and \pingu@head@h@half) coordinate (\pingu@name-bunnyears-left-goal) to[out=62,in=-62,looseness=1.1] ++(2.5mm,9.55mm) to[bend right=17] ([yshift=-\pingu@bunnyears@yshift]\pingu@name-head-left) -- cycle;
+    
+    \pingu@block[sharp corners]{\pingu@color@bunnyears@b} ([yshift=-\pingu@bunnyears@yshift+.325mm,xshift=.6mm]\pingu@name-head-left) arc (\pingu@bunnyears@baseang@l:\pingu@bunnyears@baseang@l-.5*\pingu@bunnyears@baseoff:\pingu@w@half{} and 1.5*\pingu@head@h@half) to[out=62,in=-62,looseness=1.1] ++(2.5mm,8mm) to[bend right=17] ([yshift=-\pingu@bunnyears@yshift+.325mm,xshift=.6mm]\pingu@name-head-left) to[bend left] cycle;
+    
+    \pingu@block{\pingu@color@bunnyears} ([yshift=-\pingu@bunnyears@yshift]\pingu@name-head-right) arc (\pingu@bunnyears@baseang@r:\pingu@bunnyears@baseang@r+\pingu@bunnyears@baseoff:\pingu@w@half{} and \pingu@head@h@half) coordinate (\pingu@name-bunnyears-right-goal) to[out=180-62,in=-180+62,looseness=1.1] ++(-2.4mm,9.75mm) to[bend left=17] ([yshift=-\pingu@bunnyears@yshift]\pingu@name-head-right) -- cycle;
+    \pingu@block[sharp corners]{\pingu@color@bunnyears@b} ([yshift=-\pingu@bunnyears@yshift+.325mm,xshift=-.6mm]\pingu@name-head-right) arc (\pingu@bunnyears@baseang@r:\pingu@bunnyears@baseang@r+.5*\pingu@bunnyears@baseoff:\pingu@w@half{} and 1.5*\pingu@head@h@half) to[out=180-62,in=-180+62,looseness=1.1] ++(-2.4mm,8.2mm) to[bend left=17] ([yshift=-\pingu@bunnyears@yshift+.325mm,xshift=-.6mm]\pingu@name-head-right) to[bend left] cycle;
+    
+    % \pingu@block{\pingu@color@bunnyears@b} ([yshift=-\pingu@bunnyears@yshift]\pingu@name-head-right) arc (\pingu@bunnyears@baseang@r:\pingu@bunnyears@baseang@r+\pingu@bunnyears@baseoff:\pingu@w@half{} and \pingu@head@h@half) coordinate (\pingu@name-bunnyears-right-goal) to[out=148,in=-148,looseness=.9] ++(-.3mm,2.65mm) to[bend right=17] ([yshift=-\pingu@bunnyears@yshift]\pingu@name-head-right) -- cycle;
+    % \pingu@block{\pingu@color@bunnyears@b} ([yshift=-\pingu@bunnyears@yshift]\pingu@name-head-right) to [bend left=38] (\pingu@name-bunnyears-right-goal) to[bend left=30] ([yshift=-\pingu@bunnyears@yshift]\pingu@name-head-right) -- cycle;
+}
+
 % #region devil-lib
 \pingu@create@extra{devilhorns}{%
     devilhorns/.forward to = /pingu/devil horns,
@@ -1743,6 +1818,7 @@ to[out=167,in=38] coordinate[pos=.915] (\pingu@name-wool-ur) coordinate[pos=.055
 \def\pingu@devilhorns@baseoff{12}
 \def\pingu@devilhorns@yshift{.65mm}
 \def\pingu@draw@ea@devilhorns{%
+% longform:     \pingu@block{\pingu@color@bunnyears} ([yshift=-\pingu@bunnyears@yshift]\pingu@name-head-left) arc (\pingu@bunnyears@baseang@l:\pingu@bunnyears@baseang@l-\pingu@bunnyears@baseoff:\pingu@w@half{} and \pingu@head@h@half) coordinate (\pingu@name-bunnyears-left-goal) to[out=62,in=-62,looseness=.9] ++(1.5mm,9.65mm) to[bend left=17] ([yshift=-\pingu@bunnyears@yshift]\pingu@name-head-left) -- cycle;
     % 90 - 360*.06
     \pingu@block{\pingu@color@devilhorns} ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-left) arc (\pingu@devilhorns@baseang@l:\pingu@devilhorns@baseang@l-\pingu@devilhorns@baseoff:\pingu@w@half{} and \pingu@head@h@half) coordinate (\pingu@name-devilhorns-left-goal) to[out=32,in=-32,looseness=.9] ++(.3mm,2.65mm) to[bend left=17] ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-left) -- cycle;
     \pingu@block{\pingu@color@devilhorns} ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-left) to [bend right=38] (\pingu@name-devilhorns-left-goal) to[bend right=30] ([yshift=-\pingu@devilhorns@yshift]\pingu@name-head-left) -- cycle;

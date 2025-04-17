@@ -13,7 +13,7 @@
 
 \makeatletter
 \def\input@path{{../tex/}}
-\usepackage[glows]{tikzpingus}
+\usepackage[glows]{../tex/tikzpingus}
 
 % \definecolor{doc-main}{RGB}{204,0,25}
 \colorlet{doc-main}{pingu@blue!65!pingu@black}
@@ -2243,6 +2243,44 @@ Configure the \keyref{glasses round} to display sunglasses round. The color is p
 \endsubkeyexplain
 
 
+\subsubsection{The bunny hears}
+
+\showkeyexplain{bunny ears}{color}{brown!95!pingu@main}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[bunny ears=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endshowkeyexplain
+
+\keyalias{bunnyears}{bunny ears}
+\keyalias{bunny-ears}{bunny ears}
+
+{\def\pingu@color@bunnyears{<bunny ears-color>}
+\subkeyexplain{bunny ears}{bunny ears band}{color}{\pingu@color@bunnyears@band}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[bunny ears,bunny ears band=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+\subkeyalias{bunnyears band}{bunny ears band}{bunny ears}
+\subkeyalias{bunny-ears band}{bunny ears band}{bunny ears}
+}
+
+{\def\pingu@color@bunnyears{<bunny ears-color>}
+\subkeyexplain{bunny ears}{bunny ears b}{color}{\pingu@color@bunnyears@b}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[bunny ears,bunny ears b=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyalias{bunnyears b}{bunny ears b}{bunny ears}
+\subkeyalias{bunny-ears b}{bunny ears b}{bunny ears}
+}
+
 \subsubsection{The head band}
 
 \showkeyexplain{head band}{color}{pingu@red}
@@ -4160,6 +4198,127 @@ Change the wool color:
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain
+
+
+\subsubsection{The basket}
+
+\showkeyexplain{basket left}{color}{pingu@white!90!pingu@black}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[basket left=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endshowkeyexplain
+
+{\def\pingu@color@basket@left{<basket left-color>}
+\subkeyexplain{basket left}{basket left back}{color}{\pingu@color@basketleft@back}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[basket left, basket left back=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+}
+
+\subkeyexplain{basket left}{basket left egg a}{color}{\pingu@color@basketleft@egg@a}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[basket left, basket left egg a=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{basket left}{basket left egg b}{color}{\pingu@color@basketleft@egg@b}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[basket left, basket left egg b=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{basket left}{basket left egg c}{color}{\pingu@color@basketleft@egg@c}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[basket left, basket left egg c=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{basket left}{basket left xshift}{length}{\pingu@basket@left@xshift}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[basket left, basket left xshift=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{basket left}{basket left yshift}{length}{\pingu@basket@left@yshift}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[basket left, basket left yshift=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+
+\showkeyexplain{basket right}{color}{pingu@white!90!pingu@black}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[basket right=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endshowkeyexplain
+
+{\def\pingu@color@basket@right{<basket right-color>}
+\subkeyexplain{basket right}{basket right back}{color}{\pingu@color@basketright@back}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[basket right, basket right back=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+}
+
+\subkeyexplain{basket right}{basket right egg a}{color}{\pingu@color@basketright@egg@a}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[basket right, basket right egg a=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{basket right}{basket right egg b}{color}{\pingu@color@basketright@egg@b}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[basket right, basket right egg b=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{basket right}{basket right egg c}{color}{\pingu@color@basketright@egg@c}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[basket right, basket right egg c=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{basket right}{basket right xshift}{length}{\pingu@basket@right@xshift}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[basket right, basket right xshift=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{basket right}{basket right yshift}{length}{\pingu@basket@right@yshift}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[basket right, basket right yshift=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
 
 \subsubsection{The wool hat}
 
