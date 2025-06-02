@@ -3901,27 +3901,43 @@ vr-controller \@lr\space second shade/.code = \pingu@color{vrcontroller\@lr @sec
     \endscope
 }
 % #endregion
-\endinput
 
 \pingu@create@extra{flipflop}{%
-    flip-flops/.code    	 = {\pingu@set@extra{flipflop}{true}\pingu@color{flipflop}{#1}},
-    flip-flops/.default   = green% pingu@blue,%
-    % flipflop band/.code  = \pingu@color{flipflop@band}{#1},%
-    % flipflop shade/.code  = \pingu@color{flipflop@shade}{#1},%
-    % flipflop shade width/.code  = \def\pingu@flipflop@shade@w{#1},%
-    % flipflop text/.code  = \def\pingu@x@flipflop@text{#1},%
-    % flipflop text style/.style = {\pingu@color@flipflop!65!pingu@white},
-}{}
+    flip-flops/.code    	   = {\pingu@set@extra{flipflop}{true}\pingu@color{flipflop}{#1}},
+    flip-flops/.default        = pingu@blue!70!pingu@white!60!cyan,%
+    flip-flops base left/.code = \pingu@color{flipflop@base@left}{#1},%
+    flip-flops band left/.code = \pingu@color{flipflop@band@left}{#1},%
+    flip-flops base right/.code = \pingu@color{flipflop@base@right}{#1},%
+    flip-flops band right/.code = \pingu@color{flipflop@band@right}{#1},%
+    flip-flops color right/.code = \pingu@color{flipflop@right}{#1},%
+}{flip-flops base left=\pingu@color@flipflop!45!pingu@black, flip-flops band left=\pingu@color@flipflop@base@left!35!pingu@red, flip-flops base right=\pingu@color@flipflop@base@left, flip-flops band right=\pingu@color@flipflop@band@left, flip-flops color right=\pingu@color@flipflop}
 
-% TODO: needs one type of feet
-\def\@pingu@x@flipflop@path{([xshift=-3.75mm,yshift=3mm]\pingu@name-foot-right) to[out=205,in=180] coordinate[pos=.84] (@a) ++(3.5mm,-2*\pingu@foot@single@h-1.75mm) coordinate (@c) to[out=0,in=285] coordinate[pos=.575] (@b) ++(2.5mm,2*\pingu@foot@single@h+1mm)}
+\def\@pingu@x@flipflop@path@right{([xshift=-2.33mm+\@tmpshift,yshift=1.33mm-\@tmpshift]\pingu@name-foot-right) to[out=255,in=180] coordinate[pos=.64] (@a) ++(1mm-.75*\@tmpshift,-2*\pingu@foot@single@h) to[bend right=14] coordinate[pos=.82,yshift=.65mm] (@c) ++(2.85mm+.75*\@tmpshift,1mm) % to[out=-4,in=184] 
+to[out=35,in=-110] coordinate[pos=.51] (@b) ++(.7mm,2*\pingu@foot@single@h)
+}
+\def\@pingu@x@flipflop@path@left{([xshift=2.66mm-\@tmpshift,yshift=1.33mm-\@tmpshift]\pingu@name-foot-left) to[out=-180+255,in=0] coordinate[pos=.75] (@b) ++(-1mm+.75*\@tmpshift,-2*\pingu@foot@single@h) to[bend left=14] coordinate[pos=.82,yshift=.65mm] (@c) ++(-3.25mm-.75*\@tmpshift,1mm) % to[out=-4,in=184] 
+to[out=180-35,in=-70] coordinate[pos=.45] (@a) ++(-.7mm,2*\pingu@foot@single@h)
+}
+% coordinate[pos=.84] (@a) ++(2.5mm,-2*\pingu@foot@single@h-1.75mm) coordinate (@c) to[out=0,in=285] coordinate[pos=.575] (@b) ++(2.5mm,2*\pingu@foot@single@h+1mm)}
 \def\pingu@draw@eb@flipflop{%
 \scope[rotate around={-\basicfeetbend+10:(\pingu@name-foot-right)}] % TODO
+\def\@tmpshift{0mm}
 \pgfonlayer{very-background}
-  \pingu@block{\pingu@color@flipflop} \@pingu@x@flipflop@path;
+  {\def\@tmpshift{.25mm}\pingu@block{\pingu@color@flipflop@base@right} \@pingu@x@flipflop@path@right;}
+  \pingu@block{\pingu@color@flipflop@right} \@pingu@x@flipflop@path@right;
   \endpgfonlayer
-\clip\@pingu@x@flipflop@path;
-  \draw[semithick] ([xshift=-1mm]@a) to[bend left=15] coordinate[pos=.4] (@d) ([xshift=1mm]@b);
-  \draw[semithick] (@d) to[bend right=5] (@c);
+\clip\@pingu@x@flipflop@path@right;
+  \pingu@draw[thick,line join=round]{\pingu@color@flipflop@band@right} ([xshift=-1mm]@a) to[out=15,in=140] ([yshift=.2mm]@c) coordinate(@) -- ++(.1mm,-.25mm) (@) to[out=55,in=175] ([xshift=1mm]@b);
+\endscope
+\scope[rotate around={\basicfeetbend-10:(\pingu@name-foot-left)}] % TODO
+\def\@tmpshift{0mm}
+\pgfonlayer{very-background}
+  {\def\@tmpshift{.25mm}\pingu@block{\pingu@color@flipflop@base@left} \@pingu@x@flipflop@path@left;}
+  \pingu@block{\pingu@color@flipflop} \@pingu@x@flipflop@path@left;
+  \endpgfonlayer
+\clip\@pingu@x@flipflop@path@left;
+  \pingu@draw[thick,line join=round]{\pingu@color@flipflop@band@left} ([xshift=-1mm]@a) to[out=15,in=115] ([yshift=.2mm]@c) coordinate(@) -- ++(-.1mm,-.25mm) (@) to[out=40,in=175] ([xshift=1mm]@b);
 \endscope
 }
+
+\endinput
