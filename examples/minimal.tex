@@ -3,12 +3,21 @@
 \usepackage[glows]{../tex/tikzpingus}
 \usepackage[active, tightpage]{preview}
 
+\usepackage{FiraSans}
+
 \PreviewBorder.5cm
 \begin{document}
 \begin{preview}
-\parbox[c][3.5cm][c]{3.5cm}{\centering
 \begin{tikzpicture}
    \pingu[wings grab,body type=legacy,bunny ears,eyes wink, basket right, basket right xshift=3.35mm,right item angle=-10]
-\end{tikzpicture}\kern9pt}%
+   \node[right=4mm,yshift=1.5mm,align=left,font=\sffamily\bfseries\Huge,scale=2.75,gray,opacity=.45] at(current bounding box.east) {Happy\\\,Easter};
+   
+   \scope[shift=(pingu-belly-center),yshift=8.5mm]
+   \pgfonlayer{very-background}
+   \path[preaction={fill=lightgray!5!white},ball color=white!95!gray,fill opacity=.33]
+         plot[domain=-pi:pi,samples=100] ({.78*2.5cm*cos(\x/4 r)*sin(\x r)},{-2.5cm*(cos(\x r))});
+    \endpgfonlayer
+   \endscope
+\end{tikzpicture}%
 \end{preview}
 \end{document}
