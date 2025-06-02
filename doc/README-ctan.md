@@ -2,8 +2,8 @@
 
 [![made-with-latex](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://www.latex-project.org/) [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/GPL-3.0) [![PR's Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com)  [![CTAN](https://badgen.net/badge/On/CTAN/cyan)](https://www.ctan.org/pkg/tikzpingus) [![build](https://github.com/EagleoutIce/tikzpingus/actions/workflows/compile.yaml/badge.svg)](https://github.com/EagleoutIce/tikzpingus/actions/workflows/compile.yaml)
 
-This package is a work-in-progress package allowing you to typeset little penguins in LaTeX with PGF/Ti*k*Z.
-The [documentation](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/doc/build/tikzpingus-doc.pdf) will constantly evolve.
+This package allows you to typeset (cute) little penguins in LaTeX with PGF/Ti*k*Z.
+The [documentation](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/doc/build/tikzpingus-doc.pdf) contains a reference for all currently available options. See the examples below for a quick overview.
 
 ----
 
@@ -26,7 +26,7 @@ Currently, most options I have added arose from concrete situations and are not 
 
 [![Penguin Tech](https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-4.png?raw=true)](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=4)
 
-If you just load the library by `\usepackage{tikzpingus}` all options will work, and you might want to use the `glows`-option (`\usepackage[glows]{tikzpingus}`) so that lightsabers and other glowing elements look waaay nicer (but may produce artifacts in some pdf-viewers). However, if loading the library takes too long for you, using the `bare` option will drastically reduce the default options available while allowing you to load specific libraries with `\pinguloadlibraries{<list of libraries>}`.
+If you just load the library by `\usepackage{tikzpingus}` all options will work, and you might want to use the `glows`-option (`\usepackage[glows]{tikzpingus}`) so that lightsabers and other glowing elements look waaay nicer (but may produce artifacts in some pdf-viewers).
 
 [![Penguin Cake](https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-5.png?raw=true)](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=5)
 
@@ -40,6 +40,6 @@ Clothes are a work in progress for a long time now. While there are pants, shirt
 
 ## More Fun
 
-For the title image of a computer-science course on software-product-lines, I created a small and incomplete but really fun feature model:
+For the title image of a computer science course on software product lines, I created a small and incomplete but really fun feature model:
 
 [![Penguin-SPL](https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/spl-1.png?raw=true)](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/spl.pdf)

@@ -13,14 +13,14 @@ jobs:
     steps:
       # otherwise we cant commit
       - name: Checkout git repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: ⬇️ Get doc Artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: doc-output
           path: doc/build/
       - name: ⬇️ Get examples Artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: examples-output
           path: examples/build/
