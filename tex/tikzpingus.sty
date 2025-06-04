@@ -1088,6 +1088,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \def\pingu@xif@eb#1#2{\ifcsname if@pingu@x@#1@\endcsname{\pingu@@xif@eb{#1}{#2}}\fi}
 \def\pingu@draw@extras@below{%
     \pingu@xif@eb{flipflop}{flipflop}%
+    \pingu@xif@eb{sneaker}{sneaker}%
     \pingu@xif@eb{heart}{heart}%
     \pingu@xif@eb{devilwings}{devilwings}%
     \pingu@xif@eb{glow}{glow}%
@@ -3937,6 +3938,50 @@ to[out=180-35,in=-70] coordinate[pos=.45] (@a) ++(-.7mm,2*\pingu@foot@single@h)
   \endpgfonlayer
 \clip\@pingu@x@flipflop@path@left;
   \pingu@draw[thick,line join=round]{\pingu@color@flipflop@band@left} ([xshift=-1mm]@a) to[out=15,in=115] ([yshift=.2mm]@c) coordinate(@) -- ++(-.1mm,-.25mm) (@) to[out=40,in=175] ([xshift=1mm]@b);
+\endscope
+}
+
+\pingu@create@extra{sneaker}{%
+    sneaker/.code    	   = {\pingu@set@extra{sneaker}{true}\pingu@color{sneaker}{#1}},
+    sneaker/.default        = pingu@bronze!70!pingu@red!80!pingu@white!80!brown,%
+    sneaker base left/.code = \pingu@color{sneaker@base@left}{#1},%
+    sneaker band left/.code = \pingu@color{sneaker@band@left}{#1},%
+    sneaker base right/.code = \pingu@color{sneaker@base@right}{#1},%
+    sneaker band right/.code = \pingu@color{sneaker@band@right}{#1},%
+    sneaker color right/.code = \pingu@color{sneaker@right}{#1},%
+}{sneaker base left=\pingu@color@sneaker!45!pingu@white!90!yellow, sneaker band left=\pingu@color@sneaker@base@left!42!pingu@red, sneaker base right=\pingu@color@sneaker@base@left, sneaker band right=\pingu@color@sneaker@band@left, sneaker color right=\pingu@color@sneaker}
+
+\def\@pingu@x@sneaker@path@right{([xshift=-2.33mm+\@tmpshift,yshift=1.33mm-1.5*\@tmpshift]\pingu@name-foot-right) to[out=245,in=160] coordinate[pos=.64] (@a) ++(1mm-.75*\@tmpshift,-2.4*\pingu@foot@single@h) to[out=-20,in=230] coordinate[pos=.82,yshift=.65mm] (@c) ++(3.2mm+.75*\@tmpshift,.8mm) % to[out=-4,in=184] 
+to[out=50,in=-95] coordinate[pos=.51] (@b) ++(.2mm,2.4*\pingu@foot@single@h)
+}
+\def\@pingu@x@sneaker@path@left{([xshift=2.66mm-\@tmpshift,yshift=1.33mm-\@tmpshift]\pingu@name-foot-left) to[out=-180+255,in=0] coordinate[pos=.75] (@b) ++(-1mm+.75*\@tmpshift,-2*\pingu@foot@single@h) to[bend left=14] coordinate[pos=.82,yshift=.65mm] (@c) ++(-3.25mm-.75*\@tmpshift,1mm) % to[out=-4,in=184] 
+to[out=180-35,in=-70] coordinate[pos=.45] (@a) ++(-.7mm,2*\pingu@foot@single@h)
+}
+
+\def\pingu@draw@eb@sneaker{%
+\scope[rotate around={-\basicfeetbend+10:(\pingu@name-foot-right)}]
+\def\@tmpshift{0mm}
+\pgfonlayer{very-background}
+  {\def\@tmpshift{.3mm}\pingu@block{\pingu@color@sneaker@base@right} \@pingu@x@sneaker@path@right;}
+  \pingu@block{\pingu@color@sneaker@right} \@pingu@x@sneaker@path@right;
+  \pgfonlayer{middle}
+  \pgfinterruptboundingbox 
+  % counter rotate
+  \path[/pingu/@invclip,rotate around={+\basicfeetbend-10:(\pingu@name-foot-right)}] \pingu@path@lowerpingu; \endpgfinterruptboundingbox
+  \pingu@block{\pingu@color@sneaker@right} \@pingu@x@sneaker@path@right;
+  \endpgfonlayer
+  \endpgfonlayer
+\clip\@pingu@x@sneaker@path@right;
+  \pingu@draw[thick,line join=round]{\pingu@color@sneaker@band@right} ([xshift=-1mm]@a) to[out=15,in=140] ([yshift=.2mm]@c) coordinate(@) -- ++(.1mm,-.25mm) (@) to[out=55,in=175] ([xshift=1mm]@b);
+\endscope
+\scope[rotate around={\basicfeetbend-10:(\pingu@name-foot-left)}] % TODO
+\def\@tmpshift{0mm}
+\pgfonlayer{very-background}
+  {\def\@tmpshift{.25mm}\pingu@block{\pingu@color@sneaker@base@left} \@pingu@x@sneaker@path@left;}
+  \pingu@block{\pingu@color@sneaker} \@pingu@x@sneaker@path@left;
+  \endpgfonlayer
+\clip\@pingu@x@sneaker@path@left;
+  \pingu@draw[thick,line join=round]{\pingu@color@sneaker@band@left} ([xshift=-1mm]@a) to[out=15,in=115] ([yshift=.2mm]@c) coordinate(@) -- ++(-.1mm,-.25mm) (@) to[out=40,in=175] ([xshift=1mm]@b);
 \endscope
 }
 
