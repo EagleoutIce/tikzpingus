@@ -21,6 +21,7 @@ jobs:
           restore-keys: ${{ runner.os }}-pengu-cache-doc-
       - name: 📄 Compile the Documentation
         uses: xu-cheng/latex-action@v3
+        continue-on-error: true
         with:
           pre_compile: "tlmgr remove --force tikzpingus"
           working_directory: doc

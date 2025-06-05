@@ -8,16 +8,8 @@
 \PreviewBorder.5cm
 \begin{document}
 \begin{preview}
-\begin{tikzpicture}
-   \pingu[wings grab,body type=legacy,bunny ears,eyes wink, basket right, basket right xshift=3.35mm,right item angle=-10]
-   \node[right=4mm,yshift=1.5mm,align=left,font=\sffamily\bfseries\Huge,scale=2.75,gray,opacity=.45] at(current bounding box.east) {Happy\\\,Easter};
-   
-   \scope[shift=(pingu-belly-center),yshift=8.5mm]
-   \pgfonlayer{very-background}
-   \path[preaction={fill=lightgray!5!white},ball color=white!95!gray,fill opacity=.33]
-         plot[domain=-pi:pi,samples=100] ({.78*2.5cm*cos(\x/4 r)*sin(\x r)},{-2.5cm*(cos(\x r))});
-    \endpgfonlayer
-   \endscope
-\end{tikzpicture}%
+\tikz{\pingu[:mix-draw=20!white,right wing hug, eyes wink,flip-flops,flower right, conical hat,body type=legacy,tie=pingu@purple]}\qquad
+\tikz{\pingu[:mix-draw=20!white,eyes shiny,wings grab, cup=pingu@blue,cup straw=!hide,cup steam, body type=legacy,shoes,small]}\qquad
+\tikz{\pingu[:mix-draw=20!white,right eye wink, left eye vertical, sunglasses,left wing wave, lollipop left,body type=legacy,sneaker]}
 \end{preview}
 \end{document}
