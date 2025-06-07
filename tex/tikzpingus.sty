@@ -160,6 +160,7 @@
 \newif\if@pingu@wi@flip@right
 % <feet conditional>
 \newif\if@pingu@feet@front
+\newif\if@pingu@bill@above
 % <@feet conditional>
 
 \pgfqkeys{/pingu}{
@@ -253,6 +254,7 @@
   right wing item flip/.is if   = @pingu@wi@flip@right,
 % <bill keys>
   bill/.code                    = \pingu@bill@select{#1},
+  bill above/.is if             = @pingu@bill@above,
   bill color/.code              = \pingu@color{bill}{#1},
 % <@bill keys>
   % hair color TODO: other colors
@@ -421,9 +423,11 @@
     coordinate (\pingu@name-wing-right-start-up);
 \pingu@draw@clothing@main
 
+\if@pingu@bill@above\pgfonlayer{foreground}\fi
 \scope[/pingu/@bill]
 \@pingu@drawer@bill@
 \endscope
+\if@pingu@bill@above\endpgfonlayer\fi
 
 \scope[/pingu/@extras,/pingu/@extras@above]
 \pingu@draw@extras@above
@@ -4005,10 +4009,10 @@ to[out=130,in=-85] coordinate[pos=.16] (\@tmpprefix @b) ++(-.2mm,1.9*\pingu@foot
 }
 
 \def\pingu@draw@eb@sneaker{%
+\pgfonlayer{middle}
 \scope[rotate around={-\basicfeetbend+\pingu@sneakerrot:(\pingu@name-foot-right)}]
 \let\@tmpprefix\@empty
 \def\@tmpshift{0mm}
-\pgfonlayer{middle}
 \pgfinterruptboundingbox 
 % counter rotate
 \path[/pingu/@invclip,rotate around={+\basicfeetbend-\pingu@sneakerrot:(\pingu@name-foot-right)}] \pingu@path@lowerpingu; \endpgfinterruptboundingbox
@@ -4025,12 +4029,10 @@ to[out=130,in=-85] coordinate[pos=.16] (\@tmpprefix @b) ++(-.2mm,1.9*\pingu@foot
 \endscope
 % redraw
 \pingu@draw[semithick]{black} \@pingu@x@sneaker@path@right;
-\endpgfonlayer
 \endscope
 \scope[rotate around={\basicfeetbend-\pingu@sneakerrot:(\pingu@name-foot-left)}]
 \let\@tmpprefix\@empty
 \def\@tmpshift{0mm}
-\pgfonlayer{middle}
 \pgfinterruptboundingbox 
 % counter rotate
 \path[/pingu/@invclip,rotate around={-\basicfeetbend+\pingu@sneakerrot:(\pingu@name-foot-left)}] \pingu@path@lowerpingu; \endpgfinterruptboundingbox
@@ -4047,7 +4049,73 @@ to[out=130,in=-85] coordinate[pos=.16] (\@tmpprefix @b) ++(-.2mm,1.9*\pingu@foot
 \endscope
 % redraw
 \pingu@draw[semithick]{black} \@pingu@x@sneaker@path@left;
+\endscope
 \endpgfonlayer
+}
+
+\newdimen\pingu@wi@guitar@w@half \pingu@wi@guitar@w@half=4mm
+\newdimen\pingu@wi@guitar@xshift \pingu@wi@guitar@xshift=1.15mm
+\newdimen\pingu@wi@guitar@yshift \pingu@wi@guitar@yshift=-.8mm
+\newdimen\pingu@wi@guitar@threed@x \pingu@wi@guitar@threed@x=.15mm
+\newdimen\pingu@wi@guitar@threed@y \pingu@wi@guitar@threed@y=.05mm
+\pingu@create@wing@extra{guitar}{% TODO: update main to color
+  guitar \@lr/.code         = {\pingu@set@extra{guitar\@lr}{true}\@namedef{pingu@guitar@\@lr}{##1}},
+  guitar \@lr/.default      = {},
+  guitar \@lr\space color/.code = \pingu@color{guitar\@lr}{##1},
+  guitar \@lr\space side color/.code = \pingu@color{guitar\@lr @side}{##1},
+  guitar \@lr\space tint color/.code = \pingu@color{guitar\@lr @tint}{##1},
+  guitar \@lr\space outline color/.code = \pingu@color{guitar\@lr @outline}{##1},
+  guitar \@lr\space fret color/.code = \pingu@color{guitar\@lr @fret}{##1},
+  guitar \@lr\space fret side color/.code = \pingu@color{guitar\@lr @fret@side}{##1},
+  guitar \@lr\space head color/.code = \pingu@color{guitar\@lr @head}{##1},
+  guitar \@lr\space strings color/.code = \pingu@color{guitar\@lr @strings}{##1},
+  guitar \@lr\space peg color/.code = \pingu@color{guitar\@lr @peg}{##1},
+  guitar \@lr\space strings end color/.code = \pingu@color{guitar\@lr @strings@end}{##1},
+  guitar \@lr\space pickup color/.code = \pingu@color{guitar\@lr @pickup}{##1},
+  guitar \@lr\space fret lines color/.code = \pingu@color{guitar\@lr @fret@lines}{##1},
+  guitar \@lr\space strings shift/.code    = \@namedef{pingu@x@guitar\@lr @stringshift}{##1}, %dim
+}{guitar \@lr\space color=pingu@red!90!black,guitar \@lr\space fret color=brown!80!black,guitar \@lr\space fret lines color=pingu@silver!70!brown!30!white,guitar \@lr\space outline color=black,guitar \@lr\space tint color=white!99.5!\csname pingu@color@guitar\@lr\endcsname,guitar \@lr\space side color=\csname pingu@color@guitar\@lr\endcsname!80!pingu@white,guitar \@lr\space fret side color=\csname pingu@color@guitar\@lr @fret\endcsname!80!pingu@white,guitar \@lr\space head color=brown!89!white,guitar \@lr\space strings color=pingu@silver!70!pingu@black!50!white,guitar \@lr\space strings end color=pingu@black!80!\csname pingu@color@guitar\@lr\endcsname,guitar \@lr\space peg color=pingu@black,guitar \@lr\space pickup color=white!99!pingu@black,guitar \@lr\space strings shift=0pt}
+\def\pingu@draw@wi@guitar#1{%
+    \pingu@setup@wing{guitar}{#1}%
+    \def\@rot{\if@pingu@wing@item@side@left@10\else-10\fi}%
+\scope[rotate around={\@angle+\@rot:(\pingu@name-wing-#1)}] % todo: shifts
+    % arc(240:300:\pingu@wi@guitar@w@half\space and 1.6mm)  
+        
+    \pingu@block[draw=\csname pingu@color@guitar\@lr @outline\endcsname,thin]{\csname pingu@color@guitar\@lr @side\endcsname} (\pingu@name-wing-#1)++(\pingu@wi@guitar@xshift+\pingu@wi@guitar@threed@x,-5mm+\pingu@wi@guitar@threed@y+\pingu@wi@guitar@yshift) coordinate (@) -- ++(1.33mm,0) to[out=-2,in=-40,looseness=1.15] ++(2mm,6.5mm) to[out=150,in=-40] ++(-.1mm,5mm) to[out=140,in=-10] ++(-3mm,-1mm) coordinate (@g-start) -- ++(-1.63mm,0) -- ++(0,1mm) to[out=220,in=-120,looseness=1.33] ++(-.83mm,1.85mm) -- ++(0,.33mm) to[out=200,in=110] ++(-2.3mm,-4.5mm) to[out=-70,in=70] ++(1.1mm,-2mm) to[out=230,in=170] ([xshift=-1.5mm]@) -- cycle;
+
+    \pingu@block[draw=\csname pingu@color@guitar\@lr @outline\endcsname,ultra thin]{\csname pingu@color@guitar\@lr @fret@side\endcsname} ([xshift=.05mm+0.5*\pingu@wi@guitar@threed@x,yshift=-1mm+.5*\pingu@wi@guitar@threed@y]@g-start) arc(180:360:-.5*1.73mm and .66mm) -- ++(.2mm,1.59cm) -- ++(1.1mm,0) -- cycle;
+
+    \pingu@block[draw=\csname pingu@color@guitar\@lr @outline\endcsname,rounded corners=.5pt]{\@col}(\pingu@name-wing-#1)++(\pingu@wi@guitar@xshift,-6mm) coordinate (@) -- ++(1.33mm,0) to[out=-2,in=-40,looseness=1.15] ++(2mm,6.5mm) to[out=150,in=-40] ++(-.1mm,5mm) to[out=140,in=-10] ++(-3mm,-1mm) coordinate (@g-start) -- ++(-1.63mm,0) coordinate[pos=.5] (@g-head) coordinate (@g-end) -- ++(0,1mm) to[out=220,in=-120,looseness=1.33] ++(-.83mm,2.5mm) to[out=200,in=110] ++(-2.3mm,-4.5mm) to[out=-70,in=70] ++(1.1mm,-2mm) to[out=230,in=170] ([xshift=-1.5mm]@) -- cycle;
+
+    \pingu@block{\csname pingu@color@guitar\@lr @fret\endcsname} ([xshift=.05mm,yshift=-1mm]@g-start) arc(180:360:-.5*1.73mm and .66mm) -- ++(.2mm,1.63cm) coordinate (@g-top-start) -- ++(1.3mm,0) coordinate (@g-top-end) -- cycle;
+    
+    \foreach \l in {1,...,16} {
+        \scope\clip ([xshift=.05mm,yshift=-1mm]@g-start) arc(180:360:-.5*1.73mm and .66mm) -- ++(.2mm,1.63cm) coordinate (@g-top-start) -- ++(1.3mm,0) coordinate (@g-top-end) -- cycle;
+        \pingu@draw[ultra thin]{\csname pingu@color@guitar\@lr @fret@lines\endcsname} ([yshift=.95mm*\l,yshift=-1.25mm]@g-start) -- ++(-2mm,0);
+        \endscope
+    }
+    \pingu@draw[very thin]{\csname pingu@color@guitar\@lr @outline\endcsname} ([xshift=.05mm,yshift=-1mm]@g-start) arc(180:360:-.5*1.73mm and .66mm) -- ++(.2mm,1.63cm) coordinate (@g-top-start) -- ++(1.3mm,0) coordinate (@g-top-end) -- cycle;
+    
+    \pingu@block{\csname pingu@color@guitar\@lr @tint\endcsname,rounded corners=1pt}(\pingu@name-wing-#1)++(\pingu@wi@guitar@xshift+3.85mm,-3.6mm) coordinate (@) to[out=80,in=-55,looseness=1.15] ++(-1.35mm,4mm) to[out=150,in=-40] ++(.32mm,4.8mm) to[out=200,in=30] ++(-3.15mm,-3mm) to[bend left=30] ++(-1.63mm,0) to[bend left=5] ++(0,1mm) to[out=220,in=30,looseness=1.33] ++(-.83mm,-2.5mm) to[out=280,in=130] ([xshift=-1.5mm]@) -- cycle;
+    
+    \pingu@block[draw=\csname pingu@color@guitar\@lr @outline\endcsname,very thin,rounded corners=.3pt]{\csname pingu@color@guitar\@lr @head\endcsname}(@g-top-end) to[out=90,in=190] ++(.55mm,.9mm) -- ++(-.55mm,1.9mm) [sharp corners] arc(190:70:.2mm) arc(0:110:.5mm and .8mm) [rounded corners=.3pt] -- ([xshift=-.5mm,yshift=.33mm]@g-top-start) foreach \i in {1,...,4} { coordinate[pos=\i/5-0.1,xshift=.2mm,yshift=-.2mm] (@g-knot-\i) } to[bend left=40] (@g-top-start) -- cycle;
+    \def\DrawLines{\foreach \i in {1,...,4} {
+        \def\@comp{\csname pingu@x@guitar\@lr @stringshift\endcsname}%
+        \ifnum\i=1
+        \pingu@draw[very thin]{\csname pingu@color@guitar\@lr @strings\endcsname} (@g-knot-\i) -- ++(\@comp,-2.525cm) coordinate[pos=.875] (@pad) coordinate (@end);
+        \else
+        \pingu@draw[very thin]{\csname pingu@color@guitar\@lr @strings\endcsname} (@g-knot-\i) -- ([xshift=\@comp]@g-knot-\i|-@end) coordinate (@very-end);
+        \coordinate (@pad-end) at(@g-knot-\i|-@pad);
+        \fi
+        \pingu@block{\csname pingu@color@guitar\@lr @peg\endcsname} (@g-knot-\i) circle[radius=.125mm];
+    }}
+    \DrawLines
+    \pingu@block[draw=\csname pingu@color@guitar\@lr @pickup\endcsname,rounded corners=.25pt,ultra thick,opacity=.5]{\csname pingu@color@guitar\@lr @pickup\endcsname} (@pad) rectangle ([yshift=-.66mm]@pad-end);
+    \DrawLines % just overlay poor man 
+    \foreach \i in {1,...,4} {
+        \pingu@draw[thin]{\csname pingu@color@guitar\@lr @peg\endcsname} (@g-knot-\i) -- ++(-.4mm,.2mm);
+    }
+    \pingu@draw[thick]{\csname pingu@color@guitar\@lr @strings@end\endcsname} ([xshift=.15mm]@end) -- ([xshift=-.15mm]@very-end);
 \endscope
 }
 
