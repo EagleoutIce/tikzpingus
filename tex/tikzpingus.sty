@@ -4179,6 +4179,7 @@ to[out=130,in=-85] coordinate[pos=.16] (\@tmpprefix @b) ++(-.2mm,1.9*\pingu@foot
     drums/.default        = brown!10!pingu@white,%
     drums center band/.code = \pingu@color{drums@band@center}{#1},%
     drums center side/.code = \pingu@color{drums@side@center}{#1},%
+    drums center text/.code = \@namedef{pingu@drums@text}{#1},
     drums left base/.code = \pingu@color{drums@base@left}{#1},%
     drums left band/.code = \pingu@color{drums@band@left}{#1},%
     drums left color/.code = \pingu@color{drums@left}{#1},%
@@ -4186,8 +4187,8 @@ to[out=130,in=-85] coordinate[pos=.16] (\@tmpprefix @b) ++(-.2mm,1.9*\pingu@foot
     drums right base/.code = \pingu@color{drums@base@right}{#1},%
     drums right band/.code = \pingu@color{drums@band@right}{#1},%
     drums right color/.code = \pingu@color{drums@right}{#1},%
-    drums right side/.code = \pingu@color{drums@side@right}{#1}%
-}{drums left base=\pingu@color@drums!45!pingu@black, drums center band=pingu@black!35!pingu@red,drums center side=pingu@black!35!pingu@red!60!pingu@silver, drums left band=\pingu@color@drums@base@left!35!pingu@red, drums right base=\pingu@color@drums@base@left, drums right band=\pingu@color@drums@band@left, drums left color=\pingu@color@drums, drums right color=\pingu@color@drums,drums left side=pingu@black!35!pingu@red!60!pingu@silver,drums right side=pingu@black!35!pingu@red!60!pingu@silver}
+    drums right side/.code = \pingu@color{drums@side@right}{#1},%
+}{drums left base=\pingu@color@drums!45!pingu@black, drums center band=pingu@black!35!pingu@red,drums center side=pingu@black!35!pingu@red!60!pingu@silver, drums left band=\pingu@color@drums@base@left!35!pingu@red, drums right base=\pingu@color@drums@base@left, drums right band=\pingu@color@drums@band@left, drums left color=\pingu@color@drums, drums right color=\pingu@color@drums,drums left side=pingu@black!35!pingu@red!60!pingu@silver,drums right side=pingu@black!35!pingu@red!60!pingu@silver,drums center text={}}
 
 % coordinate[pos=.84] (@a) ++(2.5mm,-2*\pingu@foot@single@h-1.75mm) coordinate (@c) to[out=0,in=285] coordinate[pos=.575] (@b) ++(2.5mm,2*\pingu@foot@single@h+1mm)}
 \def\pingu@draw@ea@drums{%
@@ -4196,7 +4197,7 @@ to[out=130,in=-85] coordinate[pos=.16] (\@tmpprefix @b) ++(-.2mm,1.9*\pingu@foot
 \pingu@block[draw=\pingu@color@drums@band@center]{\pingu@color@drums@side@center} ([yshift=-4.5mm,xshift=.1mm]\pingu@name-belly-center) ellipse[x radius=7.2mm,y radius=7.3mm];
 \pingu@draw[thick]{\pingu@color@drums@band@center} ([yshift=-4.5mm,xshift=.15mm]\pingu@name-belly-center)+(-60:7.3mm) -- +(-60:9.3mm);
 \pingu@draw[thick]{\pingu@color@drums@band@center} ([yshift=-4.5mm,xshift=.7mm]\pingu@name-belly-center)+(-120:7.3mm) -- +(-120:9.3mm);
-\pingu@block[draw=\pingu@color@drums@band@center,very thick]{\pingu@color@drums} ([yshift=-5mm]\pingu@name-belly-center) ellipse[x radius=7.2mm,y radius=7.3mm] node[centered,font=\sffamily\footnotesize,align=center] {The\\\fontseries{sb}\selectfont Waddlers!};
+\pingu@block[draw=\pingu@color@drums@band@center,very thick]{\pingu@color@drums} ([yshift=-5mm]\pingu@name-belly-center) ellipse[x radius=7.2mm,y radius=7.3mm] node[centered,font=\sffamily\footnotesize,align=center] {\pingu@drums@text};
 \pingu@draw[very thick]{\pingu@color@drums@band@center} ([yshift=-5mm]\pingu@name-belly-center)+(-60:7.3mm) -- +(-60:9.3mm);
 \pingu@draw[very thick]{\pingu@color@drums@band@center} ([yshift=-5mm]\pingu@name-belly-center)+(-120:7.3mm) -- +(-120:9.3mm);
 
