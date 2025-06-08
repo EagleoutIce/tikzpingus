@@ -5,6 +5,11 @@
 This package allows you to typeset (cute) little penguins in LaTeX with PGF/Ti*k*Z.
 The [documentation](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/doc/build/tikzpingus-doc.pdf) contains a reference for all currently available options. See the examples below for a quick overview.
 
+<div style="text-align:center">
+
+[<img src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/minimal-1.png?raw=true" width="300" alt="The current minimal penguin test."/>](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/minimal.pdf)
+</div>
+
 ----
 
 Ti*k*Zpingus is actively developed by *Florian Sihler* (contact me at: <florian.sihler@uni-ulm.de>) under the [GPLv3 License](LICENSE). I am very happy about every contribution (see [CONTRIBUTING.md](CONTRIBUTING.md)).
@@ -67,8 +72,6 @@ Clothes are a work in progress for a long time now. While there are pants, shirt
 
 These are some test files that showcase additional capabilities of the library:\
 [<img src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/preview-1.png?raw=true" width="600" alt="A test file of many penguins." />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/showcase.pdf)
-
-[<img src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/minimal-1.png?raw=true" width="300" alt="The current minimal penguin test."/>](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/minimal.pdf)
 
 For the title image of a computer science course on software product lines, I created a small and incomplete but really fun feature model:\
 [<img src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/spl-1.png?raw=true" width="900" alt="A Penguin Feature-Model" />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/spl.pdf)
