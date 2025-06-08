@@ -4,6 +4,10 @@ name: status check compile
     types: [opened, synchronize]
   workflow_call:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build-pdfs:
     runs-on: ubuntu-latest
