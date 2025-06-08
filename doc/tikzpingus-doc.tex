@@ -429,7 +429,7 @@
     \node[text width=.95\linewidth, inner sep=11pt] (m) {%
 	 For my slides at university, I started to use the famous \LaTeX-package \textsl{\href{https://github.com/samcarter/tikzducks}{tikzducks}} a few years ago.
 	 Yet, it seemed somewhat of a necessity to extend the range of available \say{cute} animals in \LaTeX.
-	 Therefore I started writing this package: \textsl{tikzpingus}.\footnotemark\medskip\\
+	 Therefore, I started writing this package: \textsl{tikzpingus}.\footnotemark\medskip\\
 	 \textit{Please note:} While tikzpingus is certainly inspired by tikzducks, it does offer a different set of features (e.g., multiple wing positions,~\ldots).\medskip\\
 	 I would be happy for any feedback or issues on the \href{https://github.com/EagleoutIce/tikzpingus}{tikzpingus}-GitHub.
     };
@@ -737,7 +737,7 @@ For each selection, \say{none} will prohibit the drawing, and \say{normal} is th
 \begin{tikzpicture}
 	\pingu[bill angry, heart=green]
 	\pingu[feet back, hairstyle none, heart=teal, xshift=3.5cm]
-	\pingu[bill flat, feet simple, heart=orange, xshift=7cm]
+	\pingu[bill open, feet simple, heart=orange, xshift=7cm]
 	\pingu[feet none, bill none, heart=purple, xshift=10.5cm]
 \end{tikzpicture}
 \end{tcblisting}
@@ -797,7 +797,7 @@ In a more general fashion, there is a \keyref{random from} key for completely ra
 An extra is considered everything, that is attached to the main penguin and not to the wings (as those items may be placed separately for both wings).
 Most extras are activated with the format |<extra>=<color>| (the |<color>| option is not mandatory)
 and try to adapt with other extras that have been placed (yet you can place multiple hats if you really like to).  A lot of the extras do offer more keys to customize their appearance.
-They are explained in the full reference (\autoref{sec:full-ref}).
+They are explained in the full reference~(\autoref{sec:full-ref}).
 
 Consider the somewhat overkill-example of \say{\nameref{lord-gadget}}.
 \begin{tcblisting}{title={Lord-Gadget, the penguin},externalize listing=lord-gadget,nameref={Lord-Gadget, the penguin},label=lord-gadget,float}
@@ -1302,6 +1302,15 @@ Aliases may set custom defaults. Those defaults are not listed as they may chang
 \end{tcblisting}
 \endkeyexplain
 
+\keyexplain{bill above}{true/false}{\if@pingu@bill@above true\else false\fi}
+Makes any bill appear on the foreground layer.
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[bill color=green,bill above]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
+
 \shortcuts{bill}{\@pingu@bill@}{bill color}
 
 \subsection{Drawing Styles}
@@ -1386,7 +1395,7 @@ Aliases may set custom defaults. Those defaults are not listed as they may chang
 \endkeyexplain
 
 \keyexplain{:mix}{color-mix}{50!white}
-	Mix the main penguin with given colors, but leave all extras intact. This can be used (for example) to gray-out the penguin:
+	Mix the main penguin with given colors by adapting the individual drawing colors individually, but leave all extras intact. This can be used (for example) to gray-out the penguin:
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[mask,tie=red,lollipop left,:mix=50!green]
@@ -3046,6 +3055,117 @@ Currently, this is a very cumbersome command to change various detective cap par
 \end{tcblisting}
 \endsubkeyexplain
 
+\subsubsection{The drums}
+
+\showkeyexplain{drums}{color}{brown!10!pingu@white}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[drums=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endshowkeyexplain
+
+{\def\pingu@color@drums{<drums-color>}
+\subkeyexplain{drums}{drums center band}{color}{\pingu@color@drums@band@center}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[drums,drums center band=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@drums{<drums-color>}
+\subkeyexplain{drums}{drums center side}{color}{\pingu@color@drums@side@center}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[drums,drums center side=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@drums{<drums-color>}
+\subkeyexplain{drums}{drums center text}{text}{\pingu@drums@text}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[drums,drums center text=Foo!]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@drums{<drums-color>}
+\subkeyexplain{drums}{drums left base}{color}{\pingu@color@drums@base@left}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[drums,drums left base=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@drums{<drums-color>}
+\subkeyexplain{drums}{drums left band}{color}{\pingu@color@drums@band@left}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[drums,drums left band=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@drums{<drums-color>}
+\subkeyexplain{drums}{drums left side}{color}{\pingu@color@drums@side@left}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[drums,drums left side=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+
+{\def\pingu@color@drums{<drums-color>}
+\subkeyexplain{drums}{drums left color}{color}{\pingu@color@drums@left}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[drums,drums left color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@drums{<drums-color>}
+\subkeyexplain{drums}{drums right base}{color}{\pingu@color@drums@base@right}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[drums,drums right base=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@drums{<drums-color>}
+\subkeyexplain{drums}{drums right band}{color}{\pingu@color@drums@band@right}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[drums,drums right band=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@drums{<drums-color>}
+\subkeyexplain{drums}{drums right side}{color}{\pingu@color@drums@side@right}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[drums,drums right side=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+
+{\def\pingu@color@drums{<drums-color>}
+\subkeyexplain{drums}{drums right color}{color}{\pingu@color@drums@right}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[drums,drums right color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
 \subsubsection{The crown}
 \showkeyexplain{crown}{color}{pingu@yellow}
 \begin{tcblisting}{@}
@@ -4470,7 +4590,7 @@ Change the wool color:
 
 \subsubsection{The sneaker}
 
-\showkeyexplain{shoes}{color}{pingu@bronze!70!pingu@red!80!pingu@white!80!brown}
+\showkeyexplain{sneaker}{color}{pingu@bronze!70!pingu@red!80!pingu@white!80!brown}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[sneaker=green]
@@ -5846,6 +5966,240 @@ Similar to \keyref{lightsaber right outer glow factor}:
 \end{tcblisting}
 \endsubkeyexplain
 
+
+\subsubsection{The guitar}
+
+\showkeyexplain{guitar left}{color}{pingu@red!90!black}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[guitar left=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endshowkeyexplain
+
+{\def\pingu@color@guitarleft{<guitar-left-color>}
+\subkeyexplain{guitar left}{guitar left side color}{color}{\pingu@color@guitarleft@side}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[guitar left, guitar left side color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@guitarleft{<guitar-left-color>}
+\subkeyexplain{guitar left}{guitar left tint color}{color}{\pingu@color@guitarleft@tint}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[guitar left, guitar left tint color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@guitarleft{<guitar-left-color>}
+\subkeyexplain{guitar left}{guitar left outline color}{color}{\pingu@color@guitarleft@outline}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[guitar left, guitar left outline color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@guitarleft{<guitar-left-color>}
+\subkeyexplain{guitar left}{guitar left fret color}{color}{\pingu@color@guitarleft@fret}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[guitar left, guitar left fret color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@guitarleft{<guitar-left-color>}
+\subkeyexplain{guitar left}{guitar left fret side color}{color}{\pingu@color@guitarleft@fret@side}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[guitar left, guitar left fret side color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@guitarleft{<guitar-left-color>}
+\subkeyexplain{guitar left}{guitar left head color}{color}{\pingu@color@guitarleft@head}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[guitar left, guitar left head color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@guitarleft{<guitar-left-color>}
+\subkeyexplain{guitar left}{guitar left strings color}{color}{\pingu@color@guitarleft@strings}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[guitar left, guitar left strings color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@guitarleft{<guitar-left-color>}
+\subkeyexplain{guitar left}{guitar left peg color}{color}{\pingu@color@guitarleft@peg}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[guitar left, guitar left peg color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@guitarleft{<guitar-left-color>}
+\subkeyexplain{guitar left}{guitar left strings end color}{color}{\pingu@color@guitarleft@strings@end}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[guitar left, guitar left strings end color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@guitarleft{<guitar-left-color>}
+\subkeyexplain{guitar left}{guitar left pickup color}{color}{\pingu@color@guitarleft@pickup}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[guitar left, guitar left pickup color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@guitarleft{<guitar-left-color>}
+\subkeyexplain{guitar left}{guitar left fret lines color}{color}{\pingu@color@guitarleft@fret@lines}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[guitar left, guitar left fret lines color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+\subkeyexplain{guitar left}{guitar left strings shift}{length}{\pingu@x@guitarleft@stringshift}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[guitar left, guitar left strings shift=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\showkeyexplain{guitar right}{color}{pingu@red!90!black}
+\begin{tcblisting}{}
+\begin{tikzpicture}
+	\pingu[guitar right=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endshowkeyexplain
+
+{\def\pingu@color@guitarright{<guitar-right-color>}
+\subkeyexplain{guitar right}{guitar right side color}{color}{\pingu@color@guitarright@side}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[guitar right, guitar right side color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@guitarright{<guitar-right-color>}
+\subkeyexplain{guitar right}{guitar right tint color}{color}{\pingu@color@guitarright@tint}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[guitar right, guitar right tint color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@guitarright{<guitar-right-color>}
+\subkeyexplain{guitar right}{guitar right outline color}{color}{\pingu@color@guitarright@outline}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[guitar right, guitar right outline color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@guitarright{<guitar-right-color>}
+\subkeyexplain{guitar right}{guitar right fret color}{color}{\pingu@color@guitarright@fret}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[guitar right, guitar right fret color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@guitarright{<guitar-right-color>}
+\subkeyexplain{guitar right}{guitar right fret side color}{color}{\pingu@color@guitarright@fret@side}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[guitar right, guitar right fret side color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@guitarright{<guitar-right-color>}
+\subkeyexplain{guitar right}{guitar right head color}{color}{\pingu@color@guitarright@head}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[guitar right, guitar right head color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@guitarright{<guitar-right-color>}
+\subkeyexplain{guitar right}{guitar right strings color}{color}{\pingu@color@guitarright@strings}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[guitar right, guitar right strings color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@guitarright{<guitar-right-color>}
+\subkeyexplain{guitar right}{guitar right peg color}{color}{\pingu@color@guitarright@peg}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[guitar right, guitar right peg color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@guitarright{<guitar-right-color>}
+\subkeyexplain{guitar right}{guitar right strings end color}{color}{\pingu@color@guitarright@strings@end}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[guitar right, guitar right strings end color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@guitarright{<guitar-right-color>}
+\subkeyexplain{guitar right}{guitar right pickup color}{color}{\pingu@color@guitarright@pickup}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[guitar right, guitar right pickup color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+{\def\pingu@color@guitarright{<guitar-right-color>}
+\subkeyexplain{guitar right}{guitar right fret lines color}{color}{\pingu@color@guitarright@fret@lines}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[guitar right, guitar right fret lines color=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+\subkeyexplain{guitar right}{guitar right strings shift}{length}{\pingu@x@guitarright@stringshift}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[guitar right, guitar right strings shift=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+
 \subsubsection{The flag}
 The flag is special in that it is meant to be customized by commands so that the visible insignia is to the users liking.
 
@@ -6504,6 +6858,202 @@ Example of \keyref{staff right code app} that renders a little cross:
 \end{tikzpicture}
 \end{tcblisting}
 \endkeyexplain
+
+\subsubsection{The drum stick}
+
+\showkeyexplain{drum stick left}{color}{pingu@bronze!90!white}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[drum stick left=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endshowkeyexplain
+
+\subkeyexplain{drum stick left}{drum stick left handle length}{length}{\pingu@drumstick@left@length}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[drum stick left, drum stick left handle length=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{drum stick left}{drum stick left handle shift}{length}{\pingu@drumstick@left@shift}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[drum stick left, drum stick left handle shift=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{drum stick left}{drum stick left xshift}{length}{\pingu@drumstick@left@xshift}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[drum stick left, drum stick left xshift=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{drum stick left}{drum stick left yshift}{length}{\pingu@drumstick@left@yshift}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[drum stick left, drum stick left yshift=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{drum stick left}{drum stick left handle}{color}{\pingu@color@drumstick@left@handle}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[drum stick left, drum stick left handle=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\showkeyexplain{drum stick right}{color}{pingu@bronze!90!white}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[drum stick right=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endshowkeyexplain
+
+\subkeyexplain{drum stick right}{drum stick right handle length}{length}{\pingu@drumstick@right@length}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[drum stick right, drum stick right handle length=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{drum stick right}{drum stick right handle shift}{length}{\pingu@drumstick@right@shift}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[drum stick right, drum stick right handle shift=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{drum stick right}{drum stick right xshift}{length}{\pingu@drumstick@right@xshift}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[drum stick right, drum stick right xshift=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{drum stick right}{drum stick right yshift}{length}{\pingu@drumstick@right@yshift}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[drum stick right, drum stick right yshift=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{drum stick right}{drum stick right handle}{color}{\pingu@color@drumstick@right@handle}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[drum stick right, drum stick right handle=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subsubsection{The microphone}
+
+\showkeyexplain{microphone left}{color}{pingu@silver!90!white}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[microphone left=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endshowkeyexplain
+
+\subkeyexplain{microphone left}{microphone left handle length}{length}{\pingu@microphone@left@length}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[microphone left, microphone left handle length=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{microphone left}{microphone left handle shift}{length}{\pingu@microphone@left@shift}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[microphone left, microphone left handle shift=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{microphone left}{microphone left xshift}{length}{\pingu@microphone@left@xshift}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[microphone left, microphone left xshift=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{microphone left}{microphone left yshift}{length}{\pingu@microphone@left@yshift}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[microphone left, microphone left yshift=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{microphone left}{microphone left handle}{color}{\pingu@color@microphone@left@handle}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[microphone left, microphone left handle=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\showkeyexplain{microphone right}{color}{pingu@silver!90!white}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[microphone right=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endshowkeyexplain
+
+\subkeyexplain{microphone right}{microphone right handle length}{length}{\pingu@microphone@right@length}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[microphone right, microphone right handle length=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{microphone right}{microphone right handle shift}{length}{\pingu@microphone@right@shift}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[microphone right, microphone right handle shift=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{microphone right}{microphone right xshift}{length}{\pingu@microphone@right@xshift}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[microphone right, microphone right xshift=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{microphone right}{microphone right yshift}{length}{\pingu@microphone@right@yshift}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[microphone right, microphone right yshift=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{microphone right}{microphone right handle}{color}{\pingu@color@microphone@right@handle}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[microphone right, microphone right handle=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
 
 \subsubsection{The magnifier}
 
