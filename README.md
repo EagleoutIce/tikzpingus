@@ -7,7 +7,7 @@ The [documentation](https://media.githubusercontent.com/media/EagleoutIce/tikzpi
 
 <div style="text-align:center">
 
-[<img src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/minimal-1.png?raw=true" width="300" alt="The current minimal penguin test."/>](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/minimal.pdf)
+[<img src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/minimal-1.png?raw=true" width="600" alt="The current minimal penguin test."/>](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/minimal.pdf)
 </div>
 
 ----
