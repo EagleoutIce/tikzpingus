@@ -3,7 +3,7 @@
 [![made-with-latex](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://www.latex-project.org/) [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/GPL-3.0) [![PR's Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com)  [![CTAN](https://img.shields.io/ctan/v/tikzpingus.svg)](https://www.ctan.org/pkg/tikzpingus) [![build](https://github.com/EagleoutIce/tikzpingus/actions/workflows/compile.yaml/badge.svg)](https://github.com/EagleoutIce/tikzpingus/actions/workflows/compile.yaml)
 
 This package allows you to typeset (cute) little penguins in LaTeX with PGF/Ti*k*Z.
-The [documentation](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/doc/build/tikzpingus-doc.pdf) contains a reference for all currently available options. See the examples below for a quick overview.
+The [documentation](https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/doc/build/tikzpingus-doc.pdf) contains a reference for all currently available options. See the examples below for a quick overview.
 
 <div style="text-align:center">
 
@@ -31,7 +31,7 @@ The purpose of this library is to produce one thing: cute penguins. Using the `\
 [<img style="border-radius:8pt" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-2.png?raw=true" width="600" alt="A small penguin with hat and cup" />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=2)
 </div>
 
-While the [documentation](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/doc/build/tikzpingus-doc.pdf) contains a reference of all options that are available (or at least, that is the plan), most extras should be named relatively intuitive. For example, if you want a small penguin, you add the option `small`.
+While the [documentation](https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/doc/build/tikzpingus-doc.pdf) contains a reference of all options that are available (or at least, that is the plan), most extras should be named relatively intuitive. For example, if you want a small penguin, you add the option `small`.
 If the penguin should be large, you write `large`. If you want the penguin to hold a cup, you write `cup`. If the cup should have a specific color, like blue, you add this via `cup=blue`, ...
 <br />
 
@@ -40,7 +40,7 @@ If the penguin should be large, you write `large`. If you want the penguin to ho
 [<img style="border-radius:8pt" src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-3.png?raw=true" width="600" alt="A santa-looking penguin with beard, eye patch, santa hat and cane." />](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=3)
 </div>
 
-Currently, most options I have added arose from concrete situations and are not part of "sets". However, some sets do exist, like the `santa` or `devil` collection. If there are more sets in the future, I might add them as first-class components. For now, the [documentation](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/doc/build/tikzpingus-doc.pdf#appendix.A) contains an [overview](https://media.githubusercontent.com/media/EagleoutIce/tikzpingus/gh-pages/doc/build/tikzpingus-doc.pdf#appendix.A) of the larger gadgets.
+Currently, most options I have added arose from concrete situations and are not part of "sets". However, some sets do exist, like the `santa` or `devil` collection. If there are more sets in the future, I might add them as first-class components. For now, the [documentation](https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/doc/build/tikzpingus-doc.pdf#appendix.A) contains an [overview](https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/doc/build/tikzpingus-doc.pdf#appendix.A) of the larger gadgets.
 <br />
 
 <div style="text-align:center">
