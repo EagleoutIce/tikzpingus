@@ -1,5 +1,27 @@
 # Changelog
 
+## [v1.3](https://github.com/EagleoutIce/tikzpingus/tree/v1.3) (2025-06-17)
+
+[Full Changelog](https://github.com/EagleoutIce/tikzpingus/compare/v1.2...v1.3)
+
+**Implemented enhancements:**
+
+- Add some instruments [\#286](https://github.com/EagleoutIce/tikzpingus/issues/286)
+- Add Music Instruments [\#283](https://github.com/EagleoutIce/tikzpingus/issues/283)
+- Fish for the pengu! [\#281](https://github.com/EagleoutIce/tikzpingus/issues/281)
+- Drums with modified lollipop stick [\#218](https://github.com/EagleoutIce/tikzpingus/issues/218)
+- Flip-flops and sneakers [\#66](https://github.com/EagleoutIce/tikzpingus/issues/66)
+
+**Fixed bugs:**
+
+- Separating library names with a space leads to library-not-found error [\#278](https://github.com/EagleoutIce/tikzpingus/issues/278)
+
+**Merged pull requests:**
+
+- Instruments [\#285](https://github.com/EagleoutIce/tikzpingus/pull/285) ([EagleoutIce](https://github.com/EagleoutIce))
+- flip flops, shoes, and sneakers [\#284](https://github.com/EagleoutIce/tikzpingus/pull/284) ([EagleoutIce](https://github.com/EagleoutIce))
+- A fish for penguins [\#282](https://github.com/EagleoutIce/tikzpingus/pull/282) ([EagleoutIce](https://github.com/EagleoutIce))
+
 ## [v1.2](https://github.com/EagleoutIce/tikzpingus/tree/v1.2) (2024-11-27)
 
 [Full Changelog](https://github.com/EagleoutIce/tikzpingus/compare/v1.1...v1.2)
