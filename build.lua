@@ -106,3 +106,14 @@ uploadconfig = {
 
 -- cleanup ===========================================================
 cleanfiles = {module .. "-ctan.curlopt", module .. "-ctan.zip"}
+
+
+-- Steps Required:
+
+-- 0. Verify the documentation builds
+-- 1. Run l3build check to verify
+-- 2. Run l3build tag to create a new tag, changelog, and verify that the version in the docs updated too
+-- 3. Rebuild the docs to be sure
+-- 4. l3build ctan to build the archive
+-- 5. rename the README-ctan to README within the archive
+-- 6. Check that links are reachable.  
