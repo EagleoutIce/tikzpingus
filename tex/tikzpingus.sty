@@ -1360,17 +1360,17 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \pingu@create@wing@extra{cane}{%
   cane \@lr/.code             = {\pingu@set@extra{cane\@lr}{true}\pingu@color{cane\@lr}{##1}},
   cane \@lr/.default          = pingu@bronze,
-  cane \@lr\space raise/.code = {\@namedef{pinug@x@cane@raise@\@lr}{##1}},
-  cane \@lr\space length/.code = {\@namedef{pinug@x@cane@length@\@lr}{##1}},
+  cane \@lr\space raise/.code = {\@namedef{pingu@x@cane@raise@\@lr}{##1}},
+  cane \@lr\space length/.code = {\@namedef{pingu@x@cane@length@\@lr}{##1}},
 }{cane \@lr\space raise=0mm,cane \@lr\space length=15mm}
 
 % #1 wing
 \def\pingu@draw@wi@cane#1{%
     \pingu@setup@wing{cane}{#1}%
     \if@pingu@wing@item@side@left@
-        \pingu@block[thick,rotate around={\@angle+5:(\pingu@name-wing-#1)}]{\@col}(\pingu@name-wing-#1)++(0,-7mm+\pinug@x@cane@raise@left) -- ++(0,\csname pinug@x@cane@length@#1\endcsname) arc(180:0:2.25mm and 2.2mm) arc(360:180:.3mm and .275mm) arc(0:180:1.65mm and 1.65mm) -- ++(0,-\csname pinug@x@cane@length@#1\endcsname) arc(360:180:.3mm and .275mm) -- cycle;
+        \pingu@block[thick,rotate around={\@angle+5:(\pingu@name-wing-#1)}]{\@col}(\pingu@name-wing-#1)++(0,-7mm+\pingu@x@cane@raise@left) -- ++(0,\csname pingu@x@cane@length@#1\endcsname) arc(180:0:2.25mm and 2.2mm) arc(360:180:.3mm and .275mm) arc(0:180:1.65mm and 1.65mm) -- ++(0,-\csname pingu@x@cane@length@#1\endcsname) arc(360:180:.3mm and .275mm) -- cycle;
     \else
-        \pingu@block[thick,rotate around={\@angle-5:(\pingu@name-wing-#1)}]{\@col}(\pingu@name-wing-#1)++(0,-7mm+\pinug@x@cane@raise@right) -- ++(0,\csname pinug@x@cane@length@#1\endcsname) arc(0:180:2.25mm and 2.2mm) arc(180:360:.3mm and .275mm) arc(180:0:1.65mm and 1.65mm) -- ++(0,-\csname pinug@x@cane@length@#1\endcsname) arc(180:360:.3mm and .275mm) -- cycle;
+        \pingu@block[thick,rotate around={\@angle-5:(\pingu@name-wing-#1)}]{\@col}(\pingu@name-wing-#1)++(0,-7mm+\pingu@x@cane@raise@right) -- ++(0,\csname pingu@x@cane@length@#1\endcsname) arc(0:180:2.25mm and 2.2mm) arc(180:360:.3mm and .275mm) arc(180:0:1.65mm and 1.65mm) -- ++(0,-\csname pingu@x@cane@length@#1\endcsname) arc(180:360:.3mm and .275mm) -- cycle;
     \fi
 }
 %     #endregion
@@ -4211,5 +4211,34 @@ to[out=130,in=-85] coordinate[pos=.16] (\@tmpprefix @b) ++(-.2mm,1.9*\pingu@foot
 \endpgfonlayer
 \endscope
 }
+
+%     #region kite
+\pingu@create@wing@extra{kite}{%
+  kite \@lr/.code             = {\pingu@set@extra{kite\@lr}{true}\pingu@color{kite\@lr}{##1}},
+  kite \@lr/.default          = pingu@black!72!pingu@white,%pingu@black,
+  kite \@lr\space code/.code  = {\@namedef{pingu@x@kite\@lr}{##1}},
+  kite \@lr\space raise/.code = {\@namedef{pingu@x@kite@raise@\@lr}{##1}},
+}{ % TODO: control kite above and below! 
+    kite \@lr\space raise=1.15cm, 
+    kite \@lr\space code={%
+        \noexpand\pingu@block{pingu@blue} (-2.5mm,3mm) -- ++(4mm,3mm) -- ++(4mm,-3mm) -- ++(-4mm,-8mm) -- cycle;%
+    },
+}
+
+% #1 wing
+\def\pingu@draw@wi@kite#1{%
+    \pingu@setup@wing{kite}{#1}%
+    \def\@rot{\if@pingu@wing@item@side@left@10\else-10\fi}%
+    \scope[rotate around={\@angle+\@rot:(\pingu@name-wing-#1)}, xscale=\if@pingu@wing@item@side@left@-1\else1\fi]
+    \pingu@draw[thick,rotate around={\@angle+5:(\pingu@name-wing-#1)}]{\@col}(\pingu@name-wing-#1)
+        to[out=\@angle+\if@pingu@wing@item@side@left@130\else90\fi,in=\@angle+\if@pingu@wing@item@side@left@-60\else-90\fi] 
+        ++(\if@pingu@wing@item@side@left@-2mm\else2mm\fi,\csname pingu@x@kite@raise@#1\endcsname) coordinate(@);
+        
+    \scope[shift=(@)]
+        \csname pingu@x@kite#1\endcsname
+    \endscope
+    \endscope
+}
+%     #endregion
 
 \endinput
