@@ -3,32 +3,165 @@
 \usepackage[glows]{../tex/tikzpingus}
 \usepackage[active, tightpage]{preview}
 
-\usepackage{FiraSans}
+\usepackage{montserrat}
 \usetikzlibrary{intersections}
 
+\definecolor{hlf@blue}{HTML}{0089C2}
+
+\newsavebox\PenguKite
+\begin{lrbox}{\PenguKite}
+\begin{tikzpicture}
+   \pingu[wings wave, eyes wink, body type=legacy,
+   kite left,bow tie=hlf@blue,cloak=pingu@black,cloak cap=!hide,
+   shirt=pingu@white!65!lightgray,second shirt=pingu@white!70!lightgray,
+   hat,hat position={-2:(.35mm,-.33mm){1.2}},
+   kite left code={%
+      \scope[scale=.6,xshift=-3.5cm,yshift=-.5cm,rotate around={-30:(3.5,0.5)}]
+         \fill[pingu@black!72!pingu@white,opacity=.35] (1,1) rectangle (3,3);
+         \foreach \y in {1,2,3} {
+            \foreach \x in {1,2,3} {
+               \node[circle,fill=pingu@black!72!pingu@white,scale=.442] at (\x,\y) {};
+            }
+         }
+         \path[name path=angle] (5,3) -| (1,-1);
+         \path (3,2) -- (2,1) coordinate[pos=-3] (@1) coordinate[pos=3] (@2);
+         \path[name path=crosse] (@1) -- (@2);
+         \draw[thick,pingu@black!72!pingu@white,name intersections={of=angle and crosse},rounded corners=2pt] (3.5,0.5) -- (1,3) -- (intersection-1) -- (intersection-2) -- (1,3);
+      \endscope
+   }
+]
+\end{tikzpicture}
+\end{lrbox}
+\newsavebox\MountainPingu
+\begin{lrbox}{\MountainPingu}
+\begin{tikzpicture}
+   \pingu[conical hat,right wing wave,eyes shiny,glasses round,flower right=pingu@purple!80!pingu@green,:mix-all=80!white!82!pingu@green]
+\end{tikzpicture}
+\end{lrbox}
+\newsavebox\WaterPingu
+\begin{lrbox}{\WaterPingu}
+\begin{tikzpicture}
+   \clip (-10,2) rectangle (10,-2); %fake water
+   \pingu[pride flag right,graduate,right wing wave,left wing hug,eyes wink,bill open,eye patch right,:mix-all=90!white!82!pingu@blue,feet=none,hair=!hide]
+\end{tikzpicture}
+\end{lrbox}% 
+\newsavebox\HangingPingu
+\begin{lrbox}{\HangingPingu}
+\begin{tikzpicture}
+   \pingu[sneaker=pingu@purple,left wing wave, pants=hlf@blue, vr-headset,
+      :mix-all=90!white!72!pingu@blue,bill=open,vampire teeth]
+\end{tikzpicture}
+\end{lrbox}% 
 \PreviewBorder.5cm
 \begin{document}
 \begin{preview}
-\tikz{% :mix-draw=20!white,
-   \pingu[wings wave, eyes wink, body type=legacy,
-      kite left,bow tie=pingu@blue,cloak=pingu@black,cloak cap=!hide,
-      shirt=pingu@white!65!lightgray,second shirt=pingu@white!70!lightgray,
-      hat,hat position={-2:(.35mm,-.33mm){1.2}},
-      kite left code={%
-         \scope[scale=.6,xshift=-3.5cm,yshift=-.5cm,rotate around={-30:(3.5,0.5)}]
-            \fill[pingu@black!72!pingu@white,opacity=.25] (1,1) rectangle (3,3);
-            \foreach \y in {1,2,3} {
-               \foreach \x in {1,2,3} {
-                  \node[circle,fill=pingu@black!72!pingu@white,scale=.442] at (\x,\y) {};
-               }
-            }
-            \path[name path=angle] (5,3) -| (1,-1);
-            \path (3,2) -- (2,1) coordinate[pos=-3] (@1) coordinate[pos=3] (@2);
-            \path[name path=crosse] (@1) -- (@2);
-            \draw[thick,pingu@black!72!pingu@white,name intersections={of=angle and crosse},rounded corners=2pt] (3.5,0.5) -- (1,3) -- (intersection-1) -- (intersection-2) -- (1,3);
-         \endscope
+\begin{tikzpicture}% :mix-draw=20!white,
+   \draw[thick,lightgray,rounded corners=13pt,line width=.5pt] (-3cm-.2pt,2cm+.2pt) rectangle (4.25cm+.2pt,-3.75cm-.2pt);
+   \clip[rounded corners=12.5pt] (-3,2) rectangle (4.25,-3.75);
+   \pgfonlayer{background}
+   \draw[thick,lightgray,opacity=.5,rounded corners=13pt,line width=1.5pt] (-3cm+.5pt,2cm-.5pt) rectangle (4.25cm+.7pt,-3.75cm-.7pt);
+   \clip[rounded corners=12.5pt] (-3,2) rectangle (4.25,-3.75);
+   % sky
+   \scope
+   \fill[pingu@blue!16!white] (-6,-9) rectangle ++(15,12);
+   \fill[bottom color=pingu@blue!16!white,top color=pingu@blue!66!white,rounded corners=2pt] (-5,-1.24) rectangle (6,4);
+   \endscope
+   % gras and hills
+   \scope
+   \fill[pingu@green!66!white,rounded corners=2pt] (-4.2,-1.24) rectangle ++(9.2,-6);
+   % \fill[pingu@green!67!white] (-3.5,-1.25) to[out=60,in=150,looseness=1.5] ++(3.5,0);
+   % \fill[pingu@green!69!white] (-5.5,-1.25) to[out=50,in=150] ++(3.5,0);
+   % \fill[pingu@green!72!white] (1.5,-1.25) to[out=50,in=150] ++(3.5,0);
+   \endscope
+   % clouds
+   \scope
+      \node[fill,white, cloud, minimum width=2cm,minimum height=14mm,cloud puffs=12] at(-3,1.75) {};
+      \node[fill,white, cloud, minimum width=2cm,minimum height=9mm,cloud puffs=6] at(-.5,1) {};
+      \node[fill,white!80!pingu@white, cloud, minimum width=3.5cm,minimum height=22mm,cloud puffs=14] at(3,2.5) {};
+   \endscope
+   % river
+   \scope
+   \fill[pingu@blue!66!white,rounded corners=0pt] (-1.7,-1.23) -- (2.4,-1.23) to[out=-70,in=100] ++(9mm,-6cm) -- ++(-7.33cm,0mm) to[out=72,in=-85] ++(22mm,6cm) -- cycle;
+   \endscope
+   \node[scale=.2] at(2.55,-2.85) {\rotatebox{-5}{\usebox\HangingPingu}};
+   % mountain back
+   \fill[pingu@green!91!pingu@black!80!pingu@white] (3.1,-1.8) to[bend right=2] (2.9,-1.24) to[out=55,in=230] ++(3.25,5) -- ++(6.50,-5) to[bend left=15] cycle;
+   \fill[pingu@green!90!pingu@black!80!pingu@white] (3.2,-2.4) to[bend right=2] (3.1,-1.8) to[out=55,in=230] ++(3.25,5) -- ++(6.50,-5) to[bend left=15] cycle;
+   \fill[pingu@green!89!pingu@black!80!pingu@white] (3.2,-2.4) to[bend right=12] (3.3,-1.9) to[out=55,in=230] ++(3.25,5) -- ++(6.50,-5) to[bend left=15] cycle;
+   \fill[pingu@green!85!pingu@black!80!pingu@white] (3.1,-2.35) to[out=55,in=230] ++(3.25,4) -- ++(6.50,-4) to[bend left=15] cycle;
+   \fill[pingu@green!82!pingu@black!80!pingu@white] (3.1,-2.5) to[out=55,in=230] ++(3.25,4) -- ++(6.50,-4) to[bend left=15] cycle;
+   % bridge
+   \scope[yshift=-6.15mm,xshift=.75mm]
+   \def\BridgePath{(-4.2,-1.65) -- (5,-1.65) -- ++(0,-10.5mm)
+   foreach \i in {1,2,3,4,5} { -- ++(-2mm,0) arc(0:180:8mm and 8mm) }
+   -- ++(-2mm,0) -- cycle}
+   \fill[rounded corners=1pt,brown!82!white]\BridgePath;
+   \endscope
+   \scope[yshift=-6.15mm]
+   \def\BridgePath{(-4.2,-1.65) -- (5,-1.65) -- ++(0,-10.5mm)
+   foreach \i in {1,2,3,4,5} { -- ++(-2mm,0) arc(0:180:8mm and 8mm) }
+   -- ++(-2mm,0) -- cycle}
+   \fill[rounded corners=1pt,brown!75!white]\BridgePath;
+   \clip\BridgePath;
+   \scope[opacity=.5]
+   \foreach[count=\j] \i in {-1.8, -2.13,..., -5} {
+      \pgfmathsetmacro\XStart{-10+0.5*sin(100*\j)}
+      \xdef\RunningX{\XStart}
+      \foreach \x in {1,...,50} {
+         \pgfmathsetmacro\NewRunningX{\RunningX+0.5+0.1*rand}
+         % draw a brick
+         \fill[white,opacity=.1+0.1*rand] (\RunningX,\i) rectangle (\NewRunningX,\i+0.33);
+         \draw[brown!20!white] (\RunningX,\i) -| (\NewRunningX,\i+0.33);
+         \xdef\RunningX{\NewRunningX}
       }
-   ]
-}
+   }
+   \endscope
+   \endscope
+   \scope[yshift=-6.15mm]
+   % \def\BridgePath{(-4.2,-1.65) -- (5,-1.65) -- ++(0,-10.5mm) foreach \i in {1,2,3,4,5} { -- ++(-2mm,0) arc(0:180:8mm and 8mm) } -- ++(-2mm,0) -- cycle}
+   \draw[pingu@black,very thick,line cap=round] (-2.45,-1.65) -- ++(0,3.5cm) coordinate (@a);
+   \draw[pingu@black,very thick,line cap=round] (3.2,-1.65) -- ++(0,3.5cm) coordinate (@b);
+   \fill[pingu@white] (@a) to[out=-5,in=189] (@b) -- ++(0,-2.7cm) to[out=185,in=-9] ([yshift=-2.7cm]@a) -- cycle;
+   \fill[pingu@black] (@a) circle[radius=2pt];
+   \fill[pingu@black] (@b) circle[radius=2pt];
+   \path[decoration={
+      text along path,
+      text color=hlf@blue,
+      text format delimiters={'}{'},
+      % text align=fit to path,
+      text={'\sffamily'{} {} Welcome!{} To the 12{\textsuperscript{th}}}, % Heidelberg Laureate Forum
+   },decorate] ([yshift=-5mm]@a) to[out=-5,in=189] ([yshift=-5mm]@b);
+   \path[decoration={
+      text along path,
+      text color=hlf@blue,
+      text format delimiters={'}{'},
+      % text align=fit to path,
+      text={{} {}'\sffamily\LARGE'Heidelberg}, % Heidelberg Laureate Forum
+   },decorate] ([yshift=-11.5mm,xshift=1mm]@a) to[out=-5,in=189] ([yshift=-10mm]@b);
+   \path[decoration={
+      text along path,
+      text color=hlf@blue,
+      text format delimiters={'}{'},
+      % text align=fit to path,
+      text={{} {}'\sffamily\fontseries{sb}\LARGE'Laureate},
+   },decorate] ([yshift=-17mm,xshift=1mm]@a) to[out=-5,in=189] ([yshift=-15.5mm]@b);
+   \path[decoration={
+      text along path,
+      text color=hlf@blue,
+      text format delimiters={'}{'},
+      % text align=fit to path,
+      text={{} {}'\sffamily\fontseries{sb}\LARGE'Forum},
+   },decorate] ([yshift=-23mm,xshift=1mm]@a) to[out=-5,in=189] ([yshift=-21mm]@b);
+   \draw[pingu@black,very thick,line cap=round] (-2.45,-1.65) -- ++(0,3.5cm) coordinate (@a);
+   \draw[pingu@black,very thick,line cap=round] (3.2,-1.65) -- ++(0,3.5cm) coordinate (@b);
+   \endscope
+   % mountain right
+   \fill[pingu@green!91!pingu@black!80!pingu@white] (3.1,-3.75) to[bend right=6] (3.1,-3.5) to[out=55,in=230] ++(3.25,7) -- ++(6.50,-7) to[bend left=5] cycle;
+   \node[scale=.33,opacity=.99] at(4.1,-1.5) {\rotatebox{40}{\usebox\MountainPingu}};
+   \fill[pingu@green!89!pingu@black!80!pingu@white] (3.1,-3.75) to[out=55,in=230] ++(3.25,7) -- ++(6.50,-7) to[bend left=5] cycle;
+   \endpgfonlayer
+   \node[above,scale=.6] at(1.65,-2.5) {\usebox\PenguKite};
+   \node[scale=.33] at(-1.5,-3.5) {\usebox\WaterPingu};
+\end{tikzpicture}
 \end{preview}
 \end{document}
