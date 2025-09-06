@@ -1509,6 +1509,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 % #1 wing
 \def\pingu@draw@wi@flower#1{%
 \pingu@setup@wing{flower}{#1}%
+\scope[rotate around={\@angle:(\pingu@name-wing-#1)}]
     \pingu@draw[line width=\csname pingu@flower@#1@stem@width\endcsname]{\csname pingu@color@flower@#1@stem\endcsname} ([yshift=-.5mm]\pingu@name-wing-#1) to[out=80,in=-20] ++(\csname pingu@flower@#1@stem@tilt\endcsname,\csname pingu@flower@#1@stem@length\endcsname) coordinate (\pingu@name-flower-center-#1) coordinate (@);
 \pgfmathsetmacro\AnglePerPetal{360/\csname pingu@flower@#1@petals\endcsname}
 \edef\@currwidth{\csname pingu@flower@#1@petals@width\endcsname}%
@@ -1519,6 +1520,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \endscope
 \pingu@block{\csname pingu@color@flower@#1@center\endcsname} (\pingu@name-flower-center-#1) circle[radius=\csname pingu@flower@#1@center@size\endcsname];
 }
+\endscope
 }
 % #endregion
 % #endregion
