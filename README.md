@@ -14,6 +14,9 @@ The [documentation](https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/doc/
 
 Ti*k*Zpingus is actively developed by *Florian Sihler* (contact me at: <florian.sihler@uni-ulm.de>) under the [GPLv3 License](LICENSE). I am very happy about every contribution (see [CONTRIBUTING.md](CONTRIBUTING.md)).
 
+> [Bonfert](https://www.michael-bonfert.de): "Leslie Lamport did you see that coming when working on LaTeX?"\
+> Lamport: "Can't say that I do" ([source](https://www.youtube.com/watch?v=r28AwZQEDsQ&t=2599s))
+
 ----
 <br />
 
