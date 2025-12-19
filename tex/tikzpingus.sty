@@ -4022,26 +4022,24 @@ to[out=130,in=-85] ++(-.2mm,1.9*\pingu@foot@single@h)
 }
 
 \def\pingu@draw@eb@shoes{%
+\pgfonlayer{middle}
 \scope[rotate around={-\basicfeetbend+\pingu@shoesrot:(\pingu@name-foot-right)}]
 \def\@tmpshift{0mm}
-\pgfonlayer{middle}
 \pgfinterruptboundingbox 
 % counter rotate
 \path[/pingu/@invclip,rotate around={+\basicfeetbend-\pingu@shoesrot:(\pingu@name-foot-right)}] \pingu@path@lowerpingu; \endpgfinterruptboundingbox
 {\def\@tmpshift{.3mm}\pingu@block{\pingu@color@shoes@base@right} \@pingu@x@shoes@path@right;}
 \pingu@block{\pingu@color@shoes@right} \@pingu@x@shoes@path@right;
-\endpgfonlayer
 \endscope
 \scope[rotate around={\basicfeetbend-\pingu@shoesrot:(\pingu@name-foot-left)}] % TODO
 \def\@tmpshift{0mm}
-\pgfonlayer{middle}
 \pgfinterruptboundingbox 
 % counter rotate
 \path[/pingu/@invclip,rotate around={-\basicfeetbend+\pingu@shoesrot:(\pingu@name-foot-left)}] \pingu@path@lowerpingu; \endpgfinterruptboundingbox
 {\def\@tmpshift{.3mm}\pingu@block{\pingu@color@shoes@base@left} \@pingu@x@shoes@path@left;}
 \pingu@block{\pingu@color@shoes} \@pingu@x@shoes@path@left;
-\endpgfonlayer
 \endscope
+\endpgfonlayer
 }
 
 \pingu@create@extra{sneaker}{%
