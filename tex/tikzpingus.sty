@@ -314,6 +314,7 @@
   :fill/.style            = {/pingu/body=#1,/pingu/body front=#1,/pingu/feet color=#1, /pingu/bill color=#1, /pingu/eyes color=#1, /pingu/eyes second color=#1},
   :fill/.default          = pingu@main,
   :pingu/.style           = {/pingu/@body/.style={#1},/pingu/@wings/.style={#1},/pingu/@eyes/.style={#1},/pingu/@bill/.style={#1},/pingu/@hair/.style={#1},/pingu/@feet/.style={#1}},
+  :toast/.style           = {/pingu/left wing=none,/pingu/right wing=none,/pingu/feet=none,/pingu/hair=\@pingu@none},
   :mix-draw/.style        = {:pingu={/pingu/@block/.append style={/pingu/@pingu@all={####1!#1}, fill={####1!#1}}}},
   :mix-draw/.default      = 50!white,
   :mix-all/.style        = {/pingu/@block/.append style={/pingu/@pingu@all={##1!#1}, fill={##1!#1}},/pingu/@draw/.append style={/pingu/@pingu@all={##1!#1}, draw={##1!#1}}},
@@ -2441,6 +2442,24 @@ scale=\pingu@x@jackolantern@scale]
 % \csname pingu@color@drumstick#1\endcsname
     \pingu@block{\csname pingu@color@drumstick@#1@handle\endcsname}(\pingu@name-wing-#1)++(\@sidesign*-.2mm,\csname pingu@drumstick@#1@shift\endcsname) -- ++(\@sidesign*.1mm,\csname pingu@drumstick@#1@length\endcsname) arc(180:0:\@sidesign*.3mm and .3mm) coordinate[pos=.5] (\pingu@name-drumstick-#1-top) -- ++(\@sidesign*.1mm,-\csname pingu@drumstick@#1@length\endcsname) arc(360:180:\@sidesign*.4mm and .3mm) -- cycle;
     \pingu@block{\@col} ([yshift=.28mm]\pingu@name-drumstick-#1-top) ellipse[x radius=.4mm,y radius=.6mm];
+\endscope
+}
+
+\pingu@create@wing@extra{sword}{%
+    sword \@lr/.code              = {\pingu@set@extra{sword\@lr}{true}\pingu@color{sword\@lr}{##1}},
+    sword \@lr/.default           = pingu@bronze!90!white,
+    sword \@lr\space handle length/.code = \expandafter\def\csname pingu@sword@\@lr @length\endcsname{##1},
+    sword \@lr\space handle shift/.code  = \expandafter\def\csname pingu@sword@\@lr @shift\endcsname{##1},
+    sword \@lr\space xshift/.code  = \expandafter\def\csname pingu@sword@\@lr @xshift\endcsname{##1},
+    sword \@lr\space yshift/.code  = \expandafter\def\csname pingu@sword@\@lr @yshift\endcsname{##1},
+    sword \@lr\space handle/.code = \pingu@color{sword@\@lr @handle}{##1}%
+}{sword \@lr\space handle length=4mm, sword \@lr\space handle=pingu@bronze, sword \@lr\space handle shift=-2mm, sword \@lr\space xshift=-0.5*\csname pingu@sword@\@lr @width\endcsname,sword \@lr\space yshift=-1mm}
+\def\pingu@draw@wi@sword#1{%
+    \pingu@setup@wing{sword}{#1}%
+\scope[rotate around={\@angle:(\pingu@name-wing-#1)}]
+% \csname pingu@color@sword#1\endcsname
+    \pingu@block{\csname pingu@color@sword@#1@handle\endcsname}(\pingu@name-wing-#1)++(\@sidesign*-.2mm,\csname pingu@sword@#1@shift\endcsname) -- ++(\@sidesign*.1mm,\csname pingu@sword@#1@length\endcsname) arc(180:0:\@sidesign*.3mm and .3mm) coordinate[pos=.5] (\pingu@name-sword-#1-top) -- ++(\@sidesign*.1mm,-\csname pingu@sword@#1@length\endcsname) arc(360:180:\@sidesign*.4mm and .3mm) -- cycle;
+    \pingu@block{\@col} ([yshift=.28mm]\pingu@name-sword-#1-top) ellipse[x radius=.4mm,y radius=.6mm];
 \endscope
 }
 
