@@ -190,7 +190,7 @@
 }
 
 
-\def\RawShowcase#1#2{\scalebox{.68}{%\begin{tcbexternal}{showcase-#2#1}%
+\def\RawShowcase#1#2{\scalebox{.62}{%\begin{tcbexternal}{showcase-#2#1}%
 \tikzpicture[baseline={(pingu-bottom-center)}]
 \pingu[:mix=30!white,name=pingu,#1#2]
 \pgfonlayer{foreground}
@@ -393,7 +393,7 @@
 \begingroup\parskip\z@ \parindent\z@
 \@for\@elem:=\pengu@all@showcases\do{%
 	\advance\@tempcnta\@ne
-	\ifnum\@tempcnta>5 \global\@tempcnta\@ne\par\fi
+	\ifnum\@tempcnta>6 \global\@tempcnta\@ne\par\fi
 	\ifx\@elem\@empty\else
 	% space to space cmd
 	\edef\@tmp{\noexpand\ShowcasePengu\@elem;}\hfill\@tmp\hfill
@@ -507,8 +507,18 @@
 \vfill\null
 
 \clearpage
+% only show chapters and sections in toc
+\setcounter{tocdepth}{1}
 \tableofcontents
 \clearpage
+\phantomsection\label{Gadget-Overview}
+\begin{center}
+	{\large\textbf{Gadget Overview}}\\
+	These automatically link to the respective documentation sections.
+\end{center}
+\TypesetShowcases
+\clearpage
+
 \section{Introduction}
 \subsection{Dependencies}
 
@@ -530,7 +540,7 @@ If you just want a penguin, import the package and start with the following:
 \end{tikzpicture}
 \end{tcblisting}
 
-There are \textit{a lot} of configuration-options which can be passed as an optional argument via the known |<key>=<value>|-style. See \autoref{Gadget-Overview} for a complete gadget overview.
+There are \textit{a lot} of configuration-options which can be passed as an optional argument via the known |<key>=<value>|-style. See \autoref{Gadget-Overview} at the start for a complete gadget overview.
 \begin{tcblisting}{title={Happy penguin with cup!},externalize listing=happy-cup}
 \begin{tikzpicture}
 	\pingu[left wing wave, right wing grab,
@@ -840,12 +850,28 @@ I am working on the \textit{cloak}-Clothing at the moment:
 \end{tikzpicture}
 \end{tcblisting}
 
+\section{A collection of Examples}
+
+To showcase the capabilities of this package, I have created a couple of example-penguins.
+
+\begin{tcblisting}{title={The Waddlers!},externalize listing=musicians,nameref={Example: Musicians},label=example-musicians,float}
+\begin{tikzpicture}
+   \pingu[wings hug, eyes wink,flip-flops, conical hat=pingu@bronze!40!black,body type=legacy,tie=pingu@purple,drum stick left,drum stick right,drum stick right handle shift=-0.5mm,right wing wave,drums,drums center text={The\\\fontseries{sb}\selectfont Waddlers!}]
+   \pingu[xshift=3.5cm,right wing grab, left wing wave, eyes wink,guitar right, right item angle=20, left wing grab,body type=legacy,bow tie=pingu@yellow!60!orange, headphones=pingu@blue, headphones inner=pingu@blue!5!pingu@white,sneaker,blush]
+   \pingu[xshift=1.75cm,yshift=-3cm, right wing grab, eyes shiny,body type=legacy,small,shoes=pingu@purple,heart,wool hat=pingu@purple!80!black,bill=open,microphone right]
+\end{tikzpicture}
+\end{tcblisting}
+
+\begin{tcblisting}{title={Lord Double-Dagger},externalize listing=double-dagger,nameref={Example: Double-Dagger},label=example-double-dagger,float}
+\begin{tikzpicture}
+  \pingu[body type=legacy,wings=wave,sword left,sword right,sword left length=5mm,sword left width=.25mm,left wing item angle=-40,sword left handle length=2.65mm,right eye wink,eye patch left,bill open,cape=pingu@bronze!70!pingu@blue!50!black,deer hat=pingu@bronze!70!pingu@blue!50!black,belt=pingu@black,belt knot color=pingu@bronze!70!pingu@blue!50!black]
+\end{tikzpicture}
+\end{tcblisting}
+
 % \section{Examples}
 
+\clearpage
 \appendix
-\section{Gadget Overview}\label{Gadget-Overview}
-
-\TypesetShowcases
 
 \section{Full Reference}\label{sec:full-ref}
 
@@ -7198,6 +7224,190 @@ Example of \keyref{staff right code app} that renders a little cross:
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[magnifier right, magnifier right yshift=1mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+
+
+\subsubsection{The sword}
+
+\showkeyexplain{sword left}{color}{pingu@silver!94!blue}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[sword left=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endshowkeyexplain
+
+\subkeyexplain{sword left}{sword left handle length}{length}{\pingu@sword@left@handle@length}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[sword left, sword left handle length=7mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{sword left}{sword left handle shift}{length}{\pingu@sword@left@shift}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[sword left, sword left handle shift=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{sword left}{sword left xshift}{length}{\pingu@sword@left@xshift}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[sword left, sword left xshift=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{sword left}{sword left yshift}{length}{\pingu@sword@left@yshift}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[sword left, sword left yshift=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{sword left}{sword left handle}{color}{\pingu@color@sword@left@handle}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[sword left, sword left handle=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+{\def\pingu@color@sword@left@handle{<sword left handle color>}
+\subkeyexplain{sword left}{sword left guard}{color}{\pingu@color@sword@left@guard}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[sword left, sword left guard=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{sword left}{sword left shade}{color}{\pingu@color@sword@left@shade}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[sword left, sword left shade=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{sword left}{sword left shade opacity}{factor}{\pingu@sword@left@shade@opa}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[sword left, sword left shade opacity=.5]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+}
+
+\subkeyexplain{sword left}{sword left length}{length}{\pingu@sword@left@length}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[sword left, sword left yshift=4mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{sword left}{sword left width}{length}{\pingu@sword@left@width}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[sword left, sword left width=.25mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\showkeyexplain{sword right}{color}{pingu@silver!94!blue}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[sword right=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endshowkeyexplain
+
+\subkeyexplain{sword right}{sword right handle length}{length}{\pingu@sword@right@handle@length}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[sword right, sword right handle length=7mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{sword right}{sword right handle shift}{length}{\pingu@sword@right@shift}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[sword right, sword right handle shift=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{sword right}{sword right xshift}{length}{\pingu@sword@right@xshift}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[sword right, sword right xshift=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{sword right}{sword right yshift}{length}{\pingu@sword@right@yshift}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[sword right, sword right yshift=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{sword right}{sword right handle}{color}{\pingu@color@sword@right@handle}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[sword right, sword right handle=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+{\def\pingu@color@sword@right@handle{<sword right handle color>}
+\subkeyexplain{sword right}{sword right guard}{color}{\pingu@color@sword@right@guard}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[sword right, sword right guard=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{sword right}{sword right shade}{color}{\pingu@color@sword@right@shade}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[sword right, sword right shade=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{sword right}{sword right shade opacity}{factor}{\pingu@sword@right@shade@opa}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[sword right, sword right shade opacity=.5]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+}
+
+\subkeyexplain{sword right}{sword right length}{length}{\pingu@sword@right@length}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[sword right, sword right yshift=4mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{sword right}{sword right width}{length}{\pingu@sword@right@width}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[sword right, sword right width=.25mm]
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain
