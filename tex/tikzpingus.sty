@@ -2447,19 +2447,27 @@ scale=\pingu@x@jackolantern@scale]
 
 \pingu@create@wing@extra{sword}{%
     sword \@lr/.code              = {\pingu@set@extra{sword\@lr}{true}\pingu@color{sword\@lr}{##1}},
-    sword \@lr/.default           = pingu@bronze!90!white,
-    sword \@lr\space handle length/.code = \expandafter\def\csname pingu@sword@\@lr @length\endcsname{##1},
+    sword \@lr/.default           = pingu@silver!94!blue,
+    sword \@lr\space handle length/.code = \expandafter\def\csname pingu@sword@\@lr @handle@length\endcsname{##1},
     sword \@lr\space handle shift/.code  = \expandafter\def\csname pingu@sword@\@lr @shift\endcsname{##1},
     sword \@lr\space xshift/.code  = \expandafter\def\csname pingu@sword@\@lr @xshift\endcsname{##1},
     sword \@lr\space yshift/.code  = \expandafter\def\csname pingu@sword@\@lr @yshift\endcsname{##1},
-    sword \@lr\space handle/.code = \pingu@color{sword@\@lr @handle}{##1}%
-}{sword \@lr\space handle length=4mm, sword \@lr\space handle=pingu@bronze, sword \@lr\space handle shift=-2mm, sword \@lr\space xshift=-0.5*\csname pingu@sword@\@lr @width\endcsname,sword \@lr\space yshift=-1mm}
+    sword \@lr\space handle/.code = \pingu@color{sword@\@lr @handle}{##1},%
+    sword \@lr\space guard/.code = \pingu@color{sword@\@lr @guard}{##1},%
+    sword \@lr\space shade/.code = \pingu@color{sword@\@lr @shade}{##1},%
+    sword \@lr\space shade opacity/.code  = \expandafter\def\csname pingu@sword@\@lr @shade@opa\endcsname{##1},
+    sword \@lr\space length/.code =  \expandafter\def\csname pingu@sword@\@lr @length\endcsname{##1},
+    sword \@lr\space width/.code = \expandafter\def\csname pingu@sword@\@lr @width\endcsname{##1},
+}{sword \@lr\space handle length=3.65mm, sword \@lr\space handle=pingu@bronze!80!green!40!pingu@black, sword \@lr\space handle shift=-2mm, sword \@lr\space xshift=-0.5*\csname pingu@sword@\@lr @width\endcsname,sword \@lr\space yshift=-1mm,sword \@lr\space guard=\csname pingu@color@sword@\@lr @handle\endcsname!80!brown!50!black,sword \@lr\space shade=yellow!10!white,sword \@lr\space shade opacity=.3,sword \@lr\space length=14mm,sword \@lr\space width=.5mm}
 \def\pingu@draw@wi@sword#1{%
     \pingu@setup@wing{sword}{#1}%
 \scope[rotate around={\@angle:(\pingu@name-wing-#1)}]
 % \csname pingu@color@sword#1\endcsname
-    \pingu@block{\csname pingu@color@sword@#1@handle\endcsname}(\pingu@name-wing-#1)++(\@sidesign*-.2mm,\csname pingu@sword@#1@shift\endcsname) -- ++(\@sidesign*.1mm,\csname pingu@sword@#1@length\endcsname) arc(180:0:\@sidesign*.3mm and .3mm) coordinate[pos=.5] (\pingu@name-sword-#1-top) -- ++(\@sidesign*.1mm,-\csname pingu@sword@#1@length\endcsname) arc(360:180:\@sidesign*.4mm and .3mm) -- cycle;
-    \pingu@block{\@col} ([yshift=.28mm]\pingu@name-sword-#1-top) ellipse[x radius=.4mm,y radius=.6mm];
+    \pingu@block{\csname pingu@color@sword@#1@handle\endcsname}(\pingu@name-wing-#1)++(\@sidesign*-.2mm,\csname pingu@sword@#1@shift\endcsname) -- ++(\@sidesign*.1mm,\csname pingu@sword@#1@handle@length\endcsname) arc(180:0:\@sidesign*.3mm and .3mm) coordinate[pos=.5] (\pingu@name-sword-#1-top) -- ++(\@sidesign*.1mm,-\csname pingu@sword@#1@handle@length\endcsname) arc(360:180:\@sidesign*.4mm and .3mm) -- cycle;
+    \pingu@block{\@col} ([yshift=-.15mm,xshift=-\csname pingu@sword@#1@width\endcsname-\csname pingu@sword@#1@width\endcsname-.16mm]\pingu@name-sword-#1-top) -- ++(\csname pingu@sword@#1@width\endcsname,\csname pingu@sword@#1@length\endcsname) -- ++(\csname pingu@sword@#1@width\endcsname+.16mm,1mm) -- ++(\csname pingu@sword@#1@width\endcsname+.16mm,-1mm) -- ++(\csname pingu@sword@#1@width\endcsname,-\csname pingu@sword@#1@length\endcsname) -- cycle;
+    \pingu@block[opacity=\csname pingu@sword@#1@shade@opa\endcsname]{\csname pingu@color@sword@#1@shade\endcsname} ([yshift=-.15mm,xshift=-\csname pingu@sword@#1@width\endcsname-\csname pingu@sword@#1@width\endcsname-.16mm]\pingu@name-sword-#1-top) -- ++(\csname pingu@sword@#1@width\endcsname,\csname pingu@sword@#1@length\endcsname) -- ++(\csname pingu@sword@#1@width\endcsname+.16mm,1mm) -- ++(0,-\csname pingu@sword@#1@length\endcsname-1mm) -- cycle;
+    \pingu@block[opacity=\csname pingu@sword@#1@shade@opa\endcsname]{\csname pingu@color@sword@#1@shade\endcsname} ([yshift=-.15mm+\csname pingu@sword@#1@length\endcsname,xshift=-\csname pingu@sword@#1@width\endcsname-.16mm]\pingu@name-sword-#1-top) -- ++(\csname pingu@sword@#1@width\endcsname+.16mm,1mm) -- ++(0,-1mm) -- cycle;
+    \pingu@block[line cap=round,rounded corners=.025mm]{\csname pingu@color@sword@#1@guard\endcsname} ([yshift=-.85mm,xshift=-.065mm]\pingu@name-sword-#1-top) coordinate (@) to[out=110,in=-30] ++(-2*\csname pingu@sword@#1@width\endcsname-1.5mm,1mm) -- ++(0,.25mm) to[out=-10,in=190] ++(4*\csname pingu@sword@#1@width\endcsname+3mm,0) -- ++(0,-.25mm) to[out=210,in=70] ([xshift=.13mm]@) -- cycle;
 \endscope
 }
 
