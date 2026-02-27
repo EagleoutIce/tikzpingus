@@ -1,6 +1,6 @@
 # Ti*k*Zpingus
 
-[![made-with-latex](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://www.latex-project.org/) [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/GPL-3.0) [![PR's Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com)  [![CTAN](https://img.shields.io/ctan/v/tikzpingus.svg)](https://www.ctan.org/pkg/tikzpingus) [![build](https://github.com/EagleoutIce/tikzpingus/actions/workflows/compile.yaml/badge.svg)](https://github.com/EagleoutIce/tikzpingus/actions/workflows/compile.yaml)
+[![made-with-latex](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://www.latex-project.org/) [![PR's Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com)  [![CTAN](https://img.shields.io/ctan/v/tikzpingus.svg)](https://www.ctan.org/pkg/tikzpingus) [![build](https://github.com/EagleoutIce/tikzpingus/actions/workflows/compile.yaml/badge.svg)](https://github.com/EagleoutIce/tikzpingus/actions/workflows/compile.yaml)
 
 This package allows you to typeset (cute) little penguins in LaTeX with PGF/Ti*k*Z.
 The [documentation](https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/doc/build/tikzpingus-doc.pdf) contains a reference for all currently available options. See the examples below for a quick overview.
@@ -12,7 +12,7 @@ The [documentation](https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/doc/
 
 ----
 
-Ti*k*Zpingus is actively developed by *Florian Sihler* (contact me at: <florian.sihler@uni-ulm.de>) under the [GPLv3 License](LICENSE). I am very happy about every contribution (see [CONTRIBUTING.md](CONTRIBUTING.md)).
+Ti*k*Zpingus is actively developed by *Florian Sihler* (contact me at: <florian.sihler@uni-ulm.de>) under the [LPPL Version 1.3c](LICENSE) (please note that this changed on 2026-02-27 from GPL&nbsp;v3, versions **after** v1.3 are licensed with LPPL 1.3c). I am very happy about every contribution (see [CONTRIBUTING.md](CONTRIBUTING.md)).
 
 > [Bonfert](https://www.michael-bonfert.de): "Leslie Lamport did you see that coming when working on LaTeX?"\
 > Lamport: "Can't say that I did" ([source](https://www.youtube.com/watch?v=r28AwZQEDsQ&t=2599s))
