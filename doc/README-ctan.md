@@ -26,7 +26,7 @@ Currently, most options I have added arose from concrete situations and are not 
 
 [![Penguin Tech](https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-4.png?raw=true)](https://raw.githubusercontent.com/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=4)
 
-If you just load the library by `\usepackage{tikzpingus}` all options will work, and you might want to use the `glows`-option (`\usepackage[glows]{tikzpingus}`) so that lightsabers and other glowing elements look waaay nicer (but may produce artifacts in some pdf-viewers).
+If you just load the library by `\usepackage{tikzpingus}` all options will work. Glows are enabled by default now, so please use the `noglows` package option (`\usepackage[noglows]{tikzpingus}`) to disable them if they cause artifacts in some PDF viewers.
 
 [![Penguin Cake](https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/hey-pingu-5.png?raw=true)](https://raw.githubusercontent.com/EagleoutIce/tikzpingus/gh-pages/examples/build/hey-pingu.pdf#page=5)
 

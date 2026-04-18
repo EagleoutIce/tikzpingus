@@ -26,7 +26,7 @@
 
 \makeatletter
 \def\input@path{{../tex/}}
-\usepackage[glows]{../tex/tikzpingus}
+\usepackage{../tex/tikzpingus}
 
 % \definecolor{doc-main}{RGB}{204,0,25}
 \colorlet{doc-main}{pingu@blue!65!pingu@black}
@@ -2530,7 +2530,7 @@ Define the vertical raise of the halo above the penguins head:
 \endsubkeyexplain
 
 \subkeyexplain{halo}{halo glow}{true/false}{\if@pingu@x@halo@glow true\else false\fi}
-Disable or enable the glow of the halo. The default is controlled by the \texttt{glows}-package option.
+Disable or enable the glow of the halo. The glow is enabled by default, use the \texttt{noglows} package option to disable it.
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[halo, halo glow=false]
@@ -5538,7 +5538,7 @@ Toggle the visibility of the second lightsaber:
 \endsubkeyexplain
 
 \subkeyexplain{lightsaber left}{lightsaber left glow}{true/false}{\if@pingu@x@lightsaber@glow@left true\else false\fi}
-Toggle the glow of the lightsaber. The default is controlled by the \texttt{glows}-package option.
+Toggle the glow of the lightsaber. The glow is enabled by default; use the \texttt{noglows} package option to disable it.
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber left, lightsaber left glow=false]
@@ -5697,7 +5697,7 @@ Toggle the visibility of the second lightsaber:
 \endsubkeyexplain
 
 \subkeyexplain{lightsaber right}{lightsaber right glow}{true/false}{\if@pingu@x@lightsaber@glow@right true\else false\fi}
-Toggle the glow of the lightsaber. The default is controlled by the \texttt{glows}-package option.
+Toggle the glow of the lightsaber. The glow is enabled by default; use the \texttt{noglows} package option to disable it.
 \begin{tcblisting}{}
 \begin{tikzpicture}
 	\pingu[lightsaber right,
