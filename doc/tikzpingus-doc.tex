@@ -1729,6 +1729,82 @@ Basically the same as the normal medal, but with a bronze color. This will activ
 \end{tcblisting}
 \endkeyexplain
 
+\subsubsection{The square medal}
+\showkeyexplain{squaremedal}{color}{pingu@yellow}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[squaremedal]
+\end{tikzpicture}
+\end{tcblisting}
+\endshowkeyexplain
+
+\subkeyexplain{squaremedal}{squaremedal band}{color}{\pingu@color@squaremedal@band}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[squaremedal, squaremedal band=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+{\def\pingu@color@squaremedal{<squaremedal-color>}
+\subkeyexplain{squaremedal}{squaremedal shade}{color}{\pingu@color@squaremedal@shade}
+Change the color of the outer squaremedal ring:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[squaremedal, squaremedal shade=green]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain}
+
+\subkeyexplain{squaremedal}{squaremedal shade width}{length}{.75pt}
+Change the width of the outer squaremedal ring:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[squaremedal, squaremedal shade=green,
+	       squaremedal shade width=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{squaremedal}{squaremedal text}{text}{\pingu@x@squaremedal@text}
+Set the text displayed in the squaremedal. The style can be changed by
+updating the substyle \texttt{squaremedal text style}.
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[squaremedal, squaremedal text=XY,
+	      squaremedal text style/.style={black}]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\keyexplain{gold squaremedal}{text}{1}
+Basically the same as the normal squaremedal. This will activate \keyref{squaremedal}:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[gold squaremedal]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
+
+\keyexplain{silver squaremedal}{text}{2}
+Basically the same as the normal squaremedal, but with a silver color. This will activate \keyref{squaremedal}:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[silver squaremedal]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
+
+\keyexplain{bronze squaremedal}{text}{3}
+Basically the same as the normal squaremedal, but with a bronze color. This will activate \keyref{squaremedal}:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[bronze squaremedal]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
+
+
 \subsubsection{The eye patches}
 
 \showkeyexplain{eye patch left}{color}{<pingu-main-color>}
