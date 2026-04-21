@@ -23,6 +23,7 @@
 \usepackage{babel}
 
 \usepackage{marginnote}
+\usepackage{needspace}
 
 \makeatletter
 \def\input@path{{../tex/}}
@@ -87,6 +88,35 @@
 \def\DTLlistformatitem#1{\textit{#1\expandafter\ParseDTLListElement :#1\@nil}}
 \newcommand*\typesetselection[1][]{\begingroup\ifx!#1!\else\def\DTLlistformatitem##1{#1}\fi\dotypesetselection}
 \def\dotypesetselection#1{\label{expl-list:#1}\def\CurrentList{#1}\expandafter\DTLformatlist\expandafter{\csname @pingu@#1@\endcsname}\endgroup}
+
+\def\@pingu@stripquotes#1"#2"\@nil{\def\@ts@val{#2}}
+\def\RawSelectionShowcase#1#2{\scalebox{.62}{%
+\tikzpicture[baseline={(pingu-bottom-center)}]
+\pingu[:mix=30!white,name=pingu,#1=#2]
+\pgfonlayer{foreground}
+\node[below=3mm] at(pingu-bottom-center) {\strut};
+\pgfinterruptboundingbox
+\node[below=3mm,fill=white,fill opacity=.52,text opacity=1,rounded corners=3pt] at(pingu-bottom-center) {\textsf{\strut\smash{\ifstrequal{#2}{normal}{\textbf{#2}}{#2}}}};
+\endpgfinterruptboundingbox
+\endpgfonlayer
+\endtikzpicture
+}}
+\def\pingu@normalname{normal}
+% selection | key to set | key to clear
+\newcommand*\TypesetSelection[3]{%
+\def\@ts@key{#1}\@tempcnta\z@
+\begingroup\parskip\z@ \parindent\z@
+\edef\@ts@list{\csname @pingu@#1@\endcsname}%
+\@for\@ts@elem:=\@ts@list\do{%
+  \advance\@tempcnta\@ne
+  \ifnum\@tempcnta>6 \global\@tempcnta\@ne\vspace{-3pt}\par\fi
+  \ifx\@ts@elem\@empty\else
+  \expandafter\@pingu@stripquotes\@ts@elem\@nil
+  \edef\@tmp{\noexpand\RawSelectionShowcase{/pingu/#3/.code={},#2}{\@ts@val}}%
+  \hfill\parbox[b][\pingu@showcase@height]{.137\linewidth}{\centering~\clap{\@tmp}~}\hfill
+  \fi
+}\strut%
+\endgroup}
 
 % this can be used to remove some prefixes of the keys if necessary
 \let\@gobblekey\@gobble
@@ -524,6 +554,26 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 \clearpage
+\addcontentsline{toc}{section}{Overviews}
+
+\foreach \selection/\name/\clear/\txt in {%
+	bodytype/body type/@body/{See \autoref{mrk:pengu-change-comps} for more info.},
+	lefteye/eyes/@eyes/{See \autoref{mrk:pengu-eye} for more info. You can also set eyes individually with \keyref{left eye} and \keyref{right eye}.},
+	leftwing/wings/@wings/{See \autoref{subsec:wings} for more info. You can also set wings individually with \keyref{left wing} and \keyref{right wing}.},
+	leftfoot/feet/@feet/{See \autoref{mrk:pengu-change-comps} for more info. You can also set feet individually with \keyref{left foot} and \keyref{right foot}.},
+	bill/bill/@bill/{See \autoref{mrk:pengu-change-comps} for more info.},
+	hairstyle/hairstyle/@hair/{See \autoref{mrk:pengu-change-comps} for more info.}%
+} {\typeout{Generating overview for \name}%
+\needspace{6\baselineskip}\begin{center}
+	\phantomsection\label{sec:overview-\name}
+	{\large\textbf{All \textit{\name} Options}}\\
+	\txt%
+\end{center}
+	\textcolor{gray}{\footnotesize Use \texttt{\name=\textit{<option>}} to set the \textit{\name} of a penguin.}
+\begin{center}
+	\TypesetSelection{\selection}{\name}{\clear}
+\end{center}
+}
 \phantomsection\label{Gadget-Overview}
 \begin{center}
 	{\large\textbf{Gadget Overview}}\\
@@ -866,7 +916,7 @@ I am working on the \textit{cloak}-Clothing at the moment:
 \end{tikzpicture}
 \end{tcblisting}
 
-\section{A collection of Examples}
+\section{A Collection of Examples}
 
 To showcase the capabilities of this package, I have created a couple of example-penguins.
 
