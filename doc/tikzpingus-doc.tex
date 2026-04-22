@@ -101,10 +101,10 @@
 \endpgfonlayer
 \endtikzpicture
 }}
-\def\pingu@normalname{normal}
+
 % selection | key to set | key to clear
 \newcommand*\TypesetSelection[3]{%
-\def\@ts@key{#1}\@tempcnta\z@
+\global\@tempcnta\z@
 \begingroup\parskip\z@ \parindent\z@
 \edef\@ts@list{\csname @pingu@#1@\endcsname}%
 \@for\@ts@elem:=\@ts@list\do{%
@@ -554,7 +554,7 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 \clearpage
-\addcontentsline{toc}{section}{Overviews}
+\phantomsection\addcontentsline{toc}{section}{Overviews}
 
 \foreach \selection/\name/\clear/\txt in {%
 	bodytype/body type/@body/{See \autoref{mrk:pengu-change-comps} for more info.},
