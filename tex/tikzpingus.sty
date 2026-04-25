@@ -1135,7 +1135,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     \pingu@xif@eb{tie}{tie}%
     \pingu@xif@eb{pants}{pants}%
     \pingu@xif@eb{medal}{medal}%
-    \pingu@xif@eb{squaremedal}{squaremedal}%
+    \pingu@xif@eb{rectmedal}{rectmedal}%
     \pingu@xif@eb{bowtie}{bowtie}%
     \pingu@xif@eb{cup}{cup}%
     \pingu@xif@eb{vampireteeth}{vampireteeth}%
@@ -2566,26 +2566,27 @@ scale=\pingu@x@jackolantern@scale]
     glasses opacity/.style      = {/pingu/glasses left opacity=#1, /pingu/glasses right opacity=#1},
     glasses line width/.code    = \def\pingu@x@glasses@lw{#1},
     sunglasses/.forward to      = /pingu/sun glasses,
+    glasses upper bend/.code    = \def\pingu@x@glasses@bend@u{#1},
     glasses bend left/.code     = \def\pingu@x@glasses@bend@l{#1},
     glasses bend right/.code    = \def\pingu@x@glasses@bend@r{#1},
     glasses bend/.style         = {/pingu/glasses bend left=#1,/pingu/glasses bend right=#1},
     sun glasses/.style          = {/pingu/glasses, /pingu/glasses fill=#1},
     sun glasses/.default        = pingu@black,
-}{glasses line width=1.125\p@,glasses fill=\@pingu@none,glasses opacity=.825,glasses bend left=32.5,glasses bend right=32.5}
+}{glasses line width=1.125\p@,glasses fill=\@pingu@none,glasses opacity=.825,glasses bend left=32.5,glasses bend right=32.5,glasses upper bend=8}
 
 \def\pingu@draw@ea@glasses{% fact: 1.33; modified first shift and ht
-    \pingu@block[opacity=\pingu@x@glasses@op@l]{\pingu@color@glasses@fill@l} (\pingu@name-eye-left)++(-2.66mm,1.75mm) to[bend left=8] ++(5.586mm,0) to[out=-80,in=70] ++(-.266mm,-3.6mm) to[bend left=\pingu@x@glasses@bend@l] ++(-4.8545mm,\z@) to[out=135,in=-90] ++(-1.064mm,3.5mm) -- cycle;
-    \pingu@block[opacity=\pingu@x@glasses@op@r]{\pingu@color@glasses@fill@r} (\pingu@name-eye-right)++(2.66mm,1.75mm) to[bend right=8] ++(-5.586mm,0) to[out=-100,in=110] ++(.266mm,-3.6mm) to[bend right=\pingu@x@glasses@bend@r] ++(4.8545mm,\z@) to[out=45,in=-90] ++(1.064mm,3.5mm) -- cycle;
-    \pingu@draw[line width=\pingu@x@glasses@lw]{\pingu@color@glasses} [rounded corners=.25mm](\pingu@name-eye-left)++(-2.66mm,1.75mm) coordinate (\pingu@name-glasses-left-mid) to[bend left=8] ++(5.586mm,0) coordinate (\pingu@name-glasses-left-outer) to[out=-80,in=70] ++(-.266mm,-3.6mm) to[bend left=\pingu@x@glasses@bend@l] ++(-4.8545mm,\z@) to[out=135,in=-90] coordinate[pos=.9] (\pingu@name-glasses-left-mid-b) ++(-1.064mm,3.5mm) -- cycle;
-    \pingu@draw[line width=\pingu@x@glasses@lw]{\pingu@color@glasses} [rounded corners=.25mm] (\pingu@name-eye-right)++(2.66mm,1.75mm) coordinate (\pingu@name-glasses-right-mid) to[bend right=8] ++(-5.586mm,0) coordinate (\pingu@name-glasses-right-outer) to[out=-100,in=110] ++(.266mm,-3.6mm) to[bend right=\pingu@x@glasses@bend@r] ++(4.8545mm,\z@) to[out=45,in=-90] coordinate[pos=.9] (\pingu@name-glasses-right-mid-b) ++(1.064mm,3.5mm) -- cycle;
+    \pingu@block[opacity=\pingu@x@glasses@op@l]{\pingu@color@glasses@fill@l} (\pingu@name-eye-left)++(-2.66mm,1.75mm) to[bend left=\pingu@x@glasses@bend@u] ++(5.586mm,0) to[out=-80,in=70] ++(-.266mm,-3.6mm) to[bend left=\pingu@x@glasses@bend@l] ++(-4.8545mm,\z@) to[out=135,in=-90] ++(-1.064mm,3.5mm) -- cycle;
+    \pingu@block[opacity=\pingu@x@glasses@op@r]{\pingu@color@glasses@fill@r} (\pingu@name-eye-right)++(2.66mm,1.75mm) to[bend right=\pingu@x@glasses@bend@u] ++(-5.586mm,0) to[out=-100,in=110] ++(.266mm,-3.6mm) to[bend right=\pingu@x@glasses@bend@r] ++(4.8545mm,\z@) to[out=45,in=-90] ++(1.064mm,3.5mm) -- cycle;
+    \pingu@draw[line width=\pingu@x@glasses@lw]{\pingu@color@glasses} [rounded corners=.25mm](\pingu@name-eye-left)++(-2.66mm,1.75mm) coordinate (\pingu@name-glasses-left-mid) to[bend left=\pingu@x@glasses@bend@u] ++(5.586mm,0) coordinate (\pingu@name-glasses-left-outer) to[out=-80,in=70] ++(-.266mm,-3.6mm) to[bend left=\pingu@x@glasses@bend@l] ++(-4.8545mm,\z@) to[out=135,in=-90] coordinate[pos=.9] (\pingu@name-glasses-left-mid-b) ++(-1.064mm,3.5mm) -- cycle;
+    \pingu@draw[line width=\pingu@x@glasses@lw]{\pingu@color@glasses} [rounded corners=.25mm] (\pingu@name-eye-right)++(2.66mm,1.75mm) coordinate (\pingu@name-glasses-right-mid) to[bend right=\pingu@x@glasses@bend@u] ++(-5.586mm,0) coordinate (\pingu@name-glasses-right-outer) to[out=-100,in=110] ++(.266mm,-3.6mm) to[bend right=\pingu@x@glasses@bend@r] ++(4.8545mm,\z@) to[out=45,in=-90] coordinate[pos=.9] (\pingu@name-glasses-right-mid-b) ++(1.064mm,3.5mm) -- cycle;
     \pingu@draw[line width=\pingu@x@glasses@lw]{\pingu@color@glasses} (\pingu@name-glasses-right-mid) to[bend right=10] (\pingu@name-glasses-left-mid);
     \pingu@draw[line width=\pingu@x@glasses@lw]{\pingu@color@glasses} (\pingu@name-glasses-right-mid-b) to[bend left=20] (\pingu@name-glasses-left-mid-b);
     \scope
     \clip[use path=\pingu@upperpingu];
     \pingu@draw[line width=\pingu@x@glasses@lw]{\pingu@color@glasses}
-    (\pingu@name-glasses-right-mid) to[bend right=8] ++(-5.586mm,0) -- ++(-5mm,.5mm);
+    (\pingu@name-glasses-right-mid) to[bend right=\pingu@x@glasses@bend@u] ++(-5.586mm,0) -- ++(-5mm,.5mm);
     \pingu@draw[line width=\pingu@x@glasses@lw]{\pingu@color@glasses}
-    (\pingu@name-glasses-left-mid) to[bend left=8] ++(5.586mm,0) -- ++(5mm,.5mm);
+    (\pingu@name-glasses-left-mid) to[bend left=\pingu@x@glasses@bend@u] ++(5.586mm,0) -- ++(5mm,.5mm);
     \endscope
 }
 \pingu@create@extra{glassesround}{%
@@ -3826,26 +3827,31 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 }
 
 
-\pingu@create@extra{squaremedal}{%
-    squaremedal/.code    	  = {\pingu@set@extra{squaremedal}{true}\pingu@color{squaremedal}{#1}},
-    squaremedal/.default    = pingu@yellow,%
-    gold squaremedal/.style = {squaremedal, squaremedal text=#1}, gold squaremedal/.default={1},
-    silver squaremedal/.style = {squaremedal=pingu@silver, squaremedal text=#1}, silver squaremedal/.default={2},
-    bronze squaremedal/.style = {squaremedal=pingu@bronze!98!cyan, squaremedal text=#1}, bronze squaremedal/.default={3},
-    squaremedal band/.code  = \pingu@color{squaremedal@band}{#1},%
-    squaremedal shade/.code  = \pingu@color{squaremedal@shade}{#1},%
-    squaremedal shade width/.code  = \def\pingu@squaremedal@shade@w{#1},%
-    squaremedal width/.code  = \def\pingu@squaremedal@w{#1},%
-    squaremedal text/.code  = \def\pingu@x@squaremedal@text{#1},%
-    squaremedal text style/.style = {\pingu@color@squaremedal!65!pingu@white},
-}{squaremedal band=pingu@blue!90!blue!60!pingu@black,squaremedal text={},squaremedal width=7mm,squaremedal shade={\pingu@color@squaremedal!65!pingu@white},squaremedal shade width=.75\p@}
+\pingu@create@extra{rectmedal}{%
+    rectmedal/.code    	  = {\pingu@set@extra{rectmedal}{true}\pingu@color{rectmedal}{#1}},
+    rectmedal/.default    = pingu@yellow!70!pingu@bronze,%
+    gold rectmedal/.style = {rectmedal, rectmedal text=#1}, gold rectmedal/.default={1},
+    silver rectmedal/.style = {rectmedal=pingu@silver!90!pingu@bronze!90!black, rectmedal text=#1}, silver rectmedal/.default={2},
+    bronze rectmedal/.style = {rectmedal=pingu@silver!19!pingu@bronze!98!cyan, rectmedal text=#1}, bronze rectmedal/.default={3},
+    rectmedal band/.code  = \pingu@color{rectmedal@band}{#1},%
+    rectmedal shade/.code  = \pingu@color{rectmedal@shade}{#1},%
+    rectmedal shade width/.code  = \def\pingu@rectmedal@shade@w{#1},%
+    rectmedal width/.code  = \def\pingu@rectmedal@w{#1},%
+    rectmedal height/.code  = \def\pingu@rectmedal@h{#1},%
+    rectmedal text/.code  = \def\pingu@x@rectmedal@text{#1},%
+    rectmedal text style/.style = {\pingu@color@rectmedal!65!pingu@white},
+}{rectmedal band=pingu@blue!90!blue!60!pingu@black,rectmedal text={},rectmedal width=7.5mm,rectmedal height=6.5mm,rectmedal shade={\pingu@color@rectmedal!65!pingu@white},rectmedal shade width=.75\p@}
 
-\def\pingu@draw@eb@squaremedal{%
-\coordinate (\pingu@name-squaremedal-center) at ([yshift=2mm,xshift=-1pt]\pingu@name-belly-center);
-\pingu@block{\pingu@color@squaremedal@band} [rounded corners=.15mm] (\pingu@name-head-back-con-right) -- (\pingu@name-squaremedal-center) -- (\pingu@name-head-back-con-left) to[bend left=11] ++(-1.35mm,-.5mm) -- ([yshift=.7mm]\pingu@name-squaremedal-center) -- ([xshift=1.35mm,yshift=-.5mm]\pingu@name-head-back-con-right) to[bend left=11] (\pingu@name-head-back-con-right) -- cycle;
-\pingu@block[rounded corners=1pt]{\pingu@color@squaremedal} ([xshift=-0.5*\pingu@squaremedal@w,yshift=-\pingu@squaremedal@w]\pingu@name-squaremedal-center) rectangle ++(\pingu@squaremedal@w,\pingu@squaremedal@w);
-\pingu@draw[rounded corners=1pt,line width=\pingu@squaremedal@shade@w]{\pingu@color@squaremedal@shade} ([xshift=-0.5*\pingu@squaremedal@w,yshift=-\pingu@squaremedal@w]\pingu@name-squaremedal-center) rectangle ++(\pingu@squaremedal@w,\pingu@squaremedal@w);
-\node[/pingu/@text,/pingu/squaremedal text style,below=-3pt] at ([yshift=-1pt]\pingu@name-squaremedal-center) {\pingu@x@squaremedal@text};
+\def\pingu@draw@eb@rectmedal{%
+\coordinate (\pingu@name-rectmedal-center) at ([yshift=2mm,xshift=-1pt]\pingu@name-belly-center);
+\pingu@block{\pingu@color@rectmedal@band} [rounded corners=.15mm] (\pingu@name-head-back-con-right) -- (\pingu@name-rectmedal-center) -- (\pingu@name-head-back-con-left) to[bend left=11] ++(-1.35mm,-.5mm) -- ([yshift=.7mm]\pingu@name-rectmedal-center) -- ([xshift=1.35mm,yshift=-.5mm]\pingu@name-head-back-con-right) to[bend left=11] (\pingu@name-head-back-con-right) -- cycle;
+\pingu@block[rounded corners=1pt]{\pingu@color@rectmedal} ([xshift=-0.5*\pingu@rectmedal@w,yshift=-\pingu@rectmedal@h]\pingu@name-rectmedal-center) rectangle ++(\pingu@rectmedal@w,\pingu@rectmedal@h);
+\node[/pingu/@text,/pingu/rectmedal text style,below=-3pt] at ([yshift=-1pt]\pingu@name-rectmedal-center) {\pingu@x@rectmedal@text};
+\scope
+\path[clip] ([xshift=-0.5*\pingu@rectmedal@w,yshift=-\pingu@rectmedal@h]\pingu@name-rectmedal-center) rectangle ++(\pingu@rectmedal@w,\pingu@rectmedal@h);
+\fill[lightgray,opacity=.125] ([xshift=-0.5*\pingu@rectmedal@w,yshift=-\pingu@rectmedal@h]\pingu@name-rectmedal-center) -| ++(\pingu@rectmedal@w,\pingu@rectmedal@h) to[bend left = 60] cycle;
+\endscope
+\pingu@draw[rounded corners=1pt,line width=\pingu@rectmedal@shade@w]{\pingu@color@rectmedal@shade} ([xshift=-0.5*\pingu@rectmedal@w,yshift=-\pingu@rectmedal@h]\pingu@name-rectmedal-center) rectangle ++(\pingu@rectmedal@w,\pingu@rectmedal@h);
 }
 
 \newif\if@pingu@x@headband@knot@

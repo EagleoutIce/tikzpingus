@@ -32,22 +32,23 @@
 \PreviewBorder.5cm
 \begin{document}
 \begin{preview}
-\tikz{
-  \pingu[bronze squaremedal={%
-    \parbox{6mm}{\parskip=-4pt\sffamily\fontsize{1pt}{1pt}\selectfont\centering%
-      \hrulefill\vspace*{3.5pt}
+\foreach \f in {bronze, silver, gold} {\tikz{
+  \pingu[body type=legacy,right wing wave,sunglasses,eyes wink,sneaker,headphone=blue!70!red!40!black, glasses upper bend=22,
+    \f\space rectmedal={%
+    \parbox{6.5mm}{\parskip=-4pt\sffamily\fontsize{1pt}{1pt}\selectfont\centering%
+      \hrulefill\vspace*{2pt}
       \begin{center}
         \bfseries\scshape
         \makebox[3.1mm][s]{S\hfill t\hfill u\hfill d\hfill e\hfill n\hfill t}\\
         \makebox[3.1mm][s]{\llap{\smash{\raisebox{-.4\height}{\scalebox{.06}{\usebox\World}\hspace*{1pt}}}}R\hfill e\hfill s\hfill e\hfill a\hfill r\hfill c\hfill h}\rlap{\smash{\raisebox{-.4\height}{\hspace*{1pt}\scalebox{.06}{\usebox\AcmLogo}}}}\\
-        \makebox[3.1mm][s]{C\hfill o\hfill m\hfill p\hfill e\hfill t\hfill i\hfill t\hfill i\hfill o\hfill n}\\[1pt]
+        \makebox[3.1mm][s]{C\hfill o\hfill m\hfill p\hfill e\hfill t\hfill i\hfill t\hfill i\hfill o\hfill n}\\[2pt]
         Association for Computing Machinery\\
-        Advancing Computing as a Science \& Profession\vspace*{-3pt}
+        \scalebox{.8}{\clap{Advancing Computing as a Science \& Profession}}\vspace*{-2pt}
       \end{center}
       \fontsize{2pt}{2pt}\selectfont\MakeUppercase{Undergraduate}\\
       \hrulefill
     }
   }]
-}
+}}
 \end{preview}
 \end{document}

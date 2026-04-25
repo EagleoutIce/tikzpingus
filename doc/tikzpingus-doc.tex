@@ -1777,77 +1777,95 @@ Basically the same as the normal medal, but with a bronze color. This will activ
 \end{tcblisting}
 \endkeyexplain
 
-\subsubsection{The square medal}
-\showkeyexplain{squaremedal}{color}{pingu@yellow}
+\subsubsection{The rectangular medal}
+\showkeyexplain{rectmedal}{color}{pingu@yellow}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[squaremedal]
+	\pingu[rectmedal]
 \end{tikzpicture}
 \end{tcblisting}
 \endshowkeyexplain
 
-\subkeyexplain{squaremedal}{squaremedal band}{color}{\pingu@color@squaremedal@band}
+\subkeyexplain{rectmedal}{rectmedal band}{color}{\pingu@color@rectmedal@band}
 \begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[squaremedal, squaremedal band=green]
+	\pingu[rectmedal, rectmedal band=green]
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain
 
-{\def\pingu@color@squaremedal{<squaremedal-color>}
-\subkeyexplain{squaremedal}{squaremedal shade}{color}{\pingu@color@squaremedal@shade}
-Change the color of the outer squaremedal ring:
+{\def\pingu@color@rectmedal{<rectmedal-color>}
+\subkeyexplain{rectmedal}{rectmedal shade}{color}{\pingu@color@rectmedal@shade}
+Change the color of the outer rectmedal ring:
 \begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[squaremedal, squaremedal shade=green]
+	\pingu[rectmedal, rectmedal shade=green]
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain}
 
-\subkeyexplain{squaremedal}{squaremedal shade width}{length}{.75pt}
-Change the width of the outer squaremedal ring:
+\subkeyexplain{rectmedal}{rectmedal width}{length}{7.5mm}
+Change the width of rectmedal:
 \begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[squaremedal, squaremedal shade=green,
-	       squaremedal shade width=2mm]
+	\pingu[rectmedal, rectmedal width=2mm]
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain
 
-\subkeyexplain{squaremedal}{squaremedal text}{text}{\pingu@x@squaremedal@text}
-Set the text displayed in the squaremedal. The style can be changed by
-updating the substyle \texttt{squaremedal text style}.
+\subkeyexplain{rectmedal}{rectmedal height}{length}{6.5mm}
+Change the height of rectmedal:
 \begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[squaremedal, squaremedal text=XY,
-	      squaremedal text style/.style={black}]
+	\pingu[rectmedal, rectmedal height=2mm]
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain
 
-\keyexplain{gold squaremedal}{text}{1}
-Basically the same as the normal squaremedal. This will activate \keyref{squaremedal}:
+\subkeyexplain{rectmedal}{rectmedal shade width}{length}{.75pt}
+Change the width of the outer rectmedal ring:
 \begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[gold squaremedal]
+	\pingu[rectmedal, rectmedal shade=green,
+	       rectmedal shade width=2mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{rectmedal}{rectmedal text}{text}{\pingu@x@rectmedal@text}
+Set the text displayed in the rectmedal. The style can be changed by
+updating the substyle \texttt{rectmedal text style}.
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[rectmedal, rectmedal text=XY,
+	      rectmedal text style/.style={black}]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\keyexplain{gold rectmedal}{text}{1}
+Basically the same as the normal rectmedal. This will activate \keyref{rectmedal}:
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[gold rectmedal]
 \end{tikzpicture}
 \end{tcblisting}
 \endkeyexplain
 
-\keyexplain{silver squaremedal}{text}{2}
-Basically the same as the normal squaremedal, but with a silver color. This will activate \keyref{squaremedal}:
+\keyexplain{silver rectmedal}{text}{2}
+Basically the same as the normal rectmedal, but with a silver color. This will activate \keyref{rectmedal}:
 \begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[silver squaremedal]
+	\pingu[silver rectmedal]
 \end{tikzpicture}
 \end{tcblisting}
 \endkeyexplain
 
-\keyexplain{bronze squaremedal}{text}{3}
-Basically the same as the normal squaremedal, but with a bronze color. This will activate \keyref{squaremedal}:
+\keyexplain{bronze rectmedal}{text}{3}
+Basically the same as the normal rectmedal, but with a bronze color. This will activate \keyref{rectmedal}:
 \begin{tcblisting}{@}
 \begin{tikzpicture}
-	\pingu[bronze squaremedal]
+	\pingu[bronze rectmedal]
 \end{tikzpicture}
 \end{tcblisting}
 \endkeyexplain
@@ -2256,6 +2274,40 @@ Display glasses for the penguin:
 \begin{tcblisting}{@}
 \begin{tikzpicture}
 	\pingu[glasses, glasses line width=1mm]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{glasses}{glasses bend left}{angle}{32.5}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[glasses, glasses bend left=45]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{glasses}{glasses bend right}{angle}{32.5}
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[glasses, glasses bend right=45]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{glasses}{glasses bend}{angle}{32.5}
+Sets \keyref{glasses bend left} and \keyref{glasses bend right} with the same value.
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[glasses, glasses bend=45]
+\end{tikzpicture}
+\end{tcblisting}
+\endsubkeyexplain
+
+\subkeyexplain{glasses}{glasses upper bend}{angle}{8}
+Sets the bending of the upper part of the glasses.
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[glasses, glasses upper bend=30]
 \end{tikzpicture}
 \end{tcblisting}
 \endsubkeyexplain
