@@ -5,50 +5,11 @@
 
 \usepackage{FiraSans}
 
-\newsavebox\AcmLogo
-\begin{lrbox}{\AcmLogo}
-\begin{tikzpicture}[white,opacity=.65]
-  \draw[very thick] (0,0) -- (1,1) -- (0,2) -- (-1,1) -- cycle;
-  \draw[very thick] (0,1) circle [radius=0.6];
-  \node at (0,1) {\sffamily\bfseries\MakeUppercase{ACM}};
-\end{tikzpicture}
-\end{lrbox}
-
-\newsavebox\World
-\begin{lrbox}{\World}
-\begin{tikzpicture}[white,opacity=.5]
-  \draw[very thick] (0,0) circle [radius=0.75];
-  \foreach \i in {0,90} {
-  \scope[rotate around={\i:(0,0)}]
-  \foreach \x in {0,0.2,...,0.75} {
-    \ifdim\x pt=0 pt\def\x{0.05}\fi
-    \draw[thick] (-0.75,0) arc [start angle=180,end angle=360,x radius=0.75,y radius=\x];
-    \draw[thick] (0.75,0) arc [start angle=0,end angle=180,x radius=0.75,y radius=\x];
-  }
-  \endscope
-  }
-\end{tikzpicture}
-\end{lrbox}
 \PreviewBorder.5cm
 \begin{document}
 \begin{preview}
-\foreach \f in {bronze, silver, gold} {\tikz{
-  \pingu[body type=legacy,right wing wave,sunglasses,eyes wink,sneaker,headphone=blue!70!red!40!black, glasses upper bend=22,
-    \f\space rectmedal={%
-    \parbox{6.5mm}{\parskip=-4pt\sffamily\fontsize{1pt}{1pt}\selectfont\centering%
-      \hrulefill\vspace*{2pt}
-      \begin{center}
-        \bfseries\scshape
-        \makebox[3.1mm][s]{S\hfill t\hfill u\hfill d\hfill e\hfill n\hfill t}\\
-        \makebox[3.1mm][s]{\llap{\smash{\raisebox{-.4\height}{\scalebox{.06}{\usebox\World}\hspace*{1pt}}}}R\hfill e\hfill s\hfill e\hfill a\hfill r\hfill c\hfill h}\rlap{\smash{\raisebox{-.4\height}{\hspace*{1pt}\scalebox{.06}{\usebox\AcmLogo}}}}\\
-        \makebox[3.1mm][s]{C\hfill o\hfill m\hfill p\hfill e\hfill t\hfill i\hfill t\hfill i\hfill o\hfill n}\\[2pt]
-        Association for Computing Machinery\\
-        \scalebox{.8}{\clap{Advancing Computing as a Science \& Profession}}\vspace*{-2pt}
-      \end{center}
-      \fontsize{2pt}{2pt}\selectfont\MakeUppercase{Undergraduate}\\
-      \hrulefill
-    }
-  }]
-}}
+\tikz{
+  \pingu[body type=legacy,wings=wave,sword left,sword right,sword left length=5mm,sword left width=.25mm,left wing item angle=-40,sword left handle length=2.65mm,right eye wink,eye patch left,bill open,cape=pingu@bronze!70!pingu@blue!50!black,deer hat=pingu@bronze!70!pingu@blue!50!black,belt=pingu@black,belt knot color=pingu@bronze!70!pingu@blue!50!black]
+}
 \end{preview}
 \end{document}
