@@ -79,6 +79,28 @@
 \def\pinguanglehr{.07}
 % #endregion
 
+% #region bends
+% <pingu@bend>
+% |to[bend right=<angle>]| re-derives its control points on every use. As all
+% body bends are vertical and their angle is known at load time, the two
+% factors yielding the same control points are computed once instead.
+\def\pingu@bend@factor{.3899534}
+% #1 macro to define | #2 angle, as given to |bend right|
+\def\pingu@newbend#1#2{%
+    \pgfmathsetmacro\pingu@bend@x{\pingu@bend@factor*sin(#2)}%
+    \pgfmathsetmacro\pingu@bend@y{\pingu@bend@factor*cos(#2)}%
+    \edef#1##1{\noexpand\pingu@bend@v{\pingu@bend@x}{\pingu@bend@y}{##1}}%
+}
+% #1 x factor | #2 y factor | #3 signed height of the segment
+\def\pingu@bend@v#1#2#3{.. controls +({#1*(#3)},{#2*(#3)}) and +({#1*(#3)},{-#2*(#3)}) .. ++(0,#3)}
+
+\pingu@newbend\pingu@bend@body{\pingu@bend}
+\pingu@newbend\pingu@bend@belly{.8*\pingu@bend}
+\pingu@newbend\pingu@bend@chubby{1.65*\pingu@bend}
+\pingu@newbend\pingu@bend@legacy{1.25*\pingu@bend}
+% <@pingu@bend>
+% #endregion
+
 % #region selections
 \def\pingu@csappto#1#2{\expandafter\ifx\csname #1\endcsname\@empty\@namedef{#1}{#2}\else\expandafter\g@addto@macro\csname #1\endcsname{, #2}\fi}
 
@@ -158,6 +180,117 @@
 % <@bodytype selector>
 % #endregion
 
+% #region anchors
+% <pingu@anchor>
+\newdimen\pingu@shoulder@x
+\newdimen\pingu@bbox@left   \newdimen\pingu@bbox@right
+\newdimen\pingu@bbox@bottom \newdimen\pingu@bbox@top
+\newdimen\pingu@bbox@midx   \newdimen\pingu@bbox@midy
+% only the height is configurable, so re-assigning is cheap
+\def\pingu@bbox@update{%
+    \pingu@bbox@left\z@
+    \pingu@bbox@right2\pingu@w@half
+    \pingu@bbox@bottom-\dimexpr\pingu@side@h@half+\pingu@foot@outer@h\relax
+    \pingu@bbox@top\dimexpr\pingu@outer@off+\pingu@head@h@half\relax
+    \pingu@bbox@midx\pingu@w@half
+    \pingu@bbox@midy\dimexpr(\pingu@bbox@top+\pingu@bbox@bottom)/2\relax
+    \pingu@shoulder@x\dimexpr2\pingu@w@half-.10674pt\relax
+}
+
+% An anchor is a point of the penguin that is moved onto the origin.
+\let\@pingu@anchors@\@empty
+% #1 name | #2 x | #3 y
+\def\pingu@anchor@add#1#2#3{%
+    \pingu@csappto{@pingu@anchors@}{"#1"}%
+    \expandafter\def\csname @pingu@anchor@#1@\endcsname{{#2}{#3}}%
+}
+\pingu@anchor@add{origin}        {\pingu@bbox@left} {0pt}
+\pingu@anchor@add{center}        {\pingu@bbox@midx} {\pingu@bbox@midy}
+\pingu@anchor@add{north}         {\pingu@bbox@midx} {\pingu@bbox@top}
+\pingu@anchor@add{south}         {\pingu@bbox@midx} {\pingu@bbox@bottom}
+\pingu@anchor@add{east}          {\pingu@bbox@right}{\pingu@bbox@midy}
+\pingu@anchor@add{west}          {\pingu@bbox@left} {\pingu@bbox@midy}
+\pingu@anchor@add{north east}    {\pingu@bbox@right}{\pingu@bbox@top}
+\pingu@anchor@add{north west}    {\pingu@bbox@left} {\pingu@bbox@top}
+\pingu@anchor@add{south east}    {\pingu@bbox@right}{\pingu@bbox@bottom}
+\pingu@anchor@add{south west}    {\pingu@bbox@left} {\pingu@bbox@bottom}
+\pingu@anchor@add{head}          {\pingu@bbox@midx} {\pingu@outer@off}
+\pingu@anchor@add{head top}      {\pingu@bbox@midx} {\pingu@bbox@top}
+\pingu@anchor@add{bill}          {\pingu@bbox@midx} {-.05mm}
+\pingu@anchor@add{belly}         {\pingu@bbox@midx} {-.68*\pingu@side@h@half}
+\pingu@anchor@add{feet}          {\pingu@bbox@midx} {\pingu@bbox@bottom}
+\pingu@anchor@add{left shoulder} {\pingu@shoulder@x} {\pingu@outer@off}
+\pingu@anchor@add{right shoulder}{\pingu@bbox@left} {\pingu@outer@off}
+
+% The wings are the one part whose reach depends on the selected style, so every
+% style registers where its ends sit relative to the shoulder it grows from.
+% #1 style | #2/#3 left end | #4/#5 left tip | #6/#7 right end | #8/#9 right tip
+\def\pingu@wingend@add#1#2#3#4#5#6#7#8#9{%
+    \@namedef{@pingu@wingend@#1@leftx}{#2}\@namedef{@pingu@wingend@#1@lefty}{#3}%
+    \@namedef{@pingu@wingend@#1@lefttipx}{#4}\@namedef{@pingu@wingend@#1@lefttipy}{#5}%
+    \@namedef{@pingu@wingend@#1@rightx}{#6}\@namedef{@pingu@wingend@#1@righty}{#7}%
+    \@namedef{@pingu@wingend@#1@righttipx}{#8}\@namedef{@pingu@wingend@#1@righttipy}{#9}%
+}
+% #1 left/right | #2 x, y, tipx, or tipy
+\def\pingu@wingend#1#2{\csname @pingu@wingend@\csname @pingu@select@#1wing@\endcsname @#1#2\endcsname}
+\pingu@anchor@add{left wing}      {\pingu@shoulder@x+\pingu@wingend{left}{x}}   {\pingu@outer@off+\pingu@wingend{left}{y}}
+\pingu@anchor@add{right wing}     {\pingu@bbox@left+\pingu@wingend{right}{x}}   {\pingu@outer@off+\pingu@wingend{right}{y}}
+\pingu@anchor@add{left wing tip}  {\pingu@shoulder@x+\pingu@wingend{left}{tipx}}{\pingu@outer@off+\pingu@wingend{left}{tipy}}
+\pingu@anchor@add{right wing tip} {\pingu@bbox@left+\pingu@wingend{right}{tipx}}{\pingu@outer@off+\pingu@wingend{right}{tipy}}
+
+\newdimen\pingu@anchor@dx \newdimen\pingu@anchor@dy
+% shift by the negated anchor; a value without a unit is given in |cm|
+\def\pingu@anchor@shift#1#2{%
+    \pgfmathparse{-1*(#2)}%
+    \ifpgfmathunitsdeclared#1\pgfmathresult pt\relax\else#1\pgfmathresult cm\relax\fi
+}
+\def\pingu@anchor@set#1#2{\def\pingu@anchor@x{#1}\def\pingu@anchor@y{#2}}
+\def\pingu@anchor@select#1{%
+    \ifcsname @pingu@anchor@#1@\endcsname
+        \expandafter\expandafter\expandafter\pingu@anchor@set\csname @pingu@anchor@#1@\endcsname
+    \else\pingu@anchor@free{#1}\fi
+}
+% any unknown name has to be a point |(<x>,<y>)|, parentheses optional
+\def\pingu@anchor@free#1{%
+    \pgfutil@in@{,}{#1}%
+    \ifpgfutil@in@
+        \pgfutil@in@{(}{#1}%
+        \ifpgfutil@in@\let\pingu@anchor@next\pingu@anchor@free@p
+        \else\let\pingu@anchor@next\pingu@anchor@free@c\fi
+    \else\let\pingu@anchor@next\pingu@anchor@err\fi
+    \pingu@anchor@next#1\@nil
+}
+\def\pingu@anchor@free@p(#1,#2)#3\@nil{\pingu@anchor@set{#1}{#2}}
+\def\pingu@anchor@free@c#1,#2\@nil{\pingu@anchor@set{#1}{#2}}
+\def\pingu@anchor@err#1\@nil{%
+    \PackageError{\tikzpingus@filename}{There is no '#1' anchor. Choose one of '\@pingu@anchors@' or pass a point like '(1cm,2mm)'}{Or ask the package maintainer :D}%
+}
+% <@pingu@anchor>
+
+% <pingu@relative>
+% Relative placement joins the two anchors facing each other, e.g.\ |right of|
+% our |south west| with their |south east|, keeping both on the same ground.
+\def\pingu@relative#1#2{\def\pingu@rel@dir{#1}\pingu@relative@#2::\@nil}
+\def\pingu@relative@#1:#2:#3\@nil{%
+    \def\pingu@rel@name{#1}\def\pingu@rel@dist{#2}%
+    \ifx\pingu@rel@dist\@empty\def\pingu@rel@dist{0pt}\fi
+    \csname pingu@relative@\pingu@rel@dir\endcsname
+}
+% #1 coordinate our own anchor is moved to
+\def\pingu@relative@to#1{%
+    \edef\pingu@rel@tmp{\noexpand\pgfqkeys{/pingu}{@place={shift={(#1)}}}}\pingu@rel@tmp
+}
+\def\pingu@relative@right{\pingu@anchor@select{south west}%
+    \pingu@relative@to{[xshift=\pingu@rel@dist]\pingu@rel@name-south east}}
+\def\pingu@relative@left{\pingu@anchor@select{south east}%
+    \pingu@relative@to{[xshift=-\pingu@rel@dist]\pingu@rel@name-south west}}
+\def\pingu@relative@above{\pingu@anchor@select{south}%
+    \pingu@relative@to{[yshift=\pingu@rel@dist]\pingu@rel@name-north}}
+\def\pingu@relative@below{\pingu@anchor@select{north}%
+    \pingu@relative@to{[yshift=-\pingu@rel@dist]\pingu@rel@name-south}}
+% <@pingu@relative>
+% #endregion
+
 % #region key setup
 % <pingu@color>
 \def\pingu@color#1#2{%
@@ -203,7 +336,15 @@
   @hair/.style                  = {},
   @clip even odd rule/.code     = {\pgfseteorule}, % Credit to Andrew Stacey
   @invclip/.style               = {clip,insert path=[/pingu/@clip even odd rule]{[reset cm](-\maxdimen,-\maxdimen)rectangle(\maxdimen,\maxdimen)}},
-  @pingu/.style = {}, @pingu@main/.style = {},
+  @pingu/.style = {}, @pingu@main/.style = {}, @pingu@place/.style = {},
+% <anchor keys>
+  anchor/.code                  = \pingu@anchor@select{#1},
+  @place/.code                  = {\pgfqkeys{/pingu}{@pingu@place/.style={#1}}},
+  right of/.code                = \pingu@relative{right}{#1},
+  left of/.code                 = \pingu@relative{left}{#1},
+  above of/.code                = \pingu@relative{above}{#1},
+  below of/.code                = \pingu@relative{below}{#1},
+% <@anchor keys>
 % <feet keys>
   left foot color/.code         = \pingu@color{foot@left}{#1},
   left foot/.code               = \pingu@leftfoot@select{#1},
@@ -301,8 +442,8 @@
     wings=normal, wings color=\pingu@color@body@main,
     hairstyle=normal, hairs color=\pingu@color@body@main,
     belly raw={}, scale=\pingu@default@scale,
-    left wing item angle=0,right wing item angle=0,extra defaults,user defaults,%
-    feet front=false%
+    anchor=origin, @place={}, feet front=false,
+    left wing item angle=0,right wing item angle=0,extra defaults,user defaults%
   },
   user defaults/.style = {},
   % will be set individually
@@ -384,6 +525,11 @@
 \let\pingu@path@lowerpingu\pingu@default@path@lowerpingu\relax
 \let\pingu@path@upperpingu\pingu@default@path@upperpingu\relax
 \ifdim\pingu@side@h@half<10.33mm \PackageWarning{\tikzpingus@filename}{Penguins with a height below 10.33mm may have unwanted artifacts.}\fi
+\pingu@bbox@update
+\pingu@anchor@shift\pingu@anchor@dx\pingu@anchor@x
+\pingu@anchor@shift\pingu@anchor@dy\pingu@anchor@y
+\scope[/pingu/@pingu@place,shift={(\pingu@anchor@dx,\pingu@anchor@dy)}]
+\pingu@place@anchors
 \scope[/pingu/@pingu,/pingu/@pingu@main]
 \scope[/pingu/@body]
 \@pingu@drawer@bodytype@
@@ -453,8 +599,25 @@
 \endscope
 \if@pingu@draw@metadots \@pingu@draw@dots \fi
 \pingu@post
+\endscope
 \endgroup
 \pingu@back@init@call
+}
+
+% the outer anchors of the silhouette, used by |right of| and friends
+\def\pingu@place@anchor#1#2#3{\pgfcoordinate{\pingu@name-#1}{\pgfqpoint#2#3}}
+\def\pingu@place@anchors{%
+    \pingu@place@anchor{center}    \pingu@bbox@midx  \pingu@bbox@midy
+    \pingu@place@anchor{north}     \pingu@bbox@midx  \pingu@bbox@top
+    \pingu@place@anchor{south}     \pingu@bbox@midx  \pingu@bbox@bottom
+    \pingu@place@anchor{east}      \pingu@bbox@right \pingu@bbox@midy
+    \pingu@place@anchor{west}      \pingu@bbox@left  \pingu@bbox@midy
+    \pingu@place@anchor{north east}\pingu@bbox@right \pingu@bbox@top
+    \pingu@place@anchor{north west}\pingu@bbox@left  \pingu@bbox@top
+    \pingu@place@anchor{south east}\pingu@bbox@right \pingu@bbox@bottom
+    \pingu@place@anchor{south west}\pingu@bbox@left  \pingu@bbox@bottom
+    % where the penguin got anchored, i.e.\ the origin it was moved onto
+    \pgfcoordinate{\pingu@name-anchor}{\pgfpoint{-\pingu@anchor@dx}{-\pingu@anchor@dy}}%
 }
 \let\pengu\pingu% as an alias
 
@@ -462,12 +625,12 @@
 % Note: to be used in clippies
 \def\pingu@default@path@lowerpingu{(0,\pingu@outer@off)
 % left side
-to[bend right=\pingu@bend] ++(0,-\pingu@side@h@half-\pingu@outer@off)
+\pingu@bend@body{-\pingu@side@h@half-\pingu@outer@off}
 % feety stuff
 arc (180:270:\pingu@foot@outer@w{} and \pingu@foot@outer@h) arc (270:332:\pingu@foot@inner@w{} and \pingu@foot@inner@h)
 arc (208:270:\pingu@foot@inner@w{} and \pingu@foot@inner@h) arc (270:360:\pingu@foot@outer@w{} and \pingu@foot@outer@h)%
 % right side
-to[bend right=\pingu@bend] ++(0,\pingu@side@h@half+\pingu@outer@off)
+\pingu@bend@body{\pingu@side@h@half+\pingu@outer@off}
 arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure wings
 \def\pingu@default@path@upperpingu{(\pingu@name-head-center) ellipse [x radius=\pingu@w@half, y radius=\pingu@head@h@half]}
 \let\pingu@path@lowerpingu\pingu@default@path@lowerpingu
@@ -481,7 +644,7 @@ arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle}% arc clip to secure 
 \pingu@bodytype@add{normal}{%
 \pingu@block[save path=\pingu@lowerpingu]{\pingu@color@body@main} (0,\pingu@outer@off)
 % left side
-to[bend right=\pingu@bend] coordinate[pos=.775] (\pingu@name-waist-right) ++(0,-\pingu@side@h@half-\pingu@outer@off)
+\pingu@bend@body{-\pingu@side@h@half-\pingu@outer@off} coordinate[pos=.775] (\pingu@name-waist-right)
 % feety stuff
 arc (180:270:\pingu@foot@outer@w{} and \pingu@foot@outer@h) coordinate (\pingu@name-foot-right)
 arc (270:332:\pingu@foot@inner@w{} and \pingu@foot@inner@h)
@@ -489,7 +652,7 @@ coordinate (\pingu@name-bottom-center)
 arc (208:270:\pingu@foot@inner@w{} and \pingu@foot@inner@h) coordinate (\pingu@name-foot-left)
 arc (270:360:\pingu@foot@outer@w{} and \pingu@foot@outer@h)%
 % right side
-to[bend right=\pingu@bend] coordinate[pos=.225] (\pingu@name-waist-left) ++(0,\pingu@side@h@half+\pingu@outer@off)
+\pingu@bend@body{\pingu@side@h@half+\pingu@outer@off} coordinate[pos=.225] (\pingu@name-waist-left)
 % coordinate
 coordinate (\pingu@name-wings-side-left)
 -- (0,\pingu@outer@off) coordinate (\pingu@name-wings-side-right) coordinate[pos=.5] (\pingu@name-head-center) -- cycle;
@@ -502,7 +665,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 
 \coordinate (\pingu@name-belly-back) at (\pingu@w@half,-1cm);
 \coordinate (\pingu@name-belly-center) at (\pingu@w@half,-.68\pingu@side@h@half);
-\pingu@block[save path=\pingu@whitepingu]{\pingu@color@body@front} (\pingu@name-belly-back)++(-\pingu@w@half+\pingu@one,\pingu@lower@off) to[bend right=.8\pingu@bend] ++(0,1.05cm-\pingu@side@h@half-\pingu@lower@off) arc (180:270:4mm and 2mm) arc (270:331:5mm and .85mm) arc (207:270:5mm and .85mm) arc (270:360:4mm and 2mm) to[bend right=.8\pingu@bend] ++(0,\pingu@side@h@half-1.05cm+\pingu@lower@off) arc (0:180:\pingu@w@half-.96mm and \pingu@w@half-\pingu@one) -- cycle;
+\pingu@block[save path=\pingu@whitepingu]{\pingu@color@body@front} (\pingu@name-belly-back)++(-\pingu@w@half+\pingu@one,\pingu@lower@off) \pingu@bend@belly{1.05cm-\pingu@side@h@half-\pingu@lower@off} arc (180:270:4mm and 2mm) arc (270:331:5mm and .85mm) arc (207:270:5mm and .85mm) arc (270:360:4mm and 2mm) \pingu@bend@belly{\pingu@side@h@half-1.05cm+\pingu@lower@off} arc (0:180:\pingu@w@half-.96mm and \pingu@w@half-\pingu@one) -- cycle;
 
 \coordinate (\pingu@name-eye-back-right) at ([xshift=-.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-head-center);
 \coordinate (\pingu@name-eye-back-left) at ([xshift=.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-head-center);
@@ -520,9 +683,8 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     % set the lower half
     \path[save path=\pingu@lowerpingu] (0,\pingu@outer@off)
         % left side
-        to[bend right=\pingu@bend]
+        \pingu@bend@body{-\pingu@side@h@half-\pingu@outer@off}
             coordinate[pos=.775] (\pingu@name-waist-right)
-        ++(0,-\pingu@side@h@half-\pingu@outer@off)
         % feety stuff
         arc (180:270:\pingu@foot@outer@w{} and \pingu@foot@outer@h)
             coordinate (\pingu@name-foot-right)
@@ -532,9 +694,8 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
             coordinate (\pingu@name-foot-left)
         arc (270:360:\pingu@foot@outer@w{} and \pingu@foot@outer@h)
         % right side
-        to[bend right=\pingu@bend]
+        \pingu@bend@body{\pingu@side@h@half+\pingu@outer@off}
             coordinate[pos=.225] (\pingu@name-waist-left)
-        ++(0,\pingu@side@h@half+\pingu@outer@off)
         % switch to left
             coordinate (\pingu@name-wings-side-left)
         -- (0,\pingu@outer@off)
@@ -555,14 +716,12 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
     % set the white above
     \path[save path=\pingu@whitepingu] (\pingu@name-belly-back)
         ++(-\pingu@w@half+\pingu@one,\pingu@lower@off)
-        to[bend right=.8\pingu@bend]
-        ++(0,1.05cm-\pingu@side@h@half-\pingu@lower@off)
+        \pingu@bend@belly{1.05cm-\pingu@side@h@half-\pingu@lower@off}
         arc (180:270:4mm and 2mm)
         arc (270:331:5mm and .85mm)
         arc (207:270:5mm and .85mm)
         arc (270:360:4mm and 2mm)
-        to[bend right=.8\pingu@bend]
-        ++(0,\pingu@side@h@half-1.05cm+\pingu@lower@off)
+        \pingu@bend@belly{\pingu@side@h@half-1.05cm+\pingu@lower@off}
         arc (0:180:\pingu@w@half-.96mm and \pingu@w@half-\pingu@one)
     -- cycle;
 
@@ -583,7 +742,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \pingu@bodytype@add{chubby}{%
 \pingu@block[save path=\pingu@lowerpingu]{\pingu@color@body@main} (0,\pingu@outer@off)
 % left side
-to[bend right=1.65*\pingu@bend] coordinate[pos=.775] (\pingu@name-waist-right) ++(0,-\pingu@side@h@half-\pingu@outer@off)
+\pingu@bend@chubby{-\pingu@side@h@half-\pingu@outer@off} coordinate[pos=.775] (\pingu@name-waist-right)
 % feety stuff
 arc (180:270:\pingu@foot@outer@w{} and \pingu@foot@outer@h-.35mm) coordinate (\pingu@name-foot-right)
 arc (270:332:\pingu@foot@inner@w{} and 1.25*\pingu@foot@inner@h)
@@ -591,7 +750,7 @@ coordinate (\pingu@name-bottom-center)
 arc (208:270:\pingu@foot@inner@w{} and 1.25*\pingu@foot@inner@h) coordinate (\pingu@name-foot-left)
 arc (270:360:\pingu@foot@outer@w{} and \pingu@foot@outer@h-.35mm)%
 % right side
-to[bend right=1.65*\pingu@bend] coordinate[pos=.225] (\pingu@name-waist-left) ++(0,\pingu@side@h@half+\pingu@outer@off)
+\pingu@bend@chubby{\pingu@side@h@half+\pingu@outer@off} coordinate[pos=.225] (\pingu@name-waist-left)
 % coordinate
 coordinate (\pingu@name-wings-side-left)
 -- (0,\pingu@outer@off) coordinate (\pingu@name-wings-side-right) coordinate[pos=.5] (\pingu@name-head-center) -- cycle;
@@ -621,12 +780,12 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \gdef\pingu@path@lowerpingu{%
 (0,\pingu@outer@off)
 % left side
-to[bend right=1.25*\pingu@bend] ++(0,-.95\pingu@side@h@half-\pingu@outer@off+.65\pingu@one)%
+\pingu@bend@legacy{-.95\pingu@side@h@half-\pingu@outer@off+.65\pingu@one}%
 % feety stuff
 to[out=270,in=270]
 ++(2*\pingu@w@half,0)
 % right side
-to[bend right=1.25*\pingu@bend] ++(0,.95\pingu@side@h@half+\pingu@outer@off-.65\pingu@one)
+\pingu@bend@legacy{.95\pingu@side@h@half+\pingu@outer@off-.65\pingu@one}
 arc(0:180:\pingu@w@half{} and \pingu@head@h@half) -- cycle
 }
 \gdef\pingu@path@upperpingu{(\pingu@name-head-center)
@@ -635,7 +794,7 @@ arc(90:450:\pingu@w@half{} and \pingu@head@h@half);
 }
 \pingu@block[save path=\pingu@lowerpingu]{\pingu@color@body@main} (0,\pingu@outer@off)
 % left side
-to[bend right=1.25*\pingu@bend] coordinate[pos=.77] (\pingu@name-waist-right) ++(0,-.95\pingu@side@h@half-\pingu@outer@off+.65\pingu@one) coordinate (@b) % for bottom clip
+\pingu@bend@legacy{-.95\pingu@side@h@half-\pingu@outer@off+.65\pingu@one} coordinate[pos=.77] (\pingu@name-waist-right) coordinate (@b) % for bottom clip
 % feety stuff
 to[out=270,in=270]
     coordinate[pos=.3,yshift=-.25mm] (\pingu@name-foot-right)
@@ -643,7 +802,7 @@ to[out=270,in=270]
     coordinate[pos=.7,yshift=-.25mm] (\pingu@name-foot-left)
 ++(2*\pingu@w@half,0)
 % right side
-to[bend right=1.25*\pingu@bend] coordinate[pos=.225] (\pingu@name-waist-left) ++(0,.95\pingu@side@h@half+\pingu@outer@off-.65\pingu@one)
+\pingu@bend@legacy{.95\pingu@side@h@half+\pingu@outer@off-.65\pingu@one} coordinate[pos=.225] (\pingu@name-waist-left)
 % coordinate
 coordinate (\pingu@name-wings-side-left)
 -- (0,\pingu@outer@off) coordinate (\pingu@name-wings-side-right) coordinate[pos=.5] (\pingu@name-head-center) -- cycle;
@@ -785,6 +944,15 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \def\@pingu@wingangle@items@none@{90}
 \def\@pingu@wingdown@none@{90}
 
+% where the ends of every wing style sit, relative to their shoulder
+\pingu@wingend@add{none}  {0pt}{-18.49428pt}{0pt}{-18.49428pt}{0pt}{-18.49428pt}{0pt}{-18.49428pt}
+\pingu@wingend@add{normal}{5.52321pt}{-39.1067pt}{6.62784pt}{-43.2292pt}{-5.52307pt}{-39.10675pt}{-6.6277pt}{-43.22925pt}
+\pingu@wingend@add{wave}  {13.42923pt}{-.06075pt}{16.74178pt}{4.0299pt}{-13.87694pt}{.49176pt}{-16.74194pt}{4.02975pt}
+\pingu@wingend@add{raise} {6.44652pt}{3.3044pt}{7.69443pt}{7.38605pt}{-6.44707pt}{3.3042pt}{-7.69496pt}{7.38585pt}
+\pingu@wingend@add{grab}  {-17.13539pt}{-31.83269pt}{-19.99123pt}{-35.00438pt}{17.1346pt}{-31.8334pt}{19.99043pt}{-35.0051pt}
+\pingu@wingend@add{shock} {-17.90141pt}{-9.76384pt}{-21.7376pt}{-7.8928pt}{17.90115pt}{-9.76329pt}{21.73734pt}{-7.89226pt}
+\pingu@wingend@add{hug}   {17.37624pt}{-31.35863pt}{20.9637pt}{-34.16147pt}{-17.3762pt}{-31.35873pt}{-20.96365pt}{-34.16156pt}
+
 % to hide it with the glow
 \def\pingu@wing@compensator#1{#1}
 
@@ -909,6 +1077,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \pingu@block{\pingu@color@hair@d} ([yshift=-\pingu@one]\pingu@name-head-top) -- ++(.25mm,0) arc (180:90:\pingu@one@eight{} and .175cm) arc (90:180:.35mm and \pingu@one@eight);
 \pingu@block{\pingu@color@hair@e} ([yshift=-\pingu@one]\pingu@name-head-top) -- ++(.44mm,0) arc (180:90:\pingu@one@eight{} and .135cm) arc (90:180:.35mm and .75mm);
 \endscope\endscope}
+
 % #endregion
 
 % #region feet
@@ -1099,8 +1268,30 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 % #endregion
 
 % #region dots
+% #1 the name of an anchor, ringed where it sits. The dots are drawn inside the
+% shifted scope already, so the plain anchor point is what we want here.
+\def\pingu@mark@anchor#1{%
+    \expandafter\expandafter\expandafter\pingu@mark@anchor@\csname @pingu@anchor@#1@\endcsname}
+\def\pingu@mark@anchor@#1#2{%
+    \path[draw=orange,thin] ({#1},{#2}) circle [radius=2\p@];%
+}
 \def\@pingu@draw@dots{%
 \pingu@layer{foreground}[]
+    % the silhouette every anchor refers to
+    \path[draw,orange,thin,dashed] (\pingu@bbox@left,\pingu@bbox@bottom) rectangle (\pingu@bbox@right,\pingu@bbox@top);
+    \@for\@pingu@elem:={center,north,south,east,west,north east,north west,south east,south west}\do{
+      \path[fill=orange] (\pingu@name-\@pingu@elem) circle[radius=1.125\p@];
+    }
+    \scope[shift=(\pingu@name-anchor),draw=blue,line width=1.25\p@,line cap=round]
+      \path[draw] (-3mm,0) -- (3mm,0) (0,-3mm) -- (0,3mm);
+    \endscope
+    % The wing anchors are the only ones fed from a table instead of the drawing.
+    % Ringing them here means a wing that got retuned without its entry shows up
+    % right away: the rings have to sit on the wing markers.
+    \if@pingu@do@back@\else
+      \@for\@pingu@elem:={left wing,right wing,left wing tip,right wing tip}\do{%
+        \expandafter\pingu@mark@anchor\expandafter{\@pingu@elem}}%
+    \fi
     % mark wing outer
     \path[draw,pink,thick] (\pingu@name-wing-left-start-low) --(\pingu@name-wing-left-start) -- (\pingu@name-wing-left) -- (\pingu@name-wing-left-low);
     \path[draw,pink,thick] (\pingu@name-wing-right-start-low) -- (\pingu@name-wing-right-start) -- (\pingu@name-wing-right) -- (\pingu@name-wing-right-low);
@@ -3397,7 +3588,7 @@ to[bend right=7] ++(-.05,-.2) to[bend left=13] ++(-.2,-1.15) to[bend right=13] +
 \pingu@bodytype@add{tilt-right}{%
 \pingu@block[save path=\pingu@lowerpingu]{\pingu@color@body@main} (0,\pingu@outer@off)
 % left side
-to[bend right=\pingu@bend] coordinate[pos=.775] (\pingu@name-waist-right) ++(0,-\pingu@side@h@half-\pingu@outer@off)
+\pingu@bend@body{-\pingu@side@h@half-\pingu@outer@off} coordinate[pos=.775] (\pingu@name-waist-right)
 % feety stuff
 arc (180:270:\pingu@foot@outer@w{}-1mm and \pingu@foot@outer@h) coordinate[yshift=-.2mm] (\pingu@name-foot-right)
 arc (270:332:\pingu@foot@inner@w{}+1mm and 2.5*\pingu@foot@inner@h)
@@ -3405,7 +3596,7 @@ coordinate (\pingu@name-bottom-center)
 arc (208:270:\pingu@foot@inner@w{} and 1.25*\pingu@foot@inner@h) coordinate[yshift=-.4mm] (\pingu@name-foot-left)
 arc (270:360:\pingu@foot@outer@w{} and 1.125*\pingu@foot@outer@h)%
 % right side
-to[bend right=\pingu@bend] coordinate[pos=.225] (\pingu@name-waist-left) ++(0,\pingu@side@h@half+\pingu@outer@off)
+\pingu@bend@body{\pingu@side@h@half+\pingu@outer@off} coordinate[pos=.225] (\pingu@name-waist-left)
 % coordinate
 coordinate (\pingu@name-wings-side-left)
 -- (0,\pingu@outer@off) coordinate (\pingu@name-wings-side-right) coordinate[pos=.5] (\pingu@name-head-center) -- cycle;
@@ -3418,7 +3609,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 
 \coordinate (\pingu@name-belly-back) at (\pingu@w@half,-1cm);
 \coordinate (\pingu@name-belly-center) at (\pingu@w@half,-.68\pingu@side@h@half);
-\pingu@block[save path=\pingu@whitepingu]{\pingu@color@body@front} (\pingu@name-belly-back)++(-\pingu@w@half+\pingu@one,\pingu@lower@off) to[bend right=.8\pingu@bend] ++(-.05mm,1.05cm-\pingu@side@h@half-\pingu@lower@off) arc (180:270:3.7mm and 2mm) arc (270:331:5mm and 3*.85mm) arc (207:270:5.3mm and 1.125*.85mm) arc (270:360:4.025mm and 1.25*2mm) to[bend right=.8\pingu@bend] ++(0,\pingu@side@h@half-1.05cm+\pingu@lower@off) arc (0:180:\pingu@w@half-.96mm and \pingu@w@half-\pingu@one) -- cycle;
+\pingu@block[save path=\pingu@whitepingu]{\pingu@color@body@front} (\pingu@name-belly-back)++(-\pingu@w@half+\pingu@one,\pingu@lower@off) to[bend right=.8\pingu@bend] ++(-.05mm,1.05cm-\pingu@side@h@half-\pingu@lower@off) arc (180:270:3.7mm and 2mm) arc (270:331:5mm and 3*.85mm) arc (207:270:5.3mm and 1.125*.85mm) arc (270:360:4.025mm and 1.25*2mm) \pingu@bend@belly{\pingu@side@h@half-1.05cm+\pingu@lower@off} arc (0:180:\pingu@w@half-.96mm and \pingu@w@half-\pingu@one) -- cycle;
 
 \coordinate (\pingu@name-eye-back-right) at ([xshift=-.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-head-center);
 \coordinate (\pingu@name-eye-back-left) at ([xshift=.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-head-center);
@@ -3434,7 +3625,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 \pingu@bodytype@add{tilt-left}{%
 \pingu@block[save path=\pingu@lowerpingu]{\pingu@color@body@main} (0,\pingu@outer@off)
 % left side
-to[bend right=\pingu@bend] coordinate[pos=.775] (\pingu@name-waist-right) ++(0,-\pingu@side@h@half-\pingu@outer@off)
+\pingu@bend@body{-\pingu@side@h@half-\pingu@outer@off} coordinate[pos=.775] (\pingu@name-waist-right)
 % feety stuff
 arc (180:270:\pingu@foot@outer@w{}-1mm and 1.25*\pingu@foot@outer@h) coordinate[yshift=-.2mm] (\pingu@name-foot-right)
 arc (270:332:\pingu@foot@inner@w{}+1mm and 1.125*\pingu@foot@inner@h)
@@ -3442,7 +3633,7 @@ coordinate (\pingu@name-bottom-center)
 arc (208:270:\pingu@foot@inner@w{} and 2.5*\pingu@foot@inner@h) coordinate[yshift=-.4mm] (\pingu@name-foot-left)
 arc (270:360:\pingu@foot@outer@w{} and \pingu@foot@outer@h)%
 % right side
-to[bend right=\pingu@bend] coordinate[pos=.225] (\pingu@name-waist-left) ++(0,\pingu@side@h@half+\pingu@outer@off)
+\pingu@bend@body{\pingu@side@h@half+\pingu@outer@off} coordinate[pos=.225] (\pingu@name-waist-left)
 % coordinate
 coordinate (\pingu@name-wings-side-left)
 -- (0,\pingu@outer@off) coordinate (\pingu@name-wings-side-right) coordinate[pos=.5] (\pingu@name-head-center) -- cycle;
@@ -3455,7 +3646,7 @@ coordinate[pos=\pinguanglehl] (\pingu@name-head-left);
 
 \coordinate (\pingu@name-belly-back) at (\pingu@w@half,-1cm);
 \coordinate (\pingu@name-belly-center) at (\pingu@w@half,-.68\pingu@side@h@half);
-\pingu@block[save path=\pingu@whitepingu]{\pingu@color@body@front} (\pingu@name-belly-back)++(-\pingu@w@half+\pingu@one,\pingu@lower@off) to[bend right=.8\pingu@bend] ++(-.05mm,1.05cm-\pingu@side@h@half-\pingu@lower@off) arc (180:270:4.025mm and 1.25*2mm) arc (270:331:5.25mm and 1.125*.85mm) arc (207:270:5mm and 3*.85mm) arc (270:360:3.75mm and 2mm) to[bend right=.8\pingu@bend] ++(0,\pingu@side@h@half-1.05cm+\pingu@lower@off) arc (0:180:\pingu@w@half-.96mm and \pingu@w@half-\pingu@one) -- cycle;
+\pingu@block[save path=\pingu@whitepingu]{\pingu@color@body@front} (\pingu@name-belly-back)++(-\pingu@w@half+\pingu@one,\pingu@lower@off) to[bend right=.8\pingu@bend] ++(-.05mm,1.05cm-\pingu@side@h@half-\pingu@lower@off) arc (180:270:4.025mm and 1.25*2mm) arc (270:331:5.25mm and 1.125*.85mm) arc (207:270:5mm and 3*.85mm) arc (270:360:3.75mm and 2mm) \pingu@bend@belly{\pingu@side@h@half-1.05cm+\pingu@lower@off} arc (0:180:\pingu@w@half-.96mm and \pingu@w@half-\pingu@one) -- cycle;
 
 \coordinate (\pingu@name-eye-back-right) at ([xshift=-.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-head-center);
 \coordinate (\pingu@name-eye-back-left) at ([xshift=.275cm,yshift=.25cm-\pingu@outer@off]\pingu@name-head-center);
