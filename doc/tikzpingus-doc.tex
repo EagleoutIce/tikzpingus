@@ -118,6 +118,53 @@
 }\strut%
 \endgroup}
 
+\def\@ts@anchordot#1#2#3#4{%
+	\path[fill=teal] ({#1},{#2}) circle [radius=1.125\p@];
+	\node[#4=.4mm,font=\ttfamily,scale=.45,inner sep=1.25pt,
+	      fill=white,fill opacity=.75,text opacity=1] (@a-#3) at ({#1},{#2}) {#3};
+	\draw[teal,thin] (@a-#3) -- ({#1},{#2});%
+}
+\newcommand*\TypesetAnchors{%
+\begin{tikzpicture}
+	\pingu[eyes shiny]
+	% \pingu keeps its state to itself, so re-establish what the anchors read
+	\pgfqkeys{/pingu}{defaults}\pingu@bbox@update
+	\pgfonlayer{foreground}
+	\foreach \@ts@a/\@ts@d in {origin/left,center/right,north/above,south/below,
+		east/right,west/below left,north east/above right,north west/above left,
+		south east/below right,south west/below left,head/left,bill/right,
+		belly/left,left shoulder/right,right shoulder/above left,
+		left wing/right,right wing/left,
+		left wing tip/below right,right wing tip/below left}{%
+		\expandafter\expandafter\expandafter\@ts@anchordot
+			\csname @pingu@anchor@\@ts@a @\endcsname{\@ts@a}{\@ts@d}%
+	}
+	\endpgfonlayer
+\end{tikzpicture}}
+
+% <compact toc>
+% A run-in table of contents: the entries end up as one dot-separated
+% paragraph instead of a page holding a single entry per line.
+\newcommand*\@ctoc@sep{\hspace{.45em}\textcolor{@softgray@b}{\textbullet}\hspace{.45em}}
+\newif\if@ctoc@first
+\newcommand*\@ctoc@entry[2]{%
+	\if@ctoc@first\@ctoc@firstfalse\else\@ctoc@sep\fi
+	\mbox{#1\,\textcolor{@softgray@b}{#2}}%
+}
+\newcommand\CompactTableOfContents{%
+	\begingroup
+		\@ctoc@firsttrue
+		\renewcommand*\numberline[1]{##1\nobreakspace}%
+		\let\l@section\@ctoc@entry
+		\let\l@subsection\@gobbletwo
+		\let\l@subsubsection\@gobbletwo
+		\let\l@paragraph\@gobbletwo
+		\parindent\z@\raggedright
+		\@starttoc{toc}%
+	\endgroup
+}
+% <@compact toc>
+
 % this can be used to remove some prefixes of the keys if necessary
 \let\@gobblekey\@gobble
 
@@ -547,12 +594,9 @@
    \draw[lightgray,line width=3pt,{Triangle[round,open,fill=white,scale=1.42]}-] (e) -- (f);
 \end{tikzpicture}}
 \end{center}
-\vfill\null
+\vfill
+\CompactTableOfContents
 
-\clearpage
-% only show chapters and sections in toc
-\setcounter{tocdepth}{1}
-\tableofcontents
 \clearpage
 \phantomsection\addcontentsline{toc}{section}{Overviews}
 
@@ -572,6 +616,16 @@
 \end{center}
 \textcolor{gray}{\footnotesize Use \texttt{\name=\textit{<option>}} to set the \textit{\name} of a penguin.}
 }
+\typeout{Generating overview for anchors}%
+\needspace{6\baselineskip}\begin{center}
+	\phantomsection\label{sec:overview-anchors}
+	{\large\textbf{All \textit{anchor} Options}}\\
+	See \autoref{mrk:anchors} for more info. \textit{head top} and \textit{feet} are
+	aliases of \textit{north} and \textit{south}; any other point works as well.\par\noindent
+	\TypesetAnchors
+\end{center}
+\textcolor{gray}{\footnotesize Use \texttt{anchor=\textit{<option>}} to move that point of a penguin onto the origin.}
+
 \phantomsection\label{Gadget-Overview}
 \begin{center}
 	{\large\textbf{Gadget Overview}}\\
@@ -579,9 +633,6 @@
 \end{center}
 \TypesetShowcases
 \clearpage
-
-\setcounter{tocdepth}{3}
-\tableofcontents
 
 \section{Introduction}
 \subsection{Dependencies}
@@ -711,6 +762,45 @@ body types can change the coordinates (left the \keyref{body type} \textit{chubb
 		\PinguCoords{body type=chubby,wings hug}\quad\PinguCoords{body type=legacy,wings hug}
 	}
 \end{center}
+
+\subsection{Anchors and Placement}\label{mrk:anchors}
+The origin of a penguin sits at its right shoulder. \keyref{anchor} moves the
+penguin so that another of its points lands on the origin instead:
+\begin{tcblisting}{title={Two anchors},externalize listing=anchor-pengu}
+\begin{tikzpicture}
+	\pingu[anchor=belly]
+	\pingu[anchor=head,xshift=3cm]
+	\draw[red] (-2.5mm,0) -- (2.5mm,0) (0,-2.5mm) -- (0,2.5mm)
+	           ([xshift=3cm]-2.5mm,0) -- ([xshift=3cm]2.5mm,0)
+	           ([xshift=3cm]0,-2.5mm) -- ([xshift=3cm]0,2.5mm);
+\end{tikzpicture}
+\end{tcblisting}
+Besides the names listed at \keyref{anchor} any point works, e.g.\ |anchor={(1cm,-5mm)}|.
+
+Anchors refer to the \textit{silhouette of the body}; gadgets, wings, and feet
+may stick out of it, so the anchors do not change with the extras a penguin
+wears. Its nine outer anchors are coordinates as well (prefixed by
+|<|\keyref{name}|>-|): |center|, |north|, |south|, |east|, |west|,
+|north east|, |north west|, |south east|, and |south west|. The anchor in use
+is available as |<|\keyref{name}|>-anchor| and, together with the silhouette,
+shown by \keyref{meta-dots}.
+
+Those outer anchors are what \keyref{right of}, \keyref{left of},
+\keyref{above of}, and \keyref{below of} use, each taking the name of the other
+penguin and, after a colon, the distance to keep:
+\begin{tcblisting}{title={A row of penguins},externalize listing=relative-pengu}
+\begin{tikzpicture}
+	\pingu[name=a,wings wave]
+	\pingu[name=b,right of=a:5mm,large size]
+	\pingu[name=c,left of=a:5mm,small size]
+	\pingu[name=d,above of=a:2mm,eyes shiny]
+	\pingu[name=e,below of=a:2mm,body=pingu@blue]
+\end{tikzpicture}
+\end{tcblisting}
+\keyref{right of} and \keyref{left of} keep both penguins on the same ground
+line, \keyref{above of} and \keyref{below of} center them horizontally. An
+\keyref{anchor} passed \textit{after} one of them keeps the target point but
+changes which point of the new penguin is moved onto it.
 
 \subsection{Colors}
 \label{Colors}A lot of options allow for a color to be passed. In general, you can provide any color that \TikZ\ is happy with! Yet, there are some predefined pingu-colors shipped with this package:
@@ -972,6 +1062,66 @@ Aliases may set custom defaults. Those defaults are not listed as they may chang
 \endkeyexplain
 
 \keyalias{meta dots}{meta-dots}
+
+\subsubsection{Anchors and Placement}
+
+\keyexplain{anchor}{anchor or point}{origin}
+	Move the penguin so that the given anchor ends up at the origin (see~\autoref{mrk:anchors}).
+	Valid names are \textit{origin} (the right shoulder, the default),
+	\textit{center}, \textit{north}, \textit{south}, \textit{east}, \textit{west},
+	\textit{north east}, \textit{north west}, \textit{south east}, \textit{south west},
+	\textit{head}, \textit{head top}, \textit{bill}, \textit{belly},
+	\textit{feet}, \textit{left shoulder}, and \textit{right shoulder}.
+	Anything else has to be a point |(<x>,<y>)| in the coordinate system of the penguin
+	(the parentheses are optional).
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[anchor=belly]
+	\draw[red] (-2.5mm,0) -- (2.5mm,0) (0,-2.5mm) -- (0,2.5mm);
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
+
+\keyexplain{right of}{name:distance}{}
+	Place the penguin right of the penguin with the given \keyref{name}, on the same ground line.
+	Without a distance (|right of=a|) both penguins touch.
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[name=a]
+	\pingu[right of=a:5mm,body=pingu@blue]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
+
+\keyexplain{left of}{name:distance}{}
+	Like \keyref{right of}, but to the left.
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[name=a]
+	\pingu[left of=a:5mm,body=pingu@blue]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
+
+\keyexplain{above of}{name:distance}{}
+	Place the penguin above the penguin with the given \keyref{name}, centered on it.
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[name=a]
+	\pingu[above of=a:5mm,body=pingu@blue]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
+
+\keyexplain{below of}{name:distance}{}
+	Like \keyref{above of}, but below.
+\begin{tcblisting}{@}
+\begin{tikzpicture}
+	\pingu[name=a]
+	\pingu[below of=a:5mm,body=pingu@blue]
+\end{tikzpicture}
+\end{tcblisting}
+\endkeyexplain
 
 \subsubsection{The Feet}
 
@@ -8908,6 +9058,60 @@ As an example, this is the definition of the \say{normal feet} (\keyref{feet nor
 \includecode{feet\ normal}
 As another example, this is the definition of the \say{simple feet} (\keyref{feet simple}):
 \includecode{feet\ simple}
+
+\subsection{Anchors and Placement}\label{internal:anchors}
+
+\subsubsection{Important Commands}
+
+\begin{commandexplain}{pingu@bbox@left}{}
+	Together with \cmdref{pingu@bbox@right}, \cmdref{pingu@bbox@bottom}, \cmdref{pingu@bbox@top},
+	\cmdref{pingu@bbox@midx}, and \cmdref{pingu@bbox@midy} this dimension spans the silhouette of
+	the body, the box every anchor refers to.
+\end{commandexplain}
+
+\begin{commandexplain}{pingu@bbox@right}{}
+	See \cmdref{pingu@bbox@left}.
+\end{commandexplain}
+
+\begin{commandexplain}{pingu@bbox@bottom}{}
+	See \cmdref{pingu@bbox@left}.
+\end{commandexplain}
+
+\begin{commandexplain}{pingu@bbox@top}{}
+	See \cmdref{pingu@bbox@left}.
+\end{commandexplain}
+
+\begin{commandexplain}{pingu@bbox@midx}{}
+	See \cmdref{pingu@bbox@left}.
+\end{commandexplain}
+
+\begin{commandexplain}{pingu@bbox@midy}{}
+	See \cmdref{pingu@bbox@left}.
+\end{commandexplain}
+
+\begin{commandexplain}{pingu@bbox@update}{}
+	Recalculates the six dimensions of the silhouette. Only \keyref{height} affects them.
+\end{commandexplain}
+
+\begin{commandexplain}{pingu@anchor@add}{\mand{name}\mand{x}\mand{y}}
+	Registers a new named anchor for \keyref{anchor}.
+\end{commandexplain}
+
+\begin{commandexplain}{pingu@place@anchors}{}
+	Creates the outer coordinates (|center|, |north|, \ldots{}, and |anchor|) of the current penguin.
+\end{commandexplain}
+
+\subsubsection{The Code}
+The silhouette and all named anchors:
+\includecode{pingu@anchor}
+Relative placement joins the two anchors facing each other:
+\includecode{pingu@relative}
+Both are hooked into these keys:
+\includecode{anchor\ keys}
+
+\subsection{The Bends}\label{internal:bends}
+\lpingu{to[bend right=<angle>]} is expensive, so all body bends use precomputed control points:
+\includecode{pingu@bend}
 
 \lstset{breakatwhitespace}
 \indexprologue{\label{normal-idx}This index shows all of the options and commands that a normal user of the package may use! See the \hyperref[internal-idx]{\indexinternalsoverviewname} for an overview of keys and commands used behind the scenes. Page numbers on the lowest level are hidden, but they can still be used as clickable hyperlinks.}
