@@ -1,0 +1,3 @@
+[submodule "doc/xlistings"]
+	path = doc/xlistings
+	url = https://github.com/EagleoutIce/xlistings.git

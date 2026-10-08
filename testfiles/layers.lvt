@@ -1,0 +1,15 @@
+\input{regression-test}
+\documentclass{article}
+\usepackage{tikz}
+\usepackage{tikzpingus}
+\begin{document}
+\START
+% all penguins use the same six layers, which are gone after the picture
+\makeatletter
+\setbox0\hbox{\begin{tikzpicture}
+  \pingu \typeout{one: \pgf@layerlist}
+  \pingu[:back] \typeout{two: \pgf@layerlist}
+  \pingu[wings wave,cane left,halo] \typeout{three: \pgf@layerlist}
+\end{tikzpicture}}
+\typeout{after: \pgf@layerlist}
+\end{document}

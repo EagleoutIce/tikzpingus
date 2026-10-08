@@ -1,0 +1,589 @@
+\input{regression-test}
+\documentclass{article}
+\usepackage{tikz}
+\usepackage{tikzpingus}
+\begin{document}
+\START
+% every gadget of the gadget overview on every body type
+\newcommand\gadget[2]{\begingroup\setbox0\hbox{\begin{tikzpicture}\pingu[body type=#1,#2]\end{tikzpicture}}\endgroup\typeout{ok #1 #2}}
+\gadget{normal}{second shirt}
+\gadget{normal}{cape}
+\gadget{normal}{horse right}
+\gadget{normal}{devil fork right}
+\gadget{normal}{laptop right}
+\gadget{normal}{plank right}
+\gadget{normal}{sword right}
+\gadget{normal}{magnifier right}
+\gadget{normal}{microphone right}
+\gadget{normal}{drum stick right}
+\gadget{normal}{hammer right}
+\gadget{normal}{cross right}
+\gadget{normal}{staff right}
+\gadget{normal}{spear left}
+\gadget{normal}{present right}
+\gadget{normal}{german flag right}
+\gadget{normal}{pride flag right}
+\gadget{normal}{flag right}
+\gadget{normal}{guitar right}
+\gadget{normal}{broom right}
+\gadget{normal}{light-staff right}
+\gadget{normal}{lightsaber right}
+\gadget{normal}{sign post right=Example}
+\gadget{normal}{cane right}
+\gadget{normal}{flower right}
+\gadget{normal}{fish right}
+\gadget{normal}{lollipop right}
+\gadget{normal}{banner}
+\gadget{normal}{mask}
+\gadget{normal}{shoes}
+\gadget{normal}{deer hat}
+\gadget{normal}{basket right}
+\gadget{normal}{snowball right}
+\gadget{normal}{santa beard}
+\gadget{normal}{headphone}
+\gadget{normal}{horse behind}
+\gadget{normal}{bee}
+\gadget{normal}{jack o lantern}
+\gadget{normal}{cake-hat}
+\gadget{normal}{crown}
+\gadget{normal}{detective cap}
+\gadget{normal}{cap}
+\gadget{normal}{witch hat}
+\gadget{normal}{space helmet}
+\gadget{normal}{hat}
+\gadget{normal}{halo}
+\gadget{normal}{head band}
+\gadget{normal}{belt}
+\gadget{normal}{devil horns}
+\gadget{normal}{glasses round}
+\gadget{normal}{glasses}
+\gadget{normal}{pants}
+\gadget{normal}{monocle left}
+\gadget{normal}{eye patch left}
+\gadget{normal}{medal}
+\gadget{normal}{bow tie}
+\gadget{normal}{tie}
+\gadget{normal}{heart=pingu@main}
+\gadget{normal}{vampire teeth}
+\gadget{normal}{sheriff star}
+\gadget{normal}{cup}
+\gadget{normal}{rectmedal}
+\gadget{normal}{eye patch right}
+\gadget{normal}{monocle right}
+\gadget{normal}{glow=orange,glow solid=orange}
+\gadget{normal}{sun glasses}
+\gadget{normal}{sun glasses round}
+\gadget{normal}{devil wings}
+\gadget{normal}{bunny ears}
+\gadget{normal}{rook}
+\gadget{normal}{strawhat}
+\gadget{normal}{graduate}
+\gadget{normal}{mitra}
+\gadget{normal}{conical hat}
+\gadget{normal}{construction helmet}
+\gadget{normal}{drums}
+\gadget{normal}{princess crown}
+\gadget{normal}{pumpkin-hat}
+\gadget{normal}{jack o lantern helmet}
+\gadget{normal}{on horse}
+\gadget{normal}{vr-headset}
+\gadget{normal}{santa hat}
+\gadget{normal}{snowball left}
+\gadget{normal}{basket left}
+\gadget{normal}{wool hat}
+\gadget{normal}{flip-flops}
+\gadget{normal}{sneaker}
+\gadget{normal}{blush=pingu@red,blush opacity=.4}
+\gadget{normal}{lollipop left}
+\gadget{normal}{fish left}
+\gadget{normal}{flower left}
+\gadget{normal}{cane left}
+\gadget{normal}{sign post left=Example}
+\gadget{normal}{lightsaber left}
+\gadget{normal}{light-staff left}
+\gadget{normal}{broom left}
+\gadget{normal}{guitar left}
+\gadget{normal}{flag left}
+\gadget{normal}{pride flag left}
+\gadget{normal}{german flag left}
+\gadget{normal}{present left}
+\gadget{normal}{staff left}
+\gadget{normal}{cross left}
+\gadget{normal}{spear right}
+\gadget{normal}{hammer left}
+\gadget{normal}{drum stick left}
+\gadget{normal}{microphone left}
+\gadget{normal}{magnifier left}
+\gadget{normal}{sword left}
+\gadget{normal}{plank left}
+\gadget{normal}{laptop left}
+\gadget{normal}{devil fork left}
+\gadget{normal}{horse left}
+\gadget{normal}{cloak}
+\gadget{normal}{shirt}
+\gadget{normal}{scarf}
+\gadget{chubby}{second shirt}
+\gadget{chubby}{cape}
+\gadget{chubby}{horse right}
+\gadget{chubby}{devil fork right}
+\gadget{chubby}{laptop right}
+\gadget{chubby}{plank right}
+\gadget{chubby}{sword right}
+\gadget{chubby}{magnifier right}
+\gadget{chubby}{microphone right}
+\gadget{chubby}{drum stick right}
+\gadget{chubby}{hammer right}
+\gadget{chubby}{cross right}
+\gadget{chubby}{staff right}
+\gadget{chubby}{spear left}
+\gadget{chubby}{present right}
+\gadget{chubby}{german flag right}
+\gadget{chubby}{pride flag right}
+\gadget{chubby}{flag right}
+\gadget{chubby}{guitar right}
+\gadget{chubby}{broom right}
+\gadget{chubby}{light-staff right}
+\gadget{chubby}{lightsaber right}
+\gadget{chubby}{sign post right=Example}
+\gadget{chubby}{cane right}
+\gadget{chubby}{flower right}
+\gadget{chubby}{fish right}
+\gadget{chubby}{lollipop right}
+\gadget{chubby}{banner}
+\gadget{chubby}{mask}
+\gadget{chubby}{shoes}
+\gadget{chubby}{deer hat}
+\gadget{chubby}{basket right}
+\gadget{chubby}{snowball right}
+\gadget{chubby}{santa beard}
+\gadget{chubby}{headphone}
+\gadget{chubby}{horse behind}
+\gadget{chubby}{bee}
+\gadget{chubby}{jack o lantern}
+\gadget{chubby}{cake-hat}
+\gadget{chubby}{crown}
+\gadget{chubby}{detective cap}
+\gadget{chubby}{cap}
+\gadget{chubby}{witch hat}
+\gadget{chubby}{space helmet}
+\gadget{chubby}{hat}
+\gadget{chubby}{halo}
+\gadget{chubby}{head band}
+\gadget{chubby}{belt}
+\gadget{chubby}{devil horns}
+\gadget{chubby}{glasses round}
+\gadget{chubby}{glasses}
+\gadget{chubby}{pants}
+\gadget{chubby}{monocle left}
+\gadget{chubby}{eye patch left}
+\gadget{chubby}{medal}
+\gadget{chubby}{bow tie}
+\gadget{chubby}{tie}
+\gadget{chubby}{heart=pingu@main}
+\gadget{chubby}{vampire teeth}
+\gadget{chubby}{sheriff star}
+\gadget{chubby}{cup}
+\gadget{chubby}{rectmedal}
+\gadget{chubby}{eye patch right}
+\gadget{chubby}{monocle right}
+\gadget{chubby}{glow=orange,glow solid=orange}
+\gadget{chubby}{sun glasses}
+\gadget{chubby}{sun glasses round}
+\gadget{chubby}{devil wings}
+\gadget{chubby}{bunny ears}
+\gadget{chubby}{rook}
+\gadget{chubby}{strawhat}
+\gadget{chubby}{graduate}
+\gadget{chubby}{mitra}
+\gadget{chubby}{conical hat}
+\gadget{chubby}{construction helmet}
+\gadget{chubby}{drums}
+\gadget{chubby}{princess crown}
+\gadget{chubby}{pumpkin-hat}
+\gadget{chubby}{jack o lantern helmet}
+\gadget{chubby}{on horse}
+\gadget{chubby}{vr-headset}
+\gadget{chubby}{santa hat}
+\gadget{chubby}{snowball left}
+\gadget{chubby}{basket left}
+\gadget{chubby}{wool hat}
+\gadget{chubby}{flip-flops}
+\gadget{chubby}{sneaker}
+\gadget{chubby}{blush=pingu@red,blush opacity=.4}
+\gadget{chubby}{lollipop left}
+\gadget{chubby}{fish left}
+\gadget{chubby}{flower left}
+\gadget{chubby}{cane left}
+\gadget{chubby}{sign post left=Example}
+\gadget{chubby}{lightsaber left}
+\gadget{chubby}{light-staff left}
+\gadget{chubby}{broom left}
+\gadget{chubby}{guitar left}
+\gadget{chubby}{flag left}
+\gadget{chubby}{pride flag left}
+\gadget{chubby}{german flag left}
+\gadget{chubby}{present left}
+\gadget{chubby}{staff left}
+\gadget{chubby}{cross left}
+\gadget{chubby}{spear right}
+\gadget{chubby}{hammer left}
+\gadget{chubby}{drum stick left}
+\gadget{chubby}{microphone left}
+\gadget{chubby}{magnifier left}
+\gadget{chubby}{sword left}
+\gadget{chubby}{plank left}
+\gadget{chubby}{laptop left}
+\gadget{chubby}{devil fork left}
+\gadget{chubby}{horse left}
+\gadget{chubby}{cloak}
+\gadget{chubby}{shirt}
+\gadget{chubby}{scarf}
+\gadget{legacy}{second shirt}
+\gadget{legacy}{cape}
+\gadget{legacy}{horse right}
+\gadget{legacy}{devil fork right}
+\gadget{legacy}{laptop right}
+\gadget{legacy}{plank right}
+\gadget{legacy}{sword right}
+\gadget{legacy}{magnifier right}
+\gadget{legacy}{microphone right}
+\gadget{legacy}{drum stick right}
+\gadget{legacy}{hammer right}
+\gadget{legacy}{cross right}
+\gadget{legacy}{staff right}
+\gadget{legacy}{spear left}
+\gadget{legacy}{present right}
+\gadget{legacy}{german flag right}
+\gadget{legacy}{pride flag right}
+\gadget{legacy}{flag right}
+\gadget{legacy}{guitar right}
+\gadget{legacy}{broom right}
+\gadget{legacy}{light-staff right}
+\gadget{legacy}{lightsaber right}
+\gadget{legacy}{sign post right=Example}
+\gadget{legacy}{cane right}
+\gadget{legacy}{flower right}
+\gadget{legacy}{fish right}
+\gadget{legacy}{lollipop right}
+\gadget{legacy}{banner}
+\gadget{legacy}{mask}
+\gadget{legacy}{shoes}
+\gadget{legacy}{deer hat}
+\gadget{legacy}{basket right}
+\gadget{legacy}{snowball right}
+\gadget{legacy}{santa beard}
+\gadget{legacy}{headphone}
+\gadget{legacy}{horse behind}
+\gadget{legacy}{bee}
+\gadget{legacy}{jack o lantern}
+\gadget{legacy}{cake-hat}
+\gadget{legacy}{crown}
+\gadget{legacy}{detective cap}
+\gadget{legacy}{cap}
+\gadget{legacy}{witch hat}
+\gadget{legacy}{space helmet}
+\gadget{legacy}{hat}
+\gadget{legacy}{halo}
+\gadget{legacy}{head band}
+\gadget{legacy}{belt}
+\gadget{legacy}{devil horns}
+\gadget{legacy}{glasses round}
+\gadget{legacy}{glasses}
+\gadget{legacy}{pants}
+\gadget{legacy}{monocle left}
+\gadget{legacy}{eye patch left}
+\gadget{legacy}{medal}
+\gadget{legacy}{bow tie}
+\gadget{legacy}{tie}
+\gadget{legacy}{heart=pingu@main}
+\gadget{legacy}{vampire teeth}
+\gadget{legacy}{sheriff star}
+\gadget{legacy}{cup}
+\gadget{legacy}{rectmedal}
+\gadget{legacy}{eye patch right}
+\gadget{legacy}{monocle right}
+\gadget{legacy}{glow=orange,glow solid=orange}
+\gadget{legacy}{sun glasses}
+\gadget{legacy}{sun glasses round}
+\gadget{legacy}{devil wings}
+\gadget{legacy}{bunny ears}
+\gadget{legacy}{rook}
+\gadget{legacy}{strawhat}
+\gadget{legacy}{graduate}
+\gadget{legacy}{mitra}
+\gadget{legacy}{conical hat}
+\gadget{legacy}{construction helmet}
+\gadget{legacy}{drums}
+\gadget{legacy}{princess crown}
+\gadget{legacy}{pumpkin-hat}
+\gadget{legacy}{jack o lantern helmet}
+\gadget{legacy}{on horse}
+\gadget{legacy}{vr-headset}
+\gadget{legacy}{santa hat}
+\gadget{legacy}{snowball left}
+\gadget{legacy}{basket left}
+\gadget{legacy}{wool hat}
+\gadget{legacy}{flip-flops}
+\gadget{legacy}{sneaker}
+\gadget{legacy}{blush=pingu@red,blush opacity=.4}
+\gadget{legacy}{lollipop left}
+\gadget{legacy}{fish left}
+\gadget{legacy}{flower left}
+\gadget{legacy}{cane left}
+\gadget{legacy}{sign post left=Example}
+\gadget{legacy}{lightsaber left}
+\gadget{legacy}{light-staff left}
+\gadget{legacy}{broom left}
+\gadget{legacy}{guitar left}
+\gadget{legacy}{flag left}
+\gadget{legacy}{pride flag left}
+\gadget{legacy}{german flag left}
+\gadget{legacy}{present left}
+\gadget{legacy}{staff left}
+\gadget{legacy}{cross left}
+\gadget{legacy}{spear right}
+\gadget{legacy}{hammer left}
+\gadget{legacy}{drum stick left}
+\gadget{legacy}{microphone left}
+\gadget{legacy}{magnifier left}
+\gadget{legacy}{sword left}
+\gadget{legacy}{plank left}
+\gadget{legacy}{laptop left}
+\gadget{legacy}{devil fork left}
+\gadget{legacy}{horse left}
+\gadget{legacy}{cloak}
+\gadget{legacy}{shirt}
+\gadget{legacy}{scarf}
+\gadget{tilt-right}{second shirt}
+\gadget{tilt-right}{cape}
+\gadget{tilt-right}{horse right}
+\gadget{tilt-right}{devil fork right}
+\gadget{tilt-right}{laptop right}
+\gadget{tilt-right}{plank right}
+\gadget{tilt-right}{sword right}
+\gadget{tilt-right}{magnifier right}
+\gadget{tilt-right}{microphone right}
+\gadget{tilt-right}{drum stick right}
+\gadget{tilt-right}{hammer right}
+\gadget{tilt-right}{cross right}
+\gadget{tilt-right}{staff right}
+\gadget{tilt-right}{spear left}
+\gadget{tilt-right}{present right}
+\gadget{tilt-right}{german flag right}
+\gadget{tilt-right}{pride flag right}
+\gadget{tilt-right}{flag right}
+\gadget{tilt-right}{guitar right}
+\gadget{tilt-right}{broom right}
+\gadget{tilt-right}{light-staff right}
+\gadget{tilt-right}{lightsaber right}
+\gadget{tilt-right}{sign post right=Example}
+\gadget{tilt-right}{cane right}
+\gadget{tilt-right}{flower right}
+\gadget{tilt-right}{fish right}
+\gadget{tilt-right}{lollipop right}
+\gadget{tilt-right}{banner}
+\gadget{tilt-right}{mask}
+\gadget{tilt-right}{shoes}
+\gadget{tilt-right}{deer hat}
+\gadget{tilt-right}{basket right}
+\gadget{tilt-right}{snowball right}
+\gadget{tilt-right}{santa beard}
+\gadget{tilt-right}{headphone}
+\gadget{tilt-right}{horse behind}
+\gadget{tilt-right}{bee}
+\gadget{tilt-right}{jack o lantern}
+\gadget{tilt-right}{cake-hat}
+\gadget{tilt-right}{crown}
+\gadget{tilt-right}{detective cap}
+\gadget{tilt-right}{cap}
+\gadget{tilt-right}{witch hat}
+\gadget{tilt-right}{space helmet}
+\gadget{tilt-right}{hat}
+\gadget{tilt-right}{halo}
+\gadget{tilt-right}{head band}
+\gadget{tilt-right}{belt}
+\gadget{tilt-right}{devil horns}
+\gadget{tilt-right}{glasses round}
+\gadget{tilt-right}{glasses}
+\gadget{tilt-right}{pants}
+\gadget{tilt-right}{monocle left}
+\gadget{tilt-right}{eye patch left}
+\gadget{tilt-right}{medal}
+\gadget{tilt-right}{bow tie}
+\gadget{tilt-right}{tie}
+\gadget{tilt-right}{heart=pingu@main}
+\gadget{tilt-right}{vampire teeth}
+\gadget{tilt-right}{sheriff star}
+\gadget{tilt-right}{cup}
+\gadget{tilt-right}{rectmedal}
+\gadget{tilt-right}{eye patch right}
+\gadget{tilt-right}{monocle right}
+\gadget{tilt-right}{glow=orange,glow solid=orange}
+\gadget{tilt-right}{sun glasses}
+\gadget{tilt-right}{sun glasses round}
+\gadget{tilt-right}{devil wings}
+\gadget{tilt-right}{bunny ears}
+\gadget{tilt-right}{rook}
+\gadget{tilt-right}{strawhat}
+\gadget{tilt-right}{graduate}
+\gadget{tilt-right}{mitra}
+\gadget{tilt-right}{conical hat}
+\gadget{tilt-right}{construction helmet}
+\gadget{tilt-right}{drums}
+\gadget{tilt-right}{princess crown}
+\gadget{tilt-right}{pumpkin-hat}
+\gadget{tilt-right}{jack o lantern helmet}
+\gadget{tilt-right}{on horse}
+\gadget{tilt-right}{vr-headset}
+\gadget{tilt-right}{santa hat}
+\gadget{tilt-right}{snowball left}
+\gadget{tilt-right}{basket left}
+\gadget{tilt-right}{wool hat}
+\gadget{tilt-right}{flip-flops}
+\gadget{tilt-right}{sneaker}
+\gadget{tilt-right}{blush=pingu@red,blush opacity=.4}
+\gadget{tilt-right}{lollipop left}
+\gadget{tilt-right}{fish left}
+\gadget{tilt-right}{flower left}
+\gadget{tilt-right}{cane left}
+\gadget{tilt-right}{sign post left=Example}
+\gadget{tilt-right}{lightsaber left}
+\gadget{tilt-right}{light-staff left}
+\gadget{tilt-right}{broom left}
+\gadget{tilt-right}{guitar left}
+\gadget{tilt-right}{flag left}
+\gadget{tilt-right}{pride flag left}
+\gadget{tilt-right}{german flag left}
+\gadget{tilt-right}{present left}
+\gadget{tilt-right}{staff left}
+\gadget{tilt-right}{cross left}
+\gadget{tilt-right}{spear right}
+\gadget{tilt-right}{hammer left}
+\gadget{tilt-right}{drum stick left}
+\gadget{tilt-right}{microphone left}
+\gadget{tilt-right}{magnifier left}
+\gadget{tilt-right}{sword left}
+\gadget{tilt-right}{plank left}
+\gadget{tilt-right}{laptop left}
+\gadget{tilt-right}{devil fork left}
+\gadget{tilt-right}{horse left}
+\gadget{tilt-right}{cloak}
+\gadget{tilt-right}{shirt}
+\gadget{tilt-right}{scarf}
+\gadget{tilt-left}{second shirt}
+\gadget{tilt-left}{cape}
+\gadget{tilt-left}{horse right}
+\gadget{tilt-left}{devil fork right}
+\gadget{tilt-left}{laptop right}
+\gadget{tilt-left}{plank right}
+\gadget{tilt-left}{sword right}
+\gadget{tilt-left}{magnifier right}
+\gadget{tilt-left}{microphone right}
+\gadget{tilt-left}{drum stick right}
+\gadget{tilt-left}{hammer right}
+\gadget{tilt-left}{cross right}
+\gadget{tilt-left}{staff right}
+\gadget{tilt-left}{spear left}
+\gadget{tilt-left}{present right}
+\gadget{tilt-left}{german flag right}
+\gadget{tilt-left}{pride flag right}
+\gadget{tilt-left}{flag right}
+\gadget{tilt-left}{guitar right}
+\gadget{tilt-left}{broom right}
+\gadget{tilt-left}{light-staff right}
+\gadget{tilt-left}{lightsaber right}
+\gadget{tilt-left}{sign post right=Example}
+\gadget{tilt-left}{cane right}
+\gadget{tilt-left}{flower right}
+\gadget{tilt-left}{fish right}
+\gadget{tilt-left}{lollipop right}
+\gadget{tilt-left}{banner}
+\gadget{tilt-left}{mask}
+\gadget{tilt-left}{shoes}
+\gadget{tilt-left}{deer hat}
+\gadget{tilt-left}{basket right}
+\gadget{tilt-left}{snowball right}
+\gadget{tilt-left}{santa beard}
+\gadget{tilt-left}{headphone}
+\gadget{tilt-left}{horse behind}
+\gadget{tilt-left}{bee}
+\gadget{tilt-left}{jack o lantern}
+\gadget{tilt-left}{cake-hat}
+\gadget{tilt-left}{crown}
+\gadget{tilt-left}{detective cap}
+\gadget{tilt-left}{cap}
+\gadget{tilt-left}{witch hat}
+\gadget{tilt-left}{space helmet}
+\gadget{tilt-left}{hat}
+\gadget{tilt-left}{halo}
+\gadget{tilt-left}{head band}
+\gadget{tilt-left}{belt}
+\gadget{tilt-left}{devil horns}
+\gadget{tilt-left}{glasses round}
+\gadget{tilt-left}{glasses}
+\gadget{tilt-left}{pants}
+\gadget{tilt-left}{monocle left}
+\gadget{tilt-left}{eye patch left}
+\gadget{tilt-left}{medal}
+\gadget{tilt-left}{bow tie}
+\gadget{tilt-left}{tie}
+\gadget{tilt-left}{heart=pingu@main}
+\gadget{tilt-left}{vampire teeth}
+\gadget{tilt-left}{sheriff star}
+\gadget{tilt-left}{cup}
+\gadget{tilt-left}{rectmedal}
+\gadget{tilt-left}{eye patch right}
+\gadget{tilt-left}{monocle right}
+\gadget{tilt-left}{glow=orange,glow solid=orange}
+\gadget{tilt-left}{sun glasses}
+\gadget{tilt-left}{sun glasses round}
+\gadget{tilt-left}{devil wings}
+\gadget{tilt-left}{bunny ears}
+\gadget{tilt-left}{rook}
+\gadget{tilt-left}{strawhat}
+\gadget{tilt-left}{graduate}
+\gadget{tilt-left}{mitra}
+\gadget{tilt-left}{conical hat}
+\gadget{tilt-left}{construction helmet}
+\gadget{tilt-left}{drums}
+\gadget{tilt-left}{princess crown}
+\gadget{tilt-left}{pumpkin-hat}
+\gadget{tilt-left}{jack o lantern helmet}
+\gadget{tilt-left}{on horse}
+\gadget{tilt-left}{vr-headset}
+\gadget{tilt-left}{santa hat}
+\gadget{tilt-left}{snowball left}
+\gadget{tilt-left}{basket left}
+\gadget{tilt-left}{wool hat}
+\gadget{tilt-left}{flip-flops}
+\gadget{tilt-left}{sneaker}
+\gadget{tilt-left}{blush=pingu@red,blush opacity=.4}
+\gadget{tilt-left}{lollipop left}
+\gadget{tilt-left}{fish left}
+\gadget{tilt-left}{flower left}
+\gadget{tilt-left}{cane left}
+\gadget{tilt-left}{sign post left=Example}
+\gadget{tilt-left}{lightsaber left}
+\gadget{tilt-left}{light-staff left}
+\gadget{tilt-left}{broom left}
+\gadget{tilt-left}{guitar left}
+\gadget{tilt-left}{flag left}
+\gadget{tilt-left}{pride flag left}
+\gadget{tilt-left}{german flag left}
+\gadget{tilt-left}{present left}
+\gadget{tilt-left}{staff left}
+\gadget{tilt-left}{cross left}
+\gadget{tilt-left}{spear right}
+\gadget{tilt-left}{hammer left}
+\gadget{tilt-left}{drum stick left}
+\gadget{tilt-left}{microphone left}
+\gadget{tilt-left}{magnifier left}
+\gadget{tilt-left}{sword left}
+\gadget{tilt-left}{plank left}
+\gadget{tilt-left}{laptop left}
+\gadget{tilt-left}{devil fork left}
+\gadget{tilt-left}{horse left}
+\gadget{tilt-left}{cloak}
+\gadget{tilt-left}{shirt}
+\gadget{tilt-left}{scarf}
+\end{document}

@@ -1,0 +1,7 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+one: very-background,background,pingu-L-v,pingu-L-b,pingu-L-m,pingu-L-i,pingu-L-f,pingu-L-stack,main,middle,foreground
+two: very-background,background,pingu-L-v,pingu-L-b,pingu-L-m,pingu-L-i,pingu-L-f,pingu-L-stack,main,middle,foreground
+three: very-background,background,pingu-L-v,pingu-L-b,pingu-L-m,pingu-L-i,pingu-L-f,pingu-L-stack,main,middle,foreground
+after: very-background,background,main,middle,foreground
+(layers.aux)

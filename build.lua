@@ -53,7 +53,14 @@ function update_tag(file, content, tagname, tagdate)
 end
 
 -- committing retagged file and tag the commit =======================
-require('build-private.lua')
+-- build-private.lua (not in the repository) provides the github token and the
+-- upload settings. It is only needed for tagging and uploading, not for 'l3build doc'.
+local has_private = pcall(require, 'build-private')
+token = token or ""
+uploadconfig = uploadconfig or {}
+if not has_private and (options["target"] == "tag" or options["target"] == "upload") then
+    error("build-private.lua is missing: it has to define 'token' and 'uploadconfig' (author, uploader, email)")
+end
 
 function tag_hook(tagname)
     git("add", "*.sty")
@@ -117,3 +124,20 @@ cleanfiles = {module .. "-ctan.curlopt", module .. "-ctan.zip"}
 -- 4. l3build ctan to build the archive
 -- 5. rename the README-ctan to README within the archive
 -- 6. Check that links are reachable.  
+-- 'l3build doc' builds the documentation with doc/build-doc.sh. The examples of the
+-- documentation are compiled in parallel there, and it needs xlistings (git submodule).
+target_list.doc.func = function()
+    if not fileexists("doc/xlistings/xlistings.sty") then
+        print("Fetching the submodule doc/xlistings")
+        if os.execute("git submodule update --init doc/xlistings") ~= 0 and not fileexists("doc/xlistings/xlistings.sty") then
+            error("doc/xlistings is missing: run 'git submodule update --init'")
+        end
+    end
+    local ok = os.execute("doc/build-doc.sh")
+    return (ok == true or ok == 0) and 0 or 1
+end
+
+-- tests: 'l3build check' draws all the examples of the documentation and the body types ==
+checkengines = {"pdftex"}
+stdengine = "pdftex"
+checkruns = 1

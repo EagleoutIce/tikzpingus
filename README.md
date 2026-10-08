@@ -79,6 +79,22 @@ These are some test files that showcase additional capabilities of the library:\
 For the title image of a computer science course on software product lines, I created a small and incomplete but really fun feature model:\
 [<img src="https://github.com/EagleoutIce/tikzpingus/blob/gh-pages/spl-1.png?raw=true" width="900" alt="A Penguin Feature-Model" />](https://raw.githubusercontent.com/EagleoutIce/tikzpingus/gh-pages/examples/build/spl.pdf)
 
+## Building the Documentation
+
+The documentation is typeset with [xlistings and code-link](https://github.com/EagleoutIce/xlistings), which are included as the git submodule `doc/xlistings`. They are only used for the documentation: the package `tikzpingus` itself does not need them, and they are not part of the CTAN release.
+
+```shell
+git submodule update --init   # once, or clone with --recurse-submodules
+doc/build-doc.sh              # build/tikzpingus-doc.pdf
+```
+
+Every example of the documentation is compiled in a job of its own, so the script compiles them in parallel (`JOBS=8 doc/build-doc.sh` to limit the jobs). A cold build takes a few minutes, a build with the examples in place about two. `NOLINKS=1 doc/build-doc.sh` builds without the links from the code to the documentation, which is somewhat faster.
+
+
+## Tests
+
+`l3build check` draws the 750 examples of the documentation, every gadget on every body type (580 penguins) and compares the anchors of the body types and the layers of the penguins with their saved values. A TeX error or a moved anchor fails the check (about 3 minutes). After a wanted change, `l3build save <name>` updates the expected log.
+
 ## Contributors
 
 <a href="https://github.com/eagleoutice/tikzpingus/graphs/contributors">

@@ -1,0 +1,820 @@
+\input{regression-test}
+\documentclass{article}
+\usepackage{tikz}
+\usepackage{tikzpingus}
+\begin{document}
+\START
+\newcommand\ex[2]{\begingroup\setbox0\hbox{#2}\endgroup\typeout{ok #1}}
+\ex{key-eye-patch-left}{%
+\begin{tikzpicture}
+	\pingu[eye patch left]
+\end{tikzpicture}}
+\ex{key-eye-patch-right}{%
+\begin{tikzpicture}
+	\pingu[eye patch right]
+\end{tikzpicture}}
+\ex{key-eyes-color}{%
+\begin{tikzpicture}
+	\pingu[eyes color=green]
+\end{tikzpicture}}
+\ex{key-feet-color}{%
+\begin{tikzpicture}
+	\pingu[feet color=green]
+\end{tikzpicture}}
+\ex{key-feet-front}{%
+\begin{tikzpicture}
+	\pingu[feet front]
+\end{tikzpicture}}
+\ex{key-fish-left-eye}{%
+\begin{tikzpicture}
+	\pingu[fish left, fish left eye=green]
+\end{tikzpicture}}
+\ex{key-fish-left-scales}{%
+\begin{tikzpicture}
+	\pingu[fish left, fish left scales=green]
+\end{tikzpicture}}
+\ex{key-fish-left}{%
+\begin{tikzpicture}
+	\pingu[fish left=green]
+\end{tikzpicture}}
+\ex{key-fish-right-eye}{%
+\begin{tikzpicture}
+	\pingu[fish right, fish right eye=green]
+\end{tikzpicture}}
+\ex{key-fish-right-scales}{%
+\begin{tikzpicture}
+	\pingu[fish right, fish right scales=green]
+\end{tikzpicture}}
+\ex{key-fish-right}{%
+\begin{tikzpicture}
+	\pingu[fish right=green]
+\end{tikzpicture}}
+\ex{key-flag-left-bobble}{%
+\begin{tikzpicture}
+	\pingu[flag left, flag left bobble=green]
+\end{tikzpicture}}
+\ex{key-flag-left-code}{%
+\begin{tikzpicture}
+	\pingu[flag left, flag left code={
+	  \node[/pingu/@flag@first,
+	  	/pingu/@flag={blue}{5mm}]
+	  		(upper) at (0,0) {};
+	  \node[below,/pingu/@flag={black}{4mm}]
+	  	(lower) at (upper.south) {};
+	}]
+\end{tikzpicture}}
+\ex{key-flag-left-pole}{%
+\begin{tikzpicture}
+	\pingu[flag left, flag left pole=green]
+\end{tikzpicture}}
+\ex{key-flag-left}{%
+\begin{tikzpicture}
+	\pingu[flag left=green]
+\end{tikzpicture}}
+\ex{key-flag-right-bobble}{%
+\begin{tikzpicture}
+	\pingu[flag right, flag right bobble=green]
+\end{tikzpicture}}
+\ex{key-flag-right-code}{%
+\begin{tikzpicture}
+	\pingu[flag right, flag right code={
+	  \node[/pingu/@flag@first,
+	  	/pingu/@flag={blue}{5mm}]
+	  		(upper) at (0,0) {};
+	  \node[below,/pingu/@flag={black}{4mm}]
+	  	(lower) at (upper.south) {};
+	}]
+\end{tikzpicture}}
+\ex{key-flag-right-pole}{%
+\begin{tikzpicture}
+	\pingu[flag right, flag right pole=green]
+\end{tikzpicture}}
+\ex{key-flag-right}{%
+\begin{tikzpicture}
+	\pingu[flag right=green]
+\end{tikzpicture}}
+\ex{key-flip-flops-band-left}{%
+\begin{tikzpicture}
+	\pingu[flip-flops, flip-flops band left=green]
+\end{tikzpicture}}
+\ex{key-flip-flops-band-right}{%
+\begin{tikzpicture}
+	\pingu[flip-flops, flip-flops band right=green]
+\end{tikzpicture}}
+\ex{key-flip-flops-base-left}{%
+\begin{tikzpicture}
+	\pingu[flip-flops, flip-flops base left=green]
+\end{tikzpicture}}
+\ex{key-flip-flops-base-right}{%
+\begin{tikzpicture}
+	\pingu[flip-flops, flip-flops base right=green]
+\end{tikzpicture}}
+\ex{key-flip-flops-color-right}{%
+\begin{tikzpicture}
+	\pingu[flip-flops, flip-flops color right=green]
+\end{tikzpicture}}
+\ex{key-flip-flops}{%
+\begin{tikzpicture}
+	\pingu[flip-flops=green]
+\end{tikzpicture}}
+\ex{key-flower-left-center-size}{%
+\begin{tikzpicture}
+	\pingu[flower left, flower left center size=1cm]
+\end{tikzpicture}}
+\ex{key-flower-left-center}{%
+\begin{tikzpicture}
+	\pingu[flower left, flower left center=green]
+\end{tikzpicture}}
+\ex{key-flower-left-petal-count}{%
+\begin{tikzpicture}
+	\pingu[flower left, flower left petal count=8]
+\end{tikzpicture}}
+\ex{key-flower-left-petal-peak}{%
+\begin{tikzpicture}
+	\pingu[flower left, flower left petal peak=12]
+\end{tikzpicture}}
+\ex{key-flower-left-petal-start-angle}{%
+\begin{tikzpicture}
+	\pingu[flower left, flower left petal start angle=-40]
+\end{tikzpicture}}
+\ex{key-flower-left-petal-width}{%
+\begin{tikzpicture}
+	\pingu[flower left, flower left petal width=1cm]
+\end{tikzpicture}}
+\ex{key-flower-left-size}{%
+\begin{tikzpicture}
+	\pingu[flower left, flower left size=12mm]
+\end{tikzpicture}}
+\ex{key-flower-left-stem-length}{%
+\begin{tikzpicture}
+	\pingu[flower left, flower left stem length=1cm]
+\end{tikzpicture}}
+\ex{key-flower-left-stem-tilt}{%
+\begin{tikzpicture}
+	\pingu[flower left, flower left stem tilt=-1cm]
+\end{tikzpicture}}
+\ex{key-flower-left-stem-width}{%
+\begin{tikzpicture}
+	\pingu[flower left, flower left stem width=1cm]
+\end{tikzpicture}}
+\ex{key-flower-left-stem}{%
+\begin{tikzpicture}
+	\pingu[flower left, flower left stem=purple]
+\end{tikzpicture}}
+\ex{key-flower-left}{%
+\begin{tikzpicture}
+	\pingu[flower left=green]
+\end{tikzpicture}}
+\ex{key-flower-right-center-size}{%
+\begin{tikzpicture}
+	\pingu[flower right, flower right center size=1cm]
+\end{tikzpicture}}
+\ex{key-flower-right-center}{%
+\begin{tikzpicture}
+	\pingu[flower right, flower right center=green]
+\end{tikzpicture}}
+\ex{key-flower-right-petal-count}{%
+\begin{tikzpicture}
+	\pingu[flower right, flower right petal count=8]
+\end{tikzpicture}}
+\ex{key-flower-right-petal-peak}{%
+\begin{tikzpicture}
+	\pingu[flower right, flower right petal peak=12]
+\end{tikzpicture}}
+\ex{key-flower-right-petal-start-angle}{%
+\begin{tikzpicture}
+	\pingu[flower right, flower right petal start angle=-40]
+\end{tikzpicture}}
+\ex{key-flower-right-petal-width}{%
+\begin{tikzpicture}
+	\pingu[flower right, flower right petal width=1cm]
+\end{tikzpicture}}
+\ex{key-flower-right-size}{%
+\begin{tikzpicture}
+	\pingu[flower right, flower right size=12mm]
+\end{tikzpicture}}
+\ex{key-flower-right-stem-length}{%
+\begin{tikzpicture}
+	\pingu[flower right, flower right stem length=1cm]
+\end{tikzpicture}}
+\ex{key-flower-right-stem-tilt}{%
+\begin{tikzpicture}
+	\pingu[flower right, flower right stem tilt=-1cm]
+\end{tikzpicture}}
+\ex{key-flower-right-stem-width}{%
+\begin{tikzpicture}
+	\pingu[flower right, flower right stem width=1cm]
+\end{tikzpicture}}
+\ex{key-flower-right-stem}{%
+\begin{tikzpicture}
+	\pingu[flower right, flower right stem=purple]
+\end{tikzpicture}}
+\ex{key-flower-right}{%
+\begin{tikzpicture}
+	\pingu[flower right=green]
+\end{tikzpicture}}
+\ex{key-german-flag-left}{%
+\begin{tikzpicture}
+	\pingu[german flag left=green]
+\end{tikzpicture}}
+\ex{key-german-flag-right}{%
+\begin{tikzpicture}
+	\pingu[german flag right=green]
+\end{tikzpicture}}
+\ex{key-glasses-bend-left}{%
+\begin{tikzpicture}
+	\pingu[glasses, glasses bend left=45]
+\end{tikzpicture}}
+\ex{key-glasses-bend-right}{%
+\begin{tikzpicture}
+	\pingu[glasses, glasses bend right=45]
+\end{tikzpicture}}
+\ex{key-glasses-bend}{%
+\begin{tikzpicture}
+	\pingu[glasses, glasses bend=45]
+\end{tikzpicture}}
+\ex{key-glasses-left-fill}{%
+\begin{tikzpicture}
+	\pingu[glasses,
+	       glasses left fill=green]
+\end{tikzpicture}}
+\ex{key-glasses-line-width}{%
+\begin{tikzpicture}
+	\pingu[glasses, glasses line width=1mm]
+\end{tikzpicture}}
+\ex{key-glasses-right-fill}{%
+\begin{tikzpicture}
+	\pingu[glasses,
+	       glasses right fill=green]
+\end{tikzpicture}}
+\ex{key-glasses-round-left-fill}{%
+\begin{tikzpicture}
+	\pingu[glasses round,
+	       glasses round left fill=green]
+\end{tikzpicture}}
+\ex{key-glasses-round-line-width}{%
+\begin{tikzpicture}
+	\pingu[glasses round, glasses round line width=1mm]
+\end{tikzpicture}}
+\ex{key-glasses-round-right-fill}{%
+\begin{tikzpicture}
+	\pingu[glasses round,
+		  glasses round right fill=green]
+\end{tikzpicture}}
+\ex{key-glasses-round}{%
+\begin{tikzpicture}
+	\pingu[glasses round=green]
+\end{tikzpicture}}
+\ex{key-glasses-upper-bend}{%
+\begin{tikzpicture}
+	\pingu[glasses, glasses upper bend=30]
+\end{tikzpicture}}
+\ex{key-glasses}{%
+\begin{tikzpicture}
+	\pingu[glasses=green]
+\end{tikzpicture}}
+\ex{key-glow-function}{%
+\begin{tikzpicture}
+	\pingu[glow=green,
+	       glow function={.5/\i}]
+\end{tikzpicture}}
+\ex{key-glow-solid}{%
+\begin{tikzpicture}
+	\pingu[glow solid=green, wings wave]
+\end{tikzpicture}}
+\ex{key-glow-thick}{%
+\begin{tikzpicture}
+	\pingu[glow thick=green]
+\end{tikzpicture}}
+\ex{key-glow-width-function}{%
+\begin{tikzpicture}
+	\pingu[glow=green,
+	  glow width function={5mm-\i mm}]
+\end{tikzpicture}}
+\ex{key-glow}{%
+\begin{tikzpicture}
+	\pingu[glow=green]
+\end{tikzpicture}}
+\ex{key-gold-medal}{%
+\begin{tikzpicture}
+	\pingu[gold medal]
+\end{tikzpicture}}
+\ex{key-gold-rectmedal}{%
+\begin{tikzpicture}
+	\pingu[gold rectmedal]
+\end{tikzpicture}}
+\ex{key-graduate-position}{%
+\begin{tikzpicture}
+	\pingu[graduate,
+	  graduate position={1:(0cm,-.09cm){1.33}}]
+\end{tikzpicture}}
+\ex{key-graduate-tassel-drop-size}{%
+\begin{tikzpicture}
+	\pingu[graduate, graduate tassel,
+	       graduate tassel drop size=4mm]
+\end{tikzpicture}}
+\ex{key-graduate-tassel-drop}{%
+\begin{tikzpicture}
+	\pingu[graduate, graduate tassel,
+	       graduate tassel drop=green]
+\end{tikzpicture}}
+\ex{key-graduate-tassel-length}{%
+\begin{tikzpicture}
+	\pingu[graduate, graduate tassel,
+	       graduate tassel length=12mm]
+\end{tikzpicture}}
+\ex{key-graduate-tassel-start}{%
+\begin{tikzpicture}
+	\pingu[graduate, graduate tassel,
+	       graduate tassel start={(2mm,4mm)}]
+\end{tikzpicture}}
+\ex{key-graduate-tassel-width}{%
+\begin{tikzpicture}
+	\pingu[graduate, graduate tassel,
+	       graduate tassel width=2mm]
+\end{tikzpicture}}
+\ex{key-graduate-tassel}{%
+\begin{tikzpicture}
+	\pingu[graduate, graduate tassel=green]
+\end{tikzpicture}}
+\ex{key-graduate-tilt}{%
+\begin{tikzpicture}
+	\pingu[graduate, graduate tilt=5mm]
+\end{tikzpicture}}
+\ex{key-graduate-top}{%
+\begin{tikzpicture}
+	\pingu[graduate, graduate top=green]
+\end{tikzpicture}}
+\ex{key-graduate}{%
+\begin{tikzpicture}
+	\pingu[graduate=green]
+\end{tikzpicture}}
+\ex{key-guitar-left-fret-color}{%
+\begin{tikzpicture}
+	\pingu[guitar left, guitar left fret color=green]
+\end{tikzpicture}}
+\ex{key-guitar-left-fret-lines-color}{%
+\begin{tikzpicture}
+	\pingu[guitar left, guitar left fret lines color=green]
+\end{tikzpicture}}
+\ex{key-guitar-left-fret-side-color}{%
+\begin{tikzpicture}
+	\pingu[guitar left, guitar left fret side color=green]
+\end{tikzpicture}}
+\ex{key-guitar-left-head-color}{%
+\begin{tikzpicture}
+	\pingu[guitar left, guitar left head color=green]
+\end{tikzpicture}}
+\ex{key-guitar-left-outline-color}{%
+\begin{tikzpicture}
+	\pingu[guitar left, guitar left outline color=green]
+\end{tikzpicture}}
+\ex{key-guitar-left-peg-color}{%
+\begin{tikzpicture}
+	\pingu[guitar left, guitar left peg color=green]
+\end{tikzpicture}}
+\ex{key-guitar-left-pickup-color}{%
+\begin{tikzpicture}
+	\pingu[guitar left, guitar left pickup color=green]
+\end{tikzpicture}}
+\ex{key-guitar-left-side-color}{%
+\begin{tikzpicture}
+	\pingu[guitar left, guitar left side color=green]
+\end{tikzpicture}}
+\ex{key-guitar-left-strings-color}{%
+\begin{tikzpicture}
+	\pingu[guitar left, guitar left strings color=green]
+\end{tikzpicture}}
+\ex{key-guitar-left-strings-end-color}{%
+\begin{tikzpicture}
+	\pingu[guitar left, guitar left strings end color=green]
+\end{tikzpicture}}
+\ex{key-guitar-left-strings-shift}{%
+\begin{tikzpicture}
+	\pingu[guitar left, guitar left strings shift=2mm]
+\end{tikzpicture}}
+\ex{key-guitar-left-tint-color}{%
+\begin{tikzpicture}
+	\pingu[guitar left, guitar left tint color=green]
+\end{tikzpicture}}
+\ex{key-guitar-right-fret-color}{%
+\begin{tikzpicture}
+	\pingu[guitar right, guitar right fret color=green]
+\end{tikzpicture}}
+\ex{key-guitar-right-fret-lines-color}{%
+\begin{tikzpicture}
+	\pingu[guitar right, guitar right fret lines color=green]
+\end{tikzpicture}}
+\ex{key-guitar-right-fret-side-color}{%
+\begin{tikzpicture}
+	\pingu[guitar right, guitar right fret side color=green]
+\end{tikzpicture}}
+\ex{key-guitar-right-head-color}{%
+\begin{tikzpicture}
+	\pingu[guitar right, guitar right head color=green]
+\end{tikzpicture}}
+\ex{key-guitar-right-outline-color}{%
+\begin{tikzpicture}
+	\pingu[guitar right, guitar right outline color=green]
+\end{tikzpicture}}
+\ex{key-guitar-right-peg-color}{%
+\begin{tikzpicture}
+	\pingu[guitar right, guitar right peg color=green]
+\end{tikzpicture}}
+\ex{key-guitar-right-pickup-color}{%
+\begin{tikzpicture}
+	\pingu[guitar right, guitar right pickup color=green]
+\end{tikzpicture}}
+\ex{key-guitar-right-side-color}{%
+\begin{tikzpicture}
+	\pingu[guitar right, guitar right side color=green]
+\end{tikzpicture}}
+\ex{key-guitar-right-strings-color}{%
+\begin{tikzpicture}
+	\pingu[guitar right, guitar right strings color=green]
+\end{tikzpicture}}
+\ex{key-guitar-right-strings-end-color}{%
+\begin{tikzpicture}
+	\pingu[guitar right, guitar right strings end color=green]
+\end{tikzpicture}}
+\ex{key-guitar-right-strings-shift}{%
+\begin{tikzpicture}
+	\pingu[guitar right, guitar right strings shift=2mm]
+\end{tikzpicture}}
+\ex{key-guitar-right-tint-color}{%
+\begin{tikzpicture}
+	\pingu[guitar right, guitar right tint color=green]
+\end{tikzpicture}}
+\ex{key-hairs-color}{%
+\begin{tikzpicture}
+	\pingu[hairs color=green]
+\end{tikzpicture}}
+\ex{key-hairstyle}{%
+\begin{tikzpicture}
+	\pingu[hairstyle=none]
+\end{tikzpicture}}
+\ex{key-halo-above}{%
+\begin{tikzpicture}
+	\pingu[halo, halo above=true]
+\end{tikzpicture}}
+\ex{key-halo-glow}{%
+\begin{tikzpicture}
+	\pingu[halo, halo glow=false]
+\end{tikzpicture}}
+\ex{key-halo-raise}{%
+\begin{tikzpicture}
+	\pingu[halo, halo raise=4mm]
+\end{tikzpicture}}
+\ex{key-halo}{%
+\begin{tikzpicture}
+	\pingu[halo=green]
+\end{tikzpicture}}
+\ex{key-hammer-left-handle-length}{%
+\begin{tikzpicture}
+	\pingu[hammer left, hammer left handle length=20mm]
+\end{tikzpicture}}
+\ex{key-hammer-left-handle-shift}{%
+\begin{tikzpicture}
+	\pingu[hammer left, hammer left handle shift=2mm]
+\end{tikzpicture}}
+\ex{key-hammer-left-handle}{%
+\begin{tikzpicture}
+	\pingu[hammer left, hammer left handle=green]
+\end{tikzpicture}}
+\ex{key-hammer-left-height}{%
+\begin{tikzpicture}
+	\pingu[hammer left, hammer left height=2mm]
+\end{tikzpicture}}
+\ex{key-hammer-left-width}{%
+\begin{tikzpicture}
+	\pingu[hammer left, hammer left width=2mm]
+\end{tikzpicture}}
+\ex{key-hammer-left-with-knob}{%
+\begin{tikzpicture}
+	\pingu[hammer left=green]
+\end{tikzpicture}}
+\ex{key-hammer-left-xshift}{%
+\begin{tikzpicture}
+	\pingu[hammer left, hammer left xshift=2mm]
+\end{tikzpicture}}
+\ex{key-hammer-left-yshift}{%
+\begin{tikzpicture}
+	\pingu[hammer left, hammer left yshift=2mm]
+\end{tikzpicture}}
+\ex{key-hammer-left}{%
+\begin{tikzpicture}
+	\pingu[hammer left=green]
+\end{tikzpicture}}
+\ex{key-hammer-right-handle-length}{%
+\begin{tikzpicture}
+	\pingu[hammer right, hammer right handle length=20mm]
+\end{tikzpicture}}
+\ex{key-hammer-right-handle-shift}{%
+\begin{tikzpicture}
+	\pingu[hammer right, hammer right handle shift=2mm]
+\end{tikzpicture}}
+\ex{key-hammer-right-handle}{%
+\begin{tikzpicture}
+	\pingu[hammer right, hammer right handle=green]
+\end{tikzpicture}}
+\ex{key-hammer-right-height}{%
+\begin{tikzpicture}
+	\pingu[hammer right, hammer right height=2mm]
+\end{tikzpicture}}
+\ex{key-hammer-right-width}{%
+\begin{tikzpicture}
+	\pingu[hammer right, hammer right width=2mm]
+\end{tikzpicture}}
+\ex{key-hammer-right-with-knob}{%
+\begin{tikzpicture}
+	\pingu[hammer right=green]
+\end{tikzpicture}}
+\ex{key-hammer-right-xshift}{%
+\begin{tikzpicture}
+	\pingu[hammer right, hammer right xshift=2mm]
+\end{tikzpicture}}
+\ex{key-hammer-right-yshift}{%
+\begin{tikzpicture}
+	\pingu[hammer right, hammer right yshift=2mm]
+\end{tikzpicture}}
+\ex{key-hammer-right}{%
+\begin{tikzpicture}
+	\pingu[hammer right=green]
+\end{tikzpicture}}
+\ex{key-hand-cast-left-color}{%
+\begin{tikzpicture}
+	\pingu[hand cast left,
+		hand cast left color=green]
+\end{tikzpicture}}
+\ex{key-hand-cast-left}{%
+\begin{tikzpicture}
+	\pingu[hand cast left=ABCDEFG]
+\end{tikzpicture}}
+\ex{key-hand-cast-right-color}{%
+\begin{tikzpicture}
+	\pingu[hand cast right,
+		hand cast right color=green]
+\end{tikzpicture}}
+\ex{key-hand-cast-right}{%
+\begin{tikzpicture}
+	\pingu[hand cast right=ABCDEFG]
+\end{tikzpicture}}
+\ex{key-hat-base}{%
+\begin{tikzpicture}
+	\pingu[hat, hat base=green]
+\end{tikzpicture}}
+\ex{key-hat-coronal}{%
+\begin{tikzpicture}
+	\pingu[hat, hat coronal=green]
+\end{tikzpicture}}
+\ex{key-hat-position}{%
+\begin{tikzpicture}
+	\pingu[hat, hat position={1:(0cm,-.09cm){1.33}}]
+\end{tikzpicture}}
+\ex{key-hat-ribbon}{%
+\begin{tikzpicture}
+	\pingu[hat, hat ribbon=green]
+\end{tikzpicture}}
+\ex{key-hat}{%
+\begin{tikzpicture}
+	\pingu[hat=green]
+\end{tikzpicture}}
+\ex{key-head-band-angle}{%
+\begin{tikzpicture}
+	\pingu[head band, head band angle=25]
+\end{tikzpicture}}
+\ex{key-head-band-bands-a-color}{%
+\begin{tikzpicture}
+	\pingu[head band, head band bands,
+		head band bands a color=green]
+\end{tikzpicture}}
+\ex{key-head-band-bands-b-color}{%
+\begin{tikzpicture}
+	\pingu[head band, head band bands,
+		head band bands a color=blue,
+		head band bands b color=green]
+\end{tikzpicture}}
+\ex{key-head-band-bands}{%
+\begin{tikzpicture}
+	\pingu[head band, head band bands=false]
+\end{tikzpicture}}
+\ex{key-head-band-bend}{%
+\begin{tikzpicture}
+	\pingu[head band, head band bend=25]
+\end{tikzpicture}}
+\ex{key-head-band-knot-a-color}{%
+\begin{tikzpicture}
+	\pingu[head band, head band knot,
+		head band knot a color=green]
+\end{tikzpicture}}
+\ex{key-head-band-knot-b-color}{%
+\begin{tikzpicture}
+	\pingu[head band, head band knot,
+		head band knot a color=blue,
+		head band knot b color=green]
+\end{tikzpicture}}
+\ex{key-head-band-knot-color}{%
+\begin{tikzpicture}
+	\pingu[head band, head band knot,
+		head band knot color=green]
+\end{tikzpicture}}
+\ex{key-head-band-knot}{%
+\begin{tikzpicture}
+	\pingu[head band, head band knot]
+\end{tikzpicture}}
+\ex{key-head-band-upper-angle}{%
+\begin{tikzpicture}
+	\pingu[head band, head band upper angle=25]
+\end{tikzpicture}}
+\ex{key-head-band}{%
+\begin{tikzpicture}
+	\pingu[head band=green]
+\end{tikzpicture}}
+\ex{key-headphone-inner}{%
+\begin{tikzpicture}
+	\pingu[headphone, headphone inner=green]
+\end{tikzpicture}}
+\ex{key-headphone-left-inner}{%
+\begin{tikzpicture}
+	\pingu[headphone, headphone left inner=green]
+\end{tikzpicture}}
+\ex{key-headphone-left-outer}{%
+\begin{tikzpicture}
+	\pingu[headphone, headphone left outer=green]
+\end{tikzpicture}}
+\ex{key-headphone-left}{%
+\begin{tikzpicture}
+	\pingu[headphone, headphone left=green]
+\end{tikzpicture}}
+\ex{key-headphone-outer}{%
+\begin{tikzpicture}
+	\pingu[headphone, headphone outer=green]
+\end{tikzpicture}}
+\ex{key-headphone-right-inner}{%
+\begin{tikzpicture}
+	\pingu[headphone, headphone right inner=green]
+\end{tikzpicture}}
+\ex{key-headphone-right-outer}{%
+\begin{tikzpicture}
+	\pingu[headphone, headphone right outer=green]
+\end{tikzpicture}}
+\ex{key-headphone-right}{%
+\begin{tikzpicture}
+	\pingu[headphone, headphone right=green]
+\end{tikzpicture}}
+\ex{key-headphone}{%
+\begin{tikzpicture}
+	\pingu[headphone=green]
+\end{tikzpicture}}
+\ex{key-heart}{%
+\begin{tikzpicture}
+	\pingu[heart=green]
+\end{tikzpicture}}
+\ex{key-horse-behind}{%
+\begin{tikzpicture}
+	\pingu[horse behind=green]
+\end{tikzpicture}}
+\ex{key-horse-left-back-hoofs}{%
+\begin{tikzpicture}
+	\pingu[horse left,horse left back hoofs=green]
+\end{tikzpicture}}
+\ex{key-horse-left-back-left-hoof}{%
+\begin{tikzpicture}
+	\pingu[horse left,horse left back left hoof=green]
+\end{tikzpicture}}
+\ex{key-horse-left-back-right-hoof}{%
+\begin{tikzpicture}
+	\pingu[horse left,horse left back right hoof=green]
+\end{tikzpicture}}
+\ex{key-horse-left-base-draw}{%
+\begin{tikzpicture}
+	\pingu[horse left,horse left has base,
+			 horse left base draw=green]
+\end{tikzpicture}}
+\ex{key-horse-left-base-shade-draw}{%
+\begin{tikzpicture}
+	\pingu[horse left,horse left has base,
+			 horse left base shade draw=green]
+\end{tikzpicture}}
+\ex{key-horse-left-base-shade}{%
+\begin{tikzpicture}
+	\pingu[horse left,horse left has base,
+			 horse left base shade=green]
+\end{tikzpicture}}
+\ex{key-horse-left-base}{%
+\begin{tikzpicture}
+	\pingu[horse left,horse left has base,
+			 horse left base=green]
+\end{tikzpicture}}
+\ex{key-horse-left-donkey}{%
+\begin{tikzpicture}
+	\pingu[horse left,horse left donkey=true]
+\end{tikzpicture}}
+\ex{key-horse-left-draw}{%
+\begin{tikzpicture}
+	\pingu[horse left,horse left draw=green]
+\end{tikzpicture}}
+\ex{key-horse-left-ears}{%
+\begin{tikzpicture}
+	\pingu[horse left,horse left ears=green]
+\end{tikzpicture}}
+\ex{key-horse-left-eyes}{%
+\begin{tikzpicture}
+	\pingu[horse left,horse left eyes=green]
+\end{tikzpicture}}
+\ex{key-horse-left-flip}{%
+\begin{tikzpicture}
+	\pingu[horse left,horse left flip=false]
+\end{tikzpicture}}
+\ex{key-horse-left-front-hoofs}{%
+\begin{tikzpicture}
+	\pingu[horse left,horse left front hoofs=green]
+\end{tikzpicture}}
+\ex{key-horse-left-front-left-hoof}{%
+\begin{tikzpicture}
+	\pingu[horse left,horse left front left hoof=green]
+\end{tikzpicture}}
+\ex{key-horse-left-front-right-hoof}{%
+\begin{tikzpicture}
+	\pingu[horse left,horse left front right hoof=green]
+\end{tikzpicture}}
+\ex{key-horse-left-has-base}{%
+\begin{tikzpicture}
+	\pingu[horse left,horse left has base]
+\end{tikzpicture}}
+\ex{key-horse-left-hoofs}{%
+\begin{tikzpicture}
+	\pingu[horse left,horse left hoofs=green]
+\end{tikzpicture}}
+\ex{key-horse-left-mane-draw}{%
+\begin{tikzpicture}
+	\pingu[horse left,horse left mane draw=green]
+\end{tikzpicture}}
+\ex{key-horse-left-mane}{%
+\begin{tikzpicture}
+	\pingu[horse left,horse left mane=green]
+\end{tikzpicture}}
+\ex{key-horse-left-mouth}{%
+\begin{tikzpicture}
+	\pingu[horse left,horse left mouth=green]
+\end{tikzpicture}}
+\ex{key-horse-left-nose}{%
+\begin{tikzpicture}
+	\pingu[horse left,horse left nose=green]
+\end{tikzpicture}}
+\ex{key-horse-left-on-base}{%
+\begin{tikzpicture}
+	\pingu[horse left,horse left has base,
+	  		 horse left on base]
+\end{tikzpicture}}
+\ex{key-horse-left-tail-draw}{%
+\begin{tikzpicture}
+	\pingu[horse left,horse left tail draw=green]
+\end{tikzpicture}}
+\ex{key-horse-left-tail}{%
+\begin{tikzpicture}
+	\pingu[horse left,horse left tail=green]
+\end{tikzpicture}}
+\ex{key-horse-left-thatch-draw}{%
+\begin{tikzpicture}
+	\pingu[horse left,horse left thatch draw=green]
+\end{tikzpicture}}
+\ex{key-horse-left-thatch}{%
+\begin{tikzpicture}
+	\pingu[horse left,horse left thatch=green]
+\end{tikzpicture}}
+\ex{key-horse-left-xshift}{%
+\begin{tikzpicture}
+	\pingu[horse left,horse left xshift=1cm]
+\end{tikzpicture}}
+\ex{key-horse-left-yshift}{%
+\begin{tikzpicture}
+	\pingu[horse left,horse left yshift=1cm]
+\end{tikzpicture}}
+\ex{key-horse-left}{%
+\begin{tikzpicture}
+	\pingu[horse left=green]
+\end{tikzpicture}}
+\ex{key-horse-right-back-hoofs}{%
+\begin{tikzpicture}
+	\pingu[horse right,horse right back hoofs=green]
+\end{tikzpicture}}
+\ex{key-horse-right-back-left-hoof}{%
+\begin{tikzpicture}
+	\pingu[horse right,horse right back left hoof=green]
+\end{tikzpicture}}
+\ex{key-horse-right-back-right-hoof}{%
+\begin{tikzpicture}
+	\pingu[horse right,horse right back right hoof=green]
+\end{tikzpicture}}
+\ex{key-horse-right-base-draw}{%
+\begin{tikzpicture}
+	\pingu[horse right,horse right has base,
+			 horse right base draw=green]
+\end{tikzpicture}}
+\ex{key-horse-right-base-shade-draw}{%
+\begin{tikzpicture}
+	\pingu[horse right,horse right has base,
+			 horse right base shade draw=green]
+\end{tikzpicture}}
+\end{document}

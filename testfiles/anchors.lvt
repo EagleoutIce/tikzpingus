@@ -1,0 +1,19 @@
+\input{regression-test}
+\documentclass{article}
+\usepackage{tikz}
+\usepackage{tikzpingus}
+\begin{document}
+\START
+% the anchors of the body types do not move
+\makeatletter
+\newcommand\anchors[1]{%
+  \setbox0\hbox{\begin{tikzpicture}\pingu[body type=#1,name=p]%
+    \foreach \a in {bill,belly-center,head-top,head-center,wings-side-left,wings-side-right,waist-left,waist-right,bottom-center,foot-left,foot-right,eye-left,eye-right,head-back-con-left,head-back-con-right}{%
+      \pgfpointanchor{p-\a}{center}\pgfgetlastxy{\x}{\y}\typeout{#1 \a: \the\dimexpr\x\relax, \the\dimexpr\y\relax}}%
+  \end{tikzpicture}}}
+\anchors{normal}
+\anchors{chubby}
+\anchors{legacy}
+\anchors{tilt-right}
+\anchors{tilt-left}
+\end{document}

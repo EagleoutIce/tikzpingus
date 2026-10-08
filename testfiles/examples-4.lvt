@@ -1,0 +1,802 @@
+\input{regression-test}
+\documentclass{article}
+\usepackage{tikz}
+\usepackage{tikzpingus}
+\begin{document}
+\START
+\newcommand\ex[2]{\begingroup\setbox0\hbox{#2}\endgroup\typeout{ok #1}}
+\ex{key-present-left}{%
+\begin{tikzpicture}
+	\pingu[present left=blue]
+\end{tikzpicture}}
+\ex{key-present-right-band-second-height}{%
+\begin{tikzpicture}
+	\pingu[present right,
+		    present right band second height=3mm]
+\end{tikzpicture}}
+\ex{key-present-right-band-second-yshift}{%
+\begin{tikzpicture}
+	\pingu[present right,
+	       present right band second yshift=3mm]
+\end{tikzpicture}}
+\ex{key-present-right-band-width}{%
+\begin{tikzpicture}
+	\pingu[present right, present right band width=4mm]
+\end{tikzpicture}}
+\ex{key-present-right-band}{%
+\begin{tikzpicture}
+	\pingu[present right, present right band=blue]
+\end{tikzpicture}}
+\ex{key-present-right-height}{%
+\begin{tikzpicture}
+	\pingu[present right, present right height=12mm]
+\end{tikzpicture}}
+\ex{key-present-right-lid-band}{%
+\begin{tikzpicture}
+	\pingu[present right, present right lid band=blue]
+\end{tikzpicture}}
+\ex{key-present-right-lid-height}{%
+\begin{tikzpicture}
+	\pingu[present right, present right lid height=3mm]
+\end{tikzpicture}}
+\ex{key-present-right-lid-overhang}{%
+\begin{tikzpicture}
+	\pingu[present right,
+	       present right lid overhang=1mm]
+\end{tikzpicture}}
+\ex{key-present-right-lid-yshift}{%
+\begin{tikzpicture}
+	\pingu[present right, present right lid yshift=8mm]
+\end{tikzpicture}}
+\ex{key-present-right-lid}{%
+\begin{tikzpicture}
+	\pingu[present right, present right lid=green]
+\end{tikzpicture}}
+\ex{key-present-right-ribbon}{%
+\begin{tikzpicture}
+	\pingu[present right, present right ribbon=blue]
+\end{tikzpicture}}
+\ex{key-present-right-width}{%
+\begin{tikzpicture}
+	\pingu[present right, present right width=12mm]
+\end{tikzpicture}}
+\ex{key-present-right-xshift}{%
+\begin{tikzpicture}
+	\pingu[present right, present right xshift=3mm]
+\end{tikzpicture}}
+\ex{key-present-right-yshift}{%
+\begin{tikzpicture}
+	\pingu[present right, present right yshift=3mm]
+\end{tikzpicture}}
+\ex{key-present-right}{%
+\begin{tikzpicture}
+	\pingu[present right=blue]
+\end{tikzpicture}}
+\ex{key-pride-flag-left}{%
+\begin{tikzpicture}
+	\pingu[pride flag left=green]
+\end{tikzpicture}}
+\ex{key-pride-flag-right}{%
+\begin{tikzpicture}
+	\pingu[pride flag right=green]
+\end{tikzpicture}}
+\ex{key-princess-crown-2d}{%
+\begin{tikzpicture}
+	\pingu[princess crown 2d=green]
+\end{tikzpicture}}
+\ex{key-princess-crown-3d}{%
+\begin{tikzpicture}
+	\pingu[princess crown, princess crown 3d=false]
+\end{tikzpicture}}
+\ex{key-princess-crown-back-bend}{%
+\begin{tikzpicture}
+	\pingu[princess crown, princess crown back bend=46]
+\end{tikzpicture}}
+\ex{key-princess-crown-back}{%
+\begin{tikzpicture}
+	\pingu[princess crown, princess crown back=green]
+\end{tikzpicture}}
+\ex{key-princess-crown-bobbles}{%
+\begin{tikzpicture}
+	\pingu[princess crown, princess crown bobbles=false]
+\end{tikzpicture}}
+\ex{key-princess-crown-front-bend}{%
+\begin{tikzpicture}
+	\pingu[princess crown, princess crown front bend=52]
+\end{tikzpicture}}
+\ex{key-princess-crown-gem-colors}{%
+\begin{tikzpicture}
+	\pingu[princess crown,
+		princess crown gem colors={green}{green}{white}
+		{green}{green}]
+\end{tikzpicture}}
+\ex{key-princess-crown-gem-ring}{%
+\begin{tikzpicture}
+	\pingu[princess crown,
+		princess crown gem ring=green]
+\end{tikzpicture}}
+\ex{key-princess-crown-gem-shade}{%
+\begin{tikzpicture}
+	\pingu[princess crown,
+		princess crown gem shade=false]
+\end{tikzpicture}}
+\ex{key-princess-crown-position}{%
+\begin{tikzpicture}
+	\pingu[princess crown, eyes wink,
+		princess crown position={1:(-.19cm,-.2cm){2.2}}]
+\end{tikzpicture}}
+\ex{key-princess-crown}{%
+\begin{tikzpicture}
+	\pingu[princess crown=green]
+\end{tikzpicture}}
+\ex{key-pumpkin-hat-outline-width}{%
+\begin{tikzpicture}
+	\pingu[pumpkin-hat,pumpkin-hat outline width=3pt]
+\end{tikzpicture}}
+\ex{key-pumpkin-hat-outline}{%
+\begin{tikzpicture}
+	\pingu[pumpkin-hat,pumpkin-hat outline=green]
+\end{tikzpicture}}
+\ex{key-pumpkin-hat-position}{%
+\begin{tikzpicture}
+	\pingu[pumpkin-hat,
+		pumpkin-hat position={1:(-.085cm,-.15cm){1.275}}]
+\end{tikzpicture}}
+\ex{key-pumpkin-hat-stalk-top}{%
+\begin{tikzpicture}
+	\pingu[pumpkin-hat,pumpkin-hat stalk top=teal]
+\end{tikzpicture}}
+\ex{key-pumpkin-hat-stalk}{%
+\begin{tikzpicture}
+	\pingu[pumpkin-hat,pumpkin-hat stalk=teal]
+\end{tikzpicture}}
+\ex{key-pumpkin-hat-stripe-a}{%
+\begin{tikzpicture}
+	\pingu[pumpkin-hat,pumpkin-hat stripe a=green]
+\end{tikzpicture}}
+\ex{key-pumpkin-hat-stripe-b}{%
+\begin{tikzpicture}
+	\pingu[pumpkin-hat,pumpkin-hat stripe b=green]
+\end{tikzpicture}}
+\ex{key-pumpkin-hat-stripe-c}{%
+\begin{tikzpicture}
+	\pingu[pumpkin-hat,pumpkin-hat stripe c=green]
+\end{tikzpicture}}
+\ex{key-pumpkin-hat}{%
+\begin{tikzpicture}
+	\pingu[pumpkin-hat=green]
+\end{tikzpicture}}
+\ex{key-rectmedal-band}{%
+\begin{tikzpicture}
+	\pingu[rectmedal, rectmedal band=green]
+\end{tikzpicture}}
+\ex{key-rectmedal-height}{%
+\begin{tikzpicture}
+	\pingu[rectmedal, rectmedal height=2mm]
+\end{tikzpicture}}
+\ex{key-rectmedal-shade-width}{%
+\begin{tikzpicture}
+	\pingu[rectmedal, rectmedal shade=green,
+	       rectmedal shade width=2mm]
+\end{tikzpicture}}
+\ex{key-rectmedal-shade}{%
+\begin{tikzpicture}
+	\pingu[rectmedal, rectmedal shade=green]
+\end{tikzpicture}}
+\ex{key-rectmedal-text}{%
+\begin{tikzpicture}
+	\pingu[rectmedal, rectmedal text=XY,
+	      rectmedal text style/.style={black}]
+\end{tikzpicture}}
+\ex{key-rectmedal-width}{%
+\begin{tikzpicture}
+	\pingu[rectmedal, rectmedal width=2mm]
+\end{tikzpicture}}
+\ex{key-rectmedal}{%
+\begin{tikzpicture}
+	\pingu[rectmedal]
+\end{tikzpicture}}
+\ex{key-right-eye-color}{%
+\begin{tikzpicture}
+	\pingu[right eye color=green]
+\end{tikzpicture}}
+\ex{key-right-foot-color}{%
+\begin{tikzpicture}
+	\pingu[right foot color=green]
+\end{tikzpicture}}
+\ex{key-right-of}{%
+\begin{tikzpicture}
+	\pingu[name=a]
+	\pingu[right of=a:5mm,body=pingu@blue]
+\end{tikzpicture}}
+\ex{key-right-wing-color}{%
+\begin{tikzpicture}
+	\pingu[right wing color=green]
+\end{tikzpicture}}
+\ex{key-right-wing-item-angle}{%
+\begin{tikzpicture}
+	\pingu[cane left, cane right,
+	       right wing item angle=70]
+\end{tikzpicture}}
+\ex{key-right-wing-item-flip}{%
+\begin{tikzpicture}
+	\pingu[flag left, flag right,
+				 right wing item flip]
+\end{tikzpicture}}
+\ex{key-rook-back}{%
+\begin{tikzpicture}
+	\pingu[rook, rook back=green]
+\end{tikzpicture}}
+\ex{key-rook-hatch}{%
+\begin{tikzpicture}
+	\pingu[rook, rook hatch=false]
+\end{tikzpicture}}
+\ex{key-rook-shade}{%
+\begin{tikzpicture}
+	\pingu[rook, rook shade=green]
+\end{tikzpicture}}
+\ex{key-rook}{%
+\begin{tikzpicture}
+	\pingu[rook=green]
+\end{tikzpicture}}
+\ex{key-santa-beard-string}{%
+\begin{tikzpicture}
+	\pingu[santa beard,santa beard string=green]
+\end{tikzpicture}}
+\ex{key-santa-beard}{%
+\begin{tikzpicture}
+	\pingu[santa beard=brown!20!white]
+\end{tikzpicture}}
+\ex{key-santa-hat-bobble}{%
+\begin{tikzpicture}
+	\pingu[santa hat,santa hat bobble=green]
+\end{tikzpicture}}
+\ex{key-santa-hat-second}{%
+\begin{tikzpicture}
+	\pingu[santa hat,santa hat second=green]
+\end{tikzpicture}}
+\ex{key-santa-hat}{%
+\begin{tikzpicture}
+	\pingu[santa hat=pingu@red]
+\end{tikzpicture}}
+\ex{key-scarf-end-length}{%
+\begin{tikzpicture}
+	\pingu[scarf, scarf end length=12mm]
+\end{tikzpicture}}
+\ex{key-scarf-end}{%
+\begin{tikzpicture}
+	\pingu[scarf, scarf end=right]
+	\pingu[scarf, scarf end=none, xshift=3cm]
+\end{tikzpicture}}
+\ex{key-scarf-fringe}{%
+\begin{tikzpicture}
+	\pingu[scarf, scarf fringe=green]
+\end{tikzpicture}}
+\ex{key-scarf-no-stripes}{%
+\begin{tikzpicture}
+	\pingu[scarf=blue, scarf no stripes]
+\end{tikzpicture}}
+\ex{key-scarf-raise}{%
+\begin{tikzpicture}
+	\pingu[scarf, scarf raise=-1mm]
+\end{tikzpicture}}
+\ex{key-scarf-stripes}{%
+\begin{tikzpicture}
+	\pingu[scarf, scarf stripes=green]
+\end{tikzpicture}}
+\ex{key-scarf-thickness}{%
+\begin{tikzpicture}
+	\pingu[scarf, scarf thickness=4mm]
+\end{tikzpicture}}
+\ex{key-scarf}{%
+\begin{tikzpicture}
+	\pingu[scarf=green]
+\end{tikzpicture}}
+\ex{key-second-shirt-neck}{%
+\begin{tikzpicture}
+	\pingu[second shirt, second shirt neck=green]
+\end{tikzpicture}}
+\ex{key-second-shirt-raise}{%
+\begin{tikzpicture}
+	\pingu[second shirt, second shirt raise=5mm]
+\end{tikzpicture}}
+\ex{key-second-shirt}{%
+\begin{tikzpicture}
+	\pingu[second shirt=green, shirt]
+\end{tikzpicture}}
+\ex{key-sheriff-star-content}{%
+\begin{tikzpicture}
+	\pingu[sheriff star, sheriff star content=X]
+\end{tikzpicture}}
+\ex{key-sheriff-star-lines}{%
+\begin{tikzpicture}
+	\pingu[sheriff star, sheriff star lines=green]
+\end{tikzpicture}}
+\ex{key-sheriff-star}{%
+\begin{tikzpicture}
+	\pingu[sheriff star=green]
+\end{tikzpicture}}
+\ex{key-shirt-above}{%
+\begin{tikzpicture}
+	\pingu[shirt, tie, shirt above]
+	\pingu[shirt, tie, xshift=3cm]
+\end{tikzpicture}}
+\ex{key-shirt-button-bottom-shade}{%
+\begin{tikzpicture}
+	\pingu[shirt, shirt button bottom shade=green]
+\end{tikzpicture}}
+\ex{key-shirt-button-bottom}{%
+\begin{tikzpicture}
+	\pingu[shirt, shirt button bottom=green]
+\end{tikzpicture}}
+\ex{key-shirt-button-middle-shade}{%
+\begin{tikzpicture}
+	\pingu[shirt, shirt button middle shade=green]
+\end{tikzpicture}}
+\ex{key-shirt-button-middle}{%
+\begin{tikzpicture}
+	\pingu[shirt, shirt button middle=green]
+\end{tikzpicture}}
+\ex{key-shirt-button-top-shade}{%
+\begin{tikzpicture}
+	\pingu[shirt, shirt button top shade=green]
+\end{tikzpicture}}
+\ex{key-shirt-button-top}{%
+\begin{tikzpicture}
+	\pingu[shirt, shirt button top=green]
+\end{tikzpicture}}
+\ex{key-shirt-buttons-shade}{%
+\begin{tikzpicture}
+	\pingu[shirt, shirt buttons shade=green]
+\end{tikzpicture}}
+\ex{key-shirt-buttons}{%
+\begin{tikzpicture}
+	\pingu[shirt, shirt buttons=green]
+	\pingu[shirt, shirt button top=green, shirt button bottom=blue, xshift=3cm]
+\end{tikzpicture}}
+\ex{key-shirt-no-buttons}{%
+\begin{tikzpicture}
+	\pingu[shirt, shirt no buttons]
+\end{tikzpicture}}
+\ex{key-shirt-padding}{%
+\begin{tikzpicture}
+	\pingu[shirt, shirt padding=4mm]
+\end{tikzpicture}}
+\ex{key-shirt-raise}{%
+\begin{tikzpicture}
+	\pingu[shirt, shirt raise=5mm]
+\end{tikzpicture}}
+\ex{key-shirt}{%
+\begin{tikzpicture}
+	\pingu[shirt=green]
+\end{tikzpicture}}
+\ex{key-shoes-base-left}{%
+\begin{tikzpicture}
+	\pingu[shoes, shoes base left=green]
+\end{tikzpicture}}
+\ex{key-shoes-base-right}{%
+\begin{tikzpicture}
+	\pingu[shoes, shoes base right=green]
+\end{tikzpicture}}
+\ex{key-shoes-color-right}{%
+\begin{tikzpicture}
+	\pingu[shoes, shoes color right=green]
+\end{tikzpicture}}
+\ex{key-shoes}{%
+\begin{tikzpicture}
+	\pingu[shoes=green]
+\end{tikzpicture}}
+\ex{key-sign-post-left-color}{%
+\begin{tikzpicture}
+	\pingu[sign post left, sign post left color=green]
+\end{tikzpicture}}
+\ex{key-sign-post-left-font-color}{%
+\begin{tikzpicture}
+	\pingu[sign post left=ABCD,
+		sign post left font color=green]
+\end{tikzpicture}}
+\ex{key-sign-post-left}{%
+\begin{tikzpicture}
+	\pingu[sign post left=ABC]
+\end{tikzpicture}}
+\ex{key-sign-post-right-color}{%
+\begin{tikzpicture}
+	\pingu[sign post right, sign post right color=green]
+\end{tikzpicture}}
+\ex{key-sign-post-right-font-color}{%
+\begin{tikzpicture}
+	\pingu[sign post right=ABCD,
+		sign post right font color=green]
+\end{tikzpicture}}
+\ex{key-sign-post-right}{%
+\begin{tikzpicture}
+	\pingu[sign post right=ABC]
+\end{tikzpicture}}
+\ex{key-silver-medal}{%
+\begin{tikzpicture}
+	\pingu[silver medal]
+\end{tikzpicture}}
+\ex{key-silver-rectmedal}{%
+\begin{tikzpicture}
+	\pingu[silver rectmedal]
+\end{tikzpicture}}
+\ex{key-sneaker-band-left}{%
+\begin{tikzpicture}
+	\pingu[sneaker, sneaker band left=green]
+\end{tikzpicture}}
+\ex{key-sneaker-band-right}{%
+\begin{tikzpicture}
+	\pingu[sneaker, sneaker band right=green]
+\end{tikzpicture}}
+\ex{key-sneaker-base-left}{%
+\begin{tikzpicture}
+	\pingu[sneaker, sneaker base left=green]
+\end{tikzpicture}}
+\ex{key-sneaker-base-right}{%
+\begin{tikzpicture}
+	\pingu[sneaker, sneaker base right=green]
+\end{tikzpicture}}
+\ex{key-sneaker-color-right}{%
+\begin{tikzpicture}
+	\pingu[sneaker, sneaker color right=green]
+\end{tikzpicture}}
+\ex{key-sneaker-front-left}{%
+\begin{tikzpicture}
+	\pingu[sneaker, sneaker front left=green]
+\end{tikzpicture}}
+\ex{key-sneaker-front-right}{%
+\begin{tikzpicture}
+	\pingu[sneaker, sneaker front right=green]
+\end{tikzpicture}}
+\ex{key-sneaker-side-left}{%
+\begin{tikzpicture}
+	\pingu[sneaker, sneaker side left=green]
+\end{tikzpicture}}
+\ex{key-sneaker-side-right}{%
+\begin{tikzpicture}
+	\pingu[sneaker, sneaker side right=green]
+\end{tikzpicture}}
+\ex{key-sneaker}{%
+\begin{tikzpicture}
+	\pingu[sneaker=green]
+\end{tikzpicture}}
+\ex{key-snowball-left-size}{%
+\begin{tikzpicture}
+	\pingu[snowball left, snowball left size=2mm]
+\end{tikzpicture}}
+\ex{key-snowball-left-xshift}{%
+\begin{tikzpicture}
+	\pingu[snowball left, snowball left xshift=2mm]
+\end{tikzpicture}}
+\ex{key-snowball-left-yshift}{%
+\begin{tikzpicture}
+	\pingu[snowball left, snowball left yshift=2mm]
+\end{tikzpicture}}
+\ex{key-snowball-left}{%
+\begin{tikzpicture}
+	\pingu[snowball left=pingu@bronze!80!pingu@black]
+\end{tikzpicture}}
+\ex{key-snowball-right-size}{%
+\begin{tikzpicture}
+	\pingu[snowball right, snowball right size=2mm]
+\end{tikzpicture}}
+\ex{key-snowball-right-xshift}{%
+\begin{tikzpicture}
+	\pingu[snowball right, snowball right xshift=2mm]
+\end{tikzpicture}}
+\ex{key-snowball-right-yshift}{%
+\begin{tikzpicture}
+	\pingu[snowball right, snowball right yshift=2mm]
+\end{tikzpicture}}
+\ex{key-snowball-right}{%
+\begin{tikzpicture}
+	\pingu[snowball right=pingu@bronze!80!pingu@black]
+\end{tikzpicture}}
+\ex{key-space-helmet-glass-opacity}{%
+\begin{tikzpicture}
+	\pingu[space helmet, space helmet glass opacity=1]
+\end{tikzpicture}}
+\ex{key-space-helmet-glass}{%
+\begin{tikzpicture}
+	\pingu[space helmet, space helmet glass=green]
+\end{tikzpicture}}
+\ex{key-space-helmet-position}{%
+\begin{tikzpicture}
+	\pingu[space helmet, space helmet position={1:(0cm,-.09cm){1.33}}]
+\end{tikzpicture}}
+\ex{key-space-helmet}{%
+\begin{tikzpicture}
+	\pingu[space helmet=green]
+\end{tikzpicture}}
+\ex{key-spear-left}{%
+\begin{tikzpicture}
+	\pingu[spear left=cyan]
+\end{tikzpicture}}
+\ex{key-spear-right}{%
+\begin{tikzpicture}
+	\pingu[spear right=cyan]
+\end{tikzpicture}}
+\ex{key-staff-left-code}{%
+\begin{tikzpicture}
+	\pingu[staff left, staff left code={\fill circle[radius=2mm];}]
+\end{tikzpicture}}
+\ex{key-staff-left-length}{%
+\begin{tikzpicture}
+	\pingu[staff left, staff left length=20mm]
+\end{tikzpicture}}
+\ex{key-staff-left-raise}{%
+\begin{tikzpicture}
+	\pingu[staff left, staff left raise=-2mm]
+\end{tikzpicture}}
+\ex{key-staff-left}{%
+\begin{tikzpicture}
+	\pingu[staff left=green, left item angle=70]
+\end{tikzpicture}}
+\ex{key-staff-right-code}{%
+\begin{tikzpicture}
+	\pingu[staff right, staff right code={\fill circle[radius=2mm];}]
+\end{tikzpicture}}
+\ex{key-staff-right-length}{%
+\begin{tikzpicture}
+	\pingu[staff right, staff right length=20mm]
+\end{tikzpicture}}
+\ex{key-staff-right-raise}{%
+\begin{tikzpicture}
+	\pingu[staff right, staff right raise=-2mm]
+\end{tikzpicture}}
+\ex{key-staff-right}{%
+\begin{tikzpicture}
+	\pingu[staff right=green, right item angle=70]
+\end{tikzpicture}}
+\ex{key-strawhat-position}{%
+\begin{tikzpicture}
+	\pingu[strawhat,
+		strawhat position={33:(-.8cm,.14cm){1.4}}]
+\end{tikzpicture}}
+\ex{key-strawhat-ribbon}{%
+\begin{tikzpicture}
+	\pingu[strawhat, strawhat ribbon=green]
+\end{tikzpicture}}
+\ex{key-strawhat}{%
+\begin{tikzpicture}
+	\pingu[strawhat=green]
+\end{tikzpicture}}
+\ex{key-sun-glasses-round}{%
+\begin{tikzpicture}
+	\pingu[sun glasses round=orange]
+\end{tikzpicture}}
+\ex{key-sun-glasses}{%
+\begin{tikzpicture}
+	\pingu[sun glasses=orange]
+\end{tikzpicture}}
+\ex{key-sword-left-guard}{%
+\begin{tikzpicture}
+	\pingu[sword left, sword left guard=green]
+\end{tikzpicture}}
+\ex{key-sword-left-handle-length}{%
+\begin{tikzpicture}
+	\pingu[sword left, sword left handle length=7mm]
+\end{tikzpicture}}
+\ex{key-sword-left-handle-shift}{%
+\begin{tikzpicture}
+	\pingu[sword left, sword left handle shift=2mm]
+\end{tikzpicture}}
+\ex{key-sword-left-handle}{%
+\begin{tikzpicture}
+	\pingu[sword left, sword left handle=green]
+\end{tikzpicture}}
+\ex{key-sword-left-length}{%
+\begin{tikzpicture}
+	\pingu[sword left, sword left yshift=4mm]
+\end{tikzpicture}}
+\ex{key-sword-left-shade-opacity}{%
+\begin{tikzpicture}
+	\pingu[sword left, sword left shade opacity=.5]
+\end{tikzpicture}}
+\ex{key-sword-left-shade}{%
+\begin{tikzpicture}
+	\pingu[sword left, sword left shade=green]
+\end{tikzpicture}}
+\ex{key-sword-left-width}{%
+\begin{tikzpicture}
+	\pingu[sword left, sword left width=.25mm]
+\end{tikzpicture}}
+\ex{key-sword-left-xshift}{%
+\begin{tikzpicture}
+	\pingu[sword left, sword left xshift=2mm]
+\end{tikzpicture}}
+\ex{key-sword-left-yshift}{%
+\begin{tikzpicture}
+	\pingu[sword left, sword left yshift=2mm]
+\end{tikzpicture}}
+\ex{key-sword-left}{%
+\begin{tikzpicture}
+	\pingu[sword left=green]
+\end{tikzpicture}}
+\ex{key-sword-right-guard}{%
+\begin{tikzpicture}
+	\pingu[sword right, sword right guard=green]
+\end{tikzpicture}}
+\ex{key-sword-right-handle-length}{%
+\begin{tikzpicture}
+	\pingu[sword right, sword right handle length=7mm]
+\end{tikzpicture}}
+\ex{key-sword-right-handle-shift}{%
+\begin{tikzpicture}
+	\pingu[sword right, sword right handle shift=2mm]
+\end{tikzpicture}}
+\ex{key-sword-right-handle}{%
+\begin{tikzpicture}
+	\pingu[sword right, sword right handle=green]
+\end{tikzpicture}}
+\ex{key-sword-right-length}{%
+\begin{tikzpicture}
+	\pingu[sword right, sword right yshift=4mm]
+\end{tikzpicture}}
+\ex{key-sword-right-shade-opacity}{%
+\begin{tikzpicture}
+	\pingu[sword right, sword right shade opacity=.5]
+\end{tikzpicture}}
+\ex{key-sword-right-shade}{%
+\begin{tikzpicture}
+	\pingu[sword right, sword right shade=green]
+\end{tikzpicture}}
+\ex{key-sword-right-width}{%
+\begin{tikzpicture}
+	\pingu[sword right, sword right width=.25mm]
+\end{tikzpicture}}
+\ex{key-sword-right-xshift}{%
+\begin{tikzpicture}
+	\pingu[sword right, sword right xshift=2mm]
+\end{tikzpicture}}
+\ex{key-sword-right-yshift}{%
+\begin{tikzpicture}
+	\pingu[sword right, sword right yshift=2mm]
+\end{tikzpicture}}
+\ex{key-sword-right}{%
+\begin{tikzpicture}
+	\pingu[sword right=green]
+\end{tikzpicture}}
+\ex{key-tie-dots}{%
+	\begin{tikzpicture}
+		\pingu[tie, tie dots]
+	\end{tikzpicture}}
+\ex{key-tie-knot}{%
+\begin{tikzpicture}
+	\pingu[tie, tie knot=orange]
+\end{tikzpicture}}
+\ex{key-tie-length}{%
+\begin{tikzpicture}
+	\pingu[tie, tie length=1.25cm]
+\end{tikzpicture}}
+\ex{key-tie-offset}{%
+\begin{tikzpicture}
+	\pingu[tie, tie offset=.75cm]
+\end{tikzpicture}}
+\ex{key-tie-width}{%
+\begin{tikzpicture}
+	\pingu[tie, tie width=.5cm]
+\end{tikzpicture}}
+\ex{key-tie}{%
+\begin{tikzpicture}
+	\pingu[tie]
+\end{tikzpicture}}
+\ex{key-vampire-teeth}{%
+\begin{tikzpicture}
+	\pingu[vampire teeth=green]
+\end{tikzpicture}}
+\ex{key-vr-headset-band-top}{%
+\begin{tikzpicture}
+	\pingu[vr-headset, vr-headset band top=purple]
+\end{tikzpicture}}
+\ex{key-vr-headset-band}{%
+\begin{tikzpicture}
+	\pingu[vr-headset, vr-headset band=purple]
+\end{tikzpicture}}
+\ex{key-vr-headset-hair}{%
+\begin{tikzpicture}
+	\pingu[vr-headset, vr-headset hair]
+\end{tikzpicture}}
+\ex{key-vr-headset-text-color}{%
+\begin{tikzpicture}
+	\pingu[vr-headset, vr-headset text color=green]
+\end{tikzpicture}}
+\ex{key-vr-headset-text}{%
+\begin{tikzpicture}
+	\pingu[vr-headset, vr-headset text={ABCD}]
+\end{tikzpicture}}
+\ex{key-vr-headset}{%
+\begin{tikzpicture}
+	\pingu[vr-headset=green]
+\end{tikzpicture}}
+\ex{key-wings-color}{%
+\begin{tikzpicture}
+	\pingu[wings color=green]
+\end{tikzpicture}}
+\ex{key-witch-hat-band}{%
+\begin{tikzpicture}
+	\pingu[witch hat, witch hat band=green]
+\end{tikzpicture}}
+\ex{key-witch-hat-base}{%
+\begin{tikzpicture}
+	\pingu[witch hat, witch hat base=green]
+\end{tikzpicture}}
+\ex{key-witch-hat-coronal}{%
+\begin{tikzpicture}
+	\pingu[witch hat, witch hat coronal=green]
+\end{tikzpicture}}
+\ex{key-witch-hat-position}{%
+\begin{tikzpicture}
+	\pingu[witch hat, witch hat position={1:(0cm,-.09cm){1.33}}]
+\end{tikzpicture}}
+\ex{key-witch-hat-ribbon}{%
+\begin{tikzpicture}
+	\pingu[witch hat, witch hat ribbon=green]
+\end{tikzpicture}}
+\ex{key-witch-hat}{%
+\begin{tikzpicture}
+	\pingu[witch hat=green]
+\end{tikzpicture}}
+\ex{key-wool-hat-bobble}{%
+\begin{tikzpicture}
+	\pingu[wool hat,wool hat bobble=green]
+\end{tikzpicture}}
+\ex{key-wool-hat-second}{%
+\begin{tikzpicture}
+	\pingu[wool hat,wool hat second=green]
+\end{tikzpicture}}
+\ex{key-wool-hat}{%
+\begin{tikzpicture}
+	\pingu[wool hat=pingu@red]
+\end{tikzpicture}}
+\ex{line-pengu}{%
+\begin{tikzpicture}
+	\pingu[:line, princess crown, silver medal]
+\end{tikzpicture}}
+\ex{lord-gadget}{%
+\begin{tikzpicture}
+	\pingu[crown 2d=pingu@bronze,
+	       medal=pingu@purple, tie,
+	       eye patch left=teal,
+	       eye patch right=orange,
+	       right wing wave, sunglasses,
+	       glow thick=yellow]
+\end{tikzpicture}}
+\ex{musicians}{%
+\begin{tikzpicture}
+   \pingu[wings hug, eyes wink,flip-flops, conical hat=pingu@bronze!40!black,body type=legacy,tie=pingu@purple,drum stick left,drum stick right,drum stick right handle shift=-0.5mm,right wing wave,drums,drums center text={The\\\fontseries{sb}\selectfont Waddlers!}]
+   \pingu[xshift=3.5cm,right wing grab, left wing wave, eyes wink,guitar right, right item angle=20, left wing grab,body type=legacy,bow tie=pingu@yellow!60!orange, headphones=pingu@blue, headphones inner=pingu@blue!5!pingu@white,sneaker,blush]
+   \pingu[xshift=1.75cm,yshift=-3cm, right wing grab, eyes shiny,body type=legacy,small,shoes=pingu@purple,heart,wool hat=pingu@purple!80!black,bill=open,microphone right]
+\end{tikzpicture}}
+\ex{relative-pengu}{%
+\begin{tikzpicture}
+	\pingu[name=a,wings wave]
+	\pingu[name=b,right of=a:5mm,large size]
+	\pingu[name=c,left of=a:5mm,small size]
+	\pingu[name=d,above of=a:2mm,eyes shiny]
+	\pingu[name=e,below of=a:2mm,body=pingu@blue]
+\end{tikzpicture}}
+\ex{small-pengu}{%
+\begin{tikzpicture}
+	\pingu
+\end{tikzpicture}}
+\ex{update-defaults}{%
+\begin{tikzpicture}
+	\pingudefaults{wings grab, eyes shiny}
+	\pingu
+	\pingu[left wing shock, xshift=2.7cm]
+\end{tikzpicture}}
+\ex{wings-showcase}{%
+\begin{tikzpicture}
+	\pingu[left wing none, heart=green]
+	\pingu[wings wave, heart=teal, xshift=3.5cm]
+	\pingu[wings hug, heart=orange, xshift=7cm]
+	\pingu[left wing grab, right wing shock, heart=purple, xshift=10.5cm]
+\end{tikzpicture}}
+\ex{winter-walk}{%
+\begin{tikzpicture}
+  \pingu[xshift=2cm,yshift=-.15cm,small,body=pingu@black!62!gray,santa hat,santa beard,wings wave,eyes wink,bill open]
+  \pingu[xshift=-2.1cm,yshift=.1cm,body type=legacy,scarf=pingu@blue,scarf stripes=pingu@white,scarf end=right,wool hat=pingu@blue!70!pingu@black,snowball right,right wing wave,left wing hug,eyes shiny,blush]
+  \pingu[body type=legacy,body=pingu@black!88!blue,deer hat,scarf=orange,scarf end=left,cup=pingu@red,cup steam,cup straw=!hide,wings grab,eyes shiny]
+\end{tikzpicture}}
+\end{document}
